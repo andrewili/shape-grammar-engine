@@ -1,2 +1,2 @@
 Contents of test file
-New line
+A different new line
