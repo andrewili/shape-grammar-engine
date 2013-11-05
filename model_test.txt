@@ -1,0 +1,10 @@
+#   model_test.txt
+#   2013-09-18
+
+    >>> import model
+
+__init__()
+
+    >>> model = model.Model()
+    >>> model.shapes
+    []

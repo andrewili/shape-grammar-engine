@@ -1,0 +1,451 @@
+#   sg_line_test.txt
+#   2013-10-04. Extends 2013-09-24
+
+    >>> import sg_line
+    >>> import sg_point
+    >>> def make_point_from_spec(x, y):
+    ...     return sg_point.SGPoint(x, y)
+    >>> def make_line_from_spec(x1, y1, x2, y2):
+    ...     return sg_line.SGLine.from_spec(x1, y1, x2, y2)
+
+#### init ####
+__init__()
+    
+    >>> line_01 = make_line_from_spec(0, 0, 1, 1)
+    
+    >>> print line_01.tail
+    (0.0, 0.0)
+    >>> print line_01.head
+    (1.0, 1.0)
+    >>> line_01.spec
+    (0, 0, 1, 1)
+    >>> line_01.carrier
+    (45.0, 0)
+
+    
+    >>> zero_length_line = make_line_from_spec(0, 0, 0, 0)
+    You're trying to create a zero-length line
+    
+    
+    >>> line_w_big_tail = make_line_from_spec(1, 1, 0, 0)
+    
+    >>> print line_w_big_tail.tail
+    (0.0, 0.0)
+    >>> print line_w_big_tail.head
+    (1.0, 1.0)
+    
+
+    >>> print make_line_from_spec(0, 0, 0, 1).carrier
+    (0.0, 0)
+    >>> print make_line_from_spec(0, 0, 1, 0).carrier
+    (90.0, 0)
+    >>> print make_line_from_spec(0, 0, 1, 1).carrier
+    (45.0, 0)
+    >>> print make_line_from_spec(0, 1, 0, 0).carrier
+    (0.0, 0)
+    >>> print make_line_from_spec(0, 1, 1, 0).carrier
+    (135.0, 1)
+    >>> print make_line_from_spec(0, 1, 1, 1).carrier
+    (90.0, 1)
+    >>> print make_line_from_spec(1, 0, 0, 0).carrier
+    (90.0, 0)
+    >>> print make_line_from_spec(1, 0, 0, 1).carrier
+    (135.0, 1)
+    >>> print make_line_from_spec(1, 0, 1, 1).carrier
+    (0.0, 1)
+    >>> print make_line_from_spec(1, 1, 0, 0).carrier
+    (45.0, 0)
+    >>> print make_line_from_spec(1, 1, 0, 1).carrier
+    (90.0, 1)
+    >>> print make_line_from_spec(1, 1, 1, 0).carrier
+    (0.0, 1)
+
+get_carrier_from(line_spec)
+    >>> drone_line = make_line_from_spec(0, 0, 10, 10)
+    
+    >>> line_spec_0011 = (0, 0, 1, 1)
+    >>> drone_line.get_carrier_from(line_spec_0011)
+    (45.0, 0)
+    >>> line_spec_0010 = (0, 0, 1, 0)
+    >>> drone_line.get_carrier_from(line_spec_0010)
+    (90.0, 0)
+    >>> line_spec_0001 = (0, 0, 0, 1)
+    >>> drone_line.get_carrier_from(line_spec_0001)
+    (0.0, 0)
+
+from_spec(x1, y1, x2, y2)
+    >>> line = sg_line.SGLine.from_spec(0, 0, 1, 1)
+    
+    >>> print line
+    (0.0, 0.0, 1.0, 1.0)
+
+from_points(p1,p2)
+    >>> p1 = make_point_from_spec(1, 1)
+    >>> p2 = make_point_from_spec(2, 2)
+    
+    >>> line = sg_line.SGLine.from_points(p1, p2)
+    
+    >>> print line
+    (1.0, 1.0, 2.0, 2.0)
+
+#### representation ####
+__str__()
+    >>> print make_line_from_spec(1, 1, 2, 2)
+    (1.0, 1.0, 2.0, 2.0)
+
+    ####
+__eq__(other)
+    >>> line =  make_line_from_spec(4, 4, 6, 6)
+    
+    >>> line == make_line_from_spec(5, 5, 6, 6)
+    False
+    >>> line == make_line_from_spec(4, 4, 5, 5)
+    False
+    >>> line == make_line_from_spec(4, 4, 6, 6)
+    True
+
+__ge__(other)
+    >>> line  = make_line_from_spec(4, 4, 6, 6)
+    
+    >>> line >= make_line_from_spec(3, 3, 5, 5)
+    True
+    >>> line >= make_line_from_spec(4, 4, 5, 5)
+    True
+    >>> line >= make_line_from_spec(4, 4, 6, 6)
+    True
+    >>> line >= make_line_from_spec(4, 4, 7, 7)
+    False
+    >>> line >= make_line_from_spec(6, 6, 7, 7)
+    False
+
+__gt__(other)
+    >>> line = make_line_from_spec(4, 4, 6, 6)
+    
+    >>> line > make_line_from_spec(3, 3, 9, 9)
+    True
+    >>> line > make_line_from_spec(4, 4, 5, 5)
+    True
+    >>> line > make_line_from_spec(4, 4, 6, 6)
+    False
+    >>> line > make_line_from_spec(4, 4, 7, 7)
+    False
+    >>> line > make_line_from_spec(5, 5, 6, 6)
+    False
+
+__le__(other)
+    >>> line  = make_line_from_spec(4, 4, 6, 6)
+    
+    >>> line <= make_line_from_spec(5, 5, 9, 9)
+    True
+    >>> line <= make_line_from_spec(4, 4, 7, 7)
+    True
+    >>> line <= make_line_from_spec(4, 4, 6, 6)
+    True
+    >>> line <= make_line_from_spec(4, 4, 5, 5)
+    False
+    >>> line <= make_line_from_spec(1, 1, 9, 9)
+    False
+
+__lt__(other)
+    >>> line = make_line_from_spec(4, 4, 6, 6)
+    
+    >>> line < make_line_from_spec(5, 5, 6, 6)
+    True
+    >>> line < make_line_from_spec(4, 4, 7, 7)
+    True
+    >>> line < make_line_from_spec(4, 4, 6, 6)
+    False
+    >>> line < make_line_from_spec(4, 4, 5, 5)
+    False
+    >>> line < make_line_from_spec(1, 1, 7, 7)
+    False
+
+__ne__(other)
+    >>> line  = make_line_from_spec(4, 4, 6, 6)
+    
+    >>> line != make_line_from_spec(5, 5, 6, 6)
+    True
+    >>> line != make_line_from_spec(4, 4, 5, 5)
+    True
+    >>> line != make_line_from_spec(4, 4, 6, 6)
+    False
+
+is_a_subline_in_column(column)
+    
+    >>> line = make_line_from_spec(1, 1, 2, 2)
+    >>> line_01 = make_line_from_spec(0, 0, 1, 1)
+    >>> line_02 = make_line_from_spec(0, 0, 2, 2)
+    >>> line_03 = make_line_from_spec(0, 0, 3, 3)
+    >>> line_12 = make_line_from_spec(1, 1, 2, 2)
+    >>> line_13 = make_line_from_spec(1, 1, 3, 3)
+    >>> line_23 = make_line_from_spec(2, 2, 3, 3)
+    >>> line_45 = make_line_from_spec(4, 4, 5, 5)
+    >>> column_00 = []
+    >>> column_01 = [line_01]
+    >>> column_02 = [line_02]
+    >>> column_03 = [line_03]
+    >>> column_12 = [line_12]
+    >>> column_13 = [line_13]
+    >>> column_23 = [line_23]
+    >>> column_01_23 = [line_01, line_23]
+    >>> column_01_45 = [line_01, line_45]
+    >>> column_02_45 = [line_02, line_45]
+    >>> column_03_45 = [line_03, line_45]
+    >>> column_12_45 = [line_12, line_45]
+    >>> column_13_45 = [line_13, line_45]
+    >>> column_23_45 = [line_23, line_45]
+
+    >>> line.is_a_subline_in_column(column_00)
+    False
+    >>> line.is_a_subline_in_column(column_01)
+    False
+    >>> line.is_a_subline_in_column(column_02)
+    True
+    >>> line.is_a_subline_in_column(column_03)
+    True
+    >>> line.is_a_subline_in_column(column_12)
+    True
+    >>> line.is_a_subline_in_column(column_13)
+    True
+    >>> line.is_a_subline_in_column(column_23)
+    False
+    >>> line.is_a_subline_in_column(column_01_23)
+    False
+    >>> line.is_a_subline_in_column(column_01_45)
+    False
+    >>> line.is_a_subline_in_column(column_02_45)
+    True
+    >>> line.is_a_subline_in_column(column_03_45)
+    True
+    >>> line.is_a_subline_in_column(column_12_45)
+    True
+    >>> line.is_a_subline_in_column(column_13_45)
+    True
+    >>> line.is_a_subline_in_column(column_23_45)
+    False
+
+is_a_subline_of(other)
+    >>> line_12 = make_line_from_spec(1, 1, 2, 2)
+    
+    >>> line_12.is_a_subline_of(make_line_from_spec(0, 0, 1, 1))
+    False
+    >>> line_12.is_a_subline_of(make_line_from_spec(0, 0, 2, 2))
+    True
+    >>> line_12.is_a_subline_of(make_line_from_spec(1, 1, 2, 2))
+    True
+
+is_disjoint_left_of(other)
+overlaps_tail_of(other)
+overlaps_all_of(other)
+overlaps_middle_of(other)
+overlaps_head_of(other)
+is_disjoint_right_of(other)
+
+    >>> this    = make_line_from_spec(2, 2, 5, 5)
+    >>> that_1a = make_line_from_spec(0, 0, 1, 1)
+    >>> that_1b = make_line_from_spec(0, 0, 2, 2)
+    >>> that_1c = make_line_from_spec(0, 0, 3, 3)
+    >>> that_1d = make_line_from_spec(0, 0, 5, 5)
+    >>> that_1e = make_line_from_spec(0, 0, 7, 7)
+    >>> that_2c = make_line_from_spec(2, 2, 3, 3)
+    >>> that_2d = make_line_from_spec(2, 2, 5, 5)
+    >>> that_2e = make_line_from_spec(2, 2, 7, 7)
+    >>> that_3c = make_line_from_spec(3, 3, 4, 4)
+    >>> that_3d = make_line_from_spec(3, 3, 5, 5)
+    >>> that_3e = make_line_from_spec(3, 3, 7, 7)
+    >>> that_4e = make_line_from_spec(5, 5, 7, 7)
+    >>> that_5e = make_line_from_spec(6, 6, 7, 7)
+
+    >>> this.is_disjoint_left_of(that_1a)
+    False
+    >>> this.is_disjoint_left_of(that_1b)
+    False
+    >>> this.is_disjoint_left_of(that_1c)
+    False
+    >>> this.is_disjoint_left_of(that_1d)
+    False
+    >>> this.is_disjoint_left_of(that_1e)
+    False
+    >>> this.is_disjoint_left_of(that_2c)
+    False
+    >>> this.is_disjoint_left_of(that_2d)
+    False
+    >>> this.is_disjoint_left_of(that_2e)
+    False
+    >>> this.is_disjoint_left_of(that_3c)
+    False
+    >>> this.is_disjoint_left_of(that_3d)
+    False
+    >>> this.is_disjoint_left_of(that_3e)
+    False
+    >>> this.is_disjoint_left_of(that_4e)
+    True
+    >>> this.is_disjoint_left_of(that_5e)
+    True
+
+    >>> this.overlaps_tail_of(that_1a)
+    False
+    >>> this.overlaps_tail_of(that_1b)
+    False
+    >>> this.overlaps_tail_of(that_1c)
+    False
+    >>> this.overlaps_tail_of(that_1d)
+    False
+    >>> this.overlaps_tail_of(that_1e)
+    False
+    >>> this.overlaps_tail_of(that_2c)
+    False
+    >>> this.overlaps_tail_of(that_2d)
+    False
+    >>> this.overlaps_tail_of(that_2e)
+    True
+    >>> this.overlaps_tail_of(that_3c)
+    False
+    >>> this.overlaps_tail_of(that_3d)
+    False
+    >>> this.overlaps_tail_of(that_3e)
+    True
+    >>> this.overlaps_tail_of(that_4e)
+    False
+    >>> this.overlaps_tail_of(that_5e)
+    False
+
+    >>> this.overlaps_all_of(that_1a)
+    False
+    >>> this.overlaps_all_of(that_1b)
+    False
+    >>> this.overlaps_all_of(that_1c)
+    False
+    >>> this.overlaps_all_of(that_1d)
+    False
+    >>> this.overlaps_all_of(that_1e)
+    False
+    >>> this.overlaps_all_of(that_2c)
+    True
+    >>> this.overlaps_all_of(that_2d)
+    True
+    >>> this.overlaps_all_of(that_2e)
+    False
+    >>> this.overlaps_all_of(that_3c)
+    True
+    >>> this.overlaps_all_of(that_3d)
+    True
+    >>> this.overlaps_all_of(that_3e)
+    False
+    >>> this.overlaps_all_of(that_4e)
+    False
+    >>> this.overlaps_all_of(that_5e)
+    False
+
+    >>> this.overlaps_middle_of(that_1a)
+    False
+    >>> this.overlaps_middle_of(that_1b)
+    False
+    >>> this.overlaps_middle_of(that_1c)
+    False
+    >>> this.overlaps_middle_of(that_1d)
+    False
+    >>> this.overlaps_middle_of(that_1e)
+    True
+    >>> this.overlaps_middle_of(that_2c)
+    False
+    >>> this.overlaps_middle_of(that_2d)
+    False
+    >>> this.overlaps_middle_of(that_2e)
+    False
+    >>> this.overlaps_middle_of(that_3c)
+    False
+    >>> this.overlaps_middle_of(that_3d)
+    False
+    >>> this.overlaps_middle_of(that_3e)
+    False
+    >>> this.overlaps_middle_of(that_4e)
+    False
+    >>> this.overlaps_middle_of(that_5e)
+    False
+
+    >>> this.overlaps_head_of(that_1a)
+    False
+    >>> this.overlaps_head_of(that_1b)
+    False
+    >>> this.overlaps_head_of(that_1c)
+    True
+    >>> this.overlaps_head_of(that_1d)
+    True
+    >>> this.overlaps_head_of(that_1e)
+    False
+    >>> this.overlaps_head_of(that_2c)
+    False
+    >>> this.overlaps_head_of(that_2d)
+    False
+    >>> this.overlaps_head_of(that_2e)
+    False
+    >>> this.overlaps_head_of(that_3c)
+    False
+    >>> this.overlaps_head_of(that_3d)
+    False
+    >>> this.overlaps_head_of(that_3e)
+    False
+    >>> this.overlaps_head_of(that_4e)
+    False
+    >>> this.overlaps_head_of(that_5e)
+    False
+
+    >>> this.is_disjoint_right_of(that_1a)
+    True
+    >>> this.is_disjoint_right_of(that_1b)
+    True
+    >>> this.is_disjoint_right_of(that_1c)
+    False
+    >>> this.is_disjoint_right_of(that_1d)
+    False
+    >>> this.is_disjoint_right_of(that_1e)
+    False
+    >>> this.is_disjoint_right_of(that_2c)
+    False
+    >>> this.is_disjoint_right_of(that_2d)
+    False
+    >>> this.is_disjoint_right_of(that_2e)
+    False
+    >>> this.is_disjoint_right_of(that_3c)
+    False
+    >>> this.is_disjoint_right_of(that_3d)
+    False
+    >>> this.is_disjoint_right_of(that_3e)
+    False
+    >>> this.is_disjoint_right_of(that_4e)
+    False
+    >>> this.is_disjoint_right_of(that_5e)
+    False
+
+    ###
+subtract_line_tail(line)
+    >>> minuend      = make_line_from_spec(2, 2, 5, 5)
+    >>> subtrahend_1 = make_line_from_spec(1, 1, 3, 3)
+    >>> subtrahend_2 = make_line_from_spec(1, 1, 2, 2)
+    
+    >>> differences_1 = minuend.subtract_line_tail(subtrahend_1)
+    >>> for line in differences_1:
+    ...     print line
+    (3.0, 3.0, 5.0, 5.0)
+    >>> differences_2 = minuend.subtract_line_tail(subtrahend_2)
+    The subtrahend does not overlap the tail of the minuend
+
+subtract_line_middle(other)
+    >>> minuend = make_line_from_spec(2, 2, 5, 5)
+    >>> subtrahend = make_line_from_spec(3, 3, 4, 4)
+    
+    >>> line_differences = minuend.subtract_line_middle(subtrahend)
+    >>> for difference in line_differences:
+    ...     print difference
+    (2.0, 2.0, 3.0, 3.0)
+    (4.0, 4.0, 5.0, 5.0)
+
+subtract_line_head(other)
+    >>> minuend = make_line_from_spec(2, 2, 5, 5)
+    >>> subtrahend = make_line_from_spec(4, 4, 6, 6)
+    >>> line_differences = minuend.subtract_line_head(subtrahend)
+    >>> for line in line_differences:
+    ...     print line
+    (2.0, 2.0, 4.0, 4.0)
+

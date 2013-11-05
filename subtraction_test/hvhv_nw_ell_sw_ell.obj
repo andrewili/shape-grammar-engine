@@ -1,0 +1,14 @@
+# FreeCAD v0.13 build1349 (Git) Arch module
+# http://free-cad.sf.net
+o Line004
+v 20.0 60.0 0.0
+v 40.0 60.0 0.0
+o Line003
+v 20.0 40.0 0.0
+v 40.0 40.0 0.0
+o Line002
+v 40.0 60.0 0.0
+v 40.0 80.0 0.0
+o Line001
+v 40.0 20.0 0.0
+v 40.0 40.0 0.0

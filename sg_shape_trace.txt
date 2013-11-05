@@ -1,0 +1,62 @@
+SGShape.__sub__(self, other)
+
+lshape_a:
+    (0.0, 40.0):
+        (40.0, 20.0, 40.0, 80.0)
+    <no labeled points>
+
+lshape_b:
+    (0.0, 40.0):
+        (40.0, 20.0, 40.0, 40.0)
+        (40.0, 60.0, 40.0, 80.0)
+    (90.0, 40.0):
+        (20.0, 40.0, 40.0, 40.0)
+    (90.0, 60.0):
+        (20.0, 60.0, 40.0, 60.0)
+    <no labeled points>
+
+Controller.respond_get_a_minus_b_button
+    lshape_c = ...
+SG_Labeled_Shape.__sub__(lshape_a, lshape_b)
+    new_shape = ...
+SG_Shape.__sub__(lshape_a.shape, lshape_b.shape)
+    new_partition = ...
+SG_Shape.subtract_non_empty_line_partitions(
+    lshape_a.shape.partition, lshape_b.shape.partition
+)
+    new_partition = {}
+    <carrier = (0, 40)>
+    column_1 = [SGLine(40, 20, 40, 80)]
+    column_2 = [SGLine(40, 20, 40, 40), SGLine(40, 60, 40, 80)]
+    new_column = ... <line 243>
+SG_Shape.subtract_column_column(column_1, working_column_2)
+    column_column_differences = []
+    <line_1 = SGLine(40, 20, 40, 80)>
+    line_column_differences = ... <line 264>
+SG_Shape.subtract_line_column(line_1, working_column)
+    line_minuend = line_1 = SGLine(40, 20, 40, 80)
+    working_column = [SGLine(40, 20, 40, 40), SGLine(40, 60, 40, 80)]
+    line_column_differences = []
+    working_minuend = SGLine(40, 20, 40, 80)
+    last_line_line_difference_list = []
+    <working_column != []>
+    line_line_differences = []
+    line_subtrahend = SGLine(40, 20, 40, 40)
+    <line_subtrahend.is_disjoint_left_of(SGLine(40, 20, 40, 80)) == ...> <line 297>
+SG_Line.is_disjoint_left_of(SGLine(40, 20, 40, 80))
+    self.head = (40, 40)
+    other.tail = (40, 20)
+    return False
+SG_Shape.subtract_line_column(line_1, working_column)
+    <line_subtrahend.is_disjoint_left_of(SGLine(40, 20, 40, 80)) == False> <line 297>
+    line_subtrahend.overlaps_tail_of(working_minuend) == ... <line 302>
+SG_Line.overlaps_tail_of(self, other)
+    self = SGLine(40, 20, 40, 40)
+    other = SGLine(40, 20, 40, 80)
+    return True
+SG_Shape.subtract_line_column(line_1, working_column)
+    line_subtrahend.overlaps_tail_of(working_minuend) == True <line 302>
+    line_line_differences = ... <line 304>
+SG_Line.subtract_line_tail(line_subtrahend)
+    new_tail = (40, 40)
+    new_head = (

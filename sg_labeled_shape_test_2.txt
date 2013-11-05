@@ -1,0 +1,46 @@
+#   sg_labeled_shape_test_2.txt
+#   2013-10-29
+
+    >>> import sg_labeled_point
+    >>> import sg_labeled_shape
+    >>> import sg_line
+    >>> import sg_point
+    >>> import sg_shape
+
+    >>> def make_shape_from_line_specs(line_specs):
+    ...     return sg_shape.SGShape.from_specs(line_specs)
+    >>> def make_lpoint_partition_from_specs(lpoint_specs):
+    ...     return sg_labeled_shape.SGLabeledShape.lpoint_partition_from_lpoint_specs(lpoint_specs)
+    >>> def make_lshape_from_shape_and_lpoints(shape, lpoints):
+    ...     return sg_labeled_shape.SGLabeledShape.from_shape_and_lpoint_partition(shape, lpoints)
+    
+### __sub__(hash, ells) ###
+
+    >>> line_shape = make_shape_from_line_specs([(40, 20, 40, 80)])
+    >>> line_lpoints = {}
+    >>> line = make_lshape_from_shape_and_lpoints(line_shape, line_lpoints)
+
+    >>> ells_shape = make_shape_from_line_specs([(40, 20, 40, 40), (40, 60, 40, 80), (20, 40, 40, 40), (20, 60, 40, 60)])
+    >>> ells_lpoints = {}
+    >>> ells = make_lshape_from_shape_and_lpoints(ells_shape, ells_lpoints)
+
+    >>> diff = line - ells
+    >>> print diff.listing()
+    (0.0, 40.0):
+        (40.0, 40.0, 40.0, 60.0)
+    <no labeled points>
+
+lshape_a:
+    (0.0, 40.0):
+        (40.0, 20.0, 40.0, 80.0)
+    <no labeled points>
+
+lshape_b:
+    (0.0, 40.0):
+        (40.0, 20.0, 40.0, 40.0)
+        (40.0, 60.0, 40.0, 80.0)
+    (90.0, 40.0):
+        (20.0, 40.0, 40.0, 40.0)
+    (90.0, 60.0):
+        (20.0, 60.0, 40.0, 60.0)
+    <no labeled points>
