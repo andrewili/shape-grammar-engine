@@ -52,7 +52,7 @@ class SGShape(object):
                 partition[carrier] = column
         return partition
 
-        ### relations ###
+        ### ordering relations ###
     def __eq__(self, other):
         return self.partition == other.partition
 
@@ -90,7 +90,7 @@ class SGShape(object):
                 return False
         return True
 
-        ### arithmetic operations ###
+        ### addition ###
     def __add__(self, other):                                   # 2
         new_partition = self.add_partitions(                    # 2.1
             self.partition, other.partition)
@@ -208,7 +208,7 @@ class SGShape(object):
         new_line = sg_line.SGLine(new_tail, new_head)
         return new_line
 
-        ####
+        ### subtraction ###
     def __sub__(self, other):
         """Receives:
             SGShape
@@ -400,85 +400,7 @@ class SGShape(object):
         line_column_differences.extend(last_line_line_difference_list)
         return line_column_differences
 
-##        line_column_differences = []
-##        working_column = line_minuend.discard_disjoint_line_subtrahends_left(
-##            working_column)
-##        line_column_differences.extend(
-##            line_minuend.subtract_line_subtrahends_left_middle(
-##                working_column))
-##        working_column = \
-##            line_minuend.discard_subtracted_line_subtrahends_left_middle(
-##                working_column)
-##        line_column_differences.append(line_minuend.subtract_column_right(
-##            working_column))
-##        return line_column_differences
-
-##    def subtract_line_column(self, line_minuend, column):
-##        """Receives a line minuend and a non-empty colinear column of line
-##        subtrahends:
-##            SGLine
-##            [SGLine, ...], n >= 1
-##        Returns an ordered list of the line differences obtained by subtracting
-##        the line subtrahends from the (single) line minuend:
-##            [SGLine, ...], n >= 0
-##        Removes from the column the line subtrahends that have been tested and
-##        that leave the line minuend's head unchanged. (The remaining line
-##        subtrahends will be subtracted from subsequent line minuends, if any.)
-##        """
-##        for line_subtrahend in column:
-##            line_column_differences = []
-##            if line_subtrahend.lies_left_of(line_minuend):
-##                        # next minuend: minuend
-##                        # line_line_difference: none
-##                        # next subtrahend: next subtrahend, if any
-##                column.pop(0)
-##            elif line_subtrahend.overlaps_tail_of(line_minuend):
-##                        # next minuend: difference
-##                        # line_line_difference: none
-##                        # next subtrahend: next subtrahend, if any
-##                left_difference = line_minuend.subtract_line_left(
-##                    line_subtrahend)
-##                line_minuend = left_difference
-##                right_differences = line_minuend.subtract_column_right(
-##                    column)  # next subtrahend
-##                line_column_differences.append(right_differences)
-##                column.pop(0)
-##            elif line_subtrahend.overlaps_head_and_tail_of(line_minuend):
-##                        # next minuend: next minuend
-##                        # line_line_difference: none
-##                        # next subtrahend: subtrahend
-##                pass
-##            elif line_subtrahend.overlaps_between_head_and_tail_of(line_minuend):
-##                        # next minuend: right-hand difference
-##                        # line_line_difference: left-hand difference
-##                        # next subtrahend: next subtrahend, if any
-##                left_difference = line_minuend.subtract_line_left(
-##                    line_subtrahend)
-##                line_column_differences.append(left_difference)
-##                right_differences = line_minuend.subtract_column_right(column)
-##                line_column_differences.extend(right_differences)
-##                column.pop(0)
-##            elif line_subtrahend.overlaps_head_of(line_minuend):
-##                        # next minuend: next minuend
-##                        # line_line_difference: difference
-##                        # next subtrahend: subtrahend
-##                left_difference = line_minuend.subtract_line_left(
-##                    line_subtrahend)
-##                line_column_differences.append(left_difference)
-##            elif line_subtrahend.lies_right_of(line_minuend):
-##                        # next minuend: next minuend
-##                        # line_line_difference: minuend
-##                        # next subtrahend: subtrahend
-##                break
-##            else:
-##                        # shouldn't get here
-##                print 'SGShape.subtract_line_column'
-##                print "    Oops. We've gotten to 'None of the above'"
-##            if column == []:
-##                break
-##        return line_column_differences
-
-        ####
+        ### output ###
     def get_line_specs(self):                                   # 2.1.1
         """Returns an ordered list of line_specs:
             [(x1, y1, x2, y2), ...]
@@ -537,40 +459,6 @@ class SGShape(object):
             spec_strings.append(line.__str__())
         return spec_strings
 
-##    def get_line_partition_str(self):
-##        partition = self.partition
-##        s = '{'
-##        i = 1
-##        n = len(partition)
-##        for carrier in sorted(partition):
-##            carrier_str = self.get_carrier_str(carrier)
-##            column = partition[carrier]
-##            column_str = '%s' % self.get_column_str(column)
-##            if i < n:
-##                column_str += ', '
-##            s += '%s: %s' % (carrier_str, column_str)
-##            i += 1
-##        s += '}'
-##        return s
-
-##    def get_carrier_str(self, carrier):
-##        bearing, intercept = carrier
-##        s = '(%3.1f, %3.1f)' % (bearing, intercept)
-##        return s
-
-##    def get_column_str(self, column):
-##        s = '['
-##        i = 1
-##        n = len(column)
-##        for line in column:
-##            line_str = '%s' % line.__str__()
-##            if i < n:
-##                line_str += ', '
-##            s += line_str
-##            i += 1
-##        s += ']'
-##        return s
-
     def listing(self):
         return self.get_line_partition_listing(self.partition)
 
@@ -620,4 +508,4 @@ class SGShape(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('sg_shape_test.txt')
+    doctest.testfile('tests/sg_shape_test.txt')
