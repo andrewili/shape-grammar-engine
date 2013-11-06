@@ -1,6 +1,4 @@
 #   sg_point.py
-#   2013-10-04
-#   Extends 2013-09-24
 
 
 class SGPoint(object):
@@ -14,7 +12,7 @@ class SGPoint(object):
     def from_spec(cls, x, y):
         return SGPoint(x, y)
 
-        ####
+        ### relations ###
     def __eq__(self, other):
         return self.spec == other.spec
 
@@ -33,9 +31,9 @@ class SGPoint(object):
     def __ne__(self, other):
         return self.spec != other.spec
 
-        ####
+        ### representation ###
     def __str__(self):
-        string = '(%3.1f, %3.1f)' % (self.x, self.y)
+        string = '(%s, %s)' % (self.x, self.y)
         return string
 
     def listing(self):
@@ -45,4 +43,4 @@ class SGPoint(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('sg_point_test.txt')
+    doctest.testfile('tests/sg_point_test.txt')
