@@ -1,5 +1,4 @@
 #   sg_labeled_point.py
-#   2013-10-04. Extends 2013-09-24
 
 import sg_point
 
@@ -7,7 +6,6 @@ import sg_point
 class SGLabeledPoint(object):
     #   Immutable
     def __init__(self, x, y, label):
-        #   Label must be non-empty.
         try:
             if label == '':
                 raise ValueError()
@@ -19,7 +17,7 @@ class SGLabeledPoint(object):
         self.y = y
         self.label = label
 
-        ####
+        ### relations ###
     def __eq__(self, other):
         if (self.point == other.point and
             self.label == other.label
@@ -84,11 +82,16 @@ class SGLabeledPoint(object):
         else:
             return False
 
-        ####
+        ### representation ###
     def __str__(self):
+        string = '(%s, %s, %s)' % (self.x, self.y, self.label)
+        return string
+
+    def listing(self):
         string = '(%3.1f, %3.1f, %s)' % (self.x, self.y, self.label)
         return string
 
+
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('sg_labeled_point_test.txt')
+    doctest.testfile('tests/sg_labeled_point_test.txt')
