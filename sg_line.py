@@ -1,5 +1,4 @@
 #   sg_line.py
-#   2013-10-04. Extends 2013-09-24
 
 import math
 import sg_point
@@ -62,6 +61,10 @@ class SGLine(object):
 
         ### representation ###
     def __str__(self):
+        return '(%s, %s, %s, %s)' % (
+            self.x1, self.y1, self.x2, self.y2)
+
+    def listing(self):
         return '(%0.1f, %0.1f, %0.1f, %0.1f)' % (
             self.x1, self.y1, self.x2, self.y2)
 
@@ -224,7 +227,7 @@ class SGLine(object):
             print '||| %s.new_head:\n%s' % (method_name, new_head)
         return differences
 
-    ###
+
 if __name__ == '__main__':
     import doctest
     doctest.testfile('sg_line_test.txt')
