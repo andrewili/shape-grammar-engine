@@ -74,6 +74,11 @@ from_spec(x1, y1, x2, y2)
     >>> print line
     (0, 0, 1, 1)
 
+from_short_spec(x1, x2)
+    >>> line = sg_line.SGLine.from_short_spec(1, 2)
+    >>> print line
+    (1, 1, 2, 2)
+
 from_points(p1,p2)
     >>> p1 = sg_point.SGPoint(1, 1)
     >>> p2 = sg_point.SGPoint(2, 2)

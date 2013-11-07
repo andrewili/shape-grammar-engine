@@ -56,6 +56,12 @@ class SGLine(object):
         return line
 
     @classmethod
+    def from_short_spec(cls, x1, x2):
+        line = SGLine.from_spec(x1, x1, x2, x2)
+        return line
+##        pass
+
+    @classmethod
     def from_points(cls, p1, p2):
         return SGLine(p1, p2)
 
