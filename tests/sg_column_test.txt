@@ -1,0 +1,50 @@
+#   sg_column_test.txt
+
+    >>> import sg_column
+    >>> import sg_line
+
+    ### construction ###
+    >>> line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
+    >>> line_0800 = sg_line.SGLine.from_spec(0, 8, 0, 10)
+    >>> line_0103 = sg_line.SGLine.from_spec(0, 1, 0, 3)
+    >>> line_4060 = sg_line.SGLine.from_spec(4, 0, 6, 0)
+    >>> line_02 = sg_line.SGLine.from_spec(0, 0, 2, 2)
+    >>> line_13 = sg_line.SGLine.from_spec(1, 1, 3, 3)
+    >>> line_46 = sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line_80 = sg_line.SGLine.from_spec(8, 8, 10, 10)
+    
+    >>> col_max_ord_lines = [line_4060, line_0103, line_0002]
+    >>> col_max_ORD_lines = [line_0002, line_4060, line_0103]
+    >>> col_MAX_ord_lines = [line_4060, line_0800, line_0002]
+    >>> col_MAX_ORD_lines = [line_0002, line_4060, line_0800]
+    >>> COL_max_ord_lines = [line_13, line_02, line_46]
+    >>> COL_max_ORD_lines = [line_02, line_13, line_46]
+    >>> COL_MAX_ord_lines = [line_80, line_02, line_46]
+    >>> COL_MAX_ORD_lines = [line_02, line_46, line_80]
+
+    >>> col_max_ord_column = sg_column.SGColumn(col_max_ord_lines)
+    You're trying to make a column with non-collinear lines
+    >>> col_max_ORD_column = sg_column.SGColumn(col_max_ORD_lines)
+    >>> col_MAX_ord_column = sg_column.SGColumn(col_MAX_ord_lines)
+    >>> col_MAX_ORD_column = sg_column.SGColumn(col_MAX_ORD_lines)
+    >>> COL_max_ord_column = sg_column.SGColumn(COL_max_ord_lines)
+    >>> COL_max_ORD_column = sg_column.SGColumn(COL_max_ORD_lines)
+    >>> COL_MAX_ord_column = sg_column.SGColumn(COL_MAX_ord_lines)
+    >>> COL_MAX_ORD_column = sg_column.SGColumn(COL_MAX_ORD_lines)
+
+    >>> col_max_ord_column
+    You're trying to make a column with non-collinear lines
+    >>> col_max_ORD_column
+    You're trying to make a column with non-collinear lines
+    >>> col_MAX_ord_column
+    You're trying to make a column with non-collinear lines
+    >>> col_MAX_ORD_column
+    You're trying to make a column with non-collinear lines
+    >>> COL_max_ord_column
+    [(0, 0, 3, 3), (4, 4, 6, 6)]
+    >>> COL_max_ORD_column
+    [(0, 0, 3, 3), (4, 4, 6, 6)]
+    >>> COL_MAX_ord_column
+    [(0, 0, 2, 2), (4, 4, 6, 6), (8, 8, 10, 10)]
+    >>> COL_MAX_ORD_column
+    [(0, 0, 2, 2), (4, 4, 6, 6), (8, 8, 10, 10)]
