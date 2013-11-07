@@ -1,5 +1,4 @@
 #   sg_shape.py
-#   2013-10-04. Continues 2013-09-26
 
 import copy
 import sg_line

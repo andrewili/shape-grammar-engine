@@ -19,8 +19,13 @@
     ...     return sg_shape.SGShape.from_lines(lines)
     >>> es = sg_shape.SGShape()
 
-### construction, representation ###
-__init__(), partition_from_lines(lines), from_lines(lines), from_specs(), listing()
+    ### construction, representation ###
+__init__()
+partition_from_lines(lines)
+from_lines(lines)
+from_specs()
+listing()
+__str__()
     
     empty shape
     
