@@ -19,7 +19,7 @@
     ...     return sg_shape.SGShape.from_lines(lines)
     >>> es = sg_shape.SGShape()
 
-    ### construction, representation ###
+    ### construction, representation
 __init__()
 partition_from_lines(lines)
 from_lines(lines)
@@ -131,7 +131,7 @@ get_column_spec_strings_from(column)
 ##    (0, 0, 1, 1)
 ##    (2, 2, 3, 3)
 
-### relations ###                               #   check later
+### relations                                   #   check later
 __eq__(other), line_partitions_are_equal(line_partition_1, line_partition_2)
     >>> def make_shapes_for_eq():
     ...     line_0010 = make_line_from_spec(0, 0, 1, 0)
@@ -203,7 +203,7 @@ column_1_is_a_subcolumn_of_column_2(column_1, column_2)
     >>> es.column_1_is_a_subcolumn_of_column_2(column, column_00)
     False
 
-### arithmetic operations ###
+### arithmetic operations
 __add__(other)
     
     _|   |_       ___       _|___|_
@@ -334,6 +334,7 @@ get_reduced_column_from(column_1, column_2)
         (0, 0, 0, 3)
         (0, 4, 0, 6)
 
+    ### maximize
 reduce_column(unreduced_column)
     
     >>> def make_unreduced_column():    
@@ -522,7 +523,7 @@ merge_lines(line_1, line_2)
     >>> print es.merge_lines(line, line_68)
     (0, 0, 8, 8)
 
-    ####
+    ###
 __sub__(other)
     >>> non_empty_shape_1 = sg_shape.SGShape.from_specs([(2, 2, 7, 7)])
     >>> non_empty_shape_2 = sg_shape.SGShape.from_specs([(3, 3, 4, 4)])
@@ -3779,7 +3780,7 @@ subtract_line_column(line_minuend, working_column)
     ...     print difference
     (2, 2, 6, 6)
 
-    ####
+    ###
 get_line_specs()
     
     >>> def make_shape_for_line_specs():
