@@ -1,0 +1,194 @@
+#   sg_partition_test.txt
+
+    >>> import copy
+    >>> import sg_line
+    >>> import sg_partition
+    >>> import sg_point
+    >>> import sg_shape
+
+    ### construct, represent
+__init__(), __str__(), listing()
+    >>> def make_mixed_elements():
+    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    ...     line_34 = sg_line.SGLine.from_short_spec(3, 4)
+    ...     point_22 = sg_point.SGPoint(2, 2)
+    ...     return [line_01, point_22, line_34]
+    >>> mixed_elements = make_mixed_elements()
+
+    ??? mixed_partition = sg_partition.SGPartition(mixed_elements)
+    You're trying to make a partition with more than one type of element
+
+    >>> def make_lines_0_deg_overlapping():
+    ...     line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
+    ...     line_0103 = sg_line.SGLine.from_spec(0, 1, 0, 3)
+    ...     return [line_0103, line_0002]
+    >>> def make_lines_45_deg_disjoint():
+    ...     line_0011 = sg_line.SGLine.from_spec(0, 0, 1, 1)
+    ...     line_2233 = sg_line.SGLine.from_spec(2, 2, 3, 3)
+    ...     return [line_2233, line_0011]
+    >>> def make_lines_0_45_deg_for_partition():
+    ...     lines_0_deg = make_lines_0_deg_overlapping()
+    ...     lines_45_deg = make_lines_45_deg_disjoint()
+    ...     lines_0_45_deg = copy.copy(lines_45_deg)
+    ...     lines_0_45_deg.extend(lines_0_deg)
+    ...     return lines_0_45_deg
+    >>> lines_0 = make_lines_0_deg_overlapping()
+    >>> lines_45 = make_lines_45_deg_disjoint()
+    >>> lines_0_45 = make_lines_0_45_deg_for_partition()
+
+    >>> empty_partition = sg_partition.SGPartition([])
+    >>> print empty_partition
+    {}
+    >>> print empty_partition.listing()
+    <empty partition>
+
+    >>> partition_0 = sg_partition.SGPartition(lines_0)
+    >>> print partition_0
+    {(0.0, 0): [(0, 0, 0, 3)]}
+    >>> print partition_0.listing()
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 3.0)
+
+    >>> partition_45 = sg_partition.SGPartition(lines_45)
+    >>> print partition_45
+    {(45.0, 0): [(0, 0, 1, 1), (2, 2, 3, 3)]}
+    >>> print partition_45.listing()
+    (45.0, 0.0):
+        (0.0, 0.0, 1.0, 1.0)
+        (2.0, 2.0, 3.0, 3.0)
+
+    >>> partition_0_45 = sg_partition.SGPartition(lines_0_45)
+    >>> print partition_0_45
+    {(0.0, 0): [(0, 0, 0, 3)], (45.0, 0): [(0, 0, 1, 1), (2, 2, 3, 3)]}
+    >>> print partition_0_45.listing()
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 3.0)
+    (45.0, 0.0):
+        (0.0, 0.0, 1.0, 1.0)
+        (2.0, 2.0, 3.0, 3.0)
+
+    >>> def make_line_partition():
+    ...     line_0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
+    ...     line_0011 = sg_line.SGLine.from_spec(0, 0, 1, 1)
+    ...     line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
+    ...     lines = [line_0010, line_0011, line_0001]
+    ...     line_partition = sg_partition.SGPartition(lines)
+    ...     return line_partition
+    >>> line_partition = make_line_partition()
+    >>> print line_partition
+    {(0.0, 0): [(0, 0, 0, 1)], (45.0, 0): [(0, 0, 1, 1)], (90.0, 0): [(0, 0, 1, 0)]}
+
+        ### ordering relations
+__eq__(), __ne__()
+    >>> l_vert = sg_line.SGLine.from_spec(0, 0, 0, 10)
+    >>> l_horiz = sg_line.SGLine.from_spec(0, 0, 5, 0)
+    >>> l_lines = [l_vert, l_horiz]
+    >>> t_horiz = sg_line.SGLine.from_spec(0, 10, 10, 10)
+    >>> t_vert = sg_line.SGLine.from_spec(5, 0, 5, 10)
+    >>> t_lines = [t_horiz, t_vert]
+
+    >>> line_partition_l_1 = sg_partition.SGPartition(l_lines)
+    >>> line_partition_l_2 = sg_partition.SGPartition(l_lines)
+    >>> line_partition_t = sg_partition.SGPartition(t_lines)
+    >>> print line_partition_l_1
+    {(0.0, 0): [(0, 0, 0, 10)], (90.0, 0): [(0, 0, 5, 0)]}
+    >>> print line_partition_l_2
+    {(0.0, 0): [(0, 0, 0, 10)], (90.0, 0): [(0, 0, 5, 0)]}
+
+    >>> line_partition_l_1 == line_partition_l_2
+    True
+    >>> line_partition_l_1 == line_partition_t
+    False
+    >>> line_partition_l_1 != line_partition_l_2
+    False
+    >>> line_partition_l_1 != line_partition_t
+    True
+
+columns_are_subcolumns_in(), is_a_subpartition_of()
+    >>> def make_partitions_for_subcolumns():
+    ...     line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
+    ...     line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
+    ...     line_0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
+    ...     line_0020 = sg_line.SGLine.from_spec(0, 0, 2, 0)
+    ...     line_0022 = sg_line.SGLine.from_spec(0, 0, 2, 2)
+    ...     test_partition_0001_0010 = sg_partition.SGPartition([line_0001, line_0010])
+    ...     partition_0002_0022 = sg_partition.SGPartition([line_0002, line_0022])
+    ...     partition_0002_0020 = sg_partition.SGPartition([line_0002, line_0020])
+    ...     partition_0022_0020 = sg_partition.SGPartition([line_0022, line_0020])
+    ...     partition_0002_0022_0020 = sg_partition.SGPartition([line_0002, line_0022, line_0020])
+    ...     return [test_partition_0001_0010, partition_0002_0022, partition_0002_0020, partition_0022_0020, partition_0002_0022_0020]
+
+    >>> test_partition_0001_0010, partition_0002_0022, partition_0002_0020, partition_0022_0020, partition_0002_0022_0020 = make_partitions_for_subcolumns()
+    >>> test_partition_0001_0010.columns_are_subcolumns_in(partition_0002_0022)
+    False
+    >>> test_partition_0001_0010.columns_are_subcolumns_in(partition_0002_0020)
+    True
+    >>> test_partition_0001_0010.columns_are_subcolumns_in(partition_0022_0020)
+    False
+    >>> test_partition_0001_0010.is_a_subpartition_of(partition_0002_0022_0020)
+    True
+
+    >>> test_partition_0001_0010.is_a_subpartition_of(partition_0002_0022)
+    False
+    >>> test_partition_0001_0010.is_a_subpartition_of(partition_0002_0020)
+    True
+    >>> test_partition_0001_0010.is_a_subpartition_of(partition_0022_0020)
+    False
+    >>> test_partition_0001_0010.is_a_subpartition_of(partition_0002_0022_0020)
+    True
+
+        ### add
+__add__(other)
+    >>> empty_partition_1 = sg_partition.SGPartition([])
+    >>> empty_partition_2 = sg_partition.SGPartition([])
+    >>> print empty_partition_1
+    {}
+    >>> print empty_partition_2
+    {}
+    >>> line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
+    >>> line_0020 = sg_line.SGLine.from_spec(0, 0, 2, 0)
+    >>> line_0011 = sg_line.SGLine.from_spec(0, 0, 1, 1)
+    >>> line_1122 = sg_line.SGLine.from_spec(1, 1, 2, 2)
+    >>> full_partition_1 = sg_partition.SGPartition([line_0011, line_0002])
+    >>> full_partition_2 = sg_partition.SGPartition([line_1122, line_0020])
+
+    >>> empty_empty_partition = empty_partition_1 + empty_partition_2
+    >>> full_empty_partition = full_partition_1 + empty_partition_1
+    >>> empty_full_partition = empty_partition_1 + full_partition_1
+    >>> full_full_partition = full_partition_1 + full_partition_2
+
+    >>> print empty_partition_1
+    {}
+    >>> print empty_partition_2
+    {}
+    >>> print empty_empty_partition
+    {}
+    >>> print empty_empty_partition.listing()
+    <empty partition>
+
+    >>> print full_empty_partition
+    {(0.0, 0): [(0, 0, 0, 2)], (45.0, 0): [(0, 0, 1, 1)]}
+    >>> print full_empty_partition.listing()
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 2.0)
+    (45.0, 0.0):
+        (0.0, 0.0, 1.0, 1.0)
+    >>> print empty_full_partition
+    {(0.0, 0): [(0, 0, 0, 2)], (45.0, 0): [(0, 0, 1, 1)]}
+    >>> print empty_full_partition.listing()
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 2.0)
+    (45.0, 0.0):
+        (0.0, 0.0, 1.0, 1.0)
+
+    >>> print full_full_partition
+    {(0.0, 0): [(0, 0, 0, 2)], (45.0, 0): [(0, 0, 2, 2)], (90.0, 0): [(0, 0, 2, 0)]}
+    >>> print full_full_partition.listing()
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 2.0)
+    (45.0, 0.0):
+        (0.0, 0.0, 2.0, 2.0)
+    (90.0, 0.0):
+        (0.0, 0.0, 2.0, 0.0)
+
+        ### subtract

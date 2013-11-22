@@ -1,8 +1,11 @@
 #   sg_line_test.txt
 
+    >>> import sg_column
     >>> import sg_line
     >>> import sg_point
 
+    >>> drone_line = sg_line.SGLine.from_spec(0, 0, 10, 10)
+    
     ### init ###
 __init__()
     
@@ -56,8 +59,6 @@ __init__()
     (0.0, 1)
 
 get_carrier_from(line_spec)
-    >>> drone_line = sg_line.SGLine.from_spec(0, 0, 10, 10)
-    
     >>> line_spec_0011 = (0, 0, 1, 1)
     >>> drone_line.get_carrier_from(line_spec_0011)
     (45.0, 0)
@@ -185,23 +186,21 @@ is_a_subline_in_column(column)
     >>> line_13 = sg_line.SGLine.from_spec(1, 1, 3, 3)
     >>> line_23 = sg_line.SGLine.from_spec(2, 2, 3, 3)
     >>> line_45 = sg_line.SGLine.from_spec(4, 4, 5, 5)
-    >>> column_00 = []
-    >>> column_01 = [line_01]
-    >>> column_02 = [line_02]
-    >>> column_03 = [line_03]
-    >>> column_12 = [line_12]
-    >>> column_13 = [line_13]
-    >>> column_23 = [line_23]
-    >>> column_01_23 = [line_01, line_23]
-    >>> column_01_45 = [line_01, line_45]
-    >>> column_02_45 = [line_02, line_45]
-    >>> column_03_45 = [line_03, line_45]
-    >>> column_12_45 = [line_12, line_45]
-    >>> column_13_45 = [line_13, line_45]
-    >>> column_23_45 = [line_23, line_45]
 
-    >>> line.is_a_subline_in_column(column_00)
-    False
+    >>> column_01 = sg_column.SGColumn([line_01])
+    >>> column_02 = sg_column.SGColumn([line_02])
+    >>> column_03 = sg_column.SGColumn([line_03])
+    >>> column_12 = sg_column.SGColumn([line_12])
+    >>> column_13 = sg_column.SGColumn([line_13])
+    >>> column_23 = sg_column.SGColumn([line_23])
+    >>> column_01_23 = sg_column.SGColumn([line_01, line_23])
+    >>> column_01_45 = sg_column.SGColumn([line_01, line_45])
+    >>> column_02_45 = sg_column.SGColumn([line_02, line_45])
+    >>> column_03_45 = sg_column.SGColumn([line_03, line_45])
+    >>> column_12_45 = sg_column.SGColumn([line_12, line_45])
+    >>> column_13_45 = sg_column.SGColumn([line_13, line_45])
+    >>> column_23_45 = sg_column.SGColumn([line_23, line_45])
+
     >>> line.is_a_subline_in_column(column_01)
     False
     >>> line.is_a_subline_in_column(column_02)
@@ -423,6 +422,76 @@ is_disjoint_right_of(other)
     False
     >>> this.is_disjoint_right_of(that_67)
     False
+
+    ### add
+
+can_be_merged_with(other)
+    #   test for non-collinear lines
+    >>> line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
+    >>> line_26 = sg_line.SGLine.from_short_spec(2, 6)     #     ====
+    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)     #   -
+    >>> line_02 = sg_line.SGLine.from_short_spec(0, 2)     #   --
+    >>> line_13 = sg_line.SGLine.from_short_spec(1, 3)     #    --
+    >>> line_17 = sg_line.SGLine.from_short_spec(1, 7)     #    ------
+    >>> line_24 = sg_line.SGLine.from_short_spec(2, 4)     #     --
+    
+                                                           #     ====
+    
+    >>> line_35 = sg_line.SGLine.from_short_spec(3, 5)     #      --
+    >>> line_46 = sg_line.SGLine.from_short_spec(4, 6)     #       --
+    >>> line_57 = sg_line.SGLine.from_short_spec(5, 7)     #        --
+    >>> line_68 = sg_line.SGLine.from_short_spec(6, 8)     #         --
+    >>> line_78 = sg_line.SGLine.from_short_spec(7, 8)     #          -
+    
+                                                           #     ====
+
+    >>> line_26.can_be_merged_with(line_0001)
+    You're trying to test non-collinear lines
+    >>> line_26.can_be_merged_with(line_02)
+    True
+    >>> line_26.can_be_merged_with(line_68)
+    True
+    >>> line_26.can_be_merged_with(line_13)
+    True
+    >>> line_26.can_be_merged_with(line_57)
+    True
+    >>> line_26.can_be_merged_with(line_24)
+    True
+    >>> line_26.can_be_merged_with(line_46)
+    True
+    >>> line_26.can_be_merged_with(line_35)
+    True
+    >>> line_26.can_be_merged_with(line_17)
+    True
+    >>> line_26.can_be_merged_with(line_01)
+    False
+    >>> line_26.can_be_merged_with(line_78)
+    False
+
+merge(other)
+    >>> line_k  = sg_line.SGLine.from_short_spec(0, 6)     #   ======
+    >>> line_03 = sg_line.SGLine.from_short_spec(0, 3)     #   ---
+    >>> line_06 = sg_line.SGLine.from_short_spec(0, 6)     #   ------
+    >>> line_08 = sg_line.SGLine.from_short_spec(0, 8)     #   --------
+    >>> line_34 = sg_line.SGLine.from_short_spec(3, 4)     #      -
+    >>> line_36 = sg_line.SGLine.from_short_spec(3, 6)     #      ---
+    >>> line_38 = sg_line.SGLine.from_short_spec(3, 8)     #      -----
+    >>> line_68 = sg_line.SGLine.from_short_spec(6, 8)     #         --
+    
+    >>> print line_k.merge(line_03)
+    (0, 0, 6, 6)
+    >>> print line_k.merge(line_06)
+    (0, 0, 6, 6)
+    >>> print line_k.merge(line_08)
+    (0, 0, 8, 8)
+    >>> print line_k.merge(line_34)
+    (0, 0, 6, 6)
+    >>> print line_k.merge(line_36)
+    (0, 0, 6, 6)
+    >>> print line_k.merge(line_38)
+    (0, 0, 8, 8)
+    >>> print line_k.merge(line_68)
+    (0, 0, 8, 8)
 
     ###
 subtract_line_tail(line)

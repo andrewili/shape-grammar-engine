@@ -2,27 +2,27 @@
 
 import copy
 import sg_line
-
+import sg_partition
 
 class SGShape(object):
-    ### construction ###
-    def __init__(self, partition={}):
-        """Receives a partition of maximal SGLines:
-            {carrier: [SGLine, ...], ...}
+        ### construction
+    def __init__(self, partition):
+        """Receives an SGPartition
         """
         self.partition = partition
 
     @classmethod
     def from_lines(cls, lines):
         #   This is needed for the test.
-        partition = SGShape.partition_from_lines(lines)
-        return SGShape(partition)
+        partition = sg_partition.SGPartition(lines)
+        shape = SGShape(partition)
+        return shape
 
     @classmethod
     def from_specs(cls, specs):
         """Receives a list of line specs:
             [(x1, y1, x2, y2), ...]
-        Returns:
+        Returns a shape consisting of those lines
             SGShape
         """
         lines = []
@@ -30,8 +30,9 @@ class SGShape(object):
             x1, y1, x2, y2 = spec
             line = sg_line.SGLine.from_spec(x1, y1, x2, y2)
             lines.append(line)
-        partition = SGShape.partition_from_lines(lines)
-        return SGShape(partition)
+        partition = sg_partition.SGPartition(lines)
+        shape = SGShape(partition)
+        return shape
 
     @classmethod
     def partition_from_lines(cls, lines):
@@ -51,7 +52,7 @@ class SGShape(object):
                 partition[carrier] = column
         return partition
 
-        ### ordering relations ###
+        ### ordering relations
     def __eq__(self, other):
         return self.partition == other.partition
 
@@ -59,10 +60,14 @@ class SGShape(object):
         return self.partition != other.partition
 
     def is_a_subshape_of(self, other):
-        if not set(self.partition.keys()).issubset(set(other.partition.keys())):
-            return False
-        else:
-            return self.columns_are_subcolumns_in(other)
+        return self.partition.is_a_subpartition_of(other.partition)
+
+##    def is_a_subshape_of(self, other):
+##        # is_a_subpartition_of()
+##        if not set(self.partition.keys()).issubset(set(other.partition.keys())):
+##            return False
+##        else:
+##            return self.columns_are_subcolumns_in(other)
 
     def columns_are_subcolumns_in(self, other):
         """Receives a shape with the same carriers:
@@ -89,11 +94,15 @@ class SGShape(object):
                 return False
         return True
 
-        ### addition ###
+        ### addition
     def __add__(self, other):                                   # 2
+        new_partition = self.partition + other.partition
+        return SGShape(new_partition)
+        """
         new_partition = self.add_partitions(                    # 2.1
             self.partition, other.partition)
         return SGShape(new_partition)
+        """
 
     def add_partitions(self, partition_1, partition_2):         # 2.1
         """Receives 2 partitions of maximal lines:
@@ -112,9 +121,6 @@ class SGShape(object):
 
     def get_reduced_column_from(self, column_1, column_2):      # 2.1.1
         """Receives 2 ordered lists of colinear lines:
-            [SGLine, ...], len() >= 1
-        Produces a combined ordered list of possibly non-maximal colinear lines:
-                                                # working column?
             [SGLine, ...], len() >= 1
         Returns an ordered list of maximal colinear lines:
             [SGLine, ...], len() >= 1, may contain duplicates
@@ -207,7 +213,7 @@ class SGShape(object):
         new_line = sg_line.SGLine(new_tail, new_head)
         return new_line
 
-        ### subtraction ###
+        ### subtraction
     def __sub__(self, other):
         """Receives:
             SGShape
@@ -399,7 +405,7 @@ class SGShape(object):
         line_column_differences.extend(last_line_line_difference_list)
         return line_column_differences
 
-        ### output ###
+        ### output
     def get_line_specs(self):                                   # 2.1.1
         """Returns an ordered list of line_specs:
             [(x1, y1, x2, y2), ...]
@@ -428,7 +434,7 @@ class SGShape(object):
             colinear_line_specs.append(line_spec)
         return sorted(colinear_line_specs)
 
-        ### representation ###
+        ### representation
     def __str__(self):
         sorted_spec_strings = self.get_sorted_spec_strings()
         string = ', '.join(sorted_spec_strings)
@@ -441,25 +447,25 @@ class SGShape(object):
             ['(x1, y1, x2, y2)', ...]
         """
         spec_strings = []
-        for carrier in self.partition:
-            column = self.partition[carrier]
+        for carrier in self.partition.dictionary:
+            column = self.partition.dictionary[carrier]
             column_spec_strings = self.get_column_spec_strings_from(column)
             spec_strings.extend(column_spec_strings)
         return sorted(spec_strings)
 
     def get_column_spec_strings_from(self, column):
-        """Receives a column:
-            [SGLine, ...]
+        """Receives an SGColumn
         Returns a list of spec strings of the lines in the column:
             ['(x1, y1, x2, y2)', ...]
         """
         spec_strings = []
-        for line in column:
+        for line in column.lines:
             spec_strings.append(line.__str__())
         return spec_strings
 
     def listing(self):
-        return self.get_line_partition_listing(self.partition)
+        return self.partition.listing()
+##        return self.get_line_partition_listing(self.partition)
 
     def get_line_partition_listing(self, partition):
         """Returns a string in the ordered form:

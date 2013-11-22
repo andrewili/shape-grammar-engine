@@ -6,225 +6,286 @@
     >>> empty_column = sg_column.SGColumn([])
     You're trying to make a column with non-collinear lines or no lines
     
-    >>> def not_collinear(lines):               #   redundant
-    ...     carrier = lines[0].carrier
-    ...     for line in lines:
-    ...         if line.carrier != carrier:
-    ...             return True
-    ...     return False
+    >>> drone_column = sg_column.SGColumn([sg_line.SGLine.from_short_spec(0, 1)])
 
     ### construct, represent
-__init__(lines), __str__()
-    >>> line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
-    >>> line_0800 = sg_line.SGLine.from_spec(0, 8, 0, 10)
-    >>> line_0103 = sg_line.SGLine.from_spec(0, 1, 0, 3)
-    >>> line_4060 = sg_line.SGLine.from_spec(4, 0, 6, 0)
-    >>> line_02 = sg_line.SGLine.from_spec(0, 0, 2, 2)
-    >>> line_13 = sg_line.SGLine.from_spec(1, 1, 3, 3)
-    >>> line_46 = sg_line.SGLine.from_spec(4, 4, 6, 6)
-    >>> line_80 = sg_line.SGLine.from_spec(8, 8, 10, 10)
+__init__(lines), __str__(), listing()
+    >>> no_lines = []
+    >>> line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
+    >>> line_0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
+    >>> line_02 = sg_line.SGLine.from_short_spec(0, 2)
+    >>> line_13 = sg_line.SGLine.from_short_spec(1, 3)
+    >>> line_46 = sg_line.SGLine.from_short_spec(4, 6)
+    >>> non_collinear_lines = [line_0001, line_0010]
+    >>> collinear_lines = [line_46, line_13, line_02]
 
-    >>> empty_lines = []
-    >>> col_max_ord_lines = [line_4060, line_0103, line_0002]
-    >>> col_max_ORD_lines = [line_0002, line_4060, line_0103]
-    >>> col_MAX_ord_lines = [line_4060, line_0800, line_0002]
-    >>> col_MAX_ORD_lines = [line_0002, line_4060, line_0800]
-    >>> COL_max_ord_lines = [line_13, line_02, line_46]
-    >>> COL_max_ORD_lines = [line_02, line_13, line_46]
-    >>> COL_MAX_ord_lines = [line_80, line_02, line_46]
-    >>> COL_MAX_ORD_lines = [line_02, line_46, line_80]
+    >>> empty_column = sg_column.SGColumn(no_lines)
+    You're trying to make a column with non-collinear lines or no lines
+    >>> non_collinear_column = sg_column.SGColumn(non_collinear_lines)
+    You're trying to make a column with non-collinear lines or no lines
+    >>> collinear_column = sg_column.SGColumn(collinear_lines)
+    >>> print collinear_column
+    (0, 0, 2, 2), (1, 1, 3, 3), (4, 4, 6, 6)
+    >>> print collinear_column.listing()
+    (0.0, 0.0, 2.0, 2.0)
+    (1.0, 1.0, 3.0, 3.0)
+    (4.0, 4.0, 6.0, 6.0)
 
-    >>> empty_column = sg_column.SGColumn(empty_lines)
-    You're trying to make a column with non-collinear lines or no lines
-    >>> col_max_ord_column = sg_column.SGColumn(col_max_ord_lines)
-    You're trying to make a column with non-collinear lines or no lines
-    >>> col_max_ORD_column = sg_column.SGColumn(col_max_ORD_lines)
-    You're trying to make a column with non-collinear lines or no lines
-    >>> col_MAX_ord_column = sg_column.SGColumn(col_MAX_ord_lines)
-    You're trying to make a column with non-collinear lines or no lines
-    >>> col_MAX_ORD_column = sg_column.SGColumn(col_MAX_ORD_lines)
-    You're trying to make a column with non-collinear lines or no lines
-    >>> COL_max_ord_column = sg_column.SGColumn(COL_max_ord_lines)
-    >>> COL_max_ORD_column = sg_column.SGColumn(COL_max_ORD_lines)
-    >>> COL_MAX_ord_column = sg_column.SGColumn(COL_MAX_ord_lines)
-    >>> COL_MAX_ORD_column = sg_column.SGColumn(COL_MAX_ORD_lines)
+    ??? line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
+    ??? line_0800 = sg_line.SGLine.from_spec(0, 8, 0, 10)
+    ??? line_0103 = sg_line.SGLine.from_spec(0, 1, 0, 3)
+    ??? line_4060 = sg_line.SGLine.from_spec(4, 0, 6, 0)
+    ??? line_02 = sg_line.SGLine.from_spec(0, 0, 2, 2)
+    ??? line_13 = sg_line.SGLine.from_spec(1, 1, 3, 3)
+    ??? line_46 = sg_line.SGLine.from_spec(4, 4, 6, 6)
+    ??? line_80 = sg_line.SGLine.from_spec(8, 8, 10, 10)
 
-    >>> print COL_max_ord_column
+    ??? empty_lines = []
+    ??? col_max_ord_lines = [line_4060, line_0103, line_0002]
+    ??? col_max_ORD_lines = [line_0002, line_4060, line_0103]
+    ??? col_MAX_ord_lines = [line_4060, line_0800, line_0002]
+    ??? col_MAX_ORD_lines = [line_0002, line_4060, line_0800]
+    ??? COL_max_ord_lines = [line_13, line_02, line_46]
+    ??? COL_max_ORD_lines = [line_02, line_13, line_46]
+    ??? COL_MAX_ord_lines = [line_80, line_02, line_46]
+    ??? COL_MAX_ORD_lines = [line_02, line_46, line_80]
+
+    ??? empty_column = sg_column.SGColumn(empty_lines)
+    You're trying to make a column with non-collinear lines or no lines
+    ??? col_max_ord_column = sg_column.SGColumn(col_max_ord_lines)
+    You're trying to make a column with non-collinear lines or no lines
+    ??? col_max_ORD_column = sg_column.SGColumn(col_max_ORD_lines)
+    You're trying to make a column with non-collinear lines or no lines
+    ??? col_MAX_ord_column = sg_column.SGColumn(col_MAX_ord_lines)
+    You're trying to make a column with non-collinear lines or no lines
+    ??? col_MAX_ORD_column = sg_column.SGColumn(col_MAX_ORD_lines)
+    You're trying to make a column with non-collinear lines or no lines
+    ??? COL_max_ord_column = sg_column.SGColumn(COL_max_ord_lines)
+    ??? COL_max_ORD_column = sg_column.SGColumn(COL_max_ORD_lines)
+    ??? COL_MAX_ord_column = sg_column.SGColumn(COL_MAX_ord_lines)
+    ??? COL_MAX_ORD_column = sg_column.SGColumn(COL_MAX_ORD_lines)
+
+    ??? print COL_max_ord_column
     [(0, 0, 3, 3), (4, 4, 6, 6)]
-    >>> print COL_max_ORD_column
+    ??? print COL_max_ORD_column
     [(0, 0, 3, 3), (4, 4, 6, 6)]
-    >>> print COL_MAX_ord_column
+    ??? print COL_MAX_ord_column
     [(0, 0, 2, 2), (4, 4, 6, 6), (8, 8, 10, 10)]
-    >>> print COL_MAX_ORD_column
+    ??? print COL_MAX_ORD_column
     [(0, 0, 2, 2), (4, 4, 6, 6), (8, 8, 10, 10)]
 
+    ??? print COL_max_ord_column.listing()
+    (0.0, 0.0, 3.0, 3.0)
+    (4.0, 4.0, 6.0, 6.0)
+    ??? print COL_max_ord_column.listing(2)
+            (0.0, 0.0, 3.0, 3.0)
+            (4.0, 4.0, 6.0, 6.0)
+    ??? print COL_max_ORD_column.listing()
+    (0.0, 0.0, 3.0, 3.0)
+    (4.0, 4.0, 6.0, 6.0)
+    ??? print COL_MAX_ord_column.listing()
+    (0.0, 0.0, 2.0, 2.0)
+    (4.0, 4.0, 6.0, 6.0)
+    (8.0, 8.0, 10.0, 10.0)
+    ??? print COL_MAX_ORD_column.listing()
+    (0.0, 0.0, 2.0, 2.0)
+    (4.0, 4.0, 6.0, 6.0)
+    (8.0, 8.0, 10.0, 10.0)
+    ??? print COL_MAX_ORD_column.listing(1)
+        (0.0, 0.0, 2.0, 2.0)
+        (4.0, 4.0, 6.0, 6.0)
+        (8.0, 8.0, 10.0, 10.0)
+
+    ### not_collinear
 not_collinear(lines)
     >>> line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
     >>> line_0103 = sg_line.SGLine.from_spec(0, 1, 0, 3)
     >>> line_4060 = sg_line.SGLine.from_spec(4, 0, 6, 0)
     >>> col_max_ord_lines = [line_4060, line_0103, line_0002]
 
-    >>> not_collinear(col_max_ord_lines)
+    >>> drone_column.not_collinear(col_max_ord_lines)
     True
 
     ### maximize
-reduce_column(unreduced_column)
-    
-    ??? def make_unreduced_column():    
-    ...     line_02 = make_line_from_spec(0, 0, 2, 2)
-    ...     line_13 = make_line_from_spec(1, 1, 3, 3)
-    ...     line_46 = make_line_from_spec(4, 4, 6, 6)
-    ...     line_56 = make_line_from_spec(5, 5, 6, 6)
-    ...     line_79 = make_line_from_spec(7, 7, 9, 9)
-    ...     line_89 = make_line_from_spec(8, 8, 9, 9)
+get_maximal_lines_from(maximal_lines_1, maximal_lines_2)
+    #   Is this enough?
+    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    >>> line_02 = sg_line.SGLine.from_short_spec(0, 2)
+    >>> line_13 = sg_line.SGLine.from_short_spec(1, 3)
+    >>> line_23 = sg_line.SGLine.from_short_spec(2, 3)
+    >>> disjoint_lines = [line_01, line_23]
+    >>> overlapping_lines = [line_02, line_13]
+
+    >>> new_lines = drone_column.get_maximal_lines_from(disjoint_lines, overlapping_lines)
+    >>> for line in new_lines:
+    ...     print line
+    (0, 0, 3, 3)
+
+maximal(non_maximal_lines)
+    >>> def make_non_maximal_lines():
+    ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)
+    ...     line_13 = sg_line.SGLine.from_short_spec(1, 3)
+    ...     line_46 = sg_line.SGLine.from_short_spec(4, 6)
+    ...     line_56 = sg_line.SGLine.from_short_spec(5, 6)
+    ...     line_79 = sg_line.SGLine.from_short_spec(7, 9)
+    ...     line_89 = sg_line.SGLine.from_short_spec(8, 9)
     ...     return [line_02, line_13, line_46, line_56, line_79, line_89]
-    
-    ??? unreduced_column = make_unreduced_column()
-    ??? reduced_column = es.reduce_column(unreduced_column)
-    ??? for line in sorted(reduced_column):
+    >>> non_maximal_lines = make_non_maximal_lines()
+    >>> maximal_lines = drone_column.maximal(non_maximal_lines)
+
+    >>> for line in sorted(maximal_lines):
     ...     print line
     (0, 0, 3, 3)
     (4, 4, 6, 6)
     (7, 7, 9, 9)
 
-get_first_maximal_line_from_unreduced_column(column)
-    
-    ??? line_01 = make_line_from_spec(0, 0, 1, 1)
-    ??? line_23 = make_line_from_spec(2, 2, 3, 3)
-    
-    ??? column = [line_01, line_23]
-    ??? print es.get_first_maximal_line_from_unreduced_column(column)
+get_first_maximal_line_from(lines)
+    # test non_maximal, maximal
+    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    >>> line_12 = sg_line.SGLine.from_short_spec(1, 2)
+    >>> line_23 = sg_line.SGLine.from_short_spec(2, 3)
+    >>> maximal_lines = [line_01, line_23]
+    >>> non_maximal_lines = [line_01, line_12]
+
+    >>> print drone_column.get_first_maximal_line_from(maximal_lines)
     (0, 0, 1, 1)
-    ??? len(column)
+    >>> len(maximal_lines)
     1
-    ??? print es.get_first_maximal_line_from_unreduced_column(column)
+    >>> print drone_column.get_first_maximal_line_from(maximal_lines)
     (2, 2, 3, 3)
-    ??? len(column)
+    >>> len(maximal_lines)
     0
 
-get_line_from_singleton_column(column)
+    >>> print drone_column.get_first_maximal_line_from(non_maximal_lines)
+    (0, 0, 2, 2)
+    >>> len(non_maximal_lines)
+    0
+
+get_singleton_line_from(singleton_lines)
     
-    ??? line_01 = make_line_from_spec(0, 0, 1, 1)
-    
-    ??? column = [line_01]
-    ??? new_line = es.get_line_from_singleton_column(column)
-    ??? print new_line
+    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    >>> singleton_lines = [line_01]
+
+    >>> new_line = drone_column.get_singleton_line_from(singleton_lines)
+    >>> print new_line
     (0, 0, 1, 1)
-    ??? len(column)
+    >>> len(singleton_lines)
     0
 
-get_first_maximal_line_from_non_singleton_unreduced_column(column)
+get_first_maximal_line_from_non_singleton(non_maximal_lines)
     
     len(column) >= 2
 
     case 1: len() == 2: line_1 and line_2 are not mergeable
     
-    ??? def make_column_for_next_maximal_line():
-    ...     line_01 = make_line_from_spec(0, 0, 1, 1)
-    ...     line_23 = make_line_from_spec(2, 2, 3, 3)
+    >>> def make_non_maximal_lines_1():
+    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    ...     line_23 = sg_line.SGLine.from_short_spec(2, 3)
     ...     return [line_01, line_23]
-    
-    ??? column = make_column_for_next_maximal_line()
-    ??? new_line_1 = es.get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    ??? print new_line_1
+    >>> non_maximal_lines_1 = make_non_maximal_lines_1()
+    >>> new_line_1 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_1)
+    >>> print new_line_1
     (0, 0, 1, 1)
-    ??? len(column)
+    >>> len(non_maximal_lines_1)
     1
-    ??? print es.get_column_listing(column)
-        (2, 2, 3, 3)
+    >>> for line in non_maximal_lines_1:
+    ...     print line
+    (2, 2, 3, 3)
 
     case 2: len() == 2: line_1 and line_2 are mergeable
     
-    ??? def make_column_for_mergeable_lines():
-    ...     line_02 = make_line_from_spec(0, 0, 2, 2)
-    ...     line_13 = make_line_from_spec(1, 1, 3, 3)
+    >>> def make_non_maximal_lines_2():
+    ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)
+    ...     line_13 = sg_line.SGLine.from_short_spec(1, 3)
     ...     return [line_02, line_13]
     
-    ??? column = make_column_for_mergeable_lines()
-    ??? new_line_2 = es.get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    ??? print new_line_2
+    >>> non_maximal_lines_2 = make_non_maximal_lines_2()
+    >>> new_line_2 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_2)
+    >>> print new_line_2
     (0, 0, 3, 3)
-    ??? len(column)
+    >>> len(non_maximal_lines_2)
     0
 
     case 3: len() == 3: line_1 and line_2 are mergeable,
         line_12 cannot be merged with line_3
     
-    ??? def make_column_for_mergeable_lines():
-    ...     line_02 = make_line_from_spec(0, 0, 2, 2)
-    ...     line_13 = make_line_from_spec(1, 1, 3, 3)
-    ...     line_46 = make_line_from_spec(4, 4, 6, 6)
+    >>> def make_non_maximal_lines_3():
+    ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)
+    ...     line_13 = sg_line.SGLine.from_short_spec(1, 3)
+    ...     line_46 = sg_line.SGLine.from_short_spec(4, 6)
     ...     return [line_02, line_13, line_46]
     
-    ??? column = make_column_for_mergeable_lines()
-    ??? new_line_3 = es.get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    ??? print new_line_3
+    >>> non_maximal_lines_3 = make_non_maximal_lines_3()
+    >>> new_line_3 = drone_column.get_first_maximal_line_from(non_maximal_lines_3)
+    >>> print new_line_3
     (0, 0, 3, 3)
-    ??? len(column)
+    >>> len(non_maximal_lines_3)
     1
-    ??? print es.get_column_listing(column)
-        (4, 4, 6, 6)
+    >>> for line in non_maximal_lines_3:
+    ...     print line
+    (4, 4, 6, 6)
 
     case 4: len == 4: line_1 and line_2 can be merged,
         line_12 can be merged with line_3, line_123 cannot be
         merged with line_4
     
-    ??? def make_column_for_length_4_mergeable():
-    ...     line_02 = make_line_from_spec(0, 0, 2, 2)
-    ...     line_13 = make_line_from_spec(1, 1, 3, 3)
-    ...     line_35 = make_line_from_spec(3, 3, 5, 5)
-    ...     line_67 = make_line_from_spec(6, 6, 7, 7)
+    >>> def make_non_maximal_lines_4():
+    ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)
+    ...     line_13 = sg_line.SGLine.from_short_spec(1, 3)
+    ...     line_35 = sg_line.SGLine.from_short_spec(3, 5)
+    ...     line_67 = sg_line.SGLine.from_short_spec(6, 7)
     ...     return [line_02, line_13, line_35, line_67]
     
-    ??? column = make_column_for_length_4_mergeable()
-    ??? new_line_4 = es.get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    ??? print new_line_4
+    >>> non_maximal_lines_4 = make_non_maximal_lines_4()
+    >>> new_line_4 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_4)
+    >>> print new_line_4
     (0, 0, 5, 5)
-    ??? len(column)
+    >>> len(non_maximal_lines_4)
     1
-    ??? print es.get_column_listing(column)
-        (6, 6, 7, 7)
+    >>> for line in non_maximal_lines_4:
+    ...     print line
+    (6, 6, 7, 7)
 
 lines_can_be_merged(line_1, line_2)
     
     line_1, and line_2 are collinear.
     
-    ??? line_26 = make_line_from_spec(2, 2, 6, 6)     #     ====
-    ??? line_01 = make_line_from_spec(0, 0, 1, 1)     #   -
-    ??? line_02 = make_line_from_spec(0, 0, 2, 2)     #   --
-    ??? line_13 = make_line_from_spec(1, 1, 3, 3)     #    --
-    ??? line_17 = make_line_from_spec(1, 1, 7, 7)     #    ------
-    ??? line_24 = make_line_from_spec(2, 2, 4, 4)     #     --
+    >>> line_26 = sg_line.SGLine.from_short_spec(2, 6)      #     ====
+    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)      #   -
+    >>> line_02 = sg_line.SGLine.from_short_spec(0, 2)      #   --
+    >>> line_13 = sg_line.SGLine.from_short_spec(1, 3)      #    --
+    >>> line_17 = sg_line.SGLine.from_short_spec(1, 7)      #    ------
+    >>> line_24 = sg_line.SGLine.from_short_spec(2, 4)      #     --
     
-                                            #     ====
+		                                            #     ====
     
-    ??? line_35 = make_line_from_spec(3, 3, 5, 5)     #      --
-    ??? line_46 = make_line_from_spec(4, 4, 6, 6)     #       --
-    ??? line_57 = make_line_from_spec(5, 5, 7, 7)     #        --
-    ??? line_68 = make_line_from_spec(6, 6, 8, 8)     #         --
-    ??? line_78 = make_line_from_spec(7, 7, 8, 8)     #          -
+    >>> line_35 = sg_line.SGLine.from_short_spec(3, 5)      #      --
+    >>> line_46 = sg_line.SGLine.from_short_spec(4, 6)      #       --
+    >>> line_57 = sg_line.SGLine.from_short_spec(5, 7)      #        --
+    >>> line_68 = sg_line.SGLine.from_short_spec(6, 8)      #         --
+    >>> line_78 = sg_line.SGLine.from_short_spec(7, 8)      #          -
     
-                                            #     ====
+                		                            #     ====
 
-    ??? es.lines_can_be_merged(line_26, line_02)
+    >>> drone_column.lines_can_be_merged(line_26, line_02)
     True
-    ??? es.lines_can_be_merged(line_26, line_68)
+    >>> drone_column.lines_can_be_merged(line_26, line_68)
     True
-    ??? es.lines_can_be_merged(line_26, line_13)
+    >>> drone_column.lines_can_be_merged(line_26, line_13)
     True
-    ??? es.lines_can_be_merged(line_26, line_57)
+    >>> drone_column.lines_can_be_merged(line_26, line_57)
     True
-    ??? es.lines_can_be_merged(line_26, line_24)
+    >>> drone_column.lines_can_be_merged(line_26, line_24)
     True
-    ??? es.lines_can_be_merged(line_26, line_46)
+    >>> drone_column.lines_can_be_merged(line_26, line_46)
     True
-    ??? es.lines_can_be_merged(line_26, line_35)
+    >>> drone_column.lines_can_be_merged(line_26, line_35)
     True
-    ??? es.lines_can_be_merged(line_26, line_17)
+    >>> drone_column.lines_can_be_merged(line_26, line_17)
     True
-    ??? es.lines_can_be_merged(line_26, line_01)
+    >>> drone_column.lines_can_be_merged(line_26, line_01)
     False
-    ??? es.lines_can_be_merged(line_26, line_78)
+    >>> drone_column.lines_can_be_merged(line_26, line_78)
     False
 
 merge_lines(line_1, line_2)
@@ -256,3 +317,47 @@ merge_lines(line_1, line_2)
     >>> print empty_column.merge_lines(line, line_68)
     (0, 0, 8, 8)
 
+    ### relations
+__eq__(), __ne__()
+    >>> line_1 = sg_line.SGLine.from_short_spec(0, 1)
+    >>> line_2 = sg_line.SGLine.from_short_spec(2, 3)
+    >>> column_1a = sg_column.SGColumn([line_1, line_2])
+    >>> column_1b = sg_column.SGColumn([line_2, line_1])
+    >>> column_2 = sg_column.SGColumn([line_1])
+
+    ??? column_1a == column_1b
+    True
+    ??? column_1a == column_2
+    False
+    ??? column_1a != column_1b
+    False
+    ??? column_1a != column_2
+    True
+
+is_a_subcolumn_of()
+    >>> def make_columns_for_sub_column():
+    ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)
+    ...     line_12 = sg_line.SGLine.from_short_spec(1, 2)
+    ...     line_23 = sg_line.SGLine.from_short_spec(2, 3)
+    ...     line_45 = sg_line.SGLine.from_short_spec(4, 5)
+    ...     line_46 = sg_line.SGLine.from_short_spec(4, 6)
+    ...     line_56 = sg_line.SGLine.from_short_spec(5, 6)
+    ...     test_column_12_45 = sg_column.SGColumn([line_12, line_45])
+    ...     column_02_46 = sg_column.SGColumn([line_02, line_46])
+    ...     column_02_56 = sg_column.SGColumn([line_02, line_56])
+    ...     column_23_46 = sg_column.SGColumn([line_23, line_46])
+    ...     column_23_56 = sg_column.SGColumn([line_23, line_56])
+    ...     return [test_column_12_45, column_02_46, column_02_56, column_23_46, column_23_56]
+    >>> test_column_12_45, column_02_46, column_02_56, column_23_46, column_23_56 = make_columns_for_sub_column()
+
+    ??? print test_column_12_45
+    (1, 1, 2, 2), (4, 4, 5, 5)
+
+    >>> test_column_12_45.is_a_subcolumn_of(column_02_46)
+    True
+    >>> test_column_12_45.is_a_subcolumn_of(column_02_56)
+    False
+    >>> test_column_12_45.is_a_subcolumn_of(column_23_46)
+    False
+    >>> test_column_12_45.is_a_subcolumn_of(column_23_56)
+    False

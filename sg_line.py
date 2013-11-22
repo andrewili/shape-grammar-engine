@@ -5,7 +5,7 @@ import sg_point
 
 
 class SGLine(object):
-        ### construction ###
+        ### construction
     def __init__(self, p1, p2):
         #   2D implementation
         try:
@@ -65,7 +65,7 @@ class SGLine(object):
     def from_points(cls, p1, p2):
         return SGLine(p1, p2)
 
-        ### representation ###
+        ### representation
     def __str__(self):
         return '(%s, %s, %s, %s)' % (
             self.x1, self.y1, self.x2, self.y2)
@@ -74,7 +74,7 @@ class SGLine(object):
         return '(%0.1f, %0.1f, %0.1f, %0.1f)' % (
             self.x1, self.y1, self.x2, self.y2)
 
-        ### relations ###
+        ### relations
     def __eq__(self, other):
         if (self.tail == other.tail and
             self.head == other.head
@@ -142,15 +142,28 @@ class SGLine(object):
         else:
             return False
 
+    def is_collinear_with(self, other):
+        return self.carrier == other.carrier
+
     def is_a_subline_in_column(self, column):
         """Receives a column:
-            [SGLine, ...]
+            SGColumn
         Returns whether self is a subline of a line in the column
         """
-        for other_line in column:
+        for other_line in column.lines:
             if self.is_a_subline_of(other_line):
                 return True
         return False
+
+##    def is_a_subline_in_column(self, column):
+##        """Receives a column:
+##            [SGLine, ...]
+##        Returns whether self is a subline of a line in the column
+##        """
+##        for other_line in column:
+##            if self.is_a_subline_of(other_line):
+##                return True
+##        return False
 
     def is_a_subline_of(self, other):
         if self.tail < other.tail:
@@ -185,7 +198,43 @@ class SGLine(object):
     def is_disjoint_right_of(self, other):
         return  self.tail >= other.head
 
-    ### called by SGShape.subtract_line_column(line_minuend, column)
+        ### add
+
+    def can_be_merged_with(self, other):
+        """Receives a collinear line
+        Returns whether self can be merged with other
+        See Krishnamurti (1980), 465
+        """
+        def test():
+            if self.tail == other.head:
+                return True
+            elif other.tail == self.head:
+                return True
+            elif (
+                self.tail < other.head and
+                other.tail < self.head
+            ):
+                return True
+            else:
+                return False
+        try:
+            if not self.is_collinear_with(other):
+                raise ValueError()
+            else:
+                return test()
+        except ValueError:
+            print "You're trying to test non-collinear lines"
+
+    def merge(self, other):
+        """Receives a line that can be merged with.
+        Returns the sum of the 2 lines.
+        """
+        new_tail = min(self.tail, other.tail)
+        new_head = max(self.head, other.head)
+        new_line = SGLine(new_tail, new_head)
+        return new_line
+
+        ### called by SGShape.subtract_line_column(line_minuend, column)
 
     def subtract_line_tail(self, other):
         """Receives a line that overlaps self.tail
@@ -236,4 +285,4 @@ class SGLine(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('sg_line_test.txt')
+    doctest.testfile('tests/sg_line_test.txt')
