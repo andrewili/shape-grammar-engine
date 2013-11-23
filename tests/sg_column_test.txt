@@ -49,7 +49,6 @@ collinear(lines)
 
     ### maximize
 get_maximal_lines_from(maximal_lines_1, maximal_lines_2)
-    #   Is this enough?
     >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)
     >>> line_02 = sg_line.SGLine.from_short_spec(0, 2)
     >>> line_13 = sg_line.SGLine.from_short_spec(1, 3)
@@ -72,8 +71,8 @@ maximal(non_maximal_lines)
     ...     line_89 = sg_line.SGLine.from_short_spec(8, 9)
     ...     return [line_02, line_13, line_46, line_56, line_79, line_89]
     >>> non_maximal_lines = non_maximal_lines_for_maximal_test()
-    >>> maximal_lines = drone_column.maximal(non_maximal_lines)
 
+    >>> maximal_lines = drone_column.maximal(non_maximal_lines)
     >>> for line in sorted(maximal_lines):
     ...     print line
     (0, 0, 3, 3)
@@ -81,29 +80,25 @@ maximal(non_maximal_lines)
     (7, 7, 9, 9)
 
 get_first_maximal_line_from(lines)
-    # test non_maximal, maximal
-    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)
-    >>> line_12 = sg_line.SGLine.from_short_spec(1, 2)
-    >>> line_23 = sg_line.SGLine.from_short_spec(2, 3)
-    >>> maximal_lines = [line_01, line_23]
-    >>> non_maximal_lines = [line_01, line_12]
-
-    >>> print drone_column.get_first_maximal_line_from(maximal_lines)
+    >>> def singleton_line_list_for_maximal_test():
+    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    ...     return [line_01]
+    >>> singleton_line_list = singleton_line_list_for_maximal_test()
+    >>> new_line_from_singleton_list = drone_column.get_first_maximal_line_from(singleton_line_list)
+    >>> print new_line_from_singleton_list
     (0, 0, 1, 1)
-    >>> len(maximal_lines)
-    1
-    >>> print drone_column.get_first_maximal_line_from(maximal_lines)
-    (2, 2, 3, 3)
-    >>> len(maximal_lines)
-    0
 
-    >>> print drone_column.get_first_maximal_line_from(non_maximal_lines)
-    (0, 0, 2, 2)
-    >>> len(non_maximal_lines)
-    0
+    >>> def non_singleton_list_for_maximal_test():
+    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    ...     line_12 = sg_line.SGLine.from_short_spec(1, 2)
+    ...     line_23 = sg_line.SGLine.from_short_spec(2, 3)
+    ...     return [line_01, line_12, line_23]
+    >>> non_singleton_list = non_singleton_list_for_maximal_test()
+    >>> new_line_from_non_singleton_list = drone_column.get_first_maximal_line_from(non_singleton_list)
+    >>> print new_line_from_non_singleton_list
+    (0, 0, 3, 3)
 
 get_singleton_line_from(singleton_lines)
-    
     >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)
     >>> singleton_lines = [line_01]
 
@@ -114,16 +109,13 @@ get_singleton_line_from(singleton_lines)
     0
 
 get_first_maximal_line_from_non_singleton(non_maximal_lines)
+    case 1: n = 2: line_1 and line_2 are not mergeable
     
-    len(column) >= 2
-
-    case 1: len() == 2: line_1 and line_2 are not mergeable
-    
-    >>> def make_non_maximal_lines_1():
+    >>> def non_maximal_lines_for_non_singleton_test_1():
     ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
     ...     line_23 = sg_line.SGLine.from_short_spec(2, 3)
     ...     return [line_01, line_23]
-    >>> non_maximal_lines_1 = make_non_maximal_lines_1()
+    >>> non_maximal_lines_1 = non_maximal_lines_for_non_singleton_test_1()
     >>> new_line_1 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_1)
     >>> print new_line_1
     (0, 0, 1, 1)
@@ -133,30 +125,30 @@ get_first_maximal_line_from_non_singleton(non_maximal_lines)
     ...     print line
     (2, 2, 3, 3)
 
-    case 2: len() == 2: line_1 and line_2 are mergeable
+    case 2: n = 2: line_1 and line_2 are mergeable
     
-    >>> def make_non_maximal_lines_2():
+    >>> def non_maximal_lines_for_non_singleton_test_2():
     ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)
     ...     line_13 = sg_line.SGLine.from_short_spec(1, 3)
     ...     return [line_02, line_13]
     
-    >>> non_maximal_lines_2 = make_non_maximal_lines_2()
+    >>> non_maximal_lines_2 = non_maximal_lines_for_non_singleton_test_2()
     >>> new_line_2 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_2)
     >>> print new_line_2
     (0, 0, 3, 3)
     >>> len(non_maximal_lines_2)
     0
 
-    case 3: len() == 3: line_1 and line_2 are mergeable,
-        line_12 cannot be merged with line_3
+    case 3: n = 3: line_1 and line_2 are mergeable,
+        new merged line_12 cannot be merged with line_3
     
-    >>> def make_non_maximal_lines_3():
+    >>> def non_maximal_lines_for_non_singleton_test_3():
     ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)
     ...     line_13 = sg_line.SGLine.from_short_spec(1, 3)
     ...     line_46 = sg_line.SGLine.from_short_spec(4, 6)
     ...     return [line_02, line_13, line_46]
     
-    >>> non_maximal_lines_3 = make_non_maximal_lines_3()
+    >>> non_maximal_lines_3 = non_maximal_lines_for_non_singleton_test_3()
     >>> new_line_3 = drone_column.get_first_maximal_line_from(non_maximal_lines_3)
     >>> print new_line_3
     (0, 0, 3, 3)
@@ -166,18 +158,18 @@ get_first_maximal_line_from_non_singleton(non_maximal_lines)
     ...     print line
     (4, 4, 6, 6)
 
-    case 4: len == 4: line_1 and line_2 can be merged,
-        line_12 can be merged with line_3, line_123 cannot be
-        merged with line_4
+    case 4: n = 4: line_1 and line_2 can be merged,
+        line_12 can be merged with line_3,
+        line_123 cannot be merged with line_4
     
-    >>> def make_non_maximal_lines_4():
+    >>> def non_maximal_lines_for_non_singleton_test_4():
     ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)
     ...     line_13 = sg_line.SGLine.from_short_spec(1, 3)
     ...     line_35 = sg_line.SGLine.from_short_spec(3, 5)
     ...     line_67 = sg_line.SGLine.from_short_spec(6, 7)
     ...     return [line_02, line_13, line_35, line_67]
     
-    >>> non_maximal_lines_4 = make_non_maximal_lines_4()
+    >>> non_maximal_lines_4 = non_maximal_lines_for_non_singleton_test_4()
     >>> new_line_4 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_4)
     >>> print new_line_4
     (0, 0, 5, 5)
@@ -188,25 +180,20 @@ get_first_maximal_line_from_non_singleton(non_maximal_lines)
     (6, 6, 7, 7)
 
 lines_can_be_merged(line_1, line_2)
-    
-    line_1, and line_2 are collinear.
-    
-    >>> line_26 = sg_line.SGLine.from_short_spec(2, 6)      #     ====
-    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)      #   -
-    >>> line_02 = sg_line.SGLine.from_short_spec(0, 2)      #   --
-    >>> line_13 = sg_line.SGLine.from_short_spec(1, 3)      #    --
-    >>> line_17 = sg_line.SGLine.from_short_spec(1, 7)      #    ------
-    >>> line_24 = sg_line.SGLine.from_short_spec(2, 4)      #     --
-    
-		                                            #     ====
-    
-    >>> line_35 = sg_line.SGLine.from_short_spec(3, 5)      #      --
-    >>> line_46 = sg_line.SGLine.from_short_spec(4, 6)      #       --
-    >>> line_57 = sg_line.SGLine.from_short_spec(5, 7)      #        --
-    >>> line_68 = sg_line.SGLine.from_short_spec(6, 8)      #         --
-    >>> line_78 = sg_line.SGLine.from_short_spec(7, 8)      #          -
-    
-                		                            #     ====
+    >>> def lines_for_mergeable_test():
+    ...     line_26 = sg_line.SGLine.from_short_spec(2, 6)      #     ====
+    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)      #   -
+    ...     line_02 = sg_line.SGLine.from_short_spec(0, 2)      #   --
+    ...     line_13 = sg_line.SGLine.from_short_spec(1, 3)      #    --
+    ...     line_17 = sg_line.SGLine.from_short_spec(1, 7)      #    ------
+    ...     line_24 = sg_line.SGLine.from_short_spec(2, 4)      #     --
+    ...     line_35 = sg_line.SGLine.from_short_spec(3, 5)      #      --
+    ...     line_46 = sg_line.SGLine.from_short_spec(4, 6)      #       --
+    ...     line_57 = sg_line.SGLine.from_short_spec(5, 7)      #        --
+    ...     line_68 = sg_line.SGLine.from_short_spec(6, 8)      #         --
+    ...     line_78 = sg_line.SGLine.from_short_spec(7, 8)      #          -
+    ...     return [line_26, line_01, line_02, line_13, line_17, line_24, line_35, line_46, line_57, line_68, line_78]
+    >>> line_26, line_01, line_02, line_13, line_17, line_24, line_35, line_46, line_57, line_68, line_78 = lines_for_mergeable_test()
 
     >>> drone_column.lines_can_be_merged(line_26, line_02)
     True
@@ -230,19 +217,15 @@ lines_can_be_merged(line_1, line_2)
     False
 
 merge_lines(line_1, line_2)
-    
-    Given 2 mergeable (collinear) lines, line_1.tail <= line_2.tail,
-    returns a new merged line.
-    
     >>> def lines_for_merge_test():
     ...     test_line_06    = sg_line.SGLine.from_short_spec(0, 6)  #   ======
-    ...     line_03 = sg_line.SGLine.from_short_spec(0, 3)  #   ---
-    ...     line_06 = sg_line.SGLine.from_short_spec(0, 6)  #   ------
-    ...     line_08 = sg_line.SGLine.from_short_spec(0, 8)  #   --------
-    ...     line_34 = sg_line.SGLine.from_short_spec(3, 4)  #      -
-    ...     line_36 = sg_line.SGLine.from_short_spec(3, 6)  #      ---
-    ...     line_38 = sg_line.SGLine.from_short_spec(3, 8)  #      -----
-    ...     line_68 = sg_line.SGLine.from_short_spec(6, 8)  #         --
+    ...     line_03         = sg_line.SGLine.from_short_spec(0, 3)  #   ---
+    ...     line_06         = sg_line.SGLine.from_short_spec(0, 6)  #   ------
+    ...     line_08         = sg_line.SGLine.from_short_spec(0, 8)  #   --------
+    ...     line_34         = sg_line.SGLine.from_short_spec(3, 4)  #      -
+    ...     line_36         = sg_line.SGLine.from_short_spec(3, 6)  #      ---
+    ...     line_38         = sg_line.SGLine.from_short_spec(3, 8)  #      -----
+    ...     line_68         = sg_line.SGLine.from_short_spec(6, 8)  #         --
     ...     return [test_line_06, line_03, line_06, line_08, line_34, line_36, line_38, line_68]
     >>> test_line_06, line_03, line_06, line_08, line_34, line_36, line_38, line_68 = lines_for_merge_test()
 

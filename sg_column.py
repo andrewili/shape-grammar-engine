@@ -32,22 +32,23 @@ class SGColumn(object):
         ### maximize
     def get_maximal_lines_from(self, maximal_lines_1, maximal_lines_2):
         """Receives 2 ordered lists of maximal collinear lines:
-            [SGLine, ...], len() >= 1
-        Returns an ordered list of maximal colinear lines:
-            [SGLine, ...], len() >= 1, should not contain duplicates
+            [SGLine, ...], n >= 1
+        Returns an ordered list of maximal collinear lines:
+            [SGLine, ...], n >= 1, should not contain duplicates
         """
-        new_non_maximal_unsorted_lines = []
-        new_non_maximal_unsorted_lines.extend(maximal_lines_1)
-        new_non_maximal_unsorted_lines.extend(maximal_lines_2)
-        new_sorted_lines = sorted(new_non_maximal_unsorted_lines)
-        new_maximal_lines = self.maximal(new_sorted_lines)      # 2.1.1.1
+        non_maximal_unsorted_lines = []
+        non_maximal_unsorted_lines.extend(maximal_lines_1)
+        non_maximal_unsorted_lines.extend(maximal_lines_2)
+        sorted_non_maximal_lines = sorted(non_maximal_unsorted_lines)
+        new_maximal_lines = self.maximal(sorted_non_maximal_lines)
+                                                                # 2.1.1.1
         return new_maximal_lines
 
     def maximal(self, non_maximal_lines):
-        """Receives an ordered list of collinear, possibly non-maximal, lines:
-            [SGLine, ...], len() >= 1
+        """Receives an ordered list of (possibly non-maximal) collinear lines:
+            [SGLine, ...], n >= 1
         Returns an ordered list of maximal collinear lines:
-            [SGLine, ...], len() >= 1
+            [SGLine, ...], n >= 1
         """
         maximal_lines = []
         while len(non_maximal_lines) >= 1:
@@ -56,29 +57,22 @@ class SGColumn(object):
             maximal_lines.append(new_maximal_line)
         return maximal_lines
 
-    def get_first_maximal_line_from(self, lines):   # 2.1.1.1.1
-        """Receives an ordered list of possibly non-maximal collinear lines:
-            SGColumn, len() >= 1
-        Returns the first maximal line:
-            SGLine
-        """
-        """Receives an ordered list of possibly non-maximal collinear lines:
-            [SGLine, ...], len() >= 1
-        Returns the first maximal line:
+    def get_first_maximal_line_from(self, lines):               # 2.1.1.1.1
+        """Receives an ordered list of (possibly non-maximal) collinear lines:
+            [SGLine, ...], n >= 1
+        Returns the first maximal line in the list:
             SGLine
         """
         if len(lines) == 1:
-            new_line = self.get_singleton_line_from(lines)
-                                                                # 2.1.1.1.1.1
+            new_line = self.get_singleton_line_from(lines)      # 2.1.1.1.1.1
         else:
-            new_line = self.get_first_maximal_line_from_non_singleton(
-                lines)
+            new_line = self.get_first_maximal_line_from_non_singleton(lines)
                                                                 # 2.1.1.1.1.2
         return new_line
 
     def get_singleton_line_from(self, singleton_lines):
         """Receives a list containing a singleton line:
-            [SGLine], len() == 1
+            [SGLine], n = 1
         Returns the singleton line:
             SGLine
         """
@@ -86,7 +80,7 @@ class SGColumn(object):
         return new_line
 
     def get_first_maximal_line_from_non_singleton(self, non_maximal_lines):
-        """Receives an ordered list of possibly non-maximal collinear lines:
+        """Receives an ordered list of (possibly non-maximal) collinear lines:
             [SGLine, ...], len() >= 2
         Returns the first maximal line:
             SGLine
@@ -122,8 +116,8 @@ class SGColumn(object):
             return False
 
     def merge_lines(self, line_1, line_2):                      # 2.1.1.1.1.2.2
-        """Receives 2 lines that can be merged.
-        Returns the sum of the 2 lines.
+        """Receives 2 mergeable lines, line_1.tail <= line_2.tail
+        Returns the sum of the 2 lines
         """
         new_tail = min(line_1.tail, line_2.tail)
         new_head = max(line_1.head, line_2.head)
