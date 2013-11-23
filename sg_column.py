@@ -2,23 +2,17 @@
 
 import sg_line
 
-"""
-class SGColumn(list):
-    def __init__(self, lines):
-        
-"""
-
 class SGColumn(object):
+    """Consists of a non-empty list of collinear lines. Immutable
+    """
         ### construct
     def __init__(self, lines):
         """Receives a non-empty unsorted list of collinear lines:
             [SGLine, ...], len >= 1
-        A column has a non-empty sorted list of collinear lines
-        Immutable? Inherits from List?
         """
         try:
             if (len(lines) == 0 or
-                self.not_collinear(lines)
+                not self.collinear(lines)
             ):
                 raise ValueError()
             else:
@@ -28,12 +22,12 @@ class SGColumn(object):
                 "You're trying to make a column",
                 "with non-collinear lines or no lines")
 
-    def not_collinear(self, lines):
+    def collinear(self, lines):
         carrier = lines[0].carrier
         for line in lines:
             if line.carrier != carrier:
-                return True
-        return False
+                return False
+        return True
 
         ### maximize
     def get_maximal_lines_from(self, maximal_lines_1, maximal_lines_2):
@@ -138,7 +132,8 @@ class SGColumn(object):
 
         ### represent
     def __str__(self):
-        """Returns the string of ordered lines
+        """Returns the string of ordered lines:
+            (<x1>, <y1>, <x2>, <y2>), ...
         """
         line_strings = []
         for line in sorted(self.lines):
@@ -149,8 +144,8 @@ class SGColumn(object):
     def listing(self, indent_level=0):
         """Receives indent_level, i >= 0
         Returns an ordered, formatted, multi-line string in the form:
-            <carrier_listing>:
-                <line_listing>
+            (<bearing>, <intercept>):
+                (<x1>, <y1>, <x2>, <y2>)
                 ...
             ...
         """

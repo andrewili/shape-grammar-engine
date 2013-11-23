@@ -204,14 +204,14 @@ class SGShape(object):
         else:
             return False
 
-    def merge_lines(self, line_1, line_2):                      # 2.1.1.1.1.2.2
-        """Receives 2 lines that can be merged.
-        Returns the sum of the 2 lines.
-        """
-        new_tail = min(line_1.tail, line_2.tail)
-        new_head = max(line_1.head, line_2.head)
-        new_line = sg_line.SGLine(new_tail, new_head)
-        return new_line
+##    def merge_lines(self, line_1, line_2):                      # 2.1.1.1.1.2.2
+##        """Receives 2 lines that can be merged.
+##        Returns the sum of the 2 lines.
+##        """
+##        new_tail = min(line_1.tail, line_2.tail)
+##        new_head = max(line_1.head, line_2.head)
+##        new_line = sg_line.SGLine(new_tail, new_head)
+##        return new_line
 
         ### subtraction
     def __sub__(self, other):
