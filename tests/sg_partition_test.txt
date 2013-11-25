@@ -6,35 +6,37 @@
     >>> import sg_point
     >>> import sg_shape
 
+    >>> drone_partition = sg_partition.SGPartition([])
+
     ### construct, represent
 __init__(), __str__(), listing()
-    >>> def make_mixed_elements():
+    >>> def make_mixed_elements_for_mixed_init_test():
     ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
     ...     line_34 = sg_line.SGLine.from_short_spec(3, 4)
     ...     point_22 = sg_point.SGPoint(2, 2)
     ...     return [line_01, point_22, line_34]
-    >>> mixed_elements = make_mixed_elements()
+    >>> mixed_elements = make_mixed_elements_for_mixed_init_test()
 
-    ??? mixed_partition = sg_partition.SGPartition(mixed_elements)
-    You're trying to make a partition with more than one type of element
+    >>> mixed_partition = sg_partition.SGPartition(mixed_elements)
+    You're trying to make a partition with non-lines
 
-    >>> def make_lines_0_deg_overlapping():
+    >>> def lines_0_deg_overlapping():
     ...     line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
     ...     line_0103 = sg_line.SGLine.from_spec(0, 1, 0, 3)
     ...     return [line_0103, line_0002]
-    >>> def make_lines_45_deg_disjoint():
+    >>> def lines_45_deg_disjoint():
     ...     line_0011 = sg_line.SGLine.from_spec(0, 0, 1, 1)
     ...     line_2233 = sg_line.SGLine.from_spec(2, 2, 3, 3)
     ...     return [line_2233, line_0011]
-    >>> def make_lines_0_45_deg_for_partition():
-    ...     lines_0_deg = make_lines_0_deg_overlapping()
-    ...     lines_45_deg = make_lines_45_deg_disjoint()
+    >>> def lines_0_45_deg_for_partition():
+    ...     lines_0_deg = lines_0_deg_overlapping()
+    ...     lines_45_deg = lines_45_deg_disjoint()
     ...     lines_0_45_deg = copy.copy(lines_45_deg)
     ...     lines_0_45_deg.extend(lines_0_deg)
     ...     return lines_0_45_deg
-    >>> lines_0 = make_lines_0_deg_overlapping()
-    >>> lines_45 = make_lines_45_deg_disjoint()
-    >>> lines_0_45 = make_lines_0_45_deg_for_partition()
+    >>> lines_0_deg = lines_0_deg_overlapping()
+    >>> lines_45_deg = lines_45_deg_disjoint()
+    >>> lines_0_45_deg = lines_0_45_deg_for_partition()
 
     >>> empty_partition = sg_partition.SGPartition([])
     >>> print empty_partition
@@ -42,14 +44,14 @@ __init__(), __str__(), listing()
     >>> print empty_partition.listing()
     <empty partition>
 
-    >>> partition_0 = sg_partition.SGPartition(lines_0)
+    >>> partition_0 = sg_partition.SGPartition(lines_0_deg)
     >>> print partition_0
     {(0.0, 0): [(0, 0, 0, 3)]}
     >>> print partition_0.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 3.0)
 
-    >>> partition_45 = sg_partition.SGPartition(lines_45)
+    >>> partition_45 = sg_partition.SGPartition(lines_45_deg)
     >>> print partition_45
     {(45.0, 0): [(0, 0, 1, 1), (2, 2, 3, 3)]}
     >>> print partition_45.listing()
@@ -57,7 +59,7 @@ __init__(), __str__(), listing()
         (0.0, 0.0, 1.0, 1.0)
         (2.0, 2.0, 3.0, 3.0)
 
-    >>> partition_0_45 = sg_partition.SGPartition(lines_0_45)
+    >>> partition_0_45 = sg_partition.SGPartition(lines_0_45_deg)
     >>> print partition_0_45
     {(0.0, 0): [(0, 0, 0, 3)], (45.0, 0): [(0, 0, 1, 1), (2, 2, 3, 3)]}
     >>> print partition_0_45.listing()
@@ -78,7 +80,38 @@ __init__(), __str__(), listing()
     >>> print line_partition
     {(0.0, 0): [(0, 0, 0, 1)], (45.0, 0): [(0, 0, 1, 1)], (90.0, 0): [(0, 0, 1, 0)]}
 
-        ### ordering relations
+are_lines(elements)
+    >>> def elements_for_are_lines_test():
+    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    ...     line_34 = sg_line.SGLine.from_short_spec(3, 4)
+    ...     point_22 = sg_point.SGPoint(2, 2)
+    ...     lines = [line_34, line_01]
+    ...     lines_and_points = [line_34, point_22, line_01]
+    ...     return [lines, lines_and_points]
+    >>> lines, lines_and_points = elements_for_are_lines_test()
+
+    >>> drone_partition.are_lines(lines_and_points)
+    False
+    >>> drone_partition.are_lines(lines)
+    True
+
+make_dictionary(lines)
+    >>> def lines_for_make_dictionary_test():
+    ...     line_0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
+    ...     line_0011 = sg_line.SGLine.from_spec(0, 0, 1, 1)
+    ...     line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
+    ...     lines = [line_0010, line_0011, line_0001]
+    ...     line_dictionary = drone_partition.make_dictionary(lines)
+    ...     return line_dictionary
+    >>> line_dictionary = lines_for_make_dictionary_test()
+
+    >>> for carrier in sorted(line_dictionary):
+    ...     print '%s: %s' % (carrier, line_dictionary[carrier])
+    (0.0, 0): (0, 0, 0, 1)
+    (45.0, 0): (0, 0, 1, 1)
+    (90.0, 0): (0, 0, 1, 0)
+
+        ### relations
 __eq__(), __ne__()
     >>> l_vert = sg_line.SGLine.from_spec(0, 0, 0, 10)
     >>> l_horiz = sg_line.SGLine.from_spec(0, 0, 5, 0)

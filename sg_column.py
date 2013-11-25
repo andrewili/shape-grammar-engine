@@ -3,12 +3,13 @@
 import sg_line
 
 class SGColumn(object):
-    """Consists of a non-empty list of collinear lines. Immutable
+    """Consists of a non-empty (and unordered) list of collinear lines. 
+    Immutable.
     """
         ### construct
     def __init__(self, lines):
         """Receives a non-empty unsorted list of collinear lines:
-            [SGLine, ...], len >= 1
+            [SGLine, ...], n >= 1
         """
         try:
             if (len(lines) == 0 or
@@ -41,7 +42,6 @@ class SGColumn(object):
         non_maximal_unsorted_lines.extend(maximal_lines_2)
         sorted_non_maximal_lines = sorted(non_maximal_unsorted_lines)
         new_maximal_lines = self.maximal(sorted_non_maximal_lines)
-                                                                # 2.1.1.1
         return new_maximal_lines
 
     def maximal(self, non_maximal_lines):
@@ -57,17 +57,16 @@ class SGColumn(object):
             maximal_lines.append(new_maximal_line)
         return maximal_lines
 
-    def get_first_maximal_line_from(self, lines):               # 2.1.1.1.1
+    def get_first_maximal_line_from(self, lines):
         """Receives an ordered list of (possibly non-maximal) collinear lines:
             [SGLine, ...], n >= 1
         Returns the first maximal line in the list:
             SGLine
         """
         if len(lines) == 1:
-            new_line = self.get_singleton_line_from(lines)      # 2.1.1.1.1.1
+            new_line = self.get_singleton_line_from(lines)
         else:
             new_line = self.get_first_maximal_line_from_non_singleton(lines)
-                                                                # 2.1.1.1.1.2
         return new_line
 
     def get_singleton_line_from(self, singleton_lines):
@@ -81,7 +80,7 @@ class SGColumn(object):
 
     def get_first_maximal_line_from_non_singleton(self, non_maximal_lines):
         """Receives an ordered list of (possibly non-maximal) collinear lines:
-            [SGLine, ...], len() >= 2
+            [SGLine, ...], n >= 2
         Returns the first maximal line:
             SGLine
         """
@@ -89,19 +88,17 @@ class SGColumn(object):
         while len(non_maximal_lines) >= 1:
             other_line = non_maximal_lines[0]
             if self.lines_can_be_merged(working_line, other_line):
-                                                                # 2.1.1.1.1.2.1
                 working_line = self.merge_lines(working_line, other_line)
-                                                                # 2.1.1.1.1.2.2
                 non_maximal_lines.pop(0)
             else:
                 break
         first_maximal_line = working_line
         return first_maximal_line
 
-    def lines_can_be_merged(self, line_1, line_2):              # 2.1.1.1.1.2.1
+    def lines_can_be_merged(self, line_1, line_2):
         """Receives 2 collinear lines.
         Returns a boolean whether the lines can be merged.
-        See Krishnamurti (1980), 465
+        See Krishnamurti (1980), 465.
         """
         if line_1.tail == line_2.head:
             return True
@@ -115,9 +112,11 @@ class SGColumn(object):
         else:
             return False
 
-    def merge_lines(self, line_1, line_2):                      # 2.1.1.1.1.2.2
-        """Receives 2 mergeable lines, line_1.tail <= line_2.tail
-        Returns the sum of the 2 lines
+    def merge_lines(self, line_1, line_2):
+        """Receives 2 mergeable lines, line_1.tail <= line_2.tail:
+            [SGLine, SGLine]
+        Returns the sum of the 2 lines:
+            SGLine
         """
         new_tail = min(line_1.tail, line_2.tail)
         new_head = max(line_1.head, line_2.head)
@@ -136,12 +135,12 @@ class SGColumn(object):
         return column_string
 
     def listing(self, indent_level=0):
-        """Receives indent_level, i >= 0
+        """Receives indent_level:
+            int, i >= 0
         Returns an ordered, formatted, multi-line string in the form:
             (<bearing>, <intercept>):
                 (<x1>, <y1>, <x2>, <y2>)
                 ...
-            ...
         """
         indent_increment = 4
         if indent_level < 0:
@@ -155,26 +154,23 @@ class SGColumn(object):
 
         ### relations
     def __eq__(self, other):
-        if len(self.lines) != len(other.lines):
-            return False
-        for i in range(len(self.lines)):
-            if self.lines[i] != other.lines[i]:
-                return False
-        return True
+        """Receives a column:
+            SGColumn
+        Returns whether both columns contain the same lines.
+        """
+        return sorted(self.lines) == sorted(other.lines)
 
     def __ne__(self, other):
-        if len(self.lines) != len(other.lines):
-            return True
-        for i in range(len(self.lines)):
-            if self.lines[i] == other.lines[i]:
-                return False
-        return True
+        """Receives a column:
+            SGColumn
+        Returns whether both columns do not contain the same lines.
+        """
+        return sorted(self.lines) != sorted(other.lines)
 
     def is_a_subcolumn_of(self, other):
-        """Receives a non-empty colinear column:
+        """Receives a non-empty collinear column:
             SGColumn
         """
-        #   Refactor. Each iteration tests all lines in other column
         for line in self.lines:
             if not line.is_a_subline_in_column(other):
                 return False

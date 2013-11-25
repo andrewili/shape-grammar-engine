@@ -6,34 +6,36 @@ import sg_line
 
 class SGPartition(object):
         ### construct
-    def __init__(self, elements):
-        """Receives a list of elements of the same type (SGLines or SGPoints):
-            [SGLine, ...] or [SGPoint, ...], len >= 0
+    def __init__(self, lines):
+        """Receives a list of collinear lines:
+            [SGLine, ...], n >= 0
         """
-        # check that all elements are of the same type
         try:
-            if elements == []:
+            if lines == []:
                 self.dictionary = {}
+            elif not self.are_lines(lines):
+                raise ValueError()
             else:
-                first_element_class = elements[0].__class__
-                for element in elements:
-                    if element.__class__ != first_element_class:
-                        raise ValueError()
-                    else:
-                        self.dictionary = self.make_dictionary(elements)
+                self.dictionary = self.make_dictionary(lines)
         except ValueError:
-            print '%s %s' % (
-                "You're trying to make a partition",
-                'with more than one type of element')
- 
-    def make_dictionary(self, elements):
-        """Receives a list of elements of the same type (SGLines or SGPoints):
-            [SGLine, ...] or [SGPoint, ...], len >= 0
-        Returns a dictionary partitioned by carrier / label:
+            print "You're trying to make a partition with non-lines"
+
+    def are_lines(self, elements):
+        value = True
+        for element in elements:
+            if element.__class__ != sg_line.SGLine:
+                value = False
+                break
+        return value
+
+    def make_dictionary(self, lines):
+        """Receives a list of lines:
+            [SGLine, ...], n >= 0
+        Returns a dictionary partitioned by carrier:
             {(num, num): SGColumn, ...}
         """
         dictionary = {}
-        for element in elements:
+        for element in lines:
             if element.carrier in dictionary:
                 elements_by_carrier = dictionary[element.carrier]
                 elements_by_carrier.append(element)
@@ -50,23 +52,6 @@ class SGPartition(object):
             dictionary[carrier] = column
         return dictionary
 
-##    @classmethod
-##    def from_lines(cls, lines):
-##        """Receives a list of lines: 
-##            [SGLine, ...]
-##        """
-##        partition = {}
-##        for line in sorted(lines):
-##            carrier = line.carrier
-##            if carrier in partition:
-##                column = partition[carrier]
-##                column.append(line)
-##            else:
-##                column = [line]
-##                partition[carrier] = column
-##        return partition
-
-
         ### represent
     def __str__(self):
         entry_strings = []
@@ -78,6 +63,12 @@ class SGPartition(object):
         return '{%s}' % entries_string
 
     def listing(self):
+        """Returns an ordered, formatted, multi-line string in the form:
+            (<bearing>, <intercept>):
+                (<x1>, <y1>, <x2>, <y2>)
+                ...
+            ...
+        """
         if self.dictionary == {}:
             string = '<empty partition>'
         else:
@@ -97,7 +88,7 @@ class SGPartition(object):
         string = '(%0.1f, %0.1f):' % (bearing, intercept)
         return string
 
-        ### ordering relations
+        ### relations
     def __eq__(self, other):
         return self.dictionary == other.dictionary
 
@@ -115,7 +106,7 @@ class SGPartition(object):
     def columns_are_subcolumns_in(self, other):
         """Receives a partition with the same carriers:
             SGPartition
-        Returns whether each column is a subcolumn in the other partition
+        Returns whether each column is a subcolumn in the other partition.
         """
         for carrier in self.dictionary:
             if carrier not in other.dictionary:
@@ -127,25 +118,12 @@ class SGPartition(object):
                     return False
         return True
 
-##    def columns_are_subcolumns_in(self, other):
-##        """Receives a partition with the same carriers:
-##            SGPartition
-##        Returns whether each column is a subcolumn in the other partition
-##        """
-##        for carrier in self.dictionary:
-##            self_column = self.dictionary[carrier]
-##            other_column = other.dictionary[carrier]
-##            if not self_column.is_a_subcolumn_of(other_column):
-##                return False
-##        return True
-
-
         ### add
     def __add__(self, other):
         """Receives a partition of maximal lines:
-            SGPartition, len() >= 0
+            SGPartition, n >= 0
         Returns a partition of maximal lines:
-            SGPartition, len() >= 0
+            SGPartition, n >= 0
         """
         drone_line = sg_line.SGLine.from_short_spec(0, 1)
         drone_column = sg_column.SGColumn([drone_line])

@@ -52,7 +52,7 @@ class SGShape(object):
                 partition[carrier] = column
         return partition
 
-        ### ordering relations
+        ### relations
     def __eq__(self, other):
         return self.partition == other.partition
 
@@ -61,38 +61,6 @@ class SGShape(object):
 
     def is_a_subshape_of(self, other):
         return self.partition.is_a_subpartition_of(other.partition)
-
-##    def is_a_subshape_of(self, other):
-##        # is_a_subpartition_of()
-##        if not set(self.partition.keys()).issubset(set(other.partition.keys())):
-##            return False
-##        else:
-##            return self.columns_are_subcolumns_in(other)
-
-    def columns_are_subcolumns_in(self, other):
-        """Receives a shape with the same carriers:
-            SGShape
-        Returns whether each column is a subcolumn in the other shape
-        """
-        for carrier in self.partition:
-            self_column = self.partition[carrier]
-            other_column = other.partition[carrier]
-            if not self.column_1_is_a_subcolumn_of_column_2(
-                self_column, other_column
-            ):
-                return False
-        return True
-
-    def column_1_is_a_subcolumn_of_column_2(self, column_1, column_2):
-        """Receives 2 non-empty colinear columns:
-            [SGLine, ...]
-        Returns whether column 1 is a subcolumn of column 2
-        """
-        #   Refactor. Each iteration tests all lines in column_2
-        for line_1 in column_1:
-            if not line_1.is_a_subline_in_column(column_2):
-                return False
-        return True
 
         ### addition
     def __add__(self, other):                                   # 2
@@ -186,32 +154,6 @@ class SGShape(object):
                 break
         first_maximal_line = working_line
         return first_maximal_line
-
-    def lines_can_be_merged(self, line_1, line_2):              # 2.1.1.1.1.2.1
-        """Receives 2 collinear lines.
-        Returns a boolean whether the lines can be merged.
-        See Krishnamurti (1980), 465
-        """
-        if line_1.tail == line_2.head:
-            return True
-        elif line_2.tail == line_1.head:
-            return True
-        elif (
-            line_1.tail < line_2.head and
-            line_2.tail < line_1.head
-        ):
-            return True
-        else:
-            return False
-
-##    def merge_lines(self, line_1, line_2):                      # 2.1.1.1.1.2.2
-##        """Receives 2 lines that can be merged.
-##        Returns the sum of the 2 lines.
-##        """
-##        new_tail = min(line_1.tail, line_2.tail)
-##        new_head = max(line_1.head, line_2.head)
-##        new_line = sg_line.SGLine(new_tail, new_head)
-##        return new_line
 
         ### subtraction
     def __sub__(self, other):

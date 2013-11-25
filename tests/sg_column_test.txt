@@ -252,13 +252,13 @@ __eq__(), __ne__()
     >>> column_1b = sg_column.SGColumn([line_2, line_1])
     >>> column_2 = sg_column.SGColumn([line_1])
 
-    ??? column_1a == column_1b
+    >>> column_1a == column_1b
     True
-    ??? column_1a == column_2
+    >>> column_1a == column_2
     False
-    ??? column_1a != column_1b
+    >>> column_1a != column_1b
     False
-    ??? column_1a != column_2
+    >>> column_1a != column_2
     True
 
 is_a_subcolumn_of()
@@ -277,7 +277,7 @@ is_a_subcolumn_of()
     ...     return [test_column_12_45, column_02_46, column_02_56, column_23_46, column_23_56]
     >>> test_column_12_45, column_02_46, column_02_56, column_23_46, column_23_56 = make_columns_for_sub_column()
 
-    ??? print test_column_12_45
+    >>> print test_column_12_45
     (1, 1, 2, 2), (4, 4, 5, 5)
 
     >>> test_column_12_45.is_a_subcolumn_of(column_02_46)
