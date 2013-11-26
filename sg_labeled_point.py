@@ -6,6 +6,7 @@ import sg_point
 class SGLabeledPoint(object):
     #   Immutable
     def __init__(self, x, y, label):
+        #   __init__(self, point, label) ?
         try:
             if label == '':
                 raise ValueError()
@@ -17,7 +18,7 @@ class SGLabeledPoint(object):
         self.y = y
         self.label = label
 
-        ### relations ###
+        ### relations
     def __eq__(self, other):
         if (self.point == other.point and
             self.label == other.label
@@ -82,7 +83,7 @@ class SGLabeledPoint(object):
         else:
             return False
 
-        ### representation ###
+        ### represent
     def __str__(self):
         string = '(%s, %s, %s)' % (self.x, self.y, self.label)
         return string

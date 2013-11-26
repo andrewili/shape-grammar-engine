@@ -1,0 +1,9 @@
+#	sg_labeled_shape_test.txt
+
+	>>> import sg_labeled_shape
+
+	### construct, represent
+	>>> def lshape_for_init_test():
+	...		pass
+	>>> lshape = lshape_for_init_test()
+	>>> print lshape
