@@ -137,6 +137,14 @@ __eq__(), __ne__()
     >>> line_partition_l_1 != line_partition_t
     True
 
+    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    >>> non_empty_partition = sg_partition.SGPartition([line_01])
+
+    >>> empty_partition.is_empty()
+    True
+    >>> non_empty_partition.is_empty()
+    False
+
 columns_are_subcolumns_in(), is_a_subpartition_of()
     >>> def make_partitions_for_subcolumns():
     ...     line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
@@ -172,28 +180,22 @@ columns_are_subcolumns_in(), is_a_subpartition_of()
 
         ### add
 __add__(other)
-    >>> empty_partition_1 = sg_partition.SGPartition([])
-    >>> empty_partition_2 = sg_partition.SGPartition([])
-    >>> print empty_partition_1
-    {}
-    >>> print empty_partition_2
-    {}
-    >>> line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
-    >>> line_0020 = sg_line.SGLine.from_spec(0, 0, 2, 0)
-    >>> line_0011 = sg_line.SGLine.from_spec(0, 0, 1, 1)
-    >>> line_1122 = sg_line.SGLine.from_spec(1, 1, 2, 2)
-    >>> full_partition_1 = sg_partition.SGPartition([line_0011, line_0002])
-    >>> full_partition_2 = sg_partition.SGPartition([line_1122, line_0020])
-
+    >>> def partitions_for_add_test():
+    ...     empty_partition_1 = sg_partition.SGPartition([])
+    ...     empty_partition_2 = sg_partition.SGPartition([])
+    ...     line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
+    ...     line_0020 = sg_line.SGLine.from_spec(0, 0, 2, 0)
+    ...     line_0011 = sg_line.SGLine.from_spec(0, 0, 1, 1)
+    ...     line_1122 = sg_line.SGLine.from_spec(1, 1, 2, 2)
+    ...     full_partition_1 = sg_partition.SGPartition([line_0011, line_0002])
+    ...     full_partition_2 = sg_partition.SGPartition([line_1122, line_0020])
+    ...     return (empty_partition_1, empty_partition_2, full_partition_1, full_partition_2)
+    >>> empty_partition_1, empty_partition_2, full_partition_1, full_partition_2 = partitions_for_add_test()
     >>> empty_empty_partition = empty_partition_1 + empty_partition_2
     >>> full_empty_partition = full_partition_1 + empty_partition_1
     >>> empty_full_partition = empty_partition_1 + full_partition_1
     >>> full_full_partition = full_partition_1 + full_partition_2
 
-    >>> print empty_partition_1
-    {}
-    >>> print empty_partition_2
-    {}
     >>> print empty_empty_partition
     {}
     >>> print empty_empty_partition.listing()
@@ -206,6 +208,7 @@ __add__(other)
         (0.0, 0.0, 0.0, 2.0)
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
+        
     >>> print empty_full_partition
     {(0.0, 0): [(0, 0, 0, 2)], (45.0, 0): [(0, 0, 1, 1)]}
     >>> print empty_full_partition.listing()

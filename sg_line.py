@@ -5,7 +5,7 @@ import sg_point
 
 
 class SGLine(object):
-        ### construction
+        ### construct
     def __init__(self, p1, p2):
         #   2D implementation
         try:
@@ -65,7 +65,7 @@ class SGLine(object):
     def from_points(cls, p1, p2):
         return SGLine(p1, p2)
 
-        ### representation
+        ### representat
     def __str__(self):
         return '(%s, %s, %s, %s)' % (
             self.x1, self.y1, self.x2, self.y2)
@@ -282,7 +282,7 @@ class SGLine(object):
             print '||| %s.new_head:\n%s' % (method_name, new_head)
         return differences
 
-
+        ###
 if __name__ == '__main__':
     import doctest
     doctest.testfile('tests/sg_line_test.txt')

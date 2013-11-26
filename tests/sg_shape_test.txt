@@ -21,20 +21,16 @@
     ...     return sg_shape.SGShape.from_lines(lines)
 
     >>> empty_partition = sg_partition.SGPartition([])
-    >>> drone_shape = sg_shape.SGShape(empty_partition)
+    >>> empty_shape = sg_shape.SGShape(empty_partition)
 
-    ### construction, representation
+    ### construct, represent
 __init__()
-partition_from_lines(lines)
 from_lines(lines)
 from_specs()
 listing()
 __str__()
     
     empty shape
-    
-    >>> empty_partition = sg_partition.SGPartition([])
-    >>> empty_shape = sg_shape.SGShape(empty_partition)
     
     >>> print empty_shape
     <empty shape>
@@ -43,11 +39,11 @@ __str__()
     >>> print empty_shape.__str__()
     <empty shape>
     >>> print empty_shape.listing()
-    <empty partition>
+    <empty shape>
 
     non-empty shape
     
-    >>> def make_non_empty_shape():
+    >>> def non_empty_shape_for_init():
     ...     line_01 = sg_line.SGLine.from_spec(0, 0, 1, 1)
     ...     line_23 = sg_line.SGLine.from_spec(2, 2, 3, 3)
     ...     line_h  = sg_line.SGLine.from_spec(0, 0, 1, 0)
@@ -56,7 +52,7 @@ __str__()
     ...     line_partition = sg_partition.SGPartition(lines)
     ...     return sg_shape.SGShape(line_partition)
     
-    >>> non_empty_shape = make_non_empty_shape()
+    >>> non_empty_shape = non_empty_shape_for_init()
     >>> print non_empty_shape
     (0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)
     >>> print non_empty_shape.listing()
@@ -70,7 +66,7 @@ __str__()
 
     2 disjoint collinear horizontal lines, 1 vertical line: _ | _
     
-    >>> def make_shape_for_disjoint_collinear_lines():
+    >>> def shape_for_disjoint_collinear_lines_test():
     ...     h0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
     ...     h3040 = sg_line.SGLine.from_spec(3, 0, 4, 0)
     ...     v2022 = sg_line.SGLine.from_spec(2, 0, 2, 2)
@@ -78,7 +74,7 @@ __str__()
     ...     line_partition = sg_partition.SGPartition(lines)
     ...     return sg_shape.SGShape(line_partition)
     
-    >>> shape_for_disjoint_collinear_lines = make_shape_for_disjoint_collinear_lines()
+    >>> shape_for_disjoint_collinear_lines = shape_for_disjoint_collinear_lines_test()
     >>> print shape_for_disjoint_collinear_lines
     (0, 0, 1, 0), (2, 0, 2, 2), (3, 0, 4, 0)
     >>> print shape_for_disjoint_collinear_lines.listing()
@@ -87,6 +83,19 @@ __str__()
     (90.0, 0.0):
         (0.0, 0.0, 1.0, 0.0)
         (3.0, 0.0, 4.0, 0.0)
+
+    from_lines
+
+    >>> def lines_for_shape_from_lines_test():
+    ...     line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
+    ...     line_0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
+    ...     lines = [line_0010, line_0001]
+    ...     return lines
+    >>> lines = lines_for_shape_from_lines_test()
+
+    >>> shape_from_lines = sg_shape.SGShape.from_lines(lines)
+    >>> print shape_from_lines
+    (0, 0, 0, 1), (0, 0, 1, 0)
 
     from_specs
     
@@ -121,25 +130,11 @@ get_column_spec_strings_from(column)
     ...     column = sg_column.SGColumn(lines)
     ...     return column
     >>> column = make_column_for_spec_strings()
-    >>> column_spec_strings = drone_shape.get_column_spec_strings_from(column)
+    >>> column_spec_strings = empty_shape.get_column_spec_strings_from(column)
     >>> column_spec_strings
     ['(0, 0, 1, 1)', '(2, 2, 3, 3)']
 
-##lines_from_line_partition(line_partition)
-##
-##    ??? def make_line_elements_for_line_partition():
-##    ...     line0011 = make_line_from_spec(0, 0, 1, 1)
-##    ...     line2233 = make_line_from_spec(2, 2, 3, 3)
-##    ...     line_partition = {(45, 0): set([line0011, line2233])}
-##    ...     return sg_shape.SGShape.lines_from_line_partition(line_partition)
-##    
-##    ??? line_elements = make_line_elements_for_line_partition()
-##    ??? for element in sorted(line_elements):
-##    ...     print element
-##    (0, 0, 1, 1)
-##    (2, 2, 3, 3)
-
-### relations                                   #   check later
+    ### relations
 __eq__(other), line_partitions_are_equal(line_partition_1, line_partition_2)
     >>> def make_shapes_for_eq():
     ...     line_0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
@@ -200,7 +195,7 @@ __ne__(other)
     >>> base_shape != shape_0001_0010
     False
 
-is_a_subshape_of(other)         #   test for multi-line columns
+is_a_subshape_of(other)
     >>> def make_shapes_for_part():
     ...     line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
     ...     line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
@@ -217,6 +212,8 @@ is_a_subshape_of(other)         #   test for multi-line columns
     ...     return [base_shape, empty_shape, shape_0002_0010, shape_0001_0020, shape_0002_0020, shape_0003_0030]
 
     >>> base_shape, empty_shape, shape_0002_0010, shape_0001_0020, shape_0002_0020, shape_0003_0030 = make_shapes_for_part()
+    >>> empty_shape.is_a_subshape_of(base_shape)
+    True
     >>> base_shape.is_a_subshape_of(empty_shape)
     False
     >>> base_shape.is_a_subshape_of(shape_0002_0010)
@@ -228,7 +225,7 @@ is_a_subshape_of(other)         #   test for multi-line columns
     >>> base_shape.is_a_subshape_of(shape_0003_0030)
     True
 
-### arithmetic operations
+    ### add
 __add__(other)
     
     _|   |_       ___       _|___|_
@@ -271,217 +268,7 @@ __add__(other)
     (90.0, 4.0):
         (0.0, 4.0, 5.0, 4.0)
 
-add_partitions(partition_1, partition_2)
-    
-    add two empty partitions
-    
-    >>> lp1 = sg_partition.SGPartition([])
-    >>> lp2 = sg_partition.SGPartition([])
-    
-    >>> new_lp = lp1 + lp2
-    >>> print new_lp
-    {}
-
-    ??? new_lp = es.add_partitions(lp1, lp2)
-    ??? print es.get_line_partition_listing(new_lp)
-    <no lines>
-
-    add one empty partition and one non-empty partition
-    
-    >>> lp0 = sg_partition.SGPartition([])
-    >>> lp1 = sg_partition.SGPartition([sg_line.SGLine.from_spec(0, 0, 1, 1)])
-    
-    >>> new_lp_01 = lp0 + lp1
-    >>> print new_lp_01.listing()
-    (45.0, 0.0):
-        (0.0, 0.0, 1.0, 1.0)
-
-    add two non-empty partitions, disjoint carriers
-    
-    >>> line_n = sg_line.SGLine.from_spec(0, 0, 0, 1)
-    >>> line_e = sg_line.SGLine.from_spec(0, 0, 1, 0)
-    >>> lp_n = sg_partition.SGPartition([line_n])
-    >>> lp_e = sg_partition.SGPartition([line_e])
-    
-    >>> lp_ne = lp_n + lp_e
-    >>> print lp_ne.listing()
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 1.0, 0.0)
-
-    add two non-empty partitions, common carriers
-    
-    _   +  |_  =  _|_
-     |             |
-    
-    >>> line_w = sg_line.SGLine.from_spec(-1,  0, 0, 0)
-    >>> line_s = sg_line.SGLine.from_spec( 0, -1, 0, 0)
-    >>> line_n = sg_line.SGLine.from_spec( 0,  0, 0, 1)
-    >>> line_e = sg_line.SGLine.from_spec( 0,  0, 1, 0)
-    
-    >>> lp_sw = sg_partition.SGPartition([line_w, line_s])
-    >>> lp_ne = sg_partition.SGPartition([line_n, line_e])
-    >>> print lp_sw.listing()
-    (0.0, 0.0):
-        (0.0, -1.0, 0.0, 0.0)
-    (90.0, 0.0):
-        (-1.0, 0.0, 0.0, 0.0)
-    >>> print lp_ne.listing()
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 1.0, 0.0)
-    >>> new_lp = lp_sw + lp_ne
-    >>> print new_lp.listing()
-    (0.0, 0.0):
-        (0.0, -1.0, 0.0, 1.0)
-    (90.0, 0.0):
-        (-1.0, 0.0, 1.0, 0.0)
-    >>> new_lp = lp_ne + lp_sw
-    >>> print new_lp.listing()
-    (0.0, 0.0):
-        (0.0, -1.0, 0.0, 1.0)
-    (90.0, 0.0):
-        (-1.0, 0.0, 1.0, 0.0)
-
-get_reduced_column_from(column_1, column_2) # deprecated
-    
-    Both column_1 and column_2 are non-empty.
-    
-    ??? def make_new_column():
-    ...     line_0002 = sg_line.SGLine.from_spec(0, 0, 0, 2)
-    ...     line_0103 = sg_line.SGLine.from_spec(0, 1, 0, 3)
-    ...     line_0405 = sg_line.SGLine.from_spec(0, 4, 0, 5)
-    ...     line_0506 = sg_line.SGLine.from_spec(0, 5, 0, 6)
-    ...     column_1 = sg_column.SGColumn([line_0002, line_0405])
-    ...     column_2 = sg_column.SGColumn([line_0103, line_0506])
-    ...     return es.get_reduced_column_from(column_1, column_2)
-    
-    ??? new_column = make_new_column()
-    ??? print es.get_column_listing(new_column)
-        (0, 0, 0, 3)
-        (0, 4, 0, 6)
-
-    ### maximize
-reduce_column(unreduced_column)
-    
-    ??? def make_unreduced_column():    
-    ...     line_02 = make_line_from_spec(0, 0, 2, 2)
-    ...     line_13 = make_line_from_spec(1, 1, 3, 3)
-    ...     line_46 = make_line_from_spec(4, 4, 6, 6)
-    ...     line_56 = make_line_from_spec(5, 5, 6, 6)
-    ...     line_79 = make_line_from_spec(7, 7, 9, 9)
-    ...     line_89 = make_line_from_spec(8, 8, 9, 9)
-    ...     return [line_02, line_13, line_46, line_56, line_79, line_89]
-    
-    ??? unreduced_column = make_unreduced_column()
-    ??? reduced_column = es.reduce_column(unreduced_column)
-    ??? for line in sorted(reduced_column):
-    ...     print line
-    (0, 0, 3, 3)
-    (4, 4, 6, 6)
-    (7, 7, 9, 9)
-
-get_first_maximal_line_from_unreduced_column(column)
-    
-    ??? line_01 = make_line_from_spec(0, 0, 1, 1)
-    ??? line_23 = make_line_from_spec(2, 2, 3, 3)
-    
-    ??? column = [line_01, line_23]
-    ??? print es.get_first_maximal_line_from_unreduced_column(column)
-    (0, 0, 1, 1)
-    ??? len(column)
-    1
-    ??? print es.get_first_maximal_line_from_unreduced_column(column)
-    (2, 2, 3, 3)
-    ??? len(column)
-    0
-
-get_line_from_singleton_column(column)
-    
-    ??? line_01 = make_line_from_spec(0, 0, 1, 1)
-    
-    ??? column = [line_01]
-    ??? new_line = es.get_line_from_singleton_column(column)
-    ??? print new_line
-    (0, 0, 1, 1)
-    ??? len(column)
-    0
-
-get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    
-    len(column) >= 2
-
-    case 1: len() == 2: line_1 and line_2 are not mergeable
-    
-    ??? def make_column_for_next_maximal_line():
-    ...     line_01 = make_line_from_spec(0, 0, 1, 1)
-    ...     line_23 = make_line_from_spec(2, 2, 3, 3)
-    ...     return [line_01, line_23]
-    
-    ??? column = make_column_for_next_maximal_line()
-    ??? new_line_1 = es.get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    ??? print new_line_1
-    (0, 0, 1, 1)
-    ??? len(column)
-    1
-    ??? print es.get_column_listing(column)
-        (2, 2, 3, 3)
-
-    case 2: len() == 2: line_1 and line_2 are mergeable
-    
-    ??? def make_column_for_mergeable_lines():
-    ...     line_02 = make_line_from_spec(0, 0, 2, 2)
-    ...     line_13 = make_line_from_spec(1, 1, 3, 3)
-    ...     return [line_02, line_13]
-    
-    ??? column = make_column_for_mergeable_lines()
-    ??? new_line_2 = es.get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    ??? print new_line_2
-    (0, 0, 3, 3)
-    ??? len(column)
-    0
-
-    case 3: len() == 3: line_1 and line_2 are mergeable,
-        line_12 cannot be merged with line_3
-    
-    ??? def make_column_for_mergeable_lines():
-    ...     line_02 = make_line_from_spec(0, 0, 2, 2)
-    ...     line_13 = make_line_from_spec(1, 1, 3, 3)
-    ...     line_46 = make_line_from_spec(4, 4, 6, 6)
-    ...     return [line_02, line_13, line_46]
-    
-    ??? column = make_column_for_mergeable_lines()
-    ??? new_line_3 = es.get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    ??? print new_line_3
-    (0, 0, 3, 3)
-    ??? len(column)
-    1
-    ??? print es.get_column_listing(column)
-        (4, 4, 6, 6)
-
-    case 4: len == 4: line_1 and line_2 can be merged,
-        line_12 can be merged with line_3, line_123 cannot be
-        merged with line_4
-    
-    ??? def make_column_for_length_4_mergeable():
-    ...     line_02 = make_line_from_spec(0, 0, 2, 2)
-    ...     line_13 = make_line_from_spec(1, 1, 3, 3)
-    ...     line_35 = make_line_from_spec(3, 3, 5, 5)
-    ...     line_67 = make_line_from_spec(6, 6, 7, 7)
-    ...     return [line_02, line_13, line_35, line_67]
-    
-    ??? column = make_column_for_length_4_mergeable()
-    ??? new_line_4 = es.get_first_maximal_line_from_non_singleton_unreduced_column(column)
-    ??? print new_line_4
-    (0, 0, 5, 5)
-    ??? len(column)
-    1
-    ??? print es.get_column_listing(column)
-        (6, 6, 7, 7)
-
-    ###
+    ### subtract
 __sub__(other)
     ??? non_empty_shape_1 = sg_shape.SGShape.from_specs([(2, 2, 7, 7)])
     ??? non_empty_shape_2 = sg_shape.SGShape.from_specs([(3, 3, 4, 4)])
@@ -3737,34 +3524,4 @@ subtract_line_column(line_minuend, working_column)
     ??? for difference in differences_67_89:
     ...     print difference
     (2, 2, 6, 6)
-
-    ###
-get_line_specs()
-    
-    ??? def make_shape_for_line_specs():
-    ...     line_n1 = make_line_from_spec(0, 0, 0, 1)
-    ...     line_n2 = make_line_from_spec(0, 2, 0, 3)
-    ...     line_ne1 = make_line_from_spec(0, 0, 1, 1)
-    ...     line_ne2 = make_line_from_spec(2, 2, 3, 3)
-    ...     line_e1 = make_line_from_spec(0, 0, 1, 0)
-    ...     line_e2 = make_line_from_spec(2, 0, 3, 0)
-    ...     lines = [line_n1, line_n2, line_ne1, line_ne2, line_e1, line_e2]
-    ...     return sg_shape.SGShape.from_lines(lines)
-    
-    ??? shape_for_line_specs = make_shape_for_line_specs()
-    ??? shape_for_line_specs.get_line_specs()
-    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (0, 2, 0, 3), (2, 0, 3, 0), (2, 2, 3, 3)]
-
-get_colinear_line_specs_from(colinear_lines, carrier)
-    
-    ??? def make_colinear_lines_for_colinear_line_specs():
-    ...     line_1 = make_line_from_spec(0, 0, 1, 1)
-    ...     line_2 = make_line_from_spec(2, 2, 3, 3)
-    ...     line_3 = make_line_from_spec(4, 4, 5, 5)
-    ...     return [line_3, line_2, line_1]
-    
-    ??? colinear_lines = make_colinear_lines_for_colinear_line_specs()
-    ??? carrier = (45, 0)
-    ??? es.get_colinear_line_specs_from(colinear_lines, carrier)
-    [(0, 0, 1, 1), (2, 2, 3, 3), (4, 4, 5, 5)]
 

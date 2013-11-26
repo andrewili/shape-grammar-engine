@@ -12,7 +12,7 @@ class SGPoint(object):
     def from_spec(cls, x, y):
         return SGPoint(x, y)
 
-        ### relations ###
+        ### relations
     def __eq__(self, other):
         return self.spec == other.spec
 
@@ -31,7 +31,7 @@ class SGPoint(object):
     def __ne__(self, other):
         return self.spec != other.spec
 
-        ### representation ###
+        ### represent
     def __str__(self):
         string = '(%s, %s)' % (self.x, self.y)
         return string

@@ -95,6 +95,9 @@ class SGPartition(object):
     def __ne__(self, other):
         return self.dictionary != other.dictionary
 
+    def is_empty(self):
+        return self.dictionary == {}
+        
     def is_a_subpartition_of(self, other):
         self_keyset = set(self.dictionary.keys())
         other_keyset = set(other.dictionary.keys())

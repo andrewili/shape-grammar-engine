@@ -6,7 +6,7 @@
 
     >>> drone_line = sg_line.SGLine.from_spec(0, 0, 10, 10)
     
-    ### init ###
+    ### construct
 __init__()
     
     >>> line_01 = sg_line.SGLine.from_spec(0, 0, 1, 1)
@@ -89,7 +89,7 @@ from_points(p1,p2)
     >>> print line
     (1, 1, 2, 2)
 
-    ### representation ###
+    ### represent
 __str__()
     >>> print sg_line.SGLine.from_spec(1, 1, 2, 2)
     (1, 1, 2, 2)
@@ -98,7 +98,7 @@ listing()
     >>> print sg_line.SGLine.from_spec(1, 1, 2, 2)
     (1, 1, 2, 2)
 
-    ### ordering relations ###
+    ### ordering relations
 __eq__(other)
     >>> line =  sg_line.SGLine.from_spec(4, 4, 6, 6)
     
@@ -175,7 +175,7 @@ __ne__(other)
     >>> line != sg_line.SGLine.from_spec(4, 4, 6, 6)
     False
 
-    ### part relations ###
+    ### part relations
 is_a_subline_in_column(column)
     
     >>> line = sg_line.SGLine.from_spec(1, 1, 2, 2)
@@ -238,7 +238,7 @@ is_a_subline_of(other)
     >>> line_12.is_a_subline_of(sg_line.SGLine.from_spec(1, 1, 2, 2))
     True
 
-    ### overlap relations ###
+    ### overlap relations
 is_disjoint_left_of(other)
 overlaps_tail_of(other)
 overlaps_all_of(other)

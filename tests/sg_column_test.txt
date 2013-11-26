@@ -216,34 +216,6 @@ lines_can_be_merged(line_1, line_2)
     >>> drone_column.lines_can_be_merged(line_26, line_78)
     False
 
-merge_lines(line_1, line_2)
-    >>> def lines_for_merge_test():
-    ...     test_line_06    = sg_line.SGLine.from_short_spec(0, 6)  #   ======
-    ...     line_03         = sg_line.SGLine.from_short_spec(0, 3)  #   ---
-    ...     line_06         = sg_line.SGLine.from_short_spec(0, 6)  #   ------
-    ...     line_08         = sg_line.SGLine.from_short_spec(0, 8)  #   --------
-    ...     line_34         = sg_line.SGLine.from_short_spec(3, 4)  #      -
-    ...     line_36         = sg_line.SGLine.from_short_spec(3, 6)  #      ---
-    ...     line_38         = sg_line.SGLine.from_short_spec(3, 8)  #      -----
-    ...     line_68         = sg_line.SGLine.from_short_spec(6, 8)  #         --
-    ...     return [test_line_06, line_03, line_06, line_08, line_34, line_36, line_38, line_68]
-    >>> test_line_06, line_03, line_06, line_08, line_34, line_36, line_38, line_68 = lines_for_merge_test()
-
-    >>> print empty_column.merge_lines(test_line_06, line_03)
-    (0, 0, 6, 6)
-    >>> print empty_column.merge_lines(test_line_06, line_06)
-    (0, 0, 6, 6)
-    >>> print empty_column.merge_lines(test_line_06, line_08)
-    (0, 0, 8, 8)
-    >>> print empty_column.merge_lines(test_line_06, line_34)
-    (0, 0, 6, 6)
-    >>> print empty_column.merge_lines(test_line_06, line_36)
-    (0, 0, 6, 6)
-    >>> print empty_column.merge_lines(test_line_06, line_38)
-    (0, 0, 8, 8)
-    >>> print empty_column.merge_lines(test_line_06, line_68)
-    (0, 0, 8, 8)
-
     ### relations
 __eq__(), __ne__()
     >>> line_1 = sg_line.SGLine.from_short_spec(0, 1)

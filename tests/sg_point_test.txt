@@ -2,7 +2,7 @@
 
     >>> import sg_point
 
-    ### construction ###
+    ### construct
 __init__()
     >>> p1 = sg_point.SGPoint(1, 2)
     
@@ -97,7 +97,7 @@ __ne__(other)
     >>> p != sg_point.SGPoint(1, 0)
     True
 
-    ### representation ###
+    ### represent
 __str__()
     >>> print sg_point.SGPoint(1, 2)
     (1, 2)

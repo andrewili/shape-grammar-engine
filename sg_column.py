@@ -176,13 +176,6 @@ class SGColumn(object):
                 return False
         return True
 
-        ### add
-    def get_first_maximal_line_from_non_singleton_unreduced_column(self):
-        """Sorts and maximizes the column, and returns the first maximal line:
-            SGLine
-        """
-        pass
-
         ### subtract
 
         ###
