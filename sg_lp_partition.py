@@ -44,7 +44,7 @@ class SGLPPartition(object):
         ### represent
     def __str__(self):
         """Returns an ordered string in the form:
-            {<label>: [(<x>, <y>), ...], ...}
+            {<label>: [(x, y), ...], ...}
         """
         entry_strings = []
         for label in sorted(self.dictionary):
@@ -70,8 +70,8 @@ class SGLPPartition(object):
 
     def listing(self):
         """Returns an ordered, formatted, multi-line string in the form:
-            <label>:
-                (<x>, <y>)
+            label:
+                (x, y)
                 ...
             ...
         """
@@ -87,40 +87,40 @@ class SGLPPartition(object):
                 entry_listing = '%s:\n%s' % (
                     label, lpoints_subset_listing)
                 entry_listings.append(entry_listing)
-                # entry_listing = self.get_carrier_listing(label)
-                # entry_listings.append(entry_listing)
-                # lpoints_subset = self.dictionary[label]
-                # lpoints_subset_listing_indent_level = 1
-                # entry_listing = self.get_lpoints_subset_listing(
-                #     lpoints_subset, lpoints_subset_listing_indent_level)
-                # entry_listings.append(entry_listing)
             dictionary_listing = '\n'.join(entry_listings)
         return dictionary_listing
 
     def get_lpoints_subset_listing(self, lpoints_subset, indent_level):
         """Receives a set of (identically) labeled points and an indent level:
-            set(SGLabeledPoint, ...)
+            set(SGLabeledPoint, ...), n >= 0
             int >= 0
         Returns an indented ordered string of labeled point listings:
-            '<indent>(<x>, <y>), ...'
+            <indent>(x, y)
+            ...
         """
-        indent_string = self.get_indent_string(indent_level)
-        lpoint_listings = self.get_lpoint_listings(lpoints_subset)
-        string = '%s%s' % (indent_string, lpoint_listings)
+        lpoints_subset_listing = self.get_lpoint_listings(
+            lpoints_subset, indent_level)
+        string = '\n'.join(lpoints_subset_listing)
         return string
+
+    def get_lpoint_listings(self, lpoints_subset, indent_level):
+        """Returns an ordered list of listings in the form:
+            [<indent_string>(x, y), ...]
+        """
+        lpoint_listings = []
+        for lpoint in sorted(lpoints_subset):
+            indent_string = self.get_indent_string(indent_level)
+            lpoint_listing = lpoint.point.listing()
+            indented_lpoint_listing = '%s%s' % (indent_string, lpoint_listing)
+            lpoint_listings.append(indented_lpoint_listing)
+        return lpoint_listings
 
     def get_indent_string(self, indent_level):
         indent_increment = 4
         if indent_level < 0:
             indent_level = 0
-        indent_string = ' ' * indent_level * indent_increment
-        return indent_string
-
-    def get_lpoint_listings(self, lpoints_subset):
-        lpoint_listings = []
-        for lpoint in sorted(lpoints_subset):
-            lpoint_listings.append(lpoint.point.listing())
-        return lpoint_listings
+        indent = ' ' * indent_level * indent_increment
+        return indent
 
         ###
 if __name__ == '__main__':
