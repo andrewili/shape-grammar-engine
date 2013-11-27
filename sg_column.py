@@ -126,13 +126,13 @@ class SGColumn(object):
         ### represent
     def __str__(self):
         """Returns the string of ordered lines:
-            (<x1>, <y1>, <x2>, <y2>), ...
+            [(<x1>, <y1>, <x2>, <y2>), ...]
         """
         line_strings = []
         for line in sorted(self.lines):
             line_strings.append(line.__str__())
         column_string = ', '.join(line_strings)
-        return column_string
+        return '[%s]' % column_string
 
     def listing(self, indent_level=0):
         """Receives indent_level:

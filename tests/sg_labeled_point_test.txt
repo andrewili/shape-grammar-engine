@@ -2,7 +2,7 @@
 
     >>> import sg_labeled_point
 
-    ### init ###
+    ### construct
     
 __init__()
     >>> lp1 = sg_labeled_point.SGLabeledPoint(1, 2, 'a')
@@ -21,7 +21,7 @@ __init__()
     >>> lp2 = sg_labeled_point.SGLabeledPoint(1, 2, '')
     You're trying to create a labeled point with an empty label
 
-    ### relations ###
+    ### relations
     
 __eq__(other)
     >>> lp =  sg_labeled_point.SGLabeledPoint(0, 0, 'o')
@@ -104,7 +104,7 @@ __ne__(other)
     >>> lp != sg_labeled_point.SGLabeledPoint(0, 0, 'x')
     True
 
-    ### representation ###
+    ### represent
     
 __str__()
     >>> print sg_labeled_point.SGLabeledPoint(1, 2, 'a')

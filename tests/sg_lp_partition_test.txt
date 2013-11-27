@@ -1,0 +1,43 @@
+#   sg_lp_partition_test.txt
+
+    >>> import sg_labeled_point
+    >>> import sg_line
+    >>> import sg_lp_partition
+
+    ### construct, represent
+
+    >>> def non_lpoints_for_init_test():
+    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     non_lpoints = [lpoint_00a, line_01]
+    ...     return non_lpoints
+    >>> non_lpoints = non_lpoints_for_init_test()
+    >>> non_lpoint_partition = sg_lp_partition.SGLPPartition(non_lpoints)
+    You're trying to make a partition with non labeled-points
+
+    >>> empty_lpp = sg_lp_partition.SGLPPartition([])
+
+    >>> print empty_lpp
+    {}
+    >>> print empty_lpp.listing()
+    <empty lp_partition>
+
+    >>> def lpoints_for_init_test():
+    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = sg_labeled_point.SGLabeledPoint(3, 3, 'b')
+    ...     lpoints = [lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     return lpoints
+    >>> lpoints = lpoints_for_init_test()
+    >>> lpp = sg_lp_partition.SGLPPartition(lpoints)
+    
+    >>> print lpp
+    {a: [(0, 0), (1, 1)], b: [(2, 2), (3, 3)]}
+    >>> print lpp.listing()
+    a:
+        (0, 0)
+        (1, 1)
+    b:
+        (2, 2)
+        (3, 3)
