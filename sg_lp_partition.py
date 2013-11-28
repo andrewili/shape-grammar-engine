@@ -122,6 +122,10 @@ class SGLPPartition(object):
         indent = ' ' * indent_level * indent_increment
         return indent
 
+        ### relations
+    def is_empty(self):
+        return self.dictionary == {}
+
         ###
 if __name__ == '__main__':
     import doctest

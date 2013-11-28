@@ -21,6 +21,8 @@
     {}
     >>> print empty_lpp.listing()
     <empty lp_partition>
+    >>> empty_lpp.is_empty()
+    True
 
     >>> def lpoints_for_init_test():
     ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
@@ -41,3 +43,5 @@
     b:
         (2.0, 2.0)
         (3.0, 3.0)
+
+    ### relations

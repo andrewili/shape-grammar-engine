@@ -9,14 +9,14 @@ import sg_shape
 
 
 class SGLabeledShape(object):
-        ### construction ###
+    ### construct
     def __init__(self, shape, lpoint_partition):
         """Receives SGShape and lpoint_partition:
             SGShape
             {label: set([(x, y), ...]), ...}
         """
         self.shape = shape
-        self.lpoint_partition = lpoint_partition    #   ordered?
+        self.lpoint_partition = lpoint_partition
 
     @classmethod
     def new_empty(cls):
@@ -46,7 +46,7 @@ class SGLabeledShape(object):
                 lpoint_partition[label] = set([point_spec])
         return lpoint_partition
 
-        ### relations ###
+    ### relations
     def __eq__(self, other):
         return (self.shape == other.shape and
                 self.lpoint_partition == other.lpoint_partition)
@@ -54,6 +54,9 @@ class SGLabeledShape(object):
     def __ne__(self, other):
         return (self.shape != other.shape or
                 self.lpoint_partition != other.lpoint_partition)
+
+    def is_empty(self):
+        return self.lpoint_partition.is_empty()
 
     def is_a_sub_lshape_of(self, other):
         return (self.shape.is_a_subshape_of(other.shape) and
@@ -73,9 +76,8 @@ class SGLabeledShape(object):
                 if not lpoints_1.issubset(lpoints_2):
                     return False
         return True
-            
 
-        ### operations ###
+    ### operations
     def __add__(self, other):
         new_shape = self.shape + other.shape
         new_lpoint_partition = self.add_lpoint_partitions(
@@ -98,7 +100,7 @@ class SGLabeledShape(object):
 
     def __sub__(self, other):
         new_shape = self.shape - other.shape
-##        print '||| SGLabeledShape.__sub__.new_shape: %s' % new_shape
+        # print '||| SGLabeledShape.__sub__.new_shape: %s' % new_shape
         new_lpoint_partition = self.subtract_lpoint_partitions(
             self.lpoint_partition, other.lpoint_partition)
         new_lshape = SGLabeledShape(new_shape, new_lpoint_partition)
@@ -142,7 +144,7 @@ class SGLabeledShape(object):
             self.point_partition, other.point_partition)
         return SGShape(new_line_partition, new_point_partition)
 
-        ### other ###
+    ### other
     def make_lshape_from(self, lines, lpoints):                 # 1.2
         """Receives a list of SGLines and a list of SGLabeledPoints:
             [SGLine, ...]
@@ -171,10 +173,10 @@ class SGLabeledShape(object):
                 point_coord_set.add(point_coord)
             else:
                 lpoint_partition[label] = set([point_coord])
-##                lpoint_partition[label] = point_coord_set
+                # lpoint_partition[label] = point_coord_set
         return lpoint_partition
 
-        ### export ###
+    ### export
     def get_element_specs(self):                                # 2.1
         """Returns a 2-tuple of lists of SG element specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
@@ -209,8 +211,7 @@ class SGLabeledShape(object):
             lpoint_specs.extend(colabeled_lpoint_specs)
         return sorted(lpoint_specs)
 
-    def get_colabeled_lpoint_specs_from(self, colabeled_point_specs, label):
-                                                                # 2.1.2.1
+    def get_colabeled_lpoint_specs_from(self, colabeled_point_specs, label):    # 2.1.2.1
         """Receives:
             a list of colabeled_point_specs:
                 [(x, y), ...]
@@ -226,10 +227,12 @@ class SGLabeledShape(object):
             colabeled_lpoint_specs.append(colabeled_lpoint_spec)
         return sorted(colabeled_lpoint_specs)
 
-        ### representation ###
-    def __str__(self):                          #   no test
-        lpoint_partition_str = self.get_lpoint_partition_str()  #   sorted?
-        return 's(lp%s, pp%s)' % (line_partition_str, lpoint_partition_str)
+    ### represent
+    def __str__(self):
+        """Returns a string of a duple of ordered strings in the form:
+            ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
+        """
+        return '(%s, %s)' % (self.shape, self.lpoint_partition)
 
     def get_lpoint_partition_str(self):         #   no test
         partition = self.lpoint_partition
@@ -260,20 +263,23 @@ class SGLabeledShape(object):
         return s
 
     def listing(self):
-        """A string in the ordered form:
-            carrier:
-                line_spec
+        """An ordered string in the form:
+            (bearing, intercept):
+                (x1, y1, x2, y2)
                 ...
             ...
             label:
-                lpoint_spec
+                (x, y)
                 ...
         """
-        shape_listing = self.shape.listing()
-        lpoint_partition_listing = self.get_lpoint_partition_listing(
-            self.lpoint_partition)
-        s = '%s\n%s' % (shape_listing, lpoint_partition_listing)
-        return s
+        if self.is_empty():
+            listing = '<empty labeled shape>'
+        else:
+            shape_listing = self.shape.listing()
+            lpoint_partition_listing = self.get_lpoint_partition_listing(
+                self.lpoint_partition)
+            listing = '%s\n%s' % (shape_listing, lpoint_partition_listing)
+        return listing
 
     def get_lpoint_partition_listing(self, partition):  #   no listing
         """Receives an lpoint_partition:
@@ -319,7 +325,7 @@ class SGLabeledShape(object):
             i += 1
         return s
 
-    ####
+    ###
 def subtract_test():
     import obj_translator
     trace_on = True
@@ -332,13 +338,11 @@ def subtract_test():
     lshape_difference = w_vline - ovhv
     if trace_on:
         print '||  w_vline:\n%s' % w_vline.listing()
-##        print '||  ovhv_listing:\n%s' % ovhv.listing()
+        # print '||  ovhv_listing:\n%s' % ovhv.listing()
         print '||  ovhv:\n%s' % ovhv
         print '||  lshape_difference:\n%s' % lshape_difference.listing()
 
-    ####
+    ###
 if __name__ == '__main__':
-    subtract_test()
-
-##    import doctest
-##    doctest.testfile('sg_labeled_shape_test.txt')
+    import doctest
+    doctest.testfile('tests/sg_labeled_shape_test.txt')

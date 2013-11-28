@@ -33,13 +33,15 @@ __str__()
     empty shape
     
     >>> print empty_shape
-    <empty shape>
+    {}
     >>> print empty_shape.partition
     {}
     >>> print empty_shape.__str__()
-    <empty shape>
+    {}
     >>> print empty_shape.listing()
     <empty shape>
+    >>> empty_shape.is_empty()
+    True
 
     non-empty shape
     

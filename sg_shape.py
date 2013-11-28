@@ -38,12 +38,12 @@ class SGShape(object):
         sorted_spec_strings = self.get_sorted_spec_strings()
         string = ', '.join(sorted_spec_strings)
         if string == '':
-            string = '<empty shape>'
+            string = '{}'
         return string
 
     def get_sorted_spec_strings(self):
         """Returns an ordered list of spec strings of the lines in the shape:
-            ['(x1, y1, x2, y2)', ...]
+            [(x1, y1, x2, y2), ...]
         """
         spec_strings = []
         for carrier in self.partition.dictionary:
