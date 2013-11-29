@@ -35,14 +35,13 @@ class SGShape(object):
 
         ### represent
     def __str__(self):
-        sorted_spec_strings = self.get_sorted_spec_strings()
-        string = ', '.join(sorted_spec_strings)
-        if string == '':
-            string = '{}'
-        return string
+        """Returns the string of the ordered line specs:
+            [(x1, y1, x2, y2), ...]
+        """
+        return self.partition.__str__()
 
-    def get_sorted_spec_strings(self):
-        """Returns an ordered list of spec strings of the lines in the shape:
+    def get_sorted_line_strings(self):
+        """Returns an ordered list of line strings in the form:
             [(x1, y1, x2, y2), ...]
         """
         spec_strings = []
@@ -63,7 +62,7 @@ class SGShape(object):
         return spec_strings
 
     def listing(self):
-        if self.partition.is_empty():
+        if self.is_empty():
             string = '<empty shape>'
         else:
             string = self.partition.listing()
@@ -118,6 +117,9 @@ class SGShape(object):
 
     def __ne__(self, other):
         return self.partition != other.partition
+
+    def is_empty(self):
+        return self.partition.is_empty()
 
     def is_a_subshape_of(self, other):
         return self.partition.is_a_subpartition_of(other.partition)

@@ -33,11 +33,11 @@ __str__()
     empty shape
     
     >>> print empty_shape
-    {}
+    []
     >>> print empty_shape.partition
-    {}
+    []
     >>> print empty_shape.__str__()
-    {}
+    []
     >>> print empty_shape.listing()
     <empty shape>
     >>> empty_shape.is_empty()
@@ -53,10 +53,10 @@ __str__()
     ...     lines = [line_01, line_23, line_h, line_v]
     ...     line_partition = sg_partition.SGPartition(lines)
     ...     return sg_shape.SGShape(line_partition)
-    
     >>> non_empty_shape = non_empty_shape_for_init()
+
     >>> print non_empty_shape
-    (0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
     >>> print non_empty_shape.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 1.0)
@@ -78,7 +78,7 @@ __str__()
     
     >>> shape_for_disjoint_collinear_lines = shape_for_disjoint_collinear_lines_test()
     >>> print shape_for_disjoint_collinear_lines
-    (0, 0, 1, 0), (2, 0, 2, 2), (3, 0, 4, 0)
+    [(0, 0, 1, 0), (2, 0, 2, 2), (3, 0, 4, 0)]
     >>> print shape_for_disjoint_collinear_lines.listing()
     (0.0, 2.0):
         (2.0, 0.0, 2.0, 2.0)
@@ -97,7 +97,7 @@ __str__()
 
     >>> shape_from_lines = sg_shape.SGShape.from_lines(lines)
     >>> print shape_from_lines
-    (0, 0, 0, 1), (0, 0, 1, 0)
+    [(0, 0, 0, 1), (0, 0, 1, 0)]
 
     from_specs
     
@@ -108,11 +108,11 @@ __str__()
     
     >>> shape_from_specs = sg_shape.SGShape.from_specs(specs)
     >>> print shape_from_specs
-    (0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
 
 __str__()
 
-get_sorted_spec_strings()
+get_sorted_line_strings()
     >>> def make_shape_for_spec_strings():
     ...     line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
     ...     line_0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
@@ -120,7 +120,7 @@ get_sorted_spec_strings()
     ...     shape = sg_shape.SGShape.from_lines([line_0001, line_0010, line_0011])
     ...     return shape
     >>> shape = make_shape_for_spec_strings()
-    >>> sorted_spec_strings = shape.get_sorted_spec_strings()
+    >>> sorted_spec_strings = shape.get_sorted_line_strings()
     >>> sorted_spec_strings
     ['(0, 0, 0, 1)', '(0, 0, 1, 0)', '(0, 0, 1, 1)']
 
@@ -259,7 +259,7 @@ __add__(other)
     
     >>> hash = ells + square
     >>> print hash
-    (0, 1, 5, 1), (0, 4, 5, 4), (1, 0, 1, 5), (4, 0, 4, 5)
+    [(0, 1, 5, 1), (0, 4, 5, 4), (1, 0, 1, 5), (4, 0, 4, 5)]
     >>> print hash.listing()
     (0.0, 1.0):
         (1.0, 0.0, 1.0, 5.0)

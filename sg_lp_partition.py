@@ -44,15 +44,17 @@ class SGLPPartition(object):
         ### represent
     def __str__(self):
         """Returns an ordered string in the form:
-            {<label>: [(x, y), ...], ...}
+            [(x, y, label), ...]
         """
+        lpoints = []
+        for label in self.dictionary:
+            lpoint_cell = self.dictionary[label]
+            lpoints.extend(lpoint_cell)
         entry_strings = []
-        for label in sorted(self.dictionary):
-            point_specs = self.get_point_specs_from(self.dictionary[label])
-            entry_string = '%s: [%s]' % (label, point_specs)
-            entry_strings.append(entry_string)
+        for lpoint in sorted(lpoints):
+            entry_strings.append(lpoint.__str__())
         entries_string = ', '.join(entry_strings)
-        string = '{%s}' % entries_string
+        string = '[%s]' % entries_string
         return string
 
     def get_point_specs_from(self, lpoints_subset):

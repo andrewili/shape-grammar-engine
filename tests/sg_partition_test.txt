@@ -8,7 +8,7 @@
 
     >>> drone_partition = sg_partition.SGPartition([])
 
-    ### construct, represent
+        ### construct, represent
 __init__(), __str__(), listing()
     >>> def make_mixed_elements_for_mixed_init_test():
     ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
@@ -40,29 +40,33 @@ __init__(), __str__(), listing()
 
     >>> empty_partition = sg_partition.SGPartition([])
     >>> print empty_partition
-    {}
-    >>> print empty_partition.listing()
+    []
+
+    ??? print empty_partition.listing()
     <empty partition>
 
     >>> partition_0 = sg_partition.SGPartition(lines_0_deg)
     >>> print partition_0
-    {(0.0, 0): [(0, 0, 0, 3)]}
-    >>> print partition_0.listing()
+    [(0, 0, 0, 3)]
+
+    ??? print partition_0.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 3.0)
 
     >>> partition_45 = sg_partition.SGPartition(lines_45_deg)
     >>> print partition_45
-    {(45.0, 0): [(0, 0, 1, 1), (2, 2, 3, 3)]}
-    >>> print partition_45.listing()
+    [(0, 0, 1, 1), (2, 2, 3, 3)]
+
+    ??? print partition_45.listing()
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
         (2.0, 2.0, 3.0, 3.0)
 
     >>> partition_0_45 = sg_partition.SGPartition(lines_0_45_deg)
     >>> print partition_0_45
-    {(0.0, 0): [(0, 0, 0, 3)], (45.0, 0): [(0, 0, 1, 1), (2, 2, 3, 3)]}
-    >>> print partition_0_45.listing()
+    [(0, 0, 0, 3), (0, 0, 1, 1), (2, 2, 3, 3)]
+
+    ??? print partition_0_45.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 3.0)
     (45.0, 0.0):
@@ -78,7 +82,7 @@ __init__(), __str__(), listing()
     ...     return line_partition
     >>> line_partition = make_line_partition()
     >>> print line_partition
-    {(0.0, 0): [(0, 0, 0, 1)], (45.0, 0): [(0, 0, 1, 1)], (90.0, 0): [(0, 0, 1, 0)]}
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
 
 are_lines(elements)
     >>> def elements_for_are_lines_test():
@@ -107,9 +111,9 @@ make_dictionary(lines)
 
     >>> for carrier in sorted(line_dictionary):
     ...     print '%s: %s' % (carrier, line_dictionary[carrier])
-    (0.0, 0): (0, 0, 0, 1)
-    (45.0, 0): (0, 0, 1, 1)
-    (90.0, 0): (0, 0, 1, 0)
+    (0.0, 0): [(0, 0, 0, 1)]
+    (45.0, 0): [(0, 0, 1, 1)]
+    (90.0, 0): [(0, 0, 1, 0)]
 
         ### relations
 __eq__(), __ne__()
@@ -124,9 +128,9 @@ __eq__(), __ne__()
     >>> line_partition_l_2 = sg_partition.SGPartition(l_lines)
     >>> line_partition_t = sg_partition.SGPartition(t_lines)
     >>> print line_partition_l_1
-    {(0.0, 0): [(0, 0, 0, 10)], (90.0, 0): [(0, 0, 5, 0)]}
+    [(0, 0, 0, 10), (0, 0, 5, 0)]
     >>> print line_partition_l_2
-    {(0.0, 0): [(0, 0, 0, 10)], (90.0, 0): [(0, 0, 5, 0)]}
+    [(0, 0, 0, 10), (0, 0, 5, 0)]
 
     >>> line_partition_l_1 == line_partition_l_2
     True
@@ -197,29 +201,33 @@ __add__(other)
     >>> full_full_partition = full_partition_1 + full_partition_2
 
     >>> print empty_empty_partition
-    {}
-    >>> print empty_empty_partition.listing()
+    []
+
+    ??? print empty_empty_partition.listing()
     <empty partition>
 
     >>> print full_empty_partition
-    {(0.0, 0): [(0, 0, 0, 2)], (45.0, 0): [(0, 0, 1, 1)]}
-    >>> print full_empty_partition.listing()
+    [(0, 0, 0, 2), (0, 0, 1, 1)]
+
+    ??? print full_empty_partition.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 2.0)
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
         
     >>> print empty_full_partition
-    {(0.0, 0): [(0, 0, 0, 2)], (45.0, 0): [(0, 0, 1, 1)]}
-    >>> print empty_full_partition.listing()
+    [(0, 0, 0, 2), (0, 0, 1, 1)]
+
+    ??? print empty_full_partition.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 2.0)
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
 
     >>> print full_full_partition
-    {(0.0, 0): [(0, 0, 0, 2)], (45.0, 0): [(0, 0, 2, 2)], (90.0, 0): [(0, 0, 2, 0)]}
-    >>> print full_full_partition.listing()
+    [(0, 0, 0, 2), (0, 0, 2, 0), (0, 0, 2, 2)]
+
+    ??? print full_full_partition.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 2.0)
     (45.0, 0.0):

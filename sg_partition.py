@@ -54,13 +54,20 @@ class SGPartition(object):
 
         ### represent
     def __str__(self):
-        entry_strings = []
+        """Returns the string of ordered line specs:
+            [(x1, y1, x2, y2), ...]
+        """
+        lines = []
         for carrier in self.dictionary:
-            column_string = self.dictionary[carrier].__str__()
-            entry_string = '%s: [%s]' % (carrier, column_string)
-            entry_strings.append(entry_string)
-        entries_string = ', '.join(sorted(entry_strings))
-        return '{%s}' % entries_string
+            column = self.dictionary[carrier]
+            lines_by_carrier = column.lines
+            lines.extend(lines_by_carrier)
+        line_strings = []
+        for line in sorted(lines):
+            line_strings.append(line.__str__())
+        line_string = ', '.join(sorted(line_strings))
+        string = '[%s]' % line_string
+        return string
 
     def listing(self):
         """Returns an ordered, formatted, multi-line string in the form:

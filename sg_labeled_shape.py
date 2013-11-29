@@ -229,7 +229,8 @@ class SGLabeledShape(object):
 
     ### represent
     def __str__(self):
-        """Returns a string of a duple of ordered strings in the form:
+        """Returns a string of a duple of ordered line specs and ordered labeled 
+        point specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
         """
         return '(%s, %s)' % (self.shape, self.lpoint_partition)

@@ -12,8 +12,9 @@
     >>> empty_shape = sg_shape.SGShape(empty_line_partition)
     >>> empty_lpoint_partition = sg_lp_partition.SGLPPartition([])
     >>> empty_lshape = sg_labeled_shape.SGLabeledShape(empty_shape, empty_lpoint_partition)
+    
     >>> print empty_lshape
-    ({}, {})
+    ([], [])
     >>> print empty_lshape.listing()
     <empty labeled shape>
     >>> empty_lshape.is_empty()
@@ -34,10 +35,19 @@
     >>> lshape_for_init_test = sg_labeled_shape.SGLabeledShape(shape_for_init_test(), lp_partition_for_init_test())
 
     >>> print lshape_for_init_test
-    ([(0, 0, 0, 1), (0, 0, 1, 0)], [(0, 0, a), (1, 1, b), (2, 2, c), (3, 3, d)])
-    #   Reconsider all __str__() methods
+    ([(0, 0, 0, 1), (0, 0, 1, 0)], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
 
     ??? print lshape_for_init_test.listing()
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 1.0)
+    (90.0, 0.0):
+        (0.0, 0.0, 1.0, 0.0)
+    a:
+        (0.0, 0.0)
+        (1.0, 1.0)
+    b:
+        (2.0, 2.0)
+        (3.0, 3.0)
 
     ### ### ### ### ### ### ### 
 

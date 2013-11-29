@@ -18,7 +18,7 @@
     >>> empty_lpp = sg_lp_partition.SGLPPartition([])
 
     >>> print empty_lpp
-    {}
+    []
     >>> print empty_lpp.listing()
     <empty lp_partition>
     >>> empty_lpp.is_empty()
@@ -35,7 +35,7 @@
     >>> lpp = sg_lp_partition.SGLPPartition(lpoints)
     
     >>> print lpp
-    {a: [(0, 0), (1, 1)], b: [(2, 2), (3, 3)]}
+    [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
     >>> print lpp.listing()
     a:
         (0.0, 0.0)

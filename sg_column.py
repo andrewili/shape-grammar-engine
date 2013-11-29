@@ -125,8 +125,8 @@ class SGColumn(object):
 
         ### represent
     def __str__(self):
-        """Returns the string of ordered lines:
-            [(<x1>, <y1>, <x2>, <y2>), ...]
+        """Returns the string of ordered line specs:
+            [(x1, y1, x2, y2), ...]
         """
         line_strings = []
         for line in sorted(self.lines):
