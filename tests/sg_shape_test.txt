@@ -39,7 +39,7 @@ __str__()
     >>> print empty_shape.__str__()
     []
     >>> print empty_shape.listing()
-    <empty shape>
+    <no lines>
     >>> empty_shape.is_empty()
     True
 

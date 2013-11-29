@@ -8,36 +8,68 @@
     >>> import sg_shape
 
     ### construct, represent
-    >>> empty_line_partition = sg_partition.SGPartition([])
-    >>> empty_shape = sg_shape.SGShape(empty_line_partition)
-    >>> empty_lpoint_partition = sg_lp_partition.SGLPPartition([])
-    >>> empty_lshape = sg_labeled_shape.SGLabeledShape(empty_shape, empty_lpoint_partition)
-    
-    >>> empty_lshape.is_empty()
-    True
-    >>> print empty_lshape
-    ([], [])
-    >>> print empty_lshape.listing()
-    <empty labeled shape>
 
-    >>> def shape_for_init_test():
+    >>> def make_non_empty_shape():
     ...     line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
     ...     line_0010 = sg_line.SGLine.from_spec(0, 0, 1, 0)
     ...     shape = sg_shape.SGShape.from_lines([line_0010, line_0001])
     ...     return shape
-    >>> def lp_partition_for_init_test():
+    >>> def make_non_empty_lp_partition():
     ...     lpoint_33b = sg_labeled_point.SGLabeledPoint(3, 3, 'b')
     ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
     ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
     ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
     ...     lp_partition = sg_lp_partition.SGLPPartition([lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a])
     ...     return lp_partition
-    >>> lshape_for_init_test = sg_labeled_shape.SGLabeledShape(shape_for_init_test(), lp_partition_for_init_test())
+    >>> empty_line_partition = sg_partition.SGPartition([])
+    >>> empty_shape = sg_shape.SGShape(empty_line_partition)
+    >>> empty_lp_partition = sg_lp_partition.SGLPPartition([])
+    >>> non_empty_shape = make_non_empty_shape()
+    >>> non_empty_lp_partition = make_non_empty_lp_partition()
 
-    >>> print lshape_for_init_test
+    >>> lshape_empty = sg_labeled_shape.SGLabeledShape(empty_shape, empty_lp_partition)
+    >>> lshape_shape = sg_labeled_shape.SGLabeledShape(non_empty_shape, empty_lp_partition)
+    >>> lshape_lpoints = sg_labeled_shape.SGLabeledShape(empty_shape, non_empty_lp_partition)
+    >>> lshape_lines_points = sg_labeled_shape.SGLabeledShape(non_empty_shape, non_empty_lp_partition)
+
+    >>> lshape_empty.is_empty()
+    True
+    >>> print lshape_empty
+    ([], [])
+    >>> print lshape_empty.listing()
+    <empty labeled shape>
+
+    >>> lshape_shape.is_empty()
+    False
+    >>> print lshape_shape
+    ([(0, 0, 0, 1), (0, 0, 1, 0)], [])
+    >>> print lshape_shape.listing()
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 1.0)
+    (90.0, 0.0):
+        (0.0, 0.0, 1.0, 0.0)
+    <no labeled points>
+
+    >>> lshape_lpoints.is_empty()
+    False
+    >>> print lshape_lpoints
+    ([], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
+
+    >>> print lshape_lpoints.listing()
+    <no lines>
+    a:
+        (0.0, 0.0)
+        (1.0, 1.0)
+    b:
+        (2.0, 2.0)
+        (3.0, 3.0)
+
+    >>> lshape_lines_points.is_empty()
+    False
+    >>> print lshape_lines_points
     ([(0, 0, 0, 1), (0, 0, 1, 0)], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
 
-    ??? print lshape_for_init_test.listing()
+    >>> print lshape_lines_points.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 1.0)
     (90.0, 0.0):

@@ -11,9 +11,9 @@ import sg_shape
 class SGLabeledShape(object):
     ### construct
     def __init__(self, shape, lpoint_partition):
-        """Receives SGShape and lpoint_partition:
+        """Receives shape and lpoint_partition:
             SGShape
-            {label: set([(x, y), ...]), ...}
+            SGLPPartition
         """
         self.shape = shape
         self.lpoint_partition = lpoint_partition
@@ -56,7 +56,9 @@ class SGLabeledShape(object):
                 self.lpoint_partition != other.lpoint_partition)
 
     def is_empty(self):
-        return self.lpoint_partition.is_empty()
+        return (
+            self.shape.is_empty() and
+            self.lpoint_partition.is_empty())
 
     def is_a_sub_lshape_of(self, other):
         return (self.shape.is_a_subshape_of(other.shape) and
@@ -291,40 +293,42 @@ class SGLabeledShape(object):
                 ...
             ...
         """
-        s = ''
-        n = len(partition)
+        string = ''
+        dictionary = partition.dictionary
+        n = len(dictionary)
         i = 1
         if n == 0:
-            s = '<no labeled points>'
+            string = '<no labeled points>'
         else:
-            for label in sorted(partition):
-                point_specs = partition[label]
-                point_specs_listing = self.get_point_specs_listing(
-                    point_specs)
-                s += '%s:\n%s' % (label, point_specs_listing)
+            for label in sorted(dictionary):
+                lpoints = dictionary[label]
+                points_listing = self.get_points(lpoints, 1)
+                string += '%s:\n%s' % (label, points_listing)
                 if i < n:
-                    s += '\n'
+                    string += '\n'
                 i += 1
-        return s
+        return string
 
-    def get_point_specs_listing(self, point_specs): #   no listing
-        """Receives point_specs:
-            set([(x, y), ...])
-        Returns point_specs_listing:
-            (x, y)
+    def get_points(self, lpoints, indent_level=0): #   no listing
+        """Receives co-labeled points:
+            set([(x, y, label), ...]), label is constant
+        Returns the indented ordered listing of points:
+            (x, y), ...
             ...
         """
-        s = ''
-        tab = ' ' * 4
+        string = ''
+        if indent_level < 0:
+            indent_level = 0
+        indent_string = ' ' * 4 * indent_level
         i = 1
-        n = len(point_specs)
-        for point_spec in sorted(point_specs):
-            x, y = point_spec
-            s += '%s(%3.1f, %3.1f)' % (tab, x, y)
+        n = len(lpoints)
+        for point in sorted(lpoints):
+            x, y = point.x, point.y
+            string += '%s(%3.1f, %3.1f)' % (indent_string, x, y)
             if i < n:
-                s += '\n'
+                string += '\n'
             i += 1
-        return s
+        return string
 
     ###
 def subtract_test():

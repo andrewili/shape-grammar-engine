@@ -63,7 +63,7 @@ class SGShape(object):
 
     def listing(self):
         if self.is_empty():
-            string = '<empty shape>'
+            string = '<no lines>'
         else:
             string = self.partition.listing()
         return string
