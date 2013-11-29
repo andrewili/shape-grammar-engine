@@ -20,8 +20,7 @@
     ??? def make_shape_from_lines(lines):
     ...     return sg_shape.SGShape.from_lines(lines)
 
-    >>> empty_partition = sg_partition.SGPartition([])
-    >>> empty_shape = sg_shape.SGShape(empty_partition)
+    >>> empty_shape = sg_shape.SGShape.new_empty()
 
     ### construct, represent
 __init__()

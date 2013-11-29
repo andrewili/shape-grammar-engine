@@ -15,13 +15,15 @@
     >>> non_lpoint_partition = sg_lp_partition.SGLPPartition(non_lpoints)
     You're trying to make a partition with non labeled-points
 
-    >>> empty_lpp = sg_lp_partition.SGLPPartition([])
+    ??? empty_lpoint_partition = sg_lp_partition.SGLPPartition([])
 
-    >>> print empty_lpp
+    >>> empty_lpoint_partition = sg_lp_partition.SGLPPartition.new_empty()
+
+    >>> print empty_lpoint_partition
     []
-    >>> print empty_lpp.listing()
+    >>> print empty_lpoint_partition.listing()
     <empty lp_partition>
-    >>> empty_lpp.is_empty()
+    >>> empty_lpoint_partition.is_empty()
     True
 
     >>> def lpoints_for_init_test():

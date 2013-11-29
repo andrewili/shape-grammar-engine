@@ -41,6 +41,11 @@ class SGLPPartition(object):
                 dictionary[lpoint.label] = lpoints_subset
         return dictionary
 
+    @classmethod
+    def new_empty(cls):
+        lpoint_partition = SGLPPartition({})
+        return lpoint_partition
+
         ### represent
     def __str__(self):
         """Returns an ordered string in the form:

@@ -33,6 +33,12 @@ class SGShape(object):
         shape = SGShape(partition)
         return shape
 
+    @classmethod
+    def new_empty(cls):
+        empty_partition = sg_partition.SGPartition.new_empty()
+        shape = SGShape(empty_partition)
+        return shape
+
         ### represent
     def __str__(self):
         """Returns the string of the ordered line specs:

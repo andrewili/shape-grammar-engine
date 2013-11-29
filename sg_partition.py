@@ -95,6 +95,11 @@ class SGPartition(object):
         string = '(%0.1f, %0.1f):' % (bearing, intercept)
         return string
 
+    @classmethod
+    def new_empty(cls):
+        empty_partition = SGPartition([])
+        return empty_partition
+        
         ### relations
     def __eq__(self, other):
         return self.dictionary == other.dictionary

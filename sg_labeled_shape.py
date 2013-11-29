@@ -4,6 +4,7 @@
 import copy
 import sg_labeled_point
 import sg_line
+import sg_lp_partition
 import sg_point
 import sg_shape
 
@@ -20,9 +21,10 @@ class SGLabeledShape(object):
 
     @classmethod
     def new_empty(cls):
-        empty_shape = sg_shape.SGShape()    #   new_empty()?
-        empty_lpoint_partition = {}
-        return SGLabeledShape(empty_shape, empty_lpoint_partition)
+        empty_shape = sg_shape.SGShape.new_empty()
+        empty_lpoint_partition = sg_lp_partition.SGLPPartition.new_empty()
+        empty_lshape = SGLabeledShape(empty_shape, empty_lpoint_partition)
+        return empty_lshape
 
     @classmethod
     def from_shape_and_lpoint_partition(cls, shape, lpoint_partition):

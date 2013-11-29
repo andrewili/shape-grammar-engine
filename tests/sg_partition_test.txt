@@ -38,7 +38,8 @@ __init__(), __str__(), listing()
     >>> lines_45_deg = lines_45_deg_disjoint()
     >>> lines_0_45_deg = lines_0_45_deg_for_partition()
 
-    >>> empty_partition = sg_partition.SGPartition([])
+    ??? empty_partition = sg_partition.SGPartition([])
+    >>> empty_partition = sg_partition.SGPartition.new_empty()
     >>> print empty_partition
     []
     >>> print empty_partition.listing()
