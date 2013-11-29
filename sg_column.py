@@ -136,10 +136,10 @@ class SGColumn(object):
 
     def listing(self, indent_level=0):
         """Receives indent_level:
-            int, i >= 0
+            int >= 0
         Returns an ordered, formatted, multi-line string in the form:
-            (<bearing>, <intercept>):
-                (<x1>, <y1>, <x2>, <y2>)
+            (bearing, intercept):
+                (x1, y1, x2, y2)
                 ...
         """
         indent_increment = 4

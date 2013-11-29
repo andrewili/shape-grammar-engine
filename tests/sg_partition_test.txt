@@ -41,23 +41,20 @@ __init__(), __str__(), listing()
     >>> empty_partition = sg_partition.SGPartition([])
     >>> print empty_partition
     []
-
-    ??? print empty_partition.listing()
+    >>> print empty_partition.listing()
     <empty partition>
 
     >>> partition_0 = sg_partition.SGPartition(lines_0_deg)
     >>> print partition_0
     [(0, 0, 0, 3)]
-
-    ??? print partition_0.listing()
+    >>> print partition_0.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 3.0)
 
     >>> partition_45 = sg_partition.SGPartition(lines_45_deg)
     >>> print partition_45
     [(0, 0, 1, 1), (2, 2, 3, 3)]
-
-    ??? print partition_45.listing()
+    >>> print partition_45.listing()
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
         (2.0, 2.0, 3.0, 3.0)
@@ -65,8 +62,7 @@ __init__(), __str__(), listing()
     >>> partition_0_45 = sg_partition.SGPartition(lines_0_45_deg)
     >>> print partition_0_45
     [(0, 0, 0, 3), (0, 0, 1, 1), (2, 2, 3, 3)]
-
-    ??? print partition_0_45.listing()
+    >>> print partition_0_45.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 3.0)
     (45.0, 0.0):
@@ -81,6 +77,7 @@ __init__(), __str__(), listing()
     ...     line_partition = sg_partition.SGPartition(lines)
     ...     return line_partition
     >>> line_partition = make_line_partition()
+
     >>> print line_partition
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
 
@@ -127,6 +124,7 @@ __eq__(), __ne__()
     >>> line_partition_l_1 = sg_partition.SGPartition(l_lines)
     >>> line_partition_l_2 = sg_partition.SGPartition(l_lines)
     >>> line_partition_t = sg_partition.SGPartition(t_lines)
+    
     >>> print line_partition_l_1
     [(0, 0, 0, 10), (0, 0, 5, 0)]
     >>> print line_partition_l_2
@@ -202,32 +200,25 @@ __add__(other)
 
     >>> print empty_empty_partition
     []
-
-    ??? print empty_empty_partition.listing()
+    >>> print empty_empty_partition.listing()
     <empty partition>
-
     >>> print full_empty_partition
     [(0, 0, 0, 2), (0, 0, 1, 1)]
-
-    ??? print full_empty_partition.listing()
+    >>> print full_empty_partition.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 2.0)
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
-        
     >>> print empty_full_partition
     [(0, 0, 0, 2), (0, 0, 1, 1)]
-
-    ??? print empty_full_partition.listing()
+    >>> print empty_full_partition.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 2.0)
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
-
     >>> print full_full_partition
     [(0, 0, 0, 2), (0, 0, 2, 0), (0, 0, 2, 2)]
-
-    ??? print full_full_partition.listing()
+    >>> print full_full_partition.listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 2.0)
     (45.0, 0.0):

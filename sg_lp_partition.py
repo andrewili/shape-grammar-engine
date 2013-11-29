@@ -77,8 +77,8 @@ class SGLPPartition(object):
                 ...
             ...
         """
-        if self.dictionary == {}:
-            dictionary_listing = '<empty lp_partition>'
+        if self.is_empty():
+            string = '<empty lp_partition>'
         else:
             entry_listings = []
             for label in sorted(self.dictionary):
@@ -89,8 +89,8 @@ class SGLPPartition(object):
                 entry_listing = '%s:\n%s' % (
                     label, lpoints_subset_listing)
                 entry_listings.append(entry_listing)
-            dictionary_listing = '\n'.join(entry_listings)
-        return dictionary_listing
+            string = '\n'.join(entry_listings)
+        return string
 
     def get_lpoints_subset_listing(self, lpoints_subset, indent_level):
         """Receives a set of (identically) labeled points and an indent level:

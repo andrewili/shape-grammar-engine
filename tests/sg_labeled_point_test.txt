@@ -109,7 +109,6 @@ __ne__(other)
 __str__()
     >>> print sg_labeled_point.SGLabeledPoint(1, 2, 'a')
     (1, 2, a)
-    
 
 listing()
     >>> print sg_labeled_point.SGLabeledPoint(3, 4, 'b').listing()
