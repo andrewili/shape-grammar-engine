@@ -46,6 +46,19 @@ class SGLPPartition(object):
         lpoint_partition = SGLPPartition({})
         return lpoint_partition
 
+    @classmethod
+    def from_specs(cls, specs):
+        """Receives a list of labeled point specs in the form:
+            [(x, y, label), ...]
+        """
+        lpoints = []
+        for spec in specs:
+            x, y, label = spec
+            lpoint = sg_labeled_point.SGLabeledPoint(x, y, label)
+            lpoints.append(lpoint)
+        partition = SGLPPartition(lpoints)
+        return partition
+
         ### represent
     def __str__(self):
         """Returns an ordered string in the form:
@@ -130,6 +143,12 @@ class SGLPPartition(object):
         return indent
 
         ### relations
+    def __eq__(self, other):
+        return self.dictionary == other.dictionary
+
+    def __ne__(self, other):
+        return self.dictionary != other.dictionary
+        
     def is_empty(self):
         return self.dictionary == {}
 

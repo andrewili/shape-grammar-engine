@@ -15,8 +15,6 @@
     >>> non_lpoint_partition = sg_lp_partition.SGLPPartition(non_lpoints)
     You're trying to make a partition with non labeled-points
 
-    ??? empty_lpoint_partition = sg_lp_partition.SGLPPartition([])
-
     >>> empty_lpoint_partition = sg_lp_partition.SGLPPartition.new_empty()
 
     >>> print empty_lpoint_partition
@@ -46,4 +44,33 @@
         (2.0, 2.0)
         (3.0, 3.0)
 
+    from_specs 
+
+    >>> lpoint_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
+    >>> lpoint_partition_from_specs = sg_lp_partition.SGLPPartition.from_specs(lpoint_specs)
+    >>> print lpoint_partition_from_specs
+    [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
+
     ### relations
+    #   __eq__()
+    >>> test_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
+    >>> different_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
+    >>> lpoint_partition_test = sg_lp_partition.SGLPPartition.from_specs(test_specs)
+    >>> lpoint_partition_equal = sg_lp_partition.SGLPPartition.from_specs(test_specs)
+    >>> lpoint_partition_unequal = sg_lp_partition.SGLPPartition.from_specs(different_specs)
+    >>> lpoint_partition_empty = sg_lp_partition.SGLPPartition.new_empty()
+
+    >>> lpoint_partition_test == lpoint_partition_equal
+    True
+    >>> lpoint_partition_test == lpoint_partition_unequal
+    False
+    >>> lpoint_partition_test == lpoint_partition_empty
+    False
+
+    >>> lpoint_partition_test != lpoint_partition_equal
+    False
+    >>> lpoint_partition_test != lpoint_partition_unequal
+    True
+    >>> lpoint_partition_test != lpoint_partition_empty
+    True
+    

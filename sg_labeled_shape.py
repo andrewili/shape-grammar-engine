@@ -27,10 +27,6 @@ class SGLabeledShape(object):
         return empty_lshape
 
     @classmethod
-    def from_shape_and_lpoint_partition(cls, shape, lpoint_partition):
-        return SGLabeledShape(shape, lpoint_partition)
-
-    @classmethod
     def lpoint_partition_from_lpoint_specs(cls, lpoint_specs):
         """Receives:
             [(x, y, label), ...]
@@ -50,12 +46,14 @@ class SGLabeledShape(object):
 
     ### relations
     def __eq__(self, other):
-        return (self.shape == other.shape and
-                self.lpoint_partition == other.lpoint_partition)
+        return (
+            self.shape == other.shape and
+            self.lpoint_partition == other.lpoint_partition)
 
     def __ne__(self, other):
-        return (self.shape != other.shape or
-                self.lpoint_partition != other.lpoint_partition)
+        return (
+            self.shape != other.shape or
+            self.lpoint_partition != other.lpoint_partition)
 
     def is_empty(self):
         return (
