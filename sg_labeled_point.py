@@ -6,7 +6,6 @@ import sg_point
 class SGLabeledPoint(object):
     #   Immutable
     def __init__(self, x, y, label):
-        #   __init__(self, point, label) ?
         try:
             if label == '':
                 raise ValueError()

@@ -29,16 +29,17 @@ class SGLPPartition(object):
         """Receives a list of labeled points:
             [SGLabeledPoint, ...], n >= 0
         Returns a dictionary partitioned by label:
-            {string: set(SGLabeledPoint, ...), ...}
+            {label: [SGLabeledPoint, ...]}
         """
         dictionary = {}
         for lpoint in lpoints:
-            if lpoint.label in dictionary:
-                lpoints_subset = dictionary[lpoint.label]
-                lpoints_subset.add(lpoint)
+            label = lpoint.label
+            if label in dictionary:
+                colabeling = dictionary[label]
+                colabeling.append(lpoint)
             else:
-                lpoints_subset = set([lpoint])
-                dictionary[lpoint.label] = lpoints_subset
+                colabeling = [lpoint]
+                dictionary[label] = colabeling
         return dictionary
 
     @classmethod
@@ -66,16 +67,16 @@ class SGLPPartition(object):
         """
         lpoints = []
         for label in self.dictionary:
-            lpoint_cell = self.dictionary[label]
-            lpoints.extend(lpoint_cell)
+            colabeling = self.dictionary[label]
+            lpoints.extend(colabeling)
         entry_strings = []
         for lpoint in sorted(lpoints):
             entry_strings.append(lpoint.__str__())
         entries_string = ', '.join(entry_strings)
-        string = '[%s]' % entries_string
-        return string
+        partition_string = '[%s]' % entries_string
+        return partition_string
 
-    def get_point_specs_from(self, lpoints_subset):
+    def get_point_specs_from(self, lpoints_subset):             # no usage
         """Receives a set of labeled points:
             set(SGLabeledPoint, ...)
         Returns an ordered string of point specs:
@@ -142,9 +143,19 @@ class SGLPPartition(object):
         indent = ' ' * indent_level * indent_increment
         return indent
 
-        ### relations
+        ### compare
     def __eq__(self, other):
         return self.dictionary == other.dictionary
+
+    def colabelings_are_equal(self, self_colabeling, other_colabeling):
+        """Receives two colabelings:
+            set([LPoint, ...])
+            set([LPoint, ...])
+        """
+        for lpoint in self_colabeling:
+            if not other_colabeling.__contains__(lpoint):
+                return False
+        return True
 
     def __ne__(self, other):
         return self.dictionary != other.dictionary

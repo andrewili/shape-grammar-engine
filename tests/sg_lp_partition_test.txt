@@ -36,6 +36,7 @@
     
     >>> print lpp
     [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
+
     >>> print lpp.listing()
     a:
         (0.0, 0.0)
@@ -51,8 +52,8 @@
     >>> print lpoint_partition_from_specs
     [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
 
-    ### relations
-    #   __eq__()
+    ### compare
+    #   __eq__(), __ne__()
     >>> test_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
     >>> different_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
     >>> lpoint_partition_test = sg_lp_partition.SGLPPartition.from_specs(test_specs)
