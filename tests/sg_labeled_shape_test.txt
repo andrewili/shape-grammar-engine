@@ -85,7 +85,7 @@
     >>> print empty_lshape
     ([], [])
 
-    ### relations ###
+    ### compare
 
 __eq__(other), __ne__(other)
     >>> def make_lshape_test():
@@ -144,35 +144,35 @@ __eq__(other), __ne__(other)
     >>> lshape_test == lshape_equal
     True
     
-    ??? lshape_test != lshape_empty
+    >>> lshape_test != lshape_empty
     True
-    ??? lshape_test != lshape_no_shape
+    >>> lshape_test != lshape_no_shape
     True
-    ??? lshape_test != lshape_no_lpoints
+    >>> lshape_test != lshape_no_lpoints
     True
-    ??? lshape_test != lshape_unequal_shape
+    >>> lshape_test != lshape_unequal_shape
     True
-    ??? lshape_test != lshape_unequal_lpoints
+    >>> lshape_test != lshape_unequal_lpoints
     True
-    ??? lshape_test != lshape_equal
+    >>> lshape_test != lshape_equal
     False
-
-    ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### 
 
 is_a_sub_lshape_of(other)
-    ??? bigger_line_spec = [(0, 0, 1, 0), (0, 0, 1, 1), (0, 0, 0, 1), (2, 2, 3, 3)]
-    ??? bigger_shape = make_shape_from_line_specs(bigger_line_spec)
-    ??? bigger_lpoints = make_lpoint_partition_from_specs([(2, 0, 'e'), (0, 2, 'n'), (2, 2, 'ne'), (0, -1, 's')])
-    ??? smaller_line_spec = [(0, 0, 1, 0), (0, 0, 0, 1)]
-    ??? smaller_shape = make_shape_from_line_specs(smaller_line_spec)
-    ??? smaller_lpoints = make_lpoint_partition_from_specs([(2, 0, 'e'), (0, 2, 'n')])
-    ??? lshape_bigger_shape = make_lshape_from_shape_and_lpoints(bigger_shape, equal_lpoints)
-    ??? lshape_bigger_lpoints = make_lshape_from_shape_and_lpoints(equal_shape, bigger_lpoints)
-    ??? lshape_smaller_shape = make_lshape_from_shape_and_lpoints(smaller_shape, equal_lpoints)
-    ??? lshape_smaller_lpoints = make_lshape_from_shape_and_lpoints(equal_shape, smaller_lpoints)
+    >>> bigger_line_specs = [(0, 0, 1, 0), (0, 0, 1, 1), (0, 0, 0, 1), (2, 2, 3, 3)]
+    >>> bigger_shape = sg_shape.SGShape.from_specs(bigger_line_specs)
+    >>> bigger_lpoint_specs = [(2, 0, 'e'), (0, 2, 'n'), (2, 2, 'ne'), (0, -1, 's')]
+    >>> bigger_lpoint_partition = sg_lp_partition.SGLPPartition.from_specs(bigger_lpoint_specs)
+    >>> smaller_line_specs = [(0, 0, 1, 0), (0, 0, 0, 1)]
+    >>> smaller_shape = sg_shape.SGShape.from_specs(smaller_line_specs)
+    >>> smaller_lpoint_partition = sg_lp_partition.SGLPPartition.from_specs([(2, 0, 'e'), (0, 2, 'n')])
+    >>> lshape_bigger_shape = sg_labeled_shape.SGLabeledShape(bigger_shape, equal_lpoint_partition)
+    >>> lshape_bigger_lpoints = sg_labeled_shape.SGLabeledShape(equal_shape, bigger_lpoint_partition)
+    >>> lshape_smaller_shape = sg_labeled_shape.SGLabeledShape(smaller_shape, equal_lpoint_partition)
+    >>> lshape_smaller_lpoints = sg_labeled_shape.SGLabeledShape(equal_shape, smaller_lpoint_partition)
     
-    ??? lshape.is_a_sub_lshape_of(lshape_empty)
+    >>> lshape.is_a_sub_lshape_of(lshape_empty)
     False
+    
     ??? lshape.is_a_sub_lshape_of(lshape_bigger_shape)
     True
     ??? lshape.is_a_sub_lshape_of(lshape_bigger_lpoints)
@@ -183,6 +183,8 @@ is_a_sub_lshape_of(other)
     False
     ??? lshape.is_a_sub_lshape_of(lshape_equal)
     True
+
+    ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### 
 
 
 ### __add__(other) ###

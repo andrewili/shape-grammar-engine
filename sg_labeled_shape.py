@@ -44,7 +44,7 @@ class SGLabeledShape(object):
                 lpoint_partition[label] = set([point_spec])
         return lpoint_partition
 
-    ### relations
+    ### compare
     def __eq__(self, other):
         return (
             self.shape == other.shape and
