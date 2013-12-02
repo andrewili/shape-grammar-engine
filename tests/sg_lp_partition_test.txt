@@ -75,20 +75,24 @@
     >>> lpp_test != lpp_empty
     True
     
-    #   is_a_sub_partition_of()
-    #   lpp_test as above
+    #   is_a_sub_partition_of(other_partition)
     >>> lpp_empty = sg_lp_partition.SGLPPartition([])
     >>> lpp_empty_b = sg_lp_partition.SGLPPartition([])
+    >>> lpp_bigger = sg_lp_partition.SGLPPartition.from_specs([(4, 4, 'c'), (3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
+    >>> lpp_smaller = sg_lp_partition.SGLPPartition.from_specs([(2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
 
     >>> lpp_empty.is_a_sub_partition_of(lpp_empty_b)
     True
     >>> lpp_empty.is_a_sub_partition_of(lpp_test)
     True
+    >>> lpp_test.is_a_sub_partition_of(lpp_bigger)
+    True
+    >>> lpp_test.is_a_sub_partition_of(lpp_smaller)
+    False
     >>> lpp_test.is_a_sub_partition_of(lpp_empty)
     False
 
     #   colabelings_are_sub_colabelings_in(other_lp_partition)
-    #   lpp_test as above
     >>> def make_lpoint_partitions():
     ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
     ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
@@ -103,7 +107,7 @@
     ...     lpp_smaller = sg_lp_partition.SGLPPartition(lpoints_smaller)
     ...     lpp_different = sg_lp_partition.SGLPPartition(lpoints_different)
     ...     return (lpp_bigger, lpp_smaller, lpp_different)
-    lpp_bigger, lpp_smaller, lpp_different = make_lpoint_partitions()
+    >>> lpp_bigger, lpp_smaller, lpp_different = make_lpoint_partitions()
 
     >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_bigger)
     True
