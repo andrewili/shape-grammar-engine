@@ -62,22 +62,8 @@ class SGLabeledShape(object):
 
     def is_a_sub_lshape_of(self, other):
         return (self.shape.is_a_subshape_of(other.shape) and
-                self.is_a_sub_lpartition(
-                    self.lpoint_partition, other.lpoint_partition))
-
-    def is_a_sub_lpartition(self, partition_1, partition_2):
-        """Receives 2 lpoint_partitions:
-            {label: set([(x, y), ...]), ...}
-        """
-        for label in partition_1:
-            if label not in partition_2.keys():
-                return False
-            else:
-                lpoints_1 = partition_1[label]
-                lpoints_2 = partition_2[label]
-                if not lpoints_1.issubset(lpoints_2):
-                    return False
-        return True
+                self.lpoint_partition.is_a_sub_partition_of(
+                    other.lpoint_partition))
 
     ### operations
     def __add__(self, other):

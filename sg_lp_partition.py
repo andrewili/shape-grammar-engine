@@ -163,6 +163,48 @@ class SGLPPartition(object):
     def is_empty(self):
         return self.dictionary == {}
 
+    def is_a_sub_partition_of(self, other):
+        self_label_set = set(self.dictionary.keys())
+        other_label_set = set(other.dictionary.keys())
+        if not self_label_set.issubset(other_label_set):
+            return False
+        else:
+            return self.colabelings_are_sub_colabelings_in(other)
+
+    def colabelings_are_sub_colabelings_in(self, other):
+        """Receives a labeled point partition with the same labels
+            SGLPPartition
+        Returns whether each colabeling is a subcolabeling in the other 
+        partition
+        """
+        for label in self.dictionary:
+            if label not in other.dictionary:
+                return False
+            else:
+                self_colabeling = self.dictionary[label]
+                other_colabeling = other.dictionary[label]
+                if not self.colabeling_is_a_subcolabeling_of(
+                    self_colabeling, other_colabeling
+                ):
+                # if not self_colabeling.is_a_subcolabeling_of(other_colabeling):
+                    return False
+        return True
+
+    def colabeling_is_a_subcolabeling_of(
+        self, self_colabeling, other_colabeling
+    ):
+        """Receives two non-empty colabelings:
+            [SGLabeledPoint, ...]
+            [SGLabeledPoint, ...]
+        Returns whether self_colabeling is a subcolabeling of other_colabeling
+        """
+        #   Should be a method of SGColabeling
+        #   Colabeling should have no duplicates?
+        for lpoint in self_colabeling:
+            if not lpoint in other_colabeling:
+                return False
+        return True
+
         ###
 if __name__ == '__main__':
     import doctest

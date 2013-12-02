@@ -56,22 +56,80 @@
     #   __eq__(), __ne__()
     >>> test_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
     >>> different_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
-    >>> lpoint_partition_test = sg_lp_partition.SGLPPartition.from_specs(test_specs)
-    >>> lpoint_partition_equal = sg_lp_partition.SGLPPartition.from_specs(test_specs)
-    >>> lpoint_partition_unequal = sg_lp_partition.SGLPPartition.from_specs(different_specs)
-    >>> lpoint_partition_empty = sg_lp_partition.SGLPPartition.new_empty()
+    >>> lpp_test = sg_lp_partition.SGLPPartition.from_specs(test_specs)
+    >>> lpp_equal = sg_lp_partition.SGLPPartition.from_specs(test_specs)
+    >>> lpp_unequal = sg_lp_partition.SGLPPartition.from_specs(different_specs)
+    >>> lpp_empty = sg_lp_partition.SGLPPartition.new_empty()
 
-    >>> lpoint_partition_test == lpoint_partition_equal
+    >>> lpp_test == lpp_equal
     True
-    >>> lpoint_partition_test == lpoint_partition_unequal
+    >>> lpp_test == lpp_unequal
     False
-    >>> lpoint_partition_test == lpoint_partition_empty
+    >>> lpp_test == lpp_empty
     False
 
-    >>> lpoint_partition_test != lpoint_partition_equal
+    >>> lpp_test != lpp_equal
     False
-    >>> lpoint_partition_test != lpoint_partition_unequal
+    >>> lpp_test != lpp_unequal
     True
-    >>> lpoint_partition_test != lpoint_partition_empty
+    >>> lpp_test != lpp_empty
     True
     
+    #   is_a_sub_partition_of()
+    #   lpp_test as above
+    >>> lpp_empty = sg_lp_partition.SGLPPartition([])
+    >>> lpp_empty_b = sg_lp_partition.SGLPPartition([])
+
+    >>> lpp_empty.is_a_sub_partition_of(lpp_empty_b)
+    True
+    >>> lpp_empty.is_a_sub_partition_of(lpp_test)
+    True
+    >>> lpp_test.is_a_sub_partition_of(lpp_empty)
+    False
+
+    #   colabelings_are_sub_colabelings_in(other_lp_partition)
+    #   lpp_test as above
+    >>> def make_lpoint_partitions():
+    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = sg_labeled_point.SGLabeledPoint(3, 3, 'b')
+    ...     lpoint_33c = sg_labeled_point.SGLabeledPoint(3, 3, 'c')
+    ...     lpoint_44c = sg_labeled_point.SGLabeledPoint(4, 4, 'c')
+    ...     lpoints_bigger = [lpoint_44c, lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     lpoints_smaller = [lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     lpoints_different = [lpoint_33c, lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     lpp_bigger = sg_lp_partition.SGLPPartition(lpoints_bigger)
+    ...     lpp_smaller = sg_lp_partition.SGLPPartition(lpoints_smaller)
+    ...     lpp_different = sg_lp_partition.SGLPPartition(lpoints_different)
+    ...     return (lpp_bigger, lpp_smaller, lpp_different)
+    lpp_bigger, lpp_smaller, lpp_different = make_lpoint_partitions()
+
+    >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_bigger)
+    True
+    >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_smaller)
+    False
+    >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_different)
+    False
+
+    #   colabeling_is_a_subcolabeling_of(other_colabeling)
+    >>> def make_colabelings():
+    ...     drone_lpp = sg_lp_partition.SGLPPartition.new_empty()
+    ...     lpoint_a = sg_labeled_point.SGLabeledPoint(0, 0, 'x')
+    ...     lpoint_b = sg_labeled_point.SGLabeledPoint(1, 1, 'x')
+    ...     colabeling_a = [lpoint_a]
+    ...     colabeling_b = [lpoint_b]
+    ...     colabeling_ab = [lpoint_b, lpoint_a]
+    ...     return (drone_lpp, colabeling_a, colabeling_b, colabeling_ab)
+    >>> drone_lpp, colabeling_a, colabeling_b, colabeling_ab = make_colabelings()
+
+    >>> drone_lpp.colabeling_is_a_subcolabeling_of(colabeling_a, colabeling_ab)
+    True
+    >>> drone_lpp.colabeling_is_a_subcolabeling_of(colabeling_b, colabeling_ab)
+    True
+    >>> drone_lpp.colabeling_is_a_subcolabeling_of(colabeling_ab, colabeling_a)
+    False
+    >>> drone_lpp.colabeling_is_a_subcolabeling_of(colabeling_ab, colabeling_b)
+    False
+
+
