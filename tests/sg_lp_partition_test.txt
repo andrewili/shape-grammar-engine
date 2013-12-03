@@ -4,7 +4,10 @@
     >>> import sg_line
     >>> import sg_lp_partition
 
+    >>> lp_partition_drone = sg_lp_partition.SGLPPartition([])
+
     ### construct, represent
+    #   __init__(), __str__(), listing()
 
     >>> def non_lpoints_for_init_test():
     ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
@@ -45,7 +48,32 @@
         (2.0, 2.0)
         (3.0, 3.0)
 
-    from_specs 
+    #   make_dictionary(lpoints)
+
+    >>> def make_lpoints_for_make_dictionary_test():
+    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
+    ...     lpoints_1 = [lpoint_00a]
+    ...     lpoints_2 = [lpoint_11a, lpoint_00a]
+    ...     lpoints_3 = [lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     return [lpoints_1, lpoints_2, lpoints_3]
+    >>> lpoints_1, lpoints_2, lpoints_3 = make_lpoints_for_make_dictionary_test()
+
+    >>> dictionary_0 = lp_partition_drone.make_dictionary([])
+    >>> print dictionary_0
+    {}
+    >>> dictionary_1 = lp_partition_drone.make_dictionary(lpoints_1)
+    >>> print dictionary_1
+    {a: [(0, 0)]}
+    >>> dictionary_2 = lp_partition_drone.make_dictionary(lpoints_2)
+    >>> print dictionary_2
+    {a: [(0, 0), (1, 1)]}
+    >>> dictionary_3 = lp_partition_drone.make_dictionary(lpoints_3)
+    >>> print dictionary_3
+    {a: [(0, 0), (1, 1)], b: [(2, 2)]}
+
+    #   from_specs()
 
     >>> lpoint_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
     >>> lpoint_partition_from_specs = sg_lp_partition.SGLPPartition.from_specs(lpoint_specs)
@@ -54,6 +82,7 @@
 
     ### compare
     #   __eq__(), __ne__()
+
     >>> test_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
     >>> different_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
     >>> lpp_test = sg_lp_partition.SGLPPartition.from_specs(test_specs)
@@ -76,6 +105,7 @@
     True
     
     #   is_a_sub_partition_of(other_partition)
+
     >>> lpp_empty = sg_lp_partition.SGLPPartition([])
     >>> lpp_empty_b = sg_lp_partition.SGLPPartition([])
     >>> lpp_bigger = sg_lp_partition.SGLPPartition.from_specs([(4, 4, 'c'), (3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
@@ -93,6 +123,7 @@
     False
 
     #   colabelings_are_sub_colabelings_in(other_lp_partition)
+
     >>> def make_lpoint_partitions():
     ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
     ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
@@ -117,6 +148,7 @@
     False
 
     #   colabeling_is_a_subcolabeling_of(other_colabeling)
+
     >>> def make_colabelings():
     ...     drone_lpp = sg_lp_partition.SGLPPartition.new_empty()
     ...     lpoint_a = sg_labeled_point.SGLabeledPoint(0, 0, 'x')

@@ -1,0 +1,70 @@
+#   sg_colabeling_test.txt
+
+    >>> import sg_colabeling
+    >>> import sg_labeled_point
+
+    >>> def colabeling_drone_for_test():
+    ...     lpoint = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     drone = sg_colabeling.SGColabeling([lpoint])
+    ...     return drone
+    >>> colabeling_drone = colabeling_drone_for_test()
+
+    ### construct, represent
+    #   __init__(), __str__(), listing()
+
+    >>> colabeling_empty = sg_colabeling.SGColabeling([])
+    You're trying to make a colabeling with non-colabeled points or no points
+
+    >>> def non_colabeled_lpoints_for_init_test():
+    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
+    ...     lpoint_22a = sg_labeled_point.SGLabeledPoint(2, 2, 'a')
+    ...     lpoint_33b = sg_labeled_point.SGLabeledPoint(3, 3, 'b')
+    ...     non_colabeled_lpoints = [lpoint_33b, lpoint_22a, lpoint_11a]
+    ...     return non_colabeled_lpoints
+    >>> non_colabeled_lpoints = non_colabeled_lpoints_for_init_test()
+
+    >>> colabeling_non_colabeled = sg_colabeling.SGColabeling(non_colabeled_lpoints)
+    You're trying to make a colabeling with non-colabeled points or no points
+
+    >>> def lpoints_for_init_test():
+    ...     lpoint_11x = sg_labeled_point.SGLabeledPoint(1, 1, 'x')
+    ...     lpoint_22x = sg_labeled_point.SGLabeledPoint(2, 2, 'x')
+    ...     lpoint_33x = sg_labeled_point.SGLabeledPoint(3, 3, 'x')
+    ...     lpoints = [lpoint_33x, lpoint_22x, lpoint_11x]
+    ...     return lpoints
+    >>> lpoints = lpoints_for_init_test()
+    >>> colabeling_control = sg_colabeling.SGColabeling(lpoints)
+
+    >>> print colabeling_control
+    [(1, 1, x), (2, 2, x), (3, 3, x)]
+    >>> print colabeling_control.listing()
+    (1.0, 1.0, x)
+    (2.0, 2.0, x)
+    (3.0, 3.0, x)
+    >>> print colabeling_control.listing(-1)
+    (1.0, 1.0, x)
+    (2.0, 2.0, x)
+    (3.0, 3.0, x)
+    >>> print colabeling_control.listing(1)
+        (1.0, 1.0, x)
+        (2.0, 2.0, x)
+        (3.0, 3.0, x)
+
+    #   colabeled(lpoints)
+
+    >>> def lpoints_for_colabeled_test():
+    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
+    ...     lpoint_11b = sg_labeled_point.SGLabeledPoint(1, 1, 'b')
+    ...     colabeled_lpoints = [lpoint_11a, lpoint_00a]
+    ...     non_colabeled_lpoints = [lpoint_11b, lpoint_00a]
+    ...     singleton_lpoint = [lpoint_00a]
+    ...     return [colabeled_lpoints, non_colabeled_lpoints, singleton_lpoint]
+    >>> colabeled_lpoints, non_colabeled_lpoints, singleton_lpoint = lpoints_for_colabeled_test()
+
+    >>> colabeling_drone.colabeled(colabeled_lpoints)
+    True
+    >>> colabeling_drone.colabeled(non_colabeled_lpoints)
+    False
+    >>> colabeling_drone.colabeled(singleton_lpoint)
+    True

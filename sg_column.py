@@ -2,7 +2,7 @@
 
 import sg_line
 
-class SGColumn(object):
+class SGColumn(object):                 #   Rename as colineation?
     """Consists of a non-empty (and unordered) list of collinear lines. 
     Immutable.
     """
