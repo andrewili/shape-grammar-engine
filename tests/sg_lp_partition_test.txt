@@ -61,33 +61,38 @@
     >>> lpoints_1, lpoints_2, lpoints_3 = make_lpoints_for_make_dictionary_test()
 
     >>> dictionary_0 = lp_partition_drone.make_dictionary([])
-    >>> print dictionary_0
-    {}
+    >>> for label in dictionary_0:
+    ...     print '%s: %s' % (label, dictionary_0[label])
     >>> dictionary_1 = lp_partition_drone.make_dictionary(lpoints_1)
-    >>> print dictionary_1
-    {a: [(0, 0)]}
+    >>> for label in dictionary_1:
+    ...     print '%s: %s' % (label, dictionary_1[label])
+    a: [(0, 0)]
     >>> dictionary_2 = lp_partition_drone.make_dictionary(lpoints_2)
-    >>> print dictionary_2
-    {a: [(0, 0), (1, 1)]}
+    >>> for label in dictionary_2:
+    ...     print '%s: %s' % (label, dictionary_2[label])
+    a: [(0, 0), (1, 1)]
     >>> dictionary_3 = lp_partition_drone.make_dictionary(lpoints_3)
-    >>> print dictionary_3
-    {a: [(0, 0), (1, 1)], b: [(2, 2)]}
+    >>> for label in dictionary_3:
+    ...     print '%s: %s' % (label, dictionary_3[label])
+    a: [(0, 0), (1, 1)]
+    b: [(2, 2)]
 
     #   from_specs()
 
-    >>> lpoint_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
-    >>> lpoint_partition_from_specs = sg_lp_partition.SGLPPartition.from_specs(lpoint_specs)
-    >>> print lpoint_partition_from_specs
+    >>> lp_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
+    >>> lpp_from_specs = sg_lp_partition.SGLPPartition.from_specs(lp_specs)
+    >>> print lpp_from_specs
     [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
 
     ### compare
     #   __eq__(), __ne__()
 
     >>> test_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
-    >>> different_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
+    >>> equal_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
+    >>> unequal_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
     >>> lpp_test = sg_lp_partition.SGLPPartition.from_specs(test_specs)
-    >>> lpp_equal = sg_lp_partition.SGLPPartition.from_specs(test_specs)
-    >>> lpp_unequal = sg_lp_partition.SGLPPartition.from_specs(different_specs)
+    >>> lpp_equal = sg_lp_partition.SGLPPartition.from_specs(equal_specs)
+    >>> lpp_unequal = sg_lp_partition.SGLPPartition.from_specs(unequal_specs)
     >>> lpp_empty = sg_lp_partition.SGLPPartition.new_empty()
 
     >>> lpp_test == lpp_equal
@@ -97,11 +102,11 @@
     >>> lpp_test == lpp_empty
     False
 
-    >>> lpp_test != lpp_equal
+    ??? lpp_test != lpp_equal
     False
-    >>> lpp_test != lpp_unequal
+    ??? lpp_test != lpp_unequal
     True
-    >>> lpp_test != lpp_empty
+    ??? lpp_test != lpp_empty
     True
     
     #   is_a_sub_partition_of(other_partition)

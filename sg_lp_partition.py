@@ -1,5 +1,6 @@
 #   sg_lp_partition.py
 
+import sg_colabeling
 import sg_labeled_point
 
 class SGLPPartition(object):
@@ -28,17 +29,17 @@ class SGLPPartition(object):
     def make_dictionary(self, lpoints):
         """Receives a list of labeled points:
             [SGLabeledPoint, ...], n >= 0
-        Returns a dictionary partitioned by label:
-            {label: [SGLabeledPoint, ...]}
+        Returns a dictionary of label-colabeling entries:
+            {label: SGColabeling, ...}
         """
         dictionary = {}
         for lpoint in lpoints:
             label = lpoint.label
             if label in dictionary:
                 colabeling = dictionary[label]
-                colabeling.append(lpoint)
+                colabeling.add(lpoint)
             else:
-                colabeling = [lpoint]
+                colabeling = sg_colabeling.SGColabeling([lpoint])
                 dictionary[label] = colabeling
         return dictionary
 
@@ -68,7 +69,7 @@ class SGLPPartition(object):
         lpoints = []
         for label in self.dictionary:
             colabeling = self.dictionary[label]
-            lpoints.extend(colabeling)
+            lpoints.extend(colabeling.lpoints)
         entry_strings = []
         for lpoint in sorted(lpoints):
             entry_strings.append(lpoint.__str__())
@@ -97,68 +98,27 @@ class SGLPPartition(object):
             ...
         """
         if self.is_empty():
-            string = '<empty lp_partition>'
+            partition_listing = '<empty lp_partition>'
         else:
             entry_listings = []
             for label in sorted(self.dictionary):
-                lpoints_subset = self.dictionary[label]
+                colabeling = self.dictionary[label]
                 indent_level = 1
-                lpoints_subset_listing = self.get_lpoints_subset_listing(
-                    lpoints_subset, indent_level)
+                colabeling_listing = colabeling.listing(indent_level)
                 entry_listing = '%s:\n%s' % (
-                    label, lpoints_subset_listing)
+                    label, colabeling_listing)
                 entry_listings.append(entry_listing)
-            string = '\n'.join(entry_listings)
-        return string
-
-    def get_lpoints_subset_listing(self, lpoints_subset, indent_level):
-        """Receives a set of (identically) labeled points and an indent level:
-            set(SGLabeledPoint, ...), n >= 0
-            int >= 0
-        Returns an indented ordered string of labeled point listings:
-            <indent>(x, y)
-            ...
-        """
-        lpoints_subset_listing = self.get_lpoint_listings(
-            lpoints_subset, indent_level)
-        string = '\n'.join(lpoints_subset_listing)
-        return string
-
-    def get_lpoint_listings(self, lpoints_subset, indent_level):
-        """Returns an ordered list of listings in the form:
-            [<indent_string>(x, y), ...]
-        """
-        lpoint_listings = []
-        for lpoint in sorted(lpoints_subset):
-            indent_string = self.get_indent_string(indent_level)
-            lpoint_listing = lpoint.point.listing()
-            indented_lpoint_listing = '%s%s' % (indent_string, lpoint_listing)
-            lpoint_listings.append(indented_lpoint_listing)
-        return lpoint_listings
-
-    def get_indent_string(self, indent_level):
-        indent_increment = 4
-        if indent_level < 0:
-            indent_level = 0
-        indent = ' ' * indent_level * indent_increment
-        return indent
+            partition_listing = '\n'.join(entry_listings)
+        return partition_listing
 
         ### compare
     def __eq__(self, other):
+        # return 'Kilroy'
         return self.dictionary == other.dictionary
 
-    def colabelings_are_equal(self, self_colabeling, other_colabeling):
-        """Receives two colabelings:
-            set([LPoint, ...])
-            set([LPoint, ...])
-        """
-        for lpoint in self_colabeling:
-            if not other_colabeling.__contains__(lpoint):
-                return False
-        return True
-
     def __ne__(self, other):
-        return self.dictionary != other.dictionary
+        return 'Not Kilroy'
+        # return self.dictionary != other.dictionary
         
     def is_empty(self):
         return self.dictionary == {}

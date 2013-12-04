@@ -36,19 +36,19 @@
     >>> colabeling_control = sg_colabeling.SGColabeling(lpoints)
 
     >>> print colabeling_control
-    [(1, 1, x), (2, 2, x), (3, 3, x)]
+    [(1, 1), (2, 2), (3, 3)]
     >>> print colabeling_control.listing()
-    (1.0, 1.0, x)
-    (2.0, 2.0, x)
-    (3.0, 3.0, x)
+    (1.0, 1.0)
+    (2.0, 2.0)
+    (3.0, 3.0)
     >>> print colabeling_control.listing(-1)
-    (1.0, 1.0, x)
-    (2.0, 2.0, x)
-    (3.0, 3.0, x)
+    (1.0, 1.0)
+    (2.0, 2.0)
+    (3.0, 3.0)
     >>> print colabeling_control.listing(1)
-        (1.0, 1.0, x)
-        (2.0, 2.0, x)
-        (3.0, 3.0, x)
+        (1.0, 1.0)
+        (2.0, 2.0)
+        (3.0, 3.0)
 
     #   colabeled(lpoints)
 
@@ -68,3 +68,30 @@
     False
     >>> colabeling_drone.colabeled(singleton_lpoint)
     True
+
+    ### compare
+    #   __eq__(), __ne__()
+
+    >>> def colabelings_for_eq_ne_test():
+    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
+    ...     lpoint_22a = sg_labeled_point.SGLabeledPoint(2, 2, 'a')
+    ...     lpoints_test = [lpoint_11a, lpoint_00a]
+    ...     lpoints_same = [lpoint_11a, lpoint_00a]
+    ...     lpoints_different = [lpoint_22a, lpoint_00a]
+    ...     colabeling_test = sg_colabeling.SGColabeling(lpoints_test)
+    ...     colabeling_same = sg_colabeling.SGColabeling(lpoints_same)
+    ...     colabeling_different = sg_colabeling.SGColabeling(lpoints_different)
+    ...     return [colabeling_test, colabeling_same, colabeling_different]
+    >>> colabeling_test, colabeling_same, colabeling_different = colabelings_for_eq_ne_test()
+
+    >>> colabeling_test == colabeling_same
+    True
+    >>> colabeling_test == colabeling_different
+    False
+    >>> colabeling_test != colabeling_same
+    False
+    >>> colabeling_test != colabeling_different
+    True
+
+
