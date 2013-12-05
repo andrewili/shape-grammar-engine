@@ -102,11 +102,11 @@
     >>> lpp_test == lpp_empty
     False
 
-    ??? lpp_test != lpp_equal
+    >>> lpp_test != lpp_equal
     False
-    ??? lpp_test != lpp_unequal
+    >>> lpp_test != lpp_unequal
     True
-    ??? lpp_test != lpp_empty
+    >>> lpp_test != lpp_empty
     True
     
     #   is_a_sub_partition_of(other_partition)
@@ -152,25 +152,5 @@
     >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_different)
     False
 
-    #   colabeling_is_a_subcolabeling_of(other_colabeling)
-
-    >>> def make_colabelings():
-    ...     drone_lpp = sg_lp_partition.SGLPPartition.new_empty()
-    ...     lpoint_a = sg_labeled_point.SGLabeledPoint(0, 0, 'x')
-    ...     lpoint_b = sg_labeled_point.SGLabeledPoint(1, 1, 'x')
-    ...     colabeling_a = [lpoint_a]
-    ...     colabeling_b = [lpoint_b]
-    ...     colabeling_ab = [lpoint_b, lpoint_a]
-    ...     return (drone_lpp, colabeling_a, colabeling_b, colabeling_ab)
-    >>> drone_lpp, colabeling_a, colabeling_b, colabeling_ab = make_colabelings()
-
-    >>> drone_lpp.colabeling_is_a_subcolabeling_of(colabeling_a, colabeling_ab)
-    True
-    >>> drone_lpp.colabeling_is_a_subcolabeling_of(colabeling_b, colabeling_ab)
-    True
-    >>> drone_lpp.colabeling_is_a_subcolabeling_of(colabeling_ab, colabeling_a)
-    False
-    >>> drone_lpp.colabeling_is_a_subcolabeling_of(colabeling_ab, colabeling_b)
-    False
 
 

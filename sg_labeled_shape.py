@@ -68,31 +68,32 @@ class SGLabeledShape(object):
     ### operations
     def __add__(self, other):
         new_shape = self.shape + other.shape
-        new_lpoint_partition = self.add_lpoint_partitions(
-            self.lpoint_partition, other.lpoint_partition)
+        new_lpoint_partition = self.lpoint_partition + other.lpoint_partition
+        # new_lpoint_partition = self.add_lpoint_partitions(
+        #     self.lpoint_partition, other.lpoint_partition)
         return SGLabeledShape(new_shape, new_lpoint_partition)
 
-    def add_lpoint_partitions(self, partition_1, partition_2):
-        """Receives 2 labeled point partitions; returns 1:
-            SGLPPartition, n >= 0
-        """
-        new_partition = copy.copy(partition_1)
-        new_dict = new_partition
-        dict_2 = partition_2.dictionary
-        for label in dict_2:
-            colabeling_2 = dict_2[label]
-            if label in new_dict:
-                dict_1 = partition_1.dictionary
-                colabeling_1 = dict_1[label]
-                new_colabeling = new_dict[label]
-                new_colabeling = colabeling_1.extend(colabeling_2)
-                self.reduce_colabeling(new_colabeling)     #   How to do?
-                # new_dict[label] = colabeling_1 | colabeling_2
-            else:
-                new_dict[label] = colabeling_2
-        new_partition = SGLPPartition.new_empty()
-        new_partition.dictionary = new_dict     #   SGLPPartition.from_dictionary()
-        return new_partition
+    # def add_lpoint_partitions(self, partition_1, partition_2):  #   deprecated
+    #     """Receives 2 labeled point partitions; returns 1:
+    #         SGLPPartition, n >= 0
+    #     """
+    #     new_partition = copy.copy(partition_1)
+    #     new_dict = new_partition
+    #     dict_2 = partition_2.dictionary
+    #     for label in dict_2:
+    #         colabeling_2 = dict_2[label]
+    #         if label in new_dict:
+    #             dict_1 = partition_1.dictionary
+    #             colabeling_1 = dict_1[label]
+    #             new_colabeling = new_dict[label]
+    #             new_colabeling = colabeling_1.extend(colabeling_2)
+    #             self.reduce_colabeling(new_colabeling)     #   How to do?
+    #             # new_dict[label] = colabeling_1 | colabeling_2
+    #         else:
+    #             new_dict[label] = colabeling_2
+    #     new_partition = SGLPPartition.new_empty()
+    #     new_partition.dictionary = new_dict     #   SGLPPartition.from_dictionary()
+    #     return new_partition
 
     # def add_lpoint_partitions(self, lpoint_partition_1, lpoint_partition_2):
     #     """Receives 2 lpoint_partitions; returns 1:
@@ -108,15 +109,15 @@ class SGLabeledShape(object):
     #             new_lpoint_partition[label] = point_set_2
     #     return new_lpoint_partition
 
-    def reduce_colabeling(colabeling):
-        """Receives a non-empty colabeling:
-            [SGLabeledPoint, ...], n >= 1
-        Returns a colabeling without duplicates:
-            [SGLabeledPoint, ...], n >= 1
-        """
-        new_colabeling = []
-        for lpoint in colabeling:
-            if lpoint in new_colabeling:
+    # def reduce_colabeling(colabeling):  #   deprecated
+    #     """Receives a non-empty colabeling:
+    #         [SGLabeledPoint, ...], n >= 1
+    #     Returns a colabeling without duplicates:
+    #         [SGLabeledPoint, ...], n >= 1
+    #     """
+    #     new_colabeling = []
+    #     for lpoint in colabeling:
+    #         if lpoint in new_colabeling:
                 
         return new_colabeling
 
@@ -285,7 +286,7 @@ class SGLabeledShape(object):
         s += '}'
         return s
 
-    def listing(self):
+    def listing(self):  #   modify for SGColabeling
         """An ordered string in the form:
             (bearing, intercept):
                 (x1, y1, x2, y2)

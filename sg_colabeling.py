@@ -15,7 +15,8 @@ class SGColabeling(object):
             ):
                 raise ValueError()
             else:
-                self.lpoints = set(lpoints_in)
+                self.lpoint_specs = self.make_lpoint_specs(lpoints_in)
+                # self.lpoints = set(lpoints_in)
         except ValueError:
             print '%s %s' % (
                 "You're trying to make a colabeling",
@@ -32,18 +33,48 @@ class SGColabeling(object):
                 return False
         return True
 
+    def make_lpoint_specs(self, lpoints_in):
+        """Receives a list of labeled points:
+            [SGLabeledPoint, ...]
+        Returns a set of labeled point specs:
+            set([(x, y, label), ...])
+        """
+        #   How to implement?
+        #   1.  As a set of SGLPoint objects. Problem: a set does not 
+        #       use an element's __eq__ method
+        #   2.  As a list of lpoints. Have to implement equivalent methods to
+        #       set methods
+        #   3.  As a set of lpoint specs. Have to unpack and repack 
+        #       lpoints. Try this
+        lpoint_specs = set()
+        for lpoint in lpoints_in:
+            lpoint_specs.add(lpoint.spec)
+        return lpoint_specs
+        # self.lpoint_specs = set(lpoint_specs)
+
     ### represent
     def __str__(self):
         """Returns the string of the ordered list of colabeled points in the 
         form:
             [(x, y, label), ...]
         """
-        point_strings = []
-        for lpoint in sorted(self.lpoints):
-            point_strings.append(lpoint.point.__str__())
-        points_string = ', '.join(point_strings)
-        colabeling_string = '[%s]' % points_string
+        spec_strings = []
+        for spec in sorted(self.lpoint_specs):
+            spec_string = self.get_spec_string(spec)
+            spec_strings.append(spec_string)
+        specs_string = ', '.join(spec_strings)
+        colabeling_string = '[%s]' % specs_string
         return colabeling_string
+
+    def get_spec_string(self, spec):
+        """Receives a labeled point spec:
+            (x, y, label)
+        Returns a string:
+            '(<x>, <y>)'
+        """
+        x, y = spec[0:2]
+        spec_string = '(%s, %s)' % (x, y)
+        return spec_string
 
     def listing(self, indent_level=0):
         """Returns an ordered, formatted, multi-line string in the form:
@@ -56,25 +87,42 @@ class SGColabeling(object):
             indent_level = 0
         indent_string = ' ' * indent_level * indent_increment
         lpoint_listings = []
-        for lpoint in sorted(self.lpoints):
-            lpoint_listings.append(indent_string + lpoint.point.listing())
+        for lpoint_spec in sorted(self.lpoint_specs):
+            lpoint_listing = self.get_lpoint_listing(lpoint_spec)
+            lpoint_listings.append(indent_string + lpoint_listing)
         colabeling_listing = '\n'.join(lpoint_listings)
         return colabeling_listing
 
+    def get_lpoint_listing(self, lpoint_spec):
+        """Receives a labeled point spec:
+            (x, y, label)
+        Returns a string in the form:
+            '(<x>, <y>)'
+        """
+        x, y = lpoint_spec[0:2]
+        lpoint_listing = '(%3.1f, %3.1f)' % (x, y)
+        return lpoint_listing
+
     ### compare
     def __eq__(self, other):
-        return self.lpoints == other.lpoints
+        return self.lpoint_specs == other.lpoint_specs
 
     def __ne__(self, other):
-        return self.lpoints != other.lpoints
+        return self.lpoint_specs != other.lpoint_specs
+
+    def is_a_subcolabeling_of(self, other):
+        """Receives a colabeling:
+            SGColabeling
+        """
+        return self.lpoint_specs.issubset(other.lpoint_specs)
 
     ###
     def add(self, lpoint):
         """Receives a labeled point: 
             SGLabeledPoint
-        Adds the labeled point to the set
+        Adds the labeled point spec to the set
         """
-        self.lpoints.add(lpoint)
+        self.lpoint_specs.add(lpoint.spec)
 
 if __name__ == '__main__':
     import doctest

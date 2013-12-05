@@ -66,29 +66,26 @@ class SGLPPartition(object):
         """Returns an ordered string in the form:
             [(x, y, label), ...]
         """
-        lpoints = []
+        lpoint_specs = []
         for label in self.dictionary:
             colabeling = self.dictionary[label]
-            lpoints.extend(colabeling.lpoints)
+            lpoint_specs.extend(colabeling.lpoint_specs)
         entry_strings = []
-        for lpoint in sorted(lpoints):
-            entry_strings.append(lpoint.__str__())
+        for lpoint_spec in sorted(lpoint_specs):
+            lpoint_spec_string = self.get_lpoint_spec_string_from(lpoint_spec)
+            entry_strings.append(lpoint_spec_string)
         entries_string = ', '.join(entry_strings)
         partition_string = '[%s]' % entries_string
         return partition_string
 
-    def get_point_specs_from(self, lpoints_subset):             # no usage
-        """Receives a set of labeled points:
-            set(SGLabeledPoint, ...)
-        Returns an ordered string of point specs:
-            '(x, y), ...'
+    def get_lpoint_spec_string_from(self, lpoint_spec):
+        """Receives labeled point spec:
+            (x, y, label)
+        Returns a string in the form:
+            (<x>, <y>, <label>)
         """
-        point_spec_strings = []
-        for lpoint in sorted(lpoints_subset):
-            point_spec_string = lpoint.point.__str__()
-            point_spec_strings.append(point_spec_string)
-        string = ', '.join(point_spec_strings)
-        return string
+        lpoint_spec_string = '(%s, %s, %s)' % lpoint_spec
+        return lpoint_spec_string
 
     def listing(self):
         """Returns an ordered, formatted, multi-line string in the form:
@@ -113,12 +110,10 @@ class SGLPPartition(object):
 
         ### compare
     def __eq__(self, other):
-        # return 'Kilroy'
         return self.dictionary == other.dictionary
 
     def __ne__(self, other):
-        return 'Not Kilroy'
-        # return self.dictionary != other.dictionary
+        return self.dictionary != other.dictionary
         
     def is_empty(self):
         return self.dictionary == {}
@@ -143,26 +138,8 @@ class SGLPPartition(object):
             else:
                 self_colabeling = self.dictionary[label]
                 other_colabeling = other.dictionary[label]
-                if not self.colabeling_is_a_subcolabeling_of(
-                    self_colabeling, other_colabeling
-                ):
-                # if not self_colabeling.is_a_subcolabeling_of(other_colabeling):
+                if not self_colabeling.is_a_subcolabeling_of(other_colabeling):
                     return False
-        return True
-
-    def colabeling_is_a_subcolabeling_of(
-        self, self_colabeling, other_colabeling
-    ):
-        """Receives two non-empty colabelings:
-            [SGLabeledPoint, ...]
-            [SGLabeledPoint, ...]
-        Returns whether self_colabeling is a subcolabeling of other_colabeling
-        """
-        #   Should be a method of SGColabeling
-        #   Colabeling should have no duplicates?
-        for lpoint in self_colabeling:
-            if not lpoint in other_colabeling:
-                return False
         return True
 
         ###

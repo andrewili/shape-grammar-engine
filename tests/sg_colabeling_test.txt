@@ -94,4 +94,22 @@
     >>> colabeling_test != colabeling_different
     True
 
+    #   is_a_subcolabeling_of(other)
 
+    >>> def make_colabelings():
+    ...     lpoint_a = sg_labeled_point.SGLabeledPoint(0, 0, 'x')
+    ...     lpoint_b = sg_labeled_point.SGLabeledPoint(1, 1, 'x')
+    ...     colabeling_a = sg_colabeling.SGColabeling([lpoint_a])
+    ...     colabeling_b = sg_colabeling.SGColabeling([lpoint_b])
+    ...     colabeling_ab = sg_colabeling.SGColabeling([lpoint_b, lpoint_a])
+    ...     return (colabeling_a, colabeling_b, colabeling_ab)
+    >>> colabeling_a, colabeling_b, colabeling_ab = make_colabelings()
+
+    >>> colabeling_a.is_a_subcolabeling_of(colabeling_ab)
+    True
+    >>> colabeling_b.is_a_subcolabeling_of(colabeling_ab)
+    True
+    >>> colabeling_ab.is_a_subcolabeling_of(colabeling_a)
+    False
+    >>> colabeling_ab.is_a_subcolabeling_of(colabeling_b)
+    False

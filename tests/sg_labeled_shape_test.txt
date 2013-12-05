@@ -55,7 +55,7 @@
     >>> print lshape_lpoints
     ([], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
 
-    >>> print lshape_lpoints.listing()
+    >>> print lshape_lpoints.listing()  #   SGColabeling object has no len()
     <no lines>
     a:
         (0.0, 0.0)
@@ -220,7 +220,7 @@ is_a_sub_lshape_of(other)
     _     _      |___|      _|___|_
      |   |                   |   |
     
-    >>> def make_ells_for_add():
+    ??? def make_ells_for_add():
     ...     line0414 = sg_line.SGLine.from_spec(0, 4, 1, 4)
     ...     line0111 = sg_line.SGLine.from_spec(0, 1, 1, 1)
     ...     line1011 = sg_line.SGLine.from_spec(1, 0, 1, 1)
@@ -231,28 +231,28 @@ is_a_sub_lshape_of(other)
     ...     line4454 = sg_line.SGLine.from_spec(4, 4, 5, 4)
     ...     lines = [line1011, line1415, line4041, line4445, line0111, line4151, line0414, line4454]
     ...     return sg_shape.SGShape.from_lines(lines)
-    >>> def make_labeled_ells_for_add():
+    ??? def make_labeled_ells_for_add():
     ...     ells = make_ells_for_add()
     ...     lpoint = sg_labeled_point.SGLabeledPoint(3, 3, 'X')
     ...     lpoint_partition = sg_lp_partition.SGLPPartition([lpoint])
     ...     return sg_labeled_shape.SGLabeledShape(ells, lpoint_partition)
-    >>> def make_square_for_add():
+    ??? def make_square_for_add():
     ...     line1114 = sg_line.SGLine.from_spec(1, 1, 1, 4)
     ...     line1141 = sg_line.SGLine.from_spec(1, 1, 4, 1)
     ...     line1444 = sg_line.SGLine.from_spec(1, 4, 4, 4)
     ...     line4144 = sg_line.SGLine.from_spec(4, 1, 4, 4)
     ...     lines = [line1114, line1141, line1444, line4144]
     ...     return sg_shape.SGShape.from_lines(lines)
-    >>> def make_labeled_square_for_add():
+    ??? def make_labeled_square_for_add():
     ...     square = make_square_for_add()
     ...     lpoint = sg_labeled_point.SGLabeledPoint(3, 3, 'X')
     ...     lpoint_partition = sg_lp_partition.SGLPPartition([lpoint])
     ...     return sg_labeled_shape.SGLabeledShape(square, lpoint_partition)
-    >>> labeled_ells = make_labeled_ells_for_add()
-    >>> labeled_square = make_labeled_square_for_add()
-    >>> hash = labeled_ells + labeled_square
+    ??? labeled_ells = make_labeled_ells_for_add()
+    ??? labeled_square = make_labeled_square_for_add()
+    ??? hash = labeled_ells + labeled_square
     
-    >>> print hash.listing()
+    ??? print hash.listing()
     (0.0, 1.0):
         (1.0, 0.0, 1.0, 5.0)
     (0.0, 4.0):
