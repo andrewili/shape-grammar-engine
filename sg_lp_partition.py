@@ -2,6 +2,7 @@
 
 import sg_colabeling
 import sg_labeled_point
+import sg_lp_partition
 
 class SGLPPartition(object):
     def __init__(self, lpoints):
@@ -95,7 +96,7 @@ class SGLPPartition(object):
             ...
         """
         if self.is_empty():
-            partition_listing = '<empty lp_partition>'
+            partition_listing = '<no labeled points>'
         else:
             entry_listings = []
             for label in sorted(self.dictionary):
@@ -141,6 +142,26 @@ class SGLPPartition(object):
                 if not self_colabeling.is_a_subcolabeling_of(other_colabeling):
                     return False
         return True
+
+    ### operate
+
+    def __add__(self, other):
+        """Receives a labeled point partition:
+            SGLPPartition
+        Returns the sum of the two partitions:
+            SGLPPartition
+        """
+        new_dictionary = self.dictionary.copy()
+        for label in other.dictionary:
+            other_colabeling = other.dictionary[label]
+            if label in new_dictionary:
+                new_colabeling = new_dictionary[label]
+                new_dictionary[label] = new_colabeling.union(other_colabeling)
+            else:
+                new_dictionary[label] = other_colabeling
+        new_lpoint_partition = sg_lp_partition.SGLPPartition([])
+        new_lpoint_partition.dictionary = new_dictionary
+        return new_lpoint_partition
 
         ###
 if __name__ == '__main__':

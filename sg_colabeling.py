@@ -1,5 +1,7 @@
 #   sg_colabeling.py
 
+import copy
+
 class SGColabeling(object):
     """Contains a non-empty set of colabeled points:
         set([SGLabeledPoint, ...]), n >= 1
@@ -16,7 +18,6 @@ class SGColabeling(object):
                 raise ValueError()
             else:
                 self.lpoint_specs = self.make_lpoint_specs(lpoints_in)
-                # self.lpoints = set(lpoints_in)
         except ValueError:
             print '%s %s' % (
                 "You're trying to make a colabeling",
@@ -116,13 +117,24 @@ class SGColabeling(object):
         """
         return self.lpoint_specs.issubset(other.lpoint_specs)
 
-    ###
+    ### operate
     def add(self, lpoint):
         """Receives a labeled point: 
             SGLabeledPoint
         Adds the labeled point spec to the set
         """
         self.lpoint_specs.add(lpoint.spec)
+
+    def union(self, other):
+        """Receives a colabeling:
+            SGColabeling
+        Returns the union of the two colabelings:
+            SGColabeling
+        """
+        new_colabeling = copy.copy(self)
+        new_lpoint_specs = new_colabeling.lpoint_specs
+        new_colabeling.lpoint_specs = new_lpoint_specs | other.lpoint_specs
+        return new_colabeling
 
 if __name__ == '__main__':
     import doctest

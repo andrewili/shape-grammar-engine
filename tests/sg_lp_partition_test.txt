@@ -23,7 +23,7 @@
     >>> print empty_lpoint_partition
     []
     >>> print empty_lpoint_partition.listing()
-    <empty lp_partition>
+    <no labeled points>
     >>> empty_lpoint_partition.is_empty()
     True
 
@@ -152,5 +152,49 @@
     >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_different)
     False
 
+    ### operate
+    #   __add__(other)
+    
+    >>> def make_lpps_for_add_test():
+    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = sg_labeled_point.SGLabeledPoint(3, 3, 'b')
+    ...     lpoint_44c = sg_labeled_point.SGLabeledPoint(4, 4, 'c')
+    ...     lpp_0a = sg_lp_partition.SGLPPartition([])
+    ...     lpp_0b = sg_lp_partition.SGLPPartition([])
+    ...     lpp_1 = sg_lp_partition.SGLPPartition([lpoint_22b, lpoint_11a])
+    ...     lpp_2 = sg_lp_partition.SGLPPartition([lpoint_44c, lpoint_33b, lpoint_11a])
+    ...     return (lpp_0a, lpp_0b, lpp_1, lpp_2)
+    >>> lpp_0a, lpp_0b, lpp_1, lpp_2 = make_lpps_for_add_test()
 
+    >>> new_lpp_00 = lpp_0a + lpp_0b
+    >>> print new_lpp_00.listing()
+    <no labeled points>
+    
+    >>> new_lpp_01 = lpp_0a + lpp_1
+    >>> print new_lpp_01.listing()
+    a:
+        (1.0, 1.0)
+    b:
+        (2.0, 2.0)
+    
+    >>> new_lpp_20 = lpp_2 + lpp_0a
+    >>> print new_lpp_20.listing()
+    a:
+        (1.0, 1.0)
+    b:
+        (3.0, 3.0)
+    c:
+        (4.0, 4.0)
+    
+    >>> new_lpp_12 = lpp_1 + lpp_2
+    >>> print new_lpp_12.listing()
+    a:
+        (1.0, 1.0)
+    b:
+        (2.0, 2.0)
+        (3.0, 3.0)
+    c:
+        (4.0, 4.0)
 
+    #   __subtract__(other)

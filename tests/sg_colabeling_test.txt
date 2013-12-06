@@ -113,3 +113,25 @@
     False
     >>> colabeling_ab.is_a_subcolabeling_of(colabeling_b)
     False
+
+    ### operate
+    #   union(other)
+
+    >>> def make_colabelings_for_union_test():
+    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
+    ...     lpoint_22a = sg_labeled_point.SGLabeledPoint(2, 2, 'a')
+    ...     colabeling_control = sg_colabeling.SGColabeling([lpoint_11a, lpoint_00a])
+    ...     colabeling_other = sg_colabeling.SGColabeling([lpoint_22a, lpoint_00a])
+    ...     return (colabeling_control, colabeling_other)
+    >>> colabeling_control, colabeling_other = make_colabelings_for_union_test()
+
+    >>> print colabeling_control.union(colabeling_control)
+    [(0, 0), (1, 1)]
+    >>> print colabeling_control.union(colabeling_other)
+    [(0, 0), (1, 1), (2, 2)]
+    >>> print colabeling_other.union(colabeling_control)
+    [(0, 0), (1, 1), (2, 2)]
+    >>> print colabeling_other.union(colabeling_other)
+    [(0, 0), (2, 2)]
+
