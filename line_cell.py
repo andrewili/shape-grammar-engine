@@ -1,28 +1,30 @@
-#   sg_column.py
+#   line_cell.py
 
-import sg_line
+import element_cell
+import line
 
-class SGColumn(object):
+class LineCell(element_cell.ElementCell):
     """Consists of a non-empty (and unordered) list of collinear lines. Used 
-    as the value of a key-value pair with an SGCarrier.
+    as the value of a key-value pair with a carrier. Supercedes SGColumn.
     Immutable.
     """
         ### construct
     def __init__(self, lines):
         """Receives a non-empty unsorted list of collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         """
-        try:
-            if (len(lines) == 0 or
-                not self.collinear(lines)
-            ):
-                raise ValueError()
-            else:
-                self.lines = lines
-        except ValueError:
-            print '%s %s' % (
-                "You're trying to make a column",
-                "with non-collinear lines or no lines")
+        element_cell.ElementCell.__init__(self, lines)
+        # try:
+        #     if (len(lines) == 0 or
+        #         not self.collinear(lines)
+        #     ):
+        #         raise ValueError()
+        #     else:
+        #         self.lines = lines
+        # except ValueError:
+        #     print '%s %s' % (
+        #         "You're trying to make a line cell",
+        #         "with non-collinear lines or no lines")
 
     def collinear(self, lines):
         carrier = lines[0].carrier
@@ -34,9 +36,9 @@ class SGColumn(object):
         ### maximize
     def get_maximal_lines_from(self, maximal_lines_1, maximal_lines_2):
         """Receives 2 ordered lists of maximal collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         Returns an ordered list of maximal collinear lines:
-            [SGLine, ...], n >= 1, should not contain duplicates
+            [Line, ...], n >= 1, should not contain duplicates
         """
         non_maximal_unsorted_lines = []
         non_maximal_unsorted_lines.extend(maximal_lines_1)
@@ -47,9 +49,9 @@ class SGColumn(object):
 
     def maximal(self, non_maximal_lines):
         """Receives an ordered list of (possibly non-maximal) collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         Returns an ordered list of maximal collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         """
         maximal_lines = []
         while len(non_maximal_lines) >= 1:
@@ -60,9 +62,9 @@ class SGColumn(object):
 
     def get_first_maximal_line_from(self, lines):
         """Receives an ordered list of (possibly non-maximal) collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         Returns the first maximal line in the list:
-            SGLine
+            Line
         """
         if len(lines) == 1:
             new_line = self.get_singleton_line_from(lines)
@@ -72,18 +74,18 @@ class SGColumn(object):
 
     def get_singleton_line_from(self, singleton_lines):
         """Receives a list containing a singleton line:
-            [SGLine], n = 1
+            [Line], n = 1
         Returns the singleton line:
-            SGLine
+            Line
         """
         new_line = singleton_lines.pop(0)
         return new_line
 
     def get_first_maximal_line_from_non_singleton(self, non_maximal_lines):
         """Receives an ordered list of (possibly non-maximal) collinear lines:
-            [SGLine, ...], n >= 2
+            [Line, ...], n >= 2
         Returns the first maximal line:
-            SGLine
+            Line
         """
         working_line = non_maximal_lines.pop(0)
         while len(non_maximal_lines) >= 1:
@@ -115,13 +117,13 @@ class SGColumn(object):
 
     def merge_lines(self, line_1, line_2):
         """Receives 2 mergeable lines, line_1.tail <= line_2.tail:
-            [SGLine, SGLine]
+            [Line, Line]
         Returns the sum of the 2 lines:
-            SGLine
+            Line
         """
         new_tail = min(line_1.tail, line_2.tail)
         new_head = max(line_1.head, line_2.head)
-        new_line = sg_line.SGLine(new_tail, new_head)
+        new_line = line.Line(new_tail, new_head)
         return new_line
 
         ### represent
@@ -156,21 +158,21 @@ class SGColumn(object):
         ### relations
     def __eq__(self, other):
         """Receives a column:
-            SGColumn
+            LineCell
         Returns whether both columns contain the same lines.
         """
         return sorted(self.lines) == sorted(other.lines)
 
     def __ne__(self, other):
         """Receives a column:
-            SGColumn
+            LineCell
         Returns whether both columns do not contain the same lines.
         """
         return sorted(self.lines) != sorted(other.lines)
 
     def is_a_subcolumn_of(self, other):
         """Receives a non-empty collinear column:
-            SGColumn
+            LineCell
         """
         for line in self.lines:
             if not line.is_a_subline_in_column(other):
@@ -182,4 +184,4 @@ class SGColumn(object):
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_column_test.txt')
+    doctest.testfile('tests/line_cell_test.txt')
