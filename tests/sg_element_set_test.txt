@@ -1,0 +1,19 @@
+#   sg_element_set_test.txt
+
+    >>> import sg_element_set
+    >>> import sg_line
+
+    ### construct
+    #   __init__()
+
+    bad input: lines and lpoints combined, elements other than lines and lpoints,
+    no elements
+
+    >>> def make_lines_for_init_test():
+    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
+    ...     line_23 = sg_line.SGLine.from_short_spec(2, 3)
+    ...     lines = [line_23, line_01]
+    ...     return lines
+    >>> lines = make_lines_for_init_test()
+
+    >>> line_set = sg_element_set.SGElementSet([lines])
