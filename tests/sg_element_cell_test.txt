@@ -1,6 +1,6 @@
-#   sg_element_set_test.txt
+#   sg_element_cell_test.txt
 
-    >>> import sg_element_set
+    >>> import sg_element_cell
     >>> import sg_line
 
     ### construct
@@ -16,4 +16,4 @@
     ...     return lines
     >>> lines = make_lines_for_init_test()
 
-    >>> line_set = sg_element_set.SGElementSet([lines])
+    >>> line_cell = sg_element_cell.SGElementCell([lines])

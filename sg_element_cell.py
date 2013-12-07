@@ -1,15 +1,15 @@
-#   sg_element_set.py
+#   sg_element_cell.py
 
 import sg_line
 
-class SGElementSet(object):
-    """Consists of a non-empty (and unordered) list of elements of a single tag
-    and type (colinear line or colabeled point). Immutable.
+class SGElementCell(object):
+    """Consists of a non-empty (and unordered) iterable of elements of a single 
+    tag and type (colinear line or colabeled point). Immutable.
     """
         ### construct
     def __init__(self, elements):
-        """Receives a non-empty unsorted list of elements of a single tag and 
-        type (colinear line or colabeled point):
+        """Receives a non-empty unsorted iterable of elements of a single tag 
+        and type (i.e., colinear line or colabeled point):
             [cotagged_element, ...], n >= 1
         """
         try:
@@ -18,16 +18,16 @@ class SGElementSet(object):
             ):
                 raise ValueError()
             else:
-                self.elements = elements
+                self.elements = elements                        #   line list or lpoint set
         except ValueError:
             print '%s %s' % (
-                "You're trying to make an element set",
+                "You're trying to make an element cell",
                 "with non-cotagged elements or no elements")
 
     def cotagged(self, elements):
         tag = elements[0].tag
         for element in elements:
-            if element.tag != tag:				#	element.tag!
+            if element.tag != tag:								#	element.tag!
                 return False
         return True
 
@@ -182,4 +182,4 @@ class SGElementSet(object):
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_element_set_test.txt')
+    doctest.testfile('tests/sg_element_cell_test.txt')
