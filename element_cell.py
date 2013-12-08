@@ -1,4 +1,4 @@
-#   sg_element_cell.py
+#   element_cell.py
 
 import sg_line
 
@@ -182,4 +182,4 @@ class SGElementCell(object):
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_element_cell_test.txt')
+    doctest.testfile('tests/element_cell_test.txt')

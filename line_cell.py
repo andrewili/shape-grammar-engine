@@ -1,4 +1,4 @@
-#   sg_column.py
+#   line_cell.py
 
 import sg_line
 
@@ -181,4 +181,4 @@ class SGColumn(object):                 #   Rename as colineation?
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_column_test.txt')
+    doctest.testfile('tests/line_cell_test.txt')

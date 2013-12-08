@@ -1,4 +1,4 @@
-#   sg_element_cell_test.txt
+#   element_cell_test.txt
 
     >>> import sg_element_cell
     >>> import sg_line

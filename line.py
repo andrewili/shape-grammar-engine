@@ -1,10 +1,10 @@
-#   sg_line.py
+#   line.py
 
 import math
 import sg_point
 
 
-class SGLine(object):
+class Line(object):
         ### construct
     def __init__(self, p1, p2):
         #   2D implementation
@@ -52,18 +52,18 @@ class SGLine(object):
     def from_spec(cls, x1, y1, x2, y2):
         p1 = sg_point.SGPoint(x1, y1)
         p2 = sg_point.SGPoint(x2, y2)
-        line = SGLine(p1, p2)
+        line = Line(p1, p2)
         return line
 
     @classmethod
     def from_short_spec(cls, x1, x2):
-        line = SGLine.from_spec(x1, x1, x2, x2)
+        line = Line.from_spec(x1, x1, x2, x2)
         return line
 ##        pass
 
     @classmethod
     def from_points(cls, p1, p2):
-        return SGLine(p1, p2)
+        return Line(p1, p2)
 
         ### represent
     def __str__(self):
@@ -157,7 +157,7 @@ class SGLine(object):
 
 ##    def is_a_subline_in_column(self, column):
 ##        """Receives a column:
-##            [SGLine, ...]
+##            [Line, ...]
 ##        Returns whether self is a subline of a line in the column
 ##        """
 ##        for other_line in column:
@@ -231,16 +231,16 @@ class SGLine(object):
         """
         new_tail = min(self.tail, other.tail)
         new_head = max(self.head, other.head)
-        new_line = SGLine(new_tail, new_head)
+        new_line = Line(new_tail, new_head)
         return new_line
 
         ### called by SGShape.subtract_line_column(line_minuend, column)
 
     def subtract_line_tail(self, other):
         """Receives a line that overlaps self.tail
-            SGLine
+            Line
         Returns a list containing the single line difference self - other:
-            [SGLine]
+            [Line]
         """
         try:
             if not other.overlaps_tail_of(self):
@@ -249,21 +249,21 @@ class SGLine(object):
             print "The subtrahend does not overlap the tail of the minuend"
         new_tail = other.head
         new_head = self.head
-        differences = [SGLine(new_tail, new_head)]
+        differences = [Line(new_tail, new_head)]
         return differences
 
     def subtract_line_middle(self, other):
         """Receives a line that overlaps in the middle:
-            SGLine
+            Line
         Returns a list of two line differences:
-            [SGLine, SGLine]
+            [Line, Line]
         """
         new_tail_1 = self.tail
         new_head_1 = other.tail
         new_tail_2 = other.head
         new_head_2 = self.head
-        difference_1 = SGLine(new_tail_1, new_head_1)
-        difference_2 = SGLine(new_tail_2, new_head_2)
+        difference_1 = Line(new_tail_1, new_head_1)
+        difference_2 = Line(new_tail_2, new_head_2)
         return [difference_1, difference_2]
 
     def subtract_line_head(self, other):
@@ -273,9 +273,9 @@ class SGLine(object):
         trace_on = False
         new_tail = self.tail
         new_head = other.tail
-        differences = [SGLine(new_tail, new_head)]
+        differences = [Line(new_tail, new_head)]
         if trace_on:
-            method_name = 'SGLine.subtract_line_head'
+            method_name = 'Line.subtract_line_head'
             print '||| %s.self:\n%s' % (method_name, self)
             print '||| %s.other:\n%s' % (method_name, other)
             print '||| %s.new_tail:\n%s' % (method_name, new_tail)
@@ -285,4 +285,4 @@ class SGLine(object):
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_line_test.txt')
+    doctest.testfile('tests/line_test.txt')

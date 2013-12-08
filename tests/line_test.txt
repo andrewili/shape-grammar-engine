@@ -1,15 +1,15 @@
-#   sg_line_test.txt
+#   line_test.txt
 
-    >>> import sg_column
-    >>> import sg_line
+    >>> import line_cell
+    >>> import line
     >>> import sg_point
 
-    >>> drone_line = sg_line.SGLine.from_spec(0, 0, 10, 10)
+    >>> drone_line = line.Line.from_spec(0, 0, 10, 10)
     
     ### construct
 __init__()
     
-    >>> line_01 = sg_line.SGLine.from_spec(0, 0, 1, 1)
+    >>> line_01 = line.Line.from_spec(0, 0, 1, 1)
     
     >>> print line_01.tail
     (0, 0)
@@ -21,11 +21,11 @@ __init__()
     (45.0, 0)
 
     
-    >>> zero_length_line = sg_line.SGLine.from_spec(0, 0, 0, 0)
+    >>> zero_length_line = line.Line.from_spec(0, 0, 0, 0)
     You're trying to create a zero-length line
     
     
-    >>> line_w_big_tail = sg_line.SGLine.from_spec(1, 1, 0, 0)
+    >>> line_w_big_tail = line.Line.from_spec(1, 1, 0, 0)
     
     >>> print line_w_big_tail.tail
     (0, 0)
@@ -33,29 +33,29 @@ __init__()
     (1, 1)
     
 
-    >>> print sg_line.SGLine.from_spec(0, 0, 0, 1).carrier
+    >>> print line.Line.from_spec(0, 0, 0, 1).carrier
     (0.0, 0)
-    >>> print sg_line.SGLine.from_spec(0, 0, 1, 0).carrier
+    >>> print line.Line.from_spec(0, 0, 1, 0).carrier
     (90.0, 0)
-    >>> print sg_line.SGLine.from_spec(0, 0, 1, 1).carrier
+    >>> print line.Line.from_spec(0, 0, 1, 1).carrier
     (45.0, 0)
-    >>> print sg_line.SGLine.from_spec(0, 1, 0, 0).carrier
+    >>> print line.Line.from_spec(0, 1, 0, 0).carrier
     (0.0, 0)
-    >>> print sg_line.SGLine.from_spec(0, 1, 1, 0).carrier
+    >>> print line.Line.from_spec(0, 1, 1, 0).carrier
     (135.0, 1)
-    >>> print sg_line.SGLine.from_spec(0, 1, 1, 1).carrier
+    >>> print line.Line.from_spec(0, 1, 1, 1).carrier
     (90.0, 1)
-    >>> print sg_line.SGLine.from_spec(1, 0, 0, 0).carrier
+    >>> print line.Line.from_spec(1, 0, 0, 0).carrier
     (90.0, 0)
-    >>> print sg_line.SGLine.from_spec(1, 0, 0, 1).carrier
+    >>> print line.Line.from_spec(1, 0, 0, 1).carrier
     (135.0, 1)
-    >>> print sg_line.SGLine.from_spec(1, 0, 1, 1).carrier
+    >>> print line.Line.from_spec(1, 0, 1, 1).carrier
     (0.0, 1)
-    >>> print sg_line.SGLine.from_spec(1, 1, 0, 0).carrier
+    >>> print line.Line.from_spec(1, 1, 0, 0).carrier
     (45.0, 0)
-    >>> print sg_line.SGLine.from_spec(1, 1, 0, 1).carrier
+    >>> print line.Line.from_spec(1, 1, 0, 1).carrier
     (90.0, 1)
-    >>> print sg_line.SGLine.from_spec(1, 1, 1, 0).carrier
+    >>> print line.Line.from_spec(1, 1, 1, 0).carrier
     (0.0, 1)
 
 get_carrier_from(line_spec)
@@ -70,13 +70,13 @@ get_carrier_from(line_spec)
     (0.0, 0)
 
 from_spec(x1, y1, x2, y2)
-    >>> line = sg_line.SGLine.from_spec(0, 0, 1, 1)
+    >>> line = line.Line.from_spec(0, 0, 1, 1)
     
     >>> print line
     (0, 0, 1, 1)
 
 from_short_spec(x1, x2)
-    >>> line = sg_line.SGLine.from_short_spec(1, 2)
+    >>> line = line.Line.from_short_spec(1, 2)
     >>> print line
     (1, 1, 2, 2)
 
@@ -84,122 +84,122 @@ from_points(p1,p2)
     >>> p1 = sg_point.SGPoint(1, 1)
     >>> p2 = sg_point.SGPoint(2, 2)
     
-    >>> line = sg_line.SGLine.from_points(p1, p2)
+    >>> line = line.Line.from_points(p1, p2)
     
     >>> print line
     (1, 1, 2, 2)
 
     ### represent
 __str__()
-    >>> print sg_line.SGLine.from_spec(1, 1, 2, 2)
+    >>> print line.Line.from_spec(1, 1, 2, 2)
     (1, 1, 2, 2)
 
 listing()
-    >>> print sg_line.SGLine.from_spec(1, 1, 2, 2).listing()
+    >>> print line.Line.from_spec(1, 1, 2, 2).listing()
     (1.0, 1.0, 2.0, 2.0)
 
     ### ordering relations
 __eq__(other)
-    >>> line =  sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line =  line.Line.from_spec(4, 4, 6, 6)
     
-    >>> line == sg_line.SGLine.from_spec(5, 5, 6, 6)
+    >>> line == line.Line.from_spec(5, 5, 6, 6)
     False
-    >>> line == sg_line.SGLine.from_spec(4, 4, 5, 5)
+    >>> line == line.Line.from_spec(4, 4, 5, 5)
     False
-    >>> line == sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line == line.Line.from_spec(4, 4, 6, 6)
     True
 
 __ge__(other)
-    >>> line  = sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line  = line.Line.from_spec(4, 4, 6, 6)
     
-    >>> line >= sg_line.SGLine.from_spec(3, 3, 5, 5)
+    >>> line >= line.Line.from_spec(3, 3, 5, 5)
     True
-    >>> line >= sg_line.SGLine.from_spec(4, 4, 5, 5)
+    >>> line >= line.Line.from_spec(4, 4, 5, 5)
     True
-    >>> line >= sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line >= line.Line.from_spec(4, 4, 6, 6)
     True
-    >>> line >= sg_line.SGLine.from_spec(4, 4, 7, 7)
+    >>> line >= line.Line.from_spec(4, 4, 7, 7)
     False
-    >>> line >= sg_line.SGLine.from_spec(6, 6, 7, 7)
+    >>> line >= line.Line.from_spec(6, 6, 7, 7)
     False
 
 __gt__(other)
-    >>> line = sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line = line.Line.from_spec(4, 4, 6, 6)
     
-    >>> line > sg_line.SGLine.from_spec(3, 3, 9, 9)
+    >>> line > line.Line.from_spec(3, 3, 9, 9)
     True
-    >>> line > sg_line.SGLine.from_spec(4, 4, 5, 5)
+    >>> line > line.Line.from_spec(4, 4, 5, 5)
     True
-    >>> line > sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line > line.Line.from_spec(4, 4, 6, 6)
     False
-    >>> line > sg_line.SGLine.from_spec(4, 4, 7, 7)
+    >>> line > line.Line.from_spec(4, 4, 7, 7)
     False
-    >>> line > sg_line.SGLine.from_spec(5, 5, 6, 6)
+    >>> line > line.Line.from_spec(5, 5, 6, 6)
     False
 
 __le__(other)
-    >>> line  = sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line  = line.Line.from_spec(4, 4, 6, 6)
     
-    >>> line <= sg_line.SGLine.from_spec(5, 5, 9, 9)
+    >>> line <= line.Line.from_spec(5, 5, 9, 9)
     True
-    >>> line <= sg_line.SGLine.from_spec(4, 4, 7, 7)
+    >>> line <= line.Line.from_spec(4, 4, 7, 7)
     True
-    >>> line <= sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line <= line.Line.from_spec(4, 4, 6, 6)
     True
-    >>> line <= sg_line.SGLine.from_spec(4, 4, 5, 5)
+    >>> line <= line.Line.from_spec(4, 4, 5, 5)
     False
-    >>> line <= sg_line.SGLine.from_spec(1, 1, 9, 9)
+    >>> line <= line.Line.from_spec(1, 1, 9, 9)
     False
 
 __lt__(other)
-    >>> line = sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line = line.Line.from_spec(4, 4, 6, 6)
     
-    >>> line < sg_line.SGLine.from_spec(5, 5, 6, 6)
+    >>> line < line.Line.from_spec(5, 5, 6, 6)
     True
-    >>> line < sg_line.SGLine.from_spec(4, 4, 7, 7)
+    >>> line < line.Line.from_spec(4, 4, 7, 7)
     True
-    >>> line < sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line < line.Line.from_spec(4, 4, 6, 6)
     False
-    >>> line < sg_line.SGLine.from_spec(4, 4, 5, 5)
+    >>> line < line.Line.from_spec(4, 4, 5, 5)
     False
-    >>> line < sg_line.SGLine.from_spec(1, 1, 7, 7)
+    >>> line < line.Line.from_spec(1, 1, 7, 7)
     False
 
 __ne__(other)
-    >>> line  = sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line  = line.Line.from_spec(4, 4, 6, 6)
     
-    >>> line != sg_line.SGLine.from_spec(5, 5, 6, 6)
+    >>> line != line.Line.from_spec(5, 5, 6, 6)
     True
-    >>> line != sg_line.SGLine.from_spec(4, 4, 5, 5)
+    >>> line != line.Line.from_spec(4, 4, 5, 5)
     True
-    >>> line != sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> line != line.Line.from_spec(4, 4, 6, 6)
     False
 
     ### part relations
 is_a_subline_in_column(column)
     
-    >>> line = sg_line.SGLine.from_spec(1, 1, 2, 2)
-    >>> line_01 = sg_line.SGLine.from_spec(0, 0, 1, 1)
-    >>> line_02 = sg_line.SGLine.from_spec(0, 0, 2, 2)
-    >>> line_03 = sg_line.SGLine.from_spec(0, 0, 3, 3)
-    >>> line_12 = sg_line.SGLine.from_spec(1, 1, 2, 2)
-    >>> line_13 = sg_line.SGLine.from_spec(1, 1, 3, 3)
-    >>> line_23 = sg_line.SGLine.from_spec(2, 2, 3, 3)
-    >>> line_45 = sg_line.SGLine.from_spec(4, 4, 5, 5)
+    >>> line = line.Line.from_spec(1, 1, 2, 2)
+    >>> line_01 = line.Line.from_spec(0, 0, 1, 1)
+    >>> line_02 = line.Line.from_spec(0, 0, 2, 2)
+    >>> line_03 = line.Line.from_spec(0, 0, 3, 3)
+    >>> line_12 = line.Line.from_spec(1, 1, 2, 2)
+    >>> line_13 = line.Line.from_spec(1, 1, 3, 3)
+    >>> line_23 = line.Line.from_spec(2, 2, 3, 3)
+    >>> line_45 = line.Line.from_spec(4, 4, 5, 5)
 
-    >>> column_01 = sg_column.SGColumn([line_01])
-    >>> column_02 = sg_column.SGColumn([line_02])
-    >>> column_03 = sg_column.SGColumn([line_03])
-    >>> column_12 = sg_column.SGColumn([line_12])
-    >>> column_13 = sg_column.SGColumn([line_13])
-    >>> column_23 = sg_column.SGColumn([line_23])
-    >>> column_01_23 = sg_column.SGColumn([line_01, line_23])
-    >>> column_01_45 = sg_column.SGColumn([line_01, line_45])
-    >>> column_02_45 = sg_column.SGColumn([line_02, line_45])
-    >>> column_03_45 = sg_column.SGColumn([line_03, line_45])
-    >>> column_12_45 = sg_column.SGColumn([line_12, line_45])
-    >>> column_13_45 = sg_column.SGColumn([line_13, line_45])
-    >>> column_23_45 = sg_column.SGColumn([line_23, line_45])
+    >>> column_01 = line_cell.SGColumn([line_01])
+    >>> column_02 = line_cell.SGColumn([line_02])
+    >>> column_03 = line_cell.SGColumn([line_03])
+    >>> column_12 = line_cell.SGColumn([line_12])
+    >>> column_13 = line_cell.SGColumn([line_13])
+    >>> column_23 = line_cell.SGColumn([line_23])
+    >>> column_01_23 = line_cell.SGColumn([line_01, line_23])
+    >>> column_01_45 = line_cell.SGColumn([line_01, line_45])
+    >>> column_02_45 = line_cell.SGColumn([line_02, line_45])
+    >>> column_03_45 = line_cell.SGColumn([line_03, line_45])
+    >>> column_12_45 = line_cell.SGColumn([line_12, line_45])
+    >>> column_13_45 = line_cell.SGColumn([line_13, line_45])
+    >>> column_23_45 = line_cell.SGColumn([line_23, line_45])
 
     >>> line.is_a_subline_in_column(column_01)
     False
@@ -229,13 +229,13 @@ is_a_subline_in_column(column)
     False
 
 is_a_subline_of(other)
-    >>> line_12 = sg_line.SGLine.from_spec(1, 1, 2, 2)
+    >>> line_12 = line.Line.from_spec(1, 1, 2, 2)
     
-    >>> line_12.is_a_subline_of(sg_line.SGLine.from_spec(0, 0, 1, 1))
+    >>> line_12.is_a_subline_of(line.Line.from_spec(0, 0, 1, 1))
     False
-    >>> line_12.is_a_subline_of(sg_line.SGLine.from_spec(0, 0, 2, 2))
+    >>> line_12.is_a_subline_of(line.Line.from_spec(0, 0, 2, 2))
     True
-    >>> line_12.is_a_subline_of(sg_line.SGLine.from_spec(1, 1, 2, 2))
+    >>> line_12.is_a_subline_of(line.Line.from_spec(1, 1, 2, 2))
     True
 
     ### overlap relations
@@ -246,20 +246,20 @@ overlaps_middle_of(other)
 overlaps_head_of(other)
 is_disjoint_right_of(other)
 
-    >>> this    = sg_line.SGLine.from_spec(2, 2, 5, 5)
-    >>> that_01 = sg_line.SGLine.from_spec(0, 0, 1, 1)
-    >>> that_02 = sg_line.SGLine.from_spec(0, 0, 2, 2)
-    >>> that_03 = sg_line.SGLine.from_spec(0, 0, 3, 3)
-    >>> that_05 = sg_line.SGLine.from_spec(0, 0, 5, 5)
-    >>> that_07 = sg_line.SGLine.from_spec(0, 0, 7, 7)
-    >>> that_23 = sg_line.SGLine.from_spec(2, 2, 3, 3)
-    >>> that_25 = sg_line.SGLine.from_spec(2, 2, 5, 5)
-    >>> that_27 = sg_line.SGLine.from_spec(2, 2, 7, 7)
-    >>> that_34 = sg_line.SGLine.from_spec(3, 3, 4, 4)
-    >>> that_35 = sg_line.SGLine.from_spec(3, 3, 5, 5)
-    >>> that_37 = sg_line.SGLine.from_spec(3, 3, 7, 7)
-    >>> that_57 = sg_line.SGLine.from_spec(5, 5, 7, 7)
-    >>> that_67 = sg_line.SGLine.from_spec(6, 6, 7, 7)
+    >>> this    = line.Line.from_spec(2, 2, 5, 5)
+    >>> that_01 = line.Line.from_spec(0, 0, 1, 1)
+    >>> that_02 = line.Line.from_spec(0, 0, 2, 2)
+    >>> that_03 = line.Line.from_spec(0, 0, 3, 3)
+    >>> that_05 = line.Line.from_spec(0, 0, 5, 5)
+    >>> that_07 = line.Line.from_spec(0, 0, 7, 7)
+    >>> that_23 = line.Line.from_spec(2, 2, 3, 3)
+    >>> that_25 = line.Line.from_spec(2, 2, 5, 5)
+    >>> that_27 = line.Line.from_spec(2, 2, 7, 7)
+    >>> that_34 = line.Line.from_spec(3, 3, 4, 4)
+    >>> that_35 = line.Line.from_spec(3, 3, 5, 5)
+    >>> that_37 = line.Line.from_spec(3, 3, 7, 7)
+    >>> that_57 = line.Line.from_spec(5, 5, 7, 7)
+    >>> that_67 = line.Line.from_spec(6, 6, 7, 7)
 
     >>> this.is_disjoint_left_of(that_01)
     False
@@ -427,21 +427,21 @@ is_disjoint_right_of(other)
 
 can_be_merged_with(other)
     #   test for non-collinear lines
-    >>> line_0001 = sg_line.SGLine.from_spec(0, 0, 0, 1)
-    >>> line_26 = sg_line.SGLine.from_short_spec(2, 6)     #     ====
-    >>> line_01 = sg_line.SGLine.from_short_spec(0, 1)     #   -
-    >>> line_02 = sg_line.SGLine.from_short_spec(0, 2)     #   --
-    >>> line_13 = sg_line.SGLine.from_short_spec(1, 3)     #    --
-    >>> line_17 = sg_line.SGLine.from_short_spec(1, 7)     #    ------
-    >>> line_24 = sg_line.SGLine.from_short_spec(2, 4)     #     --
+    >>> line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    >>> line_26 = line.Line.from_short_spec(2, 6)     #     ====
+    >>> line_01 = line.Line.from_short_spec(0, 1)     #   -
+    >>> line_02 = line.Line.from_short_spec(0, 2)     #   --
+    >>> line_13 = line.Line.from_short_spec(1, 3)     #    --
+    >>> line_17 = line.Line.from_short_spec(1, 7)     #    ------
+    >>> line_24 = line.Line.from_short_spec(2, 4)     #     --
     
                                                            #     ====
     
-    >>> line_35 = sg_line.SGLine.from_short_spec(3, 5)     #      --
-    >>> line_46 = sg_line.SGLine.from_short_spec(4, 6)     #       --
-    >>> line_57 = sg_line.SGLine.from_short_spec(5, 7)     #        --
-    >>> line_68 = sg_line.SGLine.from_short_spec(6, 8)     #         --
-    >>> line_78 = sg_line.SGLine.from_short_spec(7, 8)     #          -
+    >>> line_35 = line.Line.from_short_spec(3, 5)     #      --
+    >>> line_46 = line.Line.from_short_spec(4, 6)     #       --
+    >>> line_57 = line.Line.from_short_spec(5, 7)     #        --
+    >>> line_68 = line.Line.from_short_spec(6, 8)     #         --
+    >>> line_78 = line.Line.from_short_spec(7, 8)     #          -
     
                                                            #     ====
 
@@ -469,14 +469,14 @@ can_be_merged_with(other)
     False
 
 merge(other)
-    >>> line_k  = sg_line.SGLine.from_short_spec(0, 6)     #   ======
-    >>> line_03 = sg_line.SGLine.from_short_spec(0, 3)     #   ---
-    >>> line_06 = sg_line.SGLine.from_short_spec(0, 6)     #   ------
-    >>> line_08 = sg_line.SGLine.from_short_spec(0, 8)     #   --------
-    >>> line_34 = sg_line.SGLine.from_short_spec(3, 4)     #      -
-    >>> line_36 = sg_line.SGLine.from_short_spec(3, 6)     #      ---
-    >>> line_38 = sg_line.SGLine.from_short_spec(3, 8)     #      -----
-    >>> line_68 = sg_line.SGLine.from_short_spec(6, 8)     #         --
+    >>> line_k  = line.Line.from_short_spec(0, 6)     #   ======
+    >>> line_03 = line.Line.from_short_spec(0, 3)     #   ---
+    >>> line_06 = line.Line.from_short_spec(0, 6)     #   ------
+    >>> line_08 = line.Line.from_short_spec(0, 8)     #   --------
+    >>> line_34 = line.Line.from_short_spec(3, 4)     #      -
+    >>> line_36 = line.Line.from_short_spec(3, 6)     #      ---
+    >>> line_38 = line.Line.from_short_spec(3, 8)     #      -----
+    >>> line_68 = line.Line.from_short_spec(6, 8)     #         --
     
     >>> print line_k.merge(line_03)
     (0, 0, 6, 6)
@@ -495,9 +495,9 @@ merge(other)
 
     ###
 subtract_line_tail(line)
-    >>> minuend      = sg_line.SGLine.from_spec(2, 2, 5, 5)
-    >>> subtrahend_1 = sg_line.SGLine.from_spec(1, 1, 3, 3)
-    >>> subtrahend_2 = sg_line.SGLine.from_spec(1, 1, 2, 2)
+    >>> minuend      = line.Line.from_spec(2, 2, 5, 5)
+    >>> subtrahend_1 = line.Line.from_spec(1, 1, 3, 3)
+    >>> subtrahend_2 = line.Line.from_spec(1, 1, 2, 2)
     
     >>> differences_1 = minuend.subtract_line_tail(subtrahend_1)
     >>> for line in differences_1:
@@ -507,8 +507,8 @@ subtract_line_tail(line)
     The subtrahend does not overlap the tail of the minuend
 
 subtract_line_middle(other)
-    >>> minuend = sg_line.SGLine.from_spec(2, 2, 5, 5)
-    >>> subtrahend = sg_line.SGLine.from_spec(3, 3, 4, 4)
+    >>> minuend = line.Line.from_spec(2, 2, 5, 5)
+    >>> subtrahend = line.Line.from_spec(3, 3, 4, 4)
     
     >>> line_differences = minuend.subtract_line_middle(subtrahend)
     >>> for difference in line_differences:
@@ -517,8 +517,8 @@ subtract_line_middle(other)
     (4, 4, 5, 5)
 
 subtract_line_head(other)
-    >>> minuend = sg_line.SGLine.from_spec(2, 2, 5, 5)
-    >>> subtrahend = sg_line.SGLine.from_spec(4, 4, 6, 6)
+    >>> minuend = line.Line.from_spec(2, 2, 5, 5)
+    >>> subtrahend = line.Line.from_spec(4, 4, 6, 6)
     >>> line_differences = minuend.subtract_line_head(subtrahend)
     >>> for line in line_differences:
     ...     print line
