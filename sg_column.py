@@ -2,9 +2,8 @@
 
 import sg_line
 
-class SGColumn(object):
-    """Consists of a non-empty (and unordered) list of collinear lines. Used 
-    as the value of a key-value pair with an SGCarrier.
+class SGColumn(object):                 #   Rename as colineation?
+    """Consists of a non-empty (and unordered) list of collinear lines. 
     Immutable.
     """
         ### construct

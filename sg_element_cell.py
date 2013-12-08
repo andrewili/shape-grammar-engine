@@ -1,15 +1,15 @@
-#   element_cell.py
+#   sg_element_cell.py
 
-import line
+import sg_line
 
-class ElementCell(object):
+class SGElementCell(object):
     """Consists of a non-empty (and unordered) iterable of elements of a single 
-    tag and type (collinear line or colabeled point). Immutable. 
+    tag and type (colinear line or colabeled point). Immutable.
     """
         ### construct
     def __init__(self, elements):
         """Receives a non-empty unsorted iterable of elements of a single tag 
-        and type (i.e., collinear line or colabeled point):
+        and type (i.e., colinear line or colabeled point):
             [cotagged_element, ...], n >= 1
         """
         try:
@@ -27,7 +27,7 @@ class ElementCell(object):
     def cotagged(self, elements):
         tag = elements[0].tag
         for element in elements:
-            if element.tag != tag:								#	element.tag! 
+            if element.tag != tag:								#	element.tag!
                 return False
         return True
 
@@ -121,7 +121,7 @@ class ElementCell(object):
     #     """
     #     new_tail = min(line_1.tail, line_2.tail)
     #     new_head = max(line_1.head, line_2.head)
-    #     new_line = line.SGLine(new_tail, new_head)
+    #     new_line = sg_line.SGLine(new_tail, new_head)
     #     return new_line
 
     #     ### represent
@@ -182,4 +182,4 @@ class ElementCell(object):
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/element_cell_test.txt')
+    doctest.testfile('tests/sg_element_cell_test.txt')
