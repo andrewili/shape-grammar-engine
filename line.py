@@ -145,27 +145,17 @@ class Line(object):
     def is_collinear_with(self, other):
         return self.carrier == other.carrier
 
-    def is_a_subline_in_column(self, column):
-        """Receives a column:
-            SGColumn
-        Returns whether self is a subline of a line in the column
+    def is_a_sub_line_in_cell(self, line_cell):
+        """Receives a line cell:
+            LineCell
+        Returns whether self is a sub_line of a line in the line cell
         """
-        for other_line in column.lines:
-            if self.is_a_subline_of(other_line):
+        for other_line in line_cell.lines:
+            if self.is_a_sub_line_of(other_line):
                 return True
         return False
 
-##    def is_a_subline_in_column(self, column):
-##        """Receives a column:
-##            [Line, ...]
-##        Returns whether self is a subline of a line in the column
-##        """
-##        for other_line in column:
-##            if self.is_a_subline_of(other_line):
-##                return True
-##        return False
-
-    def is_a_subline_of(self, other):
+    def is_a_sub_line_of(self, other):
         if self.tail < other.tail:
             return False
         else: # self.tail >= other.tail:
@@ -233,8 +223,6 @@ class Line(object):
         new_head = max(self.head, other.head)
         new_line = Line(new_tail, new_head)
         return new_line
-
-        ### called by SGShape.subtract_line_column(line_minuend, column)
 
     def subtract_line_tail(self, other):
         """Receives a line that overlaps self.tail

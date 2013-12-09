@@ -1,15 +1,15 @@
 #   line_cell.py
 
-import sg_line
+import line
 
-class SGColumn(object):                 #   Rename as colineation?
+class LineCell(object):
     """Consists of a non-empty (and unordered) list of collinear lines. 
     Immutable.
     """
         ### construct
     def __init__(self, lines):
         """Receives a non-empty unsorted list of collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         """
         try:
             if (len(lines) == 0 or
@@ -20,22 +20,22 @@ class SGColumn(object):                 #   Rename as colineation?
                 self.lines = lines
         except ValueError:
             print '%s %s' % (
-                "You're trying to make a column",
+                "You're trying to make a line cell",
                 "with non-collinear lines or no lines")
 
     def collinear(self, lines):
         carrier = lines[0].carrier
-        for line in lines:
-            if line.carrier != carrier:
+        for the_line in lines:
+            if the_line.carrier != carrier:
                 return False
         return True
 
         ### maximize
     def get_maximal_lines_from(self, maximal_lines_1, maximal_lines_2):
         """Receives 2 ordered lists of maximal collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         Returns an ordered list of maximal collinear lines:
-            [SGLine, ...], n >= 1, should not contain duplicates
+            [Line, ...], n >= 1, should not contain duplicates
         """
         non_maximal_unsorted_lines = []
         non_maximal_unsorted_lines.extend(maximal_lines_1)
@@ -46,9 +46,9 @@ class SGColumn(object):                 #   Rename as colineation?
 
     def maximal(self, non_maximal_lines):
         """Receives an ordered list of (possibly non-maximal) collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         Returns an ordered list of maximal collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         """
         maximal_lines = []
         while len(non_maximal_lines) >= 1:
@@ -59,9 +59,9 @@ class SGColumn(object):                 #   Rename as colineation?
 
     def get_first_maximal_line_from(self, lines):
         """Receives an ordered list of (possibly non-maximal) collinear lines:
-            [SGLine, ...], n >= 1
+            [Line, ...], n >= 1
         Returns the first maximal line in the list:
-            SGLine
+            Line
         """
         if len(lines) == 1:
             new_line = self.get_singleton_line_from(lines)
@@ -71,18 +71,18 @@ class SGColumn(object):                 #   Rename as colineation?
 
     def get_singleton_line_from(self, singleton_lines):
         """Receives a list containing a singleton line:
-            [SGLine], n = 1
+            [Line], n = 1
         Returns the singleton line:
-            SGLine
+            Line
         """
         new_line = singleton_lines.pop(0)
         return new_line
 
     def get_first_maximal_line_from_non_singleton(self, non_maximal_lines):
         """Receives an ordered list of (possibly non-maximal) collinear lines:
-            [SGLine, ...], n >= 2
+            [Line, ...], n >= 2
         Returns the first maximal line:
-            SGLine
+            Line
         """
         working_line = non_maximal_lines.pop(0)
         while len(non_maximal_lines) >= 1:
@@ -114,13 +114,13 @@ class SGColumn(object):                 #   Rename as colineation?
 
     def merge_lines(self, line_1, line_2):
         """Receives 2 mergeable lines, line_1.tail <= line_2.tail:
-            [SGLine, SGLine]
+            [Line, Line]
         Returns the sum of the 2 lines:
-            SGLine
+            Line
         """
         new_tail = min(line_1.tail, line_2.tail)
         new_head = max(line_1.head, line_2.head)
-        new_line = sg_line.SGLine(new_tail, new_head)
+        new_line = line.Line(new_tail, new_head)
         return new_line
 
         ### represent
@@ -129,10 +129,10 @@ class SGColumn(object):                 #   Rename as colineation?
             [(x1, y1, x2, y2), ...]
         """
         line_strings = []
-        for line in sorted(self.lines):
-            line_strings.append(line.__str__())
-        column_string = ', '.join(line_strings)
-        return '[%s]' % column_string
+        for the_line in sorted(self.lines):
+            line_strings.append(the_line.__str__())
+        line_cell_string = ', '.join(line_strings)
+        return '[%s]' % line_cell_string
 
     def listing(self, indent_level=0):
         """Receives indent_level:
@@ -147,32 +147,32 @@ class SGColumn(object):                 #   Rename as colineation?
             indent_level = 0
         indent_string = ' ' * indent_level * indent_increment
         line_listings = []
-        for line in sorted(self.lines):
-            line_listings.append(indent_string + line.listing())
-        column_listing = '\n'.join(line_listings)
-        return column_listing
+        for the_line in sorted(self.lines):
+            line_listings.append(indent_string + the_line.listing())
+        line_cell_listing = '\n'.join(line_listings)
+        return line_cell_listing
 
         ### relations
     def __eq__(self, other):
-        """Receives a column:
-            SGColumn
-        Returns whether both columns contain the same lines.
+        """Receives a line cell:
+            LineCell
+        Returns whether both line cells contain the same lines.
         """
         return sorted(self.lines) == sorted(other.lines)
 
     def __ne__(self, other):
-        """Receives a column:
-            SGColumn
-        Returns whether both columns do not contain the same lines.
+        """Receives a line cell:
+            LineCell
+        Returns whether both line cells do not contain the same lines.
         """
         return sorted(self.lines) != sorted(other.lines)
 
-    def is_a_subcolumn_of(self, other):
-        """Receives a non-empty collinear column:
-            SGColumn
+    def is_a_sub_cell_of(self, other):
+        """Receives a non-empty collinear line cell:
+            LineCell
         """
-        for line in self.lines:
-            if not line.is_a_subline_in_column(other):
+        for the_line in self.lines:
+            if not the_line.is_a_sub_line_in_cell(other):
                 return False
         return True
 
