@@ -4,30 +4,19 @@ import line
 
 class ElementCell(object):
     """Consists of a non-empty (and unordered) iterable of elements of a single 
-    tag and type (colinear line or colabeled point). Immutable.
+    ilk and type (colinear line or colabeled point). Immutable.
     """
         ### construct
     def __init__(self, elements):
-        """Receives a non-empty unsorted iterable of elements of a single tag 
-        and type (i.e., colinear line or colabeled point):
-            [cotagged_element, ...], n >= 1
+        """Receives a list of elements (from a child class: LineCell or 
+        LabeledPointCell)
         """
-        try:
-            if (len(elements) == 0 or
-                not self.cotagged(elements)
-            ):
-                raise ValueError()
-            else:
-                self.elements = elements
-        except ValueError:
-            print '%s %s' % (
-                "You're trying to make an element cell",
-                "with non-cotagged elements or no elements")
+        pass
 
-    def cotagged(self, elements):
-        tag = elements[0].tag
+    def same_ilk(self, elements):
+        ilk = elements[0].ilk
         for element in elements:
-            if element.tag != tag:							#	element.tag!
+            if element.ilk != ilk:
                 return False
         return True
 

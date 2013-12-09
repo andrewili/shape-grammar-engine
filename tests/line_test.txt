@@ -17,7 +17,7 @@ __init__()
     (1, 1)
     >>> line_01.spec
     (0, 0, 1, 1)
-    >>> line_01.carrier
+    >>> line_01.ilk
     (45.0, 0)
 
     
@@ -33,40 +33,40 @@ __init__()
     (1, 1)
     
 
-    >>> print line.Line.from_spec(0, 0, 0, 1).carrier
+    >>> print line.Line.from_spec(0, 0, 0, 1).ilk
     (0.0, 0)
-    >>> print line.Line.from_spec(0, 0, 1, 0).carrier
+    >>> print line.Line.from_spec(0, 0, 1, 0).ilk
     (90.0, 0)
-    >>> print line.Line.from_spec(0, 0, 1, 1).carrier
+    >>> print line.Line.from_spec(0, 0, 1, 1).ilk
     (45.0, 0)
-    >>> print line.Line.from_spec(0, 1, 0, 0).carrier
+    >>> print line.Line.from_spec(0, 1, 0, 0).ilk
     (0.0, 0)
-    >>> print line.Line.from_spec(0, 1, 1, 0).carrier
+    >>> print line.Line.from_spec(0, 1, 1, 0).ilk
     (135.0, 1)
-    >>> print line.Line.from_spec(0, 1, 1, 1).carrier
+    >>> print line.Line.from_spec(0, 1, 1, 1).ilk
     (90.0, 1)
-    >>> print line.Line.from_spec(1, 0, 0, 0).carrier
+    >>> print line.Line.from_spec(1, 0, 0, 0).ilk
     (90.0, 0)
-    >>> print line.Line.from_spec(1, 0, 0, 1).carrier
+    >>> print line.Line.from_spec(1, 0, 0, 1).ilk
     (135.0, 1)
-    >>> print line.Line.from_spec(1, 0, 1, 1).carrier
+    >>> print line.Line.from_spec(1, 0, 1, 1).ilk
     (0.0, 1)
-    >>> print line.Line.from_spec(1, 1, 0, 0).carrier
+    >>> print line.Line.from_spec(1, 1, 0, 0).ilk
     (45.0, 0)
-    >>> print line.Line.from_spec(1, 1, 0, 1).carrier
+    >>> print line.Line.from_spec(1, 1, 0, 1).ilk
     (90.0, 1)
-    >>> print line.Line.from_spec(1, 1, 1, 0).carrier
+    >>> print line.Line.from_spec(1, 1, 1, 0).ilk
     (0.0, 1)
 
-get_carrier_from(line_spec)
+get_ilk_from(line_spec)
     >>> line_spec_0011 = (0, 0, 1, 1)
-    >>> drone_line.get_carrier_from(line_spec_0011)
+    >>> drone_line.get_ilk_from(line_spec_0011)
     (45.0, 0)
     >>> line_spec_0010 = (0, 0, 1, 0)
-    >>> drone_line.get_carrier_from(line_spec_0010)
+    >>> drone_line.get_ilk_from(line_spec_0010)
     (90.0, 0)
     >>> line_spec_0001 = (0, 0, 0, 1)
-    >>> drone_line.get_carrier_from(line_spec_0001)
+    >>> drone_line.get_ilk_from(line_spec_0001)
     (0.0, 0)
 
 from_spec(x1, y1, x2, y2)

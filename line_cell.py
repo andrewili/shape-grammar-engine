@@ -1,8 +1,9 @@
 #   line_cell.py
 
+import element_cell
 import line
 
-class LineCell(object):
+class LineCell(element_cell.ElementCell):
     """Consists of a non-empty (and unordered) list of collinear lines. 
     Immutable.
     """
@@ -11,9 +12,11 @@ class LineCell(object):
         """Receives a non-empty unsorted list of collinear lines:
             [Line, ...], n >= 1
         """
+        # element_cell.ElementCell.__init__(self, lines)
         try:
             if (len(lines) == 0 or
-                not self.collinear(lines)
+                not self.same_ilk(lines)
+                # not self.collinear(lines)
             ):
                 raise ValueError()
             else:
@@ -24,9 +27,9 @@ class LineCell(object):
                 "with non-collinear lines or no lines")
 
     def collinear(self, lines):
-        carrier = lines[0].carrier
+        ilk = lines[0].ilk
         for the_line in lines:
-            if the_line.carrier != carrier:
+            if the_line.ilk != ilk:
                 return False
         return True
 

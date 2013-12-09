@@ -24,13 +24,13 @@ class Line(object):
         self.x2 = self.head.x
         self.y2 = self.head.y
         self.spec = (self.x1, self.y1, self.x2, self.y2)
-        self.carrier = self.get_carrier_from(self.spec)
-        self.bearing, self.intercept = self.carrier
+        self.ilk = self.get_ilk_from(self.spec)
+        self.bearing, self.intercept = self.ilk
 
-    def get_carrier_from(self, line_spec):
+    def get_ilk_from(self, line_spec):
         """Receives line_spec:
             (x1, y1, x2, y2)
-        Returns carrier:
+        Returns ilk:
             (bearing, intercept)
         """
         x1, y1, x2, y2 = line_spec
@@ -143,7 +143,7 @@ class Line(object):
             return False
 
     def is_collinear_with(self, other):
-        return self.carrier == other.carrier
+        return self.ilk == other.ilk
 
     def is_a_sub_line_in_cell(self, line_cell):
         """Receives a line cell:
