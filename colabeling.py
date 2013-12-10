@@ -1,18 +1,20 @@
-#   sg_colabeling.py
+#   colabeling.py
 
 import copy
+import labeled_point
 
-class SGColabeling(object):
+class Colabeling(object):
     """Contains a non-empty set of colabeled points:
-        set([SGLabeledPoint, ...]), n >= 1
+        set([(x, y, label), ...]), n >= 1
     """
     ### construct
     def __init__(self, lpoints_in):
         """Receives a non-empty unsorted list of colabeled points:
-            [SGLabeledPoint, ...], n >= 1
+            [LabeledPoint, ...], n >= 1
         """
         try:
             if (len(lpoints_in) == 0 or
+                not self.are_lpoints(lpoints_in) or
                 not self.colabeled(lpoints_in)
             ):
                 raise ValueError()
@@ -21,11 +23,21 @@ class SGColabeling(object):
         except ValueError:
             print '%s %s' % (
                 "You're trying to make a colabeling",
-                "with non-colabeled points or no points")
+                "with non-colabeled points or no labeled points")
+
+    def are_lpoints(self, elements):
+        """Receives a list of elements:
+            [element, ...]
+        Returns whether all elements are LabeledPoint objects
+        """
+        for element in elements:
+            if element.__class__ != labeled_point.LabeledPoint:
+                return False
+        return True
 
     def colabeled(self, lpoints_in):
         """Receives a non-empty list of labeled points:
-            [SGLabeledPoint, ...], n >= 1
+            [LabeledPoint, ...], n >= 1
         Returns whether the labeled points all have the same label
         """
         label = lpoints_in[0].label
@@ -36,22 +48,14 @@ class SGColabeling(object):
 
     def make_lpoint_specs(self, lpoints_in):
         """Receives a list of labeled points:
-            [SGLabeledPoint, ...]
+            [LabeledPoint, ...]
         Returns a set of labeled point specs:
             set([(x, y, label), ...])
         """
-        #   How to implement?
-        #   1.  As a set of SGLPoint objects. Problem: a set does not 
-        #       use an element's __eq__ method
-        #   2.  As a list of lpoints. Have to implement equivalent methods to
-        #       set methods
-        #   3.  As a set of lpoint specs. Have to unpack and repack 
-        #       lpoints. Try this
         lpoint_specs = set()
         for lpoint in lpoints_in:
             lpoint_specs.add(lpoint.spec)
         return lpoint_specs
-        # self.lpoint_specs = set(lpoint_specs)
 
     ### represent
     def __str__(self):
@@ -113,23 +117,23 @@ class SGColabeling(object):
 
     def is_a_subcolabeling_of(self, other):
         """Receives a colabeling:
-            SGColabeling
+            Colabeling
         """
         return self.lpoint_specs.issubset(other.lpoint_specs)
 
     ### operate
     def add(self, lpoint):
         """Receives a labeled point: 
-            SGLabeledPoint
+            LabeledPoint
         Adds the labeled point spec to the set
         """
         self.lpoint_specs.add(lpoint.spec)
 
     def union(self, other):
         """Receives a colabeling:
-            SGColabeling
+            Colabeling
         Returns the union of the two colabelings:
-            SGColabeling
+            Colabeling
         """
         new_colabeling = copy.copy(self)
         new_lpoint_specs = new_colabeling.lpoint_specs
@@ -138,4 +142,4 @@ class SGColabeling(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_colabeling_test.txt')
+    doctest.testfile('tests/colabeling_test.txt')

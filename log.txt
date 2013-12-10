@@ -34,3 +34,12 @@ Log
 
 #   2013-12-10
     Change to class method?
+
+### Colabeling
+#   2013-12-10
+    Why implement the collection as a set of lpoint specs
+    1.  As a set of LabeledPoint objects. Problem: a set does not use an 
+        element's __eq__ method
+    2.  As a list of lpoints. Problem: have to implement equivalent methods to
+        set methods
+    3.  As a set of lpoint specs. Problem: have to unpack and repack lpoints
