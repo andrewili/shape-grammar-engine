@@ -2,8 +2,8 @@
 
     >>> import point
 
-    ### construct
-__init__()
+### construct
+#   __init__()
     >>> p1 = point.Point(1, 2)
     
     >>> p1.spec
@@ -13,14 +13,14 @@ __init__()
     >>> p1.y
     2
 
-from_spec(x, y)
+#   from_spec(x, y)
     >>> p = point.Point.from_spec(2, 3)
 
     >>> p.spec
     (2, 3)
 
-    ### relations ###
-__eq__(other)
+### relations ###
+#   __eq__(other)
     >>> p =  point.Point(0, 0)
     
     >>> p == point.Point(0, 0)
@@ -30,7 +30,7 @@ __eq__(other)
     >>> p == point.Point(1, 0)
     False
 
-__ge__(other)
+#   __ge__(other)
     >>> p  = point.Point( 0,  0)
     
     >>> p >= point.Point(-1,  2)
@@ -44,7 +44,7 @@ __ge__(other)
     >>> p >= point.Point( 2,  2)
     False
 
-__gt__(other)
+#   __gt__(other)
     >>> p1 = point.Point( 0,  0)
     
     >>> p1 > point.Point(-1,  2)
@@ -58,7 +58,7 @@ __gt__(other)
     >>> p1 > point.Point( 0,  0)
     False
 
-__le__(other)
+#   __le__(other)
     >>> p  =  point.Point( 0,  0)
     
     >>> p <=  point.Point( 1,  2)
@@ -72,7 +72,7 @@ __le__(other)
     >>> p <=  point.Point(-2, -2)
     False
 
-__lt__(other)
+#   __lt__(other)
     >>> p1 = point.Point( 0,  0)
     
     >>> p1 < point.Point( 1, -2)
@@ -86,8 +86,7 @@ __lt__(other)
     >>> p1 < point.Point(-2, -2)
     False
 
-
-__ne__(other)
+#   __ne__(other)
     >>> p  = point.Point(0, 0)
     
     >>> p != point.Point(0, 0)
@@ -97,8 +96,8 @@ __ne__(other)
     >>> p != point.Point(1, 0)
     True
 
-    ### represent
-__str__()
+### represent
+#   __str__()
     >>> print point.Point(1, 2)
     (1, 2)
     >>> print point.Point(2, 3).listing()
