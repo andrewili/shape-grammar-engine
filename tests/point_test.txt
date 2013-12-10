@@ -4,102 +4,103 @@
 
 ### construct
 #   __init__()
-    >>> p1 = point.Point(1, 2)
+    >>> point_init = point.Point(1, 2)
     
-    >>> p1.spec
+    >>> point_init.spec
     (1, 2)
-    >>> p1.x
+    >>> point_init.x
     1
-    >>> p1.y
+    >>> point_init.y
     2
 
 #   from_spec(x, y)
-    >>> p = point.Point.from_spec(2, 3)
+    >>> point_from_spec = point.Point.from_spec(2, 3)
 
-    >>> p.spec
+    >>> point_from_spec.spec
     (2, 3)
 
 ### relations ###
 #   __eq__(other)
-    >>> p =  point.Point(0, 0)
+    >>> point_eq =  point.Point(0, 0)
     
-    >>> p == point.Point(0, 0)
+    >>> point_eq == point.Point(0, 0)
     True
-    >>> p == point.Point(0, 1)
+    >>> point_eq == point.Point(0, 1)
     False
-    >>> p == point.Point(1, 0)
+    >>> point_eq == point.Point(1, 0)
     False
 
 #   __ge__(other)
-    >>> p  = point.Point( 0,  0)
+    >>> point_ge  = point.Point( 0,  0)
     
-    >>> p >= point.Point(-1,  2)
+    >>> point_ge >= point.Point(-1,  2)
     True
-    >>> p >= point.Point( 0, -1)
+    >>> point_ge >= point.Point( 0, -1)
     True
-    >>> p >= point.Point( 0,  0)
+    >>> point_ge >= point.Point( 0,  0)
     True
-    >>> p >= point.Point( 0,  2)
+    >>> point_ge >= point.Point( 0,  2)
     False
-    >>> p >= point.Point( 2,  2)
+    >>> point_ge >= point.Point( 2,  2)
     False
 
 #   __gt__(other)
-    >>> p1 = point.Point( 0,  0)
+    >>> point_gt = point.Point( 0,  0)
     
-    >>> p1 > point.Point(-1,  2)
+    >>> point_gt > point.Point(-1,  2)
     True
-    >>> p1 > point.Point( 0, -1)
+    >>> point_gt > point.Point( 0, -1)
     True
-    >>> p1 > point.Point( 0,  0)
+    >>> point_gt > point.Point( 0,  0)
     False
-    >>> p1 > point.Point( 0,  2)
+    >>> point_gt > point.Point( 0,  2)
     False
-    >>> p1 > point.Point( 0,  0)
+    >>> point_gt > point.Point( 0,  0)
     False
 
 #   __le__(other)
-    >>> p  =  point.Point( 0,  0)
+    >>> point_le  =  point.Point( 0,  0)
     
-    >>> p <=  point.Point( 1,  2)
+    >>> point_le <=  point.Point( 1,  2)
     True
-    >>> p <=  point.Point( 0,  1)
+    >>> point_le <=  point.Point( 0,  1)
     True
-    >>> p <=  point.Point( 0,  0)
+    >>> point_le <=  point.Point( 0,  0)
     True
-    >>> p <=  point.Point( 0, -2)
+    >>> point_le <=  point.Point( 0, -2)
     False
-    >>> p <=  point.Point(-2, -2)
+    >>> point_le <=  point.Point(-2, -2)
     False
 
 #   __lt__(other)
-    >>> p1 = point.Point( 0,  0)
+    >>> point_lt = point.Point( 0,  0)
     
-    >>> p1 < point.Point( 1, -2)
+    >>> point_lt < point.Point( 1, -2)
     True
-    >>> p1 < point.Point( 0,  1)
+    >>> point_lt < point.Point( 0,  1)
     True
-    >>> p1 < point.Point( 0,  0)
+    >>> point_lt < point.Point( 0,  0)
     False
-    >>> p1 < point.Point( 0, -2)
+    >>> point_lt < point.Point( 0, -2)
     False
-    >>> p1 < point.Point(-2, -2)
+    >>> point_lt < point.Point(-2, -2)
     False
 
 #   __ne__(other)
-    >>> p  = point.Point(0, 0)
+    >>> point_ne  = point.Point(0, 0)
     
-    >>> p != point.Point(0, 0)
+    >>> point_ne != point.Point(0, 0)
     False
-    >>> p != point.Point(0, 1)
+    >>> point_ne != point.Point(0, 1)
     True
-    >>> p != point.Point(1, 0)
+    >>> point_ne != point.Point(1, 0)
     True
 
 ### represent
 #   __str__()
     >>> print point.Point(1, 2)
     (1, 2)
+
+#   listing()
     >>> print point.Point(2, 3).listing()
     (2.0, 3.0)
-    

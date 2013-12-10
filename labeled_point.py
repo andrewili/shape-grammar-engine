@@ -1,9 +1,9 @@
-#   sg_labeled_point.py
+#   labeled_point.py
 
-import sg_point
+import point
 
 
-class SGLabeledPoint(object):
+class LabeledPoint(object):
     #   Immutable
     def __init__(self, x, y, label):
         try:
@@ -12,7 +12,7 @@ class SGLabeledPoint(object):
         except ValueError:
             print "You're trying to create a labeled point with an empty label"
         self.spec = (x, y, label)
-        self.point = sg_point.SGPoint(x, y)
+        self.point = point.Point(x, y)
         self.x = x
         self.y = y
         self.label = label
@@ -94,4 +94,4 @@ class SGLabeledPoint(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_labeled_point_test.txt')
+    doctest.testfile('tests/labeled_point_test.txt')

@@ -1,115 +1,110 @@
-#   sg_labeled_point_test.txt
+#   labeled_point_test.txt
 
-    >>> import sg_labeled_point
+    >>> import labeled_point
 
-    ### construct
-    
-__init__()
-    >>> lp1 = sg_labeled_point.SGLabeledPoint(1, 2, 'a')
-    
-    >>> lp1.spec
+### construct
+#   __init__()
+    >>> lpoint_init = labeled_point.LabeledPoint(1, 2, 'a')
+    >>> lpoint_init.spec
     (1, 2, 'a')
-    >>> lp1.point.spec
+    >>> lpoint_init.point.spec
     (1, 2)
-    >>> lp1.x
+    >>> lpoint_init.x
     1
-    >>> lp1.y
+    >>> lpoint_init.y
     2
-    >>> lp1.label
+    >>> lpoint_init.label
     'a'
     
-    >>> lp2 = sg_labeled_point.SGLabeledPoint(1, 2, '')
+    >>> lpoint_empty_label = labeled_point.LabeledPoint(1, 2, '')
     You're trying to create a labeled point with an empty label
 
-    ### relations
+### relations
+#   __eq__(other)
+    >>> lpoint_eq =  labeled_point.LabeledPoint(0, 0, 'o')
     
-__eq__(other)
-    >>> lp =  sg_labeled_point.SGLabeledPoint(0, 0, 'o')
-    
-    >>> lp == sg_labeled_point.SGLabeledPoint(0, 0, 'o')
+    >>> lpoint_eq == labeled_point.LabeledPoint(0, 0, 'o')
     True
-    >>> lp == sg_labeled_point.SGLabeledPoint(1, 0, 'o')
+    >>> lpoint_eq == labeled_point.LabeledPoint(1, 0, 'o')
     False
-    >>> lp == sg_labeled_point.SGLabeledPoint(0, 1, 'o')
+    >>> lpoint_eq == labeled_point.LabeledPoint(0, 1, 'o')
     False
-    >>> lp == sg_labeled_point.SGLabeledPoint(0, 0, 'x')
+    >>> lpoint_eq == labeled_point.LabeledPoint(0, 0, 'x')
     False
 
-__ge__(other)
-    >>> lp  = sg_labeled_point.SGLabeledPoint( 0,  0, 'o')
+#   __ge__(other)
+    >>> lpoint_ge  = labeled_point.LabeledPoint( 0,  0, 'o')
     
-    >>> lp >= sg_labeled_point.SGLabeledPoint(-1, -1, 'z')
+    >>> lpoint_ge >= labeled_point.LabeledPoint(-1, -1, 'z')
     True
-    >>> lp >= sg_labeled_point.SGLabeledPoint( 0,  0, 'n')
+    >>> lpoint_ge >= labeled_point.LabeledPoint( 0,  0, 'n')
     True
-    >>> lp >= sg_labeled_point.SGLabeledPoint( 0,  0, 'o')
+    >>> lpoint_ge >= labeled_point.LabeledPoint( 0,  0, 'o')
     True
-    >>> lp >= sg_labeled_point.SGLabeledPoint( 0,  0, 'z')
+    >>> lpoint_ge >= labeled_point.LabeledPoint( 0,  0, 'z')
     False
-    >>> lp >= sg_labeled_point.SGLabeledPoint( 2,  2, 'z')
+    >>> lpoint_ge >= labeled_point.LabeledPoint( 2,  2, 'z')
     False
 
-__gt__(other)
-    >>> lp = sg_labeled_point.SGLabeledPoint( 0,  0, 'o')
+#   __gt__(other)
+    >>> lpoint_gt = labeled_point.LabeledPoint( 0,  0, 'o')
     
-    >>> lp > sg_labeled_point.SGLabeledPoint(-1, -1, 'z')
+    >>> lpoint_gt > labeled_point.LabeledPoint(-1, -1, 'z')
     True
-    >>> lp > sg_labeled_point.SGLabeledPoint( 0,  0, 'n')
+    >>> lpoint_gt > labeled_point.LabeledPoint( 0,  0, 'n')
     True
-    >>> lp > sg_labeled_point.SGLabeledPoint( 0,  0, 'o')
+    >>> lpoint_gt > labeled_point.LabeledPoint( 0,  0, 'o')
     False
-    >>> lp > sg_labeled_point.SGLabeledPoint( 0,  0, 'z')
+    >>> lpoint_gt > labeled_point.LabeledPoint( 0,  0, 'z')
     False
-    >>> lp > sg_labeled_point.SGLabeledPoint( 2,  2, 'z')
+    >>> lpoint_gt > labeled_point.LabeledPoint( 2,  2, 'z')
     False
 
-__le__(other)
-    >>> lp  =  sg_labeled_point.SGLabeledPoint( 0,  0, 'o')
+#   __le__(other)
+    >>> lpoint_le  =  labeled_point.LabeledPoint( 0,  0, 'o')
     
-    >>> lp <=  sg_labeled_point.SGLabeledPoint( 1,  1, 'a')
+    >>> lpoint_le <=  labeled_point.LabeledPoint( 1,  1, 'a')
     True
-    >>> lp <=  sg_labeled_point.SGLabeledPoint( 0,  0, 'p')
+    >>> lpoint_le <=  labeled_point.LabeledPoint( 0,  0, 'p')
     True
-    >>> lp <=  sg_labeled_point.SGLabeledPoint( 0,  0, 'o')
+    >>> lpoint_le <=  labeled_point.LabeledPoint( 0,  0, 'o')
     True
-    >>> lp <=  sg_labeled_point.SGLabeledPoint( 0,  0, 'a')
+    >>> lpoint_le <=  labeled_point.LabeledPoint( 0,  0, 'a')
     False
-    >>> lp <=  sg_labeled_point.SGLabeledPoint(-2, -2, 'a')
+    >>> lpoint_le <=  labeled_point.LabeledPoint(-2, -2, 'a')
     False
 
-__lt__(other)
-    >>> lp = sg_labeled_point.SGLabeledPoint( 0,  0, 'o')
+#   __lt__(other)
+    >>> lpoint_lt = labeled_point.LabeledPoint( 0,  0, 'o')
     
-    >>> lp < sg_labeled_point.SGLabeledPoint( 1,  1, 'a')
+    >>> lpoint_lt < labeled_point.LabeledPoint( 1,  1, 'a')
     True
-    >>> lp < sg_labeled_point.SGLabeledPoint( 0,  0, 'p')
+    >>> lpoint_lt < labeled_point.LabeledPoint( 0,  0, 'p')
     True
-    >>> lp < sg_labeled_point.SGLabeledPoint( 0,  0, 'o')
+    >>> lpoint_lt < labeled_point.LabeledPoint( 0,  0, 'o')
     False
-    >>> lp < sg_labeled_point.SGLabeledPoint( 0,  0, 'a')
+    >>> lpoint_lt < labeled_point.LabeledPoint( 0,  0, 'a')
     False
-    >>> lp < sg_labeled_point.SGLabeledPoint(-2, -2, 'a')
+    >>> lpoint_lt < labeled_point.LabeledPoint(-2, -2, 'a')
     False
 
-
-__ne__(other)
-    >>> lp =  sg_labeled_point.SGLabeledPoint(0, 0, 'o')
+#   __ne__(other)
+    >>> lpoint_ne =  labeled_point.LabeledPoint(0, 0, 'o')
     
-    >>> lp != sg_labeled_point.SGLabeledPoint(0, 0, 'o')
+    >>> lpoint_ne != labeled_point.LabeledPoint(0, 0, 'o')
     False
-    >>> lp != sg_labeled_point.SGLabeledPoint(1, 0, 'o')
+    >>> lpoint_ne != labeled_point.LabeledPoint(1, 0, 'o')
     True
-    >>> lp != sg_labeled_point.SGLabeledPoint(0, 1, 'o')
+    >>> lpoint_ne != labeled_point.LabeledPoint(0, 1, 'o')
     True
-    >>> lp != sg_labeled_point.SGLabeledPoint(0, 0, 'x')
+    >>> lpoint_ne != labeled_point.LabeledPoint(0, 0, 'x')
     True
 
-    ### represent
-    
-__str__()
-    >>> print sg_labeled_point.SGLabeledPoint(1, 2, 'a')
+### represent
+#   __str__()
+    >>> print labeled_point.LabeledPoint(1, 2, 'a')
     (1, 2, a)
 
-listing()
-    >>> print sg_labeled_point.SGLabeledPoint(3, 4, 'b').listing()
+#   listing()
+    >>> print labeled_point.LabeledPoint(3, 4, 'b').listing()
     (3.0, 4.0, b)
