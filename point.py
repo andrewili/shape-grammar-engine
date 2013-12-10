@@ -1,7 +1,7 @@
-#   sg_point.py
+#   point.py
 
 
-class SGPoint(object):
+class Point(object):
     #   Immutable
     def __init__(self, x, y):
         self.spec = (x, y)
@@ -10,7 +10,7 @@ class SGPoint(object):
 
     @classmethod
     def from_spec(cls, x, y):
-        return SGPoint(x, y)
+        return Point(x, y)
 
         ### relations
     def __eq__(self, other):
@@ -43,4 +43,4 @@ class SGPoint(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_point_test.txt')
+    doctest.testfile('tests/point_test.txt')

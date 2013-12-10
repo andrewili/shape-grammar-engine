@@ -1,10 +1,10 @@
-#   sg_point_test.txt
+#   point_test.txt
 
-    >>> import sg_point
+    >>> import point
 
     ### construct
 __init__()
-    >>> p1 = sg_point.SGPoint(1, 2)
+    >>> p1 = point.Point(1, 2)
     
     >>> p1.spec
     (1, 2)
@@ -14,93 +14,93 @@ __init__()
     2
 
 from_spec(x, y)
-    >>> p = sg_point.SGPoint.from_spec(2, 3)
+    >>> p = point.Point.from_spec(2, 3)
 
     >>> p.spec
     (2, 3)
 
     ### relations ###
 __eq__(other)
-    >>> p =  sg_point.SGPoint(0, 0)
+    >>> p =  point.Point(0, 0)
     
-    >>> p == sg_point.SGPoint(0, 0)
+    >>> p == point.Point(0, 0)
     True
-    >>> p == sg_point.SGPoint(0, 1)
+    >>> p == point.Point(0, 1)
     False
-    >>> p == sg_point.SGPoint(1, 0)
+    >>> p == point.Point(1, 0)
     False
 
 __ge__(other)
-    >>> p  = sg_point.SGPoint( 0,  0)
+    >>> p  = point.Point( 0,  0)
     
-    >>> p >= sg_point.SGPoint(-1,  2)
+    >>> p >= point.Point(-1,  2)
     True
-    >>> p >= sg_point.SGPoint( 0, -1)
+    >>> p >= point.Point( 0, -1)
     True
-    >>> p >= sg_point.SGPoint( 0,  0)
+    >>> p >= point.Point( 0,  0)
     True
-    >>> p >= sg_point.SGPoint( 0,  2)
+    >>> p >= point.Point( 0,  2)
     False
-    >>> p >= sg_point.SGPoint( 2,  2)
+    >>> p >= point.Point( 2,  2)
     False
 
 __gt__(other)
-    >>> p1 = sg_point.SGPoint( 0,  0)
+    >>> p1 = point.Point( 0,  0)
     
-    >>> p1 > sg_point.SGPoint(-1,  2)
+    >>> p1 > point.Point(-1,  2)
     True
-    >>> p1 > sg_point.SGPoint( 0, -1)
+    >>> p1 > point.Point( 0, -1)
     True
-    >>> p1 > sg_point.SGPoint( 0,  0)
+    >>> p1 > point.Point( 0,  0)
     False
-    >>> p1 > sg_point.SGPoint( 0,  2)
+    >>> p1 > point.Point( 0,  2)
     False
-    >>> p1 > sg_point.SGPoint( 0,  0)
+    >>> p1 > point.Point( 0,  0)
     False
 
 __le__(other)
-    >>> p  =  sg_point.SGPoint( 0,  0)
+    >>> p  =  point.Point( 0,  0)
     
-    >>> p <=  sg_point.SGPoint( 1,  2)
+    >>> p <=  point.Point( 1,  2)
     True
-    >>> p <=  sg_point.SGPoint( 0,  1)
+    >>> p <=  point.Point( 0,  1)
     True
-    >>> p <=  sg_point.SGPoint( 0,  0)
+    >>> p <=  point.Point( 0,  0)
     True
-    >>> p <=  sg_point.SGPoint( 0, -2)
+    >>> p <=  point.Point( 0, -2)
     False
-    >>> p <=  sg_point.SGPoint(-2, -2)
+    >>> p <=  point.Point(-2, -2)
     False
 
 __lt__(other)
-    >>> p1 = sg_point.SGPoint( 0,  0)
+    >>> p1 = point.Point( 0,  0)
     
-    >>> p1 < sg_point.SGPoint( 1, -2)
+    >>> p1 < point.Point( 1, -2)
     True
-    >>> p1 < sg_point.SGPoint( 0,  1)
+    >>> p1 < point.Point( 0,  1)
     True
-    >>> p1 < sg_point.SGPoint( 0,  0)
+    >>> p1 < point.Point( 0,  0)
     False
-    >>> p1 < sg_point.SGPoint( 0, -2)
+    >>> p1 < point.Point( 0, -2)
     False
-    >>> p1 < sg_point.SGPoint(-2, -2)
+    >>> p1 < point.Point(-2, -2)
     False
 
 
 __ne__(other)
-    >>> p  = sg_point.SGPoint(0, 0)
+    >>> p  = point.Point(0, 0)
     
-    >>> p != sg_point.SGPoint(0, 0)
+    >>> p != point.Point(0, 0)
     False
-    >>> p != sg_point.SGPoint(0, 1)
+    >>> p != point.Point(0, 1)
     True
-    >>> p != sg_point.SGPoint(1, 0)
+    >>> p != point.Point(1, 0)
     True
 
     ### represent
 __str__()
-    >>> print sg_point.SGPoint(1, 2)
+    >>> print point.Point(1, 2)
     (1, 2)
-    >>> print sg_point.SGPoint(2, 3).listing()
+    >>> print point.Point(2, 3).listing()
     (2.0, 3.0)
     
