@@ -1,10 +1,10 @@
-#   sg_lp_partition.py
+#   lpoint_partition.py
 
-import sg_colabeling
-import sg_labeled_point
-import sg_lp_partition
+import colabeling
+import labeled_point
+import lpoint_partition
 
-class SGLPPartition(object):
+class LPointPartition(object):
     def __init__(self, lpoints):
         """Receives a (possibly unordered) list of labeled points:
             [SGLabeledPoint, ...]
@@ -22,7 +22,7 @@ class SGLPPartition(object):
     def are_lpoints(self, elements):
         value = True
         for element in elements:
-            if element.__class__ != sg_labeled_point.SGLabeledPoint:
+            if element.__class__ != labeled_point.LabeledPoint:
                 value = False
                 break
         return value
@@ -37,16 +37,16 @@ class SGLPPartition(object):
         for lpoint in lpoints:
             label = lpoint.label
             if label in dictionary:
-                colabeling = dictionary[label]
-                colabeling.add(lpoint)
+                new_colabeling = dictionary[label]
+                new_colabeling.add(lpoint)
             else:
-                colabeling = sg_colabeling.SGColabeling([lpoint])
-                dictionary[label] = colabeling
+                new_colabeling = colabeling.Colabeling([lpoint])
+                dictionary[label] = new_colabeling
         return dictionary
 
     @classmethod
     def new_empty(cls):
-        lpoint_partition = SGLPPartition({})
+        lpoint_partition = LPointPartition({})
         return lpoint_partition
 
     @classmethod
@@ -57,9 +57,9 @@ class SGLPPartition(object):
         lpoints = []
         for spec in specs:
             x, y, label = spec
-            lpoint = sg_labeled_point.SGLabeledPoint(x, y, label)
+            lpoint = labeled_point.LabeledPoint(x, y, label)
             lpoints.append(lpoint)
-        partition = SGLPPartition(lpoints)
+        partition = LPointPartition(lpoints)
         return partition
 
         ### represent
@@ -129,7 +129,7 @@ class SGLPPartition(object):
 
     def colabelings_are_sub_colabelings_in(self, other):
         """Receives a labeled point partition with the same labels
-            SGLPPartition
+            LPointPartition
         Returns whether each colabeling is a subcolabeling in the other 
         partition
         """
@@ -147,9 +147,9 @@ class SGLPPartition(object):
 
     def __add__(self, other):
         """Receives a labeled point partition:
-            SGLPPartition
+            LPointPartition
         Returns the sum of the two partitions:
-            SGLPPartition
+            LPointPartition
         """
         new_dictionary = self.dictionary.copy()
         for label in other.dictionary:
@@ -159,11 +159,11 @@ class SGLPPartition(object):
                 new_dictionary[label] = new_colabeling.union(other_colabeling)
             else:
                 new_dictionary[label] = other_colabeling
-        new_lpoint_partition = sg_lp_partition.SGLPPartition([])
+        new_lpoint_partition = LPointPartition([])
         new_lpoint_partition.dictionary = new_dictionary
         return new_lpoint_partition
 
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_lp_partition_test.txt')
+    doctest.testfile('tests/lpoint_partition_test.txt')

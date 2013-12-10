@@ -1,24 +1,24 @@
-#   sg_lp_partition_test.txt
+#   lpoint_partition_test.txt
 
-    >>> import sg_labeled_point
-    >>> import sg_line
-    >>> import sg_lp_partition
+    >>> import labeled_point
+    >>> import line
+    >>> import lpoint_partition
 
-    >>> lp_partition_drone = sg_lp_partition.SGLPPartition([])
+    >>> lp_partition_drone = lpoint_partition.LPointPartition([])
 
-    ### construct, represent
-    #   __init__(), __str__(), listing()
+### construct, represent
+#   __init__(), __str__(), listing()
 
     >>> def non_lpoints_for_init_test():
-    ...     line_01 = sg_line.SGLine.from_short_spec(0, 1)
-    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
+    ...     line_01 = line.Line.from_short_spec(0, 1)
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
     ...     non_lpoints = [lpoint_00a, line_01]
     ...     return non_lpoints
     >>> non_lpoints = non_lpoints_for_init_test()
-    >>> non_lpoint_partition = sg_lp_partition.SGLPPartition(non_lpoints)
+    >>> non_lpoint_partition = lpoint_partition.LPointPartition(non_lpoints)
     You're trying to make a partition with non labeled-points
 
-    >>> empty_lpoint_partition = sg_lp_partition.SGLPPartition.new_empty()
+    >>> empty_lpoint_partition = lpoint_partition.LPointPartition.new_empty()
 
     >>> print empty_lpoint_partition
     []
@@ -28,14 +28,14 @@
     True
 
     >>> def lpoints_for_init_test():
-    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
-    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
-    ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
-    ...     lpoint_33b = sg_labeled_point.SGLabeledPoint(3, 3, 'b')
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
     ...     lpoints = [lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a]
     ...     return lpoints
     >>> lpoints = lpoints_for_init_test()
-    >>> lpp = sg_lp_partition.SGLPPartition(lpoints)
+    >>> lpp = lpoint_partition.LPointPartition(lpoints)
     
     >>> print lpp
     [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
@@ -48,12 +48,12 @@
         (2.0, 2.0)
         (3.0, 3.0)
 
-    #   make_dictionary(lpoints)
+#   make_dictionary(lpoints)
 
     >>> def make_lpoints_for_make_dictionary_test():
-    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
-    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
-    ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
     ...     lpoints_1 = [lpoint_00a]
     ...     lpoints_2 = [lpoint_11a, lpoint_00a]
     ...     lpoints_3 = [lpoint_22b, lpoint_11a, lpoint_00a]
@@ -77,23 +77,23 @@
     a: [(0, 0), (1, 1)]
     b: [(2, 2)]
 
-    #   from_specs()
+#   from_specs()
 
     >>> lp_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
-    >>> lpp_from_specs = sg_lp_partition.SGLPPartition.from_specs(lp_specs)
+    >>> lpp_from_specs = lpoint_partition.LPointPartition.from_specs(lp_specs)
     >>> print lpp_from_specs
     [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
 
-    ### compare
-    #   __eq__(), __ne__()
+### compare
+#   __eq__(), __ne__()
 
     >>> test_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
     >>> equal_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
     >>> unequal_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
-    >>> lpp_test = sg_lp_partition.SGLPPartition.from_specs(test_specs)
-    >>> lpp_equal = sg_lp_partition.SGLPPartition.from_specs(equal_specs)
-    >>> lpp_unequal = sg_lp_partition.SGLPPartition.from_specs(unequal_specs)
-    >>> lpp_empty = sg_lp_partition.SGLPPartition.new_empty()
+    >>> lpp_test = lpoint_partition.LPointPartition.from_specs(test_specs)
+    >>> lpp_equal = lpoint_partition.LPointPartition.from_specs(equal_specs)
+    >>> lpp_unequal = lpoint_partition.LPointPartition.from_specs(unequal_specs)
+    >>> lpp_empty = lpoint_partition.LPointPartition.new_empty()
 
     >>> lpp_test == lpp_equal
     True
@@ -109,12 +109,12 @@
     >>> lpp_test != lpp_empty
     True
     
-    #   is_a_sub_partition_of(other_partition)
+#   is_a_sub_partition_of(other_partition)
 
-    >>> lpp_empty = sg_lp_partition.SGLPPartition([])
-    >>> lpp_empty_b = sg_lp_partition.SGLPPartition([])
-    >>> lpp_bigger = sg_lp_partition.SGLPPartition.from_specs([(4, 4, 'c'), (3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
-    >>> lpp_smaller = sg_lp_partition.SGLPPartition.from_specs([(2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
+    >>> lpp_empty = lpoint_partition.LPointPartition([])
+    >>> lpp_empty_b = lpoint_partition.LPointPartition([])
+    >>> lpp_bigger = lpoint_partition.LPointPartition.from_specs([(4, 4, 'c'), (3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
+    >>> lpp_smaller = lpoint_partition.LPointPartition.from_specs([(2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
 
     >>> lpp_empty.is_a_sub_partition_of(lpp_empty_b)
     True
@@ -127,21 +127,21 @@
     >>> lpp_test.is_a_sub_partition_of(lpp_empty)
     False
 
-    #   colabelings_are_sub_colabelings_in(other_lp_partition)
+#   colabelings_are_sub_colabelings_in(other_lp_partition)
 
     >>> def make_lpoint_partitions():
-    ...     lpoint_00a = sg_labeled_point.SGLabeledPoint(0, 0, 'a')
-    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
-    ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
-    ...     lpoint_33b = sg_labeled_point.SGLabeledPoint(3, 3, 'b')
-    ...     lpoint_33c = sg_labeled_point.SGLabeledPoint(3, 3, 'c')
-    ...     lpoint_44c = sg_labeled_point.SGLabeledPoint(4, 4, 'c')
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
+    ...     lpoint_33c = labeled_point.LabeledPoint(3, 3, 'c')
+    ...     lpoint_44c = labeled_point.LabeledPoint(4, 4, 'c')
     ...     lpoints_bigger = [lpoint_44c, lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a]
     ...     lpoints_smaller = [lpoint_22b, lpoint_11a, lpoint_00a]
     ...     lpoints_different = [lpoint_33c, lpoint_22b, lpoint_11a, lpoint_00a]
-    ...     lpp_bigger = sg_lp_partition.SGLPPartition(lpoints_bigger)
-    ...     lpp_smaller = sg_lp_partition.SGLPPartition(lpoints_smaller)
-    ...     lpp_different = sg_lp_partition.SGLPPartition(lpoints_different)
+    ...     lpp_bigger = lpoint_partition.LPointPartition(lpoints_bigger)
+    ...     lpp_smaller = lpoint_partition.LPointPartition(lpoints_smaller)
+    ...     lpp_different = lpoint_partition.LPointPartition(lpoints_different)
     ...     return (lpp_bigger, lpp_smaller, lpp_different)
     >>> lpp_bigger, lpp_smaller, lpp_different = make_lpoint_partitions()
 
@@ -152,18 +152,18 @@
     >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_different)
     False
 
-    ### operate
-    #   __add__(other)
+### operate
+#   __add__(other)
     
     >>> def make_lpps_for_add_test():
-    ...     lpoint_11a = sg_labeled_point.SGLabeledPoint(1, 1, 'a')
-    ...     lpoint_22b = sg_labeled_point.SGLabeledPoint(2, 2, 'b')
-    ...     lpoint_33b = sg_labeled_point.SGLabeledPoint(3, 3, 'b')
-    ...     lpoint_44c = sg_labeled_point.SGLabeledPoint(4, 4, 'c')
-    ...     lpp_0a = sg_lp_partition.SGLPPartition([])
-    ...     lpp_0b = sg_lp_partition.SGLPPartition([])
-    ...     lpp_1 = sg_lp_partition.SGLPPartition([lpoint_22b, lpoint_11a])
-    ...     lpp_2 = sg_lp_partition.SGLPPartition([lpoint_44c, lpoint_33b, lpoint_11a])
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
+    ...     lpoint_44c = labeled_point.LabeledPoint(4, 4, 'c')
+    ...     lpp_0a = lpoint_partition.LPointPartition([])
+    ...     lpp_0b = lpoint_partition.LPointPartition([])
+    ...     lpp_1 = lpoint_partition.LPointPartition([lpoint_22b, lpoint_11a])
+    ...     lpp_2 = lpoint_partition.LPointPartition([lpoint_44c, lpoint_33b, lpoint_11a])
     ...     return (lpp_0a, lpp_0b, lpp_1, lpp_2)
     >>> lpp_0a, lpp_0b, lpp_1, lpp_2 = make_lpps_for_add_test()
 
@@ -197,4 +197,4 @@
     c:
         (4.0, 4.0)
 
-    #   __subtract__(other)
+#   __subtract__(other)
