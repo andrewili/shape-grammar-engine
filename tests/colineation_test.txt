@@ -1,9 +1,9 @@
-#   column_test.txt
+#   colineation_test.txt
 
-    >>> import column
+    >>> import colineation
     >>> import line
     
-    >>> drone_column = column.Column([line.Line.from_short_spec(0, 1)])
+    >>> colineation_drone = colineation.Colineation([line.Line.from_short_spec(0, 1)])
 
 ### construct, represent
 #   __init__(lines), __str__(), listing()
@@ -14,45 +14,47 @@
     ...     line_02 = line.Line.from_short_spec(0, 2)
     ...     line_13 = line.Line.from_short_spec(1, 3)
     ...     line_46 = line.Line.from_short_spec(4, 6)
-    ...     non_collinear_lines = [line_0001, line_0010]
-    ...     collinear_lines = [line_46, line_13, line_02]
-    ...     return [no_lines, non_collinear_lines, collinear_lines]
-    >>> no_lines, non_collinear_lines, collinear_lines = lines_for_init_test()
+    ...     non_colinear_lines = [line_0001, line_0010]
+    ...     colinear_lines = [line_46, line_13, line_02]
+    ...     return [no_lines, non_colinear_lines, colinear_lines]
+    >>> no_lines, non_colinear_lines, colinear_lines = lines_for_init_test()
 
-    >>> empty_column = column.Column(no_lines)
-    You're trying to make a column with non-collinear lines or no lines
-    >>> non_collinear_column = column.Column(non_collinear_lines)
-    You're trying to make a column with non-collinear lines or no lines
-    >>> collinear_column = column.Column(collinear_lines)
-    >>> print collinear_column
+    >>> empty_colineation = colineation.Colineation(no_lines)
+    You're trying to make a colineation with non-colinear lines or no lines
+    >>> non_colinear_colineation = colineation.Colineation(non_colinear_lines)
+    You're trying to make a colineation with non-colinear lines or no lines
+
+    >>> colinear_colineation = colineation.Colineation(colinear_lines)
+    
+    >>> print colinear_colineation
     [(0, 0, 2, 2), (1, 1, 3, 3), (4, 4, 6, 6)]
-    >>> print collinear_column.listing()
+    >>> print colinear_colineation.listing()
     (0.0, 0.0, 2.0, 2.0)
     (1.0, 1.0, 3.0, 3.0)
     (4.0, 4.0, 6.0, 6.0)
-    >>> print collinear_column.listing(-1)
+    >>> print colinear_colineation.listing(-1)
     (0.0, 0.0, 2.0, 2.0)
     (1.0, 1.0, 3.0, 3.0)
     (4.0, 4.0, 6.0, 6.0)
-    >>> print collinear_column.listing(2)
+    >>> print colinear_colineation.listing(2)
             (0.0, 0.0, 2.0, 2.0)
             (1.0, 1.0, 3.0, 3.0)
             (4.0, 4.0, 6.0, 6.0)
 
-### collinear
-#   collinear(lines)
-    >>> def lines_for_collinear_test():
+### colinear
+#   colinear(lines)
+    >>> def lines_for_colinear_test():
     ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)
     ...     line_0103 = line.Line.from_spec(0, 1, 0, 3)
     ...     line_4060 = line.Line.from_spec(4, 0, 6, 0)
-    ...     collinear_lines = [line_0002, line_0103]
-    ...     non_collinear_lines = [line_4060, line_0103, line_0002]
-    ...     return [collinear_lines, non_collinear_lines]
-    >>> collinear_lines, non_collinear_lines = lines_for_collinear_test()
+    ...     colinear_lines = [line_0002, line_0103]
+    ...     non_colinear_lines = [line_4060, line_0103, line_0002]
+    ...     return [colinear_lines, non_colinear_lines]
+    >>> colinear_lines, non_colinear_lines = lines_for_colinear_test()
 
-    >>> drone_column.collinear(collinear_lines)
+    >>> colineation_drone.colinear(colinear_lines)
     True
-    >>> drone_column.collinear(non_collinear_lines)
+    >>> colineation_drone.colinear(non_colinear_lines)
     False
 
 ### maximize
@@ -64,7 +66,7 @@
     >>> disjoint_lines = [line_01, line_23]
     >>> overlapping_lines = [line_02, line_13]
 
-    >>> new_lines = drone_column.get_maximal_lines_from(disjoint_lines, overlapping_lines)
+    >>> new_lines = colineation_drone.get_maximal_lines_from(disjoint_lines, overlapping_lines)
     >>> for a_line in new_lines:
     ...     print a_line
     (0, 0, 3, 3)
@@ -80,7 +82,7 @@
     ...     return [line_02, line_13, line_46, line_56, line_79, line_89]
     >>> non_maximal_lines = non_maximal_lines_for_maximal_test()
 
-    >>> maximal_lines = drone_column.maximal(non_maximal_lines)
+    >>> maximal_lines = colineation_drone.maximal(non_maximal_lines)
     >>> for a_line in sorted(maximal_lines):
     ...     print a_line
     (0, 0, 3, 3)
@@ -92,7 +94,7 @@
     ...     line_01 = line.Line.from_short_spec(0, 1)
     ...     return [line_01]
     >>> singleton_line_list = singleton_line_list_for_maximal_test()
-    >>> new_line_from_singleton_list = drone_column.get_first_maximal_line_from(singleton_line_list)
+    >>> new_line_from_singleton_list = colineation_drone.get_first_maximal_line_from(singleton_line_list)
     >>> print new_line_from_singleton_list
     (0, 0, 1, 1)
 
@@ -102,7 +104,7 @@
     ...     line_23 = line.Line.from_short_spec(2, 3)
     ...     return [line_01, line_12, line_23]
     >>> non_singleton_list = non_singleton_list_for_maximal_test()
-    >>> new_line_from_non_singleton_list = drone_column.get_first_maximal_line_from(non_singleton_list)
+    >>> new_line_from_non_singleton_list = colineation_drone.get_first_maximal_line_from(non_singleton_list)
     >>> print new_line_from_non_singleton_list
     (0, 0, 3, 3)
 
@@ -110,7 +112,7 @@
     >>> line_01 = line.Line.from_short_spec(0, 1)
     >>> singleton_lines = [line_01]
 
-    >>> new_line = drone_column.get_singleton_line_from(singleton_lines)
+    >>> new_line = colineation_drone.get_singleton_line_from(singleton_lines)
     >>> print new_line
     (0, 0, 1, 1)
     >>> len(singleton_lines)
@@ -124,7 +126,7 @@
     ...     line_23 = line.Line.from_short_spec(2, 3)
     ...     return [line_01, line_23]
     >>> non_maximal_lines_1 = non_maximal_lines_for_non_singleton_test_1()
-    >>> new_line_1 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_1)
+    >>> new_line_1 = colineation_drone.get_first_maximal_line_from_non_singleton(non_maximal_lines_1)
     >>> print new_line_1
     (0, 0, 1, 1)
     >>> len(non_maximal_lines_1)
@@ -141,7 +143,7 @@
     ...     return [line_02, line_13]
     
     >>> non_maximal_lines_2 = non_maximal_lines_for_non_singleton_test_2()
-    >>> new_line_2 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_2)
+    >>> new_line_2 = colineation_drone.get_first_maximal_line_from_non_singleton(non_maximal_lines_2)
     >>> print new_line_2
     (0, 0, 3, 3)
     >>> len(non_maximal_lines_2)
@@ -157,7 +159,7 @@
     ...     return [line_02, line_13, line_46]
     
     >>> non_maximal_lines_3 = non_maximal_lines_for_non_singleton_test_3()
-    >>> new_line_3 = drone_column.get_first_maximal_line_from(non_maximal_lines_3)
+    >>> new_line_3 = colineation_drone.get_first_maximal_line_from(non_maximal_lines_3)
     >>> print new_line_3
     (0, 0, 3, 3)
     >>> len(non_maximal_lines_3)
@@ -178,7 +180,7 @@
     ...     return [line_02, line_13, line_35, line_67]
     
     >>> non_maximal_lines_4 = non_maximal_lines_for_non_singleton_test_4()
-    >>> new_line_4 = drone_column.get_first_maximal_line_from_non_singleton(non_maximal_lines_4)
+    >>> new_line_4 = colineation_drone.get_first_maximal_line_from_non_singleton(non_maximal_lines_4)
     >>> print new_line_4
     (0, 0, 5, 5)
     >>> len(non_maximal_lines_4)
@@ -203,68 +205,68 @@
     ...     return [line_26, line_01, line_02, line_13, line_17, line_24, line_35, line_46, line_57, line_68, line_78]
     >>> line_26, line_01, line_02, line_13, line_17, line_24, line_35, line_46, line_57, line_68, line_78 = lines_for_mergeable_test()
 
-    >>> drone_column.lines_can_be_merged(line_26, line_02)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_02)
     True
-    >>> drone_column.lines_can_be_merged(line_26, line_68)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_68)
     True
-    >>> drone_column.lines_can_be_merged(line_26, line_13)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_13)
     True
-    >>> drone_column.lines_can_be_merged(line_26, line_57)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_57)
     True
-    >>> drone_column.lines_can_be_merged(line_26, line_24)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_24)
     True
-    >>> drone_column.lines_can_be_merged(line_26, line_46)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_46)
     True
-    >>> drone_column.lines_can_be_merged(line_26, line_35)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_35)
     True
-    >>> drone_column.lines_can_be_merged(line_26, line_17)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_17)
     True
-    >>> drone_column.lines_can_be_merged(line_26, line_01)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_01)
     False
-    >>> drone_column.lines_can_be_merged(line_26, line_78)
+    >>> colineation_drone.lines_can_be_merged(line_26, line_78)
     False
 
 ### relations
 #   __eq__(), __ne__()
     >>> line_1 = line.Line.from_short_spec(0, 1)
     >>> line_2 = line.Line.from_short_spec(2, 3)
-    >>> column_1a = column.Column([line_1, line_2])
-    >>> column_1b = column.Column([line_2, line_1])
-    >>> column_2 = column.Column([line_1])
+    >>> colineation_1a = colineation.Colineation([line_1, line_2])
+    >>> colineation_1b = colineation.Colineation([line_2, line_1])
+    >>> colineation_2 = colineation.Colineation([line_1])
 
-    >>> column_1a == column_1b
+    >>> colineation_1a == colineation_1b
     True
-    >>> column_1a == column_2
+    >>> colineation_1a == colineation_2
     False
-    >>> column_1a != column_1b
+    >>> colineation_1a != colineation_1b
     False
-    >>> column_1a != column_2
+    >>> colineation_1a != colineation_2
     True
 
-#   is_a_subcolumn_of()
-    >>> def make_columns_for_sub_column():
+#   is_a_subcolineation_of()
+    >>> def make_colineations_for_sub_colineation():
     ...     line_02 = line.Line.from_short_spec(0, 2)
     ...     line_12 = line.Line.from_short_spec(1, 2)
     ...     line_23 = line.Line.from_short_spec(2, 3)
     ...     line_45 = line.Line.from_short_spec(4, 5)
     ...     line_46 = line.Line.from_short_spec(4, 6)
     ...     line_56 = line.Line.from_short_spec(5, 6)
-    ...     test_column_12_45 = column.Column([line_12, line_45])
-    ...     column_02_46 = column.Column([line_02, line_46])
-    ...     column_02_56 = column.Column([line_02, line_56])
-    ...     column_23_46 = column.Column([line_23, line_46])
-    ...     column_23_56 = column.Column([line_23, line_56])
-    ...     return [test_column_12_45, column_02_46, column_02_56, column_23_46, column_23_56]
-    >>> test_column_12_45, column_02_46, column_02_56, column_23_46, column_23_56 = make_columns_for_sub_column()
+    ...     test_colineation_12_45 = colineation.Colineation([line_12, line_45])
+    ...     colineation_02_46 = colineation.Colineation([line_02, line_46])
+    ...     colineation_02_56 = colineation.Colineation([line_02, line_56])
+    ...     colineation_23_46 = colineation.Colineation([line_23, line_46])
+    ...     colineation_23_56 = colineation.Colineation([line_23, line_56])
+    ...     return [test_colineation_12_45, colineation_02_46, colineation_02_56, colineation_23_46, colineation_23_56]
+    >>> test_colineation_12_45, colineation_02_46, colineation_02_56, colineation_23_46, colineation_23_56 = make_colineations_for_sub_colineation()
 
-    >>> print test_column_12_45
+    >>> print test_colineation_12_45
     [(1, 1, 2, 2), (4, 4, 5, 5)]
 
-    >>> test_column_12_45.is_a_subcolumn_of(column_02_46)
+    >>> test_colineation_12_45.is_a_subcolineation_of(colineation_02_46)
     True
-    >>> test_column_12_45.is_a_subcolumn_of(column_02_56)
+    >>> test_colineation_12_45.is_a_subcolineation_of(colineation_02_56)
     False
-    >>> test_column_12_45.is_a_subcolumn_of(column_23_46)
+    >>> test_colineation_12_45.is_a_subcolineation_of(colineation_23_46)
     False
-    >>> test_column_12_45.is_a_subcolumn_of(column_23_56)
+    >>> test_colineation_12_45.is_a_subcolineation_of(colineation_23_56)
     False

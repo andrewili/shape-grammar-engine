@@ -1,29 +1,29 @@
-#   column.py
+#   colineation.py
 
 import line
 
-class Column(object):                   #   Rename as colineation?
-    """Consists of a non-empty (and unordered) list of collinear lines. 
+class Colineation(object):
+    """Consists of a non-empty (and unordered) list of colinear lines. 
     Immutable.
     """
         ### construct
     def __init__(self, lines):
-        """Receives a non-empty unsorted list of collinear lines:
+        """Receives a non-empty unsorted list of colinear lines:
             [Line, ...], n >= 1
         """
         try:
             if (len(lines) == 0 or
-                not self.collinear(lines)
+                not self.colinear(lines)
             ):
                 raise ValueError()
             else:
                 self.lines = lines
         except ValueError:
             print '%s %s' % (
-                "You're trying to make a column",
-                "with non-collinear lines or no lines")
+                "You're trying to make a colineation",
+                "with non-colinear lines or no lines")
 
-    def collinear(self, lines):
+    def colinear(self, lines):
         carrier = lines[0].carrier
         for a_line in lines:
             if a_line.carrier != carrier:
@@ -32,9 +32,9 @@ class Column(object):                   #   Rename as colineation?
 
         ### maximize
     def get_maximal_lines_from(self, maximal_lines_1, maximal_lines_2):
-        """Receives 2 ordered lists of maximal collinear lines:
+        """Receives 2 ordered lists of maximal colinear lines:
             [Line, ...], n >= 1
-        Returns an ordered list of maximal collinear lines:
+        Returns an ordered list of maximal colinear lines:
             [Line, ...], n >= 1, should not contain duplicates
         """
         non_maximal_unsorted_lines = []
@@ -45,9 +45,9 @@ class Column(object):                   #   Rename as colineation?
         return new_maximal_lines
 
     def maximal(self, non_maximal_lines):
-        """Receives an ordered list of (possibly non-maximal) collinear lines:
+        """Receives an ordered list of (possibly non-maximal) colinear lines:
             [Line, ...], n >= 1
-        Returns an ordered list of maximal collinear lines:
+        Returns an ordered list of maximal colinear lines:
             [Line, ...], n >= 1
         """
         maximal_lines = []
@@ -58,7 +58,7 @@ class Column(object):                   #   Rename as colineation?
         return maximal_lines
 
     def get_first_maximal_line_from(self, lines):
-        """Receives an ordered list of (possibly non-maximal) collinear lines:
+        """Receives an ordered list of (possibly non-maximal) colinear lines:
             [Line, ...], n >= 1
         Returns the first maximal line in the list:
             Line
@@ -79,7 +79,7 @@ class Column(object):                   #   Rename as colineation?
         return new_line
 
     def get_first_maximal_line_from_non_singleton(self, non_maximal_lines):
-        """Receives an ordered list of (possibly non-maximal) collinear lines:
+        """Receives an ordered list of (possibly non-maximal) colinear lines:
             [Line, ...], n >= 2
         Returns the first maximal line:
             Line
@@ -96,7 +96,7 @@ class Column(object):                   #   Rename as colineation?
         return first_maximal_line
 
     def lines_can_be_merged(self, line_1, line_2):
-        """Receives 2 collinear lines.
+        """Receives 2 colinear lines.
         Returns a boolean whether the lines can be merged.
         See Krishnamurti (1980), 465.
         """
@@ -131,8 +131,8 @@ class Column(object):                   #   Rename as colineation?
         line_strings = []
         for a_line in sorted(self.lines):
             line_strings.append(a_line.__str__())
-        column_string = ', '.join(line_strings)
-        return '[%s]' % column_string
+        colineation_string = ', '.join(line_strings)
+        return '[%s]' % colineation_string
 
     def listing(self, indent_level=0):
         """Receives indent_level:
@@ -149,30 +149,30 @@ class Column(object):                   #   Rename as colineation?
         line_listings = []
         for a_line in sorted(self.lines):
             line_listings.append(indent_string + a_line.listing())
-        column_listing = '\n'.join(line_listings)
-        return column_listing
+        colineation_listing = '\n'.join(line_listings)
+        return colineation_listing
 
         ### relations
     def __eq__(self, other):
-        """Receives a column:
-            Column
-        Returns whether both columns contain the same lines.
+        """Receives a colineation:
+            Colineation
+        Returns whether both colineations contain the same lines.
         """
         return sorted(self.lines) == sorted(other.lines)
 
     def __ne__(self, other):
-        """Receives a column:
-            Column
-        Returns whether both columns do not contain the same lines.
+        """Receives a colineation:
+            Colineation
+        Returns whether both colineations do not contain the same lines.
         """
         return sorted(self.lines) != sorted(other.lines)
 
-    def is_a_subcolumn_of(self, other):
-        """Receives a non-empty collinear column:
-            Column
+    def is_a_subcolineation_of(self, other):
+        """Receives a non-empty colinear colineation:
+            Colineation
         """
         for a_line in self.lines:
-            if not a_line.is_a_subline_in_column(other):
+            if not a_line.is_a_subline_in_colineation(other):
                 return False
         return True
 
@@ -181,4 +181,4 @@ class Column(object):                   #   Rename as colineation?
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/column_test.txt')
+    doctest.testfile('tests/colineation_test.txt')

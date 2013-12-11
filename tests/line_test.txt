@@ -1,6 +1,6 @@
 #   line_test.txt
 
-    >>> import sg_column
+    >>> import colineation
     >>> import line
     >>> import point
 
@@ -8,7 +8,6 @@
     
 ### construct
 #   __init__()
-    
     >>> line_01 = line.Line.from_spec(0, 0, 1, 1)
     
     >>> print line_01.tail
@@ -19,11 +18,9 @@
     (0, 0, 1, 1)
     >>> line_01.carrier
     (45.0, 0)
-
     
     >>> zero_length_line = line.Line.from_spec(0, 0, 0, 0)
     You're trying to create a zero-length line
-    
     
     >>> line_w_big_tail = line.Line.from_spec(1, 1, 0, 0)
     
@@ -32,7 +29,6 @@
     >>> print line_w_big_tail.head
     (1, 1)
     
-
     >>> print line.Line.from_spec(0, 0, 0, 1).carrier
     (0.0, 0)
     >>> print line.Line.from_spec(0, 0, 1, 0).carrier
@@ -176,7 +172,7 @@
     False
 
 ### part relations
-#   is_a_subline_in_column(column)
+#   is_a_subline_in_colineation(colineation)
     
     >>> line_control = line.Line.from_spec(1, 1, 2, 2)
     >>> line_01 = line.Line.from_spec(0, 0, 1, 1)
@@ -187,45 +183,45 @@
     >>> line_23 = line.Line.from_spec(2, 2, 3, 3)
     >>> line_45 = line.Line.from_spec(4, 4, 5, 5)
 
-    >>> column_01 = sg_column.SGColumn([line_01])
-    >>> column_02 = sg_column.SGColumn([line_02])
-    >>> column_03 = sg_column.SGColumn([line_03])
-    >>> column_12 = sg_column.SGColumn([line_12])
-    >>> column_13 = sg_column.SGColumn([line_13])
-    >>> column_23 = sg_column.SGColumn([line_23])
-    >>> column_01_23 = sg_column.SGColumn([line_01, line_23])
-    >>> column_01_45 = sg_column.SGColumn([line_01, line_45])
-    >>> column_02_45 = sg_column.SGColumn([line_02, line_45])
-    >>> column_03_45 = sg_column.SGColumn([line_03, line_45])
-    >>> column_12_45 = sg_column.SGColumn([line_12, line_45])
-    >>> column_13_45 = sg_column.SGColumn([line_13, line_45])
-    >>> column_23_45 = sg_column.SGColumn([line_23, line_45])
+    >>> colineation_01 = colineation.Colineation([line_01])
+    >>> colineation_02 = colineation.Colineation([line_02])
+    >>> colineation_03 = colineation.Colineation([line_03])
+    >>> colineation_12 = colineation.Colineation([line_12])
+    >>> colineation_13 = colineation.Colineation([line_13])
+    >>> colineation_23 = colineation.Colineation([line_23])
+    >>> colineation_01_23 = colineation.Colineation([line_01, line_23])
+    >>> colineation_01_45 = colineation.Colineation([line_01, line_45])
+    >>> colineation_02_45 = colineation.Colineation([line_02, line_45])
+    >>> colineation_03_45 = colineation.Colineation([line_03, line_45])
+    >>> colineation_12_45 = colineation.Colineation([line_12, line_45])
+    >>> colineation_13_45 = colineation.Colineation([line_13, line_45])
+    >>> colineation_23_45 = colineation.Colineation([line_23, line_45])
 
-    >>> line_control.is_a_subline_in_column(column_01)
+    >>> line_control.is_a_subline_in_colineation(colineation_01)
     False
-    >>> line_control.is_a_subline_in_column(column_02)
+    >>> line_control.is_a_subline_in_colineation(colineation_02)
     True
-    >>> line_control.is_a_subline_in_column(column_03)
+    >>> line_control.is_a_subline_in_colineation(colineation_03)
     True
-    >>> line_control.is_a_subline_in_column(column_12)
+    >>> line_control.is_a_subline_in_colineation(colineation_12)
     True
-    >>> line_control.is_a_subline_in_column(column_13)
+    >>> line_control.is_a_subline_in_colineation(colineation_13)
     True
-    >>> line_control.is_a_subline_in_column(column_23)
+    >>> line_control.is_a_subline_in_colineation(colineation_23)
     False
-    >>> line_control.is_a_subline_in_column(column_01_23)
+    >>> line_control.is_a_subline_in_colineation(colineation_01_23)
     False
-    >>> line_control.is_a_subline_in_column(column_01_45)
+    >>> line_control.is_a_subline_in_colineation(colineation_01_45)
     False
-    >>> line_control.is_a_subline_in_column(column_02_45)
+    >>> line_control.is_a_subline_in_colineation(colineation_02_45)
     True
-    >>> line_control.is_a_subline_in_column(column_03_45)
+    >>> line_control.is_a_subline_in_colineation(colineation_03_45)
     True
-    >>> line_control.is_a_subline_in_column(column_12_45)
+    >>> line_control.is_a_subline_in_colineation(colineation_12_45)
     True
-    >>> line_control.is_a_subline_in_column(column_13_45)
+    >>> line_control.is_a_subline_in_colineation(colineation_13_45)
     True
-    >>> line_control.is_a_subline_in_column(column_23_45)
+    >>> line_control.is_a_subline_in_colineation(colineation_23_45)
     False
 
 #   is_a_subline_of(other)

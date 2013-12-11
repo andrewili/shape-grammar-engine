@@ -2,12 +2,11 @@ Log
 
 
 ### Class names
-
 #   2013-12-07
     LabeledShape
         Shape
             LinePartition (dict)
-                Column (list)
+                Colineation (list)
                     Line
         LPointPartition (dict)
             Colabeling (set)
@@ -15,7 +14,6 @@ Log
                     Point
 
 ### ElementCell
-
 #   2013-12-07
     Parent of LineSet, PointSet
 
@@ -31,7 +29,6 @@ Log
     Conclusion: abandon ElementCell.
 
 ### SGColumn.get_maximal_lines_from()
-
 #   2013-12-10
     Change to class method?
 
