@@ -1,8 +1,8 @@
-#   sg_column.py
+#   column.py
 
 import line
 
-class SGColumn(object):                 #   Rename as colineation?
+class Column(object):                   #   Rename as colineation?
     """Consists of a non-empty (and unordered) list of collinear lines. 
     Immutable.
     """
@@ -155,21 +155,21 @@ class SGColumn(object):                 #   Rename as colineation?
         ### relations
     def __eq__(self, other):
         """Receives a column:
-            SGColumn
+            Column
         Returns whether both columns contain the same lines.
         """
         return sorted(self.lines) == sorted(other.lines)
 
     def __ne__(self, other):
         """Receives a column:
-            SGColumn
+            Column
         Returns whether both columns do not contain the same lines.
         """
         return sorted(self.lines) != sorted(other.lines)
 
     def is_a_subcolumn_of(self, other):
         """Receives a non-empty collinear column:
-            SGColumn
+            Column
         """
         for a_line in self.lines:
             if not a_line.is_a_subline_in_column(other):
@@ -181,4 +181,4 @@ class SGColumn(object):                 #   Rename as colineation?
         ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_column_test.txt')
+    doctest.testfile('tests/column_test.txt')
