@@ -25,8 +25,8 @@ class Colineation(object):
 
     def colinear(self, lines):
         carrier = lines[0].carrier
-        for a_line in lines:
-            if a_line.carrier != carrier:
+        for line_x in lines:
+            if line_x.carrier != carrier:
                 return False
         return True
 
@@ -129,8 +129,8 @@ class Colineation(object):
             [(x1, y1, x2, y2), ...]
         """
         line_strings = []
-        for a_line in sorted(self.lines):
-            line_strings.append(a_line.__str__())
+        for line_x in sorted(self.lines):
+            line_strings.append(line_x.__str__())
         colineation_string = ', '.join(line_strings)
         return '[%s]' % colineation_string
 
@@ -147,8 +147,8 @@ class Colineation(object):
             indent_level = 0
         indent_string = ' ' * indent_level * indent_increment
         line_listings = []
-        for a_line in sorted(self.lines):
-            line_listings.append(indent_string + a_line.listing())
+        for line_x in sorted(self.lines):
+            line_listings.append(indent_string + line_x.listing())
         colineation_listing = '\n'.join(line_listings)
         return colineation_listing
 
@@ -171,8 +171,8 @@ class Colineation(object):
         """Receives a non-empty colinear colineation:
             Colineation
         """
-        for a_line in self.lines:
-            if not a_line.is_a_subline_in_colineation(other):
+        for line_x in self.lines:
+            if not line_x.is_a_subline_in_colineation(other):
                 return False
         return True
 
