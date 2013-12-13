@@ -60,12 +60,12 @@ class LinePartition(object):
         """
         lines = []
         for carrier in self.dictionary:
-            colineation_i = self.dictionary[carrier]
-            lines_by_carrier = colineation_i.lines
+            the_colineation = self.dictionary[carrier]
+            lines_by_carrier = the_colineation.lines
             lines.extend(lines_by_carrier)
         line_strings = []
-        for line_i in sorted(lines):
-            line_strings.append(line_i.__str__())
+        for line_x in sorted(lines):
+            line_strings.append(line_x.__str__())
         line_string = ', '.join(sorted(line_strings))
         string = '[%s]' % line_string
         return string
@@ -84,9 +84,9 @@ class LinePartition(object):
             for carrier in sorted(self.dictionary):
                 carrier_listing = self.get_carrier_listing(carrier)
                 string_lines.append(carrier_listing)
-                colineation_i = self.dictionary[carrier]    #   colineation_i is a list
+                the_colineation = self.dictionary[carrier]
                 colineation_listing_indent_level = 1
-                colineation_listing = colineation_i.listing(
+                colineation_listing = the_colineation.listing(
                     colineation_listing_indent_level)
                 string_lines.append(colineation_listing)
             string = '\n'.join(string_lines)

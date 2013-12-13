@@ -5,10 +5,10 @@ Log
 #   2013-12-07
     LabeledShape
         Shape
-            LinePartition (dict)        too long
+            LinePartition (dict)
                 Colineation (list)
                     Line
-        LPointPartition (dict)          too long
+        LPointPartition (dict)
             Colabeling (set)
                 LabeledPoint
                     Point
