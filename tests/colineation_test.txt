@@ -66,7 +66,7 @@
     >>> disjoint_lines = [line_01, line_23]
     >>> overlapping_lines = [line_02, line_13]
 
-    >>> new_lines = colineation_drone.get_maximal_lines_from(disjoint_lines, overlapping_lines)
+    >>> new_lines = colineation.Colineation.get_maximal_lines_from(disjoint_lines, overlapping_lines)
     >>> for a_line in new_lines:
     ...     print a_line
     (0, 0, 3, 3)
@@ -82,7 +82,7 @@
     ...     return [line_02, line_13, line_46, line_56, line_79, line_89]
     >>> non_maximal_lines = non_maximal_lines_for_maximal_test()
 
-    >>> maximal_lines = colineation_drone.maximal(non_maximal_lines)
+    >>> maximal_lines = colineation.Colineation.maximal(non_maximal_lines)
     >>> for a_line in sorted(maximal_lines):
     ...     print a_line
     (0, 0, 3, 3)
@@ -94,7 +94,7 @@
     ...     line_01 = line.Line.from_short_spec(0, 1)
     ...     return [line_01]
     >>> singleton_line_list = singleton_line_list_for_maximal_test()
-    >>> new_line_from_singleton_list = colineation_drone.get_first_maximal_line_from(singleton_line_list)
+    >>> new_line_from_singleton_list = colineation.Colineation.get_first_maximal_line_from(singleton_line_list)
     >>> print new_line_from_singleton_list
     (0, 0, 1, 1)
 
@@ -104,7 +104,7 @@
     ...     line_23 = line.Line.from_short_spec(2, 3)
     ...     return [line_01, line_12, line_23]
     >>> non_singleton_list = non_singleton_list_for_maximal_test()
-    >>> new_line_from_non_singleton_list = colineation_drone.get_first_maximal_line_from(non_singleton_list)
+    >>> new_line_from_non_singleton_list = colineation.Colineation.get_first_maximal_line_from(non_singleton_list)
     >>> print new_line_from_non_singleton_list
     (0, 0, 3, 3)
 
@@ -112,7 +112,7 @@
     >>> line_01 = line.Line.from_short_spec(0, 1)
     >>> singleton_lines = [line_01]
 
-    >>> new_line = colineation_drone.get_singleton_line_from(singleton_lines)
+    >>> new_line = colineation.Colineation.get_singleton_line_from(singleton_lines)
     >>> print new_line
     (0, 0, 1, 1)
     >>> len(singleton_lines)
@@ -126,7 +126,7 @@
     ...     line_23 = line.Line.from_short_spec(2, 3)
     ...     return [line_01, line_23]
     >>> non_maximal_lines_1 = non_maximal_lines_for_non_singleton_test_1()
-    >>> new_line_1 = colineation_drone.get_first_maximal_line_from_non_singleton(non_maximal_lines_1)
+    >>> new_line_1 = colineation.Colineation.get_first_maximal_line_from_non_singleton(non_maximal_lines_1)
     >>> print new_line_1
     (0, 0, 1, 1)
     >>> len(non_maximal_lines_1)
@@ -143,7 +143,7 @@
     ...     return [line_02, line_13]
     
     >>> non_maximal_lines_2 = non_maximal_lines_for_non_singleton_test_2()
-    >>> new_line_2 = colineation_drone.get_first_maximal_line_from_non_singleton(non_maximal_lines_2)
+    >>> new_line_2 = colineation.Colineation.get_first_maximal_line_from_non_singleton(non_maximal_lines_2)
     >>> print new_line_2
     (0, 0, 3, 3)
     >>> len(non_maximal_lines_2)
@@ -159,7 +159,7 @@
     ...     return [line_02, line_13, line_46]
     
     >>> non_maximal_lines_3 = non_maximal_lines_for_non_singleton_test_3()
-    >>> new_line_3 = colineation_drone.get_first_maximal_line_from(non_maximal_lines_3)
+    >>> new_line_3 = colineation.Colineation.get_first_maximal_line_from(non_maximal_lines_3)
     >>> print new_line_3
     (0, 0, 3, 3)
     >>> len(non_maximal_lines_3)
@@ -180,7 +180,7 @@
     ...     return [line_02, line_13, line_35, line_67]
     
     >>> non_maximal_lines_4 = non_maximal_lines_for_non_singleton_test_4()
-    >>> new_line_4 = colineation_drone.get_first_maximal_line_from_non_singleton(non_maximal_lines_4)
+    >>> new_line_4 = colineation.Colineation.get_first_maximal_line_from_non_singleton(non_maximal_lines_4)
     >>> print new_line_4
     (0, 0, 5, 5)
     >>> len(non_maximal_lines_4)
@@ -205,25 +205,25 @@
     ...     return [line_26, line_01, line_02, line_13, line_17, line_24, line_35, line_46, line_57, line_68, line_78]
     >>> line_26, line_01, line_02, line_13, line_17, line_24, line_35, line_46, line_57, line_68, line_78 = lines_for_mergeable_test()
 
-    >>> colineation_drone.lines_can_be_merged(line_26, line_02)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_02)
     True
-    >>> colineation_drone.lines_can_be_merged(line_26, line_68)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_68)
     True
-    >>> colineation_drone.lines_can_be_merged(line_26, line_13)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_13)
     True
-    >>> colineation_drone.lines_can_be_merged(line_26, line_57)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_57)
     True
-    >>> colineation_drone.lines_can_be_merged(line_26, line_24)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_24)
     True
-    >>> colineation_drone.lines_can_be_merged(line_26, line_46)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_46)
     True
-    >>> colineation_drone.lines_can_be_merged(line_26, line_35)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_35)
     True
-    >>> colineation_drone.lines_can_be_merged(line_26, line_17)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_17)
     True
-    >>> colineation_drone.lines_can_be_merged(line_26, line_01)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_01)
     False
-    >>> colineation_drone.lines_can_be_merged(line_26, line_78)
+    >>> colineation.Colineation.lines_can_be_merged(line_26, line_78)
     False
 
 ### relations

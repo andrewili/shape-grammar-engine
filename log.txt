@@ -30,7 +30,7 @@ Log
 
 ### SGColumn.get_maximal_lines_from()
 #   2013-12-10
-    Change to class method?
+    Change to class method? What about Colabeling?
 
 ### Colabeling
 #   2013-12-10

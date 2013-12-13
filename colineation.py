@@ -31,7 +31,8 @@ class Colineation(object):
         return True
 
         ### maximize
-    def get_maximal_lines_from(self, maximal_lines_1, maximal_lines_2):
+    @classmethod
+    def get_maximal_lines_from(cls, maximal_lines_1, maximal_lines_2):
         """Receives 2 ordered lists of maximal colinear lines:
             [Line, ...], n >= 1
         Returns an ordered list of maximal colinear lines:
@@ -41,10 +42,11 @@ class Colineation(object):
         non_maximal_unsorted_lines.extend(maximal_lines_1)
         non_maximal_unsorted_lines.extend(maximal_lines_2)
         sorted_non_maximal_lines = sorted(non_maximal_unsorted_lines)
-        new_maximal_lines = self.maximal(sorted_non_maximal_lines)
+        new_maximal_lines = Colineation.maximal(sorted_non_maximal_lines)
         return new_maximal_lines
 
-    def maximal(self, non_maximal_lines):
+    @classmethod
+    def maximal(cls, non_maximal_lines):
         """Receives an ordered list of (possibly non-maximal) colinear lines:
             [Line, ...], n >= 1
         Returns an ordered list of maximal colinear lines:
@@ -52,24 +54,26 @@ class Colineation(object):
         """
         maximal_lines = []
         while len(non_maximal_lines) >= 1:
-            new_maximal_line = self.get_first_maximal_line_from(
+            new_maximal_line = Colineation.get_first_maximal_line_from(
                 non_maximal_lines)
             maximal_lines.append(new_maximal_line)
         return maximal_lines
 
-    def get_first_maximal_line_from(self, lines):
+    @classmethod
+    def get_first_maximal_line_from(cls, lines):
         """Receives an ordered list of (possibly non-maximal) colinear lines:
             [Line, ...], n >= 1
         Returns the first maximal line in the list:
             Line
         """
         if len(lines) == 1:
-            new_line = self.get_singleton_line_from(lines)
+            new_line = Colineation.get_singleton_line_from(lines)
         else:
-            new_line = self.get_first_maximal_line_from_non_singleton(lines)
+            new_line = Colineation.get_first_maximal_line_from_non_singleton(lines)
         return new_line
 
-    def get_singleton_line_from(self, singleton_lines):
+    @classmethod
+    def get_singleton_line_from(cls, singleton_lines):
         """Receives a list containing a singleton line:
             [Line], n = 1
         Returns the singleton line:
@@ -78,7 +82,8 @@ class Colineation(object):
         new_line = singleton_lines.pop(0)
         return new_line
 
-    def get_first_maximal_line_from_non_singleton(self, non_maximal_lines):
+    @classmethod
+    def get_first_maximal_line_from_non_singleton(cls, non_maximal_lines):
         """Receives an ordered list of (possibly non-maximal) colinear lines:
             [Line, ...], n >= 2
         Returns the first maximal line:
@@ -87,15 +92,16 @@ class Colineation(object):
         working_line = non_maximal_lines.pop(0)
         while len(non_maximal_lines) >= 1:
             other_line = non_maximal_lines[0]
-            if self.lines_can_be_merged(working_line, other_line):
-                working_line = self.merge_lines(working_line, other_line)
+            if Colineation.lines_can_be_merged(working_line, other_line):
+                working_line = Colineation.merge_lines(working_line, other_line)
                 non_maximal_lines.pop(0)
             else:
                 break
         first_maximal_line = working_line
         return first_maximal_line
 
-    def lines_can_be_merged(self, line_1, line_2):
+    @classmethod
+    def lines_can_be_merged(cls, line_1, line_2):
         """Receives 2 colinear lines.
         Returns a boolean whether the lines can be merged.
         See Krishnamurti (1980), 465.
@@ -112,7 +118,8 @@ class Colineation(object):
         else:
             return False
 
-    def merge_lines(self, line_1, line_2):
+    @classmethod
+    def merge_lines(cls, line_1, line_2):
         """Receives 2 mergeable lines, line_1.tail <= line_2.tail:
             [Line, Line]
         Returns the sum of the 2 lines:
