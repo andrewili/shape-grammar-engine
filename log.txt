@@ -5,18 +5,15 @@ Log
 #   2013-12-07
     LabeledShape
         Shape
-            LinePartition (dict)
+            LinePartition (dict)        attribute: line_part; module: rename
                 Colineation (list)
                     Line
-        LPointPartition (dict)
+        LPointPartition (dict)          attribute: lpoint_part; module: rename
             Colabeling (set)
                 LabeledPoint
                     Point
 
-### ElementCell
-#   2013-12-07
-    Parent of LineSet, PointSet
-
+### ElementCell class
 #   2013-12-10
     Analogous methods from SGColumn and SGColabeling:
         __init__()                      __init__()
@@ -28,10 +25,6 @@ Log
     But this doesn't seem like enough to justify creating a parent class.
     Conclusion: abandon ElementCell.
 
-### SGColumn.get_maximal_lines_from()
-#   2013-12-10
-    Change to class method? What about Colabeling?
-
 ### Colabeling
 #   2013-12-10
     Why implement the collection as a set of lpoint specs
@@ -40,3 +33,8 @@ Log
     2.  As a list of lpoints. Problem: have to implement equivalent methods to
         set methods
     3.  As a set of lpoint specs. Problem: have to unpack and repack lpoints
+
+
+#   line_partitions_are_equal. LinePartition.__eq__()?
+
+Colineation, Colabeling. Reclaim methods: __str__, listing, etc.
