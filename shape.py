@@ -46,28 +46,6 @@ class Shape(object):
         """
         return self.line_part.__str__()
 
-    def get_sorted_line_strings(self):
-        """Returns an ordered list of line strings in the form:
-            [(x1, y1, x2, y2), ...]
-        """
-        spec_strings = []
-        for carrier in self.line_part.dictionary:
-            new_colineation = self.line_part.dictionary[carrier]
-            colineation_spec_strings = self.get_colineation_spec_strings_from(
-                new_colineation)
-            spec_strings.extend(colineation_spec_strings)
-        return sorted(spec_strings)
-
-    def get_colineation_spec_strings_from(self, colineation_in):    #   move to Colineation
-        """Receives a Colineation
-        Returns a list of spec strings of the lines in the colineation:
-            ['(x1, y1, x2, y2)', ...]
-        """
-        spec_strings = []
-        for line_i in colineation_in.lines:
-            spec_strings.append(line_i.__str__())
-        return spec_strings
-
     def listing(self):
         if self.is_empty():
             string = '<no lines>'
@@ -75,30 +53,30 @@ class Shape(object):
             string = self.line_part.listing()
         return string
 
-    def get_partition_listing(self, line_partition_in):     #   to LinePartition
-        """Returns a string in the ordered form:
-            carrier:
-                line_spec
-                ...
-            ...
-        """
-        #   Refactor with join()
-        s = ''
-        i = 1
-        n = len(line_partition_in)
-        if n == 0:
-            s = '<no lines>'
-        else:
-            for carrier in sorted(line_partition_in):
-                carrier_listing = self.get_carrier_listing(carrier)
-                new_colineation = line_partition_in[carrier]
-                colineation_listing = self.get_colineation_listing(
-                    new_colineation)
-                s += '%s:\n%s' % (carrier_listing, colineation_listing)
-                if i < n:
-                    s += '\n'
-                i += 1
-        return s
+    # def get_partition_listing(self, line_partition_in):     #   used only by self
+    #     """Returns a string in the ordered form:
+    #         carrier:
+    #             line_spec
+    #             ...
+    #         ...
+    #     """
+    #     #   Refactor with join()
+    #     s = ''
+    #     i = 1
+    #     n = len(line_partition_in)
+    #     if n == 0:
+    #         s = '<no lines>'
+    #     else:
+    #         for carrier in sorted(line_partition_in):
+    #             carrier_listing = self.get_carrier_listing(carrier)
+    #             new_colineation = line_partition_in[carrier]
+    #             colineation_listing = self.get_colineation_listing(
+    #                 new_colineation)
+    #             s += '%s:\n%s' % (carrier_listing, colineation_listing)
+    #             if i < n:
+    #                 s += '\n'
+    #             i += 1
+    #     return s
 
     def get_carrier_listing(self, carrier):                 #   to LinePartition?
         bearing, intercept = carrier
@@ -167,15 +145,20 @@ class Shape(object):
         trace_on = False
         if trace_on:
             method_name = 'Shape.subtract_non_empty_line_partitions'
-            partition_1_listing = self.get_partition_listing(partition_1)
+            partition_1_listing = partition_1.listing()
             print '||| %s.partition_1:\n%s' % (method_name, partition_1_listing)
-            partition_2_listing = self.get_partition_listing(partition_2)
+            partition_2_listing = partition_2.listing()
             print '||| %s.partition_2:\n%s' % (method_name, partition_2_listing)
+            # partition_1_listing = self.get_partition_listing(partition_1)
+            # print '||| %s.partition_1:\n%s' % (method_name, partition_1_listing)
+            # partition_2_listing = self.get_partition_listing(partition_2)
+            # print '||| %s.partition_2:\n%s' % (method_name, partition_2_listing)
         new_partition = {}
         for carrier in partition_1:
             colineation_1 = partition_1[carrier]
             if trace_on:
                 carrier_listing = self.get_carrier_listing(carrier)
+                # carrier_listing = self.get_carrier_listing(carrier)
                 print '||| %s.carrier:\n%s' % (method_name, carrier_listing)
                 colineation_1_listing = self.get_colineation_listing(
                     colineation_1)
@@ -201,7 +184,8 @@ class Shape(object):
             else:
                 new_partition[carrier] = new_colineation
         if trace_on:
-            new_partition_listing = self.get_partition_listing(new_partition)
+            new_partition_listing = new_partition.listing()
+            # new_partition_listing = self.get_partition_listing(new_partition)
             print '||| %s.new_partition: \n%s' % (
                 method_name, new_partition_listing)
         return new_partition

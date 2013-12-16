@@ -110,32 +110,6 @@
     >>> print shape_from_specs
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
 
-#   __str__()
-
-#   get_sorted_line_strings()
-    >>> def make_shape_for_spec_strings():
-    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
-    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
-    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
-    ...     new_shape = shape.Shape.from_lines([line_0001, line_0010, line_0011])
-    ...     return new_shape
-    >>> shape_for_spec_strings = make_shape_for_spec_strings()
-    >>> sorted_spec_strings = shape_for_spec_strings.get_sorted_line_strings()
-    >>> sorted_spec_strings
-    ['(0, 0, 0, 1)', '(0, 0, 1, 0)', '(0, 0, 1, 1)']
-
-#   get_colineation_spec_strings_from(colineation_in)
-    >>> def make_colineation_for_spec_strings():
-    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
-    ...     line_2233 = line.Line.from_spec(2, 2, 3, 3)
-    ...     lines = [line_0011, line_2233]
-    ...     new_colineation = colineation.Colineation(lines)
-    ...     return new_colineation
-    >>> new_colineation = make_colineation_for_spec_strings()
-    >>> colineation_spec_strings = empty_shape.get_colineation_spec_strings_from(new_colineation)
-    >>> colineation_spec_strings
-    ['(0, 0, 1, 1)', '(2, 2, 3, 3)']
-
 ### relations
 #   __eq__(other), line_parts_are_equal(line_part_1, line_part_2)
     >>> def make_shapes_for_eq():
@@ -274,8 +248,8 @@
 #   __sub__(other)
     ??? non_empty_shape_1 = shape.Shape.from_specs([(2, 2, 7, 7)])
     ??? non_empty_shape_2 = shape.Shape.from_specs([(3, 3, 4, 4)])
-    ??? empty_shape_1 = shape.Shape()
-    ??? empty_shape_2 = shape.Shape()
+    ??? empty_shape_1 = shape.Shape.new_empty()
+    ??? empty_shape_2 = shape.Shape.new_empty()
     ??? print (non_empty_shape_1 - non_empty_shape_2).listing()
     (45.0, 0.0):
         (2, 2, 3, 3)
