@@ -20,7 +20,7 @@ class LinePartition(object):
         except ValueError:
             print "You're trying to make a line partition with non-lines"
 
-    def are_lines(self, lines):                             #   class method?
+    def are_lines(self, lines):
         value = True
         for line_i in lines:
             if line_i.__class__ != line.Line:
@@ -28,7 +28,7 @@ class LinePartition(object):
                 break
         return value
 
-    def make_dictionary(self, lines):                       #   class method?
+    def make_dictionary(self, lines):
         """Receives a list of lines:
             [Line, ...], n >= 0
         Returns a dictionary partitioned by carrier:
@@ -42,12 +42,10 @@ class LinePartition(object):
             else:
                 lines_by_carrier = [line_i]
                 dictionary[line_i.carrier] = lines_by_carrier
-        line_01 = line.Line.from_short_spec(0, 1)
-        colineation_drone = colineation.Colineation([line_01])
         for carrier in dictionary:
             lines_by_carrier = dictionary[carrier]
-            maximal_lines_by_carrier = colineation_drone.maximal(
-                lines_by_carrier)                           #   class method
+            maximal_lines_by_carrier = colineation.Colineation.maximal(
+                lines_by_carrier)
             new_colineation = colineation.Colineation(
                 maximal_lines_by_carrier)
             dictionary[carrier] = new_colineation
@@ -153,7 +151,7 @@ class LinePartition(object):
                 new_lines = new_dictionary[carrier].lines
                 other_lines = other.dictionary[carrier].lines
                 new_lines = (
-                    colineation_drone.get_maximal_lines_from(   #   class method
+                    colineation.Colineation.get_maximal_lines_from(
                         new_lines, other_lines))
                 new_colineation = colineation.Colineation(new_lines)
                 new_dictionary[carrier] = new_colineation

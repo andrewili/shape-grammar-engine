@@ -67,8 +67,8 @@
     >>> overlapping_lines = [line_02, line_13]
 
     >>> new_lines = colineation.Colineation.get_maximal_lines_from(disjoint_lines, overlapping_lines)
-    >>> for a_line in new_lines:
-    ...     print a_line
+    >>> for line_i in new_lines:
+    ...     print line_i
     (0, 0, 3, 3)
 
 #   maximal(non_maximal_lines)
@@ -83,8 +83,8 @@
     >>> non_maximal_lines = non_maximal_lines_for_maximal_test()
 
     >>> maximal_lines = colineation.Colineation.maximal(non_maximal_lines)
-    >>> for a_line in sorted(maximal_lines):
-    ...     print a_line
+    >>> for line_i in sorted(maximal_lines):
+    ...     print line_i
     (0, 0, 3, 3)
     (4, 4, 6, 6)
     (7, 7, 9, 9)
@@ -131,8 +131,8 @@
     (0, 0, 1, 1)
     >>> len(non_maximal_lines_1)
     1
-    >>> for a_line in non_maximal_lines_1:
-    ...     print a_line
+    >>> for line_i in non_maximal_lines_1:
+    ...     print line_i
     (2, 2, 3, 3)
 
     case 2: n = 2: line_1 and line_2 are mergeable
@@ -164,8 +164,8 @@
     (0, 0, 3, 3)
     >>> len(non_maximal_lines_3)
     1
-    >>> for a_line in non_maximal_lines_3:
-    ...     print a_line
+    >>> for line_i in non_maximal_lines_3:
+    ...     print line_i
     (4, 4, 6, 6)
 
     case 4: n = 4: line_1 and line_2 can be merged,
@@ -185,8 +185,8 @@
     (0, 0, 5, 5)
     >>> len(non_maximal_lines_4)
     1
-    >>> for a_line in non_maximal_lines_4:
-    ...     print a_line
+    >>> for line_i in non_maximal_lines_4:
+    ...     print line_i
     (6, 6, 7, 7)
 
 #   lines_can_be_merged(line_1, line_2)

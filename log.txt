@@ -6,10 +6,10 @@ Log
     LabeledShape
         Shape
             LinePartition (dict)        attribute: line_part; module: rename
-                Colineation (list)
+                Colineation             attribute: lines (list)
                     Line
         LPointPartition (dict)          attribute: lpoint_part; module: rename
-            Colabeling (set)
+            Colabeling                  attribute: lpoint_specs (set)
                 LabeledPoint
                     Point
 

@@ -19,7 +19,7 @@ class Colabeling(object):
             ):
                 raise ValueError()
             else:
-                self.lpoint_specs = self.make_lpoint_specs(lpoints_in)
+                self.lpoint_specs = self.make_lpoint_specs(lpoints_in)  #   rename as lpoints?
         except ValueError:
             print '%s %s' % (
                 "You're trying to make a colabeling",
@@ -35,7 +35,7 @@ class Colabeling(object):
                 return False
         return True
 
-    def colabeled(self, lpoints_in):
+    def colabeled(self, lpoints_in):                        #   class method?
         """Receives a non-empty list of labeled points:
             [LabeledPoint, ...], n >= 1
         Returns whether the labeled points all have the same label
