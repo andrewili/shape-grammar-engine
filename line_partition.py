@@ -92,7 +92,7 @@ class LinePartition(object):
 
     def get_carrier_listing(self, carrier):
         bearing, intercept = carrier
-        string = '(%0.1f, %0.1f):' % (bearing, intercept)
+        string = '(%3.1f, %3.1f):' % (bearing, intercept)
         return string
 
     @classmethod
