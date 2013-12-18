@@ -41,7 +41,6 @@
             (1.0, 1.0, 3.0, 3.0)
             (4.0, 4.0, 6.0, 6.0)
 
-### colinear
 #   colinear(lines)
     >>> def lines_for_colinear_test():
     ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)

@@ -78,18 +78,19 @@ class Shape(object):
         Returns the difference:
             Shape
         """
-        if self.line_part.dictionary == {}:
+        if self.line_part.is_empty():                                           #   LinePartition.is_empty()
             new_partition = line_partition.LinePartition([])
         elif other.line_part.dictionary == {}:
             new_partition = self.line_part
         else:
+            # new_partition = line_part_1 - line_part_2                           #   line_part_1 - line_part_2
             new_partition = self.subtract_non_empty_line_partitions(
                 self.line_part, other.line_part)
         new_shape = Shape(new_partition)
 ##        print '||| Shape.__sub__.new_shape: %s' % new_shape
         return new_shape
 
-    def subtract_non_empty_line_partitions(self, partition_1, partition_2):
+    def subtract_non_empty_line_partitions(self, partition_1, partition_2):     #   LinePartition.__sub__(other)
         """Receives 2 line partitions:
             {carrier: colineation, ...}, n >= 1
         Returns a line partition, possibly empty, such that, for each
@@ -98,6 +99,7 @@ class Shape(object):
         the entry is excluded from the partition
             {carrier: colineation, ...}, n >= 0
         """
+        print 'Shape.subtract_non_empty_line_partitions() decommissioned'       #   decommissioned
         trace_on = False
         if trace_on:
             method_name = 'Shape.subtract_non_empty_line_partitions'
@@ -118,7 +120,8 @@ class Shape(object):
             line_dict_2 = partition_2.dictionary
             if carrier in line_dict_2:
                 colineation_2 = copy.copy(line_dict_2[carrier])
-                new_colineation = self.subtract_colineation_colineation(    #   this returns [Line, ...]
+                new_colineation = self.subtract_lines(        #   colineation_1 - colineation_2
+                                                            #   this returns [Line, ...]
                     colineation_1, colineation_2)
                 if trace_on:
                     colineation_2_listing = self.get_colineation_listing(
@@ -140,7 +143,7 @@ class Shape(object):
                 method_name, new_partition.listing())
         return new_partition
 
-    def subtract_colineation_colineation(                   #   move to Colineation
+    def subtract_lines_lines(                                       #   Colineation.__sub__(other)
         self, colineation_1, working_colineation_2
     ):
         """Receives 2 non-empty colinear colineations:      #   colineation = list of lines
@@ -151,7 +154,7 @@ class Shape(object):
         """
         trace_on = False
         if trace_on:
-            method_name = 'Shape.subtract_colineation_colineation'
+            method_name = 'Shape.subtract_lines'
             colineation_1_listing = self.get_colineation_listing(colineation_1)
             print '||| %s.colineation_1\n%s' % (
                 method_name, colineation_1_listing)
@@ -166,7 +169,7 @@ class Shape(object):
             if working_colineation_2 == []:
                 colineation_colineation_differences.append(line_1)
             else:
-                line_colineation_differences = self.subtract_line_colineation(
+                line_colineation_differences = self.subtract_line_lines(        #   self.subtract_line_lines()
                     line_1, working_colineation_2)
                 colineation_colineation_differences.extend(
                     line_colineation_differences)
@@ -184,11 +187,11 @@ class Shape(object):
                         colineation_colineation_differences_listing)
         return colineation_colineation_differences
 
-    def subtract_line_colineation(self, line_minuend, working_colineation):
-        """Receives a line minuend and a (non-empty) colinear working 
-        Colineation of line subtrahends:
+    def subtract_line_lines(self, line_minuend, working_colineation):                 #   Colineation.subtract_line_lines()
+        """Receives a line minuend and a (non-empty) list of colinear working 
+        line subtrahends:
             line_minuend: Line
-            working_colineation: Colineation, n(lines) >= 1
+            working_colineation: [Line, ...], n >= 1
         Returns an ordered list of the line differences obtained by subtracting
         the line subtrahends from the (single) line minuend:    #   do we want an ordered list or a Colineation?
             [Line, ...], n >= 0
@@ -207,38 +210,38 @@ class Shape(object):
         # line minuend
 
         trace_on = False
-        line_colineation_differences = []
+        line_differences = []
         working_minuend = line_minuend
         last_line_line_difference_list = []
         if trace_on:
-            method_name = 'Shape.subtract_line_colineation'
+            method_name = 'Shape.subtract_line_lines'
             print '||| %s.working_minuend:\n%s' % (method_name, working_minuend)
             working_colineation_listing = self.get_colineation_listing(
                 working_colineation)
             print '||| %s.working_colineation:\n%s' % (
                 method_name, working_colineation_listing)
-        working_lines = working_colineation.lines
-        while working_lines != []:
-        # while working_colineation != []:                  #   delete me
+        # working_lines = working_colineation.lines
+        # while working_lines != []:
+        while working_colineation != []:
             line_line_differences = []
-            line_subtrahend = working_lines[0]
+            line_subtrahend = working_colineation[0]
             if trace_on:
                 print '||| %s.line_subtrahend:\n%s' % (
                     method_name, line_subtrahend)
-                print '||| %s.working_lines[1]:\n%s' % (
-                    method_name, working_lines[1])
+                print '||| %s.working_colineation[1]:\n%s' % (
+                    method_name, working_colineation[1])
             if line_subtrahend.is_disjoint_left_of(working_minuend):
                 # difference = empty line
                 # discard subtrahend and try with next, if any
                 last_line_line_difference_list = [working_minuend]
-                working_lines.pop(0)
+                working_colineation.pop(0)
             elif line_subtrahend.overlaps_tail_of(working_minuend):
                 # subtract; discard subtrahend and try with next, if any
                 line_line_differences = working_minuend.subtract_line_tail(
                     line_subtrahend)
                 working_minuend = line_line_differences[0]
                 last_line_line_difference_list = [line_line_differences[0]]
-                working_lines.pop(0)
+                working_colineation.pop(0)
             elif line_subtrahend.overlaps_all_of(working_minuend):
                 # difference = empty line
                 # retain subtrahend and try with next minuend
@@ -249,15 +252,15 @@ class Shape(object):
                 # subtract; discard subtrahend and try with next, if any
                 line_line_differences = working_minuend.subtract_line_middle(
                     line_subtrahend)
-                line_colineation_differences.append(line_line_differences[0])
+                line_differences.append(line_line_differences[0])
                 working_minuend = line_line_differences[1]
                 last_line_line_difference_list = [line_line_differences[1]]
-                working_lines.pop(0)
+                working_colineation.pop(0)
             elif line_subtrahend.overlaps_head_of(working_minuend):
                 # subtract; retain subtrahend and try with next minuend
                 line_line_differences = working_minuend.subtract_line_head(
                     line_subtrahend)
-                line_colineation_differences.append(line_line_differences[0])
+                line_differences.append(line_line_differences[0])
                 last_line_line_difference_list = []
                 if trace_on:
                     line_line_differences_listing = (
@@ -265,11 +268,11 @@ class Shape(object):
                             line_line_differences))
                     print '||| %s.line_line_differences:\n%s' % (
                         method_name, line_line_differences_listing)
-                    line_colineation_differences_listing = (
+                    line_differences_listing = (
                         self.get_colineation_listing(
-                            line_colineation_differences))
-                    print '||| %s.line_colineation_differences:\n%s' % (
-                        method_name, line_colineation_differences_listing)
+                            line_differences))
+                    print '||| %s.line_differences:\n%s' % (
+                        method_name, line_differences_listing)
                     print '||| %s.last_line_line_difference: %s' % (
                         method_name, last_line_line_difference_list)
                 break
@@ -279,10 +282,10 @@ class Shape(object):
                 last_line_line_difference_list = [working_minuend]
                 break
             else:
-                print "Shape.subtract_line_colineation"
+                print "Shape.subtract_line_lines"
                 print "    Oops. This subtrahend is supposed to be impossible"
-        line_colineation_differences.extend(last_line_line_difference_list)
-        return line_colineation_differences
+        line_differences.extend(last_line_line_difference_list)
+        return line_differences
 
         ###
 if __name__ == '__main__':

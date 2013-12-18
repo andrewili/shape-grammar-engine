@@ -184,6 +184,8 @@ class Colineation(object):
         return True
 
         ### subtract
+    def __sub__(self, other):
+        pass
 
         ###
 if __name__ == '__main__':

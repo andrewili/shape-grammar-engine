@@ -5,11 +5,11 @@ Log
 #   2013-12-07
     LabeledShape
         Shape
-            LinePartition (dict)        attribute: line_part; module: rename
-                Colineation             attribute: lines (list)
+            LinePartition (dict)        as attribute: line_part; module: rename
+                Colineation             as attribute: lines (list)
                     Line
-        LPointPartition (dict)          attribute: lpoint_part; module: rename
-            Colabeling                  attribute: lpoint_specs (set)
+        LPointPartition (dict)          as attribute: lpoint_part; module: rename
+            Colabeling                  as attribute: lpoint_specs (set)
                 LabeledPoint
                     Point
 
@@ -38,3 +38,5 @@ Log
 #   line_partitions_are_equal. LinePartition.__eq__()?
 
 Colineation, Colabeling. Reclaim methods: __str__, listing, etc.
+
+Colineation.__add__?
