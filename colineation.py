@@ -8,8 +8,8 @@ class Colineation(object):
     """
         ### construct
     def __init__(self, lines):
-        """Receives a non-empty unsorted list of colinear lines:
-            [Line, ...], n >= 1
+        """Receives a non-empty unsorted list of colinear lines:                #   May need to allow n = 0
+            [Line, ...], n >= 1                                                 #   For colineation difference = 0
         """
         try:
             if (len(lines) == 0 or
