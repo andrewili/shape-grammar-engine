@@ -3318,8 +3318,8 @@
     (2, 2, 7, 7)
     (12, 12, 17, 17)
 
-#   subtract_line_lines(line_minuend, working_lines)
-    >>> def make_lines_for_subtract_line_lines():
+#   subtract_line_colineation(line_minuend, working_lines)        #   Colineation.subtract_line_colineation()
+    >>> def make_lines_for_subtract_line_colineation():
     ...     line_minuend = line.Line.from_spec(2, 2, 7, 7)
     ...     line_01 = line.Line.from_spec(0, 0, 1, 1)
     ...     line_12 = line.Line.from_spec(1, 1, 2, 2)
@@ -3333,7 +3333,7 @@
     ...     line_78 = line.Line.from_spec(7, 7, 8, 8)
     ...     line_89 = line.Line.from_spec(8, 8, 9, 9)
     ...     return [line_minuend, line_01, line_12, line_13, line_23, line_27, line_34, line_56, line_67, line_68, line_78, line_89]
-    >>> line_minuend, line_01, line_12, line_13, line_23, line_27, line_34, line_56, line_67, line_68, line_78, line_89 = make_lines_for_subtract_line_lines()
+    >>> line_minuend, line_01, line_12, line_13, line_23, line_27, line_34, line_56, line_67, line_68, line_78, line_89 = make_lines_for_subtract_line_colineation()
 
     >>> colineation_01 = colineation.Colineation([line_01])
     >>> colineation_12 = colineation.Colineation([line_12])
@@ -3368,139 +3368,139 @@
     >>> colineation_34_78 = colineation.Colineation([line_34, line_78])
     >>> colineation_67_89 = colineation.Colineation([line_67, line_89])
 
-    >>> line_differences_01 = empty_shape.subtract_line_lines(line_minuend, colineation_01)
+    >>> line_differences_01 = empty_shape.subtract_line_colineation(line_minuend, colineation_01)
     >>> for line_difference in line_differences_01:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_12 = empty_shape.subtract_line_lines(line_minuend, colineation_12)
+    >>> line_differences_12 = empty_shape.subtract_line_colineation(line_minuend, colineation_12)
     >>> for line_difference in line_differences_12:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_13 = empty_shape.subtract_line_lines(line_minuend, colineation_13)
+    >>> line_differences_13 = empty_shape.subtract_line_colineation(line_minuend, colineation_13)
     >>> for line_difference in line_differences_13:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_23 = empty_shape.subtract_line_lines(line_minuend, colineation_23)
+    >>> line_differences_23 = empty_shape.subtract_line_colineation(line_minuend, colineation_23)
     >>> for line_difference in line_differences_23:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_27 = empty_shape.subtract_line_lines(line_minuend, colineation_27)
+    >>> line_differences_27 = empty_shape.subtract_line_colineation(line_minuend, colineation_27)
     >>> line_differences_27
     []
-    >>> line_differences_34 = empty_shape.subtract_line_lines(line_minuend, colineation_34)
+    >>> line_differences_34 = empty_shape.subtract_line_colineation(line_minuend, colineation_34)
     >>> for line_difference in line_differences_34:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 7, 7)
-    >>> line_differences_56 = empty_shape.subtract_line_lines(line_minuend, colineation_56)
+    >>> line_differences_56 = empty_shape.subtract_line_colineation(line_minuend, colineation_56)
     >>> for line_difference in line_differences_56:
     ...     print line_difference
     (2, 2, 5, 5)
     (6, 6, 7, 7)
-    >>> line_differences_67 = empty_shape.subtract_line_lines(line_minuend, colineation_67)
+    >>> line_differences_67 = empty_shape.subtract_line_colineation(line_minuend, colineation_67)
     >>> for line_difference in line_differences_67:
     ...     print line_difference
     (2, 2, 6, 6)
-    >>> line_differences_68 = empty_shape.subtract_line_lines(line_minuend, colineation_68)
+    >>> line_differences_68 = empty_shape.subtract_line_colineation(line_minuend, colineation_68)
     >>> for line_difference in line_differences_68:
     ...     print line_difference
     (2, 2, 6, 6)
-    >>> line_differences_78 = empty_shape.subtract_line_lines(line_minuend, colineation_78)
+    >>> line_differences_78 = empty_shape.subtract_line_colineation(line_minuend, colineation_78)
     >>> for line_difference in line_differences_78:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_89 = empty_shape.subtract_line_lines(line_minuend, colineation_89)
+    >>> line_differences_89 = empty_shape.subtract_line_colineation(line_minuend, colineation_89)
     >>> for line_difference in line_differences_89:
     ...     print line_difference
     (2, 2, 7, 7)
 
-    >>> line_differences_01_23 = empty_shape.subtract_line_lines(line_minuend, colineation_01_23)
+    >>> line_differences_01_23 = empty_shape.subtract_line_colineation(line_minuend, colineation_01_23)
     >>> for line_difference in line_differences_01_23:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_01_27 = empty_shape.subtract_line_lines(line_minuend, colineation_01_27)
+    >>> line_differences_01_27 = empty_shape.subtract_line_colineation(line_minuend, colineation_01_27)
     >>> line_differences_01_27
     []
-    >>> line_differences_01_34 = empty_shape.subtract_line_lines(line_minuend, colineation_01_34)
+    >>> line_differences_01_34 = empty_shape.subtract_line_colineation(line_minuend, colineation_01_34)
     >>> for line_difference in line_differences_01_34:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 7, 7)
-    >>> line_differences_01_67 = empty_shape.subtract_line_lines(line_minuend, colineation_01_67)
+    >>> line_differences_01_67 = empty_shape.subtract_line_colineation(line_minuend, colineation_01_67)
     >>> for line_difference in line_differences_01_67:
     ...     print line_difference
     (2, 2, 6, 6)
-    >>> line_differences_01_78 = empty_shape.subtract_line_lines(line_minuend, colineation_01_78)
+    >>> line_differences_01_78 = empty_shape.subtract_line_colineation(line_minuend, colineation_01_78)
     >>> for line_difference in line_differences_01_78:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_01_89 = empty_shape.subtract_line_lines(line_minuend, colineation_01_89)
+    >>> line_differences_01_89 = empty_shape.subtract_line_colineation(line_minuend, colineation_01_89)
     >>> for line_difference in line_differences_01_89:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_12_34 = empty_shape.subtract_line_lines(line_minuend, colineation_12_34)
+    >>> line_differences_12_34 = empty_shape.subtract_line_colineation(line_minuend, colineation_12_34)
     >>> for line_difference in line_differences_12_34:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 7, 7)
-    >>> line_differences_12_67 = empty_shape.subtract_line_lines(line_minuend, colineation_12_67)
+    >>> line_differences_12_67 = empty_shape.subtract_line_colineation(line_minuend, colineation_12_67)
     >>> for line_difference in line_differences_12_67:
     ...     print line_difference
     (2, 2, 6, 6)
-    >>> line_differences_12_78 = empty_shape.subtract_line_lines(line_minuend, colineation_12_78)
+    >>> line_differences_12_78 = empty_shape.subtract_line_colineation(line_minuend, colineation_12_78)
     >>> for line_difference in line_differences_12_78:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_12_89 = empty_shape.subtract_line_lines(line_minuend, colineation_12_89)
+    >>> line_differences_12_89 = empty_shape.subtract_line_colineation(line_minuend, colineation_12_89)
     >>> for line_difference in line_differences_12_89:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_13_56 = empty_shape.subtract_line_lines(line_minuend, colineation_13_56)
+    >>> line_differences_13_56 = empty_shape.subtract_line_colineation(line_minuend, colineation_13_56)
     >>> for line_difference in line_differences_13_56:
     ...     print line_difference
     (3, 3, 5, 5)
     (6, 6, 7, 7)
-    >>> line_differences_13_67 = empty_shape.subtract_line_lines(line_minuend, colineation_13_67)
+    >>> line_differences_13_67 = empty_shape.subtract_line_colineation(line_minuend, colineation_13_67)
     >>> for line_difference in line_differences_13_67:
     ...     print line_difference
     (3, 3, 6, 6)
-    >>> line_differences_13_89 = empty_shape.subtract_line_lines(line_minuend, colineation_13_89)
+    >>> line_differences_13_89 = empty_shape.subtract_line_colineation(line_minuend, colineation_13_89)
     >>> for line_difference in line_differences_13_89:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_23_56 = empty_shape.subtract_line_lines(line_minuend, colineation_23_56)
+    >>> line_differences_23_56 = empty_shape.subtract_line_colineation(line_minuend, colineation_23_56)
     >>> for line_difference in line_differences_23_56:
     ...     print line_difference
     (3, 3, 5, 5)
     (6, 6, 7, 7)
-    >>> line_differences_23_67 = empty_shape.subtract_line_lines(line_minuend, colineation_23_67)
+    >>> line_differences_23_67 = empty_shape.subtract_line_colineation(line_minuend, colineation_23_67)
     >>> for line_difference in line_differences_23_67:
     ...     print line_difference
     (3, 3, 6, 6)
-    >>> line_differences_23_78 = empty_shape.subtract_line_lines(line_minuend, colineation_23_78)
+    >>> line_differences_23_78 = empty_shape.subtract_line_colineation(line_minuend, colineation_23_78)
     >>> for line_difference in line_differences_23_78:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_27_89 = empty_shape.subtract_line_lines(line_minuend, colineation_27_89)
+    >>> line_differences_27_89 = empty_shape.subtract_line_colineation(line_minuend, colineation_27_89)
     >>> line_differences_27_89
     []
-    >>> line_differences_34_56 = empty_shape.subtract_line_lines(line_minuend, colineation_34_56)
+    >>> line_differences_34_56 = empty_shape.subtract_line_colineation(line_minuend, colineation_34_56)
     >>> for line_difference in line_differences_34_56:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 5, 5)
     (6, 6, 7, 7)
-    >>> line_differences_34_67 = empty_shape.subtract_line_lines(line_minuend, colineation_34_67)
+    >>> line_differences_34_67 = empty_shape.subtract_line_colineation(line_minuend, colineation_34_67)
     >>> for line_difference in line_differences_34_67:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 6, 6)
-    >>> line_differences_34_78 = empty_shape.subtract_line_lines(line_minuend, colineation_34_78)
+    >>> line_differences_34_78 = empty_shape.subtract_line_colineation(line_minuend, colineation_34_78)
     >>> for line_difference in line_differences_34_78:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 7, 7)
-    >>> line_differences_67_89 = empty_shape.subtract_line_lines(line_minuend, colineation_67_89)
+    >>> line_differences_67_89 = empty_shape.subtract_line_colineation(line_minuend, colineation_67_89)
     >>> for line_difference in line_differences_67_89:
     ...     print line_difference
     (2, 2, 6, 6)

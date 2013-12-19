@@ -174,6 +174,10 @@ class Colineation(object):
         """
         return sorted(self.lines) != sorted(other.lines)
 
+    def is_empty(self):
+        return len(self.lines) == 0
+        # print 'Colineation.is_empty()'
+
     def is_a_subcolineation_of(self, other):
         """Receives a non-empty colinear colineation:
             Colineation
