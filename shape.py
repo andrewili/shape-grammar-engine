@@ -13,15 +13,15 @@ class Shape(object):
 
     @classmethod
     def from_lines(cls, lines):
-        new_line_partition = line_partition.LinePartition(lines)
-        new_shape = Shape(new_line_partition)
+        new_line_part = line_partition.LinePartition(lines)
+        new_shape = Shape(new_line_part)
         return new_shape
 
     @classmethod
     def from_specs(cls, specs):
         """Receives a list of line specs:
             [(x1, y1, x2, y2), ...]
-        Returns a shape consisting of those lines
+        Returns a shape consisting of those lines:
             Shape
         """
         lines = []
@@ -29,8 +29,8 @@ class Shape(object):
             x1, y1, x2, y2 = spec
             line_i = line.Line.from_spec(x1, y1, x2, y2)
             lines.append(line_i)
-        new_line_partition = line_partition.LinePartition(lines)
-        new_shape = Shape(new_line_partition)
+        new_line_part = line_partition.LinePartition(lines)
+        new_shape = Shape(new_line_part)
         return new_shape
 
     @classmethod
@@ -68,8 +68,8 @@ class Shape(object):
 
         ### add
     def __add__(self, other):
-        new_line_partition = self.line_part + other.line_part
-        return Shape(new_line_partition)
+        new_line_part = self.line_part + other.line_part
+        return Shape(new_line_part)
 
         ### subtract
     def __sub__(self, other):
@@ -90,34 +90,33 @@ class Shape(object):
 ##        print '||| Shape.__sub__.new_shape: %s' % new_shape
         return new_shape
 
-    def subtract_non_empty_line_partitions(self, partition_1, partition_2):     #   LinePartition.__sub__(other)
+    def subtract_non_empty_line_partitions(self, line_part_1, line_part_2):     #   LinePartition.__sub__(other)
         """Receives 2 line partitions:
-            {carrier: colineation, ...}, n >= 1
-        Returns a line partition, possibly empty, such that, for each
-        carrier, each colineation is the difference 
-        colineation_1 - colineation_2. If a difference is the empty colineation, 
-        the entry is excluded from the partition
-            {carrier: colineation, ...}, n >= 0
+            LinePartition, n(entries) >= 1
+        Returns a line partition, possibly empty, such that for each carrier 
+        each colineation is the difference colineation_1 - colineation_2. If a 
+        difference is the empty colineation, the entry is excluded from the 
+        partition.
+            LinePartition, n(entries) >= 0
         """
-        print 'Shape.subtract_non_empty_line_partitions() decommissioned'       #   decommissioned
         trace_on = False
         if trace_on:
             method_name = 'Shape.subtract_non_empty_line_partitions'
-            print '||| %s.partition_1:\n%s' % (method_name, partition_1.listing())
-            print '||| %s.partition_2:\n%s' % (method_name, partition_2.listing())
+            print '||| %s.line_part_1:\n%s' % (method_name, line_part_1.listing())
+            print '||| %s.line_part_2:\n%s' % (method_name, line_part_2.listing())
         new_partition = {}
-        line_dict_1 = partition_1.dictionary
+        line_dict_1 = line_part_1.dictionary
         for carrier in line_dict_1:
             colineation_1 = line_dict_1[carrier]
             if trace_on:
-                carrier_listing = partition_1.get_carrier_listing(carrier)
+                carrier_listing = line_part_1.get_carrier_listing(carrier)
                 # carrier_listing = self.get_carrier_listing(carrier)
                 print '||| %s.carrier:\n%s' % (method_name, carrier_listing)
                 colineation_1_listing = self.get_colineation_listing(
                     colineation_1)
                 print '||| %s.colineation_1:\n%s' % (
                     method_name, colineation_1_listing)
-            line_dict_2 = partition_2.dictionary
+            line_dict_2 = line_part_2.dictionary
             if carrier in line_dict_2:
                 colineation_2 = copy.copy(line_dict_2[carrier])
                 new_colineation = self.subtract_colineations(                   #   colineation_1 - colineation_2
