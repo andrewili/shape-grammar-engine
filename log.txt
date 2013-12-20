@@ -40,3 +40,6 @@ Log
 Colineation, Colabeling. Reclaim methods: __str__, listing, etc.
 
 Colineation.__add__?
+
+#   2013-12-20
+Shape.subtract_colineations(). Should return Line list or Colineation?

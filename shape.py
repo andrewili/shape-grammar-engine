@@ -142,50 +142,41 @@ class Shape(object):
                 method_name, new_partition.listing())
         return new_partition
 
-    def subtract_colineations(self, colineation_1, working_colineation_2):      #   Colineation.__sub__(other)
+    def subtract_colineations(self, colineation_1, working_colineation_2):      #   move to Colineation
         """Receives 2 (non-empty colinear) colineations:
             Colineation, len(lines) >= 1
-        Returns an ordered colineation, possibly empty, of the lines in 
+        Returns an ordered list, possibly empty, of the lines in 
         colineation_1 and not in working_colineation_2:
-            [Line, ...], n >= 0                                                 #   Can be empty. Must be list?
+            [Line, ...], n >= 0                                                 #   May be empty. Must be list?
                                                                                 #   Can be Colineation?
         """
         trace_on = False
         if trace_on:
             method_name = 'Shape.subtract_colineations'
-            colineation_1_listing = self.get_colineation_listing(colineation_1)
             print '||| %s.colineation_1\n%s' % (
-                method_name, colineation_1_listing)
-            working_colineation_2_listing = self.get_colineation_listing(
-                working_colineation_2)
+                method_name, colineation_1.listing())
             print '||| %s.working_colineation_2\n%s' % (
-                method_name, working_colineation_2_listing)
+                method_name, working_colineation_2.listing())
         colineation_colineation_differences = []
-        for line_1 in colineation_1:
+        for line_1 in colineation_1.lines:
             if trace_on:
                 print '||| %s.line_1:\n%s' % (method_name, line_1)
-            if working_colineation_2 == []:
+            if working_colineation_2.is_empty():
                 colineation_colineation_differences.append(line_1)
             else:
-                line_colineation_differences = self.subtract_line_colineation(  #   self.subtract_line_colineation()
+                line_colineation_differences = self.subtract_line_colineation(
                     line_1, working_colineation_2)
                 colineation_colineation_differences.extend(
                     line_colineation_differences)
                 if trace_on:
-                    line_colineation_differences_listing = (
-                        self.get_colineation_listing(
-                            line_colineation_differences))
                     print '||| %s.line_colineation_differences:\n%s' % (
-                        method_name, line_colineation_differences_listing)
-                    colineation_colineation_differences_listing = (
-                        self.get_colineation_listing(
-                            colineation_colineation_differences))
+                        method_name, line_colineation_differences)              #   need a __str__ method
                     print '||| %s.colineation_colineation_differences:\n%s' % (
                         method_name, 
-                        colineation_colineation_differences_listing)
+                        colineation_colineation_differences)                    #   need a __str__ method
         return colineation_colineation_differences
 
-    def subtract_line_colineation(self, line_minuend, working_colineation):     #   Colineation.subtract_line_colineation()
+    def subtract_line_colineation(self, line_minuend, working_colineation):     #   move to Colineation
         """Receives a line minuend and a (non-empty) list of colinear working 
         line subtrahends:
             line_minuend: Line
