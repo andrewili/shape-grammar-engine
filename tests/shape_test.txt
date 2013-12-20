@@ -10,8 +10,8 @@
     >>> def make_lines_from_short_specs(short_specs):
     ...     new_lines = []
     ...     for spec in short_specs:
-    ...         p1, p2 = (spec)
-    ...         new_line = line.Line.from_spec(p1, p1, p2, p2)
+    ...         xy1, xy2 = (spec)
+    ...         new_line = line.Line.from_spec(xy1, xy1, xy2, xy2)
     ...         new_lines.append(new_line)
     ...     return new_lines
     >>> def make_colineation_from_short_specs(short_specs):
@@ -253,33 +253,36 @@
 
 ### subtract
 #   __sub__(other)
-    ??? non_empty_shape_1 = shape.Shape.from_specs([(2, 2, 7, 7)])
-    ??? non_empty_shape_2 = shape.Shape.from_specs([(3, 3, 4, 4)])
-    ??? empty_shape_1 = shape.Shape.new_empty()
-    ??? empty_shape_2 = shape.Shape.new_empty()
-    ??? shape_diff_empty_empty = empty_shape_1 - empty_shape_2
-    ??? shape_diff = non_empty_shape_1 - non_empty_shape_2
-    ??? shape_diff.line_part.__class__
-    ??? print shape_diff.listing()
+    >>> non_empty_shape_1 = shape.Shape.from_specs([(2, 2, 7, 7)])
+    >>> non_empty_shape_2 = shape.Shape.from_specs([(3, 3, 4, 4)])
+    >>> empty_shape_1 = shape.Shape.new_empty()
+    >>> empty_shape_2 = shape.Shape.new_empty()
+    >>> shape_diff_empty_empty = empty_shape_1 - empty_shape_2
+    >>> shape_diff = non_empty_shape_1 - non_empty_shape_2
+    >>> print shape_diff.listing()
     (45.0, 0.0):
-        (2, 2, 3, 3)
-        (4, 4, 7, 7)
+        (2.0, 2.0, 3.0, 3.0)
+        (4.0, 4.0, 7.0, 7.0)
 
-#   subtract_non_empty_line_partitions(line_part_1, line_part_2)
-    >>> colineation_0207_1217 = make_lines_from_short_specs([(2, 7), (12, 17)])
-    >>> colineation_0608_1314 = make_lines_from_short_specs([(6, 8), (13, 14)])
-    >>> line_part_1 = {(0, 0): colineation_0207_1217, (45, 0): colineation_0207_1217}
-    >>> line_part_2 = {(0, 0): colineation_0608_1314, (90, 0): colineation_0207_1217}
-    >>> line_part_difference = empty_shape.subtract_non_empty_line_partitions(line_part_1, line_part_2)
-    
-    ??? print empty_shape.get_line_part_listing(line_part_difference)
+#   subtract_non_empty_line_partitions(line_part_1, line_part_2)    
+    >>> line_00_01 = line.Line.from_spec(0, 0, 0, 1)
+    >>> line_00_02 = line.Line.from_spec(0, 0, 0, 2)
+    >>> line_00_20 = line.Line.from_spec(0, 0, 2, 0)
+    >>> line_00_22 = line.Line.from_spec(0, 0, 2, 2)
+    >>> line_11_33 = line.Line.from_spec(1, 1, 3, 3)
+    >>> line_30_40 = line.Line.from_spec(3, 0, 4, 0)
+    >>> lines_1 = [line_00_02, line_00_22, line_00_20]
+    >>> lines_2 = [line_00_01, line_11_33, line_30_40]
+    >>> colineation_1 = line_partition.LinePartition(lines_1)
+    >>> colineation_2 = line_partition.LinePartition(lines_2)
+    >>> line_part_diff = empty_shape.subtract_non_empty_line_partitions(colineation_1, colineation_2)   #   this is a dict
+    >>> print line_part_diff.listing()
     (0.0, 0.0):
-        (2, 2, 6, 6)
-        (12, 12, 13, 13)
-        (14, 14, 17, 17)
+        (0.0, 1.0, 0.0, 2.0)
     (45.0, 0.0):
-        (2, 2, 7, 7)
-        (12, 12, 17, 17)
+        (0.0, 0.0, 1.0, 1.0)
+    (90.0, 0.0):
+        (0.0, 0.0, 2.0, 0.0)
 
 #   subtract_colineations(colineation_1, working_colineation_2)
     >>> def test_subtract_colineations(colineation_1, colineation_2_short_specs):

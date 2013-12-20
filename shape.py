@@ -1,5 +1,6 @@
 #   shape.py
 
+import colineation
 import copy
 import line
 import line_partition
@@ -75,19 +76,17 @@ class Shape(object):
     def __sub__(self, other):
         """Receives:
             Shape
-        Returns the difference:
+        Returns the difference self - other:
             Shape
         """
-        if self.line_part.is_empty():                                           #   LinePartition.is_empty()
-            new_partition = line_partition.LinePartition([])
-        elif other.line_part.dictionary == {}:
-            new_partition = self.line_part
+        if self.line_part.is_empty():
+            new_line_part = line_partition.LinePartition([])
+        elif other.line_part.is_empty():
+            new_line_part = self.line_part
         else:
-            # new_partition = line_part_1 - line_part_2                           #   line_part_1 - line_part_2
-            new_partition = self.subtract_non_empty_line_partitions(
-                self.line_part, other.line_part)
-        new_shape = Shape(new_partition)
-##        print '||| Shape.__sub__.new_shape: %s' % new_shape
+            new_line_part = self.subtract_non_empty_line_partitions(
+                self.line_part, other.line_part)                                #   line_part_1 - line_part_2
+        new_shape = Shape(new_line_part)
         return new_shape
 
     def subtract_non_empty_line_partitions(self, line_part_1, line_part_2):     #   LinePartition.__sub__(other)
@@ -104,13 +103,12 @@ class Shape(object):
             method_name = 'Shape.subtract_non_empty_line_partitions'
             print '||| %s.line_part_1:\n%s' % (method_name, line_part_1.listing())
             print '||| %s.line_part_2:\n%s' % (method_name, line_part_2.listing())
-        new_partition = {}
+        new_line_partition = line_partition.LinePartition([])
         line_dict_1 = line_part_1.dictionary
         for carrier in line_dict_1:
             colineation_1 = line_dict_1[carrier]
             if trace_on:
                 carrier_listing = line_part_1.get_carrier_listing(carrier)
-                # carrier_listing = self.get_carrier_listing(carrier)
                 print '||| %s.carrier:\n%s' % (method_name, carrier_listing)
                 colineation_1_listing = self.get_colineation_listing(
                     colineation_1)
@@ -119,27 +117,24 @@ class Shape(object):
             line_dict_2 = line_part_2.dictionary
             if carrier in line_dict_2:
                 colineation_2 = copy.copy(line_dict_2[carrier])
-                new_colineation = self.subtract_colineations(                   #   colineation_1 - colineation_2
-                    colineation_1, colineation_2)                               #   this returns [Line, ...]
+                new_lines = self.subtract_colineations(                         #   colineation_1 - colineation_2
+                    colineation_1, colineation_2)
+                new_colineation = colineation.Colineation(new_lines)
                 if trace_on:
-                    colineation_2_listing = self.get_colineation_listing(
-                        colineation_2)
                     print '||| %s.colineation_2:\n%s' % (
-                        method_name, colineation_2_listing)
-                    new_colineation_listing = self.get_colineation_listing(
-                        new_colineation)
+                        method_name, colineation_2.listing())
                     print '||| %s.new_colineation:\n%s' % (
-                        method_name, new_colineation_listing)
+                        method_name, new_colineation.listing())
             else:
                 new_colineation = colineation_1
-            if new_colineation == []:
+            if new_colineation.is_empty():
                 pass
             else:
-                new_partition[carrier] = new_colineation
+                new_line_partition.dictionary[carrier] = new_colineation
         if trace_on:
-            print '||| %s.new_partition: \n%s' % (
-                method_name, new_partition.listing())
-        return new_partition
+            print '||| %s.new_line_partition: \n%s' % (
+                method_name, new_line_partition.listing())
+        return new_line_partition
 
     def subtract_colineations(self, colineation_1, working_colineation_2):      #   move to Colineation
         """Receives 2 (non-empty colinear) colineations:
