@@ -5,7 +5,8 @@ import copy
 import line
 
 class LinePartition(object):
-        ### construct
+    
+    ### construct
     def __init__(self, lines):
         """Receives a list of collinear lines:
             [Line, ...], n >= 0
@@ -51,7 +52,7 @@ class LinePartition(object):
             dictionary[carrier] = new_colineation
         return dictionary
 
-        ### represent
+    ### represent
     def __str__(self):
         """Returns the string of ordered line specs:
             [(x1, y1, x2, y2), ...]
@@ -100,7 +101,7 @@ class LinePartition(object):
         empty_partition = LinePartition([])
         return empty_partition
         
-        ### relations
+    ### relations
     def __eq__(self, other):
         return self.dictionary == other.dictionary
 
@@ -136,7 +137,7 @@ class LinePartition(object):
                     return False
         return True
 
-        ### add
+    ### add
     def __add__(self, other):
         """Receives a line partition of maximal lines:
             LinePartition, n >= 0
@@ -161,62 +162,18 @@ class LinePartition(object):
         new_partition.dictionary = new_dictionary
         return new_partition
 
-        ### subtract
-    # def __sub__(self, other):
-    #     pass
-    def subtract_non_empty_line_partitions(self, partition_1, partition_2):     #   LinePartition.__sub__(other)
-        """Receives 2 line partitions:
-            {carrier: colineation, ...}, n >= 1
-        Returns a line partition, possibly empty, such that, for each
-        carrier, each colineation is the difference 
-        colineation_1 - colineation_2. If a difference is the empty colineation, 
-        the entry is excluded from the partition
-            {carrier: colineation, ...}, n >= 0
+    ### subtract
+    def __sub__(self, other):
+        """Receives a (non-empty?) line partition:
+            LinePartition
+        Returns the difference self - other:
+            LinePartition
+        Called by Shape.__sub__()
+        Calls Colineation.__sub__()
         """
-        trace_on = False
-        if trace_on:
-            method_name = 'Shape.subtract_non_empty_line_partitions'
-            print '||| %s.partition_1:\n%s' % (method_name, partition_1.listing())
-            print '||| %s.partition_2:\n%s' % (method_name, partition_2.listing())
-        new_partition = {}
-        line_dict_1 = partition_1.dictionary
-        for carrier in line_dict_1:
-            colineation_1 = line_dict_1[carrier]
-            if trace_on:
-                carrier_listing = partition_1.get_carrier_listing(carrier)
-                # carrier_listing = self.get_carrier_listing(carrier)
-                print '||| %s.carrier:\n%s' % (method_name, carrier_listing)
-                colineation_1_listing = self.get_colineation_listing(
-                    colineation_1)
-                print '||| %s.colineation_1:\n%s' % (
-                    method_name, colineation_1_listing)
-            line_dict_2 = partition_2.dictionary
-            if carrier in line_dict_2:
-                colineation_2 = copy.copy(line_dict_2[carrier])
-                new_colineation = self.subtract_colineation_colineation(        #   colineation_1 - colineation_2
-                                                            #   this returns [Line, ...]
-                    colineation_1, colineation_2)
-                if trace_on:
-                    colineation_2_listing = self.get_colineation_listing(
-                        colineation_2)
-                    print '||| %s.colineation_2:\n%s' % (
-                        method_name, colineation_2_listing)
-                    new_colineation_listing = self.get_colineation_listing(
-                        new_colineation)
-                    print '||| %s.new_colineation:\n%s' % (
-                        method_name, new_colineation_listing)
-            else:
-                new_colineation = colineation_1
-            if new_colineation == []:
-                pass
-            else:
-                new_partition[carrier] = new_colineation
-        if trace_on:
-            print '||| %s.new_partition: \n%s' % (
-                method_name, new_partition.listing())
-        return new_partition
+        pass
 
-        ###
+    ###
 if __name__ == '__main__':
     import doctest
     doctest.testfile('tests/line_partition_test.txt')

@@ -37,9 +37,10 @@ Log
 
 #   line_partitions_are_equal. LinePartition.__eq__()?
 
+### Colineation
 Colineation, Colabeling. Reclaim methods: __str__, listing, etc.
 
-Colineation.__add__?
+Colineation. Should have __add__() method?
 
-#   2013-12-20
-Shape.subtract_colineations(). Should return Line list or Colineation?
+Colineation.subtract_colineations(). Should return Line list or Colineation?
+

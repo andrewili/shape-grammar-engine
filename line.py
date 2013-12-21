@@ -5,7 +5,7 @@ import point
 
 
 class Line(object):
-        ### construct
+    ### construct
     def __init__(self, p1, p2):
         #   2D implementation
         try:
@@ -64,7 +64,7 @@ class Line(object):
     def from_points(cls, p1, p2):
         return Line(p1, p2)
 
-        ### represent
+    ### represent
     def __str__(self):
         return '(%s, %s, %s, %s)' % (
             self.x1, self.y1, self.x2, self.y2)
@@ -73,7 +73,7 @@ class Line(object):
         return '(%0.1f, %0.1f, %0.1f, %0.1f)' % (
             self.x1, self.y1, self.x2, self.y2)
 
-        ### relations
+    ### relations
     def __eq__(self, other):
         if (self.tail == other.tail and
             self.head == other.head
@@ -187,7 +187,7 @@ class Line(object):
     def is_disjoint_right_of(self, other):
         return  self.tail >= other.head
 
-        ### add
+    ### add
 
     def can_be_merged_with(self, other):
         """Receives a collinear line
@@ -269,7 +269,7 @@ class Line(object):
             print '||| %s.new_head:\n%s' % (method_name, new_head)
         return differences
 
-        ###
+    ###
 if __name__ == '__main__':
     import doctest
     doctest.testfile('tests/line_test.txt')
