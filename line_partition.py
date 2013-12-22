@@ -164,14 +164,48 @@ class LinePartition(object):
 
     ### subtract
     def __sub__(self, other):
-        """Receives a (non-empty?) line partition:
-            LinePartition
-        Returns the difference self - other:
-            LinePartition
-        Called by Shape.__sub__()
-        Calls Colineation.__sub__()
+        """Receives a line partition:
+            LinePartition, n(entries) >= 0
+        Returns the line partition, possibly empty, such that for each carrier 
+        each colineation is the difference colineation_1 - colineation_2. If a 
+        difference is the empty colineation, the entry is excluded from the 
+        partition.
+            LinePartition, n(entries) >= 0
         """
-        pass
+        trace_on = False
+        if trace_on:
+            method_name = 'LinePartition.__sub__'
+            print '||| %s.self:\n%s' % (method_name, self.listing())
+            print '||| %s.other:\n%s' % (method_name, other.listing())
+        new_line_part = LinePartition([])
+        line_dict_1 = self.dictionary
+        for carrier in line_dict_1:
+            colineation_1 = line_dict_1[carrier]
+            if trace_on:
+                carrier_listing = self.get_carrier_listing(carrier)
+                print '||| %s.carrier:\n%s' % (method_name, carrier_listing)
+                print '||| %s.colineation_1:\n%s' % (
+                    method_name, colineation_1.listing())
+            line_dict_2 = other.dictionary
+            if carrier in line_dict_2:
+                colineation_2 = copy.copy(line_dict_2[carrier])
+                new_lines = colineation_1 - colineation_2
+                new_colineation = colineation.Colineation(new_lines)
+                if trace_on:
+                    print '||| %s.colineation_2:\n%s' % (
+                        method_name, colineation_2.listing())
+                    print '||| %s.new_colineation:\n%s' % (
+                        method_name, new_colineation.listing())
+            else:
+                new_colineation = colineation_1
+            if new_colineation.is_empty():
+                pass
+            else:
+                new_line_part.dictionary[carrier] = new_colineation
+        if trace_on:
+            print '||| %s.new_line_part: \n%s' % (
+                method_name, new_line_part.listing())
+        return new_line_part
 
     ###
 if __name__ == '__main__':
