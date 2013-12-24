@@ -28,9 +28,8 @@
     >>> no_lines, non_colinear_lines, colinear_lines = lines_for_init_test()
 
     >>> empty_colineation = colineation.Colineation(no_lines)
-    You're trying to make a colineation with non-colinear lines or no lines
     >>> non_colinear_colineation = colineation.Colineation(non_colinear_lines)
-    You're trying to make a colineation with non-colinear lines or no lines
+    You're trying to make a colineation with non-colinear lines
 
     >>> colinear_colineation = colineation.Colineation(colinear_lines)
     
@@ -63,6 +62,11 @@
     True
     >>> colineation_drone.colinear(non_colinear_lines)
     False
+
+#   new_empty()
+    >>> empty_colineation = colineation.Colineation.new_empty()
+    >>> print empty_colineation
+    []
 
 ### maximize
 #   get_maximal_lines_from(maximal_lines_1, maximal_lines_2)

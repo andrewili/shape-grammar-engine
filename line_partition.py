@@ -63,8 +63,8 @@ class LinePartition(object):
             lines_by_carrier = the_colineation.lines
             lines.extend(lines_by_carrier)
         line_strings = []
-        for line_x in sorted(lines):
-            line_strings.append(line_x.__str__())
+        for line_i in sorted(lines):
+            line_strings.append(line_i.__str__())
         line_string = ', '.join(sorted(line_strings))
         string = '[%s]' % line_string
         return string
@@ -189,8 +189,8 @@ class LinePartition(object):
             line_dict_2 = other.dictionary
             if carrier in line_dict_2:
                 colineation_2 = copy.copy(line_dict_2[carrier])
-                new_lines = colineation_1 - colineation_2
-                new_colineation = colineation.Colineation(new_lines)
+                new_lines = colineation_1 - colineation_2                       #   if new_lines is empty?
+                new_colineation = colineation.Colineation(new_lines)            #   new_colineation has no attrib lines
                 if trace_on:
                     print '||| %s.colineation_2:\n%s' % (
                         method_name, colineation_2.listing())
@@ -198,14 +198,48 @@ class LinePartition(object):
                         method_name, new_colineation.listing())
             else:
                 new_colineation = colineation_1
-            if new_colineation.is_empty():
-                pass
-            else:
-                new_line_part.dictionary[carrier] = new_colineation
+            # if new_colineation.is_empty():
+            #     pass
+            # else:
+            new_line_part.dictionary[carrier] = new_colineation
         if trace_on:
             print '||| %s.new_line_part: \n%s' % (
                 method_name, new_line_part.listing())
+        new_line_part.reduce()
         return new_line_part
+        # for carrier in line_dict_1:
+        #     colineation_1 = line_dict_1[carrier]
+        #     if trace_on:
+        #         carrier_listing = self.get_carrier_listing(carrier)
+        #         print '||| %s.carrier:\n%s' % (method_name, carrier_listing)
+        #         print '||| %s.colineation_1:\n%s' % (
+        #             method_name, colineation_1.listing())
+        #     line_dict_2 = other.dictionary
+        #     if carrier in line_dict_2:
+        #         colineation_2 = copy.copy(line_dict_2[carrier])
+        #         new_lines = colineation_1 - colineation_2                       #   if new_lines is empty?
+        #         new_colineation = colineation.Colineation(new_lines)            #   new_colineation has no attrib lines
+        #         print 'Kilroy is making a colineation'
+        #         if trace_on:
+        #             print '||| %s.colineation_2:\n%s' % (
+        #                 method_name, colineation_2.listing())
+        #             print '||| %s.new_colineation:\n%s' % (
+        #                 method_name, new_colineation.listing())
+        #     else:
+        #         new_colineation = colineation_1
+        #     if new_colineation.is_empty():
+        #         pass
+        #     else:
+        #         new_line_part.dictionary[carrier] = new_colineation
+        # if trace_on:
+        #     print '||| %s.new_line_part: \n%s' % (
+        #         method_name, new_line_part.listing())
+        # return new_line_part
+
+    def reduce(self):
+        """Removes entries with empty colineations.
+        """
+        pass
 
     ###
 if __name__ == '__main__':

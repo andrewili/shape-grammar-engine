@@ -8,20 +8,18 @@ class Colineation(object):
     """
     ### construct
     def __init__(self, lines):
-        """Receives a non-empty unsorted list of colinear lines:                #   May need to allow n = 0
-            [Line, ...], n >= 1                                                 #   For colineation difference = 0
+        """Receives an unsorted list of colinear lines:
+            [Line, ...], n >= 0
         """
         try:
-            if (len(lines) == 0 or
+            if (len(lines) >= 1 and
                 not self.colinear(lines)
             ):
                 raise ValueError()
             else:
                 self.lines = lines
         except ValueError:
-            print '%s %s' % (
-                "You're trying to make a colineation",
-                "with non-colinear lines or no lines")
+            print "You're trying to make a colineation with non-colinear lines"
 
     def colinear(self, lines):
         carrier = lines[0].carrier
@@ -31,6 +29,11 @@ class Colineation(object):
         return True
 
     ### maximize
+    @classmethod
+    def new_empty(cls):
+        new_colineation = Colineation([])
+        return new_colineation
+
     @classmethod
     def get_maximal_lines_from(cls, maximal_lines_1, maximal_lines_2):
         """Receives 2 ordered lists of maximal colinear lines:
