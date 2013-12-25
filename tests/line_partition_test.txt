@@ -1,5 +1,6 @@
 #   partition_test.txt
-
+    
+    >>> import colineation
     >>> import copy
     >>> import line
     >>> import line_partition
@@ -267,44 +268,64 @@
 
 #   reduce()
     >>> def make_line_parts_for_reduce():
-    ... empty_00 = colineation.Colineation()
-    ... empty_45
-    ... full_00
-    ... full_45
-    ... def make_line_part_0():
-    ...     new_line_part = line_partition.LinePartition.new_empty()
-    ...     empty_colineation = colineation.Colineation.new_empty()
-    ...     new_line_part[carrier_0] = empty_colineation
-    ...     return new_line_part
-    >>> def make_line_part_1():
-    ...     new_line_part = line_partition.LinePartition.new_empty()
-    ...     line_00_11 = line.Line.from_short_spec(0, 1)
-    ...     colineation_01 = colineation.Colineation([line_00_11])
-    ...     new_line_part[(45, 0)] = colineation_01
-    ...     return new_line_part
-    ... line_part_empty = line_partition.LinePartition([])
-    ... line_part_0 = make_line_part_0()
-    ... line_part_1 = line_partition.LinePartition([full_00])
-    ... line_part_00 = line_partition.LinePartition([empty_00, empty_45])
-    ... line_part_01 = line_partition.LinePartition([empty_00, full_45])
-    ... line_part_11 = line_partition.LinePartition([full_00, full_45])
-    ... return [line_part_empty, line_part_0, line_part_1, line_part_00, line_part_01, line_part_11]
-    >>> line_part_empty, line_part_0, line_part_1, line_part_00, line_part_01, line_part_11 = make_line_parts_for_reduce()
+    ...     colineation_empty = colineation.Colineation.new_empty()
+    ...     line_00_01 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_00_10 = line.Line.from_spec(0, 0, 1, 0)
+    ...     def make_line_part_0():
+    ...         line_part_0 = line_partition.LinePartition.new_empty()
+    ...         line_part_0.dictionary[(0, 0)] = colineation_empty
+    ...         return line_part_0
+    ...     def make_line_part_1():
+    ...         line_part_1 = line_partition.LinePartition([line_00_01])
+    ...         return line_part_1
+    ...     def make_line_part_00():
+    ...         line_part_00 = line_partition.LinePartition.new_empty()
+    ...         line_part_00.dictionary[(0, 0)] = colineation_empty
+    ...         line_part_00.dictionary[(90, 0)] = colineation_empty
+    ...         return line_part_00
+    ...     def make_line_part_01():
+    ...         line_part_01 = line_partition.LinePartition([line_00_10])
+    ...         line_part_01.dictionary[(0, 0)] = colineation_empty
+    ...         return line_part_01
+    ...     def make_line_part_10():
+    ...         line_part_10 = line_partition.LinePartition([line_00_01])
+    ...         line_part_10.dictionary[(90, 0)] = colineation_empty
+    ...         return line_part_10
+    ...     def make_line_part_11():
+    ...         line_part_11 = line_partition.LinePartition([line_00_10, line_00_01])
+    ...         return line_part_11
+    ...     line_part_empty = line_partition.LinePartition.new_empty()
+    ...     line_part_0 = make_line_part_0()
+    ...     line_part_1 = make_line_part_1()
+    ...     line_part_00 = make_line_part_00()
+    ...     line_part_01 = make_line_part_01()
+    ...     line_part_10 = make_line_part_10()
+    ...     line_part_11 = make_line_part_11()
+    ...     return [line_part_empty, line_part_0, line_part_1, line_part_00, line_part_01, line_part_10, line_part_11]
+    >>> line_part_empty, line_part_0, line_part_1, line_part_00, line_part_01, line_part_10, line_part_11 = make_line_parts_for_reduce()
+    >>> def test_reduce(line_part):
+    ...     line_part.reduce()
+    ...     print line_part.listing()
 
-    >>> print line_part_empty.reduce().listing()
+    >>> test_reduce(line_part_empty)
     <empty line partition>
-    >>> print line_part_0.reduce().listing()
+    >>> test_reduce(line_part_0)
     <empty line partition>
-    >>> print line_part_1.reduce().listing()
+    >>> test_reduce(line_part_1)
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 1.0)
-    >>> print line_part_00.reduce().listing()
+    >>> test_reduce(line_part_00)
     <empty line partition>
-    >>> print line_part_01.reduce().listing()
+    >>> test_reduce(line_part_01)
     (90.0, 0.0):
         (0.0, 0.0, 1.0, 0.0)
-    >>> print line_part_11.reduce().listing()
+    >>> test_reduce(line_part_10)
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 1.0)
+    >>> test_reduce(line_part_11)
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 1.0)
     (90.0, 0.0):
         (0.0, 0.0, 1.0, 0.0)
+
+

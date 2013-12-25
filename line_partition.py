@@ -207,39 +207,16 @@ class LinePartition(object):
                 method_name, new_line_part.listing())
         new_line_part.reduce()
         return new_line_part
-        # for carrier in line_dict_1:
-        #     colineation_1 = line_dict_1[carrier]
-        #     if trace_on:
-        #         carrier_listing = self.get_carrier_listing(carrier)
-        #         print '||| %s.carrier:\n%s' % (method_name, carrier_listing)
-        #         print '||| %s.colineation_1:\n%s' % (
-        #             method_name, colineation_1.listing())
-        #     line_dict_2 = other.dictionary
-        #     if carrier in line_dict_2:
-        #         colineation_2 = copy.copy(line_dict_2[carrier])
-        #         new_lines = colineation_1 - colineation_2                       #   if new_lines is empty?
-        #         new_colineation = colineation.Colineation(new_lines)            #   new_colineation has no attrib lines
-        #         print 'Kilroy is making a colineation'
-        #         if trace_on:
-        #             print '||| %s.colineation_2:\n%s' % (
-        #                 method_name, colineation_2.listing())
-        #             print '||| %s.new_colineation:\n%s' % (
-        #                 method_name, new_colineation.listing())
-        #     else:
-        #         new_colineation = colineation_1
-        #     if new_colineation.is_empty():
-        #         pass
-        #     else:
-        #         new_line_part.dictionary[carrier] = new_colineation
-        # if trace_on:
-        #     print '||| %s.new_line_part: \n%s' % (
-        #         method_name, new_line_part.listing())
-        # return new_line_part
 
     def reduce(self):
         """Removes entries with empty colineations.
         """
-        pass
+        carriers_to_delete = []
+        for carrier in self.dictionary:
+            if self.dictionary[carrier].is_empty():
+                carriers_to_delete.append(carrier)
+        for carrier in carriers_to_delete:
+            del self.dictionary[carrier]
 
     ###
 if __name__ == '__main__':
