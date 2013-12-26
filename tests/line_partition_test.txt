@@ -232,7 +232,7 @@
 
 ### subtract
 #   __sub__(other)
-    ??? def make_line_parts_for_sub():
+    >>> def make_line_parts_for_sub():
     ...     empty_1 = line_partition.LinePartition([])
     ...     empty_2 = line_partition.LinePartition([])
     ...     line_00_01 = line.Line.from_spec(0, 0, 0, 1)
@@ -244,23 +244,20 @@
     ...     full_1 = line_partition.LinePartition([line_00_01, line_00_22, line_00_20])
     ...     full_2 = line_partition.LinePartition([line_00_01, line_11_33, line_30_40])
     ...     return [empty_1, empty_2, full_1, full_2]
-    ??? empty_1, empty_2, full_1, full_2 = make_line_parts_for_sub()
+    >>> empty_1, empty_2, full_1, full_2 = make_line_parts_for_sub()
 
-    ??? print (empty_1 - empty_2).listing()
+    >>> print (empty_1 - empty_2).listing()
     <empty line partition>
-    ??? print (empty_1 - full_1).listing()
+    >>> print (empty_1 - full_1).listing()
     <empty line partition>
-    ??? print (full_1 - empty_1).listing()
+    >>> print (full_1 - empty_1).listing()
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 1.0)
     (45.0, 0.0):
         (0.0, 0.0, 2.0, 2.0)
     (90.0, 0.0):
         (0.0, 0.0, 2.0, 0.0)
-    ??? line_part_diff = full_1 - full_2
-    ??? len(line_part_diff.dictionary)
-    2
-    ??? print line_part_diff.listing()
+    >>> print (full_1 - full_2).listing()
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
     (90.0, 0.0):

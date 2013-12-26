@@ -189,8 +189,7 @@ class LinePartition(object):
             line_dict_2 = other.dictionary
             if carrier in line_dict_2:
                 colineation_2 = copy.copy(line_dict_2[carrier])
-                new_lines = colineation_1 - colineation_2                       #   if new_lines is empty?
-                new_colineation = colineation.Colineation(new_lines)            #   new_colineation has no attrib lines
+                new_colineation = colineation_1 - colineation_2
                 if trace_on:
                     print '||| %s.colineation_2:\n%s' % (
                         method_name, colineation_2.listing())
@@ -198,9 +197,6 @@ class LinePartition(object):
                         method_name, new_colineation.listing())
             else:
                 new_colineation = colineation_1
-            # if new_colineation.is_empty():
-            #     pass
-            # else:
             new_line_part.dictionary[carrier] = new_colineation
         if trace_on:
             print '||| %s.new_line_part: \n%s' % (

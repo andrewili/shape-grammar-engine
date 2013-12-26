@@ -284,13 +284,23 @@
 
 ### subtract
 #   __sub__(working_colineation_2)
-    >>> def test_subtract_colineations(colineation_1, colineation_2_short_specs):
+
+    ??? def test_subtract_colineations(colineation_1, colineation_2_short_specs):
     ...     working_colineation_2 = make_colineation_from_short_specs(colineation_2_short_specs)
     ...     line_diffs = colineation_1 - working_colineation_2
     ...     if line_diffs == []:
     ...         print line_diffs
     ...     else:
     ...         for line_diff in line_diffs:
+    ...             print line_diff
+    
+    >>> def test_subtract_colineations(colineation_1, colineation_2_short_specs):
+    ...     working_colineation_2 = make_colineation_from_short_specs(colineation_2_short_specs)
+    ...     colineation_diff = colineation_1 - working_colineation_2
+    ...     if colineation_diff.is_empty():
+    ...         print colineation_diff
+    ...     else:
+    ...         for line_diff in colineation_diff.lines:
     ...             print line_diff
     >>> colineation_minuend = make_colineation_from_short_specs([(2, 7), (12, 17)])
 

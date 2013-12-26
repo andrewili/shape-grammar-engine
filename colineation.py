@@ -162,6 +162,19 @@ class Colineation(object):
         colineation_listing = '\n'.join(line_listings)
         return colineation_listing
 
+    def lines_str(self, lines):
+        """Receives a list of lines:
+            [Line, ...]
+        Returns a string: 
+            [(x1, y1, x2, y2), ...]
+        """
+        line_strings = []
+        for line_i in lines:
+            line_string = line_i.__str__()
+            line_strings.append(line_string)
+        lines_string = ', '.join(line_strings)
+        return '[%s]' % lines_string
+
     ### relations
     def __eq__(self, other):
         """Receives a colineation:
@@ -179,7 +192,6 @@ class Colineation(object):
 
     def is_empty(self):
         return len(self.lines) == 0
-        # print 'Colineation.is_empty()'
 
     def is_a_subcolineation_of(self, other):
         """Receives a non-empty colinear colineation:
@@ -194,10 +206,9 @@ class Colineation(object):
     def __sub__(self, working_colineation_2):
         """Receives 2 (non-empty colinear) colineations:
             Colineation, n(lines) >= 1
-        Returns an ordered list, possibly empty, of the lines in self and not 
-        in working_colineation_2:
-            [Line, ...], n >= 0                                                 #   May be empty. Must be list?
-                                                                                #   Can be Colineation?
+        Returns a colineation, possibly empty, of the lines in self and not in 
+        working_colineation_2:
+            Colineation, n(lines) >= 0
         """
         trace_on = False
         if trace_on:
@@ -219,11 +230,13 @@ class Colineation(object):
                     line_colineation_differences)
                 if trace_on:
                     print '||| %s.line_colineation_differences:\n%s' % (
-                        method_name, line_colineation_differences)              #   need a __str__ method
+                        method_name, 
+                        self.lines_str(line_colineation_differences))
                     print '||| %s.colineation_colineation_differences:\n%s' % (
                         method_name, 
-                        colineation_colineation_differences)                    #   need a __str__ method
-        return colineation_colineation_differences
+                        self.lines_str(colineation_colineation_differences))
+        new_colineation = Colineation(colineation_colineation_differences)
+        return new_colineation
 
     def subtract_line_colineation(self, line_minuend, working_colineation):
         """Receives a line minuend and a (non-empty) list of colinear working 
@@ -321,8 +334,8 @@ class Colineation(object):
                 print "    Oops. This subtrahend is supposed to be impossible"
         line_differences.extend(last_line_line_difference_list)
         return line_differences
-        ###
 
+    ###
 if __name__ == '__main__':
     import doctest
     doctest.testfile('tests/colineation_test.txt')
