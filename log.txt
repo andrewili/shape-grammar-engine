@@ -42,9 +42,3 @@ Colineation, Colabeling. Reclaim methods: __str__, listing, etc.
 
 Colineation. Should have __add__() method?
 
-Colineation.subtract_colineations(). Should return Line list or Colineation?
-
-LinePartition.__sub__()
-Calculates new_lines = colineation_1 - colineation_2. new_lines may be empty. 
-But even if so, it does not trigger an exception in Colineation.__init__() 
-unless we include the Kilroy line. 

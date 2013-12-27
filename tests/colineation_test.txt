@@ -4,7 +4,7 @@
     >>> import line
     
     >>> colineation_drone = colineation.Colineation([line.Line.from_short_spec(0, 1)])
-    >>> def make_colineation_from_short_specs(short_specs):                     #   moved to Colineation
+    >>> def make_colineation_from_short_specs(short_specs):                     #   move to Colineation?
     ...     lines = []
     ...     for short_spec in short_specs:
     ...         x, y = short_spec
@@ -67,6 +67,8 @@
     >>> empty_colineation = colineation.Colineation.new_empty()
     >>> print empty_colineation
     []
+
+#   from_short_specs(short_specs)
 
 ### maximize
 #   get_maximal_lines_from(maximal_lines_1, maximal_lines_2)
@@ -282,20 +284,31 @@
     >>> test_colineation_12_45.is_a_subcolineation_of(colineation_23_56)
     False
 
+### add
+#   __add__(other)
+    >>> def test_add(short_specs_1, short_specs_2):
+    ...     colineation_1 = colineation.Colineation.from_short_specs(short_specs_1)
+    ...     colineation_2 = colineation.Colineation.from_short_specs(short_specs_2)
+    ...     colineation_sum = colineation_1 + colineation_2
+    ...     if colineation_sum.is_empty():
+    ...         print colineation_sum
+    ...     else:
+    ...         for line_i in colineation_sum.lines:
+    ...             print line_i
+
+    >>> test_add([], [])
+    []
+    >>> test_add([], [(0, 1), (2, 3)])
+    [(0, 0, 1, 1), (2, 2, 3, 3)]
+    >>> test_add([(0, 0, 1, 1), (2, 2, 3, 3)], [])
+    [(0, 0, 1, 1), (2, 2, 3, 3)]
+
+
 ### subtract
 #   __sub__(working_colineation_2)
 
-    ??? def test_subtract_colineations(colineation_1, colineation_2_short_specs):
-    ...     working_colineation_2 = make_colineation_from_short_specs(colineation_2_short_specs)
-    ...     line_diffs = colineation_1 - working_colineation_2
-    ...     if line_diffs == []:
-    ...         print line_diffs
-    ...     else:
-    ...         for line_diff in line_diffs:
-    ...             print line_diff
-    
     >>> def test_subtract_colineations(colineation_1, colineation_2_short_specs):
-    ...     working_colineation_2 = make_colineation_from_short_specs(colineation_2_short_specs)
+    ...     working_colineation_2 = make_colineation_from_short_specs(colineation_2_short_specs)    #   from_short_specs()
     ...     colineation_diff = colineation_1 - working_colineation_2
     ...     if colineation_diff.is_empty():
     ...         print colineation_diff

@@ -28,14 +28,22 @@ class Colineation(object):
                 return False
         return True
 
-    ### maximize
     @classmethod
     def new_empty(cls):
         new_colineation = Colineation([])
         return new_colineation
 
+    # @classmethod
+    # def from_short_specs(cls, short_specs):
+    #     """Receives a list of short line specs:
+    #         [(x, y), ...]
+    #     """
+    #     pass
+
+    ### maximize
     @classmethod
-    def get_maximal_lines_from(cls, maximal_lines_1, maximal_lines_2):
+    def get_maximal_lines_from(cls, maximal_lines_1, maximal_lines_2):          #   called by LinePartition.__add__()
+                                                                                #   to be called by __add__()
         """Receives 2 ordered lists of maximal colinear lines:
             [Line, ...], n >= 1
         Returns an ordered list of maximal colinear lines:
@@ -201,6 +209,15 @@ class Colineation(object):
             if not line_i.is_a_subline_in_colineation(other):
                 return False
         return True
+
+    ### add                                                                     #   calls get_maximal_lines_from()
+    def __add__(self, other):
+        """Receives:
+            Colineation
+        Returns the sum (in maximal lines):
+            Colineation
+        """
+        pass
 
     ### subtract
     def __sub__(self, working_colineation_2):

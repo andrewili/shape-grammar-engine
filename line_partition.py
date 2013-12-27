@@ -144,8 +144,6 @@ class LinePartition(object):
         Returns a line partition of maximal lines:
             LinePartition, n >= 0
         """
-        line_drone = line.Line.from_short_spec(0, 1)
-        colineation_drone = colineation.Colineation([line_drone])
         new_dictionary = self.dictionary.copy()
         for carrier in other.dictionary:
             if carrier in new_dictionary:
@@ -154,11 +152,11 @@ class LinePartition(object):
                 new_lines = (
                     colineation.Colineation.get_maximal_lines_from(
                         new_lines, other_lines))
-                new_colineation = colineation.Colineation(new_lines)
+                new_colineation = colineation.Colineation(new_lines)            #   new_colin = new_lines + other_lines
                 new_dictionary[carrier] = new_colineation
             else:
                 new_dictionary[carrier] = other.dictionary[carrier]
-        new_partition = LinePartition([])
+        new_partition = LinePartition([])                                       #   new_partition = LinePartition.from_dict()
         new_partition.dictionary = new_dictionary
         return new_partition
 
