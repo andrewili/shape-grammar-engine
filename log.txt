@@ -40,5 +40,4 @@ Log
 ### Colineation
 Colineation, Colabeling. Reclaim methods: __str__, listing, etc.
 
-Colineation. Should have __add__() method?
 

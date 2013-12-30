@@ -147,12 +147,9 @@ class LinePartition(object):
         new_dictionary = self.dictionary.copy()
         for carrier in other.dictionary:
             if carrier in new_dictionary:
-                new_lines = new_dictionary[carrier].lines
-                other_lines = other.dictionary[carrier].lines
-                new_lines = (
-                    colineation.Colineation.get_maximal_lines_from(
-                        new_lines, other_lines))
-                new_colineation = colineation.Colineation(new_lines)            #   new_colin = new_lines + other_lines
+                self_colineation = new_dictionary[carrier]
+                other_colineation = other.dictionary[carrier]
+                new_colineation = self_colineation + other_colineation
                 new_dictionary[carrier] = new_colineation
             else:
                 new_dictionary[carrier] = other.dictionary[carrier]
