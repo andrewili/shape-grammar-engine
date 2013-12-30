@@ -4,14 +4,6 @@
     >>> import line
     
     >>> colineation_drone = colineation.Colineation([line.Line.from_short_spec(0, 1)])
-    >>> def make_colineation_from_short_specs(short_specs):                     #   move to Colineation?
-    ...     lines = []
-    ...     for short_spec in short_specs:
-    ...         x, y = short_spec
-    ...         new_line = line.Line.from_short_spec(x, y)
-    ...         lines.append(new_line)
-    ...     new_colineation = colineation.Colineation(lines)
-    ...     return new_colineation
 
 ### construct, represent
 #   __init__(lines), __str__(), listing()
@@ -69,6 +61,10 @@
     []
 
 #   from_short_specs(short_specs)
+    >>> short_specs = [(0, 1), (2, 3), (4, 5)]
+    >>> new_colineation = colineation.Colineation.from_short_specs(short_specs)
+    >>> print new_colineation
+    [(0, 0, 1, 1), (2, 2, 3, 3), (4, 4, 5, 5)]
 
 ### maximize
 #   get_maximal_lines_from(maximal_lines_1, maximal_lines_2)
@@ -300,7 +296,7 @@
     []
     >>> test_add([], [(0, 1), (2, 3)])
     [(0, 0, 1, 1), (2, 2, 3, 3)]
-    >>> test_add([(0, 0, 1, 1), (2, 2, 3, 3)], [])
+    >>> test_add([(0, 1), (2, 3)], [])
     [(0, 0, 1, 1), (2, 2, 3, 3)]
 
 
@@ -308,14 +304,14 @@
 #   __sub__(working_colineation_2)
 
     >>> def test_subtract_colineations(colineation_1, colineation_2_short_specs):
-    ...     working_colineation_2 = make_colineation_from_short_specs(colineation_2_short_specs)    #   from_short_specs()
+    ...     working_colineation_2 = colineation.Colineation.from_short_specs(colineation_2_short_specs)
     ...     colineation_diff = colineation_1 - working_colineation_2
     ...     if colineation_diff.is_empty():
     ...         print colineation_diff
     ...     else:
     ...         for line_diff in colineation_diff.lines:
     ...             print line_diff
-    >>> colineation_minuend = make_colineation_from_short_specs([(2, 7), (12, 17)])
+    >>> colineation_minuend = colineation.Colineation.from_short_specs([(2, 7), (12, 17)])
 
     >>> test_subtract_colineations(colineation_minuend, [(0, 1)])
     (2, 2, 7, 7)

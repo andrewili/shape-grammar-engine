@@ -33,17 +33,23 @@ class Colineation(object):
         new_colineation = Colineation([])
         return new_colineation
 
-    # @classmethod
-    # def from_short_specs(cls, short_specs):
-    #     """Receives a list of short line specs:
-    #         [(x, y), ...]
-    #     """
-    #     pass
+    @classmethod
+    def from_short_specs(cls, short_specs):
+        """Receives a list of short line specs:
+            [(x, y), ...]
+        """
+        mew_lines = []
+        for spec in short_specs:
+            x, y = spec
+            new_line = line.Line.from_short_spec(x, y)
+            mew_lines.append(new_line)
+        new_colineation = Colineation(mew_lines)
+        return new_colineation
 
     ### maximize
     @classmethod
     def get_maximal_lines_from(cls, maximal_lines_1, maximal_lines_2):          #   called by LinePartition.__add__()
-                                                                                #   to be called by __add__()
+                                                                                #   to be called by Colineation.__add__()
         """Receives 2 ordered lists of maximal colinear lines:
             [Line, ...], n >= 1
         Returns an ordered list of maximal colinear lines:
@@ -217,7 +223,10 @@ class Colineation(object):
         Returns the sum (in maximal lines):
             Colineation
         """
-        pass
+        # pass
+        new_colineation = []
+        for
+        return new_colineation
 
     ### subtract
     def __sub__(self, working_colineation_2):
