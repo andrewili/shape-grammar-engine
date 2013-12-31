@@ -114,6 +114,21 @@
     (45.0, 0): [(0, 0, 1, 1)]
     (90.0, 0): [(0, 0, 1, 0)]
 
+#   from_dictionary(dictionary)
+    >>> def make_line_partition_for_dictionary_test():
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     lines = [line_0011, line_0010, line_0001]
+    ...     line_partition_helper = line_partition.LinePartition(lines)
+    ...     new_dictionary = line_partition_helper.dictionary
+    ...     new_line_partition = line_partition.LinePartition.from_dictionary(new_dictionary)
+    ...     return new_line_partition
+    >>> new_line_partition = make_line_partition_for_dictionary_test()
+
+    >>> print new_line_partition
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
+
 ### relations
 #   __eq__()
 #   __ne__()

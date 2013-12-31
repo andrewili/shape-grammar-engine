@@ -52,6 +52,15 @@ class LinePartition(object):
             dictionary[carrier] = new_colineation
         return dictionary
 
+    @classmethod
+    def from_dictionary(cls, dictionary):
+        """Receives a dictionary of carrier-colineation entries:
+        {(num, num): Colineation, ...}
+        """
+        new_line_partition = LinePartition([])
+        new_line_partition.dictionary = dictionary
+        return new_line_partition
+
     ### represent
     def __str__(self):
         """Returns the string of ordered line specs:
@@ -153,8 +162,7 @@ class LinePartition(object):
                 new_dictionary[carrier] = new_colineation
             else:
                 new_dictionary[carrier] = other.dictionary[carrier]
-        new_partition = LinePartition([])                                       #   new_partition = LinePartition.from_dict()
-        new_partition.dictionary = new_dictionary
+        new_partition = LinePartition.from_dictionary(new_dictionary)
         return new_partition
 
     ### subtract
