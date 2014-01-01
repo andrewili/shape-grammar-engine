@@ -3,8 +3,6 @@
     >>> import colineation
     >>> import line
     >>> import line_partition
-
-    ??? import point                    #   seems superfluous
     >>> import shape
 
     >>> def make_lines_from_short_specs(short_specs):
@@ -14,20 +12,6 @@
     ...         new_line = line.Line.from_spec(xy1, xy1, xy2, xy2)
     ...         new_lines.append(new_line)
     ...     return new_lines
-
-    ??? def make_colineation_from_short_specs(short_specs):                     #   moved to Colineation
-    ...     lines = []
-    ...     for short_spec in short_specs:
-    ...         x, y = short_spec
-    ...         new_line = line.Line.from_short_spec(x, y)
-    ...         lines.append(new_line)
-    ...     new_colineation = colineation.Colineation(lines)
-    ...     return new_colineation
-
-    ??? def make_shape_from_specs(specs):
-    ...     return shape.Shape.from_specs(specs)
-    ??? def make_shape_from_lines(lines):
-    ...     return shape.Shape.from_lines(lines)
 
     >>> empty_shape = shape.Shape.new_empty()
 

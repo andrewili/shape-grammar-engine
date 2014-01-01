@@ -34,10 +34,3 @@ Log
         set methods
     3.  As a set of lpoint specs. Problem: have to unpack and repack lpoints
 
-
-#   line_partitions_are_equal. LinePartition.__eq__()?
-
-### Colineation
-Colineation, Colabeling. Reclaim methods: __str__, listing, etc.
-
-

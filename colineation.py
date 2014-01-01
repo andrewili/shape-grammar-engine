@@ -164,7 +164,8 @@ class Colineation(object):
         if len(lines) == 1:
             new_line = Colineation.get_singleton_line_from(lines)
         else:
-            new_line = Colineation.get_first_maximal_line_from_non_singleton(lines)
+            new_line = Colineation.get_first_maximal_line_from_non_singleton(
+                lines)
         return new_line
 
     @classmethod

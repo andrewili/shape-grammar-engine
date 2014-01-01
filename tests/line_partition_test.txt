@@ -6,7 +6,7 @@
     >>> import line_partition
     >>> import point
 
-    >>> partition_drone = line_partition.LinePartition([])                      #   need this?
+    >>> partition_drone = line_partition.LinePartition([])
 
 ### construct, represent
 #   __init__()

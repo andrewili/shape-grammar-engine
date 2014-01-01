@@ -8,7 +8,8 @@ import line_partition
 class Shape(object):
         ### construct
     def __init__(self, line_partition_in):
-        """Receives a LinePartition.
+        """Receives:
+            LinePartition
         """
         self.line_part = line_partition_in
 
