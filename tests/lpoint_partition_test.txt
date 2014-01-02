@@ -16,7 +16,7 @@
     ...     return non_lpoints
     >>> non_lpoints = non_lpoints_for_init_test()
     >>> non_lpoint_partition = lpoint_partition.LPointPartition(non_lpoints)
-    You're trying to make a partition with non labeled-points
+    You're trying to make a labeled point partition with elements that are not all labeled points
 
     >>> empty_lpoint_partition = lpoint_partition.LPointPartition.new_empty()
 
@@ -109,22 +109,22 @@
     >>> lpp_test != lpp_empty
     True
     
-#   is_a_sub_partition_of(other_partition)
+#   is_a_sub_lpoint_partition_of(other_partition)
 
     >>> lpp_empty = lpoint_partition.LPointPartition([])
     >>> lpp_empty_b = lpoint_partition.LPointPartition([])
     >>> lpp_bigger = lpoint_partition.LPointPartition.from_specs([(4, 4, 'c'), (3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
     >>> lpp_smaller = lpoint_partition.LPointPartition.from_specs([(2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
 
-    >>> lpp_empty.is_a_sub_partition_of(lpp_empty_b)
+    >>> lpp_empty.is_a_sub_lpoint_partition_of(lpp_empty_b)
     True
-    >>> lpp_empty.is_a_sub_partition_of(lpp_test)
+    >>> lpp_empty.is_a_sub_lpoint_partition_of(lpp_test)
     True
-    >>> lpp_test.is_a_sub_partition_of(lpp_bigger)
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_bigger)
     True
-    >>> lpp_test.is_a_sub_partition_of(lpp_smaller)
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_smaller)
     False
-    >>> lpp_test.is_a_sub_partition_of(lpp_empty)
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_empty)
     False
 
 #   colabelings_are_sub_colabelings_in(other_lp_partition)
