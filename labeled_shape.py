@@ -1,15 +1,11 @@
-#   sg_labeled_shape.py
-#   2013-09-24
+#   labeled_shape.py
 
 import copy
-import sg_labeled_point
-import sg_line
-import sg_lp_partition
-import sg_point
-import sg_shape
+import line_partition
+import shape
 
 
-class SGLabeledShape(object):
+class LabeledShape(object):
     ### construct
     def __init__(self, shape, lpoint_partition):
         """Receives shape and lpoint_partition:
@@ -21,9 +17,9 @@ class SGLabeledShape(object):
 
     @classmethod
     def new_empty(cls):
-        empty_shape = sg_shape.SGShape.new_empty()
-        empty_lpoint_partition = sg_lp_partition.SGLPPartition.new_empty()
-        empty_lshape = SGLabeledShape(empty_shape, empty_lpoint_partition)
+        empty_shape = shape.Shape.new_empty()
+        empty_lpoint_partition = line_partition.LinePartition.new_empty()
+        empty_lshape = LabeledShape(empty_shape, empty_lpoint_partition)
         return empty_lshape
 
     @classmethod
@@ -69,13 +65,13 @@ class SGLabeledShape(object):
     def __add__(self, other):
         new_shape = self.shape + other.shape
         new_lpoint_partition = self.lpoint_partition + other.lpoint_partition
-        return SGLabeledShape(new_shape, new_lpoint_partition)
+        return LabeledShape(new_shape, new_lpoint_partition)
 
     def __sub__(self, other):
         new_shape = self.shape - other.shape
         new_lpoint_partition = self.subtract_lpoint_partitions(
             self.lpoint_partition, other.lpoint_partition)
-        new_lshape = SGLabeledShape(new_shape, new_lpoint_partition)
+        new_lshape = LabeledShape(new_shape, new_lpoint_partition)
         return new_lshape
 
     def subtract_lpoint_partitions(self, partition_1, partition_2):
@@ -122,13 +118,13 @@ class SGLabeledShape(object):
             [SGLine, ...]
             [SGLabeledPoint, ...]
         Returns:
-            SGLabeledShape
+            LabeledShape
         """
         #   class method?
-        shape = sg_shape.SGShape.from_lines(lines)
+        shape = shape.Shape.from_lines(lines)
         lpoint_partition = self.get_lpoint_partition_from(lpoints)
                                                                 # 1.2.1
-        return SGLabeledShape(shape, lpoint_partition)
+        return LabeledShape(shape, lpoint_partition)
 
     def get_lpoint_partition_from(self, lpoints):               # 1.2.1
         """Receives a list of lpoints:
@@ -275,4 +271,4 @@ def subtract_test():
     ###
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/sg_labeled_shape_test.txt')
+    doctest.testfile('tests/labeled_shape_test.txt')
