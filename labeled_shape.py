@@ -33,30 +33,31 @@ class LabeledShape(object):
             self.shape != other.shape or
             self.lpoint_part != other.lpoint_part)
 
-    def is_empty(self):                                                         #   not used
+    def is_empty(self):                                                         #   not called
         return (
             self.shape.is_empty() and
             self.lpoint_part.is_empty())
 
-    def is_a_sub_lshape_of(self, other):                                        #   Continue checking code directly fromhere
+    def is_a_sub_labeled_shape_of(self, other):
         return (self.shape.is_a_subshape_of(other.shape) and
-                self.lpoint_part.is_a_sub_partition_of(
+                self.lpoint_part.is_a_sub_lpoint_partition_of(
                     other.lpoint_part))
 
     ### operations
     def __add__(self, other):
         new_shape = self.shape + other.shape
         new_lpoint_part = self.lpoint_part + other.lpoint_part
-        return LabeledShape(new_shape, new_lpoint_part)
+        new_lshape = LabeledShape(new_shape, new_lpoint_part)
+        return new_lshape
 
     def __sub__(self, other):
         new_shape = self.shape - other.shape
-        new_lpoint_part = self.subtract_lpoint_parts(
+        new_lpoint_part = self.subtract_lpoint_parts(                           #   lpp1 - lpp2
             self.lpoint_part, other.lpoint_part)
         new_lshape = LabeledShape(new_shape, new_lpoint_part)
         return new_lshape
 
-    def subtract_lpoint_partitions(self, partition_1, partition_2):
+    def subtract_lpoint_partitions(self, partition_1, partition_2):             #   not called
         if partition_1 == {}:
             new_partition = {}
         elif partition_2 == {}:
@@ -66,7 +67,7 @@ class LabeledShape(object):
                 partition_1, partition_2)
         return new_partition
 
-    def subtract_nonempty_lpoint_partitions(self, partition_1, partition_2):
+    def subtract_nonempty_lpoint_partitions(self, partition_1, partition_2):    #   not called
         """Receives 2 nonempty lpoint partitions
         Returns an lpoint partition, possibly empty, such that each point set is
         the difference set_1 - set_2. If a difference is the empty set, the
@@ -86,16 +87,16 @@ class LabeledShape(object):
                 new_partition[label] = new_point_set
         return new_partition
 
-    def __and__(self, other):                   #   no test
+    def __and__(self, other):                                                   #   no test
         #   Intersection &
         new_line_partition = self.get_intersection_of_line_partitions(
-            self.line_partition, other.line_partition)
+            self.line_partition, other.line_partition)                          #   line_part
         new_point_partition = self.get_intersection_of_point_partitions(
-            self.point_partition, other.point_partition)
+            self.point_partition, other.point_partition)                        #   lpoint_part
         return SGShape(new_line_partition, new_point_partition)
 
     ### other
-    def make_lshape_from(self, lines, lpoints):                 # 1.2
+    def make_lshape_from(self, lines, lpoints):             # 1.2 called by controller, translator
         """Receives a list of SGLines and a list of SGLabeledPoints:
             [SGLine, ...]
             [SGLabeledPoint, ...]
@@ -234,7 +235,7 @@ class LabeledShape(object):
         return listing
 
     ###
-def subtract_test():
+def subtract_test():                                                            #   not called
     import obj_translator
     trace_on = True
     w_vline_obj = open(

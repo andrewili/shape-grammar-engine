@@ -157,7 +157,7 @@
     >>> lshape_test != lshape_equal
     False
 
-is_a_sub_lshape_of(other)
+is_a_sub_labeled_shape_of(other)
     >>> def make_basic_shape():
     ...     basic_line_specs = [(0, 0, 1, 0), (0, 0, 1, 1), (0, 0, 0, 1)]
     ...     basic_shape = shape.Shape.from_specs(basic_line_specs)
@@ -196,17 +196,17 @@ is_a_sub_lshape_of(other)
     >>> lshape_smaller_shape = labeled_shape.LabeledShape(smaller_shape, basic_lpoints)
     >>> lshape_smaller_lpoints = labeled_shape.LabeledShape(basic_shape, smaller_lpoints)
     
-    >>> lshape_basic.is_a_sub_lshape_of(lshape_empty)
+    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_empty)
     False
-    >>> lshape_basic.is_a_sub_lshape_of(lshape_bigger_shape)
+    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_bigger_shape)
     True
-    >>> lshape_basic.is_a_sub_lshape_of(lshape_bigger_lpoints)
+    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_bigger_lpoints)
     True
-    >>> lshape_basic.is_a_sub_lshape_of(lshape_smaller_shape)
+    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_smaller_shape)
     False
-    >>> lshape_basic.is_a_sub_lshape_of(lshape_smaller_lpoints)
+    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_smaller_lpoints)
     False
-    >>> lshape_basic.is_a_sub_lshape_of(lshape_equal)
+    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_equal)
     True
 
     ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### 

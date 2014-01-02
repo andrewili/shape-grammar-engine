@@ -60,20 +60,20 @@
     ...     return [lpoints_1, lpoints_2, lpoints_3]
     >>> lpoints_1, lpoints_2, lpoints_3 = make_lpoints_for_make_dictionary_test()
 
-    >>> dictionary_0 = lp_partition_drone.make_dictionary([])
-    >>> for label in dictionary_0:
-    ...     print '%s: %s' % (label, dictionary_0[label])
-    >>> dictionary_1 = lp_partition_drone.make_dictionary(lpoints_1)
-    >>> for label in dictionary_1:
-    ...     print '%s: %s' % (label, dictionary_1[label])
+    >>> dict_0 = lp_partition_drone.make_dictionary([])
+    >>> for label in dict_0:
+    ...     print '%s: %s' % (label, dict_0[label])
+    >>> dict_1 = lp_partition_drone.make_dictionary(lpoints_1)
+    >>> for label in dict_1:
+    ...     print '%s: %s' % (label, dict_1[label])
     a: [(0, 0)]
-    >>> dictionary_2 = lp_partition_drone.make_dictionary(lpoints_2)
-    >>> for label in dictionary_2:
-    ...     print '%s: %s' % (label, dictionary_2[label])
+    >>> dict_2 = lp_partition_drone.make_dictionary(lpoints_2)
+    >>> for label in dict_2:
+    ...     print '%s: %s' % (label, dict_2[label])
     a: [(0, 0), (1, 1)]
-    >>> dictionary_3 = lp_partition_drone.make_dictionary(lpoints_3)
-    >>> for label in dictionary_3:
-    ...     print '%s: %s' % (label, dictionary_3[label])
+    >>> dict_3 = lp_partition_drone.make_dictionary(lpoints_3)
+    >>> for label in dict_3:
+    ...     print '%s: %s' % (label, dict_3[label])
     a: [(0, 0), (1, 1)]
     b: [(2, 2)]
 
