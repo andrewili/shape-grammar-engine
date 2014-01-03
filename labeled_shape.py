@@ -33,7 +33,7 @@ class LabeledShape(object):
             self.shape != other.shape or
             self.lpoint_part != other.lpoint_part)
 
-    def is_empty(self):                                                         #   not called
+    def is_empty(self):
         return (
             self.shape.is_empty() and
             self.lpoint_part.is_empty())
