@@ -166,6 +166,28 @@ class LPointPartition(object):
         new_lpoint_part.dictionary = new_dictionary
         return new_lpoint_part
 
+    def __sub__(self, other):
+        """Receives:
+            LPointPartition
+        Returns the difference self - other:
+            LPointPartition
+        """
+        if self.is_empty():
+            new_lpoint_part = LPointPartition.new_empty()
+        elif other.is_empty():
+            new_lpoint_part = self                                              #   copy of self?
+        else:
+            for label in self.dictionary:
+                if label in other.dictionary:
+                    self_colabeling = self.dictionary[label] 
+                    other_colabeling = other.dictionary[label] 
+                    new_colabeling = self_colabeling - other_colabeling
+                else:
+                    # self.colabeling
+            new_lpoint_specs.extend(new_lpoints)
+            new_lpoint_part = LPointPartition.from_specs(new_lpoint_specs)
+        return new_lpoint_part
+
         ###
 if __name__ == '__main__':
     import doctest

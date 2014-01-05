@@ -270,21 +270,22 @@
     X:
         (3.0, 3.0)
 
-### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
 #   __sub__(other)
+
+    >>> def make_lshapes_for_sub():    
+    ...     test_shape = shape.Shape.from_specs([(40, 40, 40, 60), (40, 40, 60, 40), (40, 60, 60, 60), (60, 40, 60, 60)])
+    ...     test_lpoint_part = lpoint_partition.LPointPartition.from_specs([(50, 50, 'a')])
+    ...     test_lshape = labeled_shape.LabeledShape(test_shape, test_lpoint_part)
+    ...     bigger_shape = shape.Shape.from_specs([(20, 40, 80, 40), (20, 60, 80, 60), (40, 20, 40, 80), (60, 20, 60, 80)])
+    ...     bigger_lpoint_part = lpoint_partition.LPointPartition.from_specs([(30, 50, 'a'), (50, 50, 'a')])
+    ...     bigger_lshape = labeled_shape.LabeledShape(bigger_shape, bigger_lpoint_part)
+    ...     return [test_lshape, bigger_lshape]
+    >>> test_lshape, bigger_lshape = make_lshapes_for_sub()
     
-    ??? new_shape = make_shape_from_line_specs([(40, 40, 40, 60), (40, 40, 60, 40), (40, 60, 60, 60), (60, 60, 60, 60)])
-    ??? lpoints = {'a': set([(50, 50)])}
-    ??? lshape = make_lshape_from_shape_and_lpoints(new_shape, lpoints)
-    ??? bigger_shape = make_shape_from_line_specs([(20, 40, 80, 40), (20, 60, 80, 60), (40, 20, 40, 80), (60, 20, 60, 80)])
-    ??? bigger_lpoints = {'a': set([(30, 50), (50, 50)])}
-    ??? bigger_lshape = make_lshape_from_shape_and_lpoints(bigger_shape, bigger_lpoints)
-    
-    ??? (lshape - bigger_lshape).listing()
+    >>> (test_lshape - bigger_lshape).listing()
     <no lines>
     <no labeled points>
-    ??? (bigger_lshape - lshape).listing()
+    >>> (bigger_lshape - test_lshape).listing()
     (0.0, 40.0):
         (40.0, 20.0, 40.0, 40.0)
         (40.0, 60.0, 40.0, 60.0)
@@ -299,10 +300,10 @@
         (60.0, 60.0, 80.0, 60.0)
     a:
         (30.0, 50.0)
-    ??? (lshape - lshape).listing()
+    >>> (test_lshape - test_lshape).listing()
     <no lines>
     <no labeled points>
-    ??? lshape - empty_lshape
+    >>> test_lshape - empty_lshape
     (0.0, 40.0):
         (40.0, 40.0, 40.0, 60.0)
     (0.0, 60.0):
@@ -312,7 +313,7 @@
     (90.0, 60.0):
         (40.0, 60.0, 60.0, 60.0)
     <no labeled points>
-    ??? (empty_lshape - lshape).listing()
+    >>> (empty_lshape - test_lshape).listing()
     <no lines>
     <no labeled points>
 

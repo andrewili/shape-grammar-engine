@@ -4,7 +4,7 @@ import copy
 import labeled_point
 
 class Colabeling(object):
-    """Contains a non-empty set of colabeled points:
+    """Contains a non-empty set of colabeled point specs:
         set([(x, y, label), ...]), n >= 1
     """
     ### construct
