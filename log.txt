@@ -34,3 +34,7 @@ Log
         set methods
     3.  As a set of lpoint specs. Problem: have to unpack and repack lpoints
 
+#   2014-01-06
+    Implement __add__()?
+
+    Repair controller before finishing with __sub__?

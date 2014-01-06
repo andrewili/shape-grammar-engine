@@ -57,6 +57,19 @@ class Colabeling(object):
             lpoint_specs.add(lpoint.spec)
         return lpoint_specs
 
+    @classmethod
+    def from_lpoint_specs(cls, lpoint_specs):
+        """Receives a list of lpoint specs:
+            [(x, y, label), ...]
+        """
+        new_lpoints = []
+        for spec in lpoint_specs:
+            x, y, label = spec
+            new_lpoint = labeled_point.LabeledPoint(x, y, label)
+            new_lpoints.append(new_lpoint)
+        new_colabeling = Colabeling(new_lpoints)
+        return new_colabeling
+
     ### represent
     def __str__(self):
         """Returns the string of the ordered list of colabeled points in the 
@@ -122,6 +135,17 @@ class Colabeling(object):
         return self.lpoint_specs.issubset(other.lpoint_specs)
 
     ### operate
+    # def __add__(self, other):                                                 #   implement?
+    #     pass
+
+    def __sub__(self, other):
+        """Returns a colabeling with the set difference of lpoint_specs:
+            Colabeling
+        """
+        new_lpoint_specs = self.lpoint_specs - other.lpoint_specs
+        new_colabeling = Colabeling.from_lpoint_specs(new_lpoint_specs)
+        return new_colabeling
+
     def add(self, lpoint):
         """Receives a labeled point: 
             LabeledPoint
