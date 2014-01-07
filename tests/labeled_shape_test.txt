@@ -282,7 +282,8 @@
     ...     return [test_lshape, bigger_lshape]
     >>> test_lshape, bigger_lshape = make_lshapes_for_sub()
     
-    >>> (test_lshape - bigger_lshape).listing()
+    >>> test_bigger = test_lshape - bigger_lshape
+    >>> print test_bigger.listing()
     <no lines>
     <no labeled points>
     >>> (bigger_lshape - test_lshape).listing()

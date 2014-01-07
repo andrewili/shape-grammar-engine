@@ -19,7 +19,7 @@ class Colabeling(object):
             ):
                 raise ValueError()
             else:
-                self.lpoint_specs = self.make_lpoint_specs(lpoints_in)
+                self.lpoint_specs = self.make_lpoint_specs(lpoints_in)          #   rename as lpoint_spec_set?
         except ValueError:
             print '%s %s' % (
                 "You're trying to make a colabeling",
@@ -58,12 +58,12 @@ class Colabeling(object):
         return lpoint_specs
 
     @classmethod
-    def from_lpoint_specs(cls, lpoint_specs):
+    def from_lpoint_specs(cls, lpoint_specs_list):
         """Receives a list of lpoint specs:
             [(x, y, label), ...]
         """
         new_lpoints = []
-        for spec in lpoint_specs:
+        for spec in lpoint_specs_list:
             x, y, label = spec
             new_lpoint = labeled_point.LabeledPoint(x, y, label)
             new_lpoints.append(new_lpoint)
@@ -142,8 +142,13 @@ class Colabeling(object):
         """Returns a colabeling with the set difference of lpoint_specs:
             Colabeling
         """
-        new_lpoint_specs = self.lpoint_specs - other.lpoint_specs
-        new_colabeling = Colabeling.from_lpoint_specs(new_lpoint_specs)
+        new_lpoint_spec_set = self.lpoint_specs - other.lpoint_specs            #   messy: too much converting
+        lpoints = []
+        for spec in new_lpoint_spec_set:
+            x, y, label = spec
+            lpoint = labeled_point.LabeledPoint(x, y, label)
+            lpoints.append(lpoint)
+        new_colabeling = Colabeling(lpoints)
         return new_colabeling
 
     def add(self, lpoint):

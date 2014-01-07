@@ -211,7 +211,10 @@
     ...     return [non_empty_lpp_1, non_empty_lpp_2, empty_lpp_1, empty_lpp_2]
     >>> non_empty_lpp_1, non_empty_lpp_2, empty_lpp_1, empty_lpp_2 = make_lpps_for_sub_test()
 
-    >>> print (non_empty_lpp_1 - non_empty_lpp_2).listing()
+    >>> lpp_diff_12 = non_empty_lpp_1 - non_empty_lpp_2                         #   problem here
+    >>> lpp_diff_12.__class__
+    <class 'lpoint_partition.LPointPartition'>
+    >>> print lpp_diff_12.listing()
     a:
         (3.0, 3.0)
     d:

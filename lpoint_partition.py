@@ -179,6 +179,7 @@ class LPointPartition(object):
             # for label_i in self:
             #     make new entry
         else:
+            new_lpoint_specs = []
             for label_i in self.dictionary:
                 self_colabeling_i = self.dictionary[label_i] 
                 if label_i in other.dictionary:
@@ -186,8 +187,9 @@ class LPointPartition(object):
                     new_colabeling_i = self_colabeling_i - other_colabeling_i
                 else:
                     new_colabeling_i = self_colabeling_i                        #   new object?
-            new_lpoint_specs_i = new_colabeling_i.lpoint_specs
-            new_lpoint_specs.extend(new_lpoint_specs_i)
+                new_lpoint_specs_i = new_colabeling_i.lpoint_specs
+                # 'Colabeling' object has no attribute 'lpoint_specs'
+                new_lpoint_specs.extend(new_lpoint_specs_i)
             new_lpoint_part = LPointPartition.from_specs(new_lpoint_specs)
         return new_lpoint_part
 

@@ -141,7 +141,10 @@
     ...     c2 = colabeling.Colabeling.from_lpoint_specs(specs_2)
     ...     return [c1, c2]
     >>> c1, c2 = make_colabelings_for_sub()
-    >>> print (c1 - c2)
+    >>> diff_c1c2 = c1 - c2
+    >>> diff_c1c2.__class__
+    <class 'colabeling.Colabeling'>
+    >>> print diff_c1c2
     [(2, 2)]
     >>> print (c2 - c1)
     [(3, 3)]

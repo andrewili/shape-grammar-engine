@@ -38,3 +38,13 @@ Log
     Implement __add__()?
 
     Repair controller before finishing with __sub__?
+
+#   2014-01-07
+    Colabeling. Rename lpoint_list and lpoint_spec_set?
+
+    __init__() should accept the same types as its attributes? Then use factory 
+    class methods for other types of arguments. E.g., 
+        Colabeling.__init__(self, lpoint_spec_set), not 
+        Colabeling.__init__(self, lpoint_list)
+    This might reduce the number of conversions. 
+    
