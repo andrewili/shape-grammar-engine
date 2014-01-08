@@ -198,41 +198,44 @@
         (4.0, 4.0)
 
 #   __sub__(other)                                                              #   back to lshape
-    non-empty - non-empty
-    non-empty - empty
-    empty - non-empty
-    empty - empty
-
     >>> def make_lpps_for_sub_test():
-    ...     non_empty_lpp_1 = lpoint_partition.LPointPartition.from_specs([(1, 1, 'a'), (3, 3, 'a'), (2, 2, 'b'), (5, 5, 'd')])
-    ...     non_empty_lpp_2 = lpoint_partition.LPointPartition.from_specs([(1, 1, 'a'), (2, 2, 'b'), (4, 4, 'b'), (6, 6, 'e')])
-    ...     empty_lpp_1 = lpoint_partition.LPointPartition.new_empty()
-    ...     empty_lpp_2 = lpoint_partition.LPointPartition.new_empty()
-    ...     return [non_empty_lpp_1, non_empty_lpp_2, empty_lpp_1, empty_lpp_2]
-    >>> non_empty_lpp_1, non_empty_lpp_2, empty_lpp_1, empty_lpp_2 = make_lpps_for_sub_test()
+    ...     lpp_01 = lpoint_partition.LPointPartition.new_empty()
+    ...     lpp_02 = lpoint_partition.LPointPartition.new_empty()
+    ...     specs_1 = [(1, 1, 'a'), (3, 3, 'a'), (2, 2, 'b'), (5, 5, 'd')]
+    ...     specs_2 = [(1, 1, 'a'), (2, 2, 'b'), (4, 4, 'b'), (6, 6, 'e')]
+    ...     lpp_11 = lpoint_partition.LPointPartition.from_specs(specs_1)
+    ...     lpp_12 = lpoint_partition.LPointPartition.from_specs(specs_2)
+    ...     return [lpp_01, lpp_02, lpp_11, lpp_12]
+    >>> lpp_01, lpp_02, lpp_11, lpp_12 = make_lpps_for_sub_test()
+    >>> print (lpp_01 - lpp_02).listing()
+    <no labeled points>
+    >>> print (lpp_02 - lpp_01).listing()
+    <no labeled points>
+    >>> print (lpp_01 - lpp_11).listing()
+    <no labeled points>
+    >>> print (lpp_01 - lpp_12).listing()
+    <no labeled points>
+    >>> print (lpp_11 - lpp_01).listing()
+    a:
+        (1.0, 1.0)
+        (3.0, 3.0)
+    b:
+        (2.0, 2.0)
+    d:
+        (5.0, 5.0)
 
-    >>> lpp_diff_12 = non_empty_lpp_1 - non_empty_lpp_2                         #   problem here
-    >>> lpp_diff_12.__class__
+    >>> lpp_diff_11_11 = lpp_11 - lpp_11
+    >>> print lpp_diff_11_11.listing()
+    <no labeled points>
+    >>> lpp_diff_11_12 = lpp_11 - lpp_12
+    >>> lpp_diff_11_12.__class__
     <class 'lpoint_partition.LPointPartition'>
-    >>> print lpp_diff_12.listing()
+    >>> print lpp_diff_11_12.listing()
     a:
         (3.0, 3.0)
     d:
         (5.0, 5.0)
-    >>> print (non_empty_lpp_2 - non_empty_lpp_1).listing()
-    b:
-        (4.0, 4.0)
-    e:
-        (6.0, 6.0)
-    >>> print (non_empty_lpp_1 - empty_lpp_1).listing()
-    a:
-        (1.0, 1.0)
-        (3.0, 3.0)
-    b:
-        (2.0, 2.0)
-    d:
-        (5.0, 5.0)
-    >>> print (non_empty_lpp_2 - empty_lpp_1).listing()
+    >>> print (lpp_12 - lpp_01).listing()
     a:
         (1.0, 1.0)
     b:
@@ -240,12 +243,8 @@
         (4.0, 4.0)
     e:
         (6.0, 6.0)
-    >>> print (empty_lpp_1 - non_empty_lpp_1).listing()
-    <no labeled points>
-    >>> print (empty_lpp_1 - non_empty_lpp_2).listing()
-    <no labeled points>
-    >>> print (empty_lpp_1 - empty_lpp_2).listing()
-    <no labeled points>
-    >>> print (empty_lpp_2 - empty_lpp_1).listing()
-    <no labeled points>
-
+    >>> print (lpp_12 - lpp_11).listing()
+    b:
+        (4.0, 4.0)
+    e:
+        (6.0, 6.0)

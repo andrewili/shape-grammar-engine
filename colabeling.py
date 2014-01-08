@@ -4,18 +4,18 @@ import copy
 import labeled_point
 
 class Colabeling(object):
-    """Contains a non-empty set of colabeled point specs:
-        set([(x, y, label), ...]), n >= 1
+    """Contains a set of colabeled point specs:
+        set([(x, y, label), ...]), n >= 0
     """
     ### construct
     def __init__(self, lpoints_in):
-        """Receives a non-empty unsorted list of colabeled points:
-            [LabeledPoint, ...], n >= 1
+        """Receives an unsorted list of colabeled points:
+            [LabeledPoint, ...], n >= 0
         """
         try:
-            if (len(lpoints_in) == 0 or
-                not self.are_lpoints(lpoints_in) or
-                not self.colabeled(lpoints_in)
+            if (len(lpoints_in) >= 1 and 
+                (   not self.are_lpoints(lpoints_in) or
+                    not self.colabeled(lpoints_in))
             ):
                 raise ValueError()
             else:
@@ -23,11 +23,11 @@ class Colabeling(object):
         except ValueError:
             print '%s %s' % (
                 "You're trying to make a colabeling",
-                "with non-colabeled points or no labeled points")
+                "with non-colabeled points")
 
     def are_lpoints(self, elements):
-        """Receives a list of elements:
-            [element, ...]
+        """Receives a non-empty list of elements:
+            [element, ...], n >= 1
         Returns whether all elements are LabeledPoint objects
         """
         for element in elements:

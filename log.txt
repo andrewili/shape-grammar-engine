@@ -40,7 +40,7 @@ Log
     Repair controller before finishing with __sub__?
 
 #   2014-01-07
-    Colabeling. Rename lpoint_list and lpoint_spec_set?
+    Colabeling. Rename lpoint_list and lpoint_spec_set? #### Yes, do this!
 
     __init__() should accept the same types as its attributes? Then use factory 
     class methods for other types of arguments. E.g., 

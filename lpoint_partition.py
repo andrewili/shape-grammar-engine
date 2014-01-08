@@ -175,21 +175,19 @@ class LPointPartition(object):
         if self.is_empty():
             new_lpoint_part = LPointPartition.new_empty()
         elif other.is_empty():
-            new_lpoint_part = self                                              #   should be a new object
-            # for label_i in self:
-            #     make new entry
+            new_lpoint_part = self
         else:
             new_lpoint_specs = []
-            for label_i in self.dictionary:
-                self_colabeling_i = self.dictionary[label_i] 
-                if label_i in other.dictionary:
-                    other_colabeling_i = other.dictionary[label_i] 
-                    new_colabeling_i = self_colabeling_i - other_colabeling_i
+            for label in self.dictionary:
+                self_colabeling = self.dictionary[label] 
+                if label in other.dictionary:
+                    other_colabeling = other.dictionary[label]
+                    new_colabeling = self_colabeling - other_colabeling
                 else:
-                    new_colabeling_i = self_colabeling_i                        #   new object?
-                new_lpoint_specs_i = new_colabeling_i.lpoint_specs
-                # 'Colabeling' object has no attribute 'lpoint_specs'
-                new_lpoint_specs.extend(new_lpoint_specs_i)
+                    new_colabeling = self_colabeling
+                new_lpoint_spec_set = new_colabeling.lpoint_specs
+                for spec in new_lpoint_spec_set:
+                    new_lpoint_specs.append(spec)
             new_lpoint_part = LPointPartition.from_specs(new_lpoint_specs)
         return new_lpoint_part
 

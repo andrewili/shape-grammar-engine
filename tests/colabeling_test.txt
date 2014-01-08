@@ -13,7 +13,8 @@
 ### construct, represent
 #   __init__(), __str__(), listing()
     >>> colabeling_empty = colabeling.Colabeling([])
-    You're trying to make a colabeling with non-colabeled points or no labeled points
+    >>> print colabeling_empty
+    []
 
     >>> def make_non_lpoints():
     ...     line_01 = line.Line.from_short_spec(0, 1)
@@ -22,7 +23,7 @@
     >>> non_lpoints = make_non_lpoints()
 
     >>> colabeling_non_lpoints = colabeling.Colabeling(non_lpoints)
-    You're trying to make a colabeling with non-colabeled points or no labeled points
+    You're trying to make a colabeling with non-colabeled points
 
     >>> def make_non_colabeled_lpoints():
     ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
@@ -33,7 +34,7 @@
     >>> non_colabeled_lpoints = make_non_colabeled_lpoints()
 
     >>> colabeling_non_colabeled = colabeling.Colabeling(non_colabeled_lpoints)
-    You're trying to make a colabeling with non-colabeled points or no labeled points
+    You're trying to make a colabeling with non-colabeled points
 
     >>> def lpoints_for_init_test():
     ...     lpoint_11x = labeled_point.LabeledPoint(1, 1, 'x')
