@@ -213,7 +213,7 @@ class LabeledShape(object):
         s += '}'
         return s
 
-    def listing(self):  #   modify for SGColabeling
+    def listing(self):                                                          #   modify for SGColabeling
         """An ordered string in the form:
             (bearing, intercept):
                 (x1, y1, x2, y2)

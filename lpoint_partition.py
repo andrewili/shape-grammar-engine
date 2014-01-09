@@ -180,7 +180,7 @@ class LPointPartition(object):
             new_lpoint_specs = []
             for label in self.dictionary:
                 self_colabeling = self.dictionary[label] 
-                if label in other.dictionary:
+                if label in other.dictionary:                                   #   copy?
                     other_colabeling = other.dictionary[label]
                     new_colabeling = self_colabeling - other_colabeling
                 else:

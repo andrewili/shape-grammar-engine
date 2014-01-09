@@ -50,7 +50,7 @@ class Shape(object):
 
     def listing(self):
         if self.is_empty():
-            string = '<no lines>'
+            string = '<empty shape>'
         else:
             string = self.line_part.listing()
         return string

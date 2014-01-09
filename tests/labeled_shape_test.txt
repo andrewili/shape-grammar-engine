@@ -272,26 +272,56 @@
 
 #   __sub__(other)
 
+     ___      _|___|_     _|   |_
+    |   |      |   |
+    | a |  -  a| a |   =  a
+    |___|     _|___|_     _     _
+               |   |       |   |
+
     >>> def make_lshapes_for_sub():    
-    ...     test_shape = shape.Shape.from_specs([(40, 40, 40, 60), (40, 40, 60, 40), (40, 60, 60, 60), (60, 40, 60, 60)])
-    ...     test_lpoint_part = lpoint_partition.LPointPartition.from_specs([(50, 50, 'a')])
-    ...     test_lshape = labeled_shape.LabeledShape(test_shape, test_lpoint_part)
-    ...     bigger_shape = shape.Shape.from_specs([(20, 40, 80, 40), (20, 60, 80, 60), (40, 20, 40, 80), (60, 20, 60, 80)])
-    ...     bigger_lpoint_part = lpoint_partition.LPointPartition.from_specs([(30, 50, 'a'), (50, 50, 'a')])
-    ...     bigger_lshape = labeled_shape.LabeledShape(bigger_shape, bigger_lpoint_part)
-    ...     return [test_lshape, bigger_lshape]
-    >>> test_lshape, bigger_lshape = make_lshapes_for_sub()
+    ...     med_shape = shape.Shape.from_specs([(40, 40, 40, 60), (40, 40, 60, 40), (40, 60, 60, 60), (60, 40, 60, 60)])
+    ...     med_lpoint_part = lpoint_partition.LPointPartition.from_specs([(50, 50, 'a')])
+    ...     med_lshape = labeled_shape.LabeledShape(med_shape, med_lpoint_part)
+    ...     big_shape = shape.Shape.from_specs([(20, 40, 80, 40), (20, 60, 80, 60), (40, 20, 40, 80), (60, 20, 60, 80)])
+    ...     big_lpoint_part = lpoint_partition.LPointPartition.from_specs([(30, 50, 'a'), (50, 50, 'a')])
+    ...     big_lshape = labeled_shape.LabeledShape(big_shape, big_lpoint_part)
+    ...     return [med_lshape, big_lshape]
+    >>> med_lshape, big_lshape = make_lshapes_for_sub()
     
-    >>> test_bigger = test_lshape - bigger_lshape
-    >>> print test_bigger.listing()
-    <no lines>
-    <no labeled points>
-    >>> (bigger_lshape - test_lshape).listing()
+    >>> diff_med_big = med_lshape - big_lshape
+    >>> print diff_med_big.listing()
+    <empty labeled shape>
+    >>> print med_lshape.listing()                                              #   med_lshape is okay
+
+    (0.0, 40.0):
+        (40.0, 40.0, 40.0, 60.0)
+    (0.0, 60.0):
+        (60.0, 40.0, 60.0, 60.0)
+    (90.0, 40.0):
+        (40.0, 40.0, 60.0, 40.0)
+    (90.0, 60.0):
+        (40.0, 60.0, 60.0, 60.0)
+    a:
+        (50.0, 50.0)
+
+    >>> diff_big_med = big_lshape - med_lshape
+    >>> print med_lshape.listing()                                              #   med_lshape has changed
+    (0.0, 40.0):
+        (40.0, 40.0, 40.0, 60.0)
+    (0.0, 60.0):
+        (60.0, 40.0, 60.0, 60.0)
+    (90.0, 40.0):
+        (40.0, 40.0, 60.0, 40.0)
+    (90.0, 60.0):
+        (40.0, 60.0, 60.0, 60.0)
+    a:
+        (50.0, 50.0)
+    >>> print diff_big_med.listing()
     (0.0, 40.0):
         (40.0, 20.0, 40.0, 40.0)
-        (40.0, 60.0, 40.0, 60.0)
+        (40.0, 60.0, 40.0, 80.0)
     (0.0, 60.0):
-        (60.0, 20.0, 40.0, 60.0)
+        (60.0, 20.0, 60.0, 40.0)
         (60.0, 60.0, 60.0, 80.0)
     (90.0, 40.0):
         (20.0, 40.0, 40.0, 40.0)
@@ -301,10 +331,24 @@
         (60.0, 60.0, 80.0, 60.0)
     a:
         (30.0, 50.0)
-    >>> (test_lshape - test_lshape).listing()
-    <no lines>
-    <no labeled points>
-    >>> test_lshape - empty_lshape
+
+    >>> diff_med_med = med_lshape - med_lshape
+    >>> print diff_med_med.listing()
+    <empty labeled shape>
+    >>> print med_lshape.listing()                                              #   med_lshape has changed
+    (0.0, 40.0):
+        (40.0, 40.0, 40.0, 60.0)
+    (0.0, 60.0):
+        (60.0, 40.0, 60.0, 60.0)
+    (90.0, 40.0):
+        (40.0, 40.0, 60.0, 40.0)
+    (90.0, 60.0):
+        (40.0, 60.0, 60.0, 60.0)
+    a:
+        (50.0, 50.0)
+
+    >>> diff_med_empty = med_lshape - empty_lshape
+    >>> print diff_med_empty.listing()                                          #   med_lshape has changed
     (0.0, 40.0):
         (40.0, 40.0, 40.0, 60.0)
     (0.0, 60.0):
@@ -314,9 +358,32 @@
     (90.0, 60.0):
         (40.0, 60.0, 60.0, 60.0)
     <no labeled points>
-    >>> (empty_lshape - test_lshape).listing()
-    <no lines>
-    <no labeled points>
+    >>> print med_lshape.listing()                                              #   med_lshape has changed
+    (0.0, 40.0):
+        (40.0, 40.0, 40.0, 60.0)
+    (0.0, 60.0):
+        (60.0, 40.0, 60.0, 60.0)
+    (90.0, 40.0):
+        (40.0, 40.0, 60.0, 40.0)
+    (90.0, 60.0):
+        (40.0, 60.0, 60.0, 60.0)
+    a:
+        (50.0, 50.0)
+
+    >>> diff_empty_med = empty_lshape - med_lshape
+    >>> print diff_empty_med.listing()
+    <empty labeled shape>
+    >>> print med_lshape.listing()                                              #   med_lshape has changed
+    (0.0, 40.0):
+        (40.0, 40.0, 40.0, 60.0)
+    (0.0, 60.0):
+        (60.0, 40.0, 60.0, 60.0)
+    (90.0, 40.0):
+        (40.0, 40.0, 60.0, 40.0)
+    (90.0, 60.0):
+        (40.0, 60.0, 60.0, 60.0)
+    a:
+        (50.0, 50.0)
 
 #   subtract_lpoint_partitions(partition_1, partition_2) ### Reduce to match method
     

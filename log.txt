@@ -48,3 +48,5 @@ Log
         Colabeling.__init__(self, lpoint_list)
     This might reduce the number of conversions. 
     
+    LabeledShape.__sub__() alters other. Check __sub__() of subordinate 
+    classes. Check other tests

@@ -31,7 +31,7 @@
     >>> print empty_shape.__str__()
     []
     >>> print empty_shape.listing()
-    <no lines>
+    <empty shape>
     >>> empty_shape.is_empty()
     True
 
@@ -237,21 +237,71 @@
         (0.0, 4.0, 5.0, 4.0)
 
 ### subtract
-#   __sub__(other)
-    >>> empty_1 = shape.Shape.new_empty()
-    >>> empty_2 = shape.Shape.new_empty()
-    >>> full_1 = shape.Shape.from_specs([(2, 2, 7, 7)])
-    >>> full_2 = shape.Shape.from_specs([(3, 3, 4, 4)])
+#   __sub__(other)                                                              #   back to LShape.__sub__
+    >>> def make_shapes_for_sub():
+    ...     shape_01 = shape.Shape.new_empty()
+    ...     shape_02 = shape.Shape.new_empty()
+    ...     shape_11 = shape.Shape.from_specs([(2, 2, 7, 7)])
+    ...     shape_12 = shape.Shape.from_specs([(3, 3, 4, 4)])
+    ...     return [shape_01, shape_02, shape_11, shape_12]
+    >>> shape_01, shape_02, shape_11, shape_12 = make_shapes_for_sub()
 
-    >>> print (empty_1 - empty_2).listing()
-    <no lines>
-    >>> print (empty_1 - full_1).listing()
-    <no lines>
-    >>> print (full_1 - empty_1).listing()
+    >>> print shape_11.listing()
     (45.0, 0.0):
         (2.0, 2.0, 7.0, 7.0)
-    >>> print (full_1 - full_2).listing()
+    >>> print shape_12.listing()
+    (45.0, 0.0):
+        (3.0, 3.0, 4.0, 4.0)
+
+    >>> diff_0102 = shape_01 - shape_02
+    >>> print shape_11.listing()
+    (45.0, 0.0):
+        (2.0, 2.0, 7.0, 7.0)
+    >>> print shape_12.listing()
+    (45.0, 0.0):
+        (3.0, 3.0, 4.0, 4.0)
+    >>>
+    <empty shape>
+
+    >>> diff_0111 = shape_01 - shape_11
+    >>> print shape_11.listing()
+    (45.0, 0.0):
+        (2.0, 2.0, 7.0, 7.0)
+    >>> print shape_12.listing()
+    (45.0, 0.0):
+        (3.0, 3.0, 4.0, 4.0)
+    >>>
+    <empty shape>
+
+    >>> diff_1101 = shape_11 - shape_01
+    >>> print shape_11.listing()
+    (45.0, 0.0):
+        (2.0, 2.0, 7.0, 7.0)
+    >>> print shape_12.listing()
+    (45.0, 0.0):
+        (3.0, 3.0, 4.0, 4.0)
+    >>> print diff_1101.listing()
+    (45.0, 0.0):
+        (2.0, 2.0, 7.0, 7.0)
+
+    >>> diff_1112 = shape_11 - shape_12
+    >>> print shape_11.listing()
+    (45.0, 0.0):
+        (2.0, 2.0, 7.0, 7.0)
+    >>> print shape_12.listing()                                                #   shape_12 has changed
+    (45.0, 0.0):
+        (3.0, 3.0, 4.0, 4.0)
+    >>> print diff_1112.listing()
     (45.0, 0.0):
         (2.0, 2.0, 3.0, 3.0)
         (4.0, 4.0, 7.0, 7.0)
 
+    >>> diff_1211 = shape_12 - shape_11
+    >>> print shape_11.listing()
+    (45.0, 0.0):
+        (2.0, 2.0, 7.0, 7.0)
+    >>> print shape_12.listing()                                                #   shape_12 has changed
+    (45.0, 0.0):
+        (3.0, 3.0, 4.0, 4.0)
+    >>>
+    <empty shape>
