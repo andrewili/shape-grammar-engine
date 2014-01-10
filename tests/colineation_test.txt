@@ -20,6 +20,9 @@
     >>> no_lines, non_colinear_lines, colinear_lines = lines_for_init_test()
 
     >>> empty_colineation = colineation.Colineation(no_lines)
+    >>> print empty_colineation.listing()
+    <empty colineation>
+
     >>> non_colinear_colineation = colineation.Colineation(non_colinear_lines)
     You're trying to make a colineation with non-colinear lines
 

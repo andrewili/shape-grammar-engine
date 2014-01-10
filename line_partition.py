@@ -67,9 +67,9 @@ class LinePartition(object):
             [(x1, y1, x2, y2), ...]
         """
         lines = []
-        for carrier in self.dictionary:
-            the_colineation = self.dictionary[carrier]
-            lines_by_carrier = the_colineation.lines
+        for carrier_i in self.dictionary:
+            colineation_i = self.dictionary[carrier_i]
+            lines_by_carrier = colineation_i.lines
             lines.extend(lines_by_carrier)
         line_strings = []
         for line_i in sorted(lines):
@@ -78,10 +78,10 @@ class LinePartition(object):
         string = '[%s]' % line_string
         return string
 
-    def listing(self):
+    def listing(self):                                                          #   back to shape
         """Returns an ordered, formatted, multi-line string in the form:
-            (<bearing>, <intercept>):
-                (<x1>, <y1>, <x2>, <y2>)
+            (bearing, intercept):
+                (x1, y1, x2, y2)
                 ...
             ...
         """
@@ -89,13 +89,12 @@ class LinePartition(object):
             string = '<empty line partition>'
         else:
             string_lines = []
-            for carrier in sorted(self.dictionary):
-                carrier_listing = self.get_carrier_listing(carrier)
+            for carrier_i in sorted(self.dictionary):
+                carrier_listing = self.get_carrier_listing(carrier_i)
                 string_lines.append(carrier_listing)
-                the_colineation = self.dictionary[carrier]
-                colineation_listing_indent_level = 1
-                colineation_listing = the_colineation.listing(
-                    colineation_listing_indent_level)
+                colineation_i = self.dictionary[carrier_i]
+                indent_level = 1                                                #   move out of loop
+                colineation_listing = colineation_i.listing(indent_level)
                 string_lines.append(colineation_listing)
             string = '\n'.join(string_lines)
         return string
@@ -192,7 +191,7 @@ class LinePartition(object):
             line_dict_2 = other.dictionary
             if carrier in line_dict_2:
                 colineation_2 = copy.copy(line_dict_2[carrier])
-                new_colineation = colineation_1 - colineation_2
+                new_colineation = colineation_1 - colineation_2                 #    if new_colineation is empty?
                 if trace_on:
                     print '||| %s.colineation_2:\n%s' % (
                         method_name, colineation_2.listing())

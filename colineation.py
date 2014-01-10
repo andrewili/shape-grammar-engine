@@ -3,8 +3,7 @@
 import line
 
 class Colineation(object):
-    """Consists of a non-empty (and unordered) list of colinear lines. 
-    Immutable.
+    """Consists of an (unordered) list of colinear lines. Immutable.
     """
     ### construct
     def __init__(self, lines):
@@ -69,10 +68,13 @@ class Colineation(object):
         if indent_level < 0:
             indent_level = 0
         indent_string = ' ' * indent_level * indent_increment
-        line_listings = []
-        for line_i in sorted(self.lines):
-            line_listings.append(indent_string + line_i.listing())
-        colineation_listing = '\n'.join(line_listings)
+        if self.lines == []:
+            colineation_listing = '%s<empty colineation>' % indent_string
+        else:
+            line_listings = []
+            for line_i in sorted(self.lines):
+                line_listings.append(indent_string + line_i.listing())
+            colineation_listing = '\n'.join(line_listings)
         return colineation_listing
 
     def lines_str(self, lines):
