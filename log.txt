@@ -50,3 +50,6 @@ Log
     
     LabeledShape.__sub__() alters other. Check __sub__() of subordinate 
     classes. Check other tests
+
+#   2014-01-12
+    Invariants / design by contract. Receives / returns / maintains 

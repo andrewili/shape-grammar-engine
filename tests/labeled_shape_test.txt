@@ -62,7 +62,7 @@
     ([], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
 
     >>> print lshape_lpoints.listing()
-    <no lines>
+    <empty shape>
     a:
         (0.0, 0.0)
         (1.0, 1.0)
@@ -165,58 +165,6 @@
     >>> lshape_test != lshape_equal
     False
 
-#   is_a_sub_labeled_shape_of(other)
-    >>> def make_basic_shape():
-    ...     basic_line_specs = [(0, 0, 1, 0), (0, 0, 1, 1), (0, 0, 0, 1)]
-    ...     basic_shape = shape.Shape.from_specs(basic_line_specs)
-    ...     return basic_shape
-    >>> def make_basic_lpoints():
-    ...     basic_lpoint_specs = [(2, 2, 'ne'), (2, 0, 'e'), (0, 2, 'n')]
-    ...     basic_lpoints = lpoint_partition.LPointPartition.from_specs(basic_lpoint_specs)
-    ...     return basic_lpoints
-    >>> def make_bigger_shape():
-    ...     bigger_line_specs = [(0, 0, 1, 0), (0, 0, 1, 1), (0, 0, 0, 1), (2, 2, 3, 3)]
-    ...     bigger_shape = shape.Shape.from_specs(bigger_line_specs)
-    ...     return bigger_shape
-    >>> def make_bigger_lpoints():
-    ...     bigger_lpoint_specs = [(2, 0, 'e'), (0, 2, 'n'), (2, 2, 'ne'), (0, -1, 's')]
-    ...     bigger_lpoints = lpoint_partition.LPointPartition.from_specs(bigger_lpoint_specs)
-    ...     return bigger_lpoints
-    >>> def make_smaller_shape():
-    ...     smaller_line_specs = [(0, 0, 1, 0), (0, 0, 0, 1)]
-    ...     smaller_shape = shape.Shape.from_specs(smaller_line_specs)
-    ...     return smaller_shape
-    >>> def make_smaller_lpoints():
-    ...     smaller_lpoint_specs = [(2, 0, 'e'), (0, 2, 'n')]
-    ...     smaller_lpoints = lpoint_partition.LPointPartition.from_specs(smaller_lpoint_specs)
-    ...     return smaller_lpoints
-
-    >>> basic_shape     = make_basic_shape()
-    >>> basic_lpoints   = make_basic_lpoints()
-    >>> bigger_shape    = make_bigger_shape()
-    >>> bigger_lpoints  = make_bigger_lpoints()
-    >>> smaller_shape   = make_smaller_shape()
-    >>> smaller_lpoints = make_smaller_lpoints()
-
-    >>> lshape_basic            = labeled_shape.LabeledShape(basic_shape, basic_lpoints)
-    >>> lshape_bigger_shape     = labeled_shape.LabeledShape(bigger_shape, basic_lpoints)
-    >>> lshape_bigger_lpoints   = labeled_shape.LabeledShape(basic_shape, bigger_lpoints)
-    >>> lshape_smaller_shape    = labeled_shape.LabeledShape(smaller_shape, basic_lpoints)
-    >>> lshape_smaller_lpoints  = labeled_shape.LabeledShape(basic_shape, smaller_lpoints)
-    
-    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_empty)
-    False
-    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_bigger_shape)
-    True
-    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_bigger_lpoints)
-    True
-    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_smaller_shape)
-    False
-    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_smaller_lpoints)
-    False
-    >>> lshape_basic.is_a_sub_labeled_shape_of(lshape_equal)
-    True
-
 ### operate
 #   __add__(other)
     
@@ -291,8 +239,7 @@
     >>> diff_med_big = med_lshape - big_lshape
     >>> print diff_med_big.listing()
     <empty labeled shape>
-    >>> print med_lshape.listing()                                              #   med_lshape is okay
-
+    >>> print med_lshape.listing()
     (0.0, 40.0):
         (40.0, 40.0, 40.0, 60.0)
     (0.0, 60.0):
@@ -305,7 +252,7 @@
         (50.0, 50.0)
 
     >>> diff_big_med = big_lshape - med_lshape
-    >>> print med_lshape.listing()                                              #   med_lshape has changed
+    >>> print med_lshape.listing()
     (0.0, 40.0):
         (40.0, 40.0, 40.0, 60.0)
     (0.0, 60.0):
@@ -335,7 +282,7 @@
     >>> diff_med_med = med_lshape - med_lshape
     >>> print diff_med_med.listing()
     <empty labeled shape>
-    >>> print med_lshape.listing()                                              #   med_lshape has changed
+    >>> print med_lshape.listing()
     (0.0, 40.0):
         (40.0, 40.0, 40.0, 60.0)
     (0.0, 60.0):
@@ -348,7 +295,7 @@
         (50.0, 50.0)
 
     >>> diff_med_empty = med_lshape - empty_lshape
-    >>> print diff_med_empty.listing()                                          #   med_lshape has changed
+    >>> print diff_med_empty.listing()
     (0.0, 40.0):
         (40.0, 40.0, 40.0, 60.0)
     (0.0, 60.0):
@@ -357,8 +304,9 @@
         (40.0, 40.0, 60.0, 40.0)
     (90.0, 60.0):
         (40.0, 60.0, 60.0, 60.0)
-    <no labeled points>
-    >>> print med_lshape.listing()                                              #   med_lshape has changed
+    a:
+        (50.0, 50.0)
+    >>> print med_lshape.listing()
     (0.0, 40.0):
         (40.0, 40.0, 40.0, 60.0)
     (0.0, 60.0):
@@ -373,7 +321,7 @@
     >>> diff_empty_med = empty_lshape - med_lshape
     >>> print diff_empty_med.listing()
     <empty labeled shape>
-    >>> print med_lshape.listing()                                              #   med_lshape has changed
+    >>> print med_lshape.listing()
     (0.0, 40.0):
         (40.0, 40.0, 40.0, 60.0)
     (0.0, 60.0):
@@ -385,48 +333,11 @@
     a:
         (50.0, 50.0)
 
-#   subtract_lpoint_partitions(partition_1, partition_2) ### Reduce to match method
-    
-    ??? lpoint_part = {'a': set([(1, 1)]), 'b': set([(2, 2), (3, 3)])}
-    ??? smaller_partition = {'a': set([(1, 1)]), 'b': set([(2, 2), (3, 3), (4, 4)])}
-    ??? smallest_partition = {'b': set([(3, 3)])}
-    ??? empty_partition = {}
-    
-    ??? empty_lshape.subtract_lpoint_partitions(lpoint_part, smaller_partition)
-    {}
-    ??? empty_lshape.subtract_lpoint_partitions(lpoint_part, smallest_partition)
-    {'a': set([(1, 1)]), 'b': set([(2, 2)])}
-    ??? empty_lshape.subtract_lpoint_partitions(smaller_partition, lpoint_part)
-    {'b': set([(4, 4)])}
-    ??? empty_lshape.subtract_lpoint_partitions(smallest_partition, lpoint_part)
-    {}
-    ??? empty_lshape.subtract_lpoint_partitions(lpoint_part, lpoint_part)
-    {}
-    ??? empty_lshape.subtract_lpoint_partitions(lpoint_part, empty_partition) == {'a': set([(1, 1)]), 'b': set([(2, 2), (3, 3)])}
-    True
-    ??? empty_lshape.subtract_lpoint_partitions(empty_partition, lpoint_part)
-    {}
+#   __and__(other)                                                              #   no test
 
-#   subtract_non_empty_lpoint_partitions(partition_1, partition_2)
-    
-    ??? lpoint_part = {'a': set([(1, 1)]), 'b': set([(2, 2), (3, 3)])}
-    ??? smaller_partition = {'a': set([(1, 1)]), 'b': set([(2, 2), (3, 3), (4, 4)])}
-    ??? smallest_partition = {'b': set([(3, 3)])}
-    
-    ??? empty_lshape.subtract_nonempty_lpoint_partitions(lpoint_part, smaller_partition)
-    {}
-    ??? empty_lshape.subtract_nonempty_lpoint_partitions(lpoint_part, smallest_partition)
-    {'a': set([(1, 1)]), 'b': set([(2, 2)])}
-    ??? empty_lshape.subtract_nonempty_lpoint_partitions(smaller_partition, lpoint_part)
-    {'b': set([(4, 4)])}
-    ??? empty_lshape.subtract_nonempty_lpoint_partitions(smallest_partition, lpoint_part)
-    {}
-    ??? empty_lshape.subtract_nonempty_lpoint_partitions(lpoint_part, lpoint_part)
-    {}
+#   make_lshape_from()                                                          #   no test, controller
 
-#   make_lshape_from()
-
-make_lshape_from(lines, lpoints)                         # 1.2
+make_lshape_from(lines, lpoints)                                # 1.2
 
     ??? def make_lines_for_lshape():
     ...     line_1 = make_line_from_spec(0, 0, 0, 1)
@@ -468,11 +379,10 @@ get_lpoint_partition_from(lpoints)                              # 1.2.1
         (2.0, 0.0)
         (2.0, 1.0)
 
-# get_element_specs()
+### export
+#   get_element_specs()                                         # 2.1
 
-get_element_specs()
-
-get_line_specs()
+#   get_line_specs()                                            # 2.1.1
     
     ??? def make_shape_for_line_specs():
     ...     line_n = make_line_from_spec(0, 0, 0, 1)
@@ -489,7 +399,7 @@ get_line_specs()
     ??? lshape.get_line_specs()
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
 
-get_lpoint_specs_from(lpoint_partition)
+get_lpoint_specs_from(lpoint_partition)                         # 2.1.2
     
     ??? def make_lpoint_partition_for_lpoint_specs():
     ...     lpoint_part = {'a': set([(10, 10)]), 'b': set([(20, 20), (25, 25)]), 'c': set([(30, 30), (33, 33), (36, 36)])}
@@ -499,7 +409,7 @@ get_lpoint_specs_from(lpoint_partition)
     ??? empty_lshape.get_lpoint_specs_from(lpoint_part)
     [(10, 10, 'a'), (20, 20, 'b'), (25, 25, 'b'), (30, 30, 'c'), (33, 33, 'c'), (36, 36, 'c')]
 
-get_colabeled_lpoint_specs_from(colabeled_point_specs, label)
+get_colabeled_lpoint_specs_from(colabeled_point_specs, label)   #2.1.2.1
     
     ??? def make_colabeled_point_specs():
     ...     return [(1, 1), (2, 2), (3, 3)]
@@ -509,72 +419,8 @@ get_colabeled_lpoint_specs_from(colabeled_point_specs, label)
     ??? empty_lshape.get_colabeled_lpoint_specs_from(colabeled_point_specs, label)
     [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a')]
 
-old ### get_elements() ### old ### from here down
-    
-    ??? line0088 = make_line_from_spec(0, 0, 8, 8)
-    ??? line0880 = make_line_from_spec(0, 8, 8, 0)
-    ??? lines_in = [line0088, line0880]
-    ??? p40x = make_lpoint(4, 0, 'x')
-    ??? p04y = make_lpoint(0, 4, 'y')
-    ??? points_in = [p40x, p04y]
-    ??? new_shape = empty_shape.make_shape_from(lines_in, points_in)
-    ??? elements = new_shape.get_elements()
-    ??? lines_out = elements[0]
-    ??? points_out = elements[1]
-    ??? string = '(['
-    ??? for line_i in sorted(lines_out):
-    ...     string += '%s ' % line_i.__str__()
-    ??? string += '], ['
-    ??? for point in sorted(points_out):
-    ...     string += '%s ' % point
-    ??? string += '])'
-    ??? print string
-    ([(0, 0, 8, 8) (0, 8, 8, 0) ], [(0.0, 4.0, y) (4.0, 0.0, x) ])
-
-get_lines_from(line_partition_in)
-    
-    ??? line0011 = make_line_from_spec(0, 0, 1, 1)
-    ??? line2233 = make_line_from_spec(2, 2, 3, 3)
-    ??? line_partition_in = {(45, 0): set([line0011, line2233])}
-    ??? line_elements = empty_shape.get_lines_from(line_partition_in)
-    ??? for element in sorted(line_elements):
-    ...     print element
-    (0.0, 0.0, 1.0, 1.0)
-    (2.0, 2.0, 3.0, 3.0)
-
-get_lines()                                     #   unneeded?
-    
-    ??? line_0001 = make_line_from_spec(0, 0, 0, 1)
-    ??? line_0011 = make_line_from_spec(0, 0, 1, 1)
-    ??? line_2233 = make_line_from_spec(2, 2, 3, 3)
-    ??? line_0010 = make_line_from_spec(0, 0, 1, 0)
-    ??? new_line_part = {(0, 0): [line_0001], (45, 0): [line_0011, line_2233], (90, 0): [line_0010]}
-    ??? new_shape = shape.Shape(new_line_part)
-    ??? lines = new_shape.get_lines()
-    ??? for line_i in sorted(lines):
-    ...     print line_i
-    (0.0, 0.0, 0.0, 1.0)
-    (0.0, 0.0, 1.0, 0.0)
-    (0.0, 0.0, 1.0, 1.0)
-    (2.0, 2.0, 3.0, 3.0)
-    
-
-get_points_from(point_partition)                #   to SGLabeledShape
-    
-    ??? p11a = make_lpoint(1, 1, 'a')
-    ??? p22a = make_lpoint(2, 2, 'a')
-    ??? p33b = make_lpoint(3, 3, 'b')
-    ??? p44b = make_lpoint(4, 4, 'b')
-    ??? point_partition = {'a': set([p11a, p22a]), 'b': set([p33b, p44b])}
-    ??? point_elements = empty_shape.get_points_from(point_partition)
-    ??? for element in sorted(point_elements):
-    ...     print element
-    (1.0, 1.0, a)
-    (2.0, 2.0, a)
-    (3.0, 3.0, b)
-    (4.0, 4.0, b)
-
-make_shape_from(), __init__(), listing()
+### construct
+#   make_shape_from(), __init__(), listing()
     
     empty shape
     
@@ -589,7 +435,7 @@ make_shape_from(), __init__(), listing()
     ??? h3040 = make_line_from_spec(3, 0, 4, 0)
     ??? v2022 = make_line_from_spec(2, 0, 2, 2)
     ??? line_list = [h0010, h3040, v2022]
-    ??? line_shape = empty_shape.make_shape_from(line_list, [])
+    ??? line_shape = empty_shape.make_shape_from(line_list, [])                 #   controller
     ??? print line_shape.listing()
     (0.0, 2):
         (2, 0, 2, 2)
@@ -630,16 +476,3 @@ make_shape_from(), __init__(), listing()
         (0.0, 1.0, b)
         (1.0, 1.0, b)
 
-###
-line_partition_from_lines(line_list)
-    ??? line_1 = make_line_from_spec(0, 0, 1, 1)
-    ??? line_2 = make_line_from_spec(1, 1, 2, 2)
-    ??? line_3 = make_line_from_spec(3, 3, 5, 3)
-    ??? line_list = [line_1, line_2, line_3]
-    ??? new_line_part = shape.Shape.line_partition_from_lines(line_list)
-    ??? print empty_shape.get_line_partition_listing(new_line_part)
-    (45.0, 0.0):
-        (0.0, 0.0, 1.0, 1.0)
-        (1.0, 1.0, 2.0, 2.0)
-    (90.0, 3.0):
-        (3.0, 3.0, 5.0, 3.0)

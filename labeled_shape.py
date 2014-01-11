@@ -22,6 +22,34 @@ class LabeledShape(object):
         empty_lshape = LabeledShape(empty_shape, empty_lpoint_part)
         return empty_lshape
 
+    ### represent
+    def __str__(self):
+        """Returns a string of a duple of ordered line specs and ordered labeled 
+        point specs:
+            ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
+        """
+        return '(%s, %s)' % (self.shape, self.lpoint_part)
+
+    def listing(self):
+        """An ordered string in the form:
+            (bearing, intercept):
+                (x1, y1, x2, y2)
+                ...
+            ...
+            label:
+                (x, y)
+                ...
+        """
+        if self.is_empty():
+            listing = '<empty labeled shape>'
+        else:
+            shape_listing = self.shape.listing()
+            lpoint_part_listing = self.lpoint_part.listing()
+            # lpoint_part_listing = self.get_lpoint_partition_listing(
+            #     self.lpoint_part)
+            listing = '%s\n%s' % (shape_listing, lpoint_part_listing)
+        return listing
+
     ### compare
     def __eq__(self, other):
         return (
@@ -38,11 +66,6 @@ class LabeledShape(object):
             self.shape.is_empty() and
             self.lpoint_part.is_empty())
 
-    def is_a_sub_labeled_shape_of(self, other):                                 #   not called
-        return (self.shape.is_a_subshape_of(other.shape) and
-                self.lpoint_part.is_a_sub_lpoint_partition_of(
-                    other.lpoint_part))
-
     ### operations
     def __add__(self, other):
         new_shape = self.shape + other.shape
@@ -56,46 +79,14 @@ class LabeledShape(object):
         new_lshape = LabeledShape(new_shape, new_lpoint_part)
         return new_lshape
 
-    def subtract_lpoint_partitions(self, partition_1, partition_2):             #   not called
-        if partition_1 == {}:
-            new_partition = {}
-        elif partition_2 == {}:
-            new_partition = partition_1
-        else:
-            new_partition = self.subtract_nonempty_lpoint_partitions(
-                partition_1, partition_2)
-        return new_partition
-
-    def subtract_nonempty_lpoint_partitions(self, partition_1, partition_2):    #   not called
-        """Receives 2 nonempty lpoint partitions
-        Returns an lpoint partition, possibly empty, such that each point set is
-        the difference set_1 - set_2. If a difference is the empty set, the
-        entry is excluded from the partition
-        """
-        new_partition = {}
-        for label in partition_1:
-            point_set_1 = partition_1[label]
-            if label in partition_2:
-                point_set_2 = partition_2[label]
-                new_point_set = point_set_1.difference(point_set_2)
-            else:
-                new_point_set = point_set_1
-            if new_point_set == set([]):
-                pass
-            else:
-                new_partition[label] = new_point_set
-        return new_partition
-
-    def __and__(self, other):                                                   #   no test
-        #   Intersection &
-        new_line_partition = self.get_intersection_of_line_partitions(
-            self.line_partition, other.line_partition)                          #   line_part
-        new_point_partition = self.get_intersection_of_point_partitions(
-            self.point_partition, other.point_partition)                        #   lpoint_part
-        return SGShape(new_line_partition, new_point_partition)
+    def __and__(self, other):                                                   #   not called, no test
+        #   Intersection &                                                      #   not implemented
+        new_shape = self.shape & other.shape
+        new_lpoint_part = self.lpoint_part & other.lpoint_part
+        return LabeledShape(new_shape, new_lpoint_part)
 
     ### other
-    def make_lshape_from(self, lines, lpoints):             # 1.2 called by controller, translator
+    def make_lshape_from(self, lines, lpoints):                 # 1.2           #   called by controller
         """Receives a list of SGLines and a list of SGLabeledPoints:
             [SGLine, ...]
             [SGLabeledPoint, ...]
@@ -104,8 +95,7 @@ class LabeledShape(object):
         """
         #   class method?
         shape = shape.Shape.from_lines(lines)
-        lpoint_part = self.get_lpoint_partition_from(lpoints)
-                                                                # 1.2.1
+        lpoint_part = self.get_lpoint_partition_from(lpoints)   # 1.2.1
         return LabeledShape(shape, lpoint_part)
 
     def get_lpoint_partition_from(self, lpoints):               # 1.2.1
@@ -127,11 +117,10 @@ class LabeledShape(object):
         return lpoint_part
 
     ### export
-    def get_element_specs(self):                                # 2.1
+    def get_element_specs(self):                                # 2.1           #   controller, translator
         """Returns a 2-tuple of lists of SG element specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
-        """
-                                                #   no test
+        """                                                                     #   no test
         line_specs = self.get_line_specs()                      # 2.1.1
         lpoint_specs = self.get_lpoint_specs_from(self.lpoint_part)
                                                                 # 2.1.2
@@ -144,15 +133,14 @@ class LabeledShape(object):
         """
         return self.shape.get_line_specs()
 
-    def get_lpoint_specs_from(self, lpoint_part):          # 2.1.2
+    def get_lpoint_specs_from(self, lpoint_part):               # 2.1.2
         """Receives an lpoint_partition:
             {label: set([(x, y), ...]), ...}, len() >= 0
         Intermediate result: a list of colabeled_lpoint_specs
             [(x, y, label), ...], len() >= 0
         Returns an ordered list of lpoint_specs:
             [(x, y, label), ...], len() >= 0
-        """
-                                                #   Why is this transitive?
+        """                                                                     #   Why is this transitive?
         lpoint_specs = []
         for label in lpoint_part:
             colabeled_point_specs = lpoint_part[label]
@@ -161,7 +149,8 @@ class LabeledShape(object):
             lpoint_specs.extend(colabeled_lpoint_specs)
         return sorted(lpoint_specs)
 
-    def get_colabeled_lpoint_specs_from(self, colabeled_point_specs, label):    # 2.1.2.1
+    def get_colabeled_lpoint_specs_from(self, colabeled_point_specs, label):
+                                                                # 2.1.2.1
         """Receives:
             a list of colabeled_point_specs:
                 [(x, y), ...]
@@ -177,64 +166,8 @@ class LabeledShape(object):
             colabeled_lpoint_specs.append(colabeled_lpoint_spec)
         return sorted(colabeled_lpoint_specs)
 
-    ### represent
-    def __str__(self):
-        """Returns a string of a duple of ordered line specs and ordered labeled 
-        point specs:
-            ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
-        """
-        return '(%s, %s)' % (self.shape, self.lpoint_part)
-
-    def get_lpoint_partition_str(self):         #   no test
-        partition = self.lpoint_part
-        s = '{'
-        i = 1
-        n = len(partition)
-        for label in partition:
-            point_coord_set = partition[label]
-            point_coord_set_str = self.get_point_coord_set_str(point_coord_set)
-            if i < n:
-                point_coord_set_str += ', '
-            s += '%s: %s' % (label, point_coord_set_str)
-            i += 1
-        s += '}'
-        return s
-
-    def get_point_coord_set_str(self, point_coord_set): #   no test
-        s = '{'
-        i = 1
-        n = len(point_coord_set)
-        for point in sorted(point_coord_set):
-            point_str = '%s' % point.__str__()
-            if i < n:
-                point_str += ', '
-            s += point_str
-            i += 1
-        s += '}'
-        return s
-
-    def listing(self):                                                          #   modify for SGColabeling
-        """An ordered string in the form:
-            (bearing, intercept):
-                (x1, y1, x2, y2)
-                ...
-            ...
-            label:
-                (x, y)
-                ...
-        """
-        if self.is_empty():
-            listing = '<empty labeled shape>'
-        else:
-            shape_listing = self.shape.listing()
-            lpoint_part_listing = self.lpoint_part.listing()
-            # lpoint_part_listing = self.get_lpoint_partition_listing(
-            #     self.lpoint_part)
-            listing = '%s\n%s' % (shape_listing, lpoint_part_listing)
-        return listing
-
-    ###
-def subtract_test():                                                            #   not called
+    ### test
+def subtract_test():
     import obj_translator
     trace_on = True
     w_vline_obj = open(
@@ -250,7 +183,6 @@ def subtract_test():                                                            
         print '||  ovhv:\n%s' % ovhv
         print '||  lshape_difference:\n%s' % lshape_difference.listing()
 
-    ###
 if __name__ == '__main__':
     import doctest
     doctest.testfile('tests/labeled_shape_test.txt')
