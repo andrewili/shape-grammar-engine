@@ -1,46 +1,43 @@
 #   controller_test.txt
-#   2013-09-27
 
 
     >>> import controller
     >>> import model
-    >>> import sg_labeled_point
-    >>> import sg_line
-    >>> import sg_point
-    >>> import sg_shape
+    >>> import labeled_point
+    >>> import line
+    >>> import point
+    >>> import shape
     >>> import Tkinter as tk
     >>> import view
 
     >>> def make_point_from_spec(x, y):
-    ...     return sg_point.SGPoint(x, y)
+    ...     return point.Point(x, y)
     >>> def make_lpoint_from_spec(x, y, label):
-    ...     return sg_labeled_point.SGLabeledPoint(x, y, label)
+    ...     return labeled_point.LabeledPoint(x, y, label)
     >>> def make_line_from_spec(x1, y1, x2, y2):
     ...     p1 = make_point_from_spec(x1, y1)
     ...     p2 = make_point_from_spec(x2, y2)
-    ...     return sg_line.SGLine(p1, p2)
+    ...     return line.Line(p1, p2)
     
     ??? def make_line_pp(p1, p2):
-    ...     return sg_line.SGLine(p1, p2)
+    ...     return line.Line(p1, p2)
 
-    >>> es = sg_shape.SGShape()
-    
-    ??? model = model.Model()
+    >>> test_model = model.Model()
     >>> root = tk.Tk()
-    >>> view = view.View(root)
+    >>> test_view = view.View(root)
 
-#### init ####
-    
-__init__()
-    >>> len(view.observers)
+### construct
+#   __init__()
+
+    >>> len(test_view.observers)
     0
-    >>> test_controller = controller.Controller(model, view)
-    >>> len(view.observers)
+    >>> test_controller = controller.Controller(test_model, test_view)
+    >>> len(test_view.observers)
     1
-    >>> test_controller in view.observers
+    >>> test_controller in test_view.observers
     True
     >>> len(test_controller.responses)
-    3
+    5
 
 #### responses ####
 
@@ -123,14 +120,14 @@ element_is_specified_by(file_line)                              # 1.1.1
 
 extract_and_add_element(vertex_buffer, elements)                # 1.1.2
     
-    >>> point_1 = sg_point.SGPoint(1, 1)
-    >>> point_2 = sg_point.SGPoint(2, 2)
+    >>> point_1 = point.Point(1, 1)
+    >>> point_2 = point.Point(2, 2)
     >>> vertex_buffer_1 = [point_1]
     >>> elements_1 = ([], [])
-    >>> lpoint_1 = sg_labeled_point.SGLabeledPoint(point_1.x, point_1.y, 'a')
+    >>> lpoint_1 = labeled_point.LabeledPoint(point_1.x, point_1.y, 'a')
     >>> vertex_buffer_2 = [point_1, point_2]
     >>> elements_2 = ([], [])
-    >>> line_2 = sg_line.SGLine(point_1, point_2)
+    >>> line_2 = line.Line(point_1, point_2)
     
     >>> test_controller.extract_and_add_element(vertex_buffer_1, elements_1)
     >>> test_controller.extract_and_add_element(vertex_buffer_2, elements_2)
@@ -161,7 +158,7 @@ extract_element_from(vertex_buffer)                             # 1.1.2.1
     (2.0, 2.0, 3.0, 3.0)
 
 add_element_to_elements(element, elements)                      # 1.1.2.2
-    Receives an SGLine or SGLabeledPoint. Adds it to the appropriate list in
+    Receives a Line or LabeledPoint. Adds it to the appropriate list in
     the 2-tuple ([lines], [lpoints]).
     
     >>> elements = ([], [])
@@ -171,7 +168,7 @@ add_element_to_elements(element, elements)                      # 1.1.2.2
     
     >>> for element in [line, lpoint, bad_type]:
     ...     test_controller.add_element_to_elements(element, elements)
-    add_element_to_elements(): element must be SGLine or SGLabeledPoint
+    add_element_to_elements(): element must be Line or LabeledPoint
     
     >>> for line in elements[0]:
     ...     print line
@@ -192,9 +189,9 @@ vertex_is_specified_by(file_line)                               # 1.1.3
 extract_point_from(file_line)                                  # 1.1.4
     >>> file_line = 'v 20.0 5.773503 0.0'
     
-    >>> new_sg_point = test_controller.extract_point_from(file_line)
+    >>> new_point = test_controller.extract_point_from(file_line)
     
-    >>> print new_sg_point
+    >>> print new_point
     (20.0, 5.8)
 
 display_lshape_on_canvas(lshape, canvas)                        # 2
@@ -221,7 +218,7 @@ get_items_from(element_specs)                                   # 2.2
     [(5, 5, 'x'), (10, 10, 'y')]
 
 get_line_items_from(line_specs)                                 # 2.2.1
-    Should be line_specs, not sg_lines
+    Should be line_specs, not lines
     
     >>> def make_lines_for_line_items():
     ...     line_spec_0001 = (0, 0, 0, 1)

@@ -1,13 +1,12 @@
 #   controller.py
-#   2013-09-27
 
 import model
 import view
-import sg_shape                                 #   for testing
-import sg_labeled_point
-import sg_labeled_shape
-import sg_line                                  #   for testing
-import sg_point                                 #   for testing
+import shape                                    #   for testing
+import labeled_point
+import labeled_shape
+import line                                     #   for testing
+import point                                    #   for testing
 
 class Controller(object):
     def __init__(self, model, view):
@@ -24,8 +23,8 @@ class Controller(object):
             self.view.get_lshape_a_sub_lshape_b_button: (
                 self.respond_get_a_sub_lshape_b_button)
         }
-        self.es = sg_shape.SGShape()
-        self.els = sg_labeled_shape.SGLabeledShape(self.es, {})
+        self.es = shape.Shape.new_empty()
+        self.els = labeled_shape.LabeledShape(self.es, {})
 
         ####
     def respond(self, widget):
@@ -67,7 +66,7 @@ class Controller(object):
         self.view.text_var_c.set(text_c)
 
     def respond_get_a_sub_lshape_b_button(self):
-        empty_lshape = sg_labeled_shape.SGLabeledShape.new_empty()
+        empty_lshape = labeled_shape.LabeledShape.new_empty()
         self.display_lshape_on_canvas(
             empty_lshape, self.view.canvas_c)                   # 2
         if self.model.lshape_a.is_a_sub_lshape_of(self.model.lshape_b):
@@ -81,7 +80,7 @@ class Controller(object):
         """Receives an obj_file:
             openfile
         Returns:
-            SGLabeledShape
+            LabeledShape
         """
         elements = self.extract_elements_from(obj_file)         # 1.1
         lines, lpoints = elements
@@ -93,7 +92,7 @@ class Controller(object):
         """Receives an obj_file:
             openfile
         Extracts the SG elements from the obj_file and returns a 2-tuple:
-            ([SGLine, ...], [SGLabeledPoint, ...])
+            ([Line, ...], [LabeledPoint, ...])
         """
         elements = ([], [])
         vertex_buffer = []
@@ -118,9 +117,9 @@ class Controller(object):
 
     def extract_and_add_element(self, vertex_buffer, elements): # 1.1.2
         """Receives a vertex_buffer and an element list 2-tuple:
-            [SGPoint, ...]
-            ([SGLine, ...], [SGLabeledPoint, ...])
-        Extracts an element (SGLine or SGLabeledPoint) from the vertex buffer,
+            [Point, ...]
+            ([Line, ...], [LabeledPoint, ...])
+        Extracts an element (Line or LabeledPoint) from the vertex buffer,
         and adds it to elements.
         """
         element = self.extract_element_from(vertex_buffer)      # 1.1.2.1
@@ -128,20 +127,20 @@ class Controller(object):
 
     def extract_element_from(self, vertex_buffer):              # 1.1.2.1
         """Receives a vertex_buffer:
-            [SGPoint, ...]
+            [Point, ...]
         Returns:
-            SGLabeledPoint (with default label), if the vertex contains 1 point.
-            SGLine, if the buffer contains 2 points.
+            LabeledPoint (with default label), if the vertex contains 1 point.
+            Line, if the buffer contains 2 points.
         """
         n = len(vertex_buffer)
         if n == 1:
             point = vertex_buffer[0]
             default_label = 'a'
-            lpoint = sg_labeled_point.SGLabeledPoint(
+            lpoint = labeled_point.LabeledPoint(
                 point.x, point.y, default_label)
             return lpoint
         elif n == 2:
-            line = sg_line.SGLine(vertex_buffer[0], vertex_buffer[1])
+            line = line.Line(vertex_buffer[0], vertex_buffer[1])
             return line
         else:
             #   Shouldn't get here  #   Exception
@@ -149,18 +148,18 @@ class Controller(object):
             print '    Vertex buffer must have 1 or 2 points'
 
     def add_element_to_elements(self, element, elements):       # 1.1.2.2
-        """Receives an SGLine or SGLabeledPoint. Adds it to the appropriate list
-        in the 2-tuple ([SGLine, ...], [SGLabeledPoint, ...]).
+        """Receives a Line or LabeledPoint. Adds it to the appropriate list
+        in the 2-tuple ([Line, ...], [LabeledPoint, ...]).
         """
         lines = elements[0]
         lpoints = elements[1]
-        if type(element) == sg_line.SGLine:
+        if type(element) == line.Line:
             lines.append(element)
-        elif type(element) == sg_labeled_point.SGLabeledPoint:
+        elif type(element) == labeled_point.LabeledPoint:
             lpoints.append(element)
         else:
             #   Shouldn't get here
-            print 'add_element_to_elements(): element must be SGLine or SGLabeledPoint'
+            print 'add_element_to_elements(): element must be Line or LabeledPoint'
 
     def vertex_is_specified_by(self, file_line):                # 1.1.3
         first_char = file_line[0]
@@ -170,7 +169,7 @@ class Controller(object):
         tokens = file_line.split(' ')
         x = float(tokens[1])
         y = float(tokens[2])
-        return sg_point.SGPoint(x, y)
+        return point.Point(x, y)
 
     def display_lshape_on_canvas(self, lshape, canvas):         # 2
         element_specs = lshape.get_element_specs()              # 2.1
@@ -192,8 +191,8 @@ class Controller(object):
         return (line_items, oval_items, text_items)
 
     def get_line_items_from(self, line_specs):                  # 2.2.1
-        """Receives a list of SGLines:
-            [SGLine, ...]
+        """Receives a list of Lines:
+            [Line, ...]
         Returns a list of line_items:
             [(x1, y1, x2, y2), ...]
         """
@@ -282,7 +281,7 @@ class Controller(object):
         _     _      |___|      _|___|_
          |   |                   |   |
         """
-##        es = sg_shape.SGShape()
+##        es = shape.Shape()
         line0414 = self.make_line(10, 74, 26, 74)
         line0111 = self.make_line(10, 26, 26, 26)
         line1011 = self.make_line(26, 10, 26, 26)
@@ -299,21 +298,21 @@ class Controller(object):
         return ells
 
     def make_point(self, x, y):
-        return sg_point.SGPoint(x, y)
+        return point.Point(x, y)
 
     def make_lpoint(self, x, y, label):
-        return sg_point.SGPoint(x, y, label)
+        return point.Point(x, y, label)
 
     def make_line(self, x1, y1, x2, y2):
         p1 = self.make_point(x1, y1)
         p2 = self.make_point(x2, y2)
-        return sg_line.SGLine(p1, p2)
+        return line.Line(p1, p2)
 
     def make_line_pp(self, p1, p2):
-        return sg_line.SGLine(p1, p2)
+        return line.Line(p1, p2)
 
     def make_square(self):
-##        es = sg_shape.SGShape()
+##        es = shape.Shape()
         line1114 = self.make_line(26, 26, 26, 74)
         line1141 = self.make_line(26, 26, 74, 26)
         line1444 = self.make_line(26, 74, 74, 74)
@@ -326,4 +325,4 @@ class Controller(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('controller_test.txt')
+    doctest.testfile('tests/controller_test.txt')

@@ -1,7 +1,4 @@
 #   shape_display_main.py
-#   2013-10-04
-#   Continues 2013-09-18
-#   Starting shape subtraction
 
 import controller
 import model
