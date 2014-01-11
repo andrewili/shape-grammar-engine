@@ -1,5 +1,6 @@
 #   colineation.py
 
+import copy
 import line
 
 class Colineation(object):
@@ -229,11 +230,11 @@ class Colineation(object):
         return new_line
 
     ### subtract
-    def __sub__(self, working_colineation_2):
-        """Receives 2 (non-empty colinear) colineations:
-            Colineation, n(lines) >= 1
+    def __sub__(self, other):
+        """Receives 2 (colinear) colineations:
+            Colineation, n(lines) >= 0
         Returns a colineation, possibly empty, of the lines in self and not in 
-        working_colineation_2:
+        other:
             Colineation, n(lines) >= 0
         """
         trace_on = False
@@ -241,36 +242,36 @@ class Colineation(object):
             method_name = 'Shape.subtract_colineations'
             print '||| %s.self\n%s' % (
                 method_name, self.listing())
-            print '||| %s.working_colineation_2\n%s' % (
-                method_name, working_colineation_2.listing())
-        colineation_colineation_differences = []
+            print '||| %s.other\n%s' % (
+                method_name, other.listing())
+        col_col_diffs = []
         for line_i in self.lines:
             if trace_on:
                 print '||| %s.line_i:\n%s' % (method_name, line_i)
-            if working_colineation_2.is_empty():
-                colineation_colineation_differences.append(line_i)
+            if other.is_empty():
+                col_col_diffs.append(line_i)
             else:
-                line_colineation_differences = self.subtract_line_colineation(
-                    line_i, working_colineation_2)
-                colineation_colineation_differences.extend(
-                    line_colineation_differences)
+                other_disposable = copy.deepcopy(other)
+                line_col_diffs = self.subtract_line_colineation(
+                    line_i, other_disposable)
+                col_col_diffs.extend(line_col_diffs)
                 if trace_on:
-                    print '||| %s.line_colineation_differences:\n%s' % (
+                    print '||| %s.line_col_diffs:\n%s' % (
                         method_name, 
-                        self.lines_str(line_colineation_differences))
-                    print '||| %s.colineation_colineation_differences:\n%s' % (
+                        self.lines_str(line_col_diffs))
+                    print '||| %s.col_col_diffs:\n%s' % (
                         method_name, 
-                        self.lines_str(colineation_colineation_differences))
-        new_colineation = Colineation(colineation_colineation_differences)
+                        self.lines_str(col_col_diffs))
+        new_colineation = Colineation(col_col_diffs)
         return new_colineation
 
-    def subtract_line_colineation(self, line_minuend, working_colineation):
+    def subtract_line_colineation(self, line_minuend, colineation_subtrahend):
         """Receives a line minuend and a (non-empty) list of colinear working 
         line subtrahends:
             line_minuend: Line
-            working_colineation: Colineation, len(lines) >= 1
+            colineation_subtrahend: Colineation, len(lines) >= 1
         Returns an ordered list of the line differences obtained by subtracting
-        the line subtrahends from the (single) line minuend:    #   do we want an ordered list or a Colineation?
+        the line subtrahends from the (single) line minuend:
             [Line, ...], n >= 0
         Removes from the working colineation 1) the line subtrahends that lie to 
         the left of the line minuend's tail and 2) those that have been 
@@ -286,80 +287,81 @@ class Colineation(object):
         # Subtract and retain the line subtrahend that overlaps the head of the
         # line minuend
         trace_on = False
-        line_differences = []
-        working_minuend = line_minuend
-        last_line_line_difference_list = []
+        line_diffs = []
+        working_min = line_minuend
+        working_col = colineation_subtrahend
+        last_line_line_diff_list = []
         if trace_on:
             method_name = 'Shape.subtract_line_colineation'
-            print '||| %s.working_minuend:\n%s' % (method_name, working_minuend)
-            working_colineation_listing = self.get_colineation_listing(
-                working_colineation)
-            print '||| %s.working_colineation:\n%s' % (
-                method_name, working_colineation_listing)
-        while not working_colineation.is_empty():
-            line_line_differences = []
-            line_subtrahend = working_colineation.lines[0]
+            print '||| %s.working_min:\n%s' % (method_name, working_min)
+            working_col_listing = self.get_colineation_listing(
+                working_col)
+            print '||| %s.working_col:\n%s' % (
+                method_name, working_col_listing)
+        while not working_col.is_empty():
+            line_line_diffs = []
+            line_sub = working_col.lines[0]
             if trace_on:
-                print '||| %s.line_subtrahend:\n%s' % (
-                    method_name, line_subtrahend)
-                print '||| %s.working_colineation.lines[1]:\n%s' % (
-                    method_name, working_colineation.lines[1])
-            if line_subtrahend.is_disjoint_left_of(working_minuend):
+                print '||| %s.line_sub:\n%s' % (
+                    method_name, line_sub)
+                print '||| %s.working_col.lines[1]:\n%s' % (
+                    method_name, working_col.lines[1])
+            if line_sub.is_disjoint_left_of(working_min):
                 # difference = empty line
                 # discard subtrahend and try with next, if any
-                last_line_line_difference_list = [working_minuend]
-                working_colineation.lines.pop(0)
-            elif line_subtrahend.overlaps_tail_of(working_minuend):
+                last_line_line_diff_list = [working_min]
+                working_col.lines.pop(0)
+            elif line_sub.overlaps_tail_of(working_min):
                 # subtract; discard subtrahend and try with next, if any
-                line_line_differences = working_minuend.subtract_line_tail(
-                    line_subtrahend)
-                working_minuend = line_line_differences[0]
-                last_line_line_difference_list = [line_line_differences[0]]
-                working_colineation.lines.pop(0)
-            elif line_subtrahend.overlaps_all_of(working_minuend):
+                line_line_diffs = working_min.subtract_line_tail(
+                    line_sub)
+                working_min = line_line_diffs[0]
+                last_line_line_diff_list = [line_line_diffs[0]]
+                working_col.lines.pop(0)
+            elif line_sub.overlaps_all_of(working_min):
                 # difference = empty line
                 # retain subtrahend and try with next minuend
-                line_line_differences = []
-                last_line_line_difference_list = []
+                line_line_diffs = []
+                last_line_line_diff_list = []
                 break
-            elif line_subtrahend.overlaps_middle_of(working_minuend):
+            elif line_sub.overlaps_middle_of(working_min):
                 # subtract; discard subtrahend and try with next, if any
-                line_line_differences = working_minuend.subtract_line_middle(
-                    line_subtrahend)
-                line_differences.append(line_line_differences[0])
-                working_minuend = line_line_differences[1]
-                last_line_line_difference_list = [line_line_differences[1]]
-                working_colineation.lines.pop(0)
-            elif line_subtrahend.overlaps_head_of(working_minuend):
+                line_line_diffs = working_min.subtract_line_middle(
+                    line_sub)
+                line_diffs.append(line_line_diffs[0])
+                working_min = line_line_diffs[1]
+                last_line_line_diff_list = [line_line_diffs[1]]
+                working_col.lines.pop(0)
+            elif line_sub.overlaps_head_of(working_min):
                 # subtract; retain subtrahend and try with next minuend
-                line_line_differences = working_minuend.subtract_line_head(
-                    line_subtrahend)
-                line_differences.append(line_line_differences[0])
-                last_line_line_difference_list = []
+                line_line_diffs = working_min.subtract_line_head(
+                    line_sub)
+                line_diffs.append(line_line_diffs[0])
+                last_line_line_diff_list = []
                 if trace_on:
-                    line_line_differences_listing = (
+                    line_line_diffs_listing = (
                         self.get_colineation_listing(
-                            line_line_differences))
-                    print '||| %s.line_line_differences:\n%s' % (
-                        method_name, line_line_differences_listing)
-                    line_differences_listing = (
+                            line_line_diffs))
+                    print '||| %s.line_line_diffs:\n%s' % (
+                        method_name, line_line_diffs_listing)
+                    line_diffs_listing = (
                         self.get_colineation_listing(
-                            line_differences))
-                    print '||| %s.line_differences:\n%s' % (
-                        method_name, line_differences_listing)
-                    print '||| %s.last_line_line_difference: %s' % (
-                        method_name, last_line_line_difference_list)
+                            line_diffs))
+                    print '||| %s.line_diffs:\n%s' % (
+                        method_name, line_diffs_listing)
+                    print '||| %s.last_line_line_diff: %s' % (
+                        method_name, last_line_line_diff_list)
                 break
-            elif line_subtrahend.is_disjoint_right_of(working_minuend):
+            elif line_sub.is_disjoint_right_of(working_min):
                 # difference = empty line
                 # retain subtrahend and try with next minuend
-                last_line_line_difference_list = [working_minuend]
+                last_line_line_diff_list = [working_min]
                 break
             else:
                 print "Shape.subtract_line_colineation"
                 print "    Oops. This subtrahend is supposed to be impossible"
-        line_differences.extend(last_line_line_difference_list)
-        return line_differences
+        line_diffs.extend(last_line_line_diff_list)
+        return line_diffs
 
     ###
 if __name__ == '__main__':

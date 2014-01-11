@@ -94,7 +94,7 @@ class LinePartition(object):
                 string_lines.append(carrier_listing)
                 colineation_i = self.dictionary[carrier_i]
                 indent_level = 1                                                #   move out of loop
-                colineation_listing = colineation_i.listing(indent_level)
+                colineation_listing = colineation_i.listing(indent_level)       #   create indentation here?
                 string_lines.append(colineation_listing)
             string = '\n'.join(string_lines)
         return string
@@ -166,7 +166,7 @@ class LinePartition(object):
 
     ### subtract
     def __sub__(self, other):
-        """Receives a line partition:
+        """Receives a line partition:                                           #   empty colineations?
             LinePartition, n(entries) >= 0
         Returns the line partition, possibly empty, such that for each carrier 
         each colineation is the difference colineation_1 - colineation_2. If a 
