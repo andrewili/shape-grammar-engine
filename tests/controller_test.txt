@@ -100,13 +100,13 @@ extract_elements_from(obj_file)                                 # 1.1
     >>> elements = test_controller.extract_elements_from(obj_file)
     >>> lines, lpoints = elements
     
-    >>> for line in sorted(lines):
-    ...     print line
+    >>> for line_i in sorted(lines):
+    ...     print line_i.listing()
     (10.0, 0.0, 20.0, 17.3)
     (10.0, 0.0, 30.0, 0.0)
     (20.0, 17.3, 30.0, 0.0)
-    >>> for lpoint in lpoints:
-    ...     print lpoint
+    >>> for lpoint_i in lpoints:
+    ...     print lpoint_i.listing()
     (20.0, 5.8, a)
 
 element_is_specified_by(file_line)                              # 1.1.1
@@ -152,9 +152,9 @@ extract_element_from(vertex_buffer)                             # 1.1.2.1
     extract_element_from():
         Vertex buffer must have 1 or 2 points
     
-    >>> print element_1
+    >>> print element_1.listing()
     (1.0, 1.0, a)
-    >>> print element_2
+    >>> print element_2.listing()
     (2.0, 2.0, 3.0, 3.0)
 
 add_element_to_elements(element, elements)                      # 1.1.2.2
@@ -170,11 +170,11 @@ add_element_to_elements(element, elements)                      # 1.1.2.2
     ...     test_controller.add_element_to_elements(element, elements)
     add_element_to_elements(): element must be Line or LabeledPoint
     
-    >>> for line in elements[0]:
-    ...     print line
+    >>> for line_i in elements[0]:
+    ...     print line_i.listing()
     (0.0, 0.0, 1.0, 1.0)
-    >>> for lpoint in elements[1]:
-    ...     print lpoint
+    >>> for lpoint_i in elements[1]:
+    ...     print lpoint_i.listing()
     (2.0, 3.0, x)
 
 vertex_is_specified_by(file_line)                               # 1.1.3
@@ -191,7 +191,7 @@ extract_point_from(file_line)                                  # 1.1.4
     
     >>> new_point = test_controller.extract_point_from(file_line)
     
-    >>> print new_point
+    >>> print new_point.listing()
     (20.0, 5.8)
 
 display_lshape_on_canvas(lshape, canvas)                        # 2

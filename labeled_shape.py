@@ -2,18 +2,19 @@
 
 import copy
 import line_partition
+import lpoint_partition
 import shape
 
 
 class LabeledShape(object):
     ### construct
-    def __init__(self, shape, lpoint_partition):
+    def __init__(self, shape_in, lpoint_partition_in):
         """Receives:
             Shape
             LPointPartition
         """
-        self.shape = shape
-        self.lpoint_part = lpoint_partition
+        self.the_shape = shape_in
+        self.lpoint_part = lpoint_partition_in
 
     @classmethod
     def new_empty(cls):
@@ -28,7 +29,7 @@ class LabeledShape(object):
         point specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
         """
-        return '(%s, %s)' % (self.shape, self.lpoint_part)
+        return '(%s, %s)' % (self.the_shape, self.lpoint_part)
 
     def listing(self):
         """An ordered string in the form:
@@ -43,7 +44,7 @@ class LabeledShape(object):
         if self.is_empty():
             listing = '<empty labeled shape>'
         else:
-            shape_listing = self.shape.listing()
+            shape_listing = self.the_shape.listing()
             lpoint_part_listing = self.lpoint_part.listing()
             # lpoint_part_listing = self.get_lpoint_partition_listing(
             #     self.lpoint_part)
@@ -51,52 +52,54 @@ class LabeledShape(object):
         return listing
 
     ### compare
-    def __eq__(self, other):
+    def __eq__(self, other):                                                    #   no test
         return (
-            self.shape == other.shape and
+            self.the_shape == other.the_shape and
             self.lpoint_part == other.lpoint_part)
 
-    def __ne__(self, other):
+    def __ne__(self, other):                                                    #   no test
         return (
-            self.shape != other.shape or
+            self.the_shape != other.the_shape or
             self.lpoint_part != other.lpoint_part)
 
-    def is_empty(self):
+    def is_empty(self):                                                         #   no test
         return (
-            self.shape.is_empty() and
+            self.the_shape.is_empty() and
             self.lpoint_part.is_empty())
 
     ### operations
     def __add__(self, other):
-        new_shape = self.shape + other.shape
+        new_shape = self.the_shape + other.the_shape
         new_lpoint_part = self.lpoint_part + other.lpoint_part
         new_lshape = LabeledShape(new_shape, new_lpoint_part)
         return new_lshape
 
     def __sub__(self, other):
-        new_shape = self.shape - other.shape
+        new_shape = self.the_shape - other.the_shape
         new_lpoint_part = self.lpoint_part - other.lpoint_part
         new_lshape = LabeledShape(new_shape, new_lpoint_part)
         return new_lshape
 
     def __and__(self, other):                                                   #   not called, no test
         #   Intersection &                                                      #   not implemented
-        new_shape = self.shape & other.shape
+        new_shape = self.the_shape & other.the_shape
         new_lpoint_part = self.lpoint_part & other.lpoint_part
         return LabeledShape(new_shape, new_lpoint_part)
 
     ### other
-    def make_lshape_from(self, lines, lpoints):                 # 1.2           #   called by controller
-        """Receives a list of SGLines and a list of SGLabeledPoints:
-            [SGLine, ...]
-            [SGLabeledPoint, ...]
+    @classmethod
+    def make_lshape_from(cls, lines, lpoints):                 # 1.2           #   called by controller
+        """Receives a list of lines and a list of labeled points:
+            [Line, ...]
+            [LabeledPoint, ...]
         Returns:
             LabeledShape
         """
         #   class method?
-        shape = shape.Shape.from_lines(lines)
-        lpoint_part = self.get_lpoint_partition_from(lpoints)   # 1.2.1
-        return LabeledShape(shape, lpoint_part)
+        new_shape = shape.Shape.from_lines(lines)
+        new_lpoint_part = lpoint_partition.LPointPartition(lpoints)
+        # new_lpoint_part = self.get_lpoint_partition_from(lpoints)   # 1.2.1
+        return LabeledShape(new_shape, new_lpoint_part)
 
     def get_lpoint_partition_from(self, lpoints):               # 1.2.1
         """Receives a list of lpoints:
@@ -131,7 +134,7 @@ class LabeledShape(object):
         Returns an ordered list of line_specs: maximal?
             [(x1, y1, x2, y2), ...]
         """
-        return self.shape.get_line_specs()
+        return self.the_shape.get_line_specs()
 
     def get_lpoint_specs_from(self, lpoint_part):               # 2.1.2
         """Receives an lpoint_partition:
