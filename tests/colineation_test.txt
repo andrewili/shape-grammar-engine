@@ -69,6 +69,21 @@
     >>> print new_colineation
     [(0, 0, 1, 1), (2, 2, 3, 3), (4, 4, 5, 5)]
 
+### get
+#   specs()
+    >>> def make_colineation_for_specs():
+    ...     colin_0 = colineation.Colineation([])
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_2233 = line.Line.from_spec(2, 2, 3, 3)
+    ...     lines = [line_2233, line_0011]
+    ...     colin_2 = colineation.Colineation(lines)
+    ...     return [colin_0, colin_2]
+    >>> colin_0, colin_2 = make_colineation_for_specs()
+    >>> print colin_0.specs()
+    []
+    >>> print colin_2.specs()
+    [(0, 0, 1, 1), (2, 2, 3, 3)]
+
 ### relations
 #   __eq__(), __ne__()
     >>> line_1 = line.Line.from_short_spec(0, 1)

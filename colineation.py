@@ -78,7 +78,7 @@ class Colineation(object):
             colineation_listing = '\n'.join(line_listings)
         return colineation_listing
 
-    def lines_str(self, lines):
+    def lines_str(self, lines):                                                 #   not called
         """Receives a list of lines:
             [Line, ...]
         Returns a string: 
@@ -90,6 +90,16 @@ class Colineation(object):
             line_strings.append(line_string)
         lines_string = ', '.join(line_strings)
         return '[%s]' % lines_string
+
+    ### get
+    def specs(self):
+        """Returns an ordered list of line specs:
+            [(x1, y1, x2, y2), ...]
+        """
+        specs = []
+        for line_i in self.lines:
+            specs.append(line_i.spec)
+        return sorted(specs)
 
     ### relations
     def __eq__(self, other):

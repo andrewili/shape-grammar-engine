@@ -55,6 +55,13 @@ class Shape(object):
             string = self.line_part.listing()
         return string
 
+    def line_specs(self):
+        """Returns an ordered list of line specs:
+            [(x1, y1, x2, y2), ...]
+        """
+        specs = self.line_part.specs()
+        return specs
+
         ### relations
     def __eq__(self, other):
         return self.line_part == other.line_part

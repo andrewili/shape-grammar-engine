@@ -12,6 +12,7 @@
 #   __init__()
 #   __str__()
 #   listing()
+
     >>> def make_mixed_elements_for_mixed_init_test():
     ...     line_01 = line.Line.from_short_spec(0, 1)
     ...     line_34 = line.Line.from_short_spec(3, 4)
@@ -129,9 +130,29 @@
     >>> print new_line_partition
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
 
+### get
+#   specs()
+
+    >>> def make_lparts_for_specs():
+    ...     lpart_0 = line_partition.LinePartition([])
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_2233 = line.Line.from_spec(2, 2, 3, 3)
+    ...     lines = [line_0001, line_0010, line_0011, line_2233]
+    ...     lpart_1 = line_partition.LinePartition(lines)
+    ...     return [lpart_0, lpart_1]
+    >>> lpart_0, lpart_1 = make_lparts_for_specs()
+    >>> print lpart_0.specs()
+    []
+    >>> print lpart_1.specs()
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
+
+
 ### relations
 #   __eq__()
 #   __ne__()
+
     >>> l_vert = line.Line.from_spec(0, 0, 0, 10)
     >>> l_horiz = line.Line.from_spec(0, 0, 5, 0)
     >>> l_lines = [l_vert, l_horiz]
@@ -201,6 +222,7 @@
 
 ### add
 #   __add__(other)
+
     >>> def partitions_for_add_test():
     ...     empty_partition_1 = line_partition.LinePartition([])
     ...     empty_partition_2 = line_partition.LinePartition([])
@@ -247,6 +269,7 @@
 
 ### subtract
 #   __sub__(other)                                                              #   back to shape.__sub__
+
     >>> def make_line_parts_for_sub():
     ...     lpart_01 = line_partition.LinePartition([])
     ...     lpart_02 = line_partition.LinePartition([])

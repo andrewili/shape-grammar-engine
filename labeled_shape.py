@@ -121,11 +121,13 @@ class LabeledShape(object):
 
     ### export
     def get_element_specs(self):                                # 2.1           #   controller, translator
-        """Returns a 2-tuple of lists of SG element specs:
+        """Returns a 2-tuple of lists of element specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
-        """                                                                     #   no test
-        line_specs = self.get_line_specs()                      # 2.1.1
-        lpoint_specs = self.get_lpoint_specs_from(self.lpoint_part)
+        """
+        line_specs = self.the_shape.line_specs()
+        lpoint_specs = self.lpoint_part.specs()
+        # line_specs = self.get_line_specs()                      # 2.1.1
+        # lpoint_specs = self.get_lpoint_specs_from(self.lpoint_part)
                                                                 # 2.1.2
         return (line_specs, lpoint_specs)
 

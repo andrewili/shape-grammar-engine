@@ -381,6 +381,16 @@ get_lpoint_partition_from(lpoints)                              # 1.2.1
 
 ### export
 #   get_element_specs()                                         # 2.1
+    >>> def make_lshape_el_specs():
+    ...     new_line_specs = [(0, 0, 0, 1), (0, 0, 1, 1), (2, 2, 3, 3), (0, 0, 1, 0)]
+    ...     new_shape = shape.Shape.from_specs(new_line_specs)
+    ...     new_lpoint_part_specs = [(0, 1, '0'), (1, 1, '45'), (1, 0, '90')]
+    ...     new_lpoint_part = lpoint_partition.LPointPartition.from_specs(new_lpoint_part_specs)
+    ...     new_lshape = labeled_shape.LabeledShape(new_shape, new_lpoint_part)
+    ...     return new_lshape
+    >>> lshape_el_specs = make_lshape_el_specs()
+    >>> print lshape_el_specs.get_element_specs()
+    ([(0, 0, 0, 1), (0, 0, 1, 1), (2, 2, 3, 3), (0, 0, 1, 0)], [(0, 1, '0'), (1, 1, '45'), (1, 0, '90')])
 
 #   get_line_specs()                                            # 2.1.1
     

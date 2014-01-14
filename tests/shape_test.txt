@@ -102,8 +102,27 @@
     >>> print shape_from_specs
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
 
+### get
+#   line_specs()
+
+    >>> def make_shapes_for_specs():
+    ...     shape_0 = shape.Shape.new_empty()
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_2233 = line.Line.from_spec(2, 2, 3, 3)
+    ...     lines = [line_0001, line_0010, line_0011, line_2233]
+    ...     shape_1 = shape.Shape.from_lines(lines)
+    ...     return [shape_0, shape_1]
+    >>> shape_0, shape_1 = make_shapes_for_specs()
+    >>> print shape_0
+    []
+    >>> print shape_1
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
+
 ### relations
 #   __eq__(other), line_parts_are_equal(line_part_1, line_part_2)
+
     >>> def make_shapes_for_eq():
     ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
     ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
@@ -238,6 +257,7 @@
 
 ### subtract
 #   __sub__(other)                                                              #   back to LShape.__sub__
+
     >>> def make_shapes_for_sub():
     ...     shape_01 = shape.Shape.new_empty()
     ...     shape_02 = shape.Shape.new_empty()

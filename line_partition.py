@@ -99,6 +99,18 @@ class LinePartition(object):
             string = '\n'.join(string_lines)
         return string
 
+    ### get
+    def specs(self):
+        """Returns an ordered list of line specs:
+            [(x1, y1, x2, y2), ...]
+        """
+        specs = []
+        for carrier_i in self.dictionary:
+            colineation_i = self.dictionary[carrier_i]
+            colineation_i_specs = colineation_i.specs()
+            specs.extend(colineation_i_specs)
+        return sorted(specs)
+
     def get_carrier_listing(self, carrier):
         bearing, intercept = carrier
         string = '(%3.1f, %3.1f):' % (bearing, intercept)
