@@ -250,4 +250,4 @@ class View(tk.Toplevel, Observable):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('view_test.txt')
+    doctest.testfile('tests/view_test.txt')

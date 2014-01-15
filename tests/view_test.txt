@@ -3,38 +3,35 @@
 
     >>> import view
 
-    ####
-Observable
+### Observable
 
     >>> class Observer(object):
     ...     def respond(self, widget):
     ...         print 'Observer: "I heard something."'
     ...
 
-__init__()
+#   __init__()
     
     >>> observable = view.Observable()
     >>> observable.observers
     []
 
-    ####
-broadcast(widget)
+#   broadcast(widget)
     
     >>> observer = Observer()
     >>> observable = view.Observable()
-    >>> observable.subscribe(observer)
+    >>> observable.add_observer(observer)
     >>> observable.broadcast('widget')
     Observer: "I heard something."
 
-    ####
-subscribe(observer)
+#   subscribe(observer)
 
     >>> observable = view.Observable()
     >>> len(observable.observers)
     0
     >>> observer1 = Observer()
     >>> observer1.name = 'name1'
-    >>> observable.subscribe(observer1)
+    >>> observable.add_observer(observer1)
     >>> len(observable.observers)
     1
     >>> for observer in observable.observers:
