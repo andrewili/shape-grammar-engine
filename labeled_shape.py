@@ -88,88 +88,25 @@ class LabeledShape(object):
 
     ### other
     @classmethod
-    def make_lshape_from(cls, lines, lpoints):                 # 1.2           #   called by controller
+    def make_lshape_from(cls, lines, lpoints):              #   controller
         """Receives a list of lines and a list of labeled points:
             [Line, ...]
             [LabeledPoint, ...]
         Returns:
             LabeledShape
         """
-        #   class method?
         new_shape = shape.Shape.from_lines(lines)
         new_lpoint_part = lpoint_partition.LPointPartition(lpoints)
-        # new_lpoint_part = self.get_lpoint_partition_from(lpoints)   # 1.2.1
         return LabeledShape(new_shape, new_lpoint_part)
 
-    def get_lpoint_partition_from(self, lpoints):               # 1.2.1
-        """Receives a list of lpoints:
-            [SGLabeledPoint, ...]
-        Returns an lpoint_partition:
-            {label: set([(x, y), ...]), ...}
-        """
-        lpoint_part = {}
-        for lpoint in lpoints:
-            point_coord = (lpoint.x, lpoint.y)
-            label = lpoint.label
-            if label in lpoint_part:
-                point_coord_set = lpoint_part[label]
-                point_coord_set.add(point_coord)
-            else:
-                lpoint_part[label] = set([point_coord])
-                # lpoint_part[label] = point_coord_set
-        return lpoint_part
-
     ### export
-    def get_element_specs(self):                                # 2.1           #   controller, translator
+    def get_element_specs(self):                    #   controller, translator
         """Returns a 2-tuple of lists of element specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
         """
         line_specs = self.the_shape.line_specs()
         lpoint_specs = self.lpoint_part.specs()
-        # line_specs = self.get_line_specs()                      # 2.1.1
-        # lpoint_specs = self.get_lpoint_specs_from(self.lpoint_part)
-                                                                # 2.1.2
         return (line_specs, lpoint_specs)
-
-    def get_line_specs(self):                                   # 2.1.1
-        """Receives a line_partition or shape (if transitive)
-        Returns an ordered list of line_specs: maximal?
-            [(x1, y1, x2, y2), ...]
-        """
-        return self.the_shape.get_line_specs()
-
-    def get_lpoint_specs_from(self, lpoint_part):               # 2.1.2
-        """Receives an lpoint_partition:
-            {label: set([(x, y), ...]), ...}, len() >= 0
-        Intermediate result: a list of colabeled_lpoint_specs
-            [(x, y, label), ...], len() >= 0
-        Returns an ordered list of lpoint_specs:
-            [(x, y, label), ...], len() >= 0
-        """                                                                     #   Why is this transitive?
-        lpoint_specs = []
-        for label in lpoint_part:
-            colabeled_point_specs = lpoint_part[label]
-            colabeled_lpoint_specs = self.get_colabeled_lpoint_specs_from(
-                colabeled_point_specs, label)                   # 2.1.2.1
-            lpoint_specs.extend(colabeled_lpoint_specs)
-        return sorted(lpoint_specs)
-
-    def get_colabeled_lpoint_specs_from(self, colabeled_point_specs, label):
-                                                                # 2.1.2.1
-        """Receives:
-            a list of colabeled_point_specs:
-                [(x, y), ...]
-            label:
-                string
-        Returns a list of colabeled_lpoint_specs:
-            [(x, y, label), ...]
-        """
-        colabeled_lpoint_specs = []
-        for colabeled_point_spec in colabeled_point_specs:
-            x, y = colabeled_point_spec
-            colabeled_lpoint_spec = (x, y, label)
-            colabeled_lpoint_specs.append(colabeled_lpoint_spec)
-        return sorted(colabeled_lpoint_specs)
 
     ### test
 def subtract_test():

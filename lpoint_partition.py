@@ -111,6 +111,18 @@ class LPointPartition(object):
             lpoint_part_listing = '\n'.join(entry_listings)
         return lpoint_part_listing
 
+    ### get
+    def specs(self):
+        """Returns an ordered list of specs:
+            [(x, y, label), ...]
+        """
+        specs = []
+        for label_i in self.dictionary:
+            colabeling_i = self.dictionary[label_i]
+            specs_i = colabeling_i.specs()
+            specs.extend(specs_i)
+        return sorted(specs)
+
         ### compare
     def __eq__(self, other):
         return self.dictionary == other.dictionary

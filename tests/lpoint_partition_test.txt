@@ -84,6 +84,20 @@
     >>> print lpp_from_specs
     [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
 
+### get
+#   specs()
+
+    >>> def make_lpps_for_specs():
+    ...     lpp_0 = lpoint_partition.LPointPartition.new_empty()
+    ...     specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'b')]
+    ...     lpp_1 = lpoint_partition.LPointPartition.from_specs(specs)
+    ...     return [lpp_0, lpp_1]
+    >>> lpp_specs_0, lpp_specs_1 = make_lpps_for_specs()
+    >>> print lpp_specs_0.specs()
+    []
+    >>> print lpp_specs_1.specs()
+    [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'b')]
+
 ### compare
 #   __eq__(), __ne__()
 

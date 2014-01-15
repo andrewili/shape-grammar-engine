@@ -390,7 +390,7 @@ get_lpoint_partition_from(lpoints)                              # 1.2.1
     ...     return new_lshape
     >>> lshape_el_specs = make_lshape_el_specs()
     >>> print lshape_el_specs.get_element_specs()
-    ([(0, 0, 0, 1), (0, 0, 1, 1), (2, 2, 3, 3), (0, 0, 1, 0)], [(0, 1, '0'), (1, 1, '45'), (1, 0, '90')])
+    ([(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)], [(0, 1, '0'), (1, 0, '90'), (1, 1, '45')])
 
 #   get_line_specs()                                            # 2.1.1
     

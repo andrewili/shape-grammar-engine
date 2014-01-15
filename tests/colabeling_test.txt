@@ -84,6 +84,22 @@
     >>> print colabeling_from_lpoint_specs
     [(1, 1), (2, 2), (3, 3)]
 
+### get
+#   specs()
+
+    >>> def make_colabelings_for_specs():
+    ...     colab_0 = colabeling.Colabeling([])
+    ...     lp_1 = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lp_2 = labeled_point.LabeledPoint(2, 2, 'a')
+    ...     lpoints = [lp_1, lp_2]
+    ...     colab_1 = colabeling.Colabeling(lpoints)
+    ...     return [colab_0, colab_1]
+    >>> colab_0, colab_1 = make_colabelings_for_specs()
+    >>> print colab_0.specs()
+    []
+    >>> print colab_1.specs()
+    [(1, 1, 'a'), (2, 2, 'a')]
+
 ### compare
 #   __eq__(), __ne__()
 

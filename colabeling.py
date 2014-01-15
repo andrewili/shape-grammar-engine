@@ -121,6 +121,16 @@ class Colabeling(object):
         lpoint_listing = '(%3.1f, %3.1f)' % (x, y)
         return lpoint_listing
 
+    ### get
+    def specs(self):
+        """Returns a list of specs:
+            [(x, y, label), ...]
+        """
+        specs = []
+        for spec_i in self.lpoint_specs:
+            specs.append(spec_i)
+        return specs
+
     ### compare
     def __eq__(self, other):
         return self.lpoint_specs == other.lpoint_specs

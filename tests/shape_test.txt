@@ -115,9 +115,9 @@
     ...     shape_1 = shape.Shape.from_lines(lines)
     ...     return [shape_0, shape_1]
     >>> shape_0, shape_1 = make_shapes_for_specs()
-    >>> print shape_0
+    >>> print shape_0.line_specs()
     []
-    >>> print shape_1
+    >>> print shape_1.line_specs()
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
 
 ### relations

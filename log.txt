@@ -55,3 +55,7 @@ Log
 #   2014-01-13
     What to do about attribute names that are the same as module names, e.g., 
     LabeledShape.shape?
+
+#   2014-01-15
+    LabeledPoint: (label, x, y)?
+    
