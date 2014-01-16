@@ -165,6 +165,40 @@
     >>> lshape_test != lshape_equal
     False
 
+#   is_a_sub_labeled_shape_of(other)
+
+    >>> def make_lshapes_for_sub_lshape():
+    ...     shape_0 = shape.Shape.new_empty()
+    ...     shape_1 = shape.Shape.from_specs([(0, 0, 0, 1)])
+    ...     shape_2 = shape.Shape.from_specs([(0, 0, 0, 1), (0 ,0, 1, 0)])
+    ...     lppart_0 = lpoint_partition.LPointPartition.new_empty()
+    ...     lppart_1 = lpoint_partition.LPointPartition.from_specs([(1, 1, 'a')])
+    ...     lppart_2 = lpoint_partition.LPointPartition.from_specs([(1, 1, 'a'), (2, 2, 'a')])
+    ...     lshape_0 = labeled_shape.LabeledShape(shape_0, lppart_0)
+    ...     lshape_1 = labeled_shape.LabeledShape(shape_1, lppart_1)
+    ...     lshape_2 = labeled_shape.LabeledShape(shape_2, lppart_2)
+    ...     return [lshape_0, lshape_1, lshape_2]
+    >>> lshape_0, lshape_1, lshape_2 = make_lshapes_for_sub_lshape()
+
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_0)
+    True
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_1)
+    True
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_2)
+    True
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_0)
+    False
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_1)
+    True
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_2)
+    True
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_0)
+    False
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_1)
+    False
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_2)
+    True
+
 ### operate
 #   __add__(other)
     

@@ -67,6 +67,11 @@ class LabeledShape(object):
             self.the_shape.is_empty() and
             self.lpoint_part.is_empty())
 
+    def is_a_sub_labeled_shape_of(self, other):                                 #   not called
+        return (self.the_shape.is_a_subshape_of(other.the_shape) and
+                self.lpoint_part.is_a_sub_lpoint_partition_of(
+                    other.lpoint_part))
+
     ### operations
     def __add__(self, other):
         new_shape = self.the_shape + other.the_shape

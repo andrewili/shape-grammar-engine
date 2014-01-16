@@ -60,3 +60,21 @@ Log
     LabeledPoint: (label, x, y)?
     listing with variable decimal places
     
+#   2014-01-16
+    Shape subtraction problem
+    ---v ok
+    --h- ok
+    --hv ok
+    -v-- ok
+    -v-v ok
+    -vh- ok
+    -vhv not ok
+    h--- ok
+    h--v ok
+    h-h- ok
+    h-hv ok
+    hv-- ok
+    hv-v not ok
+    hvh- ok
+    hvhv not ok
+    

@@ -69,7 +69,9 @@ class Controller(object):
         empty_lshape = labeled_shape.LabeledShape.new_empty()
         self.display_lshape_on_canvas(
             empty_lshape, self.the_model.canvas_c)                   # 2
-        if self.the_model.lshape_a.is_a_sub_lshape_of(self.the_model.lshape_b):
+        if self.the_model.lshape_a.is_a_sub_labeled_shape_of(
+            self.the_model.lshape_b
+        ):
             text_c = "A <= B: true"
         else:
             text_c = "A <= B: false"
