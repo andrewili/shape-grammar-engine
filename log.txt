@@ -57,7 +57,7 @@ Log
     LabeledShape.shape?
 
 #   2014-01-15
-    LabeledPoint: (label, x, y)?
+    LabeledPoint: (label, x, y) instead of (x, y, label)?
     listing with variable decimal places
     
 #   2014-01-16
@@ -68,13 +68,17 @@ Log
     -v-- ok
     -v-v ok
     -vh- ok
-    -vhv not ok
     h--- ok
     h--v ok
     h-h- ok
     h-hv ok
     hv-- ok
-    hv-v not ok
     hvh- ok
-    hvhv not ok
+    -vhv not ok [(40, 20, 40, 40), (40, 60, 40, 80), (20, 60, 40, 60)]
+    hv-v not ok [(40, 20, 40, 40), (40, 60, 40, 80), (20, 40, 40, 40)]
+    hvhv not ok [(40, 20, 40, 40), (40, 60, 40, 80), (20, 40, 40, 40), (20, 60, 40, 60)]
     
+    -v-v {(0, 40): []                            }
+    -vhv {(0, 40): [],               (90, 60): []}
+    hv-v {(0, 40): [], (90, 40): []              }
+    hvhv {(0, 40): [], (90, 40): [], (90, 60): []}

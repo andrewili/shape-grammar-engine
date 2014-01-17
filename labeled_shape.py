@@ -67,7 +67,7 @@ class LabeledShape(object):
             self.the_shape.is_empty() and
             self.lpoint_part.is_empty())
 
-    def is_a_sub_labeled_shape_of(self, other):                                 #   not called
+    def is_a_sub_labeled_shape_of(self, other):
         return (self.the_shape.is_a_subshape_of(other.the_shape) and
                 self.lpoint_part.is_a_sub_lpoint_partition_of(
                     other.lpoint_part))

@@ -203,7 +203,7 @@ class LinePartition(object):
             line_dict_2 = other.dictionary
             if carrier in line_dict_2:
                 colineation_2 = copy.copy(line_dict_2[carrier])
-                new_colineation = colineation_1 - colineation_2                 #    if new_colineation is empty?
+                new_colineation = colineation_1 - colineation_2
                 if trace_on:
                     print '||| %s.colineation_2:\n%s' % (
                         method_name, colineation_2.listing())
@@ -221,12 +221,15 @@ class LinePartition(object):
     def reduce(self):
         """Removes entries with empty colineations.
         """
+        trace_on = False
         carriers_to_delete = []
         for carrier in self.dictionary:
             if self.dictionary[carrier].is_empty():
                 carriers_to_delete.append(carrier)
         for carrier in carriers_to_delete:
             del self.dictionary[carrier]
+        if trace_on == True:
+            print '||| LinePartition.reduce():\n%s' % self.listing()
 
     ###
 if __name__ == '__main__':

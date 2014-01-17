@@ -50,16 +50,16 @@ class Controller(object):
         self.the_model.text_var_b.set(text_b)
 
     def respond_get_a_plus_b_button(self):
-        self.the_model.lshape_c = \
-            self.the_model.lshape_a + self.the_model.lshape_b
+        self.the_model.lshape_c = (
+            self.the_model.lshape_a + self.the_model.lshape_b)
         self.display_lshape_on_canvas(
             self.the_model.lshape_c, self.the_model.canvas_c)            # 2
         text_c = self.the_model.lshape_c.listing()
         self.the_model.text_var_c.set(text_c)
 
     def respond_get_a_minus_b_button(self):
-        self.the_model.lshape_c = \
-            self.the_model.lshape_a - self.the_model.lshape_b
+        self.the_model.lshape_c = (
+            self.the_model.lshape_a - self.the_model.lshape_b)
         self.display_lshape_on_canvas(
             self.the_model.lshape_c, self.the_model.canvas_c)            # 2
         text_c = self.the_model.lshape_c.listing()
