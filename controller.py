@@ -11,20 +11,20 @@ import point                                    #   for testing
 class Controller(object):
     def __init__(self, model_in, view_in):
         self.the_model = model_in
-        self.the_model = view_in
-        self.the_model.add_observer(self)
+        self.the_view = view_in
+        self.the_view.add_observer(self)
         self.responses = {
-            self.the_model.get_lshape_a_button: self.respond_get_lshape_a_button,
-            self.the_model.get_lshape_b_button: self.respond_get_lshape_b_button,
-            self.the_model.get_lshape_a_plus_b_button: (
+            self.the_view.get_lshape_a_button: (
+                self.respond_get_lshape_a_button),
+            self.the_view.get_lshape_b_button: (
+                self.respond_get_lshape_b_button),
+            self.the_view.get_lshape_a_plus_b_button: (
                 self.respond_get_a_plus_b_button),
-            self.the_model.get_lshape_a_minus_b_button: (
+            self.the_view.get_lshape_a_minus_b_button: (
                 self.respond_get_a_minus_b_button),
-            self.the_model.get_lshape_a_sub_lshape_b_button: (
+            self.the_view.get_lshape_a_sub_lshape_b_button: (
                 self.respond_get_a_sub_lshape_b_button)
         }
-        self.es = shape.Shape.new_empty()
-        self.els = labeled_shape.LabeledShape(self.es, {})
 
         ####
     def respond(self, widget):
@@ -32,50 +32,50 @@ class Controller(object):
             self.responses[widget]()
 
     def respond_get_lshape_a_button(self):                      # root
-        obj_file_a = self.the_model.file_a
-        self.the_model.lshape_a = self.get_lshape_from(obj_file_a)
+        obj_file_a = self.the_view.file_a
+        self.the_view.lshape_a = self.get_lshape_from(obj_file_a)
                                                                 # 1
         self.display_lshape_on_canvas(
-            self.the_model.lshape_a, self.the_model.canvas_a)            # 2
-        text_a = self.the_model.lshape_a.listing()
-        self.the_model.text_var_a.set(text_a)
+            self.the_view.lshape_a, self.the_view.canvas_a)     # 2
+        text_a = self.the_view.lshape_a.listing()
+        self.the_view.text_var_a.set(text_a)
 
     def respond_get_lshape_b_button(self):
-        obj_file_b = self.the_model.file_b
-        self.the_model.lshape_b = self.get_lshape_from(obj_file_b)
+        obj_file_b = self.the_view.file_b
+        self.the_view.lshape_b = self.get_lshape_from(obj_file_b)
                                                                 # 1
         self.display_lshape_on_canvas(
-            self.the_model.lshape_b, self.the_model.canvas_b)            # 2
-        text_b = self.the_model.lshape_b.listing()
-        self.the_model.text_var_b.set(text_b)
+            self.the_view.lshape_b, self.the_view.canvas_b)     # 2
+        text_b = self.the_view.lshape_b.listing()
+        self.the_view.text_var_b.set(text_b)
 
     def respond_get_a_plus_b_button(self):
-        self.the_model.lshape_c = (
-            self.the_model.lshape_a + self.the_model.lshape_b)
+        self.the_view.lshape_c = (
+            self.the_view.lshape_a + self.the_view.lshape_b)
         self.display_lshape_on_canvas(
-            self.the_model.lshape_c, self.the_model.canvas_c)            # 2
-        text_c = self.the_model.lshape_c.listing()
-        self.the_model.text_var_c.set(text_c)
+            self.the_view.lshape_c, self.the_view.canvas_c)     # 2
+        text_c = self.the_view.lshape_c.listing()
+        self.the_view.text_var_c.set(text_c)
 
     def respond_get_a_minus_b_button(self):
-        self.the_model.lshape_c = (
-            self.the_model.lshape_a - self.the_model.lshape_b)
+        self.the_view.lshape_c = (
+            self.the_view.lshape_a - self.the_view.lshape_b)
         self.display_lshape_on_canvas(
-            self.the_model.lshape_c, self.the_model.canvas_c)            # 2
-        text_c = self.the_model.lshape_c.listing()
-        self.the_model.text_var_c.set(text_c)
+            self.the_view.lshape_c, self.the_view.canvas_c)     # 2
+        text_c = self.the_view.lshape_c.listing()
+        self.the_view.text_var_c.set(text_c)
 
     def respond_get_a_sub_lshape_b_button(self):
         empty_lshape = labeled_shape.LabeledShape.new_empty()
         self.display_lshape_on_canvas(
-            empty_lshape, self.the_model.canvas_c)                   # 2
-        if self.the_model.lshape_a.is_a_sub_labeled_shape_of(
-            self.the_model.lshape_b
+            empty_lshape, self.the_view.canvas_c)               # 2
+        if self.the_view.lshape_a.is_a_sub_labeled_shape_of(
+            self.the_view.lshape_b
         ):
             text_c = "A <= B: true"
         else:
             text_c = "A <= B: false"
-        self.the_model.text_var_c.set(text_c)
+        self.the_view.text_var_c.set(text_c)
 
         ####
     def get_lshape_from(self, obj_file):                        # 1
@@ -105,7 +105,7 @@ class Controller(object):
                                                                 # 1.1.2
                     vertex_buffer = []
             elif self.vertex_is_specified_by(file_line):        # 1.1.3
-                new_point = self.extract_point_from(file_line)      # 1.1.4
+                new_point = self.extract_point_from(file_line)  # 1.1.4
                 vertex_buffer.append(new_point)
             else:
                 #   ignore other file_lines
@@ -272,58 +272,6 @@ class Controller(object):
         for text_item in text_items:
             x, y, label = text_item
             canvas.create_text(x, y, text=label)
-
-        ####                                    #   the methods below are needed 
-                                                #   only for testing
-    def make_ells(self):
-        """
-        _|   |_       ___       _|___|_
-                     |   |       |   |
-           X     +   |   |   =   | X |
-        _     _      |___|      _|___|_
-         |   |                   |   |
-        """
-##        es = shape.Shape()
-        line0414 = self.make_line(10, 74, 26, 74)
-        line0111 = self.make_line(10, 26, 26, 26)
-        line1011 = self.make_line(26, 10, 26, 26)
-        line1415 = self.make_line(26, 74, 26, 90)
-        line4041 = self.make_line(74, 10, 74, 26)
-        line4151 = self.make_line(74, 26, 90, 26)
-        line4445 = self.make_line(74, 74, 74, 90)
-        line4454 = self.make_line(74, 74, 90, 74)
-        ells_lines = [line1011, line1415, line4041, line4445,
-                      line0111, line4151, line0414, line4454]
-        lpoint33X = self.make_lpoint(50, 50, 'X')
-        ells_points = [lpoint33X]
-        ells = self.es.make_shape_from(ells_lines, ells_points)
-        return ells
-
-    def make_point(self, x, y):
-        return point.Point(x, y)
-
-    def make_lpoint(self, x, y, label):
-        return point.Point(x, y, label)
-
-    def make_line(self, x1, y1, x2, y2):
-        p1 = self.make_point(x1, y1)
-        p2 = self.make_point(x2, y2)
-        return line.Line(p1, p2)
-
-    def make_line_pp(self, p1, p2):
-        return line.Line(p1, p2)
-
-    def make_square(self):
-##        es = shape.Shape()
-        line1114 = self.make_line(26, 26, 26, 74)
-        line1141 = self.make_line(26, 26, 74, 26)
-        line1444 = self.make_line(26, 74, 74, 74)
-        line4144 = self.make_line(74, 26, 74, 74)
-        square_lines = [line1114, line1141, line1444, line4144]
-        square_points = []
-        square = self.es.make_shape_from(square_lines, square_points)
-        return square
-
 
 if __name__ == '__main__':
     import doctest
