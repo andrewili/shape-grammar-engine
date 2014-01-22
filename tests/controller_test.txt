@@ -41,9 +41,9 @@
 
 #### responses ####
 
-respond(widget)                                 #   How to test?
+#   respond(widget)                                 #   How to test?
 
-respond_get_shape_a_button()                                    # root
+#   respond_get_shape_a_button()                                    # root
     ??? ells = test_controller.make_ells()
     ??? print ells.listing()
     (0.0, 26):
@@ -61,7 +61,7 @@ respond_get_shape_a_button()                                    # root
     X:
         (50.0, 50.0, X)
 
-respond_get_shape_b_button()                                    # root
+#   respond_get_shape_b_button()                                    # root
     ??? square = test_controller.make_square()
     ??? print square.listing()
     (0.0, 26):
@@ -74,7 +74,17 @@ respond_get_shape_b_button()                                    # root
         (26.0, 74.0, 74.0, 74.0)
     no points
 
-respond_get_shape_c_button()                                    # root
+#   respond_get_shape_c_button()                                    # root
+
+#   respond_get_a_minus_b_button()
+
+    >>> test_view.lshape_a = open('subtraction_test/ells_lines.obj')
+    >>> test_view.lshape_b = open('subtraction_test/hvhv_nw_ell_sw_ell.obj')
+    >>> a = test_view.lshape_a
+    >>> b = test_view.lshape_b
+    >>> test_controller.respond_get_a_minus_b_button()
+    >>> c = test_view.lshape_c
+    >>> print c.listing()
 
 #### display ####
 
