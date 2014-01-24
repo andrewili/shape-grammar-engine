@@ -78,13 +78,24 @@
 
 #   respond_get_a_minus_b_button()
 
-    >>> test_view.lshape_a = open('subtraction_test/ells_lines.obj')
-    >>> test_view.lshape_b = open('subtraction_test/hvhv_nw_ell_sw_ell.obj')
-    >>> a = test_view.lshape_a
-    >>> b = test_view.lshape_b
-    >>> test_controller.respond_get_a_minus_b_button()
-    >>> c = test_view.lshape_c
-    >>> print c.listing()
+    >>> def make_a_minus_b():
+    ...     file_a = open('subtraction_test/ells_lines.obj')
+    ...     file_b = open('subtraction_test/hvhv_nw_ell_sw_ell.obj')
+    ...     test_view.lshape_a = test_controller.get_lshape_from(file_a)
+    ...     test_view.lshape_b = test_controller.get_lshape_from(file_b)
+    ...     test_controller.respond_get_a_minus_b_button()
+    ...     return test_view.lshape_c
+    
+    >>> a_minus_b = make_a_minus_b()
+    >>> print a_minus_b.listing()
+    (0.0, 60.0):
+        (60.0, 20.0, 60.0, 40.0)
+        (60.0, 60.0, 60.0, 80.0)
+    (90.0, 40.0):
+        (60.0, 40.0, 80.0, 40.0)
+    (90.0, 60.0):
+        (60.0, 60.0, 80.0, 60.0)
+    <no labeled points>
 
 #### display ####
 
