@@ -87,7 +87,8 @@
     ...     return test_view.lshape_c
     
     >>> a_minus_b = make_a_minus_b()
-    >>> print a_minus_b.listing()
+
+    ??? print a_minus_b.listing()
     (0.0, 60.0):
         (60.0, 20.0, 60.0, 40.0)
         (60.0, 60.0, 60.0, 80.0)

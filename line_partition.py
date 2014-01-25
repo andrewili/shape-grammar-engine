@@ -186,7 +186,7 @@ class LinePartition(object):
         partition.
             LinePartition, n(entries) >= 0
         """
-        trace_on = False
+        trace_on = True
         if trace_on:
             method_name = 'LinePartition.__sub__'
             print '||| %s.self:\n%s' % (method_name, self.listing())

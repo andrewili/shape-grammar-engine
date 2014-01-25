@@ -80,7 +80,18 @@ class LabeledShape(object):
         return new_lshape
 
     def __sub__(self, other):
+        trace_on = False
+        if trace_on:
+            method_name = 'LabeledShape.__sub__()'
+            print method_name
+            print 'self.the_shape'
+            print self.the_shape.listing()
+            print 'other.the_shape'
+            print other.the_shape.listing()
         new_shape = self.the_shape - other.the_shape
+        if trace_on:
+            print 'new_shape'
+            print new_shape.listing()
         new_lpoint_part = self.lpoint_part - other.lpoint_part
         new_lshape = LabeledShape(new_shape, new_lpoint_part)
         return new_lshape

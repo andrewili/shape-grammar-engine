@@ -58,8 +58,15 @@ class Controller(object):
         self.the_view.text_var_c.set(text_c)
 
     def respond_get_a_minus_b_button(self):
+        trace_on = False
+        if trace_on:
+            method_name = 'Controller.respond_get_a_minus_b_button()'
+            print method_name
         self.the_view.lshape_c = (
             self.the_view.lshape_a - self.the_view.lshape_b)
+        if trace_on:
+            print 'self.the_view.lshape_c:'
+            print self.the_view.lshape_c.listing()
         self.display_lshape_on_canvas(
             self.the_view.lshape_c, self.the_view.canvas_c)     # 2
         text_c = self.the_view.lshape_c.listing()
