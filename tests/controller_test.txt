@@ -98,6 +98,14 @@
         (60.0, 60.0, 80.0, 60.0)
     <no labeled points>
 
+    ??? def make_col_line_diff():
+    ...     single_line - double_line
+    ...     return test_view.lshape_c
+    ??? col_line_diff = make_col_line_diff()
+
+    ??? print col_line_diff.listing()
+    <no lines>
+
 #### display ####
 
 get_lshape_from(obj_file)                                       # 1

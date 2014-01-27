@@ -276,8 +276,8 @@ class Colineation(object):
         return new_colineation
 
     def subtract_line_colineation(self, line_minuend, colineation_subtrahend):
-        """Receives a line minuend and a (non-empty) list of colinear working 
-        line subtrahends:
+        """Receives a line minuend and a (non-empty) colineation of colinear 
+        working line subtrahends:
             line_minuend: Line
             colineation_subtrahend: Colineation, len(lines) >= 1
         Returns an ordered list of the line differences obtained by subtracting
@@ -291,9 +291,9 @@ class Colineation(object):
         """
         # Discard the disjoint line subtrahends (if any) on the left of the line
         # minuend
-        # Subtract and discard those line subtrahends that overlaps the left or
+        # Subtract and discard those line subtrahends that overlap the left or
         # the middle of the line minuend
-        # What about line subtrahends that overlaps the whole line minuend?
+        # What about line subtrahends that overlap the whole line minuend?
         # Subtract and retain the line subtrahend that overlaps the head of the
         # line minuend
         trace_on = False
