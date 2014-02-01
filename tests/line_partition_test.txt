@@ -356,46 +356,34 @@
 
 #   __sub__() problem
 
-    >>> def make_lpps_for_sub_problem():
-    ...     v1a = line.Line.from_spec(40, 20, 40, 40)
-    ...     v1b = line.Line.from_spec(40, 60, 40, 80)
-    ...     v2a = line.Line.from_spec(60, 20, 60, 40)
-    ...     v2b = line.Line.from_spec(60, 60, 60, 80)
-    ...     h1a = line.Line.from_spec(20, 40, 40, 40)
-    ...     h1b = line.Line.from_spec(60, 40, 80, 40)
-    ...     h2a = line.Line.from_spec(20, 60, 40, 60)
-    ...     h2b = line.Line.from_spec(60, 60, 80, 60)
-    ...     hvhv_lines = [v1a, v1b, v2a, v2b, h1a, h1b, h2a, h2b]
+    >>> def make_lparts_for_defective_subtraction():
+    ...     min_v1a = line.Line.from_spec(40, 20, 40, 40)
+    ...     min_v1b = line.Line.from_spec(40, 60, 40, 80)
+    ...     min_h1a = line.Line.from_spec(20, 40, 40, 40)
+    ...     min_h2a = line.Line.from_spec(20, 60, 40, 60)
+    ...     hvhv_lines = [min_v1a, min_v1b, min_h1a, min_h2a]
     ...     hvhv = line_partition.LinePartition(hvhv_lines)
-    ...     ovov_lines = [v1a, v1b]
+    ...     sub_v1a = line.Line.from_spec(40, 20, 40, 40)
+    ...     sub_v1b = line.Line.from_spec(40, 60, 40, 80)
+    ...     sub_h1a = line.Line.from_spec(20, 40, 40, 40)
+    ...     ovov_lines = [sub_v1a, sub_v1b]
     ...     ovov = line_partition.LinePartition(ovov_lines)
-    ...     hvov_lines = [v1a, h1a, v1b]
+    ...     hvov_lines = [sub_v1a, sub_h1a, sub_v1b]
     ...     hvov = line_partition.LinePartition(hvov_lines)
     ...     return hvhv, ovov, hvov
-    >>> hvhv, ovov, hvov = make_lpps_for_sub_problem()
+    >>> hvhv, ovov, hvov = make_lparts_for_defective_subtraction()
 
-    >>> hvhv_hvov = hvhv - hvov
-    >>> print hvhv_hvov.listing()                           #   correct
-    (0.0, 60.0):
-        (60.0, 20.0, 60.0, 40.0)
-        (60.0, 60.0, 60.0, 80.0)
-    (90.0, 40.0):
-        (60.0, 40.0, 80.0, 40.0)
+    >>> hvhv_minus_hvov = hvhv - hvov
+    >>> print hvhv_minus_hvov.listing()
     (90.0, 60.0):
         (20.0, 60.0, 40.0, 60.0)
-        (60.0, 60.0, 80.0, 60.0)
 
-    >>> hvhv_ovov = hvhv - ovov
-    >>> print hvhv_ovov.listing()
-    (0.0, 60.0):
-        (60.0, 20.0, 60.0, 40.0)
-        (60.0, 60.0, 60.0, 80.0)
+    >>> hvhv_minus_ovov = hvhv - ovov
+    >>> print hvhv_minus_ovov.listing()
     (90.0, 40.0):
         (20.0, 40.0, 40.0, 40.0)
-        (60.0, 40.0, 80.0, 40.0)
     (90.0, 60.0):
         (20.0, 60.0, 40.0, 60.0)
-        (60.0, 60.0, 80.0, 60.0)
 
 #   reduce()
     >>> def make_line_parts_for_reduce():

@@ -3384,12 +3384,15 @@
 
 #   defective_subtraction
     >>> def make_new_col_for_defective_subtraction():
-    ...     line_40_20_40_40 = line.Line.from_spec(40, 20, 40, 40)
-    ...     line_40_60_40_80 = line.Line.from_spec(40, 60, 40, 80)
-    ...     lines = [line_40_20_40_40, line_40_60_40_80]
-    ...     col_1 = colineation.Colineation(lines)
-    ...     col_2 = colineation.Colineation(lines)
-    ...     new_col = col_1 - col_2
+    ...     min_line_40_20_40_40 = line.Line.from_spec(40, 20, 40, 40)
+    ...     min_line_40_60_40_80 = line.Line.from_spec(40, 60, 40, 80)
+    ...     min_lines = [min_line_40_20_40_40, min_line_40_60_40_80]
+    ...     sub_line_40_20_40_40 = line.Line.from_spec(40, 20, 40, 40)
+    ...     sub_line_40_60_40_80 = line.Line.from_spec(40, 60, 40, 80)
+    ...     sub_lines = [sub_line_40_20_40_40, sub_line_40_60_40_80]
+    ...     min_col = colineation.Colineation(min_lines)
+    ...     sub_col = colineation.Colineation(sub_lines)
+    ...     new_col = min_col - sub_col
     ...     return new_col
     >>> new_col = make_new_col_for_defective_subtraction()
     >>> print new_col.listing()
