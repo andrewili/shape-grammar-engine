@@ -84,11 +84,33 @@
     ...     test_view.lshape_a = test_controller.get_lshape_from(file_a)
     ...     test_view.lshape_b = test_controller.get_lshape_from(file_b)
     ...     test_controller.respond_get_a_minus_b_button()
-    ...     return test_view.lshape_c
-    
-    >>> a_minus_b = make_a_minus_b()
+    ...     return [test_view.lshape_a, test_view.lshape_b, test_view.lshape_c]
+    >>> [a, b, a_minus_b] = make_a_minus_b()
 
-    ??? print a_minus_b.listing()
+    >>> print a.listing()
+    (0.0, 40.0):
+        (40.0, 20.0, 40.0, 40.0)
+        (40.0, 60.0, 40.0, 80.0)
+    (0.0, 60.0):
+        (60.0, 20.0, 60.0, 40.0)
+        (60.0, 60.0, 60.0, 80.0)
+    (90.0, 40.0):
+        (20.0, 40.0, 40.0, 40.0)
+        (60.0, 40.0, 80.0, 40.0)
+    (90.0, 60.0):
+        (20.0, 60.0, 40.0, 60.0)
+        (60.0, 60.0, 80.0, 60.0)
+    <no labeled points>
+    >>> print b.listing()
+    (0.0, 40.0):
+        (40.0, 20.0, 40.0, 40.0)
+        (40.0, 60.0, 40.0, 80.0)
+    (90.0, 40.0):
+        (20.0, 40.0, 40.0, 40.0)
+    (90.0, 60.0):
+        (20.0, 60.0, 40.0, 60.0)
+    <no labeled points>
+    >>> print a_minus_b.listing()
     (0.0, 60.0):
         (60.0, 20.0, 60.0, 40.0)
         (60.0, 60.0, 60.0, 80.0)

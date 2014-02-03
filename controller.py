@@ -33,7 +33,7 @@ class Controller(object):
 
     def respond_get_lshape_a_button(self):                      # root
         obj_file_a = self.the_view.file_a
-        self.the_view.lshape_a = self.get_lshape_from(obj_file_a)
+        self.the_view.lshape_a = self.get_lshape_from(obj_file_a)   #   view.lshape_a is set
                                                                 # 1
         self.display_lshape_on_canvas(
             self.the_view.lshape_a, self.the_view.canvas_a)     # 2
@@ -58,13 +58,17 @@ class Controller(object):
         self.the_view.text_var_c.set(text_c)
 
     def respond_get_a_minus_b_button(self):
-        trace_on = False
+        trace_on = True
         if trace_on:
             method_name = 'Controller.respond_get_a_minus_b_button()'
             print method_name
         self.the_view.lshape_c = (
-            self.the_view.lshape_a - self.the_view.lshape_b)
+            self.the_view.lshape_a - self.the_view.lshape_b)    #   Trouble here!
         if trace_on:
+            print 'self.the_view.lshape_a:'
+            print self.the_view.lshape_a.listing()
+            print 'self.the_view.lshape_b:'
+            print self.the_view.lshape_b.listing()
             print 'self.the_view.lshape_c:'
             print self.the_view.lshape_c.listing()
         self.display_lshape_on_canvas(
