@@ -61,10 +61,11 @@ class Controller(object):
         trace_on = True
         if trace_on:
             method_name = 'Controller.respond_get_a_minus_b_button()'
-            print method_name
+            print '||| %s' % method_name
         self.the_view.lshape_c = (
             self.the_view.lshape_a - self.the_view.lshape_b)    #   Trouble here!
         if trace_on:
+            print '||| %s' % method_name
             print 'self.the_view.lshape_a:'
             print self.the_view.lshape_a.listing()
             print 'self.the_view.lshape_b:'

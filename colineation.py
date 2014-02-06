@@ -247,17 +247,17 @@ class Colineation(object):
         other:
             Colineation, n(lines) >= 0
         """
-        trace_on = False
+        trace_on = True
         if trace_on:
-            method_name = 'Shape.subtract_colineations'
-            print '||| %s.self\n%s' % (
-                method_name, self.listing())
-            print '||| %s.other\n%s' % (
-                method_name, other.listing())
+            method_name = 'Colineation.__sub__()'
+            print '||| %s' % method_name
+            print 'self\n%s' % self.listing()
+            print 'other\n%s' % other.listing()
         col_col_diffs = []
         for line_i in self.lines:
             if trace_on:
-                print '||| %s.line_i:\n%s' % (method_name, line_i)
+                print '||| %s' % method_name
+                print 'line_i:\n%s' % line_i
             if other.is_empty():
                 col_col_diffs.append(line_i)
             else:
@@ -266,12 +266,9 @@ class Colineation(object):
                     line_i, other_disposable)
                 col_col_diffs.extend(line_col_diffs)
                 if trace_on:
-                    print '||| %s.line_col_diffs:\n%s' % (
-                        method_name, 
-                        self.lines_str(line_col_diffs))
-                    print '||| %s.col_col_diffs:\n%s' % (
-                        method_name, 
-                        self.lines_str(col_col_diffs))
+                    print '||| %s' % method_name
+                    print 'line_col_diffs:\n%s' % self.lines_str(line_col_diffs)
+                    print 'col_col_diffs:\n%s' % self.lines_str(col_col_diffs)
         new_colineation = Colineation(col_col_diffs)
         return new_colineation
 
@@ -296,7 +293,7 @@ class Colineation(object):
         # What about line subtrahends that overlap the whole line minuend?
         # Subtract and retain the line subtrahend that overlaps the head of the
         # line minuend
-        trace_on = False
+        trace_on = True
         line_diffs = []
         working_min = line_minuend
         working_col = colineation_subtrahend
@@ -304,10 +301,10 @@ class Colineation(object):
         if trace_on:
             method_name = 'Shape.subtract_line_colineation'
             print '||| %s.working_min:\n%s' % (method_name, working_min)
-            working_col_listing = self.get_colineation_listing(
-                working_col)
+            # working_col_listing = self.get_colineation_listing(
+                # working_col)
             print '||| %s.working_col:\n%s' % (
-                method_name, working_col_listing)
+                method_name, working_col.listing())
         while not working_col.is_empty():
             line_line_diffs = []
             line_sub = working_col.lines[0]

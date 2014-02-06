@@ -87,13 +87,14 @@ class Shape(object):
         Returns the difference self - other:
             Shape
         """
-        trace_on = False
+        trace_on = True
         if trace_on:
             method_name = 'Shape.__sub__()'
-            print method_name
+            print '||| %s' % method_name
         new_line_part = self.line_part - other.line_part
         new_shape = Shape(new_line_part)
         if trace_on:
+            print '||| %s' % method_name
             print 'self:'
             print self.listing()
             print 'other:'

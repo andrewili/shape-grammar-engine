@@ -186,16 +186,17 @@ class LinePartition(object):
         partition.
             LinePartition, n(entries) >= 0
         """
-        trace_on = False
+        trace_on = True
         if trace_on:
             method_name = 'LinePartition.__sub__'
-            print '||| %s.self:\n%s' % (method_name, self.listing())
-            print '||| %s.other:\n%s' % (method_name, other.listing())
+            print 'self:\n%s' % self.listing()
+            print 'other:\n%s' % other.listing()
         new_line_part = LinePartition([])
         line_dict_1 = self.dictionary
         if trace_on:
-            print '||| %s.new_line_part: %s' % (method_name, new_line_part)
-            print '||| %s.line_dict_1' % method_name
+            print '||| %s' % method_name
+            print 'new_line_part: %s' % new_line_part
+            print 'line_dict_1'
             for carrier in line_dict_1:
                 print carrier
                 print '%s' % line_dict_1[carrier].listing(1)
@@ -206,20 +207,19 @@ class LinePartition(object):
                 colineation_2 = copy.copy(line_dict_2[carrier])
                 new_colineation = colineation_1 - colineation_2
                 if trace_on:
-                    print '||| %s.carrier:\n%s' %(
-                        method_name, carrier)
-                    print '||| %s.colineation_1:\n%s' % (
-                        method_name, colineation_1.listing(1))
-                    print '||| %s.colineation_2:\n%s' % (
-                        method_name, colineation_2.listing(1))
-                    print '||| %s.new_colineation:\n%s' % (
-                        method_name, new_colineation.listing(1))
+                    print '||| %s' % method_name
+                    print 'carrier:'
+                    print carrier
+                    print 'colineation_1:\n%s' % colineation_1.listing(1)
+                    print 'colineation_2:\n%s' % colineation_2.listing(1)
+                    print 'new_colineation:\n%s' % (
+                        new_colineation.listing(1))
             else:
                 new_colineation = colineation_1
             new_line_part.dictionary[carrier] = new_colineation
         if trace_on:
-            print '||| %s.new_line_part: \n%s' % (
-                method_name, new_line_part.listing())
+            print '||| %s' % method_name
+            print 'new_line_part: \n%s' % new_line_part.listing()
         new_line_part.reduce()
         return new_line_part
 
