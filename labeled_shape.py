@@ -80,7 +80,7 @@ class LabeledShape(object):
         return new_lshape
 
     def __sub__(self, other):
-        trace_on = True
+        trace_on = False
         if trace_on:
             method_name = 'LabeledShape.__sub__()'
             print '||| %s' % method_name
@@ -128,7 +128,7 @@ class LabeledShape(object):
     ### test
 def subtract_test():
     import obj_translator
-    trace_on = True
+    trace_on = False
     w_vline_obj = open(
         '/Users/liandrew/Dropbox/F/FreeCad stuff/subtraction_test/w_vline.obj')
     w_vline = obj_translator.ObjTranslator.get_lshape_from(w_vline_obj)

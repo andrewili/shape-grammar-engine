@@ -4,7 +4,7 @@ import copy
 import line
 
 class Colineation(object):
-    """Consists of an (unordered) list of colinear lines. Immutable.
+    """Consists of an ordered list of colinear lines. Immutable.
     """
     ### construct
     def __init__(self, lines):
@@ -247,7 +247,7 @@ class Colineation(object):
         other:
             Colineation, n(lines) >= 0
         """
-        trace_on = True
+        trace_on = False
         if trace_on:
             method_name = 'Colineation.__sub__()'
             print '||| %s' % method_name
@@ -293,26 +293,24 @@ class Colineation(object):
         # What about line subtrahends that overlap the whole line minuend?
         # Subtract and retain the line subtrahend that overlaps the head of the
         # line minuend
-        trace_on = True
+        trace_on = False
         line_diffs = []
         working_min = line_minuend
         working_col = colineation_subtrahend
         last_line_line_diff_list = []
         if trace_on:
-            method_name = 'Shape.subtract_line_colineation'
-            print '||| %s.working_min:\n%s' % (method_name, working_min)
-            # working_col_listing = self.get_colineation_listing(
-                # working_col)
-            print '||| %s.working_col:\n%s' % (
-                method_name, working_col.listing())
+            method_name = 'Colineation.subtract_line_colineation'
+            print '||| %s' % method_name
+            print 'working_min:\n%s' % working_min
+            print 'working_col:\n%s' % working_col.listing()
         while not working_col.is_empty():
             line_line_diffs = []
             line_sub = working_col.lines[0]
             if trace_on:
-                print '||| %s.line_sub:\n%s' % (
-                    method_name, line_sub)
-                print '||| %s.working_col.lines[1]:\n%s' % (
-                    method_name, working_col.lines[1])
+                print '||| %s' % method_name
+                for i in range(len(working_col.lines)):
+                    print 'working_col.lines[%i]: %s' % (
+                        i, working_col.lines[i].listing())
             if line_sub.is_disjoint_left_of(working_min):
                 # difference = empty line
                 # discard subtrahend and try with next, if any
@@ -346,18 +344,16 @@ class Colineation(object):
                 line_diffs.append(line_line_diffs[0])
                 last_line_line_diff_list = []
                 if trace_on:
+                    print '||| %s' % method_name
                     line_line_diffs_listing = (
                         self.get_colineation_listing(
                             line_line_diffs))
-                    print '||| %s.line_line_diffs:\n%s' % (
-                        method_name, line_line_diffs_listing)
+                    print 'line_line_diffs:\n%s' % line_line_diffs_listing
                     line_diffs_listing = (
                         self.get_colineation_listing(
                             line_diffs))
-                    print '||| %s.line_diffs:\n%s' % (
-                        method_name, line_diffs_listing)
-                    print '||| %s.last_line_line_diff: %s' % (
-                        method_name, last_line_line_diff_list)
+                    print 'line_diffs:\n%s' % line_diffs_listing
+                    print 'last_line_line_diff: %s' % last_line_line_diff_list
                 break
             elif line_sub.is_disjoint_right_of(working_min):
                 # difference = empty line

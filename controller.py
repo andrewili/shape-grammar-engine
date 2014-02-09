@@ -58,7 +58,7 @@ class Controller(object):
         self.the_view.text_var_c.set(text_c)
 
     def respond_get_a_minus_b_button(self):
-        trace_on = True
+        trace_on = False
         if trace_on:
             method_name = 'Controller.respond_get_a_minus_b_button()'
             print '||| %s' % method_name
