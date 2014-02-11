@@ -17,7 +17,7 @@ class Colineation(object):
             ):
                 raise ValueError()
             else:
-                self.lines = lines
+                self.lines = sorted(lines)
         except ValueError:
             print "You're trying to make a colineation with non-colinear lines"
 
