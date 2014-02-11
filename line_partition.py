@@ -99,6 +99,28 @@ class LinePartition(object):
             string = '\n'.join(string_lines)
         return string
 
+    def listing_unordered(self):                                                #   back to shape
+        """Returns an unordered, formatted, multi-line string in the form:
+            (bearing, intercept):
+                (x1, y1, x2, y2)
+                ...
+            ...
+        """
+        if self.dictionary == {}:
+            string = '<empty line partition>'
+        else:
+            string_lines = []
+            for carrier_i in sorted(self.dictionary):
+                carrier_listing = self.get_carrier_listing(carrier_i)
+                string_lines.append(carrier_listing)
+                colineation_i = self.dictionary[carrier_i]
+                indent_level = 1                                                #   move out of loop
+                colineation_listing_unordered = (
+                    colineation_i.listing_unordered(indent_level))            #   create indentation here?
+                string_lines.append(colineation_listing_unordered)
+            string = '\n'.join(string_lines)
+        return string
+
     ### get
     def specs(self):
         """Returns an ordered list of line specs:
@@ -186,11 +208,13 @@ class LinePartition(object):
         partition.
             LinePartition, n(entries) >= 0
         """
-        trace_on = False
+        trace_on = True
         if trace_on:
             method_name = 'LinePartition.__sub__'
-            print 'self:\n%s' % self.listing()
-            print 'other:\n%s' % other.listing()
+            # print 'self:\n%s' % self.listing()
+            # print 'other:\n%s' % other.listing()
+            print 'self:\n%s' % self.listing_unordered()
+            print 'other:\n%s' % other.listing_unordered()
         new_line_part = LinePartition([])
         line_dict_1 = self.dictionary
         if trace_on:
@@ -206,14 +230,14 @@ class LinePartition(object):
             if carrier in line_dict_2:
                 colineation_2 = copy.copy(line_dict_2[carrier])
                 new_colineation = colineation_1 - colineation_2
-                if trace_on:
-                    print '||| %s' % method_name
-                    print 'carrier:'
-                    print carrier
-                    print 'colineation_1:\n%s' % colineation_1.listing(1)
-                    print 'colineation_2:\n%s' % colineation_2.listing(1)
-                    print 'new_colineation:\n%s' % (
-                        new_colineation.listing(1))
+                # if trace_on:
+                #     print '||| %s' % method_name
+                #     print 'carrier:'
+                #     print carrier
+                #     print 'colineation_1:\n%s' % colineation_1.listing(1)
+                #     print 'colineation_2:\n%s' % colineation_2.listing(1)
+                #     print 'new_colineation:\n%s' % (
+                #         new_colineation.listing(1))
             else:
                 new_colineation = colineation_1
             new_line_part.dictionary[carrier] = new_colineation

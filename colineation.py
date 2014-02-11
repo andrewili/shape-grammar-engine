@@ -17,7 +17,7 @@ class Colineation(object):
             ):
                 raise ValueError()
             else:
-                self.lines = sorted(lines)
+                self.lines = lines
         except ValueError:
             print "You're trying to make a colineation with non-colinear lines"
 
@@ -77,6 +77,28 @@ class Colineation(object):
                 line_listings.append(indent_string + line_i.listing())
             colineation_listing = '\n'.join(line_listings)
         return colineation_listing
+
+    def listing_unordered(self, indent_level=0):
+        """Receives indent_level:
+            int >= 0
+        Returns an unordered, formatted, multi-line string in the form:
+            (bearing, intercept):
+                (x1, y1, x2, y2)
+                ...
+        """
+        indent_increment = 4
+        if indent_level < 0:
+            indent_level = 0
+        indent_string = ' ' * indent_level * indent_increment
+        if self.lines == []:
+            colineation_listing = '%s<empty colineation>' % indent_string
+        else:
+            line_listings = []
+            for line_i in self.lines:
+                line_listings.append(indent_string + line_i.listing())
+            colineation_listing = '\n'.join(line_listings)
+        return colineation_listing
+
 
     def lines_str(self, lines):                                                 #   not called
         """Receives a list of lines:
@@ -302,15 +324,16 @@ class Colineation(object):
             method_name = 'Colineation.subtract_line_colineation'
             print '||| %s' % method_name
             print 'working_min:\n%s' % working_min
-            print 'working_col:\n%s' % working_col.listing()
+            # print 'working_col:\n%s' % working_col.listing()
+            print 'working_col:\n%s' % working_col.listing_unordered()
         while not working_col.is_empty():
             line_line_diffs = []
             line_sub = working_col.lines[0]
-            if trace_on:
-                print '||| %s' % method_name
-                for i in range(len(working_col.lines)):
-                    print 'working_col.lines[%i]: %s' % (
-                        i, working_col.lines[i].listing())
+            # if trace_on:
+            #     print '||| %s' % method_name
+            #     for i in range(len(working_col.lines)):
+            #         print 'working_col.lines[%i]: %s' % (
+            #             i, working_col.lines[i].listing())
             if line_sub.is_disjoint_left_of(working_min):
                 # difference = empty line
                 # discard subtrahend and try with next, if any
