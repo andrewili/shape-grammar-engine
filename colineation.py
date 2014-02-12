@@ -8,7 +8,7 @@ class Colineation(object):
     """
     ### construct
     def __init__(self, lines):
-        """Receives an unsorted list of colinear lines:
+        """Receives an unordered list of colinear lines:
             [Line, ...], n >= 0
         """
         try:
@@ -17,7 +17,7 @@ class Colineation(object):
             ):
                 raise ValueError()
             else:
-                self.lines = lines
+                self.lines = sorted(lines)
         except ValueError:
             print "You're trying to make a colineation with non-colinear lines"
 
@@ -57,10 +57,10 @@ class Colineation(object):
         colineation_string = ', '.join(line_strings)
         return '[%s]' % colineation_string
 
-    def listing(self, indent_level=0):
+    def listing(self, indent_level=0):                                          #!  control number of decimal places
         """Receives indent_level:
             int >= 0
-        Returns an ordered, formatted, multi-line string in the form:
+        Returns a formatted, multi-line string in the form:
             (bearing, intercept):
                 (x1, y1, x2, y2)
                 ...
@@ -73,7 +73,7 @@ class Colineation(object):
             colineation_listing = '%s<empty colineation>' % indent_string
         else:
             line_listings = []
-            for line_i in sorted(self.lines):
+            for line_i in self.lines:
                 line_listings.append(indent_string + line_i.listing())
             colineation_listing = '\n'.join(line_listings)
         return colineation_listing

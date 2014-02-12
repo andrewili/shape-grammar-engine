@@ -31,21 +31,19 @@ class Controller(object):
         if widget in self.responses:
             self.responses[widget]()
 
-    def respond_get_lshape_a_button(self):                      # root
+    def respond_get_lshape_a_button(self):
         obj_file_a = self.the_view.file_a
         self.the_view.lshape_a = self.get_lshape_from(obj_file_a)   #   view.lshape_a is set
-                                                                # 1
         self.display_lshape_on_canvas(
-            self.the_view.lshape_a, self.the_view.canvas_a)     # 2
+            self.the_view.lshape_a, self.the_view.canvas_a)
         text_a = self.the_view.lshape_a.listing()
         self.the_view.text_var_a.set(text_a)
 
     def respond_get_lshape_b_button(self):
         obj_file_b = self.the_view.file_b
         self.the_view.lshape_b = self.get_lshape_from(obj_file_b)
-                                                                # 1
         self.display_lshape_on_canvas(
-            self.the_view.lshape_b, self.the_view.canvas_b)     # 2
+            self.the_view.lshape_b, self.the_view.canvas_b)
         text_b = self.the_view.lshape_b.listing()
         self.the_view.text_var_b.set(text_b)
 
@@ -53,7 +51,7 @@ class Controller(object):
         self.the_view.lshape_c = (
             self.the_view.lshape_a + self.the_view.lshape_b)
         self.display_lshape_on_canvas(
-            self.the_view.lshape_c, self.the_view.canvas_c)     # 2
+            self.the_view.lshape_c, self.the_view.canvas_c)
         text_c = self.the_view.lshape_c.listing()
         self.the_view.text_var_c.set(text_c)
 
@@ -73,14 +71,14 @@ class Controller(object):
             print 'self.the_view.lshape_c:'
             print self.the_view.lshape_c.listing()
         self.display_lshape_on_canvas(
-            self.the_view.lshape_c, self.the_view.canvas_c)     # 2
+            self.the_view.lshape_c, self.the_view.canvas_c)
         text_c = self.the_view.lshape_c.listing()
         self.the_view.text_var_c.set(text_c)
 
     def respond_get_a_sub_lshape_b_button(self):
         empty_lshape = labeled_shape.LabeledShape.new_empty()
         self.display_lshape_on_canvas(
-            empty_lshape, self.the_view.canvas_c)               # 2
+            empty_lshape, self.the_view.canvas_c)
         if self.the_view.lshape_a.is_a_sub_labeled_shape_of(
             self.the_view.lshape_b
         ):
@@ -90,19 +88,18 @@ class Controller(object):
         self.the_view.text_var_c.set(text_c)
 
         ####
-    def get_lshape_from(self, obj_file):                        # 1
+    def get_lshape_from(self, obj_file):
         """Receives an obj_file:
             openfile
         Returns:
             LabeledShape
         """
-        elements = self.extract_elements_from(obj_file)         # 1.1
+        elements = self.extract_elements_from(obj_file)
         lines, lpoints = elements
-        lshape = labeled_shape.LabeledShape.make_lshape_from(lines, lpoints)
-                                                                # 1.2
+        lshape = labeled_shape.LabeledShape.make_lshape_from(lines, lpoints)    #   new_from_lines_and_lpoints
         return lshape
 
-    def extract_elements_from(self, obj_file):                  # 1.1
+    def extract_elements_from(self, obj_file):
         """Receives an obj_file:
             openfile
         Extracts the SG elements from the obj_file and returns a 2-tuple:
@@ -111,35 +108,34 @@ class Controller(object):
         elements = ([], [])
         vertex_buffer = []
         for file_line in obj_file:
-            if self.element_is_specified_by(file_line):         # 1.1.1
+            if self.element_is_specified_by(file_line):
                 if len(vertex_buffer) != 0:
                     self.extract_and_add_element(vertex_buffer, elements)
-                                                                # 1.1.2
                     vertex_buffer = []
-            elif self.vertex_is_specified_by(file_line):        # 1.1.3
-                new_point = self.extract_point_from(file_line)  # 1.1.4
+            elif self.vertex_is_specified_by(file_line):
+                new_point = self.extract_point_from(file_line)
                 vertex_buffer.append(new_point)
             else:
                 #   ignore other file_lines
                 pass
-        self.extract_and_add_element(vertex_buffer, elements)   # 1.1.2
+        self.extract_and_add_element(vertex_buffer, elements)                   #   explain why this is not in the loop
         return elements
 
-    def element_is_specified_by(self, file_line):               # 1.1.1
+    def element_is_specified_by(self, file_line):
         first_char = file_line[0]
         return first_char == 'o'
 
-    def extract_and_add_element(self, vertex_buffer, elements): # 1.1.2
+    def extract_and_add_element(self, vertex_buffer, elements):
         """Receives a vertex_buffer and an element list 2-tuple:
             [Point, ...]
             ([Line, ...], [LabeledPoint, ...])
         Extracts an element (Line or LabeledPoint) from the vertex buffer,
         and adds it to elements.
         """
-        element = self.extract_element_from(vertex_buffer)      # 1.1.2.1
-        self.add_element_to_elements(element, elements)         # 1.1.2.2
+        element = self.extract_element_from(vertex_buffer)
+        self.add_element_to_elements(element, elements)
 
-    def extract_element_from(self, vertex_buffer):              # 1.1.2.1
+    def extract_element_from(self, vertex_buffer):
         """Receives a vertex_buffer:
             [Point, ...]
         Returns:
@@ -161,7 +157,7 @@ class Controller(object):
             print 'extract_element_from():'
             print '    Vertex buffer must have 1 or 2 points'
 
-    def add_element_to_elements(self, element, elements):       # 1.1.2.2
+    def add_element_to_elements(self, element, elements):
         """Receives a Line or LabeledPoint. Adds it to the appropriate list
         in the 2-tuple ([Line, ...], [LabeledPoint, ...]).
         """
@@ -175,22 +171,22 @@ class Controller(object):
             #   Shouldn't get here
             print 'add_element_to_elements(): element must be Line or LabeledPoint'
 
-    def vertex_is_specified_by(self, file_line):                # 1.1.3
+    def vertex_is_specified_by(self, file_line):
         first_char = file_line[0]
         return first_char == 'v'
 
-    def extract_point_from(self, file_line):                    # 1.1.4
+    def extract_point_from(self, file_line):
         tokens = file_line.split(' ')
         x = float(tokens[1])
         y = float(tokens[2])
         return point.Point(x, y)
 
-    def display_lshape_on_canvas(self, lshape, canvas):         # 2
-        element_specs = lshape.get_element_specs()              # 2.1
-        items = self.get_items_from(element_specs)              # 2.2
-        self.display_items(items, canvas)                       # 2.3
+    def display_lshape_on_canvas(self, lshape, canvas):
+        element_specs = lshape.get_element_specs()
+        items = self.get_items_from(element_specs)
+        self.display_items(items, canvas)
 
-    def get_items_from(self, element_specs):                    # 2.2
+    def get_items_from(self, element_specs):
         """Receives a 2-tuple of lists of SG element_specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
         Returns a 3-tuple of lists of display items:
@@ -199,12 +195,12 @@ class Controller(object):
                 [(x0, y0, text), ...])
         """
         line_specs, lpoint_specs = element_specs
-        line_items = self.get_line_items_from(line_specs)       # 2.2.1
-        oval_items = self.get_oval_items_from(lpoint_specs)     # 2.2.2
-        text_items = self.get_text_items_from(lpoint_specs)     # 2.2.3
+        line_items = self.get_line_items_from(line_specs)
+        oval_items = self.get_oval_items_from(lpoint_specs)
+        text_items = self.get_text_items_from(lpoint_specs)
         return (line_items, oval_items, text_items)
 
-    def get_line_items_from(self, line_specs):                  # 2.2.1
+    def get_line_items_from(self, line_specs):
         """Receives a list of Lines:
             [Line, ...]
         Returns a list of line_items:
@@ -215,17 +211,17 @@ class Controller(object):
             line_items.append(line_spec)
         return line_items
 
-    def get_oval_items_from(self, lpoint_specs):                # 2.2.2
+    def get_oval_items_from(self, lpoint_specs):
         """Receives a list of. Returns a list of the corresponding
         oval items.
         """
         oval_items = []
         for lpoint_spec in lpoint_specs:
-            oval_item = self.get_oval_item_from(lpoint_spec)    # 2.2.2.1
+            oval_item = self.get_oval_item_from(lpoint_spec)
             oval_items.append(oval_item)
         return oval_items
 
-    def get_oval_item_from(self, lpoint_spec):                  # 2.2.2.1
+    def get_oval_item_from(self, lpoint_spec):
         """Receives an lpoint_spec:
             (x, y, label)
         Returns a 4-tuple of the corresponding oval item's coordinates:
@@ -242,7 +238,7 @@ class Controller(object):
         oval_item = (x0, y0, x1, y1)
         return oval_item
 
-    def get_text_items_from(self, lpoint_specs):                # 2.2.3
+    def get_text_items_from(self, lpoint_specs):
         """Receives a list of lpoint_specs:
             [(x, y, label), ...]
         Returns a list of the corresponding text items:
@@ -250,11 +246,11 @@ class Controller(object):
         """
         text_items = []
         for lpoint_spec in lpoint_specs:
-            text_item = self.get_text_item_from(lpoint_spec)    # 2.2.3.1
+            text_item = self.get_text_item_from(lpoint_spec)
             text_items.append(text_item)
         return text_items
 
-    def get_text_item_from(self, lpoint_spec):                  # 2.2.3.1
+    def get_text_item_from(self, lpoint_spec):
         """Receives a labeled_point_spec
             (x, y, label)
         Returns a text item
@@ -268,7 +264,7 @@ class Controller(object):
         text_item = (x, y, label)
         return text_item
 
-    def display_items(self, items, canvas):                     # 2.3
+    def display_items(self, items, canvas):
         """Receives a 3-tuple of lists of display items (lines, ovals, texts):
             (   [(x1, y1, x2, y2), ...],
                 [(x1, y1, x2, y2), ...],

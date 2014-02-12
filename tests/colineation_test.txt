@@ -6,7 +6,7 @@
     >>> colineation_drone = colineation.Colineation([line.Line.from_short_spec(0, 1)])
 
 ### construct, represent
-#   __init__(lines), __str__(), listing(), listing_unordered()
+#   __init__(lines), __str__(), listing()
     >>> def lines_for_init_test():
     ...     no_lines = []
     ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
@@ -39,10 +39,6 @@
     (1.0, 1.0, 3.0, 3.0)
     (4.0, 4.0, 6.0, 6.0)
     >>> print colinear_colineation.listing(2)
-            (0.0, 0.0, 2.0, 2.0)
-            (1.0, 1.0, 3.0, 3.0)
-            (4.0, 4.0, 6.0, 6.0)
-    >>> print colinear_colineation.listing_unordered(2)
             (0.0, 0.0, 2.0, 2.0)
             (1.0, 1.0, 3.0, 3.0)
             (4.0, 4.0, 6.0, 6.0)
