@@ -18,6 +18,8 @@
     (0, 0, 1, 1)
     >>> line_01.carrier
     (45.0, 0)
+    >>> line_01.length
+    1.4142135623730951
     
     >>> zero_length_line = line.Line.from_spec(0, 0, 0, 0)
     You're trying to create a zero-length line
