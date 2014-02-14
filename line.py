@@ -12,6 +12,7 @@ class Line(object):
             Point, Point
         Returns a line with head > tail (which implies that length > 0):
             Line
+        Immutable
         """
         try:
             if p1 == p2:
@@ -31,7 +32,13 @@ class Line(object):
         self.spec = (self.x1, self.y1, self.x2, self.y2)
         self.carrier = self.get_carrier_from(self.spec)
         self.bearing, self.intercept = self.carrier
-        self.length = self.calculate_length()
+        def compute_length():
+            dx = self.head.x - self.tail.x
+            dy = self.head.y - self.tail.y
+            length_squared = math.pow(dx, 2) + math.pow(dy, 2)
+            length = math.sqrt(length_squared)
+            return length
+        self.length = compute_length()
 
     def get_carrier_from(self, line_spec):
         """Receives line_spec:
@@ -53,16 +60,6 @@ class Line(object):
             #   b = y - mx
             intercept = self.y1 - (slope * self.x1)
         return (bearing, intercept)
-
-    def calculate_length(self):
-        """Returns length:
-            num > 0
-        """
-        dx = self.head.x - self.tail.x
-        dy = self.head.y - self.tail.y
-        length_squared = math.pow(dx, 2) + math.pow(dy, 2)
-        length = math.sqrt(length_squared)
-        return length
 
     @classmethod
     def from_spec(cls, x1, y1, x2, y2):

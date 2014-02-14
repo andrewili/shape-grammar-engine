@@ -2,8 +2,9 @@
 
 
 class Point(object):
-    #   Immutable
     def __init__(self, x, y):
+        """Immutable
+        """
         self.spec = (x, y)
         self.x = x
         self.y = y
@@ -36,8 +37,18 @@ class Point(object):
         string = '(%s, %s)' % (self.x, self.y)
         return string
 
-    def listing(self):
-        string = '(%3.1f, %3.1f)' % (self.x, self.y)
+    def listing(self, decimal_places=0):
+        """Receives an integer
+        """
+        if decimal_places < 0:
+            n = 0
+        else:
+            n = decimal_places
+        format = '%1.' + str(n) + 'f'
+        x_formatted = format % self.x
+        y_formatted = format % self.y
+        string = '(%s, %s)' % (x_formatted, y_formatted)
+        # string = '(%3.1f, %3.1f)' % (self.x, self.y)
         return string
 
 

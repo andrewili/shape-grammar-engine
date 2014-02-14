@@ -2,7 +2,7 @@
 
     >>> import point
 
-### construct
+### construct, represent
 #   __init__()
     >>> point_init = point.Point(1, 2)
     
@@ -13,11 +13,20 @@
     >>> point_init.y
     2
 
+    >>> print point.Point(2, 3).listing()
+    (2, 3)
+    >>> print point.Point(2, 3).listing(1)
+    (2.0, 3.0)
+    
 #   from_spec(x, y)
     >>> point_from_spec = point.Point.from_spec(2, 3)
 
     >>> point_from_spec.spec
     (2, 3)
+
+    >>> print point.Point(1, 2)
+    (1, 2)
+
 
 ### relations ###
 #   __eq__(other)
@@ -96,11 +105,3 @@
     >>> point_ne != point.Point(1, 0)
     True
 
-### represent
-#   __str__()
-    >>> print point.Point(1, 2)
-    (1, 2)
-
-#   listing()
-    >>> print point.Point(2, 3).listing()
-    (2.0, 3.0)
