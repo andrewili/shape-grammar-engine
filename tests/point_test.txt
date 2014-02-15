@@ -25,10 +25,10 @@
     (2, 3)
 
     >>> point_non_num_1 = point.Point('a', 1)
-    You're trying to make a Point with non-numbers
+    You're trying to make a point with non-numbers
 
     >>> point_non_num_2 = point.Point(2.3, 'b')
-    You're trying to make a Point with non-numbers
+    You're trying to make a point with non-numbers
     
 #   from_spec(x, y)
     >>> point_from_spec = point.Point.from_spec(2, 3)

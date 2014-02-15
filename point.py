@@ -20,7 +20,7 @@ class Point(object):
             ):
                 raise ValueError()
         except ValueError:
-            print "You're trying to make a Point with non-numbers"
+            print "You're trying to make a point with non-numbers"
         self.spec = (x, y)
         self.x = x
         self.y = y

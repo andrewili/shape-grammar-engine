@@ -28,8 +28,12 @@
     >>> print lpoint_init.listing(-2.3)
     (1, 2, a)
 
+    >>> lpoint_non_point = labeled_point.LabeledPoint('a', 2, 'a')
+    You're trying to create a labeled point with the wrong types
+    >>> lpoint_non_string = labeled_point.LabeledPoint(1, 2, 3)
+    You're trying to create a labeled point with the wrong types
     >>> lpoint_empty_label = labeled_point.LabeledPoint(1, 2, '')
-    You're trying to create a labeled point with an empty label
+    You're trying to create a labeled point with the wrong types
 
 ### relations
 #   __eq__(other)

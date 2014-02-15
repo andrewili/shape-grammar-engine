@@ -94,8 +94,9 @@ class Colabeling(object):
         spec_string = '(%s, %s)' % (x, y)
         return spec_string
 
-    def listing(self, indent_level=0):
-        """Returns an ordered, formatted, multi-line string in the form:
+    def listing(self, decimal_places=0, indent_level=0):
+        """Receives 2 numbers
+        Returns an ordered, formatted, multi-line string in the form:
             label:
                 (x, y)
                 ...
