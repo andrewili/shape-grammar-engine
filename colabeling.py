@@ -104,22 +104,31 @@ class Colabeling(object):
         indent_increment = 4
         if indent_level < 0:
             indent_level = 0
-        indent_string = ' ' * indent_level * indent_increment
+        indent_string = ' ' * int(indent_level) * indent_increment
         lpoint_listings = []
         for lpoint_spec in sorted(self.lpoint_specs):
-            lpoint_listing = self.get_lpoint_listing(lpoint_spec)
+            lpoint_listing = self.get_lpoint_listing(
+                lpoint_spec, decimal_places)
             lpoint_listings.append(indent_string + lpoint_listing)
         colabeling_listing = '\n'.join(lpoint_listings)
         return colabeling_listing
 
-    def get_lpoint_listing(self, lpoint_spec):
+    def get_lpoint_listing(self, lpoint_spec, decimal_places=0):
         """Receives a labeled point spec:
             (x, y, label)
         Returns a string in the form:
             '(<x>, <y>)'
         """
         x, y = lpoint_spec[0:2]
-        lpoint_listing = '(%3.1f, %3.1f)' % (x, y)
+        if decimal_places < 0:
+            n = 0
+        else:
+            n = int(decimal_places)
+        format = '%1.' + str(n) + 'f'
+        x_formatted = format % x
+        y_formatted = format % y
+        lpoint_listing = '(%s, %s)' % (x_formatted, y_formatted)
+        # lpoint_listing = '(%3.1f, %3.1f)' % (x, y)
         return lpoint_listing
 
     ### get

@@ -100,6 +100,13 @@
     >>> print colabeling_from_lpoint_specs
     [(1, 1), (2, 2), (3, 3)]
 
+#   get_lpoint_listing(lpoint_spec)
+    >>> spec = (1, 2, 'a')
+    >>> print colabeling_drone.get_lpoint_listing(spec)
+    (1, 2)
+    >>> print colabeling_drone.get_lpoint_listing(spec, 1)
+    (1.0, 2.0)
+
 ### get
 #   specs()
 
@@ -175,19 +182,19 @@
     ...     return [c1, c2]
     >>> c1, c2 = make_colabelings_for_sub()
     >>> print c1.listing()
-    (1.0, 1.0)
-    (2.0, 2.0)
+    (1, 1)
+    (2, 2)
     >>> print c2.listing()
-    (1.0, 1.0)
-    (3.0, 3.0)
+    (1, 1)
+    (3, 3)
 
     >>> diff_c1c2 = c1 - c2
     >>> print c1.listing()
-    (1.0, 1.0)
-    (2.0, 2.0)
+    (1, 1)
+    (2, 2)
     >>> print c2.listing()
-    (1.0, 1.0)
-    (3.0, 3.0)
+    (1, 1)
+    (3, 3)
     >>> diff_c1c2.__class__
     <class 'colabeling.Colabeling'>
     >>> print diff_c1c2
@@ -195,11 +202,11 @@
 
     >>> diff_c2c1 = c2 - c1
     >>> print c1.listing()
-    (1.0, 1.0)
-    (2.0, 2.0)
+    (1, 1)
+    (2, 2)
     >>> print c2.listing()
-    (1.0, 1.0)
-    (3.0, 3.0)
+    (1, 1)
+    (3, 3)
     >>> print diff_c2c1
     [(3, 3)]
 
