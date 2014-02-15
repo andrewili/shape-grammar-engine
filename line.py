@@ -7,12 +7,11 @@ import point
 class Line(object):
     ### construct
     def __init__(self, p1, p2):
-        #   2D implementation
         """Receives 2 distinct points:
             Point, Point
         Returns a line with head > tail (which implies that length > 0):
             Line
-        Immutable
+        Immutable. 2D implementation
         """
         try:
             if p1 == p2:

@@ -2,9 +2,25 @@
 
 
 class Point(object):
+        ### construct
     def __init__(self, x, y):
-        """Immutable
+        """Receives 2 numbers
+        Immutable
         """
+        try:
+            if not (
+                (
+                    x.__class__ == int or
+                    x.__class__ == float
+                ) and 
+                (
+                    y.__class__ == int or
+                    y.__class__ == float
+                )
+            ):
+                raise ValueError()
+        except ValueError:
+            print "You're trying to make a Point with non-numbers"
         self.spec = (x, y)
         self.x = x
         self.y = y
@@ -12,6 +28,28 @@ class Point(object):
     @classmethod
     def from_spec(cls, x, y):
         return Point(x, y)
+
+        ### represent
+    def __str__(self):
+        string = '(%s, %s)' % (self.x, self.y)
+        return string
+
+    def listing(self, decimal_places=0):
+        """Receives a number 
+            num
+        Returns a string of the form (x, y), where x and y have the specified
+        number of decimal places
+            String
+        """
+        if decimal_places < 0:
+            n = 0
+        else:
+            n = int(decimal_places)
+        format = '%1.' + str(n) + 'f'
+        x_formatted = format % self.x
+        y_formatted = format % self.y
+        string = '(%s, %s)' % (x_formatted, y_formatted)
+        return string
 
         ### relations
     def __eq__(self, other):
@@ -31,26 +69,6 @@ class Point(object):
 
     def __ne__(self, other):
         return self.spec != other.spec
-
-        ### represent
-    def __str__(self):
-        string = '(%s, %s)' % (self.x, self.y)
-        return string
-
-    def listing(self, decimal_places=0):
-        """Receives an integer
-        """
-        if decimal_places < 0:
-            n = 0
-        else:
-            n = decimal_places
-        format = '%1.' + str(n) + 'f'
-        x_formatted = format % self.x
-        y_formatted = format % self.y
-        string = '(%s, %s)' % (x_formatted, y_formatted)
-        # string = '(%3.1f, %3.1f)' % (self.x, self.y)
-        return string
-
 
 if __name__ == '__main__':
     import doctest

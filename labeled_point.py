@@ -4,8 +4,14 @@ import point
 
 
 class LabeledPoint(object):
-    #   Immutable
+    """Contains a Point and a label
+    """
+        ### construct
     def __init__(self, x, y, label):
+        """Receives 2 coordinates and a non-empty label:
+            num, num, String
+        2D implementation. Immutable
+        """
         try:
             if label == '':
                 raise ValueError()
@@ -16,6 +22,17 @@ class LabeledPoint(object):
         self.x = x
         self.y = y
         self.label = label
+
+        ### represent
+    def __str__(self):
+        string = '(%s, %s, %s)' % (self.x, self.y, self.label)
+        return string
+
+    def listing(self, decimal_places=0):
+        point_listing = self.point.listing(decimal_places)
+        point_formatted = point_listing[1:-1]
+        string = '(%s, %s)' % (point_formatted, self.label)
+        return string
 
         ### relations
     def __eq__(self, other):
@@ -81,16 +98,6 @@ class LabeledPoint(object):
             return True
         else:
             return False
-
-        ### represent
-    def __str__(self):
-        string = '(%s, %s, %s)' % (self.x, self.y, self.label)
-        return string
-
-    def listing(self):
-        string = '(%3.1f, %3.1f, %s)' % (self.x, self.y, self.label)
-        return string
-
 
 if __name__ == '__main__':
     import doctest

@@ -3,7 +3,7 @@
     >>> import labeled_point
 
 ### construct
-#   __init__()
+#   __init__(), represent(), listing()
     >>> lpoint_init = labeled_point.LabeledPoint(1, 2, 'a')
     >>> lpoint_init.spec
     (1, 2, 'a')
@@ -15,7 +15,19 @@
     2
     >>> lpoint_init.label
     'a'
-    
+    >>> print lpoint_init
+    (1, 2, a)
+    >>> print lpoint_init.listing()
+    (1, 2, a)
+    >>> print lpoint_init.listing(2)
+    (1.00, 2.00, a)
+    >>> print lpoint_init.listing(2.2)
+    (1.00, 2.00, a)
+    >>> print lpoint_init.listing(-2)
+    (1, 2, a)
+    >>> print lpoint_init.listing(-2.3)
+    (1, 2, a)
+
     >>> lpoint_empty_label = labeled_point.LabeledPoint(1, 2, '')
     You're trying to create a labeled point with an empty label
 
@@ -100,11 +112,3 @@
     >>> lpoint_ne != labeled_point.LabeledPoint(0, 0, 'x')
     True
 
-### represent
-#   __str__()
-    >>> print labeled_point.LabeledPoint(1, 2, 'a')
-    (1, 2, a)
-
-#   listing()
-    >>> print labeled_point.LabeledPoint(3, 4, 'b').listing()
-    (3.0, 4.0, b)
