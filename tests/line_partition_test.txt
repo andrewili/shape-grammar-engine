@@ -9,9 +9,7 @@
     >>> partition_drone = line_partition.LinePartition([])
 
 ### construct, represent
-#   __init__()
-#   __str__()
-#   listing()
+#   __init__(), __str__(), listing()
 
     >>> def make_mixed_elements_for_mixed_init_test():
     ...     line_01 = line.Line.from_short_spec(0, 1)
@@ -51,26 +49,50 @@
     >>> print partition_0
     [(0, 0, 0, 3)]
     >>> print partition_0.listing()
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 3.0)
+    (0, 0):
+        (0, 0, 0, 3)
 
     >>> partition_45 = line_partition.LinePartition(lines_45_deg)
     >>> print partition_45
     [(0, 0, 1, 1), (2, 2, 3, 3)]
     >>> print partition_45.listing()
-    (45.0, 0.0):
-        (0.0, 0.0, 1.0, 1.0)
-        (2.0, 2.0, 3.0, 3.0)
+    (45, 0):
+        (0, 0, 1, 1)
+        (2, 2, 3, 3)
 
     >>> partition_0_45 = line_partition.LinePartition(lines_0_45_deg)
     >>> print partition_0_45
     [(0, 0, 0, 3), (0, 0, 1, 1), (2, 2, 3, 3)]
     >>> print partition_0_45.listing()
+    (0, 0):
+        (0, 0, 0, 3)
+    (45, 0):
+        (0, 0, 1, 1)
+        (2, 2, 3, 3)
+    >>> print partition_0_45.listing(1)
     (0.0, 0.0):
         (0.0, 0.0, 0.0, 3.0)
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
         (2.0, 2.0, 3.0, 3.0)
+    >>> print partition_0_45.listing(1.1)
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 3.0)
+    (45.0, 0.0):
+        (0.0, 0.0, 1.0, 1.0)
+        (2.0, 2.0, 3.0, 3.0)
+    >>> print partition_0_45.listing(-1)
+    (0, 0):
+        (0, 0, 0, 3)
+    (45, 0):
+        (0, 0, 1, 1)
+        (2, 2, 3, 3)
+    >>> print partition_0_45.listing(-1.1)
+    (0, 0):
+        (0, 0, 0, 3)
+    (45, 0):
+        (0, 0, 1, 1)
+        (2, 2, 3, 3)
 
     >>> def make_partition():
     ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
@@ -246,26 +268,26 @@
     >>> print full_empty_partition
     [(0, 0, 0, 2), (0, 0, 1, 1)]
     >>> print full_empty_partition.listing()
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 2.0)
-    (45.0, 0.0):
-        (0.0, 0.0, 1.0, 1.0)
+    (0, 0):
+        (0, 0, 0, 2)
+    (45, 0):
+        (0, 0, 1, 1)
     >>> print empty_full_partition
     [(0, 0, 0, 2), (0, 0, 1, 1)]
     >>> print empty_full_partition.listing()
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 2.0)
-    (45.0, 0.0):
-        (0.0, 0.0, 1.0, 1.0)
+    (0, 0):
+        (0, 0, 0, 2)
+    (45, 0):
+        (0, 0, 1, 1)
     >>> print full_full_partition
     [(0, 0, 0, 2), (0, 0, 2, 0), (0, 0, 2, 2)]
     >>> print full_full_partition.listing()
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 2.0)
-    (45.0, 0.0):
-        (0.0, 0.0, 2.0, 2.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 2.0, 0.0)
+    (0, 0):
+        (0, 0, 0, 2)
+    (45, 0):
+        (0, 0, 2, 2)
+    (90, 0):
+        (0, 0, 2, 0)
 
 ### subtract
 #   __sub__(other)                                                              #   back to shape.__sub__
@@ -308,12 +330,12 @@
     >>> print lpart_11
     [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
     >>> print diff_1101.listing()
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
-    (45.0, 0.0):
-        (0.0, 0.0, 2.0, 2.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 2.0, 0.0)
+    (0, 0):
+        (0, 0, 0, 1)
+    (45, 0):
+        (0, 0, 2, 2)
+    (90, 0):
+        (0, 0, 2, 0)
 
     >>> diff_1111 = lpart_11 - lpart_11
     >>> print lpart_11
@@ -325,26 +347,26 @@
     >>> print lpart_11
     [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
     >>> print diff_1112.listing()
-    (45.0, 0.0):
-        (0.0, 0.0, 1.0, 1.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 2.0, 0.0)
+    (45, 0):
+        (0, 0, 1, 1)
+    (90, 0):
+        (0, 0, 2, 0)
 
     >>> diff_1211 = lpart_12 - lpart_11
     >>> print lpart_11
     [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
     >>> print lpart_11.listing()                                                #   lpart_11.listing() has changed
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
-    (45.0, 0.0):
-        (0.0, 0.0, 2.0, 2.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 2.0, 0.0)
+    (0, 0):
+        (0, 0, 0, 1)
+    (45, 0):
+        (0, 0, 2, 2)
+    (90, 0):
+        (0, 0, 2, 0)
     >>> print diff_1211.listing()
-    (45.0, 0.0):
-        (2.0, 2.0, 3.0, 3.0)
-    (90.0, 0.0):
-        (3.0, 0.0, 4.0, 0.0)
+    (45, 0):
+        (2, 2, 3, 3)
+    (90, 0):
+        (3, 0, 4, 0)
 
     >>> diff_1102 = lpart_11 - lpart_02
     >>> print diff_1102
@@ -375,15 +397,15 @@
 
     >>> hvhv_minus_hvov = hvhv - hvov
     >>> print hvhv_minus_hvov.listing()
-    (90.0, 60.0):
-        (20.0, 60.0, 40.0, 60.0)
+    (90, 60):
+        (20, 60, 40, 60)
 
     >>> hvhv_minus_ovov = hvhv - ovov
     >>> print hvhv_minus_ovov.listing()
-    (90.0, 40.0):
-        (20.0, 40.0, 40.0, 40.0)
-    (90.0, 60.0):
-        (20.0, 60.0, 40.0, 60.0)
+    (90, 40):
+        (20, 40, 40, 40)
+    (90, 60):
+        (20, 60, 40, 60)
 
 #   reduce()
     >>> def make_line_parts_for_reduce():
@@ -431,20 +453,20 @@
     >>> test_reduce(line_part_0)
     <empty line partition>
     >>> test_reduce(line_part_1)
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
+    (0, 0):
+        (0, 0, 0, 1)
     >>> test_reduce(line_part_00)
     <empty line partition>
     >>> test_reduce(line_part_01)
-    (90.0, 0.0):
-        (0.0, 0.0, 1.0, 0.0)
+    (90, 0):
+        (0, 0, 1, 0)
     >>> test_reduce(line_part_10)
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
+    (0, 0):
+        (0, 0, 0, 1)
     >>> test_reduce(line_part_11)
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 1.0, 0.0)
+    (0, 0):
+        (0, 0, 0, 1)
+    (90, 0):
+        (0, 0, 1, 0)
 
 

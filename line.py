@@ -81,9 +81,19 @@ class Line(object):
         return '(%s, %s, %s, %s)' % (
             self.x1, self.y1, self.x2, self.y2)
 
-    def listing(self):
-        return '(%0.1f, %0.1f, %0.1f, %0.1f)' % (
-            self.x1, self.y1, self.x2, self.y2)
+    def listing(self, decimal_places=0):
+        if decimal_places < 0:
+            n = 0
+        else:
+            n = int(decimal_places)
+        format = '%1.' + str(n) + 'f'
+        x1_formatted = format % self.x1
+        y1_formatted = format % self.y1
+        x2_formatted = format % self.x2
+        y2_formatted = format % self.y2
+        string = '(%s, %s, %s, %s)' % (
+            x1_formatted, y1_formatted, x2_formatted, y2_formatted)
+        return string
 
     ### relations
     def __eq__(self, other):

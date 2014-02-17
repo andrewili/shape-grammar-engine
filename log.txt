@@ -82,3 +82,7 @@ Log
     -vhv {(0, 40): [],               (90, 60): []}
     hv-v {(0, 40): [], (90, 40): []              }
     hvhv {(0, 40): [], (90, 40): [], (90, 60): []}
+
+#   2014-01-15
+    Listing. Revise to allow a variable number of decimal places. Can I implement this at some lower level, e.g., coord or num?
+    Invariants.

@@ -128,7 +128,6 @@ class Colabeling(object):
         x_formatted = format % x
         y_formatted = format % y
         lpoint_listing = '(%s, %s)' % (x_formatted, y_formatted)
-        # lpoint_listing = '(%3.1f, %3.1f)' % (x, y)
         return lpoint_listing
 
     ### get

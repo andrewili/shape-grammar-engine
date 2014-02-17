@@ -90,8 +90,8 @@ class LPointPartition(object):
         lpoint_spec_string = '(%s, %s, %s)' % lpoint_spec
         return lpoint_spec_string
 
-    def listing(self):
-        """Returns an ordered, formatted, multi-line string in the form:
+    def listing(self, decimal_places=0):
+        """Returns a formatted, multi-line string in the form:
             label:
                 (x, y)
                 ...
@@ -104,7 +104,8 @@ class LPointPartition(object):
             for label_i in sorted(self.dictionary):
                 colabeling_i = self.dictionary[label_i]
                 indent_level = 1
-                colabeling_listing_i = colabeling_i.listing(indent_level)
+                colabeling_listing_i = colabeling_i.listing(
+                    decimal_places, indent_level)
                 entry_listing_i = '%s:\n%s' % (
                     label_i, colabeling_listing_i)
                 entry_listings.append(entry_listing_i)

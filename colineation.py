@@ -57,10 +57,10 @@ class Colineation(object):
         colineation_string = ', '.join(line_strings)
         return '[%s]' % colineation_string
 
-    def listing(self, indent_level=0):                                          #!  control number of decimal places
+    def listing(self, decimal_places=0, indent_level=0):
         """Receives indent_level:
             int >= 0
-        Returns a formatted, multi-line string in the form:
+        Returns an ordered, formatted, multi-line string in the form:
             (bearing, intercept):
                 (x1, y1, x2, y2)
                 ...
@@ -68,13 +68,14 @@ class Colineation(object):
         indent_increment = 4
         if indent_level < 0:
             indent_level = 0
-        indent_string = ' ' * indent_level * indent_increment
+        indent_string = ' ' * int(indent_level) * indent_increment
         if self.lines == []:
             colineation_listing = '%s<empty colineation>' % indent_string
         else:
             line_listings = []
             for line_i in self.lines:
-                line_listings.append(indent_string + line_i.listing())
+                line_listings.append(indent_string + line_i.listing(
+                    decimal_places))
             colineation_listing = '\n'.join(line_listings)
         return colineation_listing
 

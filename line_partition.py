@@ -78,8 +78,8 @@ class LinePartition(object):
         string = '[%s]' % line_string
         return string
 
-    def listing(self):                                                          #   back to shape
-        """Returns a formatted, multi-line string in the form:
+    def listing(self, decimal_places=0):                #   back to shape
+        """Returns an oredered, formatted, multi-line string in the form:
             (bearing, intercept):
                 (x1, y1, x2, y2)
                 ...
@@ -90,11 +90,13 @@ class LinePartition(object):
         else:
             string_lines = []
             for carrier_i in sorted(self.dictionary):
-                carrier_listing = self.get_carrier_listing(carrier_i)
+                carrier_listing = self.get_carrier_listing(
+                    carrier_i, decimal_places)
                 string_lines.append(carrier_listing)
                 colineation_i = self.dictionary[carrier_i]
-                indent_level = 1                                                #   move out of loop
-                colineation_listing = colineation_i.listing(indent_level)       #   create indentation here?
+                indent_level = 1                        #   move out of loop
+                colineation_listing = colineation_i.listing(
+                    decimal_places, indent_level)       #   create indentation here?
                 string_lines.append(colineation_listing)
             string = '\n'.join(string_lines)
         return string
@@ -111,9 +113,17 @@ class LinePartition(object):
             specs.extend(colineation_i_specs)
         return sorted(specs)
 
-    def get_carrier_listing(self, carrier):
+    def get_carrier_listing(self, carrier, decimal_places):
         bearing, intercept = carrier
-        string = '(%3.1f, %3.1f):' % (bearing, intercept)
+        if decimal_places < 0:
+            n = 0
+        else:
+            n = int(decimal_places)
+        format = '%1.' + str(n) + 'f'
+        x_formatted = format % bearing
+        y_formatted = format % intercept
+        string = '(%s, %s):' % (x_formatted, y_formatted)
+        # string = '(%3.1f, %3.1f):' % (bearing, intercept)
         return string
 
     @classmethod
