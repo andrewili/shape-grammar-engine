@@ -3,7 +3,7 @@
     >>> import point
 
 ### construct, represent
-#   __init__(), listing()
+#   __init__(), listing(), get_x_listing(), get_y_listing()
     >>> point_init = point.Point(1, 2)
     
     >>> point_init.spec
@@ -13,15 +13,31 @@
     >>> point_init.y
     2
 
-    >>> print point.Point(2, 3).listing()
+    >>> p23 = point.Point(2, 3)
+    >>> print p23.get_formatted_coord('x')
+    2
+    >>> print p23.get_formatted_coord('x', 1)
+    2.0
+    >>> print p23.get_formatted_coord('x', 1.2)
+    2.0
+    >>> print p23.get_formatted_coord('x', -2)
+    2
+    >>> print p23.get_formatted_coord('x', -2.3)
+    2
+    >>> print p23.get_formatted_coord('y')
+    3
+    >>> print p23.get_formatted_coord('z')
+    You're specifying a dimension that is neither 'x' nor 'y'
+
+    ??? print p23.listing()
     (2, 3)
-    >>> print point.Point(2, 3).listing(1)
+    ??? print p23.listing(1)
     (2.0, 3.0)
-    >>> print point.Point(2, 3).listing(2.1)
+    ??? print p23.listing(2.1)
     (2.00, 3.00)
-    >>> print point.Point(2, 3).listing(-1)
+    ??? print p23.listing(-1)
     (2, 3)
-    >>> print point.Point(2, 3).listing(-1.3)
+    ??? print p23.listing(-1.3)
     (2, 3)
 
     >>> point_non_num_1 = point.Point('a', 1)

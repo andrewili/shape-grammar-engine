@@ -41,15 +41,49 @@ class Point(object):
         number of decimal places
             String
         """
+        # if decimal_places < 0:
+        #     n = 0
+        # else:
+        #     n = int(decimal_places)
+        # format = '%1.' + str(n) + 'f'
+        # x_formatted = format % self.x
+        # y_formatted = format % self.y
+        x_formatted = self.get_formatted_coord('x')
+        y_formatted = self.get_formatted_coord('y')
+        string = '(%s, %s)' % (x_formatted, y_formatted)
+        return string
+
+    def get_formatted_coord(self, dimension, decimal_places=0):
+        """Receives the dimension of the coordinate and the number of decimal
+        places:
+            String
+            number
+        Returns the specified coordinate formatted as specified
+            String
+        """
+        try:
+            if not (
+                dimension == 'x' or 
+                dimension == 'y'
+            ):
+                raise ValueError()
+        except ValueError:
+            print "You're specifying a dimension that is neither 'x' nor 'y'"
         if decimal_places < 0:
             n = 0
         else:
             n = int(decimal_places)
         format = '%1.' + str(n) + 'f'
-        x_formatted = format % self.x
-        y_formatted = format % self.y
-        string = '(%s, %s)' % (x_formatted, y_formatted)
-        return string
+        if dimension == 'x':
+            coord = self.x
+        elif dimension == 'y':
+            coord = self.y
+        else:
+            print (
+                "I should have told you earlier,",
+                "but you're specifying a dimension that is neither 'x' nor 'y'")
+        formatted_coord = format % coord
+        return formatted_coord
 
         ### relations
     def __eq__(self, other):
