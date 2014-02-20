@@ -54,8 +54,8 @@ class Point(object):
         return string
 
     def get_formatted_coord(self, dimension, decimal_places=0):
-        """Receives the dimension of the coordinate and the number of decimal
-        places:
+        """Receives the dimension (i.e., x or y) of the coordinate and the 
+        number of decimal places:
             String
             number
         Returns the specified coordinate formatted as specified
@@ -68,7 +68,7 @@ class Point(object):
             ):
                 raise ValueError()
         except ValueError:
-            print "You're specifying a dimension that is neither 'x' nor 'y'"
+            print "You're specifying a dimension that is neither 'x' nor 'y'"   #   no output
         if decimal_places < 0:
             n = 0
         else:
@@ -79,9 +79,9 @@ class Point(object):
         elif dimension == 'y':
             coord = self.y
         else:
-            print (
-                "I should have told you earlier,",
-                "but you're specifying a dimension that is neither 'x' nor 'y'")
+            print 
+                "This isn't supposed to happen,",
+                "but you're specifying a dimension that is neither 'x' nor 'y'" #   no output
         formatted_coord = format % coord
         return formatted_coord
 
