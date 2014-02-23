@@ -1,0 +1,63 @@
+#   point_test.txt
+
+    >>> import problem_point
+
+### construct, represent
+#   __init__(), listing(), get_x_listing(), get_y_listing()
+    >>> problem_point_init = problem_point.ProblemPoint(1, 2)
+    
+    >>> problem_point_init.spec
+    (1, 2)
+    >>> problem_point_init.x
+    1
+    >>> problem_point_init.y
+    2
+
+    >>> p23 = problem_point.ProblemPoint(2, 3)
+    >>> print p23.get_formatted_coord(25)
+    You're specifying a dimension that isn't kosher
+    >>> print p23.get_formatted_coord('x')
+    2
+    >>> print p23.get_formatted_coord('x', 1)
+    2.0
+    >>> print p23.get_formatted_coord('x', 1.2)
+    2.0
+    >>> print p23.get_formatted_coord('x', -2)
+    2
+    >>> print p23.get_formatted_coord('x', -2.3)
+    2
+    >>> print p23.get_formatted_coord('y')
+    3
+    >>> print p23.get_formatted_coord('z')
+    You're specifying a dimension that isn't kosher
+
+    ??? print p23.listing()
+    (2, 3)
+    ??? print p23.listing(1)
+    (2.0, 3.0)
+    ??? print p23.listing(2.1)
+    (2.00, 3.00)
+    ??? print p23.listing(-1)
+    (2, 3)
+    ??? print p23.listing(-1.3)
+    (2, 3)
+
+    >>> point_non_num_1 = problem_point.ProblemPoint('a', 1)
+    You're trying to make a point with non-numbers
+
+    >>> point_non_num_2 = problem_point.ProblemPoint(2.3, 'b')
+    You're trying to make a point with non-numbers
+    
+#   from_spec(x, y)
+    >>> point_from_spec = problem_point.ProblemPoint.from_spec(2, 3)
+
+    >>> point_from_spec.spec
+    (2, 3)
+
+    >>> print problem_point.ProblemPoint(1, 2)
+    (1, 2)
+
+    >>> x = 2.2
+    >>> x.__class__
+    <type 'float'>
+

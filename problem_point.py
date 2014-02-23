@@ -1,7 +1,7 @@
-#   point.py
+#   problem_point.py
 
 
-class Point(object):
+class ProblemPoint(object):
         ### construct
     def __init__(self, x, y):
         """Receives 2 numbers
@@ -27,7 +27,7 @@ class Point(object):
 
     @classmethod
     def from_spec(cls, x, y):
-        return Point(x, y)
+        return ProblemPoint(x, y)
 
         ### represent
     def __str__(self):
@@ -41,13 +41,6 @@ class Point(object):
         number of decimal places
             String
         """
-        # if decimal_places < 0:
-        #     n = 0
-        # else:
-        #     n = int(decimal_places)
-        # format = '%1.' + str(n) + 'f'
-        # x_formatted = format % self.x
-        # y_formatted = format % self.y
         x_formatted = self.get_formatted_coord('x')
         y_formatted = self.get_formatted_coord('y')
         string = '(%s, %s)' % (x_formatted, y_formatted)
@@ -68,8 +61,8 @@ class Point(object):
             ):
                 raise ValueError()
         except ValueError:
-            print "1 You're specifying a dimension that isn't kosher"
-            return
+            print "You're specifying a dimension that isn't kosher"
+            # coord = 17
         if decimal_places < 0:
             n = 0
         else:
@@ -82,30 +75,13 @@ class Point(object):
         else:
             # coord = 13136024
             print '%s %s' % (
-                "2 This isn't supposed to happen,",
+                "This isn't supposed to happen,",
                 "but you're specifying a dimension that isn't kosher")
+            a = 'a'
         formatted_coord = format % coord
+        print a
         return formatted_coord
-
-        ### relations
-    def __eq__(self, other):
-        return self.spec == other.spec
-
-    def __ge__(self, other):
-        return self.spec >= other.spec
-
-    def __gt__(self, other):
-        return self.spec > other.spec
-
-    def __le__(self, other):
-        return self.spec <= other.spec
-
-    def __lt__(self, other):
-        return self.spec < other.spec
-
-    def __ne__(self, other):
-        return self.spec != other.spec
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/point_test.txt')
+    doctest.testfile('tests/problem_point_test.txt')

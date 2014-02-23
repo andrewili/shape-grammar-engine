@@ -15,7 +15,7 @@
 
     >>> p23 = point.Point(2, 3)
     >>> print p23.get_formatted_coord(25)
-    You're specifying a dimension that is neither 'x' nor 'y'
+    You're specifying a dimension that isn't kosher
     >>> print p23.get_formatted_coord('x')
     2
     >>> print p23.get_formatted_coord('x', 1)
@@ -29,7 +29,7 @@
     >>> print p23.get_formatted_coord('y')
     3
     >>> print p23.get_formatted_coord('z')
-    You're specifying a dimension that is neither 'x' nor 'y'
+    You're specifying a dimension that isn't kosher
 
     ??? print p23.listing()
     (2, 3)
