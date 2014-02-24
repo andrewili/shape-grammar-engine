@@ -68,7 +68,7 @@ class Point(object):
             ):
                 raise ValueError()
         except ValueError:
-            print "1 You're specifying a dimension that isn't kosher"
+            print "You're specifying a dimension that isn't kosher"
             return
         if decimal_places < 0:
             n = 0
@@ -80,10 +80,12 @@ class Point(object):
         elif dimension == 'y':
             coord = self.y
         else:
-            # coord = 13136024
+            # coord = 'Kilroy'
             print '%s %s' % (
-                "2 This isn't supposed to happen,",
+                "This isn't supposed to happen,",
                 "but you're specifying a dimension that isn't kosher")
+            # It appears that this print statement is not executed 
+            # unless there is a coord assignment statement first
         formatted_coord = format % coord
         return formatted_coord
 
