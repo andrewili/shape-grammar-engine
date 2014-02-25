@@ -185,7 +185,7 @@ class Line(object):
             else:
                 return False
 
-    def is_disjoint_left_of(self, other):           #   assumes horizontal line
+    def is_disjoint_left_of(self, other):       #   assumes horizontal line
         return  self.head <= other.tail
 
     def overlaps_tail_of(self, other):

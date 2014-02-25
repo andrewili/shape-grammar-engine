@@ -4,8 +4,9 @@
 
 ### construct, represent
 #   __init__(), listing(), get_x_listing(), get_y_listing()
+    >>> point_char = point.Point('a', 2)
+    You're trying to make a point with non-numbers
     >>> point_init = point.Point(1, 2)
-    
     >>> point_init.spec
     (1, 2)
     >>> point_init.x
@@ -15,7 +16,7 @@
 
     >>> p23 = point.Point(2, 3)
     >>> print p23.get_formatted_coord(25)
-    You're specifying a dimension that isn't kosher
+    You're specifying a dimension with a non-string
     None
     >>> print p23.get_formatted_coord('x')
     2
@@ -30,7 +31,7 @@
     >>> print p23.get_formatted_coord('y')
     3
     >>> print p23.get_formatted_coord('z')
-    You're specifying a dimension that isn't kosher
+    You're specifying a dimension that isn't 'x' or 'y'
     None
 
     ??? print p23.listing()

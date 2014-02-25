@@ -1,7 +1,7 @@
-#   point.py
+#   problem_point.py
 
 
-class Point(object):
+class ProblemPoint(object):
         ### construct
     def __init__(self, x, y):
         """Receives 2 numbers
@@ -18,17 +18,16 @@ class Point(object):
                     y.__class__ == float
                 )
             ):
-                raise TypeError
-        except TypeError:
+                raise ValueError()
+        except ValueError:
             print "You're trying to make a point with non-numbers"
-        else:
-            self.spec = (x, y)
-            self.x = x
-            self.y = y
+        self.spec = (x, y)
+        self.x = x
+        self.y = y
 
     @classmethod
     def from_spec(cls, x, y):
-        return Point(x, y)
+        return ProblemPoint(x, y)
 
         ### represent
     def __str__(self):
@@ -56,51 +55,33 @@ class Point(object):
             String
         """
         try:
-            if not dimension.__class__ == str:
-                raise TypeError
-            elif not (
-                dimension == 'x' or
+            if not (
+                dimension == 'x' or 
                 dimension == 'y'
             ):
                 raise ValueError()
-        except TypeError:
-            print "You're specifying a dimension with a non-string"
         except ValueError:
-            print "You're specifying a dimension that isn't 'x' or 'y'"
+            print "You're specifying a dimension that isn't kosher"
+            return
+        if decimal_places < 0:
+            n = 0
         else:
-            if decimal_places < 0:
-                n = 0
-            else:
-                n = int(decimal_places)
-            format = '%1.' + str(n) + 'f'
-            if dimension == 'x':
-                coord = self.x
-            elif dimension == 'y':
-                coord = self.y
-            else:
-                print '%s %s' % "We shouldn't have gotten here"
-            formatted_coord = format % coord
-            return formatted_coord
-
-        ### relations
-    def __eq__(self, other):
-        return self.spec == other.spec
-
-    def __ge__(self, other):
-        return self.spec >= other.spec
-
-    def __gt__(self, other):
-        return self.spec > other.spec
-
-    def __le__(self, other):
-        return self.spec <= other.spec
-
-    def __lt__(self, other):
-        return self.spec < other.spec
-
-    def __ne__(self, other):
-        return self.spec != other.spec
+            n = int(decimal_places)
+        format = '%1.' + str(n) + 'f'
+        if dimension == 'x':
+            coord = self.x
+        elif dimension == 'y':
+            coord = self.y
+        else:
+            # coord = 'Kilroy'
+            print '%s %s' % (
+                "This isn't supposed to happen,",
+                "but you're specifying a dimension that isn't kosher")
+            # It appears that this print statement is not executed 
+            # unless there is a coord assignment statement first
+        formatted_coord = format % coord
+        return formatted_coord
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/point_test.txt')
+    doctest.testfile('tests/problem_point_test.txt')
