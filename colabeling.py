@@ -12,18 +12,33 @@ class Colabeling(object):
         """Receives an unsorted list of colabeled points:
             [LabeledPoint, ...], n >= 0
         """
+        def all_elements_are_lpoints(elements_in):
+            for element in elements_in:
+                if not element.__class__ == labeled_point.LabeledPoint:
+                    return False
+            return True
         try:
-            if (len(lpoints_in) >= 1 and 
+            if not (
+                lpoints_in.__class__ == list and
+                all_elements_are_lpoints(lpoints_in)
+            ):
+                raise TypeError
+            elif (len(lpoints_in) >= 1 and 
                 (   not self.are_lpoints(lpoints_in) or
                     not self.colabeled(lpoints_in))
             ):
-                raise ValueError()
-            else:
-                self.lpoint_specs = self.make_lpoint_specs(lpoints_in)          #   rename as lpoint_spec_set?
+                raise ValueError
+        except TypeError:
+            print '%s %s' % (
+                "You're trying to make a colabeling",
+                "from something that is not a list of labeled points")
         except ValueError:
             print '%s %s' % (
                 "You're trying to make a colabeling",
                 "with non-colabeled points")
+        else:
+            self.lpoint_specs = self.make_lpoint_specs(lpoints_in)
+            #   rename as lpoint_spec_set?
 
     def are_lpoints(self, elements):
         """Receives a non-empty list of elements:
@@ -62,6 +77,28 @@ class Colabeling(object):
         """Receives a list of lpoint specs:
             [(x, y, label), ...]
         """
+        # def each_element_is_lpoint_spec(elements_in):
+        #     def element_is_lpoint_spec():
+        #         if not (
+        #         ):
+        #             return False
+        #     for element in elements_in:
+        #         if not element_is_lpoint_spec():
+        #             return False
+        #     return True
+        # try:
+        #     if not (
+        #         lpoint_specs_list.__class__ == list and
+        #         each_element_is_lpoint_spec(lpoint_specs_list):
+        #         raise TypeError
+        # except TypeError:
+        #     print '%s %s' % (
+        #         "You're trying to make a colabeling",
+        #         "with something that is not a list of labeled point specs"
+        #         )
+        # except ValueError:
+
+        # else:
         new_lpoints = []
         for spec in lpoint_specs_list:
             x, y, label = spec

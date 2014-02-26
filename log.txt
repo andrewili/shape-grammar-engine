@@ -84,10 +84,13 @@ Log
     hvhv {(0, 40): [], (90, 40): [], (90, 60): []}
 
 #   2014-02-15
-    Listing. Revise to allow a variable number of decimal places. Can I implement this at some lower level, e.g., coord or num?
+    # Listing. Revise to allow a variable number of decimal places. Implemented
+    # Point.get_formatted_coord(). 
+    # Completed 2014-02-26 
     Invariants.
-    Point.get_formatted_coord(). Exception messages don't get printed.
 
 #   2014-02-19
-    Implement value and type checking for arguments
+    Implement value and type checking for arguments. Continue from Colabeling
     
+#   2014-02-26
+    Rename "protected" methods: method() --> _method()

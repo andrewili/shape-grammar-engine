@@ -13,26 +13,22 @@ class LabeledPoint(object):
         2D implementation. Immutable
         """
         try:
-            if not (
-                label.__class__ == str and 
-                (
-                    x.__class__ == int or
-                    x.__class__ == float
-                ) and 
-                (
-                    y.__class__ == int or
-                    y.__class__ == float
-                )
-
-            ):
-                raise ValueError()
+            if not label.__class__ == str:
+                raise TypeError
+            elif label == '':
+                raise ValueError
+        except TypeError:
+            print '%s %s' % (
+                "You're trying to make a labeled point",
+                "with a non-string label")
         except ValueError:
-            print "You're trying to create a labeled point with the wrong types"
-        self.spec = (x, y, label)
-        self.point = point.Point(x, y)
-        self.x = x
-        self.y = y
-        self.label = label
+            print "You're trying to make a labeled point with an empty label"
+        else:
+            self.spec = (x, y, label)
+            self.point = point.Point(x, y)
+            self.x = x
+            self.y = y
+            self.label = label
 
         ### represent
     def __str__(self):

@@ -42,8 +42,8 @@ class Point(object):
         number of decimal places
             String
         """
-        x_formatted = self.get_formatted_coord('x')
-        y_formatted = self.get_formatted_coord('y')
+        x_formatted = self.get_formatted_coord('x', decimal_places)
+        y_formatted = self.get_formatted_coord('y', decimal_places)
         string = '(%s, %s)' % (x_formatted, y_formatted)
         return string
 

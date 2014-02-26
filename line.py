@@ -82,15 +82,10 @@ class Line(object):
             self.x1, self.y1, self.x2, self.y2)
 
     def listing(self, decimal_places=0):
-        if decimal_places < 0:
-            n = 0
-        else:
-            n = int(decimal_places)
-        format = '%1.' + str(n) + 'f'
-        x1_formatted = format % self.x1
-        y1_formatted = format % self.y1
-        x2_formatted = format % self.x2
-        y2_formatted = format % self.y2
+        x1_formatted = self.tail.get_formatted_coord('x', decimal_places)
+        y1_formatted = self.tail.get_formatted_coord('y', decimal_places)
+        x2_formatted = self.head.get_formatted_coord('x', decimal_places)
+        y2_formatted = self.head.get_formatted_coord('y', decimal_places)
         string = '(%s, %s, %s, %s)' % (
             x1_formatted, y1_formatted, x2_formatted, y2_formatted)
         return string

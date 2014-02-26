@@ -4,17 +4,20 @@
     >>> import labeled_point
     >>> import line
 
-    >>> def colabeling_drone_for_test():
+    >>> def make_colabeling_drone():
     ...     lpoint = labeled_point.LabeledPoint(0, 0, 'a')
     ...     drone = colabeling.Colabeling([lpoint])
     ...     return drone
-    >>> colabeling_drone = colabeling_drone_for_test()
+    >>> colabeling_drone = make_colabeling_drone()
 
 ### construct, represent
 #   __init__(), __str__(), listing()
-    >>> colabeling_empty = colabeling.Colabeling([])
-    >>> print colabeling_empty
-    []
+    >>> def make_non_list():
+    ...     non_list = (1, 2, 3)
+    ...     return non_list
+    >>> non_list = make_non_list()
+    >>> colabeling_from_non_list = colabeling.Colabeling(non_list)
+    You're trying to make a colabeling from something that is not a list of labeled points
 
     >>> def make_non_lpoints():
     ...     line_01 = line.Line.from_short_spec(0, 1)
@@ -23,7 +26,7 @@
     >>> non_lpoints = make_non_lpoints()
 
     >>> colabeling_non_lpoints = colabeling.Colabeling(non_lpoints)
-    You're trying to make a colabeling with non-colabeled points
+    You're trying to make a colabeling from something that is not a list of labeled points
 
     >>> def make_non_colabeled_lpoints():
     ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
@@ -36,6 +39,10 @@
     >>> colabeling_non_colabeled = colabeling.Colabeling(non_colabeled_lpoints)
     You're trying to make a colabeling with non-colabeled points
 
+    >>> colabeling_empty = colabeling.Colabeling([])
+    >>> print colabeling_empty
+    []
+
     >>> def lpoints_for_init_test():
     ...     lpoint_11x = labeled_point.LabeledPoint(1, 1, 'x')
     ...     lpoint_22x = labeled_point.LabeledPoint(2, 2, 'x')
@@ -43,35 +50,35 @@
     ...     lpoints = [lpoint_33x, lpoint_22x, lpoint_11x]
     ...     return lpoints
     >>> lpoints = lpoints_for_init_test()
-    >>> colabeling_control = colabeling.Colabeling(lpoints)
+    >>> colabeling_1 = colabeling.Colabeling(lpoints)
 
-    >>> print colabeling_control
+    >>> print colabeling_1
     [(1, 1), (2, 2), (3, 3)]
-    >>> print colabeling_control.listing()
+    >>> print colabeling_1.listing()
     (1, 1)
     (2, 2)
     (3, 3)
-    >>> print colabeling_control.listing(1)
+    >>> print colabeling_1.listing(1)
     (1.0, 1.0)
     (2.0, 2.0)
     (3.0, 3.0)
-    >>> print colabeling_control.listing(0.1)
+    >>> print colabeling_1.listing(0.1)
     (1, 1)
     (2, 2)
     (3, 3)
-    >>> print colabeling_control.listing(-1)
+    >>> print colabeling_1.listing(-1)
     (1, 1)
     (2, 2)
     (3, 3)
-    >>> print colabeling_control.listing(0, 1)
+    >>> print colabeling_1.listing(0, 1)
         (1, 1)
         (2, 2)
         (3, 3)
-    >>> print colabeling_control.listing(0, 1.1)
+    >>> print colabeling_1.listing(0, 1.1)
         (1, 1)
         (2, 2)
         (3, 3)
-    >>> print colabeling_control.listing(0, -1)
+    >>> print colabeling_1.listing(0, -1)
     (1, 1)
     (2, 2)
     (3, 3)
@@ -95,6 +102,14 @@
     True
 
 #   from_lpoint_specs(lpoint_specs)
+    ??? non_list = (1, 2, 'a')
+    ??? colabeling_from_non_lp_specs = colabeling.Colabeling(non_list)
+    You're trying to make a colabeling from something that is not a list of labeled point specs
+    
+    ??? list_of_non_lp_specs = [(1, 2, 'a'), (3, 4, 5)]
+    ??? colabeling_from_non_lp_specs = colabeling.Colabeling(list_of_non_lp_specs)
+    You're trying to make a colabeling from something that is not a list of labeled point specs
+
     >>> lpoint_specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a')]
     >>> colabeling_from_lpoint_specs = colabeling.Colabeling.from_lpoint_specs(lpoint_specs)
     >>> print colabeling_from_lpoint_specs
