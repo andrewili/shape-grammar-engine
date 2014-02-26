@@ -62,7 +62,7 @@ class Point(object):
                 dimension == 'x' or
                 dimension == 'y'
             ):
-                raise ValueError()
+                raise ValueError
         except TypeError:
             print "You're specifying a dimension with a non-string"
         except ValueError:
