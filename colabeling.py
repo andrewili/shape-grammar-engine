@@ -23,7 +23,8 @@ class Colabeling(object):
                 all_elements_are_lpoints(lpoints_in)
             ):
                 raise TypeError
-            elif (len(lpoints_in) >= 1 and 
+            elif (
+                len(lpoints_in) >= 1 and 
                 (   not self.are_lpoints(lpoints_in) or
                     not self.colabeled(lpoints_in))
             ):
@@ -77,35 +78,62 @@ class Colabeling(object):
         """Receives a list of lpoint specs:
             [(x, y, label), ...]
         """
-        # def each_element_is_lpoint_spec(elements_in):
-        #     def element_is_lpoint_spec():
-        #         if not (
-        #         ):
-        #             return False
-        #     for element in elements_in:
-        #         if not element_is_lpoint_spec():
-        #             return False
-        #     return True
-        # try:
-        #     if not (
-        #         lpoint_specs_list.__class__ == list and
-        #         each_element_is_lpoint_spec(lpoint_specs_list):
-        #         raise TypeError
-        # except TypeError:
-        #     print '%s %s' % (
-        #         "You're trying to make a colabeling",
-        #         "with something that is not a list of labeled point specs"
-        #         )
+        try:
+            if not cls._is_list_of_specs(lpoint_specs_list):
+                raise TypeError
+        except TypeError:
+            print '%s %s' % (
+                "Colabeling.from_lpoint_specs():",
+                "Not a list of labeled point specs"
+            )
         # except ValueError:
+        else:
+            new_lpoints = []
+            for spec in lpoint_specs_list:
+                x, y, label = spec
+                new_lpoint = labeled_point.LabeledPoint(x, y, label)
+                new_lpoints.append(new_lpoint)
+            new_colabeling = Colabeling(new_lpoints)
+            return new_colabeling
 
-        # else:
-        new_lpoints = []
-        for spec in lpoint_specs_list:
-            x, y, label = spec
-            new_lpoint = labeled_point.LabeledPoint(x, y, label)
-            new_lpoints.append(new_lpoint)
-        new_colabeling = Colabeling(new_lpoints)
-        return new_colabeling
+    @classmethod
+    def _is_list_of_specs(cls, elements):
+        value = (
+            cls._is_list(elements) and
+            cls._are_specs(elements))
+        return value
+
+    @classmethod
+    def _is_list(cls, elements):
+        value = elements.__class__ == list
+        return value
+
+    @classmethod
+    def _are_specs(cls, elements):
+        value = True
+        for element in elements:
+            if not cls._is_spec(element):
+                value = False
+                break
+        return value
+
+    @classmethod
+    def _is_spec(cls, element):
+        value = False
+        x, y, label = element
+        if (
+            (
+                x.__class__ == int or
+                x.__class__ == float
+            ) and
+            (
+                y.__class__ == int or
+                y.__class__ == float
+            ) and 
+            label.__class__ == str
+        ):
+            value = True
+        return value
 
     ### represent
     def __str__(self):

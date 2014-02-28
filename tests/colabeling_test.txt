@@ -102,13 +102,17 @@
     True
 
 #   from_lpoint_specs(lpoint_specs)
-    ??? non_list = (1, 2, 'a')
-    ??? colabeling_from_non_lp_specs = colabeling.Colabeling(non_list)
-    You're trying to make a colabeling from something that is not a list of labeled point specs
+    >>> non_list = (1, 2, 'a')
+    >>> colabeling_from_non_lp_specs = colabeling.Colabeling.from_lpoint_specs(non_list)
+    Colabeling.from_lpoint_specs(): Not a list of labeled point specs
     
-    ??? list_of_non_lp_specs = [(1, 2, 'a'), (3, 4, 5)]
-    ??? colabeling_from_non_lp_specs = colabeling.Colabeling(list_of_non_lp_specs)
-    You're trying to make a colabeling from something that is not a list of labeled point specs
+    >>> list_of_non_lp_specs = [(1, 2, 'a'), (3, 4, 5)]
+    >>> colabeling_from_non_lp_specs = colabeling.Colabeling.from_lpoint_specs(list_of_non_lp_specs)
+    Colabeling.from_lpoint_specs(): Not a list of labeled point specs
+
+    >>> specs_empty_label = [(1, 2, 'a'), (3, 4, '')]
+    >>> colabeling_from_spec_empty_label = colabeling.Colabeling.from_lpoint_specs(specs_empty_label)
+    Colabeling.from_lpoint_specs(): Not a list of labeled point specs
 
     >>> lpoint_specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a')]
     >>> colabeling_from_lpoint_specs = colabeling.Colabeling.from_lpoint_specs(lpoint_specs)
