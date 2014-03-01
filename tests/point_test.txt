@@ -3,20 +3,23 @@
     >>> import point
 
 ### construct, represent
-#   __init__(), listing(), get_x_listing(), get_y_listing()
+#   __init__(), get_formatted_coord(), listing()
     >>> point_char = point.Point('a', 2)
-    You're trying to make a point with non-numbers
-    >>> point_init = point.Point(1, 2)
-    >>> point_init.spec
-    (1, 2)
-    >>> point_init.x
-    1
-    >>> point_init.y
-    2
+    Point.__init__(): The arguments are not both numbers
 
     >>> p23 = point.Point(2, 3)
+    >>> p23.x
+    2
+    >>> p23.y
+    3
+    >>> p23.spec
+    (2, 3)
+
     >>> print p23.get_formatted_coord(25)
-    You're specifying a dimension with a non-string
+    Point.get_formatted_coord(): The dimension is not a string ('x' or 'y')
+    None
+    >>> print p23.get_formatted_coord('z')
+    Point.get_formatted_coord(): The dimension is neither 'x' nor 'y'
     None
     >>> print p23.get_formatted_coord('x')
     2
@@ -30,9 +33,6 @@
     2
     >>> print p23.get_formatted_coord('y')
     3
-    >>> print p23.get_formatted_coord('z')
-    You're specifying a dimension that isn't 'x' or 'y'
-    None
 
     >>> print p23.listing()
     (2, 3)

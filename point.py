@@ -7,24 +7,27 @@ class Point(object):
         """Receives 2 numbers
         Immutable
         """
+        self.class_name = self.__class__.__name__
+        method_name = '__init__()'
         try:
             if not (
-                (
-                    x.__class__ == int or
-                    x.__class__ == float
-                ) and 
-                (
-                    y.__class__ == int or
-                    y.__class__ == float
-                )
+                self._is_number(x) and
+                self._is_number(y)
             ):
                 raise TypeError
         except TypeError:
-            print "You're trying to make a point with non-numbers"
+            message = 'The arguments are not both numbers'
+            print '%s.%s: %s' % (self.class_name, method_name, message)
         else:
-            self.spec = (x, y)
             self.x = x
             self.y = y
+            self.spec = (x, y)
+
+    def _is_number(self, item):
+        value = (
+            item.__class__ == int or
+            item.__class__ == float)
+        return value
 
     @classmethod
     def from_spec(cls, x, y):
@@ -55,6 +58,7 @@ class Point(object):
         Returns the specified coordinate formatted as specified
             String
         """
+        method_name = 'get_formatted_coord()'
         try:
             if not dimension.__class__ == str:
                 raise TypeError
@@ -64,9 +68,13 @@ class Point(object):
             ):
                 raise ValueError
         except TypeError:
-            print "You're specifying a dimension with a non-string"
+            message = "The dimension is not a string ('x' or 'y')"
+            print '%s.%s: %s' % (self.class_name, method_name, message)
+            # print "You're specifying a dimension with a non-string"
         except ValueError:
-            print "You're specifying a dimension that isn't 'x' or 'y'"
+            message = "The dimension is neither 'x' nor 'y'"
+            print '%s.%s: %s' % (self.class_name, method_name, message)
+            # print "You're specifying a dimension that isn't 'x' or 'y'"
         else:
             if decimal_places < 0:
                 n = 0

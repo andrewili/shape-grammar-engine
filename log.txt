@@ -94,3 +94,7 @@ Log
     
 #   2014-02-26
     Rename "protected" methods: method() --> _method()
+
+#   2014-03-01
+    Revise error messages: <class name>.<method name>: <message>
+    
