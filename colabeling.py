@@ -25,8 +25,8 @@ class Colabeling(object):
                 raise TypeError
             elif (
                 len(lpoints_in) >= 1 and 
-                (   not self.are_lpoints(lpoints_in) or
-                    not self.colabeled(lpoints_in))
+                (   not self._are_lpoints(lpoints_in) or
+                    not self._colabeled(lpoints_in))
             ):
                 raise ValueError
         except TypeError:
@@ -38,10 +38,10 @@ class Colabeling(object):
                 "You're trying to make a colabeling",
                 "with non-colabeled points")
         else:
-            self.lpoint_specs = self.make_lpoint_specs(lpoints_in)
+            self.lpoint_specs = self._make_lpoint_specs(lpoints_in)
             #   rename as lpoint_spec_set?
 
-    def are_lpoints(self, elements):
+    def _are_lpoints(self, elements):
         """Receives a non-empty list of elements:
             [element, ...], n >= 1
         Returns whether all elements are LabeledPoint objects
@@ -51,7 +51,7 @@ class Colabeling(object):
                 return False
         return True
 
-    def colabeled(self, lpoints_in):
+    def _colabeled(self, lpoints_in):
         """Receives a non-empty list of labeled points:
             [LabeledPoint, ...], n >= 1
         Returns whether the labeled points all have the same label
@@ -62,7 +62,7 @@ class Colabeling(object):
                 return False
         return True
 
-    def make_lpoint_specs(self, lpoints_in):
+    def _make_lpoint_specs(self, lpoints_in):
         """Receives a list of labeled points:
             [LabeledPoint, ...]
         Returns a set of labeled point specs:
@@ -119,20 +119,25 @@ class Colabeling(object):
 
     @classmethod
     def _is_spec(cls, element):
-        value = False
         x, y, label = element
-        if (
-            (
-                x.__class__ == int or
-                x.__class__ == float
-            ) and
-            (
-                y.__class__ == int or
-                y.__class__ == float
-            ) and 
-            label.__class__ == str
-        ):
-            value = True
+        value = (
+            cls._is_number(x) and
+            cls._is_number(y) and
+            cls._is_label(label))
+        return value
+
+    @classmethod
+    def _is_number(cls, element):
+        value = (
+            element.__class__ == int or
+            element.__class__ == float)
+        return value
+
+    @classmethod
+    def _is_label(cls, element):
+        value = (
+            element.__class__ == str and
+            element != '')
         return value
 
     ### represent

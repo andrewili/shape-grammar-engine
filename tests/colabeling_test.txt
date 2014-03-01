@@ -16,7 +16,7 @@
     ...     non_list = (1, 2, 3)
     ...     return non_list
     >>> non_list = make_non_list()
-    >>> colabeling_from_non_list = colabeling.Colabeling(non_list)
+    >>> colabeling_non_list = colabeling.Colabeling(non_list)
     You're trying to make a colabeling from something that is not a list of labeled points
 
     >>> def make_non_lpoints():
@@ -24,23 +24,21 @@
     ...     non_lpoints = [line_01]
     ...     return non_lpoints
     >>> non_lpoints = make_non_lpoints()
-
     >>> colabeling_non_lpoints = colabeling.Colabeling(non_lpoints)
     You're trying to make a colabeling from something that is not a list of labeled points
 
-    >>> def make_non_colabeled_lpoints():
+    >>> def make_lpoints_diff_labels():
     ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
     ...     lpoint_22a = labeled_point.LabeledPoint(2, 2, 'a')
     ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
-    ...     non_colabeled_lpoints = [lpoint_33b, lpoint_22a, lpoint_11a]
-    ...     return non_colabeled_lpoints
-    >>> non_colabeled_lpoints = make_non_colabeled_lpoints()
-
-    >>> colabeling_non_colabeled = colabeling.Colabeling(non_colabeled_lpoints)
+    ...     lpoints_diff_labels = [lpoint_33b, lpoint_22a, lpoint_11a]
+    ...     return lpoints_diff_labels
+    >>> lpoints_diff_labels = make_lpoints_diff_labels()
+    >>> colabeling_diff_labels = colabeling.Colabeling(lpoints_diff_labels)
     You're trying to make a colabeling with non-colabeled points
 
-    >>> colabeling_empty = colabeling.Colabeling([])
-    >>> print colabeling_empty
+    >>> colabeling_empty_list = colabeling.Colabeling([])
+    >>> print colabeling_empty_list
     []
 
     >>> def lpoints_for_init_test():
@@ -94,14 +92,16 @@
     ...     return [colabeled_lpoints, non_colabeled_lpoints, singleton_lpoint]
     >>> colabeled_lpoints, non_colabeled_lpoints, singleton_lpoint = lpoints_for_colabeled_test()
 
-    >>> colabeling_drone.colabeled(colabeled_lpoints)
+    >>> colabeling_drone._colabeled(colabeled_lpoints)
     True
-    >>> colabeling_drone.colabeled(non_colabeled_lpoints)
+    >>> colabeling_drone._colabeled(non_colabeled_lpoints)
     False
-    >>> colabeling_drone.colabeled(singleton_lpoint)
+    >>> colabeling_drone._colabeled(singleton_lpoint)
     True
 
 #   from_lpoint_specs(lpoint_specs)
+# > Test _is_spec(), etc.
+
     >>> non_list = (1, 2, 'a')
     >>> colabeling_from_non_lp_specs = colabeling.Colabeling.from_lpoint_specs(non_list)
     Colabeling.from_lpoint_specs(): Not a list of labeled point specs
