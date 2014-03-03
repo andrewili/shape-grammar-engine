@@ -5,11 +5,11 @@
 ### construct
 #   __init__(), represent(), listing()
     >>> lpoint_non_point = labeled_point.LabeledPoint('a', 2, 'a')
-    You're trying to make a point with non-numbers
+    Point.__init__(): The arguments must both be numbers
     >>> lpoint_non_string = labeled_point.LabeledPoint(1, 2, 3)
-    You're trying to make a labeled point with a non-string label
+    LabeledPoint.__init__(): The label must be a string
     >>> lpoint_empty_label = labeled_point.LabeledPoint(1, 2, '')
-    You're trying to make a labeled point with an empty label
+    LabeledPoint.__init__(): The label must be non-empty
 
     >>> lpoint_init = labeled_point.LabeledPoint(1, 2, 'a')
     >>> lpoint_init.spec
@@ -63,45 +63,45 @@
     False
 
 #   __gt__(other)
-    >>> lpoint_gt = labeled_point.LabeledPoint( 0,  0, 'o')
+    >>> lpoint_gt  = labeled_point.LabeledPoint( 0,  0, 'o')
     
-    >>> lpoint_gt > labeled_point.LabeledPoint(-1, -1, 'z')
+    >>> lpoint_gt  > labeled_point.LabeledPoint(-1, -1, 'z')
     True
-    >>> lpoint_gt > labeled_point.LabeledPoint( 0,  0, 'n')
+    >>> lpoint_gt  > labeled_point.LabeledPoint( 0,  0, 'n')
     True
-    >>> lpoint_gt > labeled_point.LabeledPoint( 0,  0, 'o')
+    >>> lpoint_gt  > labeled_point.LabeledPoint( 0,  0, 'o')
     False
-    >>> lpoint_gt > labeled_point.LabeledPoint( 0,  0, 'z')
+    >>> lpoint_gt  > labeled_point.LabeledPoint( 0,  0, 'z')
     False
-    >>> lpoint_gt > labeled_point.LabeledPoint( 2,  2, 'z')
+    >>> lpoint_gt  > labeled_point.LabeledPoint( 2,  2, 'z')
     False
 
 #   __le__(other)
-    >>> lpoint_le  =  labeled_point.LabeledPoint( 0,  0, 'o')
+    >>> lpoint_le  = labeled_point.LabeledPoint( 0,  0, 'o')
     
-    >>> lpoint_le <=  labeled_point.LabeledPoint( 1,  1, 'a')
+    >>> lpoint_le <= labeled_point.LabeledPoint( 1,  1, 'a')
     True
-    >>> lpoint_le <=  labeled_point.LabeledPoint( 0,  0, 'p')
+    >>> lpoint_le <= labeled_point.LabeledPoint( 0,  0, 'p')
     True
-    >>> lpoint_le <=  labeled_point.LabeledPoint( 0,  0, 'o')
+    >>> lpoint_le <= labeled_point.LabeledPoint( 0,  0, 'o')
     True
-    >>> lpoint_le <=  labeled_point.LabeledPoint( 0,  0, 'a')
+    >>> lpoint_le <= labeled_point.LabeledPoint( 0,  0, 'a')
     False
-    >>> lpoint_le <=  labeled_point.LabeledPoint(-2, -2, 'a')
+    >>> lpoint_le <= labeled_point.LabeledPoint(-2, -2, 'a')
     False
 
 #   __lt__(other)
-    >>> lpoint_lt = labeled_point.LabeledPoint( 0,  0, 'o')
+    >>> lpoint_lt  = labeled_point.LabeledPoint( 0,  0, 'o')
     
-    >>> lpoint_lt < labeled_point.LabeledPoint( 1,  1, 'a')
+    >>> lpoint_lt  < labeled_point.LabeledPoint( 1,  1, 'a')
     True
-    >>> lpoint_lt < labeled_point.LabeledPoint( 0,  0, 'p')
+    >>> lpoint_lt  < labeled_point.LabeledPoint( 0,  0, 'p')
     True
-    >>> lpoint_lt < labeled_point.LabeledPoint( 0,  0, 'o')
+    >>> lpoint_lt  < labeled_point.LabeledPoint( 0,  0, 'o')
     False
-    >>> lpoint_lt < labeled_point.LabeledPoint( 0,  0, 'a')
+    >>> lpoint_lt  < labeled_point.LabeledPoint( 0,  0, 'a')
     False
-    >>> lpoint_lt < labeled_point.LabeledPoint(-2, -2, 'a')
+    >>> lpoint_lt  < labeled_point.LabeledPoint(-2, -2, 'a')
     False
 
 #   __ne__(other)
@@ -116,3 +116,9 @@
     >>> lpoint_ne != labeled_point.LabeledPoint(0, 0, 'x')
     True
 
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> lpoint_init._print_error_message(test_method_name, test_message)
+    LabeledPoint.test_method(): This is a test

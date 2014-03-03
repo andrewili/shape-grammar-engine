@@ -97,4 +97,8 @@ Log
 
 #   2014-03-01
     Revise error messages: <class name>.<method name>: <message>
+
+#   2014-03-03
+    Implement _print_error_message()
+
     

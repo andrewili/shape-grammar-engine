@@ -7,7 +7,7 @@ class Point(object):
         """Receives 2 numbers
         Immutable
         """
-        self.class_name = self.__class__.__name__
+        # self.class_name = self.__class__.__name__
         method_name = '__init__()'
         try:
             if not (
@@ -16,8 +16,8 @@ class Point(object):
             ):
                 raise TypeError
         except TypeError:
-            message = 'The arguments are not both numbers'
-            print '%s.%s: %s' % (self.class_name, method_name, message)
+            message = 'The arguments must both be numbers'
+            self._print_error_message(method_name, message)
         else:
             self.x = x
             self.y = y
@@ -68,13 +68,11 @@ class Point(object):
             ):
                 raise ValueError
         except TypeError:
-            message = "The dimension is not a string ('x' or 'y')"
-            print '%s.%s: %s' % (self.class_name, method_name, message)
-            # print "You're specifying a dimension with a non-string"
+            message = "The dimension must be a string ('x' or 'y')"
+            self._print_error_message(method_name, message)
         except ValueError:
-            message = "The dimension is neither 'x' nor 'y'"
-            print '%s.%s: %s' % (self.class_name, method_name, message)
-            # print "You're specifying a dimension that isn't 'x' or 'y'"
+            message = "The dimension must be either 'x' or 'y'"
+            self._print_error_message(method_name, message)
         else:
             if decimal_places < 0:
                 n = 0
@@ -108,6 +106,10 @@ class Point(object):
 
     def __ne__(self, other):
         return self.spec != other.spec
+
+    ### other
+    def _print_error_message(self, method_name, message):
+        print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest

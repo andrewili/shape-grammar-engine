@@ -17,7 +17,7 @@
     ...     return non_list
     >>> non_list = make_non_list()
     >>> colabeling_non_list = colabeling.Colabeling(non_list)
-    You're trying to make a colabeling from something that is not a list of labeled points
+    Colabeling.__init__(): The argument must be a list of labeled points
 
     >>> def make_non_lpoints():
     ...     line_01 = line.Line.from_short_spec(0, 1)
@@ -25,7 +25,7 @@
     ...     return non_lpoints
     >>> non_lpoints = make_non_lpoints()
     >>> colabeling_non_lpoints = colabeling.Colabeling(non_lpoints)
-    You're trying to make a colabeling from something that is not a list of labeled points
+    Colabeling.__init__(): The argument must be a list of labeled points
 
     >>> def make_lpoints_diff_labels():
     ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
@@ -35,7 +35,7 @@
     ...     return lpoints_diff_labels
     >>> lpoints_diff_labels = make_lpoints_diff_labels()
     >>> colabeling_diff_labels = colabeling.Colabeling(lpoints_diff_labels)
-    You're trying to make a colabeling with non-colabeled points
+    Colabeling.__init__(): The labeled points must have the same label
 
     >>> colabeling_empty_list = colabeling.Colabeling([])
     >>> print colabeling_empty_list
@@ -248,3 +248,9 @@
     >>> print colabeling_other.union(colabeling_other)
     [(0, 0), (2, 2)]
 
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> colabeling_drone._print_error_message(test_method_name, test_message)
+    Colabeling.test_method(): This is a test

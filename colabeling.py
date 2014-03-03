@@ -12,15 +12,11 @@ class Colabeling(object):
         """Receives an unsorted list of colabeled points:
             [LabeledPoint, ...], n >= 0
         """
-        def all_elements_are_lpoints(elements_in):
-            for element in elements_in:
-                if not element.__class__ == labeled_point.LabeledPoint:
-                    return False
-            return True
+        method_name = '__init__()'
         try:
             if not (
                 lpoints_in.__class__ == list and
-                all_elements_are_lpoints(lpoints_in)
+                self._contains_only_lpoints(lpoints_in)
             ):
                 raise TypeError
             elif (
@@ -30,16 +26,20 @@ class Colabeling(object):
             ):
                 raise ValueError
         except TypeError:
-            print '%s %s' % (
-                "You're trying to make a colabeling",
-                "from something that is not a list of labeled points")
+            message = 'The argument must be a list of labeled points'
+            self._print_error_message(method_name, message)
         except ValueError:
-            print '%s %s' % (
-                "You're trying to make a colabeling",
-                "with non-colabeled points")
+            message = 'The labeled points must have the same label'
+            self._print_error_message(method_name, message)
         else:
             self.lpoint_specs = self._make_lpoint_specs(lpoints_in)
             #   rename as lpoint_spec_set?
+
+    def _contains_only_lpoints(self, elements_in):
+        for element in elements_in:
+            if not element.__class__ == labeled_point.LabeledPoint:
+                return False
+        return True
 
     def _are_lpoints(self, elements):
         """Receives a non-empty list of elements:
@@ -257,6 +257,10 @@ class Colabeling(object):
         new_lpoint_specs = new_colabeling.lpoint_specs
         new_colabeling.lpoint_specs = new_lpoint_specs | other.lpoint_specs
         return new_colabeling
+
+    ### other
+    def _print_error_message(self, method_name, message):
+        print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest

@@ -12,23 +12,24 @@ class LabeledPoint(object):
             num, num, String
         2D implementation. Immutable
         """
+        method_name = '__init__()'
         try:
             if not label.__class__ == str:
                 raise TypeError
             elif label == '':
                 raise ValueError
         except TypeError:
-            print '%s %s' % (
-                "You're trying to make a labeled point",
-                "with a non-string label")
+            message = 'The label must be a string'
+            self._print_error_message(method_name, message)
         except ValueError:
-            print "You're trying to make a labeled point with an empty label"
+            message = 'The label must be non-empty'
+            self._print_error_message(method_name, message)
         else:
-            self.spec = (x, y, label)
-            self.point = point.Point(x, y)
             self.x = x
             self.y = y
             self.label = label
+            self.spec = (x, y, label)
+            self.point = point.Point(x, y)
 
         ### represent
     def __str__(self):
@@ -105,6 +106,10 @@ class LabeledPoint(object):
             return True
         else:
             return False
+
+    ### other
+    def _print_error_message(self, method_name, message):
+        print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest
