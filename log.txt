@@ -99,6 +99,9 @@ Log
     Revise error messages: <class name>.<method name>: <message>
 
 #   2014-03-03
-    Implement _print_error_message()
+    Implement _print_error_message(). Make a parent object with this as a
+    method?
 
-    
+#   2014-03-06
+    Colabeling. Refactor specs() as an attribute? To complement specs_set. 
+    Colabeling.union(). Refactor as __add__() or __or__()?

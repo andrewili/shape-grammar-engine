@@ -81,7 +81,17 @@
     (2, 2)
     (3, 3)
 
-#   colabeled(lpoints)
+#   _contains_only_lpoints(elements)
+    >>> lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    >>> lpoint_11b = labeled_point.LabeledPoint(1, 1, 'b')
+    >>> non_lpoints = [lpoint_00a, 'a']
+    >>> two_lpoints = [lpoint_00a, lpoint_11b]
+    >>> colabeling_drone._contains_only_lpoints(non_lpoints)
+    False
+    >>> colabeling_drone._contains_only_lpoints(two_lpoints)
+    True
+
+#   _are_colabeled(lpoints)
     >>> def lpoints_for_colabeled_test():
     ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
     ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
@@ -92,43 +102,77 @@
     ...     return [colabeled_lpoints, non_colabeled_lpoints, singleton_lpoint]
     >>> colabeled_lpoints, non_colabeled_lpoints, singleton_lpoint = lpoints_for_colabeled_test()
 
-    >>> colabeling_drone._colabeled(colabeled_lpoints)
+    >>> colabeling_drone._are_colabeled(colabeled_lpoints)
     True
-    >>> colabeling_drone._colabeled(non_colabeled_lpoints)
+    >>> colabeling_drone._are_colabeled(non_colabeled_lpoints)
     False
-    >>> colabeling_drone._colabeled(singleton_lpoint)
+    >>> colabeling_drone._are_colabeled(singleton_lpoint)
     True
 
-#   from_lpoint_specs(lpoint_specs)
-# > Test _is_spec(), etc.
+#   from_lpoint_specs_list(lpoint_specs)
 
     >>> non_list = (1, 2, 'a')
-    >>> colabeling_from_non_lp_specs = colabeling.Colabeling.from_lpoint_specs(non_list)
-    Colabeling.from_lpoint_specs(): Not a list of labeled point specs
+    >>> colabeling_from_non_lp_specs = colabeling.Colabeling.from_lpoint_specs_list(non_list)
+    Colabeling.from_lpoint_specs_list(): Not a list of labeled point specs
     
     >>> list_of_non_lp_specs = [(1, 2, 'a'), (3, 4, 5)]
-    >>> colabeling_from_non_lp_specs = colabeling.Colabeling.from_lpoint_specs(list_of_non_lp_specs)
-    Colabeling.from_lpoint_specs(): Not a list of labeled point specs
+    >>> colabeling_from_non_lp_specs = colabeling.Colabeling.from_lpoint_specs_list(list_of_non_lp_specs)
+    Colabeling.from_lpoint_specs_list(): Not a list of labeled point specs
 
     >>> specs_empty_label = [(1, 2, 'a'), (3, 4, '')]
-    >>> colabeling_from_spec_empty_label = colabeling.Colabeling.from_lpoint_specs(specs_empty_label)
-    Colabeling.from_lpoint_specs(): Not a list of labeled point specs
+    >>> colabeling_from_spec_empty_label = colabeling.Colabeling.from_lpoint_specs_list(specs_empty_label)
+    Colabeling.from_lpoint_specs_list(): Not a list of labeled point specs
 
     >>> lpoint_specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a')]
-    >>> colabeling_from_lpoint_specs = colabeling.Colabeling.from_lpoint_specs(lpoint_specs)
+    >>> colabeling_from_lpoint_specs = colabeling.Colabeling.from_lpoint_specs_list(lpoint_specs)
     >>> print colabeling_from_lpoint_specs
     [(1, 1), (2, 2), (3, 3)]
 
-#   get_lpoint_listing(lpoint_spec)
-    >>> spec = (1, 2, 'a')
-    >>> print colabeling_drone.get_lpoint_listing(spec)
-    (1, 2)
-    >>> print colabeling_drone.get_lpoint_listing(spec, 1)
-    (1.0, 2.0)
+#   _are_specs()
+    >>> colabeling.Colabeling._are_specs([1, 2, 3])
+    False
+    >>> l1 = line.Line.from_spec(1, 1, 2, 2)
+    >>> l2 = line.Line.from_spec(2, 2, 3, 3)
+    >>> colabeling.Colabeling._are_specs([l1, l2])
+    False
+    >>> colabeling.Colabeling._are_specs([(1, 1, 'a'), (2, 2, 2)])
+    False
+    >>> colabeling.Colabeling._are_specs([(1, 1, 'a'), (2, 2, 'b')])
+    True
 
-### get
-#   specs()
+#   _is_spec()
+    >>> colabeling.Colabeling._is_spec([1, 2])
+    False
+    >>> colabeling.Colabeling._is_spec((1, 2))
+    False
+    >>> colabeling.Colabeling._is_spec((1, 2, 3))
+    False
+    >>> colabeling.Colabeling._is_spec((1, 2, ''))
+    False
+    >>> colabeling.Colabeling._is_spec((1, 2, 'c'))
+    True
 
+#   _is_number()
+    >>> colabeling.Colabeling._is_number([])
+    False
+    >>> colabeling.Colabeling._is_number('q')
+    False
+    >>> colabeling.Colabeling._is_number(123)
+    True
+    >>> colabeling.Colabeling._is_number(1.3)
+    True
+
+#   _is_label()
+    >>> colabeling.Colabeling._is_label([])
+    False
+    >>> colabeling.Colabeling._is_label(17)
+    False
+    >>> colabeling.Colabeling._is_label('')
+    False
+    >>> colabeling.Colabeling._is_label('q')
+    True
+
+#   get_spec_string()
     >>> def make_colabelings_for_specs():
     ...     colab_0 = colabeling.Colabeling([])
     ...     lp_1 = labeled_point.LabeledPoint(1, 1, 'a')
@@ -137,6 +181,15 @@
     ...     colab_1 = colabeling.Colabeling(lpoints)
     ...     return [colab_0, colab_1]
     >>> colab_0, colab_1 = make_colabelings_for_specs()
+
+#   get_lpoint_listing(lpoint_spec)
+    >>> spec = (1, 2, 'a')
+    >>> print colabeling_drone.get_lpoint_listing(spec)
+    (1, 2)
+    >>> print colabeling_drone.get_lpoint_listing(spec, 1)
+    (1.0, 2.0)
+
+#   specs()
     >>> print colab_0.specs()
     []
     >>> print colab_1.specs()
@@ -187,8 +240,6 @@
     False
 
 ### operate
-#   __add__()                                                                   #   implement?
-
 #   __sub__()
     >>> def make_colabelings_for_sub():
     ...     spec1 = (1, 1, 'a')
@@ -196,8 +247,8 @@
     ...     spec3 = (3, 3, 'a')
     ...     specs_1 = [spec1, spec2]
     ...     specs_2 = [spec1, spec3]
-    ...     c1 = colabeling.Colabeling.from_lpoint_specs(specs_1)
-    ...     c2 = colabeling.Colabeling.from_lpoint_specs(specs_2)
+    ...     c1 = colabeling.Colabeling.from_lpoint_specs_list(specs_1)
+    ...     c2 = colabeling.Colabeling.from_lpoint_specs_list(specs_2)
     ...     return [c1, c2]
     >>> c1, c2 = make_colabelings_for_sub()
     >>> print c1.listing()

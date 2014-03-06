@@ -21,8 +21,7 @@ class Colabeling(object):
                 raise TypeError
             elif (
                 len(lpoints_in) >= 1 and 
-                (   not self._are_lpoints(lpoints_in) or
-                    not self._colabeled(lpoints_in))
+                not self._are_colabeled(lpoints_in)
             ):
                 raise ValueError
         except TypeError:
@@ -32,26 +31,20 @@ class Colabeling(object):
             message = 'The labeled points must have the same label'
             self._print_error_message(method_name, message)
         else:
-            self.lpoint_specs = self._make_lpoint_specs(lpoints_in)
-            #   rename as lpoint_spec_set?
+            self.specs_set = self._make_specs_set(lpoints_in)
 
     def _contains_only_lpoints(self, elements_in):
-        for element in elements_in:
-            if not element.__class__ == labeled_point.LabeledPoint:
-                return False
-        return True
-
-    def _are_lpoints(self, elements):
         """Receives a non-empty list of elements:
-            [element, ...], n >= 1
+            [element, ...]
         Returns whether all elements are LabeledPoint objects
         """
-        for element in elements:
-            if element.__class__ != labeled_point.LabeledPoint:
-                return False
-        return True
+        value = True
+        for element in elements_in:
+            if not element.__class__ == labeled_point.LabeledPoint:
+                value = False
+        return value
 
-    def _colabeled(self, lpoints_in):
+    def _are_colabeled(self, lpoints_in):
         """Receives a non-empty list of labeled points:
             [LabeledPoint, ...], n >= 1
         Returns whether the labeled points all have the same label
@@ -62,31 +55,33 @@ class Colabeling(object):
                 return False
         return True
 
-    def _make_lpoint_specs(self, lpoints_in):
+    def _make_specs_set(self, lpoints_in):
         """Receives a list of labeled points:
             [LabeledPoint, ...]
         Returns a set of labeled point specs:
             set([(x, y, label), ...])
         """
-        lpoint_specs = set()
+        specs_set = set()
         for lpoint in lpoints_in:
-            lpoint_specs.add(lpoint.spec)
-        return lpoint_specs
+            specs_set.add(lpoint.spec)
+        return specs_set
 
     @classmethod
-    def from_lpoint_specs(cls, lpoint_specs_list):
+    def from_lpoint_specs_list(cls, lpoint_specs_list):
         """Receives a list of lpoint specs:
             [(x, y, label), ...]
+        Returns
+            Colabeling
         """
+        method_name = 'from_lpoint_specs_list()'
         try:
-            if not cls._is_list_of_specs(lpoint_specs_list):
+            if not lpoint_specs_list.__class__ == list:
+                raise TypeError
+            elif not cls._are_specs(lpoint_specs_list):
                 raise TypeError
         except TypeError:
-            print '%s %s' % (
-                "Colabeling.from_lpoint_specs():",
-                "Not a list of labeled point specs"
-            )
-        # except ValueError:
+            message = 'Not a list of labeled point specs'
+            cls._print_error_message_cls(method_name, message)
         else:
             new_lpoints = []
             for spec in lpoint_specs_list:
@@ -97,19 +92,11 @@ class Colabeling(object):
             return new_colabeling
 
     @classmethod
-    def _is_list_of_specs(cls, elements):
-        value = (
-            cls._is_list(elements) and
-            cls._are_specs(elements))
-        return value
-
-    @classmethod
-    def _is_list(cls, elements):
-        value = elements.__class__ == list
-        return value
-
-    @classmethod
     def _are_specs(cls, elements):
+        """Receives a list of elements:
+            [element, ...]
+        Returns whether each element is a labeled point spec
+        """
         value = True
         for element in elements:
             if not cls._is_spec(element):
@@ -118,12 +105,21 @@ class Colabeling(object):
         return value
 
     @classmethod
-    def _is_spec(cls, element):
-        x, y, label = element
-        value = (
-            cls._is_number(x) and
-            cls._is_number(y) and
-            cls._is_label(label))
+    def _is_spec(cls, elements):
+        """Receives a 3-tuple of elements: 
+            (element, element, element)
+        Returns whether the element types are (number, number, label)
+        """
+        if elements.__class__ != tuple:
+            value = False
+        elif len(elements) != 3:
+            value = False
+        else:
+            x, y, label = elements
+            value = (
+                cls._is_number(x) and
+                cls._is_number(y) and
+                cls._is_label(label))
         return value
 
     @classmethod
@@ -147,7 +143,7 @@ class Colabeling(object):
             [(x, y, label), ...]
         """
         spec_strings = []
-        for spec in sorted(self.lpoint_specs):
+        for spec in sorted(self.specs_set):
             spec_string = self.get_spec_string(spec)
             spec_strings.append(spec_string)
         specs_string = ', '.join(spec_strings)
@@ -176,7 +172,7 @@ class Colabeling(object):
             indent_level = 0
         indent_string = ' ' * int(indent_level) * indent_increment
         lpoint_listings = []
-        for lpoint_spec in sorted(self.lpoint_specs):
+        for lpoint_spec in sorted(self.specs_set):
             lpoint_listing = self.get_lpoint_listing(
                 lpoint_spec, decimal_places)
             lpoint_listings.append(indent_string + lpoint_listing)
@@ -201,37 +197,35 @@ class Colabeling(object):
         return lpoint_listing
 
     ### get
-    def specs(self):
-        """Returns a list of specs:
+    def specs(self):                            #   refactor as an attribute?
+        """Returns a list (not a list) of labeled point specs
             [(x, y, label), ...]
         """
         specs = []
-        for spec_i in self.lpoint_specs:
+        for spec_i in self.specs_set:
             specs.append(spec_i)
         return specs
 
     ### compare
     def __eq__(self, other):
-        return self.lpoint_specs == other.lpoint_specs
+        return self.specs_set == other.specs_set
 
     def __ne__(self, other):
-        return self.lpoint_specs != other.lpoint_specs
+        return self.specs_set != other.specs_set
 
     def is_a_subcolabeling_of(self, other):
         """Receives a colabeling:
             Colabeling
         """
-        return self.lpoint_specs.issubset(other.lpoint_specs)
+        return self.specs_set.issubset(other.specs_set)
 
     ### operate
-    # def __add__(self, other):                                                 #   implement?
-    #     pass
-
     def __sub__(self, other):
-        """Returns a colabeling with the set difference of lpoint_specs:
+        """Returns a colabeling with the set difference of specs_set:
             Colabeling
         """
-        new_lpoint_spec_set = self.lpoint_specs - other.lpoint_specs            #   messy: too much converting
+        new_lpoint_spec_set = self.specs_set - other.specs_set
+                                                #   messy: too much converting
         lpoints = []
         for spec in new_lpoint_spec_set:
             x, y, label = spec
@@ -245,22 +239,26 @@ class Colabeling(object):
             LabeledPoint
         Adds the labeled point spec to the set
         """
-        self.lpoint_specs.add(lpoint.spec)
+        self.specs_set.add(lpoint.spec)
 
-    def union(self, other):
+    def union(self, other):                     #   refactor as __add__ or __or__?
         """Receives a colabeling:
             Colabeling
         Returns the union of the two colabelings:
             Colabeling
         """
         new_colabeling = copy.copy(self)
-        new_lpoint_specs = new_colabeling.lpoint_specs
-        new_colabeling.lpoint_specs = new_lpoint_specs | other.lpoint_specs
+        new_lpoint_specs = new_colabeling.specs_set
+        new_colabeling.specs_set = new_lpoint_specs | other.specs_set
         return new_colabeling
 
     ### other
     def _print_error_message(self, method_name, message):
         print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
+
+    @classmethod
+    def _print_error_message_cls(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest

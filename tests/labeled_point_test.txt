@@ -3,7 +3,7 @@
     >>> import labeled_point
 
 ### construct
-#   __init__(), represent(), listing()
+#   __init__(), __str__(), listing()
     >>> lpoint_non_point = labeled_point.LabeledPoint('a', 2, 'a')
     Point.__init__(): The arguments must both be numbers
     >>> lpoint_non_string = labeled_point.LabeledPoint(1, 2, 3)
@@ -12,16 +12,16 @@
     LabeledPoint.__init__(): The label must be non-empty
 
     >>> lpoint_init = labeled_point.LabeledPoint(1, 2, 'a')
-    >>> lpoint_init.spec
-    (1, 2, 'a')
-    >>> lpoint_init.point.spec
-    (1, 2)
     >>> lpoint_init.x
     1
     >>> lpoint_init.y
     2
     >>> lpoint_init.label
     'a'
+    >>> lpoint_init.spec
+    (1, 2, 'a')
+    >>> lpoint_init.point.spec
+    (1, 2)
     >>> print lpoint_init
     (1, 2, a)
     >>> print lpoint_init.listing()
