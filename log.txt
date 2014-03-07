@@ -105,3 +105,7 @@ Log
 #   2014-03-06
     Colabeling. Refactor specs() as an attribute? To complement specs_set. 
     Colabeling.union(). Refactor as __add__() or __or__()?
+
+#   2014-03-07
+    Colabeling.get_lpoint_listing(). Shouldn't this be a method of 
+    LabeledPoint? Is it relevant that it comes from a spec? 

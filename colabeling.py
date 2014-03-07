@@ -173,13 +173,14 @@ class Colabeling(object):
         indent_string = ' ' * int(indent_level) * indent_increment
         lpoint_listings = []
         for lpoint_spec in sorted(self.specs_set):
-            lpoint_listing = self.get_lpoint_listing(
+            lpoint_listing = self._get_lpoint_listing(
                 lpoint_spec, decimal_places)
             lpoint_listings.append(indent_string + lpoint_listing)
         colabeling_listing = '\n'.join(lpoint_listings)
         return colabeling_listing
 
-    def get_lpoint_listing(self, lpoint_spec, decimal_places=0):
+    def _get_lpoint_listing(self, lpoint_spec, decimal_places=0):
+        #   why isn't this a method of LabeledPoint? 
         """Receives a labeled point spec:
             (x, y, label)
         Returns a string in the form:
@@ -197,8 +198,8 @@ class Colabeling(object):
         return lpoint_listing
 
     ### get
-    def specs(self):                            #   refactor as an attribute?
-        """Returns a list (not a list) of labeled point specs
+    def get_lpoint_specs(self):                 #   refactor as an attribute?
+        """Returns a list (not a list) of labeled point specsx
             [(x, y, label), ...]
         """
         specs = []

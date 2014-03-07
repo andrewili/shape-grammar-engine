@@ -182,17 +182,17 @@
     ...     return [colab_0, colab_1]
     >>> colab_0, colab_1 = make_colabelings_for_specs()
 
-#   get_lpoint_listing(lpoint_spec)
+#   _get_lpoint_listing(lpoint_spec)
     >>> spec = (1, 2, 'a')
-    >>> print colabeling_drone.get_lpoint_listing(spec)
+    >>> print colabeling_drone._get_lpoint_listing(spec)
     (1, 2)
-    >>> print colabeling_drone.get_lpoint_listing(spec, 1)
+    >>> print colabeling_drone._get_lpoint_listing(spec, 1)
     (1.0, 2.0)
 
-#   specs()
-    >>> print colab_0.specs()
+#   get_lpoint_specs()
+    >>> print colab_0.get_lpoint_specs()
     []
-    >>> print colab_1.specs()
+    >>> print colab_1.get_lpoint_specs()
     [(1, 1, 'a'), (2, 2, 'a')]
 
 ### compare
