@@ -109,3 +109,8 @@ Log
 #   2014-03-07
     Colabeling.get_lpoint_listing(). Shouldn't this be a method of 
     LabeledPoint? Is it relevant that it comes from a spec? 
+
+#   2014-03-09
+    LabeledPoint. Maybe should allow empty labels? 
+    Implement are_specs(cls)
+    

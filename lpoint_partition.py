@@ -7,21 +7,21 @@ import lpoint_partition
 class LPointPartition(object):
     def __init__(self, lpoints):
         """Receives a (possibly unordered) list of labeled points:
-            [LabeledPoint, ...]
+            [LabeledPoint, ...], n >= 0
         """
+        method_name = '__init__()'
         try:
-            if lpoints == []:
-                self.dictionary = {}
-            elif not self.are_lpoints(lpoints):
-                raise ValueError()
-            else:
-                self.dictionary = self.make_dictionary(lpoints)
-        except ValueError:
-            print '%s %s' % (
-                "You're trying to make a labeled point partition",
-                "with elements that are not all labeled points")
+            if not lpoints.__class__ == list:
+                raise TypeError
+            elif not self._are_lpoints(lpoints):
+                raise TypeError
+        except TypeError:
+            message = 'Not a list or not all labeled points'
+            self._print_error_message(method_name, message)
+        else:
+            self.dictionary = self._make_dictionary(lpoints)
 
-    def are_lpoints(self, elements):
+    def _are_lpoints(self, elements):
         value = True
         for element in elements:
             if element.__class__ != labeled_point.LabeledPoint:
@@ -29,11 +29,11 @@ class LPointPartition(object):
                 break
         return value
 
-    def make_dictionary(self, lpoints):
+    def _make_dictionary(self, lpoints):
         """Receives a list of labeled points:
             [LabeledPoint, ...], n >= 0
         Returns a dictionary of label-colabeling entries:
-            {label: Colabeling, ...}
+            {str: Colabeling, ...}
         """
         dictionary = {}
         for lpoint in lpoints:
@@ -48,7 +48,7 @@ class LPointPartition(object):
 
     @classmethod
     def new_empty(cls):
-        new_lpoint_part = LPointPartition({})
+        new_lpoint_part = LPointPartition([])
         return new_lpoint_part
 
     @classmethod
@@ -56,6 +56,18 @@ class LPointPartition(object):
         """Receives a list of labeled point specs in the form:
             [(x, y, label), ...]
         """
+        method_name = 'from_specs'
+        # try:
+        #     if (
+        #         not specs.__class__ == list or
+        #         not labeled_point.LabeledPoint.are_specs(specs)
+        #     ):
+        #         raise TypeError
+        # except TypeError:
+        #     message = 'Not a list or not all labeled point specs'
+        #     self._print_error_message(method_name, message)
+        # else:
+
         lpoints = []
         for spec in specs:
             x, y, label = spec
@@ -72,16 +84,17 @@ class LPointPartition(object):
         lpoint_specs = []
         for label_i in self.dictionary:
             colabeling_i = self.dictionary[label_i]
-            lpoint_specs.extend(colabeling_i.lpoint_specs)
+            lpoint_specs.extend(colabeling_i.specs_set)
         entry_strings = []
         for lpoint_spec in sorted(lpoint_specs):
-            lpoint_spec_string = self.get_lpoint_spec_string_from(lpoint_spec)
+            lpoint_spec_string = self._get_lpoint_spec_string_from(
+                lpoint_spec)
             entry_strings.append(lpoint_spec_string)
         entries_string = ', '.join(entry_strings)
         lpoint_part_string = '[%s]' % entries_string
         return lpoint_part_string
 
-    def get_lpoint_spec_string_from(self, lpoint_spec):
+    def _get_lpoint_spec_string_from(self, lpoint_spec):
         """Receives labeled point spec:
             (x, y, label)
         Returns a string in the form:
@@ -97,7 +110,7 @@ class LPointPartition(object):
                 ...
             ...
         """
-        if self.is_empty():
+        if self._is_empty():
             lpoint_part_listing = '<no labeled points>'
         else:
             entry_listings = []
@@ -112,7 +125,7 @@ class LPointPartition(object):
             lpoint_part_listing = '\n'.join(entry_listings)
         return lpoint_part_listing
 
-    ### get
+        ### get
     def specs(self):
         """Returns an ordered list of specs:
             [(x, y, label), ...]
@@ -120,7 +133,7 @@ class LPointPartition(object):
         specs = []
         for label_i in self.dictionary:
             colabeling_i = self.dictionary[label_i]
-            specs_i = colabeling_i.specs()
+            specs_i = colabeling_i.get_lpoint_specs()
             specs.extend(specs_i)
         return sorted(specs)
 
@@ -131,7 +144,7 @@ class LPointPartition(object):
     def __ne__(self, other):
         return self.dictionary != other.dictionary
         
-    def is_empty(self):
+    def _is_empty(self):
         return self.dictionary == {}
 
     def is_a_sub_lpoint_partition_of(self, other):
@@ -140,9 +153,9 @@ class LPointPartition(object):
         if not self_label_set.issubset(other_label_set):
             return False
         else:
-            return self.colabelings_are_sub_colabelings_in(other)
+            return self._colabelings_are_sub_colabelings_in(other)
 
-    def colabelings_are_sub_colabelings_in(self, other):
+    def _colabelings_are_sub_colabelings_in(self, other):
         """Receives:
             LPointPartition
         Returns whether each colabeling is a subcolabeling in the other 
@@ -185,24 +198,27 @@ class LPointPartition(object):
         Returns the difference self - other:
             LPointPartition
         """
-        if self.is_empty():
+        if self._is_empty():
             new_lpoint_part = LPointPartition.new_empty()
-        elif other.is_empty():
+        elif other._is_empty():
             new_lpoint_part = self
         else:
             new_lpoint_specs = []
             for label in self.dictionary:
                 self_colabeling = self.dictionary[label] 
-                if label in other.dictionary:                                   #   copy?
+                if label in other.dictionary:               #   copy?
                     other_colabeling = other.dictionary[label]
                     new_colabeling = self_colabeling - other_colabeling
                 else:
                     new_colabeling = self_colabeling
-                new_lpoint_spec_set = new_colabeling.lpoint_specs
+                new_lpoint_spec_set = new_colabeling.specs_set
                 for spec in new_lpoint_spec_set:
                     new_lpoint_specs.append(spec)
             new_lpoint_part = LPointPartition.from_specs(new_lpoint_specs)
         return new_lpoint_part
+
+    def _print_error_message(self, method_name, message):
+        print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
 
         ###
 if __name__ == '__main__':

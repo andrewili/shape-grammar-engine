@@ -16,6 +16,8 @@
     ...     return non_lpoints
     >>> non_lpoints = non_lpoints_for_init_test()
     >>> non_lpoint_partition = lpoint_partition.LPointPartition(non_lpoints)
+    LPointPartition.__init__(): Not a list or not all labeled points
+
     You're trying to make a labeled point partition with elements that are not all labeled points
 
     >>> empty_lpoint_partition = lpoint_partition.LPointPartition.new_empty()
@@ -24,7 +26,7 @@
     []
     >>> print empty_lpoint_partition.listing()
     <no labeled points>
-    >>> empty_lpoint_partition.is_empty()
+    >>> empty_lpoint_partition._is_empty()
     True
 
     >>> def lpoints_for_init_test():
@@ -76,7 +78,7 @@
         (2, 2)
         (3, 3)
 
-#   make_dictionary(lpoints)
+#   _make_dictionary(lpoints)
 
     >>> def make_lpoints_for_make_dictionary_test():
     ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
@@ -88,24 +90,29 @@
     ...     return [lpoints_1, lpoints_2, lpoints_3]
     >>> lpoints_1, lpoints_2, lpoints_3 = make_lpoints_for_make_dictionary_test()
 
-    >>> dict_0 = lp_partition_drone.make_dictionary([])
+    >>> dict_0 = lp_partition_drone._make_dictionary([])
     >>> for label in dict_0:
     ...     print '%s: %s' % (label, dict_0[label])
-    >>> dict_1 = lp_partition_drone.make_dictionary(lpoints_1)
+    >>> dict_1 = lp_partition_drone._make_dictionary(lpoints_1)
     >>> for label in dict_1:
     ...     print '%s: %s' % (label, dict_1[label])
     a: [(0, 0)]
-    >>> dict_2 = lp_partition_drone.make_dictionary(lpoints_2)
+    >>> dict_2 = lp_partition_drone._make_dictionary(lpoints_2)
     >>> for label in dict_2:
     ...     print '%s: %s' % (label, dict_2[label])
     a: [(0, 0), (1, 1)]
-    >>> dict_3 = lp_partition_drone.make_dictionary(lpoints_3)
+    >>> dict_3 = lp_partition_drone._make_dictionary(lpoints_3)
     >>> for label in dict_3:
     ...     print '%s: %s' % (label, dict_3[label])
     a: [(0, 0), (1, 1)]
     b: [(2, 2)]
 
 #   from_specs()
+
+    >>> non_list = {}
+
+    ??? lpp_from_non_list = lpoint_partition.LPointPartition.from_specs(non_list)
+    LPointPartition.__init__(): Not a list or not all labeled point specs
 
     >>> lp_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
     >>> lpp_from_specs = lpoint_partition.LPointPartition.from_specs(lp_specs)
@@ -120,10 +127,10 @@
     ...     specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'b')]
     ...     lpp_1 = lpoint_partition.LPointPartition.from_specs(specs)
     ...     return [lpp_0, lpp_1]
-    >>> lpp_specs_0, lpp_specs_1 = make_lpps_for_specs()
-    >>> print lpp_specs_0.specs()
+    >>> lpp_0, lpp_1 = make_lpps_for_specs()
+    >>> print lpp_0.specs()
     []
-    >>> print lpp_specs_1.specs()
+    >>> print lpp_1.specs()
     [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'b')]
 
 ### compare
@@ -169,7 +176,7 @@
     >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_empty)
     False
 
-#   colabelings_are_sub_colabelings_in(other_lp_partition)
+#   _colabelings_are_sub_colabelings_in(other_lp_partition)
 
     >>> def make_lpoint_partitions():
     ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
@@ -187,11 +194,11 @@
     ...     return (lpp_bigger, lpp_smaller, lpp_different)
     >>> lpp_bigger, lpp_smaller, lpp_different = make_lpoint_partitions()
 
-    >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_bigger)
+    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_bigger)
     True
-    >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_smaller)
+    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_smaller)
     False
-    >>> lpp_test.colabelings_are_sub_colabelings_in(lpp_different)
+    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_different)
     False
 
 ### operate

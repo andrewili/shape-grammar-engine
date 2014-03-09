@@ -43,6 +43,7 @@ class LabeledPoint(object):
         return string
 
         ### relations
+
     def __eq__(self, other):
         if (self.point == other.point and
             self.label == other.label

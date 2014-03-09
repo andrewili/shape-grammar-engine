@@ -128,7 +128,7 @@
     >>> print colabeling_from_lpoint_specs
     [(1, 1), (2, 2), (3, 3)]
 
-#   _are_specs()
+#   _are_specs()    ### Move to LabeledPoint
     >>> colabeling.Colabeling._are_specs([1, 2, 3])
     False
     >>> l1 = line.Line.from_spec(1, 1, 2, 2)
