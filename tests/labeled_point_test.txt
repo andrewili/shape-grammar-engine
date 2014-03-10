@@ -1,6 +1,7 @@
 #   labeled_point_test.txt
 
     >>> import labeled_point
+    >>> import line
 
 ### construct
 #   __init__(), __str__(), listing()
@@ -36,6 +37,36 @@
     (1, 2, a)
 
 ### relations
+#   are_lpoint_specs()    ### Moved from Colabeling
+    >>> labeled_point.LabeledPoint.are_lpoint_specs([1, 2, 3])
+    False
+    >>> l1 = line.Line.from_spec(1, 1, 2, 2)
+    >>> l2 = line.Line.from_spec(2, 2, 3, 3)
+    >>> labeled_point.LabeledPoint.are_lpoint_specs([l1, l2])
+    False
+    >>> labeled_point.LabeledPoint.are_lpoint_specs([(1, 1, 'a'), (2, 2, 2)])
+    False
+    >>> labeled_point.LabeledPoint.are_lpoint_specs([(1, 1, 'a'), (2, 2, 'b')])
+    True
+
+#   is_lpoint_spec(cls)
+    >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 2, 3))
+    False
+    >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 'b', 'c'))
+    False
+    >>> labeled_point.LabeledPoint.is_lpoint_spec(('a', 2, 'c'))
+    False
+    >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 2, 'c', 'd'))
+    False
+    >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 'b'))
+    False
+    >>> labeled_point.LabeledPoint.is_lpoint_spec(('a', 2))
+    False
+    >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 2, 'c'))
+    True
+    >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 2, ''))
+    True
+
 #   __eq__(other)
     >>> lpoint_eq =  labeled_point.LabeledPoint(0, 0, 'o')
     

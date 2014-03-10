@@ -43,6 +43,36 @@ class LabeledPoint(object):
         return string
 
         ### relations
+    @classmethod
+    def are_lpoint_specs(cls, elements):
+        """Receives a list of elements:
+            [element, ...]
+        Returns whether each element is a labeled point spec
+        """
+        value = True
+        for element in elements:
+            if not cls.is_lpoint_spec(element):
+                value = False
+                break
+        return value
+
+    @classmethod
+    def is_lpoint_spec(cls, elements):
+        value = (
+            elements.__class__ == tuple and
+            len(elements) == 3 and
+            cls._is_number(elements[0]) and
+            cls._is_number(elements[1]) and
+            elements[2].__class__ == str and 
+            not elements[2] == '')                          #   allow ''
+        return value
+
+    @classmethod
+    def _is_number(cls, item):
+        value = (
+            item.__class__ == int or
+            item.__class__ == float)
+        return value
 
     def __eq__(self, other):
         if (self.point == other.point and

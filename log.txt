@@ -111,6 +111,6 @@ Log
     LabeledPoint? Is it relevant that it comes from a spec? 
 
 #   2014-03-09
-    LabeledPoint. Maybe should allow empty labels? 
-    Implement are_specs(cls)
+    LabeledPoint. Allow empty labels? 
+    # Implement are_specs(cls). Done 2014-03-10
     

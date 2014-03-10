@@ -77,7 +77,9 @@ class Colabeling(object):
         try:
             if not lpoint_specs_list.__class__ == list:
                 raise TypeError
-            elif not cls._are_specs(lpoint_specs_list):
+            elif not labeled_point.LabeledPoint.are_lpoint_specs(
+                lpoint_specs_list
+            ):
                 raise TypeError
         except TypeError:
             message = 'Not a list of labeled point specs'
@@ -90,37 +92,6 @@ class Colabeling(object):
                 new_lpoints.append(new_lpoint)
             new_colabeling = Colabeling(new_lpoints)
             return new_colabeling
-
-    @classmethod
-    def _are_specs(cls, elements):
-        """Receives a list of elements:
-            [element, ...]
-        Returns whether each element is a labeled point spec
-        """
-        value = True
-        for element in elements:
-            if not cls._is_spec(element):
-                value = False
-                break
-        return value
-
-    @classmethod
-    def _is_spec(cls, elements):
-        """Receives a 3-tuple of elements: 
-            (element, element, element)
-        Returns whether the element types are (number, number, label)
-        """
-        if elements.__class__ != tuple:
-            value = False
-        elif len(elements) != 3:
-            value = False
-        else:
-            x, y, label = elements
-            value = (
-                cls._is_number(x) and
-                cls._is_number(y) and
-                cls._is_label(label))
-        return value
 
     @classmethod
     def _is_number(cls, element):
