@@ -13,31 +13,68 @@ class Line(object):
             Line
         Immutable. 2D implementation
         """
+        method_name = '__init__()'
         try:
-            if p1 == p2:
-                raise ValueError()
+            if not (
+                p1.__class__ == point.Point and
+                p2.__class__ == point.Point
+            ):
+                raise TypeError
+            elif p1 == p2:
+                raise ValueError
+        except TypeError:
+            message = 'Must be 2 points'
+            self.__class__._print_error_message(method_name, message)
         except ValueError:
-            print "You're trying to create a zero-length line"
-        if p1 < p2:
-            self.tail = p1
-            self.head = p2
+            message = 'Must be different points'
+            self.__class__._print_error_message(method_name, message)
         else:
-            self.tail = p2
-            self.head = p1
-        self.x1 = self.tail.x
-        self.y1 = self.tail.y
-        self.x2 = self.head.x
-        self.y2 = self.head.y
-        self.spec = (self.x1, self.y1, self.x2, self.y2)
-        self.carrier = self.get_carrier_from(self.spec)
-        self.bearing, self.intercept = self.carrier
-        def compute_length():
-            dx = self.head.x - self.tail.x
-            dy = self.head.y - self.tail.y
-            length_squared = math.pow(dx, 2) + math.pow(dy, 2)
-            length = math.sqrt(length_squared)
-            return length
-        self.length = compute_length()
+            if p1 < p2:
+                self.tail = p1
+                self.head = p2
+            else:
+                self.tail = p2
+                self.head = p1
+            self.x1 = self.tail.x
+            self.y1 = self.tail.y
+            self.x2 = self.head.x
+            self.y2 = self.head.y
+            self.spec = (self.x1, self.y1, self.x2, self.y2)
+            self.carrier = self.get_carrier_from(self.spec)
+            self.bearing, self.intercept = self.carrier
+            def compute_length():
+                dx = self.head.x - self.tail.x
+                dy = self.head.y - self.tail.y
+                length_squared = math.pow(dx, 2) + math.pow(dy, 2)
+                length = math.sqrt(length_squared)
+                return length
+            self.length = compute_length()
+
+        # try:
+        #     if p1 == p2:
+        #         raise ValueError()
+        # except ValueError:
+        #     print "You're trying to create a zero-length line"
+        # if p1 < p2:
+        #     self.tail = p1
+        #     self.head = p2
+        # else:
+        #     self.tail = p2
+        #     self.head = p1
+        # self.x1 = self.tail.x
+        # self.y1 = self.tail.y
+        # self.x2 = self.head.x
+        # self.y2 = self.head.y
+        # self.spec = (self.x1, self.y1, self.x2, self.y2)
+        # self.carrier = self.get_carrier_from(self.spec)
+        # self.bearing, self.intercept = self.carrier
+        # def compute_length():
+        #     dx = self.head.x - self.tail.x
+        #     dy = self.head.y - self.tail.y
+        #     length_squared = math.pow(dx, 2) + math.pow(dy, 2)
+        #     length = math.sqrt(length_squared)
+        #     return length
+        # self.length = compute_length()
 
     def get_carrier_from(self, line_spec):
         """Receives line_spec:
@@ -285,6 +322,10 @@ class Line(object):
             print '||| %s.new_tail:\n%s' % (method_name, new_tail)
             print '||| %s.new_head:\n%s' % (method_name, new_head)
         return differences
+
+    @classmethod
+    def _print_error_message(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
 
     ###
 if __name__ == '__main__':

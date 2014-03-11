@@ -26,10 +26,10 @@ class Colabeling(object):
                 raise ValueError
         except TypeError:
             message = 'The argument must be a list of labeled points'
-            self._print_error_message(method_name, message)
+            self.__class__._print_error_message(method_name, message)
         except ValueError:
             message = 'The labeled points must have the same label'
-            self._print_error_message(method_name, message)
+            self.__class__._print_error_message(method_name, message)
         else:
             self.specs_set = self._make_specs_set(lpoints_in)
 
@@ -83,7 +83,7 @@ class Colabeling(object):
                 raise TypeError
         except TypeError:
             message = 'Not a list of labeled point specs'
-            cls._print_error_message_cls(method_name, message)
+            cls._print_error_message(method_name, message)
         else:
             new_lpoints = []
             for spec in lpoint_specs_list:
@@ -225,11 +225,11 @@ class Colabeling(object):
         return new_colabeling
 
     ### other
-    def _print_error_message(self, method_name, message):
-        print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
+    # def _print_error_message(self, method_name, message):
+    #     print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
 
     @classmethod
-    def _print_error_message_cls(cls, method_name, message):
+    def _print_error_message(cls, method_name, message):
         print '%s.%s: %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':

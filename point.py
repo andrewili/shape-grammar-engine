@@ -17,7 +17,7 @@ class Point(object):
                 raise TypeError
         except TypeError:
             message = 'The arguments must both be numbers'
-            self._print_error_message(method_name, message)
+            self.__class__._print_error_message(method_name, message)
         else:
             self.x = x
             self.y = y
@@ -69,10 +69,10 @@ class Point(object):
                 raise ValueError
         except TypeError:
             message = "The dimension must be a string ('x' or 'y')"
-            self._print_error_message(method_name, message)
+            self.__class__._print_error_message(method_name, message)
         except ValueError:
             message = "The dimension must be either 'x' or 'y'"
-            self._print_error_message(method_name, message)
+            self.__class__._print_error_message(method_name, message)
         else:
             if decimal_places < 0:
                 n = 0
@@ -108,8 +108,9 @@ class Point(object):
         return self.spec != other.spec
 
     ### other
-    def _print_error_message(self, method_name, message):
-        print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
+    @classmethod
+    def _print_error_message(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest

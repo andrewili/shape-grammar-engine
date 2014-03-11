@@ -17,7 +17,7 @@ class LPointPartition(object):
                 raise TypeError
         except TypeError:
             message = 'Must be a list of labeled points'
-            self._print_error_message(method_name, message)
+            self.__class__._print_error_message(method_name, message)
         else:
             self.dictionary = self._make_dictionary(lpoints)
 
@@ -65,7 +65,7 @@ class LPointPartition(object):
                 raise TypeError
         except TypeError:
             message = 'Must be a list of labeled point specs'
-            cls._print_error_message_cls(method_name, message)
+            cls._print_error_message(method_name, message)
         else:
             lpoints = []
             for spec in specs:
@@ -216,11 +216,8 @@ class LPointPartition(object):
             new_lpoint_part = LPointPartition.from_specs(new_lpoint_specs)
         return new_lpoint_part
 
-    def _print_error_message(self, method_name, message):
-        print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
-
     @classmethod
-    def _print_error_message_cls(cls, method_name, message):
+    def _print_error_message(cls, method_name, message):
         print '%s.%s: %s' % (cls.__name__, method_name, message)
 
         ###

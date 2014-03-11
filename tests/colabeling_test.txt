@@ -282,5 +282,5 @@
 #   _print_error_message()
     >>> test_method_name = 'test_method()'
     >>> test_message = 'This is a test'
-    >>> colabeling_drone._print_error_message(test_method_name, test_message)
+    >>> colabeling.Colabeling._print_error_message(test_method_name, test_message)
     Colabeling.test_method(): This is a test

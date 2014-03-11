@@ -65,7 +65,7 @@
     >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 2, 'c'))
     True
     >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 2, ''))
-    True
+    False
 
 #   __eq__(other)
     >>> lpoint_eq =  labeled_point.LabeledPoint(0, 0, 'o')
@@ -151,5 +151,5 @@
 #   _print_error_message()
     >>> test_method_name = 'test_method()'
     >>> test_message = 'This is a test'
-    >>> lpoint_init._print_error_message(test_method_name, test_message)
+    >>> labeled_point.LabeledPoint._print_error_message(test_method_name, test_message)
     LabeledPoint.test_method(): This is a test

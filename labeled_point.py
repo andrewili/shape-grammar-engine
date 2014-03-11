@@ -20,10 +20,10 @@ class LabeledPoint(object):
                 raise ValueError
         except TypeError:
             message = 'The label must be a string'
-            self._print_error_message(method_name, message)
+            self.__class__._print_error_message(method_name, message)
         except ValueError:
             message = 'The label must be non-empty'
-            self._print_error_message(method_name, message)
+            self.__class__._print_error_message(method_name, message)
         else:
             self.x = x
             self.y = y
@@ -64,7 +64,7 @@ class LabeledPoint(object):
             cls._is_number(elements[0]) and
             cls._is_number(elements[1]) and
             elements[2].__class__ == str and 
-            not elements[2] == '')                          #   allow ''
+            not elements[2] == '')                          #   allow ''?
         return value
 
     @classmethod
@@ -139,8 +139,9 @@ class LabeledPoint(object):
             return False
 
     ### other
-    def _print_error_message(self, method_name, message):
-        print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
+    @classmethod
+    def _print_error_message(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest
