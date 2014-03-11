@@ -16,7 +16,7 @@ class LPointPartition(object):
             elif not self._are_lpoints(lpoints):
                 raise TypeError
         except TypeError:
-            message = 'Not a list or not all labeled points'
+            message = 'Must be a list of labeled points'
             self._print_error_message(method_name, message)
         else:
             self.dictionary = self._make_dictionary(lpoints)
@@ -56,25 +56,24 @@ class LPointPartition(object):
         """Receives a list of labeled point specs in the form:
             [(x, y, label), ...]
         """
-        method_name = 'from_specs'
-        # try:
-        #     if (
-        #         not specs.__class__ == list or
-        #         not labeled_point.LabeledPoint.are_specs(specs)
-        #     ):
-        #         raise TypeError
-        # except TypeError:
-        #     message = 'Not a list or not all labeled point specs'
-        #     self._print_error_message(method_name, message)
-        # else:
-
-        lpoints = []
-        for spec in specs:
-            x, y, label = spec
-            lpoint = labeled_point.LabeledPoint(x, y, label)
-            lpoints.append(lpoint)
-        new_lpoint_part = LPointPartition(lpoints)
-        return new_lpoint_part
+        method_name = 'from_specs()'
+        try:
+            if not (
+                specs.__class__ == list and
+                labeled_point.LabeledPoint.are_lpoint_specs(specs)
+            ):
+                raise TypeError
+        except TypeError:
+            message = 'Must be a list of labeled point specs'
+            cls._print_error_message_cls(method_name, message)
+        else:
+            lpoints = []
+            for spec in specs:
+                x, y, label = spec
+                lpoint = labeled_point.LabeledPoint(x, y, label)
+                lpoints.append(lpoint)
+            new_lpoint_part = LPointPartition(lpoints)
+            return new_lpoint_part
 
         ### represent
     def __str__(self):
@@ -219,6 +218,10 @@ class LPointPartition(object):
 
     def _print_error_message(self, method_name, message):
         print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
+
+    @classmethod
+    def _print_error_message_cls(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
 
         ###
 if __name__ == '__main__':

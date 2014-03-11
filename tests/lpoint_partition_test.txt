@@ -16,7 +16,7 @@
     ...     return non_lpoints
     >>> non_lpoints = non_lpoints_for_init_test()
     >>> non_lpoint_partition = lpoint_partition.LPointPartition(non_lpoints)
-    LPointPartition.__init__(): Not a list or not all labeled points
+    LPointPartition.__init__(): Must be a list of labeled points
 
     You're trying to make a labeled point partition with elements that are not all labeled points
 
@@ -110,9 +110,8 @@
 #   from_specs()
 
     >>> non_list = {}
-
-    ??? lpp_from_non_list = lpoint_partition.LPointPartition.from_specs(non_list)
-    LPointPartition.__init__(): Not a list or not all labeled point specs
+    >>> lpp_from_non_list = lpoint_partition.LPointPartition.from_specs(non_list)
+    LPointPartition.from_specs(): Must be a list of labeled point specs
 
     >>> lp_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
     >>> lpp_from_specs = lpoint_partition.LPointPartition.from_specs(lp_specs)
