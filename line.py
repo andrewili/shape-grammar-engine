@@ -23,10 +23,10 @@ class Line(object):
             elif p1 == p2:
                 raise ValueError
         except TypeError:
-            message = 'Must be 2 points'
+            message = 'The arguments must both be points'
             self.__class__._print_error_message(method_name, message)
         except ValueError:
-            message = 'Must be different points'
+            message = 'The arguments must be different points'
             self.__class__._print_error_message(method_name, message)
         else:
             if p1 < p2:
@@ -49,32 +49,6 @@ class Line(object):
                 length = math.sqrt(length_squared)
                 return length
             self.length = compute_length()
-
-        # try:
-        #     if p1 == p2:
-        #         raise ValueError()
-        # except ValueError:
-        #     print "You're trying to create a zero-length line"
-        # if p1 < p2:
-        #     self.tail = p1
-        #     self.head = p2
-        # else:
-        #     self.tail = p2
-        #     self.head = p1
-        # self.x1 = self.tail.x
-        # self.y1 = self.tail.y
-        # self.x2 = self.head.x
-        # self.y2 = self.head.y
-        # self.spec = (self.x1, self.y1, self.x2, self.y2)
-        # self.carrier = self.get_carrier_from(self.spec)
-        # self.bearing, self.intercept = self.carrier
-        # def compute_length():
-        #     dx = self.head.x - self.tail.x
-        #     dy = self.head.y - self.tail.y
-        #     length_squared = math.pow(dx, 2) + math.pow(dy, 2)
-        #     length = math.sqrt(length_squared)
-        #     return length
-        # self.length = compute_length()
 
     def get_carrier_from(self, line_spec):
         """Receives line_spec:

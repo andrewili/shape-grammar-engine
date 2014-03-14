@@ -10,10 +10,10 @@
 #   __init__(), __str__()
     >>> p1 = point.Point(0, 0)
     >>> line_from_non_points = line.Line(p1, 'x')
-    Line.__init__(): Must be 2 points
+    Line.__init__(): The arguments must both be points
 
     >>> zero_length_line = line.Line.from_spec(0, 0, 0, 0)
-    Line.__init__(): Must be different points
+    Line.__init__(): The arguments must be different points
     
     >>> line_01 = line.Line.from_spec(0, 0, 1, 1)
     
@@ -74,8 +74,13 @@
     (0.0, 0)
 
 #   from_spec(x1, y1, x2, y2)
+    >>> line_from_identical_points = line.Line.from_spec(0, 0, 0, 0)
+    Line.__init__(): The arguments must be different points
+
+    >>> line_from_non_numbers = line.Line.from_spec(1, 'b', 3, 4)
+    Point.__init__(): The arguments must both be numbers
+
     >>> line_from_spec = line.Line.from_spec(0, 0, 1, 1)
-    
     >>> print line_from_spec
     (0, 0, 1, 1)
 

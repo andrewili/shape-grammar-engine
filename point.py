@@ -7,7 +7,6 @@ class Point(object):
         """Receives 2 numbers
         Immutable
         """
-        # self.class_name = self.__class__.__name__
         method_name = '__init__()'
         try:
             if not (
