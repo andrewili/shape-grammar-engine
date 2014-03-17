@@ -62,22 +62,22 @@
     >>> print line.Line.from_spec(1, 1, 1, 0).carrier
     (0.0, 1)
 
-#   get_carrier_from(line_spec)
+#   _compute_carrier_from(line_spec)
     >>> line_spec_0011 = (0, 0, 1, 1)
-    >>> drone_line.get_carrier_from(line_spec_0011)
+    >>> drone_line._compute_carrier_from(line_spec_0011)
     (45.0, 0)
     >>> line_spec_0010 = (0, 0, 1, 0)
-    >>> drone_line.get_carrier_from(line_spec_0010)
+    >>> drone_line._compute_carrier_from(line_spec_0010)
     (90.0, 0)
     >>> line_spec_0001 = (0, 0, 0, 1)
-    >>> drone_line.get_carrier_from(line_spec_0001)
+    >>> drone_line._compute_carrier_from(line_spec_0001)
     (0.0, 0)
 
 #   from_spec(x1, y1, x2, y2)
     >>> line_from_identical_points = line.Line.from_spec(0, 0, 0, 0)
     Line.__init__(): The arguments must be different points
 
-    >>> line_from_non_numbers = line.Line.from_spec(1, 'b', 3, 4)
+    ??? line_from_non_numbers = line.Line.from_spec(1, 2, [], 4)
     Point.__init__(): The arguments must both be numbers
 
     >>> line_from_spec = line.Line.from_spec(0, 0, 1, 1)

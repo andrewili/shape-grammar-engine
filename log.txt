@@ -116,4 +116,5 @@ Log
     
 #   2014-03-13
     List comprehensions. Implement
+    Line.from_spec(). Fix
     

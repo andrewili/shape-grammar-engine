@@ -40,17 +40,11 @@ class Line(object):
             self.x2 = self.head.x
             self.y2 = self.head.y
             self.spec = (self.x1, self.y1, self.x2, self.y2)
-            self.carrier = self.get_carrier_from(self.spec)
+            self.carrier = self._compute_carrier_from(self.spec)
             self.bearing, self.intercept = self.carrier
-            def compute_length():
-                dx = self.head.x - self.tail.x
-                dy = self.head.y - self.tail.y
-                length_squared = math.pow(dx, 2) + math.pow(dy, 2)
-                length = math.sqrt(length_squared)
-                return length
-            self.length = compute_length()
+            self.length = self._compute_length()
 
-    def get_carrier_from(self, line_spec):
+    def _compute_carrier_from(self, line_spec):
         """Receives line_spec:
             (x1, y1, x2, y2)
         Returns carrier:
@@ -70,6 +64,13 @@ class Line(object):
             #   b = y - mx
             intercept = self.y1 - (slope * self.x1)
         return (bearing, intercept)
+
+    def _compute_length(self):
+        dx = self.head.x - self.tail.x
+        dy = self.head.y - self.tail.y
+        length_squared = math.pow(dx, 2) + math.pow(dy, 2)
+        length = math.sqrt(length_squared)
+        return length
 
     @classmethod
     def from_spec(cls, x1, y1, x2, y2):

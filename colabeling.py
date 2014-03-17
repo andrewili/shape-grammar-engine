@@ -225,9 +225,6 @@ class Colabeling(object):
         return new_colabeling
 
     ### other
-    # def _print_error_message(self, method_name, message):
-    #     print '%s.%s: %s' % (self.__class__.__name__, method_name, message)
-
     @classmethod
     def _print_error_message(cls, method_name, message):
         print '%s.%s: %s' % (cls.__name__, method_name, message)

@@ -4,9 +4,9 @@
 
 ### construct
 #   __init__()
-    >>> point_char = point.Point('a', 2)
+    ??? point_char = point.Point('a', 2)
     Point.__init__(): The arguments must both be numbers
-
+    
     >>> p23 = point.Point(2, 3)
     >>> p23.x
     2
