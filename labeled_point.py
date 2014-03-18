@@ -16,13 +16,8 @@ class LabeledPoint(object):
         try:
             if not label.__class__ == str:
                 raise TypeError
-            elif label == '':
-                raise ValueError
         except TypeError:
             message = 'The label must be a string'
-            self.__class__._print_error_message(method_name, message)
-        except ValueError:
-            message = 'The label must be non-empty'
             self.__class__._print_error_message(method_name, message)
         else:
             self.x = x
@@ -63,8 +58,7 @@ class LabeledPoint(object):
             len(elements) == 3 and
             cls._is_number(elements[0]) and
             cls._is_number(elements[1]) and
-            elements[2].__class__ == str and 
-            not elements[2] == '')                          #   allow ''?
+            elements[2].__class__ == str)
         return value
 
     @classmethod

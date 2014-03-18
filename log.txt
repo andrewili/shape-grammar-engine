@@ -83,6 +83,9 @@ Log
     hv-v {(0, 40): [], (90, 40): []              }
     hvhv {(0, 40): [], (90, 40): [], (90, 60): []}
 
+    Cause: The elements were assumed to be sorted, but were not.
+    Solution: Sort the elements at initialization.
+
 #   2014-02-15
     # Listing. Revise to allow a variable number of decimal places. Implemented
     # Point.get_formatted_coord(). 
@@ -116,5 +119,8 @@ Log
     
 #   2014-03-13
     List comprehensions. Implement
-    Line.from_spec(). Fix
+    # Line.from_spec(). Fixed by revising Point.__init__() to include 
+    self.__del__(). 2014-03-17. Reversed 2014-03-18.
+
+    
     

@@ -11,10 +11,15 @@ class LPointPartition(object):
         """
         method_name = '__init__()'
         try:
-            if not lpoints.__class__ == list:
+            if not (
+                lpoints.__class__ == list and
+                self._are_lpoints(lpoints)
+            ):
                 raise TypeError
-            elif not self._are_lpoints(lpoints):
-                raise TypeError
+            # if not lpoints.__class__ == list:
+            #     raise TypeError
+            # elif not self._are_lpoints(lpoints):
+            #     raise TypeError
         except TypeError:
             message = 'Must be a list of labeled points'
             self.__class__._print_error_message(method_name, message)

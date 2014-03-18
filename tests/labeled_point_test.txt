@@ -9,8 +9,10 @@
     Point.__init__(): The arguments must both be numbers
     >>> lpoint_non_string = labeled_point.LabeledPoint(1, 2, 3)
     LabeledPoint.__init__(): The label must be a string
+
     >>> lpoint_empty_label = labeled_point.LabeledPoint(1, 2, '')
-    LabeledPoint.__init__(): The label must be non-empty
+    >>> print lpoint_empty_label
+    (1, 2, )
 
     >>> lpoint_init = labeled_point.LabeledPoint(1, 2, 'a')
     >>> lpoint_init.x
@@ -65,7 +67,7 @@
     >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 2, 'c'))
     True
     >>> labeled_point.LabeledPoint.is_lpoint_spec((1, 2, ''))
-    False
+    True
 
 #   __eq__(other)
     >>> lpoint_eq =  labeled_point.LabeledPoint(0, 0, 'o')

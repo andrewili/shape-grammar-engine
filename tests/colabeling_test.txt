@@ -120,7 +120,7 @@
 
     >>> specs_empty_label = [(1, 2, 'a'), (3, 4, '')]
     >>> colabeling_from_spec_empty_label = colabeling.Colabeling.from_lpoint_specs_list(specs_empty_label)
-    Colabeling.from_lpoint_specs_list(): Not a list of labeled point specs
+    Colabeling.__init__(): The labeled points must have the same label
 
     >>> lpoint_specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a')]
     >>> colabeling_from_lpoint_specs = colabeling.Colabeling.from_lpoint_specs_list(lpoint_specs)
@@ -147,7 +147,7 @@
     >>> colabeling.Colabeling._is_label(17)
     False
     >>> colabeling.Colabeling._is_label('')
-    False
+    True
     >>> colabeling.Colabeling._is_label('q')
     True
 

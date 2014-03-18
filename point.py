@@ -17,7 +17,6 @@ class Point(object):
         except TypeError:
             message = 'The arguments must both be numbers'
             self.__class__._print_error_message(method_name, message)
-            self.__del__()
         else:
             self.x = x
             self.y = y

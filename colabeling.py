@@ -5,12 +5,12 @@ import labeled_point
 
 class Colabeling(object):
     """Contains a set of colabeled point specs:
-        set([(x, y, label), ...]), n >= 0
+        set([(x, y, label), ...]), label = k, n >= 0
     """
     ### construct
     def __init__(self, lpoints_in):
         """Receives an unsorted list of colabeled points:
-            [LabeledPoint, ...], n >= 0
+            [LabeledPoint, ...], label = k, n >= 0
         """
         method_name = '__init__()'
         try:
@@ -102,9 +102,7 @@ class Colabeling(object):
 
     @classmethod
     def _is_label(cls, element):
-        value = (
-            element.__class__ == str and
-            element != '')
+        value = element.__class__ == str 
         return value
 
     ### represent
