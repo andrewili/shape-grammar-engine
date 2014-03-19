@@ -9,24 +9,24 @@
 ### construct, represent
 #   __init__(), __str__(), listing()
 
+    >>> non_list = (1, 2, 3)
+    >>> non_list_lpp = lpoint_partition.LPointPartition(non_list)
+    LPointPartition.__init__(): The argument must be a list of labeled points
     >>> def non_lpoints_for_init_test():
     ...     line_01 = line.Line.from_short_spec(0, 1)
     ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
     ...     non_lpoints = [lpoint_00a, line_01]
     ...     return non_lpoints
     >>> non_lpoints = non_lpoints_for_init_test()
-    >>> non_lpoint_partition = lpoint_partition.LPointPartition(non_lpoints)
-    LPointPartition.__init__(): Must be a list of labeled points
+    >>> non_lpoint_lpp = lpoint_partition.LPointPartition(non_lpoints)
+    LPointPartition.__init__(): The argument must be a list of labeled points
 
-    You're trying to make a labeled point partition with elements that are not all labeled points
-
-    >>> empty_lpoint_partition = lpoint_partition.LPointPartition.new_empty()
-
-    >>> print empty_lpoint_partition
+    >>> empty_lpp = lpoint_partition.LPointPartition.new_empty()
+    >>> print empty_lpp
     []
-    >>> print empty_lpoint_partition.listing()
+    >>> print empty_lpp.listing()
     <no labeled points>
-    >>> empty_lpoint_partition._is_empty()
+    >>> empty_lpp._is_empty()
     True
 
     >>> def lpoints_for_init_test():
@@ -408,3 +408,10 @@
         (4, 4)
     e:
         (6, 6)
+
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> lpoint_partition.LPointPartition._print_error_message(test_method_name, test_message)
+    LPointPartition.test_method(): This is a test

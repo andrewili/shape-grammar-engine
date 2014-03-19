@@ -16,12 +16,8 @@ class LPointPartition(object):
                 self._are_lpoints(lpoints)
             ):
                 raise TypeError
-            # if not lpoints.__class__ == list:
-            #     raise TypeError
-            # elif not self._are_lpoints(lpoints):
-            #     raise TypeError
         except TypeError:
-            message = 'Must be a list of labeled points'
+            message = 'The argument must be a list of labeled points'
             self.__class__._print_error_message(method_name, message)
         else:
             self.dictionary = self._make_dictionary(lpoints)

@@ -11,12 +11,10 @@
     >>> p1 = point.Point(0, 0)
     >>> line_from_non_points = line.Line(p1, 'x')
     Line.__init__(): The arguments must both be points
-
     >>> zero_length_line = line.Line.from_spec(0, 0, 0, 0)
     Line.__init__(): The arguments must be different points
     
     >>> line_01 = line.Line.from_spec(0, 0, 1, 1)
-    
     >>> print line_01.tail
     (0, 0)
     >>> print line_01.head
@@ -31,7 +29,6 @@
     (0, 0, 1, 1)
     
     >>> line_w_big_tail = line.Line.from_spec(1, 1, 0, 0)
-    
     >>> print line_w_big_tail.tail
     (0, 0)
     >>> print line_w_big_tail.head
@@ -256,12 +253,9 @@
     True
 
 ### overlap relations
-#   is_disjoint_left_of(other)
-#   overlaps_tail_of(other)
-#   overlaps_all_of(other)
-#   overlaps_middle_of(other)
-#   overlaps_head_of(other)
-#   is_disjoint_right_of(other)
+#   is_disjoint_left_of(other), overlaps_tail_of(other), 
+    overlaps_all_of(other), overlaps_middle_of(other), 
+    overlaps_head_of(other), is_disjoint_right_of(other)
 
     >>> this    = line.Line.from_spec(2, 2, 5, 5)
     >>> that_01 = line.Line.from_spec(0, 0, 1, 1)
@@ -540,3 +534,9 @@
     ...     print a_line
     (2, 2, 4, 4)
 
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> line.Line._print_error_message(test_method_name, test_message)
+    Line.test_method(): This is a test

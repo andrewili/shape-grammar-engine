@@ -469,4 +469,9 @@
     (90, 0):
         (0, 0, 1, 0)
 
-
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> line_partition.LinePartition._print_error_message(test_method_name, test_message)
+    LinePartition.test_method(): This is a test

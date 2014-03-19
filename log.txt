@@ -122,5 +122,5 @@ Log
     # Line.from_spec(). Fixed by revising Point.__init__() to include 
     self.__del__(). 2014-03-17. Reversed 2014-03-18.
 
-    
-    
+#   2014-03-18
+    trace_on. Revise

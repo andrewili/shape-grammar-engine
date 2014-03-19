@@ -238,6 +238,10 @@ class LinePartition(object):
         if trace_on == True:
             print '||| LinePartition.reduce():\n%s' % self.listing()
 
+    @classmethod
+    def _print_error_message(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
+
     ###
 if __name__ == '__main__':
     import doctest

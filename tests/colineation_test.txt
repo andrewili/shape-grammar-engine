@@ -24,7 +24,7 @@
     <empty colineation>
 
     >>> non_colinear_colineation = colineation.Colineation(non_colinear_lines)
-    You're trying to make a colineation with non-colinear lines
+    Colineation.__init__(): You're trying to make a colineation with non-colinear lines
 
     >>> colinear_colineation = colineation.Colineation(colinear_lines)
     
@@ -55,7 +55,7 @@
     (1, 1, 3, 3)
     (4, 4, 6, 6)
 
-#   colinear(lines)
+#   _colinear(lines)
     >>> def lines_for_colinear_test():
     ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)
     ...     line_0103 = line.Line.from_spec(0, 1, 0, 3)
@@ -65,9 +65,9 @@
     ...     return [colinear_lines, non_colinear_lines]
     >>> colinear_lines, non_colinear_lines = lines_for_colinear_test()
 
-    >>> colineation_drone.colinear(colinear_lines)
+    >>> colineation_drone._colinear(colinear_lines)
     True
-    >>> colineation_drone.colinear(non_colinear_lines)
+    >>> colineation_drone._colinear(non_colinear_lines)
     False
 
 #   new_empty()
@@ -76,6 +76,9 @@
     []
 
 #   from_short_specs(short_specs)
+    >>> non_list = ((0, 1), (2, 3), (4, 5))
+    >>> colin_non_list = colineation.Colineation.from_short_specs(non_list)
+    Colineation.from_short_specs(): The argument must be a list of duples
     >>> short_specs = [(0, 1), (2, 3), (4, 5)]
     >>> new_colineation = colineation.Colineation.from_short_specs(short_specs)
     >>> print new_colineation
@@ -162,7 +165,7 @@
     (0, 0, 1, 1)
     (2, 2, 3, 3)
 
-#   get_maximal_lines_from(maximal_lines_1, maximal_lines_2)
+#   _get_maximal_lines_from(maximal_lines_1, maximal_lines_2)
     >>> line_01 = line.Line.from_short_spec(0, 1)
     >>> line_02 = line.Line.from_short_spec(0, 2)
     >>> line_13 = line.Line.from_short_spec(1, 3)
@@ -170,7 +173,7 @@
     >>> disjoint_lines = [line_01, line_23]
     >>> overlapping_lines = [line_02, line_13]
 
-    >>> new_lines = colineation.Colineation.get_maximal_lines_from(disjoint_lines, overlapping_lines)
+    >>> new_lines = colineation.Colineation._get_maximal_lines_from(disjoint_lines, overlapping_lines)
     >>> for line_i in new_lines:
     ...     print line_i
     (0, 0, 3, 3)
@@ -193,12 +196,12 @@
     (4, 4, 6, 6)
     (7, 7, 9, 9)
 
-#   get_first_maximal_line_from(lines)
+#   _get_first_maximal_line_from(lines)
     >>> def singleton_line_list_for_maximal_test():
     ...     line_01 = line.Line.from_short_spec(0, 1)
     ...     return [line_01]
     >>> singleton_line_list = singleton_line_list_for_maximal_test()
-    >>> new_line_from_singleton_list = colineation.Colineation.get_first_maximal_line_from(singleton_line_list)
+    >>> new_line_from_singleton_list = colineation.Colineation._get_first_maximal_line_from(singleton_line_list)
     >>> print new_line_from_singleton_list
     (0, 0, 1, 1)
 
@@ -208,21 +211,21 @@
     ...     line_23 = line.Line.from_short_spec(2, 3)
     ...     return [line_01, line_12, line_23]
     >>> non_singleton_list = non_singleton_list_for_maximal_test()
-    >>> new_line_from_non_singleton_list = colineation.Colineation.get_first_maximal_line_from(non_singleton_list)
+    >>> new_line_from_non_singleton_list = colineation.Colineation._get_first_maximal_line_from(non_singleton_list)
     >>> print new_line_from_non_singleton_list
     (0, 0, 3, 3)
 
-#   get_singleton_line_from(singleton_lines)
+#   _get_singleton_line_from(singleton_lines)
     >>> line_01 = line.Line.from_short_spec(0, 1)
     >>> singleton_lines = [line_01]
 
-    >>> new_line = colineation.Colineation.get_singleton_line_from(singleton_lines)
+    >>> new_line = colineation.Colineation._get_singleton_line_from(singleton_lines)
     >>> print new_line
     (0, 0, 1, 1)
     >>> len(singleton_lines)
     0
 
-#   get_first_maximal_line_from_non_singleton(non_maximal_lines)
+#   _get_first_maximal_line_from_non_singleton(non_maximal_lines)
     case 1: n = 2: line_1 and line_2 are not mergeable
     
     >>> def non_maximal_lines_for_non_singleton_test_1():
@@ -230,7 +233,7 @@
     ...     line_23 = line.Line.from_short_spec(2, 3)
     ...     return [line_01, line_23]
     >>> non_maximal_lines_1 = non_maximal_lines_for_non_singleton_test_1()
-    >>> new_line_1 = colineation.Colineation.get_first_maximal_line_from_non_singleton(non_maximal_lines_1)
+    >>> new_line_1 = colineation.Colineation._get_first_maximal_line_from_non_singleton(non_maximal_lines_1)
     >>> print new_line_1
     (0, 0, 1, 1)
     >>> len(non_maximal_lines_1)
@@ -247,7 +250,7 @@
     ...     return [line_02, line_13]
     
     >>> non_maximal_lines_2 = non_maximal_lines_for_non_singleton_test_2()
-    >>> new_line_2 = colineation.Colineation.get_first_maximal_line_from_non_singleton(non_maximal_lines_2)
+    >>> new_line_2 = colineation.Colineation._get_first_maximal_line_from_non_singleton(non_maximal_lines_2)
     >>> print new_line_2
     (0, 0, 3, 3)
     >>> len(non_maximal_lines_2)
@@ -263,7 +266,7 @@
     ...     return [line_02, line_13, line_46]
     
     >>> non_maximal_lines_3 = non_maximal_lines_for_non_singleton_test_3()
-    >>> new_line_3 = colineation.Colineation.get_first_maximal_line_from(non_maximal_lines_3)
+    >>> new_line_3 = colineation.Colineation._get_first_maximal_line_from(non_maximal_lines_3)
     >>> print new_line_3
     (0, 0, 3, 3)
     >>> len(non_maximal_lines_3)
@@ -284,7 +287,7 @@
     ...     return [line_02, line_13, line_35, line_67]
     
     >>> non_maximal_lines_4 = non_maximal_lines_for_non_singleton_test_4()
-    >>> new_line_4 = colineation.Colineation.get_first_maximal_line_from_non_singleton(non_maximal_lines_4)
+    >>> new_line_4 = colineation.Colineation._get_first_maximal_line_from_non_singleton(non_maximal_lines_4)
     >>> print new_line_4
     (0, 0, 5, 5)
     >>> len(non_maximal_lines_4)
@@ -293,7 +296,7 @@
     ...     print line_i
     (6, 6, 7, 7)
 
-#   lines_can_be_merged(line_1, line_2)
+#   _lines_can_be_merged(line_1, line_2)
     >>> def lines_for_mergeable_test():
     ...     line_26 = line.Line.from_short_spec(2, 6)      #     ====
     ...     line_01 = line.Line.from_short_spec(0, 1)      #   -
@@ -309,25 +312,25 @@
     ...     return [line_26, line_01, line_02, line_13, line_17, line_24, line_35, line_46, line_57, line_68, line_78]
     >>> line_26, line_01, line_02, line_13, line_17, line_24, line_35, line_46, line_57, line_68, line_78 = lines_for_mergeable_test()
 
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_02)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_02)
     True
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_68)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_68)
     True
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_13)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_13)
     True
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_57)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_57)
     True
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_24)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_24)
     True
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_46)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_46)
     True
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_35)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_35)
     True
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_17)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_17)
     True
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_01)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_01)
     False
-    >>> colineation.Colineation.lines_can_be_merged(line_26, line_78)
+    >>> colineation.Colineation._lines_can_be_merged(line_26, line_78)
     False
 
 ### subtract
@@ -3394,24 +3397,8 @@
     (2, 2, 7, 7)
     (12, 12, 17, 17)
 
-#   defective_subtraction
-    >>> def make_new_col_for_defective_subtraction():
-    ...     min_line_40_20_40_40 = line.Line.from_spec(40, 20, 40, 40)
-    ...     min_line_40_60_40_80 = line.Line.from_spec(40, 60, 40, 80)
-    ...     min_lines = [min_line_40_20_40_40, min_line_40_60_40_80]
-    ...     sub_line_40_20_40_40 = line.Line.from_spec(40, 20, 40, 40)
-    ...     sub_line_40_60_40_80 = line.Line.from_spec(40, 60, 40, 80)
-    ...     sub_lines = [sub_line_40_20_40_40, sub_line_40_60_40_80]
-    ...     min_col = colineation.Colineation(min_lines)
-    ...     sub_col = colineation.Colineation(sub_lines)
-    ...     new_col = min_col - sub_col
-    ...     return new_col
-    >>> new_col = make_new_col_for_defective_subtraction()
-    >>> print new_col.listing()
-    <empty colineation>
-
-#   subtract_line_colineation(line_col_minuend, working_lines)
-    >>> def make_lines_for_subtract_line_colineation():
+#   _subtract_line_colineation(line_col_minuend, working_lines)
+    >>> def make_lines_for__subtract_line_colineation():
     ...     line_col_minuend = line.Line.from_spec(2, 2, 7, 7)
     ...     line_01 = line.Line.from_spec(0, 0, 1, 1)
     ...     line_12 = line.Line.from_spec(1, 1, 2, 2)
@@ -3425,7 +3412,7 @@
     ...     line_78 = line.Line.from_spec(7, 7, 8, 8)
     ...     line_89 = line.Line.from_spec(8, 8, 9, 9)
     ...     return [line_col_minuend, line_01, line_12, line_13, line_23, line_27, line_34, line_56, line_67, line_68, line_78, line_89]
-    >>> line_col_minuend, line_01, line_12, line_13, line_23, line_27, line_34, line_56, line_67, line_68, line_78, line_89 = make_lines_for_subtract_line_colineation()
+    >>> line_col_minuend, line_01, line_12, line_13, line_23, line_27, line_34, line_56, line_67, line_68, line_78, line_89 = make_lines_for__subtract_line_colineation()
 
     >>> colineation_01 = colineation.Colineation([line_01])
     >>> colineation_12 = colineation.Colineation([line_12])
@@ -3460,140 +3447,146 @@
     >>> colineation_34_78 = colineation.Colineation([line_34, line_78])
     >>> colineation_67_89 = colineation.Colineation([line_67, line_89])
 
-    >>> line_differences_01 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_01)
+    >>> line_differences_01 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_01)
     >>> for line_difference in line_differences_01:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_12 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_12)
+    >>> line_differences_12 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_12)
     >>> for line_difference in line_differences_12:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_13 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_13)
+    >>> line_differences_13 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_13)
     >>> for line_difference in line_differences_13:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_23 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_23)
+    >>> line_differences_23 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_23)
     >>> for line_difference in line_differences_23:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_27 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_27)
+    >>> line_differences_27 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_27)
     >>> line_differences_27
     []
-    >>> line_differences_34 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_34)
+    >>> line_differences_34 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_34)
     >>> for line_difference in line_differences_34:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 7, 7)
-    >>> line_differences_56 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_56)
+    >>> line_differences_56 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_56)
     >>> for line_difference in line_differences_56:
     ...     print line_difference
     (2, 2, 5, 5)
     (6, 6, 7, 7)
-    >>> line_differences_67 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_67)
+    >>> line_differences_67 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_67)
     >>> for line_difference in line_differences_67:
     ...     print line_difference
     (2, 2, 6, 6)
-    >>> line_differences_68 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_68)
+    >>> line_differences_68 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_68)
     >>> for line_difference in line_differences_68:
     ...     print line_difference
     (2, 2, 6, 6)
-    >>> line_differences_78 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_78)
+    >>> line_differences_78 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_78)
     >>> for line_difference in line_differences_78:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_89 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_89)
+    >>> line_differences_89 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_89)
     >>> for line_difference in line_differences_89:
     ...     print line_difference
     (2, 2, 7, 7)
 
-    >>> line_differences_01_23 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_01_23)
+    >>> line_differences_01_23 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_01_23)
     >>> for line_difference in line_differences_01_23:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_01_27 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_01_27)
+    >>> line_differences_01_27 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_01_27)
     >>> line_differences_01_27
     []
-    >>> line_differences_01_34 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_01_34)
+    >>> line_differences_01_34 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_01_34)
     >>> for line_difference in line_differences_01_34:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 7, 7)
-    >>> line_differences_01_67 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_01_67)
+    >>> line_differences_01_67 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_01_67)
     >>> for line_difference in line_differences_01_67:
     ...     print line_difference
     (2, 2, 6, 6)
-    >>> line_differences_01_78 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_01_78)
+    >>> line_differences_01_78 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_01_78)
     >>> for line_difference in line_differences_01_78:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_01_89 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_01_89)
+    >>> line_differences_01_89 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_01_89)
     >>> for line_difference in line_differences_01_89:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_12_34 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_12_34)
+    >>> line_differences_12_34 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_12_34)
     >>> for line_difference in line_differences_12_34:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 7, 7)
-    >>> line_differences_12_67 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_12_67)
+    >>> line_differences_12_67 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_12_67)
     >>> for line_difference in line_differences_12_67:
     ...     print line_difference
     (2, 2, 6, 6)
-    >>> line_differences_12_78 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_12_78)
+    >>> line_differences_12_78 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_12_78)
     >>> for line_difference in line_differences_12_78:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_12_89 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_12_89)
+    >>> line_differences_12_89 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_12_89)
     >>> for line_difference in line_differences_12_89:
     ...     print line_difference
     (2, 2, 7, 7)
-    >>> line_differences_13_56 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_13_56)
+    >>> line_differences_13_56 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_13_56)
     >>> for line_difference in line_differences_13_56:
     ...     print line_difference
     (3, 3, 5, 5)
     (6, 6, 7, 7)
-    >>> line_differences_13_67 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_13_67)
+    >>> line_differences_13_67 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_13_67)
     >>> for line_difference in line_differences_13_67:
     ...     print line_difference
     (3, 3, 6, 6)
-    >>> line_differences_13_89 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_13_89)
+    >>> line_differences_13_89 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_13_89)
     >>> for line_difference in line_differences_13_89:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_23_56 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_23_56)
+    >>> line_differences_23_56 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_23_56)
     >>> for line_difference in line_differences_23_56:
     ...     print line_difference
     (3, 3, 5, 5)
     (6, 6, 7, 7)
-    >>> line_differences_23_67 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_23_67)
+    >>> line_differences_23_67 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_23_67)
     >>> for line_difference in line_differences_23_67:
     ...     print line_difference
     (3, 3, 6, 6)
-    >>> line_differences_23_78 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_23_78)
+    >>> line_differences_23_78 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_23_78)
     >>> for line_difference in line_differences_23_78:
     ...     print line_difference
     (3, 3, 7, 7)
-    >>> line_differences_27_89 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_27_89)
+    >>> line_differences_27_89 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_27_89)
     >>> line_differences_27_89
     []
-    >>> line_differences_34_56 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_34_56)
+    >>> line_differences_34_56 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_34_56)
     >>> for line_difference in line_differences_34_56:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 5, 5)
     (6, 6, 7, 7)
-    >>> line_differences_34_67 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_34_67)
+    >>> line_differences_34_67 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_34_67)
     >>> for line_difference in line_differences_34_67:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 6, 6)
-    >>> line_differences_34_78 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_34_78)
+    >>> line_differences_34_78 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_34_78)
     >>> for line_difference in line_differences_34_78:
     ...     print line_difference
     (2, 2, 3, 3)
     (4, 4, 7, 7)
-    >>> line_differences_67_89 = colineation_drone.subtract_line_colineation(line_col_minuend, colineation_67_89)
+    >>> line_differences_67_89 = colineation_drone._subtract_line_colineation(line_col_minuend, colineation_67_89)
     >>> for line_difference in line_differences_67_89:
     ...     print line_difference
     (2, 2, 6, 6)
 
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> colineation.Colineation._print_error_message(test_method_name, test_message)
+    Colineation.test_method(): This is a test
