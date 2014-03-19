@@ -8,6 +8,7 @@
 ### construct, represent
 #   __init__(lines), __str__(), listing()
     >>> def lines_for_init_test():
+    ...     non_list = 'a'
     ...     no_lines = []
     ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
     ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
@@ -16,15 +17,17 @@
     ...     line_46 = line.Line.from_short_spec(4, 6)
     ...     non_colinear_lines = [line_0001, line_0010]
     ...     colinear_lines = [line_46, line_13, line_02]
-    ...     return [no_lines, non_colinear_lines, colinear_lines]
-    >>> no_lines, non_colinear_lines, colinear_lines = lines_for_init_test()
+    ...     return [non_list, no_lines, non_colinear_lines, colinear_lines]
+    >>> non_list, no_lines, non_colinear_lines, colinear_lines = lines_for_init_test()
 
+    ??? non_list_colin = colineation.Colineation(non_list)
+    
     >>> empty_colineation = colineation.Colineation(no_lines)
     >>> print empty_colineation.listing()
     <empty colineation>
 
     >>> non_colinear_colineation = colineation.Colineation(non_colinear_lines)
-    Colineation.__init__(): You're trying to make a colineation with non-colinear lines
+    Colineation.__init__(): The argument must be a list of colinear lines
 
     >>> colinear_colineation = colineation.Colineation(colinear_lines)
     

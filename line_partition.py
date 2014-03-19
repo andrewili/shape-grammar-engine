@@ -16,10 +16,10 @@ class LinePartition(object):
                 self.dictionary = {}
             elif not self.are_lines(lines):
                 raise ValueError()
-            else:
-                self.dictionary = self.make_dictionary(lines)
         except ValueError:
             print "You're trying to make a line partition with non-lines"
+        else:
+            self.dictionary = self.make_dictionary(lines)
 
     def are_lines(self, lines):
         value = True
@@ -55,7 +55,7 @@ class LinePartition(object):
     @classmethod
     def from_dictionary(cls, dictionary):
         """Receives a dictionary of carrier-colineation entries:
-        {(num, num): Colineation, ...}
+            {(num, num): Colineation, ...}
         """
         new_line_partition = LinePartition([])
         new_line_partition.dictionary = dictionary

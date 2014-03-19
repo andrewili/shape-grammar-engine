@@ -124,3 +124,9 @@ Log
 
 #   2014-03-18
     trace_on. Revise
+
+#   2014-03-19
+    # Checks on arguments to methods. Should these be implemented on all 
+    methods that are called by other objects? E.g., __add__, __eq__. No. Stick 
+    to initializers for the moment.
+    
