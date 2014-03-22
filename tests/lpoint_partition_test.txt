@@ -21,12 +21,12 @@
     >>> non_lpoint_lpp = lpoint_partition.LPointPartition(non_lpoints)
     LPointPartition.__init__(): The argument must be a list of labeled points
 
-    >>> empty_lpp = lpoint_partition.LPointPartition.new_empty()
-    >>> print empty_lpp
+    >>> empty_lpp_1 = lpoint_partition.LPointPartition.new_empty()
+    >>> print empty_lpp_1
     []
-    >>> print empty_lpp.listing()
+    >>> print empty_lpp_1.listing()
     <no labeled points>
-    >>> empty_lpp._is_empty()
+    >>> empty_lpp_1.is_empty()
     True
 
     >>> def lpoints_for_init_test():

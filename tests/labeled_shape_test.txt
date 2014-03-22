@@ -30,6 +30,11 @@
     ...     non_empty_lpoint_partition = make_non_empty_lpoint_partition()
     ...     return [empty_line_partition, empty_shape, empty_lpoint_partition, non_empty_shape, non_empty_lpoint_partition]
     >>> empty_line_partition, empty_shape, empty_lpoint_partition, non_empty_shape, non_empty_lpoint_partition = make_lshape_components()
+
+    >>> lshape_non_shape = labeled_shape.LabeledShape('x', empty_lpoint_partition)
+    LabeledShape.__init__(): The arguments must be a shape and a labeled point partition
+    >>> lshape_non_shape = labeled_shape.LabeledShape(empty_shape, 'x')
+    LabeledShape.__init__(): The arguments must be a shape and a labeled point partition
     >>> def make_lshapes_for_init():
     ...     lshape_empty = labeled_shape.LabeledShape(empty_shape, empty_lpoint_partition)
     ...     lshape_shape = labeled_shape.LabeledShape(non_empty_shape, empty_lpoint_partition)
@@ -367,9 +372,9 @@
     a:
         (50, 50)
 
-#   __and__(other)                                                              #   no test
+#   __and__(other)                                          #   no test
 
-#   make_lshape_from()                                                          #   no test, controller
+#   make_lshape_from()                                      #   no test, controller
 
 make_lshape_from(lines, lpoints)                                # 1.2
 
@@ -520,3 +525,9 @@ get_colabeled_lpoint_specs_from(colabeled_point_specs, label)   #2.1.2.1
         (0, 1, b)
         (1, 1, b)
 
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> labeled_shape.LabeledShape._print_error_message(test_method_name, test_message)
+    LabeledShape.test_method(): This is a test

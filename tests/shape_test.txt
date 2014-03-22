@@ -16,12 +16,12 @@
     >>> empty_shape = shape.Shape.new_empty()
 
 ### construct, represent
-#   __init__()
-#   from_lines(lines)
-#   from_specs()
-#   listing()
-#   __str__()
+#   __init__(), from_lines(lines), from_specs(), listing(), __str__()
     
+    >>> non_part = 'x'
+    >>> shape_from_non_part = shape.Shape(non_part)
+    Shape.__init__(): The argument must be a line partition
+
     empty shape
     
     >>> print empty_shape
@@ -91,7 +91,7 @@
     >>> print shape_from_lines
     [(0, 0, 0, 1), (0, 0, 1, 0)]
 
-    from_specs
+    from_lines
     
     >>> spec_n = (0, 0, 0, 1)
     >>> spec_ne = (0, 0, 1, 1)
@@ -256,7 +256,7 @@
         (0, 4, 5, 4)
 
 ### subtract
-#   __sub__(other)                                                              #   back to LShape.__sub__
+#   __sub__(other)                                                          #   back to LShape.__sub__
 
     >>> def make_shapes_for_sub():
     ...     shape_01 = shape.Shape.new_empty()
@@ -325,3 +325,10 @@
         (3, 3, 4, 4)
     >>>
     <empty shape>
+
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> shape.Shape._print_error_message(test_method_name, test_message)
+    Shape.test_method(): This is a test

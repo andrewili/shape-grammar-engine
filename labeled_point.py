@@ -8,7 +8,7 @@ class LabeledPoint(object):
     """
         ### construct
     def __init__(self, x, y, label):
-        """Receives 2 coordinates and a non-empty label:
+        """Receives 2 coordinates and a (possibly empty) label:
             num, num, String
         2D implementation. Immutable
         """

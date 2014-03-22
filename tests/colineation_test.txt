@@ -20,7 +20,8 @@
     ...     return [non_list, no_lines, non_colinear_lines, colinear_lines]
     >>> non_list, no_lines, non_colinear_lines, colinear_lines = lines_for_init_test()
 
-    ??? non_list_colin = colineation.Colineation(non_list)
+    >>> non_list_colin = colineation.Colineation(non_list)
+    Colineation.__init__(): The argument must be a list of colinear lines
     
     >>> empty_colineation = colineation.Colineation(no_lines)
     >>> print empty_colineation.listing()

@@ -11,17 +11,22 @@ class LinePartition(object):
         """Receives a list of collinear lines:
             [Line, ...], n >= 0
         """
+        method_name = '__init__()'
         try:
-            if lines == []:
-                self.dictionary = {}
-            elif not self.are_lines(lines):
-                raise ValueError()
-        except ValueError:
-            print "You're trying to make a line partition with non-lines"
+            if not (
+                lines.__class__ == list and 
+                (
+                    lines == [] or
+                    self._are_lines(lines))
+            ):
+                raise TypeError
+        except TypeError:
+            message = 'The argument must be a list of lines'
+            self.__class__._print_error_message(method_name, message)
         else:
             self.dictionary = self.make_dictionary(lines)
 
-    def are_lines(self, lines):
+    def _are_lines(self, lines):
         value = True
         for line_i in lines:
             if line_i.__class__ != line.Line:

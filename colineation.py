@@ -13,11 +13,14 @@ class Colineation(object):
         """
         method_name = '__init__()'
         try:
-            if (len(lines) >= 1 and
-                not self._colinear(lines)
+            if not(
+                lines.__class__ == list and
+                (
+                    lines == [] or
+                    self._colinear(lines))
             ):
-                raise ValueError()
-        except ValueError:
+                raise TypeError
+        except TypeError:
             message = (
                 "The argument must be a list of colinear lines")
             self.__class__._print_error_message(method_name, message)
@@ -69,14 +72,15 @@ class Colineation(object):
         return '[%s]' % colineation_string
 
     def listing(self, decimal_places=0, indent_level=0):
-        """Receives indent_level:
+        """Receives the number of decimal places and the indent level:
+            int >= 0
             int >= 0
         Returns an ordered, formatted, multi-line string in the form:
             (bearing, intercept):
                 (x1, y1, x2, y2)
                 ...
         """
-        indent_increment = 4
+        indent_increment = 4                                #   4 spaces
         if indent_level < 0:
             indent_level = 0
         indent_string = ' ' * int(indent_level) * indent_increment
@@ -111,8 +115,7 @@ class Colineation(object):
             colineation_listing = '\n'.join(line_listings)
         return colineation_listing
 
-
-    def lines_str(self, lines):                                                 #   not called
+    def lines_str(self, lines):                             #   used by trace
         """Receives a list of lines:
             [Line, ...]
         Returns a string: 
@@ -236,7 +239,7 @@ class Colineation(object):
         while len(non_maximal_lines) >= 1:
             other_line = non_maximal_lines[0]
             if Colineation._lines_can_be_merged(working_line, other_line):
-                working_line = Colineation.merge_lines(working_line, other_line)
+                working_line = Colineation._merge_lines(working_line, other_line)
                 non_maximal_lines.pop(0)
             else:
                 break
@@ -262,7 +265,7 @@ class Colineation(object):
             return False
 
     @classmethod
-    def merge_lines(cls, line_1, line_2):
+    def _merge_lines(cls, line_1, line_2):
         """Receives 2 mergeable lines, line_1.tail <= line_2.tail:
             [Line, Line]
         Returns the sum of the 2 lines:

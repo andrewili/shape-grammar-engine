@@ -87,46 +87,52 @@ Log
     Solution: Sort the elements at initialization.
 
 #   2014-02-15
-    # Listing. Revise to allow a variable number of decimal places. Implemented
-    # Point.get_formatted_coord(). 
-    # Completed 2014-02-26 
-    Invariants.
+    #   Listing. Revise to allow a variable number of decimal places. 
+        Implemented
+    #   Point.get_formatted_coord()
+    #   Completed 2014-02-26 
+    >   Invariants.
 
 #   2014-02-19
-    Implement value and type checking for arguments. Continue from Colabeling
+    #   Implement value and type checking for arguments. Finished 2014-03-22
     
 #   2014-02-26
-    Rename "protected" methods: method() --> _method()
+    #   Rename "protected" methods: method() --> _method(). Finished 
+        2014-03-22
 
 #   2014-03-01
-    Revise error messages: <class name>.<method name>: <message>
+    #   Revise error messages: <class name>.<method name>: <message>.
+        Finished 2014-03-22
 
 #   2014-03-03
-    Implement _print_error_message(). Make a parent object with this as a
-    method?
+    >   Implement _print_error_message(). Make a parent object with this as a
+        method?
 
 #   2014-03-06
-    Colabeling. Refactor specs() as an attribute? To complement specs_set. 
-    Colabeling.union(). Refactor as __add__() or __or__()?
+    >   Colabeling. Refactor specs() as an attribute? To complement specs_set. 
+    >   Colabeling.union(). Refactor as __add__() or __or__()?
 
 #   2014-03-07
-    Colabeling.get_lpoint_listing(). Shouldn't this be a method of 
-    LabeledPoint? Is it relevant that it comes from a spec? 
+    >   Colabeling.get_lpoint_listing(). Shouldn't this be a method of 
+        LabeledPoint? Is it relevant that it comes from a spec? 
 
 #   2014-03-09
-    LabeledPoint. Allow empty labels? 
-    # Implement are_specs(cls). Done 2014-03-10
+    >   LabeledPoint. Allow empty labels? 
+    #   Implement are_specs(cls). Done 2014-03-10
     
 #   2014-03-13
-    List comprehensions. Implement
-    # Line.from_spec(). Fixed by revising Point.__init__() to include 
-    self.__del__(). 2014-03-17. Reversed 2014-03-18.
+    >   List comprehensions. Implement
+    #   Line.from_spec(). Fixed by revising Point.__init__() to include 
+        self.__del__(). 2014-03-17. Reversed 2014-03-18.
 
 #   2014-03-18
-    trace_on. Revise
+    >   trace_on. Revise
 
 #   2014-03-19
-    # Checks on arguments to methods. Should these be implemented on all 
-    methods that are called by other objects? E.g., __add__, __eq__. No. Stick 
-    to initializers for the moment.
+    #   Checks on arguments to methods. Should these be implemented on all 
+        methods that are called by other objects? E.g., __add__, __eq__. 
+        No. Stick to initializers for the moment
     
+#   2014-03-22
+    >   listing(). Limit decimal_places parameter to integers
+    >   LabeledPoint. __init__(). Revise parameters to point and label?

@@ -19,7 +19,7 @@
     >>> mixed_elements = make_mixed_elements_for_mixed_init_test()
 
     >>> mixed_partition = line_partition.LinePartition(mixed_elements)
-    You're trying to make a line partition with non-lines
+    LinePartition.__init__(): The argument must be a list of lines
 
     >>> def lines_0_deg_overlapping():
     ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)
@@ -106,7 +106,7 @@
     >>> print partition
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
 
-#   are_lines(elements)
+#   _are_lines(elements)
     >>> def elements_for_are_lines_test():
     ...     line_01 = line.Line.from_short_spec(0, 1)
     ...     line_34 = line.Line.from_short_spec(3, 4)
@@ -116,9 +116,9 @@
     ...     return [lines, lines_and_points]
     >>> lines, lines_and_points = elements_for_are_lines_test()
 
-    >>> partition_drone.are_lines(lines_and_points)
+    >>> partition_drone._are_lines(lines_and_points)
     False
-    >>> partition_drone.are_lines(lines)
+    >>> partition_drone._are_lines(lines)
     True
 
 #   make_dictionary(lines)
@@ -290,7 +290,7 @@
         (0, 0, 2, 0)
 
 ### subtract
-#   __sub__(other)                                                              #   back to shape.__sub__
+#   __sub__(other)                                                          #   back to shape.__sub__
 
     >>> def make_line_parts_for_sub():
     ...     lpart_01 = line_partition.LinePartition([])
@@ -375,37 +375,6 @@
     >>> diff_1212 = lpart_12 - lpart_12
     >>> print diff_1212.listing()
     <empty line partition>
-
-#   __sub__() problem
-
-    >>> def make_lparts_for_defective_subtraction():
-    ...     min_v1a = line.Line.from_spec(40, 20, 40, 40)
-    ...     min_v1b = line.Line.from_spec(40, 60, 40, 80)
-    ...     min_h1a = line.Line.from_spec(20, 40, 40, 40)
-    ...     min_h2a = line.Line.from_spec(20, 60, 40, 60)
-    ...     hvhv_lines = [min_v1a, min_v1b, min_h1a, min_h2a]
-    ...     hvhv = line_partition.LinePartition(hvhv_lines)
-    ...     sub_v1a = line.Line.from_spec(40, 20, 40, 40)
-    ...     sub_v1b = line.Line.from_spec(40, 60, 40, 80)
-    ...     sub_h1a = line.Line.from_spec(20, 40, 40, 40)
-    ...     ovov_lines = [sub_v1a, sub_v1b]
-    ...     ovov = line_partition.LinePartition(ovov_lines)
-    ...     hvov_lines = [sub_v1a, sub_h1a, sub_v1b]
-    ...     hvov = line_partition.LinePartition(hvov_lines)
-    ...     return hvhv, ovov, hvov
-    >>> hvhv, ovov, hvov = make_lparts_for_defective_subtraction()
-
-    >>> hvhv_minus_hvov = hvhv - hvov
-    >>> print hvhv_minus_hvov.listing()
-    (90, 60):
-        (20, 60, 40, 60)
-
-    >>> hvhv_minus_ovov = hvhv - ovov
-    >>> print hvhv_minus_ovov.listing()
-    (90, 40):
-        (20, 40, 40, 40)
-    (90, 60):
-        (20, 60, 40, 60)
 
 #   reduce()
     >>> def make_line_parts_for_reduce():

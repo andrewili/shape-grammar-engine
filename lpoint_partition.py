@@ -110,7 +110,7 @@ class LPointPartition(object):
                 ...
             ...
         """
-        if self._is_empty():
+        if self.is_empty():
             lpoint_part_listing = '<no labeled points>'
         else:
             entry_listings = []
@@ -144,7 +144,7 @@ class LPointPartition(object):
     def __ne__(self, other):
         return self.dictionary != other.dictionary
         
-    def _is_empty(self):
+    def is_empty(self):
         return self.dictionary == {}
 
     def is_a_sub_lpoint_partition_of(self, other):
@@ -198,9 +198,9 @@ class LPointPartition(object):
         Returns the difference self - other:
             LPointPartition
         """
-        if self._is_empty():
+        if self.is_empty():
             new_lpoint_part = LPointPartition.new_empty()
-        elif other._is_empty():
+        elif other.is_empty():
             new_lpoint_part = self
         else:
             new_lpoint_specs = []

@@ -11,7 +11,17 @@ class Shape(object):
         """Receives:
             LinePartition
         """
-        self.line_part = line_partition_in
+        method_name = '__init__()'
+        try:
+            if not (
+                line_partition_in.__class__ == line_partition.LinePartition
+            ):
+                raise TypeError
+        except TypeError:
+            message = 'The argument must be a line partition'
+            self.__class__._print_error_message(method_name, message)
+        else:
+            self.line_part = line_partition_in
 
     @classmethod
     def from_lines(cls, lines):
@@ -104,6 +114,10 @@ class Shape(object):
             print 'new_shape'
             print new_shape.listing()
         return new_shape
+
+    @classmethod
+    def _print_error_message(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
 
         ###
 if __name__ == '__main__':

@@ -13,20 +13,34 @@ class LabeledShape(object):
             Shape
             LPointPartition
         """
-        self.the_shape = shape_in
-        self.lpoint_part = lpoint_partition_in
+        method_name = '__init__()'
+        try:
+            if not (
+                shape_in.__class__ == shape.Shape and
+                lpoint_partition_in.__class__ == (
+                    lpoint_partition.LPointPartition)
+            ):
+                raise TypeError
+        except TypeError:
+            message = '%s %s' % (
+                'The arguments must be a shape',
+                'and a labeled point partition')
+            self.__class__._print_error_message(method_name, message)
+        else:
+            self.the_shape = shape_in
+            self.lpoint_part = lpoint_partition_in
 
     @classmethod
     def new_empty(cls):
         empty_shape = shape.Shape.new_empty()
-        empty_lpoint_part = line_partition.LinePartition.new_empty()
+        empty_lpoint_part = lpoint_partition.LPointPartition.new_empty()
         empty_lshape = LabeledShape(empty_shape, empty_lpoint_part)
         return empty_lshape
 
     ### represent
     def __str__(self):
-        """Returns a string of a duple of ordered line specs and ordered labeled 
-        point specs:
+        """Returns a string of a duple of ordered line specs and ordered 
+        labeled point specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
         """
         return '(%s, %s)' % (self.the_shape, self.lpoint_part)
@@ -46,31 +60,33 @@ class LabeledShape(object):
         else:
             shape_listing = self.the_shape.listing()
             lpoint_part_listing = self.lpoint_part.listing()
-            # lpoint_part_listing = self.get_lpoint_partition_listing(
-            #     self.lpoint_part)
             listing = '%s\n%s' % (shape_listing, lpoint_part_listing)
         return listing
 
     ### compare
-    def __eq__(self, other):                                                    #   no test
-        return (
+    def __eq__(self, other):                                #   no test
+        value = (
             self.the_shape == other.the_shape and
             self.lpoint_part == other.lpoint_part)
+        return value
 
-    def __ne__(self, other):                                                    #   no test
-        return (
+    def __ne__(self, other):                                #   no test
+        value = (
             self.the_shape != other.the_shape or
             self.lpoint_part != other.lpoint_part)
+        return value
 
-    def is_empty(self):                                                         #   no test
-        return (
+    def is_empty(self):                                     #   no test
+        value = (
             self.the_shape.is_empty() and
             self.lpoint_part.is_empty())
+        return value
 
     def is_a_sub_labeled_shape_of(self, other):
-        return (self.the_shape.is_a_subshape_of(other.the_shape) and
-                self.lpoint_part.is_a_sub_lpoint_partition_of(
-                    other.lpoint_part))
+        value = (
+            self.the_shape.is_a_subshape_of(other.the_shape) and
+            self.lpoint_part.is_a_sub_lpoint_partition_of(other.lpoint_part))
+        return value
 
     ### operations
     def __add__(self, other):
@@ -97,8 +113,9 @@ class LabeledShape(object):
         new_lshape = LabeledShape(new_shape, new_lpoint_part)
         return new_lshape
 
-    def __and__(self, other):                                                   #   not called, no test
-        #   Intersection &                                                      #   not implemented
+    def __and__(self, other):                               #   not called, no test
+                                                            #   Intersection &
+                                                            #   not implemented
         new_shape = self.the_shape & other.the_shape
         new_lpoint_part = self.lpoint_part & other.lpoint_part
         return LabeledShape(new_shape, new_lpoint_part)
@@ -125,22 +142,9 @@ class LabeledShape(object):
         lpoint_specs = self.lpoint_part.specs()
         return (line_specs, lpoint_specs)
 
-    ### test
-def subtract_test():
-    import obj_translator
-    trace_on = False
-    w_vline_obj = open(
-        '/Users/liandrew/Dropbox/F/FreeCad stuff/subtraction_test/w_vline.obj')
-    w_vline = obj_translator.ObjTranslator.get_lshape_from(w_vline_obj)
-    ovhv_obj = open(
-        '/Users/liandrew/Dropbox/F/FreeCad stuff/subtraction_test/-vhv_sw_ell_nw_vline.obj')
-    ovhv = obj_translator.ObjTranslator.get_lshape_from(ovhv_obj)
-    lshape_difference = w_vline - ovhv
-    if trace_on:
-        print '||  w_vline:\n%s' % w_vline.listing()
-        # print '||  ovhv_listing:\n%s' % ovhv.listing()
-        print '||  ovhv:\n%s' % ovhv
-        print '||  lshape_difference:\n%s' % lshape_difference.listing()
+    @classmethod
+    def _print_error_message(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest
