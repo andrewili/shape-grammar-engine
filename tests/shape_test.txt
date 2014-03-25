@@ -49,14 +49,14 @@
 
     >>> print non_empty_shape
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
-    >>> print non_empty_shape.listing()
-    (0, 0):
-        (0, 0, 0, 1)
-    (45, 0):
-        (0, 0, 1, 1)
-        (2, 2, 3, 3)
-    (90, 0):
-        (0, 0, 1, 0)
+    >>> print non_empty_shape.listing(1)
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 1.0)
+    (45.0, 0.0):
+        (0.0, 0.0, 1.0, 1.0)
+        (2.0, 2.0, 3.0, 3.0)
+    (90.0, 0.0):
+        (0.0, 0.0, 1.0, 0.0)
 
     2 disjoint collinear horizontal lines, 1 vertical line: _ | _
     

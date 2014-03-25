@@ -117,7 +117,7 @@ Log
         LabeledPoint? Is it relevant that it comes from a spec? 
 
 #   2014-03-09
-    >   LabeledPoint. Allow empty labels? 
+    #   LabeledPoint. Allow empty labels? Done
     #   Implement are_specs(cls). Done 2014-03-10
     
 #   2014-03-13
@@ -135,4 +135,4 @@ Log
     
 #   2014-03-22
     >   listing(). Limit decimal_places parameter to integers
-    >   LabeledPoint. __init__(). Revise parameters to point and label?
+    >   LabeledPoint.__init__(). Revise parameters to point and label?

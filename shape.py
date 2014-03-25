@@ -58,11 +58,11 @@ class Shape(object):
         """
         return self.line_part.__str__()
 
-    def listing(self):
+    def listing(self, decimal_places=0):
         if self.is_empty():
             string = '<empty shape>'
         else:
-            string = self.line_part.listing()
+            string = self.line_part.listing(decimal_places)
         return string
 
     def line_specs(self):

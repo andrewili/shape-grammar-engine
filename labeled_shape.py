@@ -45,7 +45,7 @@ class LabeledShape(object):
         """
         return '(%s, %s)' % (self.the_shape, self.lpoint_part)
 
-    def listing(self):
+    def listing(self, decimal_places=0):
         """An ordered string in the form:
             (bearing, intercept):
                 (x1, y1, x2, y2)
@@ -58,8 +58,8 @@ class LabeledShape(object):
         if self.is_empty():
             listing = '<empty labeled shape>'
         else:
-            shape_listing = self.the_shape.listing()
-            lpoint_part_listing = self.lpoint_part.listing()
+            shape_listing = self.the_shape.listing(decimal_places)
+            lpoint_part_listing = self.lpoint_part.listing(decimal_places)
             listing = '%s\n%s' % (shape_listing, lpoint_part_listing)
         return listing
 

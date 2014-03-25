@@ -168,7 +168,7 @@ class Colabeling(object):
 
     ### get
     def get_lpoint_specs(self):                 #   refactor as an attribute?
-        """Returns a list (not a list) of labeled point specsx
+        """Returns a list (not a list) of labeled point specs
             [(x, y, label), ...]
         """
         specs = []
