@@ -46,18 +46,13 @@
         (0.0, 0.0, 2.0, 2.0)
         (1.0, 1.0, 3.0, 3.0)
         (4.0, 4.0, 6.0, 6.0)
-    >>> print colinear_colineation.listing(1.1, 1.1)
-        (0.0, 0.0, 2.0, 2.0)
-        (1.0, 1.0, 3.0, 3.0)
-        (4.0, 4.0, 6.0, 6.0)
-    >>> print colinear_colineation.listing(-2, -2)
-    (0, 0, 2, 2)
-    (1, 1, 3, 3)
-    (4, 4, 6, 6)
-    >>> print colinear_colineation.listing(-2.3, -2.3)
-    (0, 0, 2, 2)
-    (1, 1, 3, 3)
-    (4, 4, 6, 6)
+
+    ??? print colinear_colineation.listing(1.1, 1.1)
+    Colineation.listing(): The arguments must both be integers
+    ??? print colinear_colineation.listing(-2.3, -2.3)
+    Colineation.listing(): The arguments must both be integers
+    ??? print colinear_colineation.listing(-2, -2)
+    Colineation.listing(): The arguments must both be non-negative
 
 #   _colinear(lines)
     >>> def lines_for_colinear_test():

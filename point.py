@@ -38,16 +38,29 @@ class Point(object):
         return string
 
     def listing(self, decimal_places=0):
-        """Receives a number 
-            num
+        """Receives an integer
+            decimal_places >= 0
         Returns a string of the form (x, y), where x and y have the specified
         number of decimal places
             String
         """
-        x_formatted = self.get_formatted_coord('x', decimal_places)
-        y_formatted = self.get_formatted_coord('y', decimal_places)
-        string = '(%s, %s)' % (x_formatted, y_formatted)
-        return string
+        method_name = 'listing()'
+        try:
+            if not decimal_places.__class__ == int:
+                raise TypeError
+            elif not decimal_places >= 0:
+                raise ValueError
+        except TypeError:
+            message = 'The argument must be an integer'
+            self.__class__._print_error_message(method_name, message)
+        except ValueError:
+            message = 'The argument must be non-negative'
+            self.__class__._print_error_message(method_name, message)
+        else:
+            x_formatted = self.get_formatted_coord('x', decimal_places)
+            y_formatted = self.get_formatted_coord('y', decimal_places)
+            string = '(%s, %s)' % (x_formatted, y_formatted)
+            return string
 
     def get_formatted_coord(self, dimension, decimal_places=0):
         """Receives the dimension (i.e., x or y) of the coordinate and the 

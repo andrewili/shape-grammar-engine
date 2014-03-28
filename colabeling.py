@@ -149,7 +149,6 @@ class Colabeling(object):
         return colabeling_listing
 
     def _get_lpoint_listing(self, lpoint_spec, decimal_places=0):
-        #   why isn't this a method of LabeledPoint? 
         """Receives a labeled point spec:
             (x, y, label)
         Returns a string in the form:

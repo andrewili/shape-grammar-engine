@@ -31,12 +31,13 @@
     (1, 2, a)
     >>> print lpoint_init.listing(2)
     (1.00, 2.00, a)
-    >>> print lpoint_init.listing(2.2)
-    (1.00, 2.00, a)
-    >>> print lpoint_init.listing(-2)
-    (1, 2, a)
-    >>> print lpoint_init.listing(-2.3)
-    (1, 2, a)
+
+    ??? print lpoint_init.listing(2.2)
+    Point.listing(): The argument must be an integer
+    ??? print lpoint_init.listing(-2.3)
+    Point.listing(): The argument must be an integer
+    ??? print lpoint_init.listing(-2)
+    Point.listing(): The argument must be non-negative
 
 ### relations
 #   are_lpoint_specs()    ### Moved from Colabeling

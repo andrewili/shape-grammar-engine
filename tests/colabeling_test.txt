@@ -60,26 +60,19 @@
     (1.0, 1.0)
     (2.0, 2.0)
     (3.0, 3.0)
-    >>> print colabeling_1.listing(0.1)
-    (1, 1)
-    (2, 2)
-    (3, 3)
-    >>> print colabeling_1.listing(-1)
-    (1, 1)
-    (2, 2)
-    (3, 3)
     >>> print colabeling_1.listing(0, 1)
         (1, 1)
         (2, 2)
         (3, 3)
-    >>> print colabeling_1.listing(0, 1.1)
-        (1, 1)
-        (2, 2)
-        (3, 3)
-    >>> print colabeling_1.listing(0, -1)
-    (1, 1)
-    (2, 2)
-    (3, 3)
+
+    ??? print colabeling_1.listing(0.1)
+    Point.listing(): The argument must be an integer
+    ??? print colabeling_1.listing(-1)
+    Point.listing(): The argument must be non-negative
+    ??? print colabeling_1.listing(0, -1)
+    Point.listing(): The argument must be non-negative
+    ??? print colabeling_1.listing(0, 1.1)
+    Point.listing(): The argument must be an integer
 
 #   _contains_only_lpoints(elements)
     >>> lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')

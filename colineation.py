@@ -80,19 +80,27 @@ class Colineation(object):
                 (x1, y1, x2, y2)
                 ...
         """
-        indent_increment = 4                                #   4 spaces
-        if indent_level < 0:
-            indent_level = 0
-        indent_string = ' ' * int(indent_level) * indent_increment
-        if self.lines == []:
-            colineation_listing = '%s<empty colineation>' % indent_string
+        method_name = 'listing()'
+        try:
+            if not decimal_places.__class__ == int:
+                raise TypeError
+        except TypeError:
+            message = 'The arguments must both be integers'
+            self._print_error_message(method_name, message)
         else:
-            line_listings = []
-            for line_i in self.lines:
-                line_listings.append(indent_string + line_i.listing(
-                    decimal_places))
-            colineation_listing = '\n'.join(line_listings)
-        return colineation_listing
+            indent_increment = 4                                #   4 spaces
+            if indent_level < 0:
+                indent_level = 0
+            indent_string = ' ' * int(indent_level) * indent_increment
+            if self.lines == []:
+                colineation_listing = '%s<empty colineation>' % indent_string
+            else:
+                line_listings = []
+                for line_i in self.lines:
+                    line_listings.append(indent_string + line_i.listing(
+                        decimal_places))
+                colineation_listing = '\n'.join(line_listings)
+            return colineation_listing
 
     def listing_unordered(self, indent_level=0):
         """Receives indent_level:

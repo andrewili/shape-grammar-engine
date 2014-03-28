@@ -56,27 +56,13 @@
     b:
         (2.0, 2.0)
         (3.0, 3.0)
-    >>> print lpp.listing(1.1)
-    a:
-        (0.0, 0.0)
-        (1.0, 1.0)
-    b:
-        (2.0, 2.0)
-        (3.0, 3.0)
-    >>> print lpp.listing(-2)
-    a:
-        (0, 0)
-        (1, 1)
-    b:
-        (2, 2)
-        (3, 3)
-    >>> print lpp.listing(-2.2)
-    a:
-        (0, 0)
-        (1, 1)
-    b:
-        (2, 2)
-        (3, 3)
+
+    ??? print lpp.listing(1.1)
+    Point.listing(): The argument must be an integer
+    ??? print lpp.listing(-2.2)
+    Point.listing(): The argument must be an integer
+    ??? print lpp.listing(-2)
+    Point.listing(): The argument must be non-negative
 
 #   _make_dictionary(lpoints)
 

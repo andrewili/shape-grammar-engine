@@ -75,24 +75,13 @@
     (45.0, 0.0):
         (0.0, 0.0, 1.0, 1.0)
         (2.0, 2.0, 3.0, 3.0)
-    >>> print partition_0_45.listing(1.1)
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 3.0)
-    (45.0, 0.0):
-        (0.0, 0.0, 1.0, 1.0)
-        (2.0, 2.0, 3.0, 3.0)
-    >>> print partition_0_45.listing(-1)
-    (0, 0):
-        (0, 0, 0, 3)
-    (45, 0):
-        (0, 0, 1, 1)
-        (2, 2, 3, 3)
-    >>> print partition_0_45.listing(-1.1)
-    (0, 0):
-        (0, 0, 0, 3)
-    (45, 0):
-        (0, 0, 1, 1)
-        (2, 2, 3, 3)
+
+    ??? print partition_0_45.listing(1.1)
+    Point.listing(): The argument must be an integer
+    ??? print partition_0_45.listing(-1.1)
+    Point.listing(): The argument must be an integer
+    ??? print partition_0_45.listing(-1)
+    Point.listing(): The argument must be non-negative
 
     >>> def make_partition():
     ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
