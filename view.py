@@ -24,7 +24,7 @@ class View(tk.Toplevel, Observable):
         tk.Toplevel.__init__(self, master)
         self.protocol('WM_DELETE_WINDOW', self.master.destroy)
         Observable.__init__(self)
-        self.title('Labeled shape display 2013-10-04')
+        self.title('Rule display 2014-03-29')
         self.text_var_a = tk.StringVar()
         self.text_var_b = tk.StringVar()
         self.text_var_c = tk.StringVar()
@@ -33,17 +33,19 @@ class View(tk.Toplevel, Observable):
         self.label_font = ('Andale Mono', '11')
         self.background_color = '#EEEEEE'
         
-        self.make_main_frame()
-        self.make_label_frame_a(        0, 0)
-        self.make_spacer(               1, 0)
-        self.make_label_frame_b(        2, 0)
-        self.make_spacer(               3, 0)
-##        self.make_spacer_above_buttons( 4, 0)
-        self.make_label_frame_buttons(  4, 0)
-        self.make_spacer(               5, 0)
-        self.make_label_frame_c(        6, 0)
+        self._make_main_frame()
+        self._make_label_frame_a(        0, 0)
+        self._make_spacer(               1, 0)
+        self._make_label_frame_b(        2, 0)
+        self._make_spacer(               3, 0)
+        # self._make_label_frame_buttons(  4, 0)
+        # self._make_spacer(               5, 0)
+        # self._make_label_frame_c(        6, 0)
+        self._make_label_frame_a_minus_b(7, 0)
+        self._make_spacer(               8, 0)
+        self._make_label_frame_b_minus_a(9, 0)
 
-    def make_main_frame(self):
+    def _make_main_frame(self):
         self.mainframe = ttk.Frame(
             self,
             padding='10 10 10 10')
@@ -58,7 +60,7 @@ class View(tk.Toplevel, Observable):
             0,
             weight=1)
 
-    def make_label_frame_a(self, column_in, row_in):
+    def _make_label_frame_a(self, column_in, row_in):
         self.label_frame_a = ttk.LabelFrame(
             self.mainframe)
         self.label_frame_a.grid(
@@ -88,7 +90,7 @@ class View(tk.Toplevel, Observable):
             column=0,
             row=3)
 
-    def make_label_frame_b(self, column_in, row_in):
+    def _make_label_frame_b(self, column_in, row_in):
         self.label_frame_b = ttk.LabelFrame(
             self.mainframe)
         self.label_frame_b.grid(
@@ -118,7 +120,7 @@ class View(tk.Toplevel, Observable):
             column=0,
             row=3)
 
-    def make_label_frame_buttons(self, column_in, row_in):
+    def _make_label_frame_buttons(self, column_in, row_in):
         self.label_frame_buttons = ttk.LabelFrame(
             self.mainframe)
         self.label_frame_buttons.grid(
@@ -164,7 +166,7 @@ class View(tk.Toplevel, Observable):
             column=0,
             row=4)            
 
-    def make_label_frame_c(self, column_in, row_in):
+    def _make_label_frame_c(self, column_in, row_in):
         self.label_frame_c = ttk.LabelFrame(
             self.mainframe)
         self.label_frame_c.grid(
@@ -181,8 +183,7 @@ class View(tk.Toplevel, Observable):
             text=' ')
         self.spacer_c.grid(
             column=0,
-            row=1
-            )
+            row=1)
         self.label_c = tk.Label(
             self.label_frame_c,
             width=self.label_width,
@@ -193,8 +194,67 @@ class View(tk.Toplevel, Observable):
             font=self.label_font)
         self.label_c.grid(
             column=0,
-            row=2
-            )
+            row=2)
+
+    def _make_label_frame_a_minus_b(self, column_in, row_in):
+        self.label_frame_a_minus_b = ttk.LabelFrame(
+            self.mainframe)
+        self.label_frame_a_minus_b.grid(
+            column=column_in,
+            row=row_in,
+            sticky='NEW')
+        self.canvas_c = self.make_canvas(
+            self.label_frame_a_minus_b,
+            0, 0)
+        self.spacer_c = tk.Label(
+            self.label_frame_a_minus_b,
+            width=2,
+            background=self.background_color,
+            text=' ')
+        self.spacer_c.grid(
+            column=0,
+            row=1)
+        self.label_c = tk.Label(
+            self.label_frame_a_minus_b,
+            width=self.label_width,
+            height=self.label_height,
+            textvariable=self.text_var_c,
+            anchor=tk.NW,
+            justify=tk.LEFT,
+            font=self.label_font)
+        self.label_c.grid(
+            column=0,
+            row=2)
+
+    def _make_label_frame_b_minus_a(self, column_in, row_in):
+        self.label_frame_b_minus_a = ttk.LabelFrame(
+            self.mainframe)
+        self.label_frame_b_minus_a.grid(
+            column=column_in,
+            row=row_in,
+            sticky='NEW')
+        self.canvas_c = self.make_canvas(
+            self.label_frame_b_minus_a,
+            0, 0)
+        self.spacer_c = tk.Label(
+            self.label_frame_b_minus_a,
+            width=2,
+            background=self.background_color,
+            text=' ')
+        self.spacer_c.grid(
+            column=0,
+            row=1)
+        self.label_c = tk.Label(
+            self.label_frame_b_minus_a,
+            width=self.label_width,
+            height=self.label_height,
+            textvariable=self.text_var_c,
+            anchor=tk.NW,
+            justify=tk.LEFT,
+            font=self.label_font)
+        self.label_c.grid(
+            column=0,
+            row=2)
 
     def make_canvas(self, parent, column_in, row_in):
         canvas = tk.Canvas(
@@ -210,7 +270,7 @@ class View(tk.Toplevel, Observable):
             sticky='EW')
         return canvas
 
-    def make_spacer(self, column_in, row_in):
+    def _make_spacer(self, column_in, row_in):
         self.spacer = tk.Label(
             self.mainframe,
             width=2,
