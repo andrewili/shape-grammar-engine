@@ -14,10 +14,11 @@ class Controller(object):
         self.the_view = view_in
         self.the_view.add_observer(self)
         self.responses = {
-            # self.the_view.get_lshape_a_button: (
-            #     self.respond_get_lshape_a_button),
-            # self.the_view.get_lshape_b_button: (
-            #     self.respond_get_lshape_b_button),
+            self.the_view.get_lshape_a_button: (
+                self.respond_get_lshape_a_button),
+            self.the_view.get_lshape_b_button: (
+                self.respond_get_lshape_b_button)
+            # ,
             # self.the_view.get_lshape_a_plus_b_button: (
             #     self.respond_get_a_plus_b_button),
             # self.the_view.get_lshape_a_minus_b_button: (
