@@ -60,40 +60,6 @@ class View(tk.Toplevel, Observable):
             0,
             weight=1)
 
-    def _make_label_frame(self, column_in, row_in, name):
-        """Receives:
-            int, int, str
-        Makes a label frame to display a labeled shape and its listing
-        """
-        self.label_frame_a = ttk.LabelFrame(
-            self.mainframe)
-        self.label_frame_a.grid(
-            column=column_in,
-            row=row_in,
-            sticky='EW')
-        self.canvas_a = self.make_canvas(
-            self.label_frame_a,
-            0, 0)
-        self.get_lshape_a_button = ttk.Button(
-            self.label_frame_a,
-            width=15,
-            text='Get A',
-            command=(self.get_lshape_a))
-        self.get_lshape_a_button.grid(
-            column=0,
-            row=2)
-        self.label_a = tk.Label(
-            self.label_frame_a,
-            width=self.label_width,
-            height=self.label_height,
-            textvariable=self.text_var_a,
-            anchor=tk.NW,
-            justify=tk.LEFT,
-            font=self.label_font)
-        self.label_a.grid(
-            column=0,
-            row=3)
-
     def _make_label_frame_a(self, column_in, row_in):
         self.label_frame_a = ttk.LabelFrame(
             self.mainframe)
