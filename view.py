@@ -120,81 +120,81 @@ class View(tk.Toplevel, Observable):
             column=0,
             row=3)
 
-    # def _make_label_frame_buttons(self, column_in, row_in):
-    #     self.label_frame_buttons = ttk.LabelFrame(
-    #         self.mainframe)
-    #     self.label_frame_buttons.grid(
-    #         column=column_in,
-    #         row=row_in,
-    #         sticky='NEW')
-    #     self.result_button_frame_spacer_upper = tk.Label(
-    #         self.label_frame_buttons,
-    #         height=5,
-    #         background=self.background_color)
-    #     self.result_button_frame_spacer_upper.grid(
-    #         column=0,
-    #         row=0)
-    #     self.get_lshape_a_plus_b_button = ttk.Button(
-    #         self.label_frame_buttons,
-    #         width=15,
-    #         text='A + B',
-    #         command=self.get_lshape_a_plus_b)
-    #     self.get_lshape_a_plus_b_button.grid(
-    #         column=0,
-    #         row=1)
-    #     self.get_lshape_a_minus_b_button = ttk.Button(
-    #         self.label_frame_buttons,
-    #         width=15,
-    #         text='A - B',
-    #         command=self.get_lshape_a_minus_b)
-    #     self.get_lshape_a_minus_b_button.grid(
-    #         column=0,
-    #         row=2)
-    #     self.get_lshape_a_sub_lshape_b_button = ttk.Button(
-    #         self.label_frame_buttons,
-    #         width=15,
-    #         text='A <= B',
-    #         command=self.get_lshape_a_sub_lshape_b)
-    #     self.get_lshape_a_sub_lshape_b_button.grid(
-    #         column=0,
-    #         row=3)
-    #     self.result_button_frame_spacer_lower = tk.Label(
-    #         self.label_frame_buttons,
-    #         height=17,
-    #         background=self.background_color)
-    #     self.result_button_frame_spacer_lower.grid(
-    #         column=0,
-    #         row=4)            
+    def _make_label_frame_buttons(self, column_in, row_in):
+        self.label_frame_buttons = ttk.LabelFrame(
+            self.mainframe)
+        self.label_frame_buttons.grid(
+            column=column_in,
+            row=row_in,
+            sticky='NEW')
+        self.result_button_frame_spacer_upper = tk.Label(
+            self.label_frame_buttons,
+            height=5,
+            background=self.background_color)
+        self.result_button_frame_spacer_upper.grid(
+            column=0,
+            row=0)
+        self.get_lshape_a_plus_b_button = ttk.Button(
+            self.label_frame_buttons,
+            width=15,
+            text='A + B',
+            command=self.get_lshape_a_plus_b)
+        self.get_lshape_a_plus_b_button.grid(
+            column=0,
+            row=1)
+        self.get_lshape_a_minus_b_button = ttk.Button(
+            self.label_frame_buttons,
+            width=15,
+            text='A - B',
+            command=self.get_lshape_a_minus_b)
+        self.get_lshape_a_minus_b_button.grid(
+            column=0,
+            row=2)
+        self.get_lshape_a_sub_lshape_b_button = ttk.Button(
+            self.label_frame_buttons,
+            width=15,
+            text='A <= B',
+            command=self.get_lshape_a_sub_lshape_b)
+        self.get_lshape_a_sub_lshape_b_button.grid(
+            column=0,
+            row=3)
+        self.result_button_frame_spacer_lower = tk.Label(
+            self.label_frame_buttons,
+            height=17,
+            background=self.background_color)
+        self.result_button_frame_spacer_lower.grid(
+            column=0,
+            row=4)            
 
-    # def _make_label_frame_c(self, column_in, row_in):
-    #     self.label_frame_c = ttk.LabelFrame(
-    #         self.mainframe)
-    #     self.label_frame_c.grid(
-    #         column=column_in,
-    #         row=row_in,
-    #         sticky='NEW')
-    #     self.canvas_c = self.make_canvas(
-    #         self.label_frame_c,
-    #         0, 0)
-    #     self.spacer_c = tk.Label(
-    #         self.label_frame_c,
-    #         width=2,
-    #         background=self.background_color,
-    #         text=' ')
-    #     self.spacer_c.grid(
-    #         column=0,
-    #         row=1)
-    #     self.label_c = tk.Label(
-    #         self.label_frame_c,
-    #         width=self.label_width,
-    #         height=self.label_height,
-    #         textvariable=self.text_var_c,
-    #         anchor=tk.NW,
-    #         justify=tk.LEFT,
-    #         font=self.label_font)
-    #     self.label_c.grid(
-    #         column=0,
-    #         row=2)
+    def _make_label_frame_c(self, column_in, row_in):
+        self.label_frame_c = ttk.LabelFrame(
+            self.mainframe)
+        self.label_frame_c.grid(
+            column=column_in,
+            row=row_in,
+            sticky='NEW')
+        self.canvas_c = self.make_canvas(
+            self.label_frame_c,
+            0, 0)
+        self.spacer_c = tk.Label(
+            self.label_frame_c,
+            width=2,
+            background=self.background_color,
+            text=' ')
+        self.spacer_c.grid(
+            column=0,
+            row=1)
+        self.label_c = tk.Label(
+            self.label_frame_c,
+            width=self.label_width,
+            height=self.label_height,
+            textvariable=self.text_var_c,
+            anchor=tk.NW,
+            justify=tk.LEFT,
+            font=self.label_font)
+        self.label_c.grid(
+            column=0,
+            row=2)
 
     def _make_label_frame_a_minus_b(self, column_in, row_in):
         self.label_frame_a_minus_b = ttk.LabelFrame(
