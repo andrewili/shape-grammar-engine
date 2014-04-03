@@ -1,0 +1,321 @@
+#   rule_steps_controller_test.txt
+
+
+    >>> import rule_steps_controller as controller
+    >>> import rule_steps_model as model
+    >>> import labeled_point
+    >>> import line
+    >>> import point
+    >>> import shape
+    >>> import Tkinter as tk
+    >>> import rule_steps_view as view
+
+    >>> def make_point_from_spec(x, y):
+    ...     return point.Point(x, y)
+    >>> def make_lpoint_from_spec(x, y, label):
+    ...     return labeled_point.LabeledPoint(x, y, label)
+    >>> def make_line_from_spec(x1, y1, x2, y2):
+    ...     p1 = make_point_from_spec(x1, y1)
+    ...     p2 = make_point_from_spec(x2, y2)
+    ...     return line.Line(p1, p2)
+    
+    ??? def make_line_pp(p1, p2):
+    ...     return line.Line(p1, p2)
+
+    >>> test_model = model.Model()
+    >>> root = tk.Tk()
+    >>> test_view = view.View(root)
+
+### construct
+#   __init__()
+
+    >>> len(test_view.observers)
+    0
+    >>> test_controller = controller.Controller(test_model, test_view)
+    >>> len(test_view.observers)
+    1
+    >>> test_controller in test_view.observers
+    True
+    >>> len(test_controller.responses)
+    5
+
+#### responses ####
+
+#   respond(widget)                                 #   How to test?
+
+#   respond_get_shape_a_button()                                    # root
+    ??? ells = test_controller.make_ells()
+    ??? print ells.listing()
+    (0.0, 26):
+        (26.0, 10.0, 26.0, 26.0)
+        (26.0, 74.0, 26.0, 90.0)
+    (0.0, 74):
+        (74.0, 10.0, 74.0, 26.0)
+        (74.0, 74.0, 74.0, 90.0)
+    (90.0, 26):
+        (10.0, 26.0, 26.0, 26.0)
+        (74.0, 26.0, 90.0, 26.0)
+    (90.0, 74):
+        (10.0, 74.0, 26.0, 74.0)
+        (74.0, 74.0, 90.0, 74.0)
+    X:
+        (50.0, 50.0, X)
+
+#   respond_get_shape_b_button()                                    # root
+    ??? square = test_controller.make_square()
+    ??? print square.listing()
+    (0.0, 26):
+        (26.0, 26.0, 26.0, 74.0)
+    (0.0, 74):
+        (74.0, 26.0, 74.0, 74.0)
+    (90.0, 26):
+        (26.0, 26.0, 74.0, 26.0)
+    (90.0, 74):
+        (26.0, 74.0, 74.0, 74.0)
+    no points
+
+#   respond_get_shape_c_button()                                    # root
+
+#   respond_get_a_minus_b_button()
+
+    >>> def make_a_minus_b():
+    ...     file_a = open('subtraction_test/ells_lines.obj')
+    ...     file_b = open('subtraction_test/hvhv_nw_ell_sw_ell.obj')
+    ...     test_view.lshape_a = test_controller.get_lshape_from(file_a)
+    ...     test_view.lshape_b = test_controller.get_lshape_from(file_b)
+    ...     test_controller.respond_get_a_minus_b_button()
+    ...     return [test_view.lshape_a, test_view.lshape_b, test_view.lshape_c]
+    >>> [a, b, a_minus_b] = make_a_minus_b()
+
+    >>> print a.listing()
+    (0, 40):
+        (40, 20, 40, 40)
+        (40, 60, 40, 80)
+    (0, 60):
+        (60, 20, 60, 40)
+        (60, 60, 60, 80)
+    (90, 40):
+        (20, 40, 40, 40)
+        (60, 40, 80, 40)
+    (90, 60):
+        (20, 60, 40, 60)
+        (60, 60, 80, 60)
+    <no labeled points>
+    >>> print b.listing()
+    (0, 40):
+        (40, 20, 40, 40)
+        (40, 60, 40, 80)
+    (90, 40):
+        (20, 40, 40, 40)
+    (90, 60):
+        (20, 60, 40, 60)
+    <no labeled points>
+    >>> print a_minus_b.listing()
+    (0, 60):
+        (60, 20, 60, 40)
+        (60, 60, 60, 80)
+    (90, 40):
+        (60, 40, 80, 40)
+    (90, 60):
+        (60, 60, 80, 60)
+    <no labeled points>
+
+    ??? def make_col_line_diff():
+    ...     single_line - double_line
+    ...     return test_view.lshape_c
+    ??? col_line_diff = make_col_line_diff()
+
+    ??? print col_line_diff.listing()
+    <no lines>
+
+#### display ####
+
+get_lshape_from(obj_file)
+
+    >>> obj_file = open('sierpinski_is.obj')
+    
+    >>> lshape = test_controller.get_lshape_from(obj_file)
+
+    >>> print lshape.listing(1)
+    (30.0, -17.3):
+        (10.0, 0.0, 20.0, 17.3)
+    (90.0, 0.0):
+        (10.0, 0.0, 30.0, 0.0)
+    (150.0, 52.0):
+        (20.0, 17.3, 30.0, 0.0)
+    a:
+        (20.0, 5.8)
+
+extract_elements_from(obj_file)
+    >>> obj_file = open('sierpinski_is.obj')
+    
+    >>> elements = test_controller.extract_elements_from(obj_file)
+    >>> lines, lpoints = elements
+    
+    >>> for line_i in lines:                                #   unordered
+    ...     print line_i.listing(1)
+    (10.0, 0.0, 20.0, 17.3)
+    (10.0, 0.0, 30.0, 0.0)
+    (20.0, 17.3, 30.0, 0.0)
+    >>> for lpoint_i in lpoints:
+    ...     print lpoint_i.listing(1)
+    (20.0, 5.8, a)
+
+element_is_specified_by(file_line)
+    >>> file_line_1 = 'o Point'
+    >>> file_line_2 = 'v 20.0 5.773503 0.0'
+    
+    >>> test_controller.element_is_specified_by(file_line_1)
+    True
+    >>> test_controller.element_is_specified_by(file_line_2)
+    False
+
+extract_and_add_element(vertex_buffer, elements)
+    
+    >>> point_1 = point.Point(1, 1)
+    >>> point_2 = point.Point(2, 2)
+    >>> vertex_buffer_1 = [point_1]
+    >>> elements_1 = ([], [])
+    >>> lpoint_1 = labeled_point.LabeledPoint(point_1.x, point_1.y, 'a')
+    >>> vertex_buffer_2 = [point_1, point_2]
+    >>> elements_2 = ([], [])
+    >>> line_2 = line.Line(point_1, point_2)
+    
+    >>> test_controller.extract_and_add_element(vertex_buffer_1, elements_1)
+    >>> test_controller.extract_and_add_element(vertex_buffer_2, elements_2)
+    
+    >>> elements_1 == ([], [lpoint_1])
+    True
+    >>> elements_2 == ([line_2], [])
+    True
+
+extract_element_from(vertex_buffer)
+    >>> p11 = make_point_from_spec(1, 1)
+    >>> p22 = make_point_from_spec(2, 2)
+    >>> p33 = make_point_from_spec(3, 3)
+    >>> p44 = make_point_from_spec(4, 4)
+    >>> vertex_buffer_1 = [p11]
+    >>> vertex_buffer_2 = [p22, p33]
+    >>> vertex_buffer_3 = [p22, p33, p44]
+    
+    >>> element_1 = test_controller.extract_element_from(vertex_buffer_1)
+    >>> element_2 = test_controller.extract_element_from(vertex_buffer_2)
+    >>> element_3 = test_controller.extract_element_from(vertex_buffer_3)
+    extract_element_from():
+        Vertex buffer must have 1 or 2 points
+    
+    >>> print element_1.listing()
+    (1, 1, a)
+    >>> print element_2.listing()
+    (2, 2, 3, 3)
+
+add_element_to_elements(element, elements)
+    Receives a Line or LabeledPoint. Adds it to the appropriate list in
+    the 2-tuple ([lines], [lpoints]).
+    
+    >>> elements = ([], [])
+    >>> line = make_line_from_spec(0, 0, 1, 1)
+    >>> lpoint = make_lpoint_from_spec(2, 3, 'x')
+    >>> bad_type = 'kilroy'
+    
+    >>> for element in [line, lpoint, bad_type]:
+    ...     test_controller.add_element_to_elements(element, elements)
+    add_element_to_elements(): element must be Line or LabeledPoint
+    
+    >>> for line_i in elements[0]:
+    ...     print line_i.listing()
+    (0, 0, 1, 1)
+    >>> for lpoint_i in elements[1]:
+    ...     print lpoint_i.listing()
+    (2, 3, x)
+
+vertex_is_specified_by(file_line)
+    >>> file_line_1 = 'v 20.0 5.773503 0.0'
+    >>> file_line_2 = 'o Point'
+    
+    >>> test_controller.vertex_is_specified_by(file_line_1)
+    True
+    >>> test_controller.vertex_is_specified_by(file_line_2)
+    False
+
+extract_point_from(file_line)
+    >>> file_line = 'v 20.0 5.773503 0.0'
+    
+    >>> new_point = test_controller.extract_point_from(file_line)
+    
+    >>> print new_point.listing(1)
+    (20.0, 5.8)
+
+display_lshape_on_canvas(lshape, canvas)
+
+get_items_from(element_specs)
+    >>> def make_element_specs_for_items():
+    ...     line_spec_0001 = (0, 0, 0, 1)
+    ...     line_spec_0010 = (0, 0, 1, 0)
+    ...     line_specs = [line_spec_0001, line_spec_0010]
+    ...     lp_00x = (0, 0, 'x')
+    ...     lp_55y = (5, 5, 'y')
+    ...     point_specs = [lp_00x, lp_55y]
+    ...     return (line_specs, point_specs)
+    >>> element_specs = make_element_specs_for_items()
+    
+    >>> items = test_controller.get_items_from(element_specs)
+    >>> line_items, oval_items, text_items = items
+    
+    >>> line_items == [(0, 0, 0, 1), (0, 0, 1, 0)]
+    True
+    >>> oval_items == [(-1, -1, 1, 1), (4, 4, 6, 6)]
+    True
+    >>> print text_items
+    [(5, 5, 'x'), (10, 10, 'y')]
+
+get_line_items_from(line_specs)
+    Should be line_specs, not lines
+    
+    >>> def make_lines_for_line_items():
+    ...     line_spec_0001 = (0, 0, 0, 1)
+    ...     line_spec_0010 = (0, 0, 1, 0)
+    ...     return [line_spec_0001, line_spec_0010]
+    >>> line_specs = make_lines_for_line_items()
+    
+    >>> line_items = test_controller.get_line_items_from(line_specs)
+    
+    >>> line_items == [(0, 0, 0, 1), (0, 0, 1, 0)]
+    True
+
+get_oval_items_from(lpoint_specs)
+    >>> lp_00a = (0, 0, 'a')
+    >>> lp_11b = (1, 1, 'b')
+    >>> lpoint_specs = [lp_00a, lp_11b]
+    
+    >>> oval_items = test_controller.get_oval_items_from(lpoint_specs)
+    
+    >>> oval_items == [(-1, -1, 1, 1), (0, 0, 2, 2)]
+    True
+
+get_oval_item_from(lpoint_spec)
+    >>> lp_00a = (0, 0, 'a')
+    
+    >>> oval_item = test_controller.get_oval_item_from(lp_00a)
+    
+    >>> oval_item == (-1, -1, 1, 1)
+    True
+
+get_text_items_from(lpoint_specs)
+    >>> lpoint_specs = [(0, 0, 'a'), (10, 10, 'b')]
+    
+    >>> text_items = test_controller.get_text_items_from(lpoint_specs)
+    
+    >>> print text_items
+    [(5, 5, 'a'), (15, 15, 'b')]
+
+get_text_item_from(lpoint_spec)
+    >>> lp_00a = (0, 0, 'a')
+    
+    >>> text_item = test_controller.get_text_item_from(lp_00a)
+    
+    >>> print text_item
+    (5, 5, 'a')
+
+display_items(items, canvas)
+

@@ -1,0 +1,14 @@
+#   rule_steps_model_test.txt
+
+    >>> import rule_steps_model as model
+
+#	__init__()
+
+    >>> model = model.Model()
+    >>> model.lshape_a.is_empty()
+    True
+    >>> model.lshape_b.is_empty()
+    True
+    >>> model.lshape_c.is_empty()
+    True
+
