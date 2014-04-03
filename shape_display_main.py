@@ -1,14 +1,14 @@
 #   shape_display_main.py
 
-import controller
-import model
+import shape_display_controller
+import shape_display_model
+import shape_display_view
 import Tkinter as tk
-import view
 
 if __name__ == '__main__':
     root = tk.Tk()
     root.withdraw()
-    model = model.Model()
-    view = view.View(root)
-    controller = controller.Controller(model, view)
+    model = shape_display_model.Model()
+    view = shape_display_view.View(root)
+    controller = shape_display_controller.Controller(model, view)
     root.mainloop()

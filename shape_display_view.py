@@ -1,5 +1,4 @@
-#   view.py
-#   2013-09-18
+#   shape_display_view.py
 
 import Tkinter as tk
 import tkFileDialog
@@ -24,7 +23,7 @@ class View(tk.Toplevel, Observable):
         tk.Toplevel.__init__(self, master)
         self.protocol('WM_DELETE_WINDOW', self.master.destroy)
         Observable.__init__(self)
-        self.title('Rule display 2014-03-29')
+        self.title('Shape display 2014-04-03')
         self.text_var_a = tk.StringVar()
         self.text_var_b = tk.StringVar()
         self.text_var_c = tk.StringVar()
@@ -247,4 +246,4 @@ class View(tk.Toplevel, Observable):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/view_test.txt')
+    doctest.testfile('tests/shape_display_view_test.txt')

@@ -1,7 +1,7 @@
-#   controller.py
+#   shape_display_controller.py
 
-import model
-import view
+# import model
+# import view
 import shape                                    #   for testing
 import labeled_point
 import labeled_shape
@@ -283,4 +283,4 @@ class Controller(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/controller_test.txt')
+    doctest.testfile('tests/shape_display_controller_test.txt')

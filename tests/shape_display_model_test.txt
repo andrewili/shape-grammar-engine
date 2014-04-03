@@ -1,6 +1,6 @@
-#   model_test.txt
+#   shape_display_model_test.txt
 
-    >>> import model
+    >>> import shape_display_model as model
 
 #	__init__()
 

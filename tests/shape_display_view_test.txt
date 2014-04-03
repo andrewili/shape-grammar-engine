@@ -1,7 +1,6 @@
-#   view_test.txt
-#   2013-09-18
+#   shape_display_view_test.txt
 
-    >>> import view
+    >>> import shape_display_view as view
 
 ### Observable
 

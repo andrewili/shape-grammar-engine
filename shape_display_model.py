@@ -1,4 +1,4 @@
-#   model.py
+#   shape_display_model.py
 
 import labeled_shape
 
@@ -12,4 +12,4 @@ class Model(object):
 
 if __name__ == '__main__':
     import doctest
-    doctest.testfile('tests/model_test.txt')
+    doctest.testfile('tests/shape_display_model_test.txt')

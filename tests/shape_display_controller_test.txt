@@ -1,14 +1,14 @@
-#   controller_test.txt
+#   shape_display_controller_test.txt
 
 
-    >>> import controller
-    >>> import model
+    >>> import shape_display_controller as controller
+    >>> import shape_display_model as model
     >>> import labeled_point
     >>> import line
     >>> import point
     >>> import shape
     >>> import Tkinter as tk
-    >>> import view
+    >>> import shape_display_view as view
 
     >>> def make_point_from_spec(x, y):
     ...     return point.Point(x, y)
@@ -152,13 +152,13 @@ extract_elements_from(obj_file)
     >>> elements = test_controller.extract_elements_from(obj_file)
     >>> lines, lpoints = elements
     
-    >>> for line_i in lines:                                                    #   unordered
-    ...     print line_i.listing()
+    >>> for line_i in lines:                                #   unordered
+    ...     print line_i.listing(1)
     (10.0, 0.0, 20.0, 17.3)
     (10.0, 0.0, 30.0, 0.0)
     (20.0, 17.3, 30.0, 0.0)
     >>> for lpoint_i in lpoints:
-    ...     print lpoint_i.listing()
+    ...     print lpoint_i.listing(1)
     (20.0, 5.8, a)
 
 element_is_specified_by(file_line)
@@ -205,9 +205,9 @@ extract_element_from(vertex_buffer)
         Vertex buffer must have 1 or 2 points
     
     >>> print element_1.listing()
-    (1.0, 1.0, a)
+    (1, 1, a)
     >>> print element_2.listing()
-    (2.0, 2.0, 3.0, 3.0)
+    (2, 2, 3, 3)
 
 add_element_to_elements(element, elements)
     Receives a Line or LabeledPoint. Adds it to the appropriate list in
@@ -224,10 +224,10 @@ add_element_to_elements(element, elements)
     
     >>> for line_i in elements[0]:
     ...     print line_i.listing()
-    (0.0, 0.0, 1.0, 1.0)
+    (0, 0, 1, 1)
     >>> for lpoint_i in elements[1]:
     ...     print lpoint_i.listing()
-    (2.0, 3.0, x)
+    (2, 3, x)
 
 vertex_is_specified_by(file_line)
     >>> file_line_1 = 'v 20.0 5.773503 0.0'
@@ -243,7 +243,7 @@ extract_point_from(file_line)
     
     >>> new_point = test_controller.extract_point_from(file_line)
     
-    >>> print new_point.listing()
+    >>> print new_point.listing(1)
     (20.0, 5.8)
 
 display_lshape_on_canvas(lshape, canvas)
