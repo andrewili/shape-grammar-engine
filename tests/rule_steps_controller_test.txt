@@ -37,7 +37,7 @@
     >>> test_controller in test_view.observers
     True
     >>> len(test_controller.responses)
-    5
+    2
 
 #### responses ####
 
