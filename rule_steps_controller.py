@@ -16,14 +16,12 @@ class Controller(object):
                 self.respond_get_lshape_a_button),
             self.the_view.get_lshape_b_button: (
                 self.respond_get_lshape_b_button)
-            # ,
-            # self.the_view.get_lshape_a_plus_b_button: (
-            #     self.respond_get_a_plus_b_button),
-            # self.the_view.get_lshape_a_minus_b_button: (
-            #     self.respond_get_a_minus_b_button),
-            # self.the_view.get_lshape_a_sub_lshape_b_button: (
-            #     self.respond_get_a_sub_lshape_b_button)
         }
+        self._display_empty_lshape_on_canvas(self.the_view.canvas_a)
+        self._display_empty_lshape_on_canvas(self.the_view.canvas_b)
+        # empty_lshape = labeled_shape.LabeledShape.new_empty()
+        # self._display_lshape_on_canvas(empty_lshape, self.the_view.canvas_a) 
+        # self._display_lshape_on_canvas(empty_lshape, self.the_view.canvas_b) 
 
         ####
     def respond(self, widget):
@@ -32,8 +30,9 @@ class Controller(object):
 
     def respond_get_lshape_a_button(self):
         obj_file_a = self.the_view.file_a
-        self.the_view.lshape_a = self.get_lshape_from(obj_file_a)   #   view.lshape_a is set
-        self.display_lshape_on_canvas(
+        self.the_view.lshape_a = self.get_lshape_from(obj_file_a)
+        #   view.lshape_a is set
+        self._display_lshape_on_canvas(
             self.the_view.lshape_a, self.the_view.canvas_a)
         text_a = self.the_view.lshape_a.listing()
         self.the_view.text_var_a.set(text_a)
@@ -41,7 +40,7 @@ class Controller(object):
     def respond_get_lshape_b_button(self):
         obj_file_b = self.the_view.file_b
         self.the_view.lshape_b = self.get_lshape_from(obj_file_b)
-        self.display_lshape_on_canvas(
+        self._display_lshape_on_canvas(
             self.the_view.lshape_b, self.the_view.canvas_b)
         text_b = self.the_view.lshape_b.listing()
         self.the_view.text_var_b.set(text_b)
@@ -49,7 +48,7 @@ class Controller(object):
     def respond_get_a_plus_b_button(self):
         self.the_view.lshape_c = (
             self.the_view.lshape_a + self.the_view.lshape_b)
-        self.display_lshape_on_canvas(
+        self._display_lshape_on_canvas(
             self.the_view.lshape_c, self.the_view.canvas_c)
         text_c = self.the_view.lshape_c.listing()
         self.the_view.text_var_c.set(text_c)
@@ -60,7 +59,7 @@ class Controller(object):
             method_name = 'Controller.respond_get_a_minus_b_button()'
             print '||| %s' % method_name
         self.the_view.lshape_c = (
-            self.the_view.lshape_a - self.the_view.lshape_b)    #   Trouble here!
+            self.the_view.lshape_a - self.the_view.lshape_b)
         if trace_on:
             print '||| %s' % method_name
             print 'self.the_view.lshape_a:'
@@ -69,15 +68,15 @@ class Controller(object):
             print self.the_view.lshape_b.listing()
             print 'self.the_view.lshape_c:'
             print self.the_view.lshape_c.listing()
-        self.display_lshape_on_canvas(
+        self._display_lshape_on_canvas(
             self.the_view.lshape_c, self.the_view.canvas_c)
         text_c = self.the_view.lshape_c.listing()
         self.the_view.text_var_c.set(text_c)
 
     def respond_get_a_sub_lshape_b_button(self):
-        empty_lshape = labeled_shape.LabeledShape.new_empty()
-        self.display_lshape_on_canvas(
-            empty_lshape, self.the_view.canvas_c)
+        empty_lshape = labeled_shape.LabeledShape.new_empty()   ##
+        self._display_lshape_on_canvas(                         ##
+            empty_lshape, self.the_view.canvas_c)               ##
         if self.the_view.lshape_a.is_a_sub_labeled_shape_of(
             self.the_view.lshape_b
         ):
@@ -95,7 +94,8 @@ class Controller(object):
         """
         elements = self.extract_elements_from(obj_file)
         lines, lpoints = elements
-        lshape = labeled_shape.LabeledShape.make_lshape_from(lines, lpoints)    #   new_from_lines_and_lpoints
+        lshape = labeled_shape.LabeledShape.make_lshape_from(lines, lpoints)
+        #   new_from_lines_and_lpoints
         return lshape
 
     def extract_elements_from(self, obj_file):
@@ -117,7 +117,8 @@ class Controller(object):
             else:
                 #   ignore other file_lines
                 pass
-        self.extract_and_add_element(vertex_buffer, elements)                   #   explain why this is not in the loop
+        self.extract_and_add_element(vertex_buffer, elements)
+        #   explain why this is not in the loop
         return elements
 
     def element_is_specified_by(self, file_line):
@@ -180,10 +181,19 @@ class Controller(object):
         y = float(tokens[2])
         return point.Point(x, y)
 
-    def display_lshape_on_canvas(self, lshape, canvas):
+    def _display_lshape_on_canvas(self, lshape, canvas):
         element_specs = lshape.get_element_specs()
         items = self.get_items_from(element_specs)
-        self.display_items(items, canvas)
+        self._display_items(items, canvas)
+
+    def _display_empty_lshape_on_canvas(self, canvas):
+        empty_lshape = labeled_shape.LabeledShape.new_empty()
+        element_specs = empty_lshape.get_element_specs()
+        items = self.get_items_from(element_specs)
+        self._display_items(items, canvas)
+        empty_lshape_text = empty_lshape.listing()
+        self.the_view.text_var_a.set('kilroy a')
+        self.the_view.text_var_b.set('kilroy b')
 
     def get_items_from(self, element_specs):
         """Receives a 2-tuple of lists of SG element_specs:
@@ -228,7 +238,7 @@ class Controller(object):
         """
         x = lpoint_spec[0]
         y = lpoint_spec[1]
-        d = 2                                   #   where should this come from?
+        d = 2                           #   where should this come from?
         r = d / 2
         x0 = x - r
         y0 = y - r
@@ -255,7 +265,7 @@ class Controller(object):
         Returns a text item
             (x0, y0, label)
         """
-        offset_x = 5                           #   where should this come from?
+        offset_x = 5                    #   where should this come from?
         offset_y = 5
         x = lpoint_spec[0] + offset_x
         y = lpoint_spec[1] + offset_y
@@ -263,7 +273,7 @@ class Controller(object):
         text_item = (x, y, label)
         return text_item
 
-    def display_items(self, items, canvas):
+    def _display_items(self, items, canvas):
         """Receives a 3-tuple of lists of display items (lines, ovals, texts):
             (   [(x1, y1, x2, y2), ...],
                 [(x1, y1, x2, y2), ...],

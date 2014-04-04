@@ -27,6 +27,7 @@ class View(tk.Toplevel, Observable):
         self.text_var_a = tk.StringVar()
         self.text_var_b = tk.StringVar()
         self.text_var_c = tk.StringVar()
+        self.text_var_empty = tk.StringVar()
         self.label_width = 28
         self.label_height = 15
         self.label_font = ('Andale Mono', '11')

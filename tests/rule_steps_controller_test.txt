@@ -78,16 +78,16 @@
 
 #   respond_get_a_minus_b_button()
 
-    >>> def make_a_minus_b():
+    ??? def make_a_minus_b():
     ...     file_a = open('subtraction_test/ells_lines.obj')
     ...     file_b = open('subtraction_test/hvhv_nw_ell_sw_ell.obj')
     ...     test_view.lshape_a = test_controller.get_lshape_from(file_a)
     ...     test_view.lshape_b = test_controller.get_lshape_from(file_b)
     ...     test_controller.respond_get_a_minus_b_button()
     ...     return [test_view.lshape_a, test_view.lshape_b, test_view.lshape_c]
-    >>> [a, b, a_minus_b] = make_a_minus_b()
+    ??? [a, b, a_minus_b] = make_a_minus_b()
 
-    >>> print a.listing()
+    ??? print a.listing()
     (0, 40):
         (40, 20, 40, 40)
         (40, 60, 40, 80)
@@ -101,7 +101,7 @@
         (20, 60, 40, 60)
         (60, 60, 80, 60)
     <no labeled points>
-    >>> print b.listing()
+    ??? print b.listing()
     (0, 40):
         (40, 20, 40, 40)
         (40, 60, 40, 80)
@@ -110,7 +110,7 @@
     (90, 60):
         (20, 60, 40, 60)
     <no labeled points>
-    >>> print a_minus_b.listing()
+    ??? print a_minus_b.listing()
     (0, 60):
         (60, 20, 60, 40)
         (60, 60, 60, 80)
@@ -317,5 +317,5 @@ get_text_item_from(lpoint_spec)
     >>> print text_item
     (5, 5, 'a')
 
-display_items(items, canvas)
+_display_items(items, canvas)
 
