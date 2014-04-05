@@ -17,21 +17,44 @@ class Controller(object):
             self.the_view.get_lshape_b_button: (
                 self.respond_get_lshape_b_button)
         }
-        self._display_empty_lshape_on_canvas(self.the_view.canvas_a)
-        self._display_empty_lshape_on_canvas(self.the_view.canvas_b)
-        # empty_lshape = labeled_shape.LabeledShape.new_empty()
-        # self._display_lshape_on_canvas(empty_lshape, self.the_view.canvas_a) 
-        # self._display_lshape_on_canvas(empty_lshape, self.the_view.canvas_b) 
+        self._initialize_view()
+
+    def _initialize_view(self):                 #   refactor this!
+        self._display_lshape_on_canvas(
+            self.the_model.lshape_a, 
+            self.the_view.canvas_a)
+        text_a = self.the_model.lshape_a.listing()
+        self.the_view.text_var_a.set(text_a)
+
+        self._display_lshape_on_canvas(
+            self.the_model.lshape_b, 
+            self.the_view.canvas_b)
+        text_b = self.the_model.lshape_b.listing()
+        self.the_view.text_var_b.set(text_b)
+
+        self._display_lshape_on_canvas(
+            self.the_model.lshape_a_minus_b, 
+            self.the_view.canvas_a_minus_b)
+        text_a_minus_b = self.the_model.lshape_a_minus_b.listing()
+        self.the_view.text_var_a_minus_b.set(text_a_minus_b)
+
+        self._display_lshape_on_canvas(
+            self.the_model.lshape_b_minus_a, 
+            self.the_view.canvas_b_minus_a)
+        text_b_minus_a = self.the_model.lshape_b_minus_a.listing()
+        self.the_view.text_var_b_minus_a.set(text_b_minus_a)
 
         ####
     def respond(self, widget):
         if widget in self.responses:
             self.responses[widget]()
 
-    def respond_get_lshape_a_button(self):
+    def respond_get_lshape_a_button(self):      #   refactor
+        #   self._update_model_lshape_a()
+        #   self._update_model_lshape_a_minus_b()
+        #   self._update_model_lshape_b_minus_a()
         obj_file_a = self.the_view.file_a
         self.the_view.lshape_a = self.get_lshape_from(obj_file_a)
-        #   view.lshape_a is set
         self._display_lshape_on_canvas(
             self.the_view.lshape_a, self.the_view.canvas_a)
         text_a = self.the_view.lshape_a.listing()
@@ -45,45 +68,45 @@ class Controller(object):
         text_b = self.the_view.lshape_b.listing()
         self.the_view.text_var_b.set(text_b)
 
-    def respond_get_a_plus_b_button(self):
-        self.the_view.lshape_c = (
-            self.the_view.lshape_a + self.the_view.lshape_b)
-        self._display_lshape_on_canvas(
-            self.the_view.lshape_c, self.the_view.canvas_c)
-        text_c = self.the_view.lshape_c.listing()
-        self.the_view.text_var_c.set(text_c)
+    # def respond_get_a_plus_b_button(self):
+    #     self.the_view.lshape_c = (
+    #         self.the_view.lshape_a + self.the_view.lshape_b)
+    #     self._display_lshape_on_canvas(
+    #         self.the_view.lshape_c, self.the_view.canvas_c)
+    #     text_c = self.the_view.lshape_c.listing()
+    #     self.the_view.text_var_c.set(text_c)
 
-    def respond_get_a_minus_b_button(self):
-        trace_on = False
-        if trace_on:
-            method_name = 'Controller.respond_get_a_minus_b_button()'
-            print '||| %s' % method_name
-        self.the_view.lshape_c = (
-            self.the_view.lshape_a - self.the_view.lshape_b)
-        if trace_on:
-            print '||| %s' % method_name
-            print 'self.the_view.lshape_a:'
-            print self.the_view.lshape_a.listing()
-            print 'self.the_view.lshape_b:'
-            print self.the_view.lshape_b.listing()
-            print 'self.the_view.lshape_c:'
-            print self.the_view.lshape_c.listing()
-        self._display_lshape_on_canvas(
-            self.the_view.lshape_c, self.the_view.canvas_c)
-        text_c = self.the_view.lshape_c.listing()
-        self.the_view.text_var_c.set(text_c)
+    # def respond_get_a_minus_b_button(self):
+    #     trace_on = False
+    #     if trace_on:
+    #         method_name = 'Controller.respond_get_a_minus_b_button()'
+    #         print '||| %s' % method_name
+    #     self.the_view.lshape_c = (
+    #         self.the_view.lshape_a - self.the_view.lshape_b)
+    #     if trace_on:
+    #         print '||| %s' % method_name
+    #         print 'self.the_view.lshape_a:'
+    #         print self.the_view.lshape_a.listing()
+    #         print 'self.the_view.lshape_b:'
+    #         print self.the_view.lshape_b.listing()
+    #         print 'self.the_view.lshape_c:'
+    #         print self.the_view.lshape_c.listing()
+    #     self._display_lshape_on_canvas(
+    #         self.the_view.lshape_c, self.the_view.canvas_c)
+    #     text_c = self.the_view.lshape_c.listing()
+    #     self.the_view.text_var_c.set(text_c)
 
-    def respond_get_a_sub_lshape_b_button(self):
-        empty_lshape = labeled_shape.LabeledShape.new_empty()   ##
-        self._display_lshape_on_canvas(                         ##
-            empty_lshape, self.the_view.canvas_c)               ##
-        if self.the_view.lshape_a.is_a_sub_labeled_shape_of(
-            self.the_view.lshape_b
-        ):
-            text_c = "A <= B: true"
-        else:
-            text_c = "A <= B: false"
-        self.the_view.text_var_c.set(text_c)
+    # def respond_get_a_sub_lshape_b_button(self):
+    #     empty_lshape = labeled_shape.LabeledShape.new_empty()   ##
+    #     self._display_lshape_on_canvas(                         ##
+    #         empty_lshape, self.the_view.canvas_c)               ##
+    #     if self.the_view.lshape_a.is_a_sub_labeled_shape_of(
+    #         self.the_view.lshape_b
+    #     ):
+    #         text_c = "A <= B: true"
+    #     else:
+    #         text_c = "A <= B: false"
+    #     self.the_view.text_var_c.set(text_c)
 
         ####
     def get_lshape_from(self, obj_file):
@@ -186,14 +209,14 @@ class Controller(object):
         items = self.get_items_from(element_specs)
         self._display_items(items, canvas)
 
-    def _display_empty_lshape_on_canvas(self, canvas):
-        empty_lshape = labeled_shape.LabeledShape.new_empty()
-        element_specs = empty_lshape.get_element_specs()
-        items = self.get_items_from(element_specs)
-        self._display_items(items, canvas)
-        empty_lshape_text = empty_lshape.listing()
-        self.the_view.text_var_a.set('kilroy a')
-        self.the_view.text_var_b.set('kilroy b')
+    # def _display_empty_lshape_on_canvas(self, canvas):
+    #     empty_lshape = labeled_shape.LabeledShape.new_empty()
+    #     element_specs = empty_lshape.get_element_specs()
+    #     items = self.get_items_from(element_specs)
+    #     self._display_items(items, canvas)
+    #     empty_lshape_text = empty_lshape.listing()
+    #     self.the_view.text_var_a.set('kilroy a')
+    #     self.the_view.text_var_b.set('kilroy b')
 
     def get_items_from(self, element_specs):
         """Receives a 2-tuple of lists of SG element_specs:

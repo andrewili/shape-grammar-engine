@@ -26,8 +26,8 @@ class View(tk.Toplevel, Observable):
         self.title('Rule steps 2014-04-03')
         self.text_var_a = tk.StringVar()
         self.text_var_b = tk.StringVar()
-        self.text_var_c = tk.StringVar()
-        self.text_var_empty = tk.StringVar()
+        self.text_var_a_minus_b = tk.StringVar()
+        self.text_var_b_minus_a = tk.StringVar()
         self.label_width = 28
         self.label_height = 15
         self.label_font = ('Andale Mono', '11')
@@ -187,7 +187,7 @@ class View(tk.Toplevel, Observable):
             self.label_frame_a_minus_b,
             width=self.label_width,
             height=self.label_height,
-            textvariable=self.text_var_c,
+            textvariable=self.text_var_a_minus_b,
             anchor=tk.NW,
             justify=tk.LEFT,
             font=self.label_font)
@@ -217,7 +217,7 @@ class View(tk.Toplevel, Observable):
             self.label_frame_b_minus_a,
             width=self.label_width,
             height=self.label_height,
-            textvariable=self.text_var_c,
+            textvariable=self.text_var_b_minus_a,
             anchor=tk.NW,
             justify=tk.LEFT,
             font=self.label_font)
