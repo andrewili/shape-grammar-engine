@@ -20,6 +20,15 @@ class Controller(object):
         self._initialize_view()
 
     def _initialize_view(self):                 #   refactor this!
+        # lshape_names = ['a', 'b', 'a_minus_b', 'b_minus_a']
+        for lshape_name in lshape_names:
+            self._initialize_canvas(lshape_name)
+            self._initialize_text_var(lshape_name)
+
+        # for i in range(num(self.the_view.canvases)):
+        #     self._initialize_canvas(i)
+        #     self._initialize_text_var(i)
+
         self._display_lshape_on_canvas(
             self.the_model.lshape_a, 
             self.the_view.canvas_a)
@@ -43,6 +52,17 @@ class Controller(object):
             self.the_view.canvas_b_minus_a)
         text_b_minus_a = self.the_model.lshape_b_minus_a.listing()
         self.the_view.text_var_b_minus_a.set(text_b_minus_a)
+
+    # def _initialize_canvas(self, lshape_name):
+    #     lshape_i = self.the_model.lshapes[lshape_name]
+    #     canvas_i = self.the_view.canvases[lshape_name]
+    #     self._display_lshape_on_canvas(lshape_name)
+
+    # def _initialize_text_var(self, i):
+    #     text_var_i = self.the_view.text_vars[i]
+    #     lshape_i = self.the_model.lshapes[i]
+    #     text_i = lshape_i.listing()
+    #     self.the_view.text_var_i.set(text_i)
 
         ####
     def respond(self, widget):

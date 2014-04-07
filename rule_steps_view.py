@@ -44,6 +44,9 @@ class View(tk.Toplevel, Observable):
         self._make_spacer(               7, 0)
         self._make_label_frame_b_minus_a(8, 0)
 
+        # self.canvases = {}
+        # self.text_vars = {}
+
     def _make_main_frame(self):
         self.mainframe = ttk.Frame(
             self,

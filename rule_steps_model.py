@@ -10,6 +10,7 @@ class Model(object):
         self.lshape_b = empty_lshape
         self.lshape_a_minus_b = empty_lshape
         self.lshape_b_minus_a = empty_lshape
+        # self.lshapes = {}
 
 if __name__ == '__main__':
     import doctest
