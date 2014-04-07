@@ -51,22 +51,61 @@ class Controller(object):
 
     def respond_get_lshape_a_button(self):      #   refactor
         #   self._update_model_lshape_a()
-        #   self._update_model_lshape_a_minus_b()
-        #   self._update_model_lshape_b_minus_a()
         obj_file_a = self.the_view.file_a
-        self.the_view.lshape_a = self.get_lshape_from(obj_file_a)
+        self.the_model.lshape_a = self.get_lshape_from(obj_file_a)
         self._display_lshape_on_canvas(
-            self.the_view.lshape_a, self.the_view.canvas_a)
-        text_a = self.the_view.lshape_a.listing()
+            self.the_model.lshape_a, self.the_view.canvas_a)
+        text_a = self.the_model.lshape_a.listing()
         self.the_view.text_var_a.set(text_a)
 
-    def respond_get_lshape_b_button(self):
-        obj_file_b = self.the_view.file_b
-        self.the_view.lshape_b = self.get_lshape_from(obj_file_b)
+        #   self._update_model_lshape_a_minus_b()
+        self.the_model.lshape_a_minus_b = (
+            self.the_model.lshape_a - self.the_model.lshape_b)
         self._display_lshape_on_canvas(
-            self.the_view.lshape_b, self.the_view.canvas_b)
-        text_b = self.the_view.lshape_b.listing()
+            self.the_model.lshape_a_minus_b, 
+            self.the_view.canvas_a_minus_b)
+        text_a_minus_b = self.the_model.lshape_a_minus_b.listing()
+        # self.the_view.text_var_a_minus_b.set('A was changed')
+        self.the_view.text_var_a_minus_b.set(text_a_minus_b)
+        
+        #   self._update_model_lshape_b_minus_a()
+        self.the_model.lshape_b_minus_a = (
+            self.the_model.lshape_b - self.the_model.lshape_a)
+        self._display_lshape_on_canvas(
+            self.the_model.lshape_b_minus_a, 
+            self.the_view.canvas_b_minus_a)
+        text_b_minus_a = self.the_model.lshape_b_minus_a.listing()
+        # self.the_view.text_var_a_minus_b.set('A was changed')
+        self.the_view.text_var_b_minus_a.set(text_b_minus_a)
+
+    def respond_get_lshape_b_button(self):      #   refactor
+        #   self._update_model_lshape_b()
+        obj_file_b = self.the_view.file_b
+        self.the_model.lshape_b = self.get_lshape_from(obj_file_b)
+        self._display_lshape_on_canvas(
+            self.the_model.lshape_b, self.the_view.canvas_b)
+        text_b = self.the_model.lshape_b.listing()
         self.the_view.text_var_b.set(text_b)
+
+        #   self._update_model_lshape_a_minus_b()
+        self.the_model.lshape_a_minus_b = (
+            self.the_model.lshape_a - self.the_model.lshape_b)
+        self._display_lshape_on_canvas(
+            self.the_model.lshape_a_minus_b, 
+            self.the_view.canvas_a_minus_b)
+        text_a_minus_b = self.the_model.lshape_a_minus_b.listing()
+        # self.the_view.text_var_a_minus_b.set('B was changed')
+        self.the_view.text_var_a_minus_b.set(text_a_minus_b)
+
+        #   self._update_model_lshape_b_minus_a()
+        self.the_model.lshape_b_minus_a = (
+            self.the_model.lshape_b - self.the_model.lshape_a)
+        self._display_lshape_on_canvas(
+            self.the_model.lshape_b_minus_a, 
+            self.the_view.canvas_b_minus_a)
+        text_b_minus_a = self.the_model.lshape_b_minus_a.listing()
+        # self.the_view.text_var_a_minus_b.set('B was changed')
+        self.the_view.text_var_b_minus_a.set(text_b_minus_a)
 
     # def respond_get_a_plus_b_button(self):
     #     self.the_view.lshape_c = (

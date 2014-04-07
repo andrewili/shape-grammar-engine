@@ -177,9 +177,9 @@ class View(tk.Toplevel, Observable):
             0, 0)
         self.spacer_a_minus_b = tk.Label(
             self.label_frame_a_minus_b,
-            width=2,
+            width=6,
             background=self.background_color,
-            text=' ')
+            text='A - B')
         self.spacer_a_minus_b.grid(
             column=0,
             row=1)
@@ -207,9 +207,9 @@ class View(tk.Toplevel, Observable):
             0, 0)
         self.spacer_b_minus_a = tk.Label(
             self.label_frame_b_minus_a,
-            width=2,
+            width=6,
             background=self.background_color,
-            text=' ')
+            text='B - A')
         self.spacer_b_minus_a.grid(
             column=0,
             row=1)
