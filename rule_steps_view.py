@@ -44,8 +44,19 @@ class View(tk.Toplevel, Observable):
         self._make_spacer(               7, 0)
         self._make_label_frame_b_minus_a(8, 0)
 
-        # self.canvases = {}
-        # self.text_vars = {}
+        self.canvases = {
+            'a': self.canvas_a,
+            'b': self.canvas_b,
+            'a_minus_b': self.canvas_a_minus_b,
+            'b_minus_a': self.canvas_b_minus_a
+        }
+        self.text_vars = {
+            'a': self.text_var_a,
+            'b': self.text_var_b,
+            'a_minus_b': self.text_var_a_minus_b,
+            'b_minus_a': self.text_var_b_minus_a
+        }
+        self.files = {}
 
     def _make_main_frame(self):
         self.mainframe = ttk.Frame(
@@ -264,16 +275,20 @@ class View(tk.Toplevel, Observable):
 
     def get_lshape_a(self):
         self.file_a = tkFileDialog.askopenfile()
+        self.files['a'] = self.file_a
         self.broadcast(self.get_lshape_a_button)
 
     def get_lshape_b(self):
         self.file_b = tkFileDialog.askopenfile()
+        self.files['b'] = self.file_b
         self.broadcast(self.get_lshape_b_button)
 
     def get_lshape_a_plus_b(self):
+        self.files['a_minus_b'] = self.file_a_minus_b
         self.broadcast(self.get_lshape_a_plus_b_button)
 
     def get_lshape_a_minus_b(self):
+        self.files['b_minus_a'] = self.file_b_minus_a
         self.broadcast(self.get_lshape_a_minus_b_button)
 
     def get_lshape_a_sub_lshape_b(self):
