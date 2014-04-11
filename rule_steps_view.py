@@ -24,15 +24,17 @@ class View(tk.Toplevel, Observable):
         self.protocol('WM_DELETE_WINDOW', self.master.destroy)
         Observable.__init__(self)
         self.title('Rule steps 2014-04-03')
-        self.text_var_a = tk.StringVar()
-        self.text_var_b = tk.StringVar()
-        self.text_var_a_minus_b = tk.StringVar()
-        self.text_var_b_minus_a = tk.StringVar()
+        self.text_vars = {
+            'a': tk.StringVar(),
+            'b': tk.StringVar(),
+            'a_minus_b': tk.StringVar(),
+            'b_minus_a': tk.StringVar()
+        }
         self.label_width = 28
         self.label_height = 15
         self.label_font = ('Andale Mono', '11')
         self.background_color = '#EEEEEE'
-        
+
         self._make_main_frame()
         self._make_label_frame_a(        0, 0)
         self._make_spacer(               1, 0)
@@ -49,12 +51,6 @@ class View(tk.Toplevel, Observable):
             'b': self.canvas_b,
             'a_minus_b': self.canvas_a_minus_b,
             'b_minus_a': self.canvas_b_minus_a
-        }
-        self.text_vars = {
-            'a': self.text_var_a,
-            'b': self.text_var_b,
-            'a_minus_b': self.text_var_a_minus_b,
-            'b_minus_a': self.text_var_b_minus_a
         }
         self.files = {}
 
@@ -95,7 +91,7 @@ class View(tk.Toplevel, Observable):
             self.label_frame_a,
             width=self.label_width,
             height=self.label_height,
-            textvariable=self.text_var_a,
+            textvariable=self.text_vars['a'],
             anchor=tk.NW,
             justify=tk.LEFT,
             font=self.label_font)
@@ -125,7 +121,7 @@ class View(tk.Toplevel, Observable):
             self.label_frame_b,
             width=self.label_width,
             height=self.label_height,
-            textvariable=self.text_var_b,
+            textvariable=self.text_vars['b'],
             anchor=tk.NW,
             justify=tk.LEFT,
             font=self.label_font)
@@ -201,7 +197,7 @@ class View(tk.Toplevel, Observable):
             self.label_frame_a_minus_b,
             width=self.label_width,
             height=self.label_height,
-            textvariable=self.text_var_a_minus_b,
+            textvariable=self.text_vars['a_minus_b'],
             anchor=tk.NW,
             justify=tk.LEFT,
             font=self.label_font)
@@ -231,7 +227,7 @@ class View(tk.Toplevel, Observable):
             self.label_frame_b_minus_a,
             width=self.label_width,
             height=self.label_height,
-            textvariable=self.text_var_b_minus_a,
+            textvariable=self.text_vars['b_minus_a'],
             anchor=tk.NW,
             justify=tk.LEFT,
             font=self.label_font)

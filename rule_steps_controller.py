@@ -47,27 +47,59 @@ class Controller(object):
     def _update_model_lshape(self, lshape_name):
         """Receives 'a' or 'b'
         """
-        obj_file = self.the_view.files[lshape_name]
-        self.the_model.lshapes[lshape_name] = self.get_lshape_from(obj_file)
-        self._display_lshape_on_canvas(lshape_name)
-        text = self.the_model.lshapes[lshape_name].listing()
-        self.the_view.text_vars[lshape_name].set(text)
+        method_name = '_update_model_lshape'
+        try:
+            if not lshape_name.__class__ == str:
+                raise TypeError
+            elif not (
+                lshape_name == 'a' or
+                lshape_name == 'b'
+            ):
+                raise ValueError
+        except TypeError:
+            message = 'The argument must be a string'
+            self.__class__._print_error_message(method_name, message)
+        except ValueError:
+            message = "The argument must be 'a' or 'b'"
+            self.__class__._print_error_message(method_name, message)
+        else:
+            obj_file = self.the_view.files[lshape_name]
+            self.the_model.lshapes[lshape_name] = self.get_lshape_from(obj_file)
+            self._display_lshape_on_canvas(lshape_name)
+            text = self.the_model.lshapes[lshape_name].listing()
+            self.the_view.text_vars[lshape_name].set(text)
 
     def _recompute_model_lshape(self, lshape_name):
         """Receives 'a_minus_b' or 'b_minus_a'
         """
-        if lshape_name == 'a_minus_b':
-            lshape_diff = (
-                self.the_model.lshapes['a'] - self.the_model.lshapes['b'])
-        elif lshape_name == 'b_minus_a':
-            lshape_diff = (
-                self.the_model.lshapes['b'] - self.the_model.lshapes['a'])
+        method_name = '_recompute_model_lshape'
+        try:
+            if not lshape_name.__class__ == str:
+                raise TypeError
+            elif not (
+                lshape_name == 'a_minus_b' or
+                lshape_name == 'b_minus_a'
+            ):
+                raise ValueError
+        except TypeError:
+            message = 'The argument must be a string'
+            self.__class__._print_error_message(method_name, message)
+        except ValueError:
+            message = "The argument must be 'a_minus_b' or 'b_minus_a'"
+            self.__class__._print_error_message(method_name, message)
         else:
-            pass
-        self.the_model.lshapes[lshape_name] = lshape_diff
-        self._display_lshape_on_canvas(lshape_name)
-        text_diff = self.the_model.lshapes[lshape_name].listing()
-        self.the_view.text_vars[lshape_name].set(text_diff)
+            if lshape_name == 'a_minus_b':
+                lshape_diff = (
+                    self.the_model.lshapes['a'] - self.the_model.lshapes['b'])
+            elif lshape_name == 'b_minus_a':
+                lshape_diff = (
+                    self.the_model.lshapes['b'] - self.the_model.lshapes['a'])
+            else:
+                print "Shouldn't have gotten here"
+            self.the_model.lshapes[lshape_name] = lshape_diff
+            self._display_lshape_on_canvas(lshape_name)
+            text_diff = self.the_model.lshapes[lshape_name].listing()
+            self.the_view.text_vars[lshape_name].set(text_diff)
 
     def respond_get_lshape_b_button(self):
         self._update_model_lshape('b')
@@ -189,15 +221,6 @@ class Controller(object):
         canvas = self.the_view.canvases[lshape_name]
         self._display_items(items, canvas)
 
-    # def _display_empty_lshape_on_canvas(self, canvas):
-    #     empty_lshape = labeled_shape.LabeledShape.new_empty()
-    #     element_specs = empty_lshape.get_element_specs()
-    #     items = self.get_items_from(element_specs)
-    #     self._display_items(items, canvas)
-    #     empty_lshape_text = empty_lshape.listing()
-    #     self.the_view.text_var_a.set('kilroy a')
-    #     self.the_view.text_var_b.set('kilroy b')
-
     def get_items_from(self, element_specs):
         """Receives a 2-tuple of lists of SG element_specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
@@ -292,6 +315,10 @@ class Controller(object):
         for text_item in text_items:
             x, y, label = text_item
             canvas.create_text(x, y, text=label)
+
+    @classmethod
+    def _print_error_message(cls, method_name, message):
+        print '%s.%s: %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest
