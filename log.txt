@@ -137,3 +137,10 @@ Log
 #   2014-03-22
     #   listing(). Limit decimal_places parameter to integers. Done 2014-03-28
     >   LabeledPoint.__init__(). Revise parameters to point and label?
+
+#   2014-04-12
+    >   Next steps
+        1   Graphic lshape library
+        2   Rhino translator
+        3   Rules
+        

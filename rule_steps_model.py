@@ -10,7 +10,9 @@ class Model(object):
             'a': empty_lshape,
             'b': empty_lshape,
             'a_minus_b': empty_lshape,
-            'b_minus_a': empty_lshape
+            'b_minus_a': empty_lshape,
+            'c': empty_lshape,
+            'c_prime': empty_lshape
         }
 
 if __name__ == '__main__':

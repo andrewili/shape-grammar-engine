@@ -15,9 +15,12 @@ class Controller(object):
             self.the_view.get_lshape_a_button: (
                 self.respond_get_lshape_a_button),
             self.the_view.get_lshape_b_button: (
-                self.respond_get_lshape_b_button)
+                self.respond_get_lshape_b_button),
+            self.the_view.get_lshape_c_button: (
+                self.respond_get_lshape_c_button)
         }
-        self.lshape_names = ['a', 'b', 'a_minus_b', 'b_minus_a']
+        self.lshape_names = [
+            'a', 'b', 'a_minus_b', 'b_minus_a', 'c', 'c_prime']
         self._initialize_view()
 
     def _initialize_view(self):
@@ -41,11 +44,22 @@ class Controller(object):
 
     def respond_get_lshape_a_button(self):
         self._update_model_lshape('a')
+        self._recompute_model_lshape('a_minus_b')   #   refactor
+        self._recompute_model_lshape('b_minus_a')
+        self._recompute_model_lshape('c_prime')
+
+    def respond_get_lshape_b_button(self):
+        self._update_model_lshape('b')
         self._recompute_model_lshape('a_minus_b')
         self._recompute_model_lshape('b_minus_a')
+        self._recompute_model_lshape('c_prime')
+
+    def respond_get_lshape_c_button(self):
+        self._update_model_lshape('c')
+        self._recompute_model_lshape('c_prime')
 
     def _update_model_lshape(self, lshape_name):
-        """Receives 'a' or 'b'
+        """Receives 'a', 'b', or 'c'
         """
         method_name = '_update_model_lshape'
         try:
@@ -53,14 +67,15 @@ class Controller(object):
                 raise TypeError
             elif not (
                 lshape_name == 'a' or
-                lshape_name == 'b'
+                lshape_name == 'b' or
+                lshape_name == 'c'
             ):
                 raise ValueError
         except TypeError:
             message = 'The argument must be a string'
             self.__class__._print_error_message(method_name, message)
         except ValueError:
-            message = "The argument must be 'a' or 'b'"
+            message = "The argument must be 'a', 'b', or 'c'"
             self.__class__._print_error_message(method_name, message)
         else:
             obj_file = self.the_view.files[lshape_name]
@@ -70,7 +85,7 @@ class Controller(object):
             self.the_view.text_vars[lshape_name].set(text)
 
     def _recompute_model_lshape(self, lshape_name):
-        """Receives 'a_minus_b' or 'b_minus_a'
+        """Receives 'a_minus_b', 'b_minus_a', or 'c_prime'
         """
         method_name = '_recompute_model_lshape'
         try:
@@ -78,33 +93,42 @@ class Controller(object):
                 raise TypeError
             elif not (
                 lshape_name == 'a_minus_b' or
-                lshape_name == 'b_minus_a'
+                lshape_name == 'b_minus_a' or
+                lshape_name == 'c_prime'
             ):
                 raise ValueError
         except TypeError:
             message = 'The argument must be a string'
             self.__class__._print_error_message(method_name, message)
         except ValueError:
-            message = "The argument must be 'a_minus_b' or 'b_minus_a'"
+            message = '%s %s' % (
+                "The argument must be 'a_minus_b',",
+                "'b_minus_a', or 'c_prime'")
             self.__class__._print_error_message(method_name, message)
         else:
             if lshape_name == 'a_minus_b':
-                lshape_diff = (
+                new_lshape = (
                     self.the_model.lshapes['a'] - self.the_model.lshapes['b'])
             elif lshape_name == 'b_minus_a':
-                lshape_diff = (
+                new_lshape = (
                     self.the_model.lshapes['b'] - self.the_model.lshapes['a'])
+            elif lshape_name == 'c_prime':
+                if self.the_model.lshapes['a'].is_a_sub_labeled_shape_of(self.the_model.lshapes['c']
+                ):
+                    new_lshape = (
+                        (   self.the_model.lshapes['c'] -
+                            self.the_model.lshapes['a_minus_b']
+                        ) +
+                        self.the_model.lshapes['b_minus_a']
+                    )
+                else:
+                    pass
             else:
                 print "Shouldn't have gotten here"
-            self.the_model.lshapes[lshape_name] = lshape_diff
+            self.the_model.lshapes[lshape_name] = new_lshape
             self._display_lshape_on_canvas(lshape_name)
-            text_diff = self.the_model.lshapes[lshape_name].listing()
-            self.the_view.text_vars[lshape_name].set(text_diff)
-
-    def respond_get_lshape_b_button(self):
-        self._update_model_lshape('b')
-        self._recompute_model_lshape('a_minus_b')
-        self._recompute_model_lshape('b_minus_a')
+            new_text = self.the_model.lshapes[lshape_name].listing()
+            self.the_view.text_vars[lshape_name].set(new_text)
 
     # def respond_get_a_sub_lshape_b_button(self):
     #     empty_lshape = labeled_shape.LabeledShape.new_empty()   ##
