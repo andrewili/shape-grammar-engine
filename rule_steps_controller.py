@@ -105,15 +105,20 @@ class Controller(object):
                 "The argument must be 'a_minus_b',",
                 "'b_minus_a', or 'c_prime'")
             self.__class__._print_error_message(method_name, message)
-        else:
+        else:                                   #   refactor
             if lshape_name == 'a_minus_b':
                 new_lshape = (
-                    self.the_model.lshapes['a'] - self.the_model.lshapes['b'])
+                    self.the_model.lshapes['a'] - 
+                    self.the_model.lshapes['b'])
+                new_text = new_lshape.listing()
             elif lshape_name == 'b_minus_a':
                 new_lshape = (
-                    self.the_model.lshapes['b'] - self.the_model.lshapes['a'])
+                    self.the_model.lshapes['b'] - 
+                    self.the_model.lshapes['a'])
+                new_text = new_lshape.listing()
             elif lshape_name == 'c_prime':
-                if self.the_model.lshapes['a'].is_a_sub_labeled_shape_of(self.the_model.lshapes['c']
+                if self.the_model.lshapes['a'].is_a_sub_labeled_shape_of(
+                    self.the_model.lshapes['c']
                 ):
                     new_lshape = (
                         (   self.the_model.lshapes['c'] -
@@ -121,26 +126,16 @@ class Controller(object):
                         ) +
                         self.the_model.lshapes['b_minus_a']
                     )
+                    new_text = new_lshape.listing()
                 else:
-                    pass
+                    new_lshape = labeled_shape.LabeledShape.new_empty()
+                    new_text = 'A is not a part of C'
             else:
                 print "Shouldn't have gotten here"
             self.the_model.lshapes[lshape_name] = new_lshape
             self._display_lshape_on_canvas(lshape_name)
-            new_text = self.the_model.lshapes[lshape_name].listing()
+            # new_text = self.the_model.lshapes[lshape_name].listing()
             self.the_view.text_vars[lshape_name].set(new_text)
-
-    # def respond_get_a_sub_lshape_b_button(self):
-    #     empty_lshape = labeled_shape.LabeledShape.new_empty()   ##
-    #     self._display_lshape_on_canvas(                         ##
-    #         empty_lshape, self.the_view.canvas_c)               ##
-    #     if self.the_view.lshape_a.is_a_sub_labeled_shape_of(
-    #         self.the_view.lshape_b
-    #     ):
-    #         text_c = "A <= B: true"
-    #     else:
-    #         text_c = "A <= B: false"
-    #     self.the_view.text_var_c.set(text_c)
 
         ####
     def get_lshape_from(self, obj_file):
