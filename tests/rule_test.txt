@@ -1,8 +1,0 @@
-#	rule_test.txt
-
-	>>> import rule
-
-### construct, represent
-#	__init__, __str__, listing
-
-	>>> 
