@@ -14,6 +14,7 @@ class Model(object):
             'c': empty_lshape,
             'c_prime': empty_lshape
         }
+        self.rule = rule.Rule.new_empty()       #   no such thing
 
 if __name__ == '__main__':
     import doctest
