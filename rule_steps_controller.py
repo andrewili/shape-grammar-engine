@@ -105,13 +105,12 @@ class Controller(object):
                 "The argument must be 'a_minus_b',",
                 "'b_minus_a', or 'c_prime'")
             self.__class__._print_error_message(method_name, message)
-        else:                                   #   refactor
+        else:
             if lshape_name == 'a_minus_b':
-                new_lshape = (
-                    self.the_model.lshapes['a'] - 
-                    self.the_model.lshapes['b'])
+                new_lshape = self._subtract_lshapes('a', 'b')
                 new_text = new_lshape.listing()
             elif lshape_name == 'b_minus_a':
+                new_lshape = self._subtract_lshapes('b', 'a')
                 new_lshape = (
                     self.the_model.lshapes['b'] - 
                     self.the_model.lshapes['a'])
@@ -120,12 +119,7 @@ class Controller(object):
                 if self.the_model.lshapes['a'].is_a_sub_labeled_shape_of(
                     self.the_model.lshapes['c']
                 ):
-                    new_lshape = (
-                        (   self.the_model.lshapes['c'] -
-                            self.the_model.lshapes['a_minus_b']
-                        ) +
-                        self.the_model.lshapes['b_minus_a']
-                    )
+                    new_lshape = self._apply_rule_to_lshape('c', 'a', 'b')
                     new_text = new_lshape.listing()
                 else:
                     new_lshape = labeled_shape.LabeledShape.new_empty()
@@ -136,6 +130,32 @@ class Controller(object):
             self._display_lshape_on_canvas(lshape_name)
             # new_text = self.the_model.lshapes[lshape_name].listing()
             self.the_view.text_vars[lshape_name].set(new_text)
+
+    def _subtract_lshapes(self, lshape_a_name, lshape_b_name):
+        """Receives the names of labeled shapes A and B:
+            str, str
+        Returns the labeled shape difference A - B:
+            LabeledShape
+        """
+        lshape_a = self.the_model.lshapes[lshape_a_name]
+        lshape_b = self.the_model.lshapes[lshape_b_name]
+        lshape_diff = lshape_a - lshape_b
+        return lshape_diff
+
+    def _apply_rule_to_lshape(
+            self, lshape_c_name, lshape_a_name, lshape_b_name
+        ):
+        """Receives names of the current labeled shape C, left labeled 
+        shape A, and right labeled shape B:
+            str, str, str
+        Returns the next labeled shape C prime:
+            LabeledShape
+        """
+        lshape_a = self.the_model.lshapes[lshape_a_name]
+        lshape_b = self.the_model.lshapes[lshape_b_name]
+        lshape_c = self.the_model.lshapes[lshape_c_name]
+        new_lshape = (lshape_c - lshape_a) + lshape_b
+        return new_lshape
 
         ####
     def get_lshape_from(self, obj_file):
