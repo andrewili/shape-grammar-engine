@@ -142,6 +142,6 @@ Log
     >   Next steps
         1   Graphic lshape library
         2   Rhino translator
-        3   Rules
+        3   Rules. Need visualizer
         4   Model._set_to_empty(lshape)?
         
