@@ -1,0 +1,25 @@
+#   ledger_test.txt
+
+    >>> import ledger
+
+### __init__
+    >>> empty_ledger = ledger.Ledger([])
+    >>> empty_ledger.elements
+    []
+    >>> bac = ['b', 'a', 'c']
+    >>> ledger_bac = ledger.Ledger(bac)
+    >>> ledger_bac.elements
+    ['a', 'b', 'c']
+    >>> baca = ['b', 'a', 'c', 'a']
+    >>> ledger_baca = ledger.Ledger(baca)
+    >>> ledger_baca.elements
+    ['a', 'b', 'c']
+
+### get_element
+    >>> ledger_bac.get_element(1)
+    'b'
+
+### get_index
+    >>> ledger_bac.get_index('b')
+    1
+

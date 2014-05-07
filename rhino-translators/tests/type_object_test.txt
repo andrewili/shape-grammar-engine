@@ -1,0 +1,9 @@
+#	type_object_test.txt
+
+	>>> import type_object
+
+	>>> type_object.TypeObject.__class__
+	<type 'type'>
+	>>> type_object.TypeObject.test('x')
+	Kilroy is here
+	'x'

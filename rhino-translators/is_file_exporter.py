@@ -1,4 +1,7 @@
+#   is_file_exporter.py
+
 import rhinoscriptsyntax as rs
+import ledger
 
 class ISFileExporter(object):
     def __init__(self):
@@ -6,100 +9,57 @@ class ISFileExporter(object):
 
     def export_shape(self):
         lines = rs.GetObjects('Select lines', rs.filter.curve)
-        rhino_shape = RhinoShape(lines)
-        is_string = rhino_shape.compose_is_string()
-        write_file(is_string)
-        # file_writer = FileWriter()
-        # file_writer.write(is_string)
+        shape = Shape(lines)
+        is_string = shape.compose_is_string()
+        self.write_file(is_string)
 
     def write_file(self, string):
         print(string)
 
-class RhinoShape(object):
+class Shape(object):
     def __init__(self, lines):
         """Receives a list of line Guids
             [Guid, ...]
         """
-        self.lines = lines
-        self.shape_name = '<shape name>'
-        self.coord_ledger = {}  # {(x1, y1, z1): i1, ...}
-        self.line_ledger = {}   # {(i1, j1): k1, ...}
+        self.coord_ledger = self.make_new_coord_ledger(lines)
+        self.line_ledger = self.make_new_line_ledger(lines)
         self.tab = '    '
-        self.complete_ledgers()
 
-    def complete_ledgers(self):
-        for line in self.lines:
-            self.enter_in_ledgers(line)
-
-    def enter_in_ledgers(self, line):
-        """Receives a line Guid
-            Guid
-        Records the line in the coord and line ledgers
+    def make_new_coord_ledger(self, lines):
+        """Receives a list of line Guids:
+            [Guid, ...]
+        Returns a list of coords:
+            [(num, num, num), ...]
         """
-        # check for line Guid
-        point_object_1, point_object_2 = rs.CurvePoints(line)
-        coord1, coord2 = self.get_coords(point_object_1, point_object_2)
-        coord_index_1, coord_index_2 = self.get_coords_by_index(
-            coord1, coord2)
-        self.enter_in_line_ledger(coord_index_1, coord_index_2)
+        coords = []
+        for line in lines:
+            points = rs.CurvePoints(line)
+            for p in points:
+                coord = (p.X, p.Y, p.Z)
+                coords.append(coord)
+        coord_ledger = ledger.Ledger(coords)
+        return coord_ledger
 
-    def get_coords(self, point_object_1, point_object_2):
-        """Receives 2 point objects
-            Point3d, Point3d
-        Returns 2 coords
-            (num, num, num), (num, num, num)
+    def make_new_line_ledger(self, lines):
+        """Receives a list of line Guids:
+            [Guid, ...]
+        Returns a list of line coord index pairs:
+            [(int, int), ...]
         """
-        x1, y1, z1 = point_object_1.X, point_object_1.Y, point_object_1.Z
-        x2, y2, z2 = point_object_2.X, point_object_2.Y, point_object_2.Z
-        coord1 = (x1, y1, z1)
-        coord2 = (x2, y2, z2)
-        return (coord1, coord2)
-
-    def get_coords_by_index(self, coord1, coord2):
-        """Receives 2 coords:
-            (num, num, num), (num, num, num)
-        Returns 2 coords by index: 
-            (int, int) 
-        """
-        coord_index_1 = self.get_coord_by_index(coord1)
-        coord_index_2 = self.get_coord_by_index(coord2)
-        return (coord_index_1, coord_index_2)
-
-    def get_coord_by_index(self, coord):
-        """Receives coord:
-            (num, num, num)
-        Creates a new entry if necessary. Returns coord by index:
-            int
-        """
-        if self.coord_ledger == {}:
-            previous_index = 0
-        else:
-            previous_index = max(self.coord_ledger.values())
-        if not self.coord_ledger.has_key(coord):
-            current_index = previous_index + 1
-            self.coord_ledger[coord] = current_index
-        return current_index
-
-    def enter_in_line_ledger(self, coord_index_1, coord_index_2):
-        """Receives 2 coords by index
-            int, int
-        If they have not already been entered, enters them in the line ledger
-        """
-        if self.line_ledger == {}:
-            previous_index = 0
-        else:
-            previous_index = max(self.line_ledger.values())
-        if not self.line_ledger.has_key((coord_index_1, coord_index_2)):
-            current_index = previous_index + 1
-            self.line_ledger[(coord_index_1, coord_index_2)] = current_index
-
-    def in_coord_ledger(self, point):
-        """Receives a point
-            [num, num, num]
-        Returns whether the point is in the coord ledger
-        """
-        value = point in self.coord_ledger.values()
-        return value
+        index_pairs = []
+        for line in lines:
+            points = rs.CurvePoints(line)
+            coord_pair = []
+            for p in points:
+                coord = (p.X, p.Y, p.Z)
+                coord_pair.append(coord)
+            index_pair = []
+            for coord in coord_pair:
+                index = self.coord_ledger.get_index(coord)
+                index_pair.append(index)
+            index_pairs.append(index_pair)
+        line_ledger = ledger.Ledger(index_pairs)
+        return line_ledger
 
     def compose_is_string(self):
         """Returns a string in IS format
@@ -135,13 +95,14 @@ class RhinoShape(object):
         return header_string
 
     def get_indented_coord_ledger_string(self):
-        """Returns a string of the ledger entries, sorted by the index:
+        """Returns a string of the coord ledger entries, sorted by the index:
             tab 'coords' coord_index x y z
         """
         indented_entry_strings = []
-        for coord in sorted(self.coord_ledger.keys()):
-            indented_heading = self.tab + 'coords'
-            coord_index = self.coord_ledger[coord]
+        for coord in self.coord_ledger.elements:
+            heading = 'coords'
+            indented_heading = self.tab + heading
+            coord_index = self.coord_ledger.get_index(coord)
             coord_index_str = str(coord_index)
             x, y, z = coord
             x_str, y_str, z_str = str(x), str(y), str(z)
@@ -153,10 +114,15 @@ class RhinoShape(object):
         return indented_coord_ledger_string
 
     def get_indented_line_ledger_string(self):
+        """Returns a string of the line ledger entries, sorted by the index:
+            tab 'line' line_index coord_index_1 coord_index_2
+        """
         indented_entry_strings = []
-        for line_coord_index_pair in sorted(self.line_ledger.keys()):
-            indented_heading = self.tab + 'line'
-            line_index = self.line_ledger[line_coord_index_pair]
+        for line_coord_index_pair in self.line_ledger.elements:
+            heading = 'line'
+            indented_heading = self.tab + heading
+            line_index = self.line_ledger.get_index(
+                line_coord_index_pair)
             line_index_str = str(line_index)
             coord_index_1, coord_index_2 = line_coord_index_pair
             coord_index_str_1, coord_index_str_2 = (
@@ -179,7 +145,6 @@ class FileWriter(object):
 if __name__ == '__main__':
     exporter = ISFileExporter()
     exporter.export_shape()
-    # export_is_file()
     # import doctest
     # doctest.testfile('tests/is_file_exporter_test.txt')
 
