@@ -1,0 +1,7 @@
+#	is_file_exporter_text.txt
+
+	>>> import is_file_exporter as exp
+
+	>>> empty_list = []
+	>>> shape = exp.Shape(empty_list)
+	>>> shape.drone_ledger

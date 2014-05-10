@@ -1,0 +1,6 @@
+shape <Z:\Documents\shape-grammar-engine\rhino-translators\line.is>
+    name
+
+    coords 0 0.0 10.0 0.0
+    coords 1 30.0 10.0 0.0
+    line 0 0 1

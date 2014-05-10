@@ -1,0 +1,46 @@
+#   exporter_test.txt
+
+    >>> import exporter
+
+    >>> exp = exporter.Exporter()
+
+### make_coord_pair_list
+    Requires line Guids
+    
+### make_coord_list
+    >>> coord_pair_list = [
+    ...     ((0, 4, 0), (3, 0, 0)),
+    ...     ((0, 0, 0), (3, 0, 0)),
+    ...     ((0, 0, 0), (0, 4, 0))]
+    >>> coord_list = exp.make_coord_list(coord_pair_list)
+    >>> coord_list
+    [(0, 0, 0), (0, 4, 0), (3, 0, 0)]
+
+
+### make_line_coord_index_pair_list
+    >>> exp.coord_list = [
+    ...     (0, 0, 0),
+    ...     (0, 4, 0),
+    ...     (3, 0, 0)]
+    >>> coord_pair_list = [
+    ...     ((0, 4, 0), (3, 0, 0)),
+    ...     ((0, 0, 0), (3, 0, 0)),
+    ...     ((0, 0, 0), (0, 4, 0))]
+    >>> exp.make_line_coord_index_pair_list(coord_pair_list)
+    [(0, 1), (0, 2), (1, 2)]
+
+### get_index_pair
+    >>> coord_list = [(0, 0, 0), (0, 4, 0), (3, 0, 0)]
+    >>> coord_pair_01 = ((0, 0, 0), (0, 4, 0))
+    >>> coord_pair_02 = ((0, 0, 0), (3, 0, 0))
+    >>> coord_pair_12 = ((0, 4, 0), (3, 0, 0))
+
+    >>> index_pair_01 = exp.get_index_pair(coord_list, coord_pair_01)
+    >>> index_pair_01 == (0, 1)
+    True
+    >>> index_pair_02 = exp.get_index_pair(coord_list, coord_pair_02)
+    >>> index_pair_02 == (0, 2)
+    True
+    >>> index_pair_12 = exp.get_index_pair(coord_list, coord_pair_12)
+    >>> index_pair_12 == (1, 2)
+    True

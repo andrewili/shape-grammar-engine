@@ -8,8 +8,8 @@ class ISFileExporter(object):
         pass
 
     def export_shape(self):
-        lines = rs.GetObjects('Select lines', rs.filter.curve)
-        shape = Shape(lines)
+        selected_lines = rs.GetObjects('Select lines', rs.filter.curve)
+        shape = Shape(selected_lines)
         is_string = shape.compose_is_string()
         self.write_file(is_string)
 
@@ -21,8 +21,14 @@ class Shape(object):
         """Receives a list of line Guids
             [Guid, ...]
         """
-        self.coord_ledger = self.make_new_coord_ledger(lines)
-        self.line_ledger = self.make_new_line_ledger(lines)
+        self.drone_ledger = ledger.Ledger(lines)
+        # self.coord_ledger = ledger.Ledger()
+        # self.coord_ledger.complete_as_coord_ledger(lines)
+        # self.line_ledger = ledger.Ledger()
+        # self.line_ledger.complete_as_line_ledger(lines)
+
+        # self.coord_ledger = self.make_new_coord_ledger(lines)
+        # self.line_ledger = self.make_new_line_ledger(lines)
         self.tab = '    '
 
     def make_new_coord_ledger(self, lines):
@@ -38,6 +44,7 @@ class Shape(object):
                 coord = (p.X, p.Y, p.Z)
                 coords.append(coord)
         coord_ledger = ledger.Ledger(coords)
+        print('coord ledger: %s' % coord_ledger.elements)
         return coord_ledger
 
     def make_new_line_ledger(self, lines):
@@ -59,6 +66,7 @@ class Shape(object):
                 index_pair.append(index)
             index_pairs.append(index_pair)
         line_ledger = ledger.Ledger(index_pairs)
+        print('line ledger: %s' % line_ledger.elements)
         return line_ledger
 
     def compose_is_string(self):
