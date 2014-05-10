@@ -1,0 +1,15 @@
+shape hash
+    name 
+    coords 0 4 12 0
+    coords 1 28 12 0
+    coords 2 20 28 0
+    coords 3 20 4 0
+    coords 4 12 28 0
+    coords 5 12 4 0
+    coords 6 4 20 0
+    coords 7 28 20 0
+
+    line 1 0 1
+    line 2 2 3
+    line 3 4 5
+    line 4 6 7

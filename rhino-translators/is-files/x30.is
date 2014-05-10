@@ -1,0 +1,9 @@
+shape x30
+    name
+    coords 0 0.0 0.0 0.0
+    coords 1 0.0 30.0 0.0
+    coords 2 30.0 0.0 0.0
+    coords 3 30.0 30.0 0.0
+
+    line 1 0 3
+    line 2 1 2

@@ -1,0 +1,37 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    right_tri
+    name 
+    coords 0 10 5 0
+    coords 1 10 25 0
+    coords 2 25 5 0
+
+    line 1 0 2
+    line 2 1 0
+    line 3 1 2
+shape    subdivide_right_tri_L
+    name right_tri
+    coords 0 8 25.6 0
+    coords 1 22.4 6.4 0
+    coords 2 8 6.4 0
+
+    line 1 0 1
+    line 2 0 2
+    line 3 2 1
+shape    subdivide_right_tri_R
+    name right_tri_divided
+    coords 0 8 16 0
+    coords 1 15.2 6.4 0
+    coords 2 8 25.6 0
+    coords 3 8 6.4 0
+    coords 4 15.2 16 0
+    coords 5 22.4 6.4 0
+
+    line 1 0 1
+    line 2 2 3
+    line 3 4 1
+    line 4 3 5
+    line 5 2 5
+    line 6 0 4
+initial    right_tri
+rule    subdivide_right_tri    subdivide_right_tri_L -> subdivide_right_tri_R

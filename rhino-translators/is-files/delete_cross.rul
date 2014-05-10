@@ -1,0 +1,13 @@
+shape delete_cross_L
+    name cross
+    coords 0 16 24 0
+    coords 1 16 8 0
+    coords 2 8 16 0
+    coords 3 24 16 0
+
+    line 1 0 1
+    line 2 2 3
+shape delete_cross_R
+    name empty
+
+rule    delete_cross    delete_cross_L -> delete_cross_R

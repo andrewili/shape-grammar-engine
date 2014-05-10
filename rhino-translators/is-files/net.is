@@ -1,0 +1,38 @@
+shape net
+    name
+    coords 0 10.0 10.0 0.0
+    coords 1 10.0 14.0 0.0
+    coords 2 10.0 18.0 0.0
+    coords 3 10.0 22.0 0.0
+    coords 4 10.0 26.0 0.0
+    coords 5 20.0 10.0 0.0
+    coords 6 20.0 14.0 0.0
+    coords 7 20.0 18.0 0.0
+    coords 8 20.0 22.0 0.0
+    coords 9 20.0 26.0 0.0
+
+    line 1 0 5
+    line 2 0 6
+    line 3 0 7
+    line 4 0 8
+    line 5 0 9
+    line 6 1 5
+    line 7 1 6
+    line 8 1 7
+    line 9 1 8
+    line 10 1 9
+    line 11 2 5
+    line 12 2 6
+    line 13 2 7
+    line 14 2 8
+    line 15 2 9
+    line 16 3 5
+    line 17 3 6
+    line 18 3 7
+    line 19 3 8
+    line 20 3 9
+    line 21 4 5
+    line 22 4 6
+    line 23 4 7
+    line 24 4 8
+    line 25 4 9

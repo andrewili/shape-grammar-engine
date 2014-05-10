@@ -99,25 +99,25 @@ class Exporter(object):
         Returns a string in IS format:
             # <header>
                 <name>
-                <blank line>
                 <coord entry 1>
                 ...
+                <blank line>
                 <line entry 1>
                 ...
+                <blank line>
         """
-        # header = self.make_header()
         indented_name_string = self.make_indented_name_string()
-        blank_line = ''
         indented_coord_entries_string = (
             self.make_indented_coord_entries_string())
+        blank_line = ''
         indented_line_entries_string = (
             self.make_indented_line_entries_string())
         substrings = [
-            # header, 
             indented_name_string, 
-            blank_line, 
             indented_coord_entries_string, 
-            indented_line_entries_string]
+            blank_line, 
+            indented_line_entries_string,
+            blank_line] 
         string = '\n'.join(substrings)
         return string
 
@@ -174,7 +174,7 @@ class Exporter(object):
         Returns an indented line coord entry string:
             <tab>line <i_str> <coord_index_str_1> <coord_index_str_2>)
         """
-        i = self.sorted_line_coord_index_pair_list.index(index_pair)
+        i = self.sorted_line_coord_index_pair_list.index(index_pair) + 1
         i_str = str(i)
         coord_index_1, coord_index_2 = index_pair[0], index_pair[1]
         coord_index_str_1, coord_index_str_2 = (
@@ -191,24 +191,19 @@ class Exporter(object):
         """Prompts for a file name with is extension. Writes the string to the
         file
         """
-        # file_name = rs.GetString(
-        #     'Enter the name of the shape', '<shape name>')
+        shape_name = rs.GetString(
+            'Enter the name of the shape', '<shape name>')
         filter = "IS file (*.is)|*.is|All files (*.*)|*.*||"
-        long_file_name = rs.SaveFileName("Save shape as", filter)
+        long_file_name = (
+            rs.SaveFileName('Save shape as', filter, '', shape_name))
         if not long_file_name: return
 
-        short_file_name = self.get_short_file_name(long_file_name)
-        header = ' '.join(['shape', short_file_name])
+        header = ' '.join(['shape', shape_name])
         headed_string = '\n'.join([header, string])
-        file = open( long_file_name, "w" )
+        file = open(long_file_name, "w" )
         file.write(headed_string)
         file.close()
         print(headed_string)
-
-    def get_short_file_name(self, long_file_name):
-        # short_file_name = '<%s>' % long_file_name
-        short_file_name = '<short file name>'
-        return short_file_name
 
 if __name__ == '__main__':
     exporter = Exporter()

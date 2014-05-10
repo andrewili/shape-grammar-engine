@@ -1,0 +1,9 @@
+shape right_tri
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 25.0 0.0
+    coords 2 25.0 5.0 0.0
+
+    line 1 0 2
+    line 2 1 0
+    line 3 1 2

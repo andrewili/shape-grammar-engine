@@ -1,0 +1,15 @@
+shape new_hash
+    name
+
+    coords 0 0.0 10.0 0.0
+    coords 1 0.0 20.0 0.0
+    coords 2 10.0 0.0 0.0
+    coords 3 10.0 30.0 0.0
+    coords 4 20.0 0.0 0.0
+    coords 5 20.0 30.0 0.0
+    coords 6 30.0 10.0 0.0
+    coords 7 30.0 20.0 0.0
+    line 0 0 6
+    line 1 1 7
+    line 2 2 3
+    line 3 4 5

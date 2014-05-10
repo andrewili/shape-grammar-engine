@@ -1,9 +1,0 @@
-<header>
-    name
-
-    coords 0 0.0 10.0 0.0
-    coords 1 0.0 20.0 0.0
-    coords 2 30.0 10.0 0.0
-    coords 3 30.0 20.0 0.0
-    line 0 0 2
-    line 1 1 3
