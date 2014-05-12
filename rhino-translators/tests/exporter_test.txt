@@ -4,30 +4,39 @@
 
     >>> exp = exporter.Exporter()
 
+### sort_elements
 ### make_coord_pair_list
-    Requires line Guids
-    
+### get_coord_pair
 ### make_coord_list
+### make_coord_pair_list
+    Requires rs functions
+    
+### make_sorted_coord_list
+    >>> coord_list = [(1.5, 2, 0)]
     >>> coord_pair_list = [
     ...     ((0, 4, 0), (3, 0, 0)),
     ...     ((0, 0, 0), (3, 0, 0)),
     ...     ((0, 0, 0), (0, 4, 0))]
-    >>> coord_list = exp.make_coord_list(coord_pair_list)
     >>> coord_list
-    [(0, 0, 0), (0, 4, 0), (3, 0, 0)]
+    [(1.5, 2, 0)]
+    >>> coord_pair_list
+    [((0, 4, 0), (3, 0, 0)), ((0, 0, 0), (3, 0, 0)), ((0, 0, 0), (0, 4, 0))]
+    >>> sorted_coord_list = exp.make_sorted_coord_list(coord_list, coord_pair_list)
+    >>> sorted_coord_list
+    [(0, 0, 0), (0, 4, 0), (1.5, 2, 0), (3, 0, 0)]
 
-
-### make_line_coord_index_pair_list
-    >>> exp.coord_list = [
+### make_sorted_line_coord_index_pair_list
+    >>> exp.sorted_coord_list = [
     ...     (0, 0, 0),
     ...     (0, 4, 0),
+    ...     (1.5, 2, 0),
     ...     (3, 0, 0)]
     >>> coord_pair_list = [
     ...     ((0, 4, 0), (3, 0, 0)),
     ...     ((0, 0, 0), (3, 0, 0)),
     ...     ((0, 0, 0), (0, 4, 0))]
-    >>> exp.make_line_coord_index_pair_list(coord_pair_list)
-    [(0, 1), (0, 2), (1, 2)]
+    >>> exp.make_sorted_line_coord_index_pair_list(coord_pair_list)
+    [(0, 1), (0, 3), (1, 3)]
 
 ### get_index_pair
     >>> coord_list = [(0, 0, 0), (0, 4, 0), (3, 0, 0)]
@@ -44,3 +53,49 @@
     >>> index_pair_12 = exp.get_index_pair(coord_list, coord_pair_12)
     >>> index_pair_12 == (1, 2)
     True
+
+### compose_is_string
+### make_header
+### make_indented_name_string
+
+### make_indented_coord_entries_string
+    >>> exp.sorted_coord_list = [(0, 0, 0), (0, 4, 0), (3, 0, 0)]
+    >>> string = exp.make_indented_coord_entries_string()
+    >>> print(string)
+        coords 0 0 0 0
+        coords 1 0 4 0
+        coords 2 3 0 0
+
+### make_indented_coord_entry_string
+    >>> exp.sorted_coord_list = [(0, 0, 0), (0, 4, 0), (3, 0, 0)]
+    >>> coord = (0, 4, 0)
+    >>> string = exp.make_indented_coord_entry_string(coord)
+    >>> print(string)
+        coords 1 0 4 0
+
+### make_indented_line_entries_string
+    >>> exp.sorted_line_coord_index_pair_list = [(0, 1), (0, 2), (1, 2)]
+    >>> string = exp.make_indented_line_entries_string()
+    >>> print(string)
+        line 1 0 1
+        line 2 0 2
+        line 3 1 2
+
+### make_indented_line_entry_string
+    >>> exp.sorted_line_coord_index_pair_list = [(0, 1), (0, 2), (1, 2)]
+    >>> index_pair = (1, 2)
+    >>> string = exp.make_indented_line_entry_string(index_pair)
+    >>> print(string)
+        line 3 1 2
+
+### make_indented_lpoint_entries_string
+    >>> exp.sorted_lpoint_list = [((0, 0, 0), '000'), ((0, 4, 0), '040'), ((3, 0, 0), '300')]
+    >>> string = exp.make_indented_lpoint_entries_string()
+    >>> print(string)
+        Kilroy
+        Kilroy
+        Kilroy
+        
+### write_file
+    Requires rs function
+

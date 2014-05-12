@@ -1,0 +1,47 @@
+#   exporter2_test.txt
+
+    >>> import exporter2
+
+    >>> exp = exporter2.Exporter2()
+
+    ??? def make_indexed_coord_list():
+    ...     c0 = (0, 0, 0)
+    ...     c1 = (1, 1, 1)
+    ...     c2 = (2, 2, 2)
+    ...     c3 = (3, 3, 3)
+    ...     c4 = (4, 4, 4)
+    ...     indexed_coord_list = [c0, c1, c2, c3, c4]
+    ...     return indexed_coord_list
+    ??? exp.indexed_coord_list = make_indexed_coord_list()
+
+### export_shape
+### receive_elements
+### make_indexed_element_lists
+### make_element_lists
+### make_indexed_coord_list
+    >>> coords = [(2, 2, 2), (4, 4, 4), (3, 3, 3), (2, 2, 2), (1, 1, 1), (0, 0, 0)]
+    >>> exp.indexed_coord_list = exp.make_indexed_coord_list(coords)
+    >>> print(exp.indexed_coord_list)
+    
+    [(0, 0, 0), (1, 1, 1), (2, 2, 2), (3, 3, 3), (4, 4, 4)]
+
+### make_indexed_line_coord_pair_list
+    >>> l23 = ((2, 2, 2), (3, 3, 3))
+    >>> l12 = ((1, 1, 1), (2, 2, 2))
+    >>> l01 = ((0, 0, 0), (1, 1, 1))
+    >>> lines = [l23, l12, l01]
+    >>> indexed_line_coord_pair_list = exp.make_indexed_line_coord_pair_list(lines)
+    >>> print(indexed_line_coord_pair_list)
+    [(0, 1), (1, 2), (2, 3)]
+
+### make_indexed_lpoint_list
+    >>> lp0 = ((0, 0, 0), 'a')
+    >>> lp2 = ((2, 2, 2), 'c')
+    >>> lp4 = ((4, 4, 4), 'e')
+    >>> lpoints = [lp4, lp2, lp0]
+    >>> indexed_lpoint_list = exp.make_indexed_lpoint_list(lpoints)
+    >>> print(indexed_lpoint_list)
+    [(0, 'a'), (2, 'c'), (4, 'e')]
+    
+### compose_string
+### write_file
