@@ -14,9 +14,10 @@ def draw_square(side):
     rs.AddLine(p00, p10)
     rs.AddLine(p01, p11)
     rs.AddLine(p10, p11)
-    dot = rs.AddTextDot('x', p22)
-    dot_text = rs.TextDotText(dot)
-    dot_point = rs.TextDotPoint(dot)
+    dot00 = rs.AddTextDot('00', p00)
+    dot22 = rs.AddTextDot('22', p22)
+    dot_text = rs.TextDotText(dot22)
+    dot_point = rs.TextDotPoint(dot22)
     print('dot text : %s' % dot_text)
     print('dot point: %s' % dot_point)
 

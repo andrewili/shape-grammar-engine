@@ -1,53 +1,55 @@
 #   exporter2.py
 
-import rhinoscriptsyntax as rs
+# import rhinoscriptsyntax as rs
 
 class Exporter2(object):
     def __init__(self):
-        self.indexed_coord_list = []
-        self.indexed_line_coord_pair_list = []
-        self.indexed_lpoint_list = []
+        # self.ordered_coord_list = []            #   [(num, num, num), ...]
+        # self.ordered_index_pair_list = []       #   [(int, int), ...]
+        # self.ordered_index_label_pair_list = [] #   [(int, str), ...]
+        self.tab = '    '
         self.is_string = ''
 
     def export_shape(self):
-        elements_in = self.receive_elements()
-        element_lists = self.make_indexed_element_lists(elements_in)
+        guids_in = self.receive_guids()
+        element_lists = self.make_indexed_element_lists(guids_in)
         is_string = self.compose_string(element_lists)
         self.write_file(is_string)
 
-    def receive_elements(self):
-        """Prompts for curves and textdots.
-        Returns a list of all selected elements: 
-            [Guid, ...]
+    def receive_guids(self):
+        """Prompts for curve and textdot guids
+        Returns a list of all selected guids: 
+            [guid, ...]
         """
-        elements = rs.GetObjects(
+        guids = rs.GetObjects(
             'Select curves and textdots', 
             rs.filter.curve + rs.filter.textdot)
-        return elements
+        return guids
 
-    def make_indexed_element_lists(self, elements_in):
-        """Receives a list of element Guids:
-            [Guids, ...]
-        Returns a tuple of sorted lists of coords, line coord index pairs, and
-        lpoint coord indices:
+    def make_indexed_element_lists(self, guids_in):
+        """Receives a list of guids:
+            [guid, ...]
+        Returns a tuple of ordered lists of coords, line coord index pairs,
+        and lpoint coord-index-label pairs:
             ([(num, num, num), ...], [(int, int), ...], [(int, string), ...])
         """
         self.coords, self.lines, self.lpoints = (
-            self.make_element_lists(elements_in))
-        self.indexed_coord_list = self.make_indexed_coord_list(self.coords)
-        self.indexed_line_coord_pair_list = (
-            self.make_indexed_line_coord_pair_list(self.lines))
-        self.indexed_lpoint_coord_list = (
-            self.make_indexed_lpoint_list(self.lpoints))
+            self.make_element_lists(guids_in))
+        self.ordered_coord_list = self.make_ordered_coord_list(self.coords)
+        self.ordered_index_pair_list = (
+            self.make_ordered_index_pair_list(self.lines))
+        print('lpoints: %s' % self.lpoints)
+        self.ordered_index_label_pair_list = (
+            self.make_ordered_index_label_pair_list(self.lpoints))
         indexed_element_lists = (
-            self.indexed_coord_list, 
-            self.indexed_line_coord_pair_list, 
-            self.indexed_lpoint_coord_list)
+            self.ordered_coord_list, 
+            self.ordered_index_pair_list, 
+            self.ordered_index_label_pair_list)
         return indexed_element_lists
 
-    def make_element_lists(self, elements):
-        """Receives a list of element Guids:
-            [Guid, ...]
+    def make_element_lists(self, guids):
+        """Receives a list of guids:
+            [guid, ...]
         Returns lists of coords, lines, and textdots:
             (   [(num, num, num), ...], 
                 [((num, num, num), (num, num, num)), ...],
@@ -57,56 +59,56 @@ class Exporter2(object):
         coords, lines, lpoints = [], [], []
         line_type = 4
         textdot_type = 8192
-        for element in elements:
-            element_type = rs.ObjectType(element)
-            if element_type == line_type:
-                # lines.append(element)   #   adds a Guid!
-                line_coords = self.get_line_coords(element)
+        for guid in guids:
+            guid_type = rs.ObjectType(guid)
+            if guid_type == line_type:
+                # lines.append(guid)   #   adds a Guid!
+                line_coords = self.get_line_coords(guid)
                 lines.append(line_coords)
                 for coord in line_coords:
                     coords.append(coord)
-            elif element_type == textdot_type:
-                coord = self.get_coord(element)
-                label = self.get_label(element)
+            elif guid_type == textdot_type:
+                coord = self.get_coord(guid)
+                label = self.get_label(guid)
                 coords.append(coord)
                 lpoint = (coord, label)
                 lpoints.append(lpoint)
         element_lists = (coords, lines, lpoints)
         return element_lists
 
-    def get_line_coords(self, line):
-        """Receives a line Guid:
-            Guid
-        Returns the line's coord pair:
+    def get_line_coords(self, line_guid):
+        """Receives a line guid:
+            guid
+        Returns the line guid's coord pair:
             [(num, num, num), (num, num, num)]
         """
-        point_pair = rs.CurvePoints(line)
+        point_pair = rs.CurvePoints(line_guid)
         coord_pair = []
         for point in point_pair:
             coord = (point.X, point.Y, point.Z)
             coord_pair.append(coord)
         return coord_pair
 
-    def get_coord(self, textdot):
-        """Receives a textdot Guid:
-            Guid
+    def get_coord(self, textdot_guid):
+        """Receives a textdot guid:
+            guid
         Returns its coord:
             (num, num, num)
         """
-        point = rs.TextDotPoint(textdot)
+        point = rs.TextDotPoint(textdot_guid)
         coord = (point.X, point.Y, point.Z)
         return coord
 
-    def get_label(self, textdot):
-        """Receives a textdot Guid:
-            Guid
+    def get_label(self, textdot_guid):
+        """Receives a textdot guid:
+            guid
         Returns its text:
             str
         """
-        string = rs.TextDotText(textdot)
+        string = rs.TextDotText(textdot_guid)
         return string
         
-    def make_indexed_coord_list(self, coords):
+    def make_ordered_coord_list(self, coords):
         """Receives a list of coords:
             [(num, num, num), ...]
         Returns an ordered list of unique coords:
@@ -116,9 +118,11 @@ class Exporter2(object):
         for coord in coords:
             if not coord in coord_list:
                 coord_list.append(coord)
+        # print('coords: %s' % coords)
+        # print('ordered coord list: %s' % sorted(coord_list))
         return sorted(coord_list)
 
-    def make_indexed_line_coord_pair_list(self, lines):
+    def make_ordered_index_pair_list(self, lines):
         """Receives a list of line coord pairs:
             [((num, num, num), (num, num, num)), ...]
         Returns an ordered list of line coord index pairs:
@@ -126,16 +130,10 @@ class Exporter2(object):
         """
         line_coord_pair_list = []
         for line in lines:
-            # point_pair = rs.CurvePoints(line)
-            coord_pair = line
-            # coord_pair = []
-            # for point in point_pair:
-            #     coord = (point.X, point.Y, point.Z)
-            #     coord_pair.append(coord)
-            coord_index_pair = []
-            for coord in coord_pair:
-                index = self.get_coord_index(coord)
-                coord_index_pair.append(index)
+            coord1, coord2 = line
+            coord_index_1 = self.get_coord_index(coord1)
+            coord_index_2 = self.get_coord_index(coord2)
+            coord_index_pair = (coord_index_1, coord_index_2)
             line_coord_pair_list.append(coord_index_pair)
         return sorted(line_coord_pair_list)
 
@@ -145,10 +143,10 @@ class Exporter2(object):
         Returns its index:
             int
         """
-        coord_index = self.indexed_coord_list.index(coord)
+        coord_index = self.ordered_coord_list.index(coord)
         return coord_index
         
-    def make_indexed_lpoint_list(self, lpoints):
+    def make_ordered_index_label_pair_list(self, lpoints):
         """Receives a list of labeled points:
             [((num, num, num), string), ...]
         Returns a list of index-label pairs:
@@ -157,7 +155,7 @@ class Exporter2(object):
         lpoint_list = []
         for lpoint in lpoints:
             coord, label = lpoint
-            index = self.indexed_coord_list.index(coord)
+            index = self.ordered_coord_list.index(coord)
             indexed_lpoint = (index, label)
             lpoint_list.append(indexed_lpoint)
         return sorted(lpoint_list)
@@ -166,21 +164,104 @@ class Exporter2(object):
         """Receives a list of coordinates, a list of coord index pairs, and a
         list of lpoint index-label pairs:
             ([(num, num, num), ...], [(int, int), ...], [(int, string), ...])
-        PROVISIONAL:
-        Returns a string of the lists
+        Returns a string in IS format:
+            <tab><name>
+            <tab><coord entry 1>
+            ...
+            <blank line>
+            <tab><line entry 1>
+            ...
+            <blank line>
+            <tab><point entry 1>
+            ...
         """
-        substrings = []
-        for element_list in element_lists:
-            substring = 'element list: %s' % element_list
-            substrings.append(substring)
+        header_string = self.make_header_string()
+        indented_name_string = self.make_indented_name_string()
+        indented_coord_entries_string = (
+            self.make_indented_coord_entries_string(self.ordered_coord_list))
+        blank_line = ''
+        indented_line_entries_string = self.make_indented_line_entries_string()
+        indented_point_entries_string = self.make_indented_point_entries_string()
+        substrings = [
+            header_string,
+            indented_name_string,
+            indented_coord_entries_string,
+            blank_line,
+            indented_line_entries_string,
+            indented_point_entries_string,
+            blank_line]
         string = '\n'.join(substrings)
+        return string
+
+    def make_header_string(self, shape_name='<shape name>'):
+        string = 'shape ' + shape_name
+        return string
+
+    def make_indented_name_string(self, name='name'):
+        string = self.tab + 'name'
+        return string
+
+    def make_indented_coord_entries_string(self, ordered_coord_list):
+        """Returns a string composed of indented coord entry strings:
+            <tab><coord entry 1>\n...
+        """
+        strings = []
+        for coord in ordered_coord_list:
+            coord_entry_string = (
+                self.make_coord_entry_string(coord))
+            string = self.tab + coord_entry_string
+            strings.append(string)
+        string = '\n'.join(strings)
+        return string
+
+    def make_coord_entry_string(self, coord):
+        """Receives a coord:
+            (num, num, num)
+        Returns a coord entry string:
+            coords <i str> <x str> <y str> <z str>
+        """
+        i = self.ordered_coord_list.index(coord)
+        x, y, z = coord
+        string = 'coords %i %s %s %s' % (i, x, y, z)
+        return string
+
+    def make_indented_line_entries_string(self):
+        """Returns a string composed of indented line entry strings:
+            <tab><line entry 1>\n...
+        """
+        entry_strings = []
+        for line_coord_pair in self.ordered_index_pair_list:
+            entry_string = self.make_line_entry_string(line_coord_pair)
+            entry_strings.append(entry_string)
+        entries_string = '\n'.join(entry_strings)
+        return entries_string
+
+    def make_line_entry_string(self, line_coord_pair):
+        """Receives a pair of line coords:
+            ((num, num, num), (num, num, num))
+        Returns a line entry string:
+            line <i str> <coord_index_1> <coord_index_2>
+        """
+        coord1, coord2 = line_coord_pair
+        coord_index_1 = self.ordered_coord_list.index(coord1)
+        coord_index_2 = self.ordered_coord_list.index(coord2)
+        line_coord_pair = (coord_index_1, coord_index_2)
+        i = self.ordered_index_pair_list.index(line_coord_pair)
+        string = 'line %i %i %i' % (i, coord_index_1, coord_index_2)
+        return string
+
+    def make_indented_point_entries_string(self):
+        """Returns a string composed of indented point entry strings:
+            <tab><point entry 1>\n...
+        """
+        string = 'indented_point_entries_string'
         return string
 
     def write_file(self, string):
         print(string)
 
 if __name__ == '__main__':
-    exporter2 = Exporter2()
-    exporter2.export_shape()
-    # import doctest
-    # doctest.testfile('tests/exporter2_test.txt')
+    # exporter2 = Exporter2()
+    # exporter2.export_shape()
+    import doctest
+    doctest.testfile('tests/exporter2_test.txt')

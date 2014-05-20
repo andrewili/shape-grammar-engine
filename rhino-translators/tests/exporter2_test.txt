@@ -10,38 +10,72 @@
 
 ### make_element_lists
 
-### make_indexed_coord_list
-    >>> coords = [(2, 2, 2), (4, 4, 4), (3, 3, 3), (2, 2, 2), (1, 1, 1), (0, 0, 0)]
-    >>> exp.indexed_coord_list = exp.make_indexed_coord_list(coords)
-    >>> print(exp.indexed_coord_list)
-    [(0, 0, 0), (1, 1, 1), (2, 2, 2), (3, 3, 3), (4, 4, 4)]
+### make_ordered_coord_list
+    >>> coords = [(2.3, 2.3, 2.3), (4.5, 4.5, 4.5), (3.4, 3.4, 3.4), (2.3, 2.3, 2.3), (1.2, 1.2, 1.2), (0.1, 0.1, 0.1)]
+    >>> exp.ordered_coord_list = exp.make_ordered_coord_list(coords)
+    >>> print(exp.ordered_coord_list)
+    [(0.1, 0.1, 0.1), (1.2, 1.2, 1.2), (2.3, 2.3, 2.3), (3.4, 3.4, 3.4), (4.5, 4.5, 4.5)]
 
-### make_indexed_line_coord_pair_list
-    >>> l23 = ((2, 2, 2), (3, 3, 3))
-    >>> l12 = ((1, 1, 1), (2, 2, 2))
-    >>> l01 = ((0, 0, 0), (1, 1, 1))
+### make_ordered_index_pair_list
+    >>> l23 = ((2.3, 2.3, 2.3), (3.4, 3.4, 3.4))
+    >>> l12 = ((1.2, 1.2, 1.2), (2.3, 2.3, 2.3))
+    >>> l01 = ((0.1, 0.1, 0.1), (1.2, 1.2, 1.2))
     >>> lines = [l23, l12, l01]
 
-    >>> indexed_line_coord_pair_list = exp.make_indexed_line_coord_pair_list(lines)
-    >>> print(indexed_line_coord_pair_list)
+    >>> exp.ordered_index_pair_list = exp.make_ordered_index_pair_list(lines)
+    >>> print(exp.ordered_index_pair_list)
     [(0, 1), (1, 2), (2, 3)]
 
-### make_indexed_lpoint_list
-    >>> lp0 = ((0, 0, 0), 'a')
-    >>> lp2 = ((2, 2, 2), 'c')
-    >>> lp4 = ((4, 4, 4), 'e')
+### make_ordered_index_label_pair_list
+    >>> lp0 = ((0.1, 0.1, 0.1), 'a')
+    >>> lp2 = ((2.3, 2.3, 2.3), 'c')
+    >>> lp4 = ((4.5, 4.5, 4.5), 'e')
     >>> lpoints = [lp4, lp2, lp0]
-    >>> indexed_lpoint_list = exp.make_indexed_lpoint_list(lpoints)
-    >>> print(indexed_lpoint_list)
+    >>> ordered_index_label_pair_list = exp.make_ordered_index_label_pair_list(lpoints)
+    >>> print(ordered_index_label_pair_list)
     [(0, 'a'), (2, 'c'), (4, 'e')]
     
 ### compose_string
-    >>> element_lists = ([(0, 0, 0), (1, 1, 1)], [(0, 0), (1, 1)], [(0, 'a'), (1, 'b')])
-    >>> string = exp.compose_string(element_lists)
-    >>> print(string)
+    ??? exp.ordered_coord_lists = [(0, 0, 0), (1, 1, 1)]
+    
+    ??? element_lists = ([(0, 0, 0), (1, 1, 1)], [(0, 0), (1, 1)], [(0, 'a'), (1, 'b')])
+    ??? string = exp.compose_string(element_lists)
+    ??? print(string)
+
     element list: [(0, 0, 0), (1, 1, 1)]
     element list: [(0, 0), (1, 1)]
     element list: [(0, 'a'), (1, 'b')]
+
+### make_header_string
+### make_indented_name_string
+
+### make_indented_coord_entries_string
+    >>> indented_coord_entries_string = exp.make_indented_coord_entries_string(exp.ordered_coord_list)
+    >>> print(indented_coord_entries_string)
+        coords 0 0.1 0.1 0.1
+        coords 1 1.2 1.2 1.2
+        coords 2 2.3 2.3 2.3
+        coords 3 3.4 3.4 3.4
+        coords 4 4.5 4.5 4.5
+        
+### make_coord_entry_string
+    >>> coord_entry_string = exp.make_coord_entry_string((0.1, 0.1, 0.1))
+    >>> print(coord_entry_string)
+    coords 0 0.1 0.1 0.1
+
+### make_indented_line_entries_string
+
+### make_line_entry_string
+    >>> print('ordered index pair list: %s' % exp.ordered_index_pair_list)
+    ordered index pair list: [(0, 1), (1, 2), (2, 3)]
+    >>> line_coord_pair = ((0.1, 0.1, 0.1), (1.2, 1.2, 1.2))
+    >>> print(line_coord_pair)
+    ((0.1, 0.1, 0.1), (1.2, 1.2, 1.2))
+    >>> line_entry_string = exp.make_line_entry_string(line_coord_pair)
+    >>> print(line_entry_string)
+    line 0 0 1
+
+### make_indented_point_entries_string
 
 ### write_file
     >>> string = 'Kilroy was here'
