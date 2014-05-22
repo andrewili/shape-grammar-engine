@@ -1,12 +1,12 @@
 #   exporter2.py
 
-# import rhinoscriptsyntax as rs
+import rhinoscriptsyntax as rs
 
 class Exporter2(object):
     def __init__(self):
-        # self.ordered_coord_list = []            #   [(num, num, num), ...]
-        # self.ordered_index_pair_list = []       #   [(int, int), ...]
-        # self.ordered_index_label_pair_list = [] #   [(int, str), ...]
+        # self.ordered_coord_list = []          #   [(num, num, num), ...]
+        # self.ordered_codex_codex_list = []    #   [(int, int), ...]
+        # self.ordered_codex_label_list = []    #   [(int, str), ...]
         self.tab = '    '
         self.is_string = ''
 
@@ -29,22 +29,22 @@ class Exporter2(object):
     def make_indexed_element_lists(self, guids_in):
         """Receives a list of guids:
             [guid, ...]
-        Returns a tuple of ordered lists of coords, line coord index pairs,
-        and lpoint coord-index-label pairs:
+        Returns a tuple of ordered lists of coords, codex-codex pairs, and
+        codex-label pairs:
             ([(num, num, num), ...], [(int, int), ...], [(int, string), ...])
         """
         self.coords, self.lines, self.lpoints = (
             self.make_element_lists(guids_in))
         self.ordered_coord_list = self.make_ordered_coord_list(self.coords)
-        self.ordered_index_pair_list = (
-            self.make_ordered_index_pair_list(self.lines))
-        print('lpoints: %s' % self.lpoints)
-        self.ordered_index_label_pair_list = (
-            self.make_ordered_index_label_pair_list(self.lpoints))
+        self.ordered_codex_codex_list = (
+            self.make_ordered_codex_codex_list(self.lines))
+        # print('lpoints: %s' % self.lpoints)
+        self.ordered_codex_label_list = (
+            self.make_ordered_codex_label_list(self.lpoints))
         indexed_element_lists = (
             self.ordered_coord_list, 
-            self.ordered_index_pair_list, 
-            self.ordered_index_label_pair_list)
+            self.ordered_codex_codex_list, 
+            self.ordered_codex_label_list)
         return indexed_element_lists
 
     def make_element_lists(self, guids):
@@ -122,20 +122,20 @@ class Exporter2(object):
         # print('ordered coord list: %s' % sorted(coord_list))
         return sorted(coord_list)
 
-    def make_ordered_index_pair_list(self, lines):
-        """Receives a list of line coord pairs:
+    def make_ordered_codex_codex_list(self, lines):
+        """Receives a list of coord-coord pairs:
             [((num, num, num), (num, num, num)), ...]
-        Returns an ordered list of line coord index pairs:
+        Returns an ordered list of codex-codex pairs:
             [(int, int), ...]
         """
-        line_coord_pair_list = []
+        codex_codex_list = []
         for line in lines:
             coord1, coord2 = line
-            coord_index_1 = self.get_coord_index(coord1)
-            coord_index_2 = self.get_coord_index(coord2)
-            coord_index_pair = (coord_index_1, coord_index_2)
-            line_coord_pair_list.append(coord_index_pair)
-        return sorted(line_coord_pair_list)
+            codex1 = self.get_coord_index(coord1)
+            codex2 = self.get_coord_index(coord2)
+            codex_codex = (codex1, codex2)
+            codex_codex_list.append(codex_codex)
+        return sorted(codex_codex_list)
 
     def get_coord_index(self, coord):
         """Receives a coord:
@@ -143,26 +143,26 @@ class Exporter2(object):
         Returns its index:
             int
         """
-        coord_index = self.ordered_coord_list.index(coord)
-        return coord_index
+        cordex = self.ordered_coord_list.index(coord)
+        return cordex
         
-    def make_ordered_index_label_pair_list(self, lpoints):
+    def make_ordered_codex_label_list(self, lpoints):
         """Receives a list of labeled points:
             [((num, num, num), string), ...]
-        Returns a list of index-label pairs:
+        Returns a list of codex-label pairs:
             [(int, string), ...]
         """
-        lpoint_list = []
+        codex_label_list = []
         for lpoint in lpoints:
             coord, label = lpoint
-            index = self.ordered_coord_list.index(coord)
-            indexed_lpoint = (index, label)
-            lpoint_list.append(indexed_lpoint)
-        return sorted(lpoint_list)
+            codex = self.ordered_coord_list.index(coord)
+            codex_label = (codex, label)
+            codex_label_list.append(codex_label)
+        return sorted(codex_label_list)
 
     def compose_string(self, element_lists):
-        """Receives a list of coordinates, a list of coord index pairs, and a
-        list of lpoint index-label pairs:
+        """Receives a list of coordinates, a list of codex-codex pairs, and a
+        list of codex-label pairs:
             ([(num, num, num), ...], [(int, int), ...], [(int, string), ...])
         Returns a string in IS format:
             <tab><name>
@@ -180,8 +180,10 @@ class Exporter2(object):
         indented_coord_entries_string = (
             self.make_indented_coord_entries_string(self.ordered_coord_list))
         blank_line = ''
-        indented_line_entries_string = self.make_indented_line_entries_string()
-        indented_point_entries_string = self.make_indented_point_entries_string()
+        indented_line_entries_string = (
+            self.make_indented_line_entries_string())
+        indented_point_entries_string = (
+            self.make_indented_lpoint_entries_string())
         substrings = [
             header_string,
             indented_name_string,
@@ -205,24 +207,24 @@ class Exporter2(object):
         """Returns a string composed of indented coord entry strings:
             <tab><coord entry 1>\n...
         """
-        strings = []
+        indented_entry_strings = []
         for coord in ordered_coord_list:
-            coord_entry_string = (
+            entry_string = (
                 self.make_coord_entry_string(coord))
-            string = self.tab + coord_entry_string
-            strings.append(string)
-        string = '\n'.join(strings)
-        return string
+            indented_entry_string = self.tab + entry_string
+            indented_entry_strings.append(indented_entry_string)
+        indented_entries_string = '\n'.join(indented_entry_strings)
+        return indented_entries_string
 
     def make_coord_entry_string(self, coord):
         """Receives a coord:
             (num, num, num)
         Returns a coord entry string:
-            coords <i str> <x str> <y str> <z str>
+            coords <codex str> <x str> <y str> <z str>
         """
-        i = self.ordered_coord_list.index(coord)
+        codex = self.ordered_coord_list.index(coord)
         x, y, z = coord
-        string = 'coords %i %s %s %s' % (i, x, y, z)
+        string = 'coords %i %s %s %s' % (codex, x, y, z)
         return string
 
     def make_indented_line_entries_string(self):
@@ -230,38 +232,54 @@ class Exporter2(object):
             <tab><line entry 1>\n...
         """
         entry_strings = []
-        for line_coord_pair in self.ordered_index_pair_list:
-            entry_string = self.make_line_entry_string(line_coord_pair)
-            entry_strings.append(entry_string)
+        for codex_codex in self.ordered_codex_codex_list:
+            entry_string = self.make_line_entry_string(codex_codex)
+            indented_entry_string = self.tab + entry_string
+            entry_strings.append(indented_entry_string)
         entries_string = '\n'.join(entry_strings)
         return entries_string
 
-    def make_line_entry_string(self, line_coord_pair):
-        """Receives a pair of line coords:
-            ((num, num, num), (num, num, num))
+    def make_line_entry_string(self, codex_codex):
+        """Receives a codex-codex pair:
+            (int, int)
         Returns a line entry string:
-            line <i str> <coord_index_1> <coord_index_2>
+            line <linex str> <coord_index_1> <coord_index_2>
         """
-        coord1, coord2 = line_coord_pair
-        coord_index_1 = self.ordered_coord_list.index(coord1)
-        coord_index_2 = self.ordered_coord_list.index(coord2)
-        line_coord_pair = (coord_index_1, coord_index_2)
-        i = self.ordered_index_pair_list.index(line_coord_pair)
-        string = 'line %i %i %i' % (i, coord_index_1, coord_index_2)
-        return string
+        codex1, codex2 = codex_codex
+        linex = self.ordered_codex_codex_list.index(codex_codex)
+        line_entry_string = 'line %i %i %i' % (linex, codex1, codex2)
+        return line_entry_string
 
-    def make_indented_point_entries_string(self):
+    def make_indented_lpoint_entries_string(self):
         """Returns a string composed of indented point entry strings:
             <tab><point entry 1>\n...
         """
-        string = 'indented_point_entries_string'
-        return string
+        indented_lpoint_entry_strings = []
+        for codex_label in self.ordered_codex_label_list:
+            lpoint_entry_string = self.make_lpoint_entry_string(codex_label)
+            indented_lpoint_entry_string = self.tab + lpoint_entry_string
+            indented_lpoint_entry_strings.append(indented_lpoint_entry_string)
+        lpoint_entries_string = '\n'.join(indented_lpoint_entry_strings)
+        return lpoint_entries_string
 
+    def make_lpoint_entry_string(self, codex_label):
+        """Receives a codex-label pair:
+            (int, str)
+        Returns an lpoint entry string:
+            point <codex str> <label>
+        """
+        codex, label = codex_label
+        lpoint_entry_string = 'point %i %s' % (codex, label)
+        return lpoint_entry_string
+        
     def write_file(self, string):
+        """Prompts for a file name with is extension. Writes the string to the
+        file
+        """
         print(string)
 
 if __name__ == '__main__':
-    # exporter2 = Exporter2()
-    # exporter2.export_shape()
-    import doctest
-    doctest.testfile('tests/exporter2_test.txt')
+    exporter2 = Exporter2()
+    exporter2.export_shape()
+    # import doctest
+    # doctest.testfile('tests/exporter2_test.txt')

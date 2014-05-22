@@ -16,27 +16,27 @@
     >>> print(exp.ordered_coord_list)
     [(0.1, 0.1, 0.1), (1.2, 1.2, 1.2), (2.3, 2.3, 2.3), (3.4, 3.4, 3.4), (4.5, 4.5, 4.5)]
 
-### make_ordered_index_pair_list
+### make_ordered_codex_codex_list
     >>> l23 = ((2.3, 2.3, 2.3), (3.4, 3.4, 3.4))
     >>> l12 = ((1.2, 1.2, 1.2), (2.3, 2.3, 2.3))
     >>> l01 = ((0.1, 0.1, 0.1), (1.2, 1.2, 1.2))
     >>> lines = [l23, l12, l01]
 
-    >>> exp.ordered_index_pair_list = exp.make_ordered_index_pair_list(lines)
-    >>> print(exp.ordered_index_pair_list)
+    >>> exp.ordered_codex_codex_list = exp.make_ordered_codex_codex_list(lines)
+    >>> print(exp.ordered_codex_codex_list)
     [(0, 1), (1, 2), (2, 3)]
 
-### make_ordered_index_label_pair_list
+### make_ordered_codex_label_list
     >>> lp0 = ((0.1, 0.1, 0.1), 'a')
     >>> lp2 = ((2.3, 2.3, 2.3), 'c')
     >>> lp4 = ((4.5, 4.5, 4.5), 'e')
     >>> lpoints = [lp4, lp2, lp0]
-    >>> ordered_index_label_pair_list = exp.make_ordered_index_label_pair_list(lpoints)
-    >>> print(ordered_index_label_pair_list)
+    >>> ordered_codex_label_list = exp.make_ordered_codex_label_list(lpoints)
+    >>> print(ordered_codex_label_list)
     [(0, 'a'), (2, 'c'), (4, 'e')]
     
 ### compose_string
-    ??? exp.ordered_coord_lists = [(0, 0, 0), (1, 1, 1)]
+    ??? exp.ordered_coord_list = [(0, 0, 0), (1, 1, 1)]
     
     ??? element_lists = ([(0, 0, 0), (1, 1, 1)], [(0, 0), (1, 1)], [(0, 'a'), (1, 'b')])
     ??? string = exp.compose_string(element_lists)
@@ -50,6 +50,10 @@
 ### make_indented_name_string
 
 ### make_indented_coord_entries_string
+    >>> print('ordered codex codex list:')
+    ordered codex codex list:
+    >>> print(exp.ordered_codex_codex_list)
+    [(0, 1), (1, 2), (2, 3)]
     >>> indented_coord_entries_string = exp.make_indented_coord_entries_string(exp.ordered_coord_list)
     >>> print(indented_coord_entries_string)
         coords 0 0.1 0.1 0.1
@@ -64,18 +68,34 @@
     coords 0 0.1 0.1 0.1
 
 ### make_indented_line_entries_string
+    >>> print('ordered codex codex list')
+    ordered codex codex list
+    >>> print(exp.ordered_codex_codex_list)
+    [(0, 1), (1, 2), (2, 3)]
+    >>> indented_line_entries_string = exp.make_indented_line_entries_string()
+    >>> print(indented_line_entries_string)
+        line 0 0 1
+        line 1 1 2
+        line 2 2 3
 
 ### make_line_entry_string
-    >>> print('ordered index pair list: %s' % exp.ordered_index_pair_list)
-    ordered index pair list: [(0, 1), (1, 2), (2, 3)]
-    >>> line_coord_pair = ((0.1, 0.1, 0.1), (1.2, 1.2, 1.2))
-    >>> print(line_coord_pair)
-    ((0.1, 0.1, 0.1), (1.2, 1.2, 1.2))
-    >>> line_entry_string = exp.make_line_entry_string(line_coord_pair)
+    >>> codex_codex = (1, 2)
+    >>> line_entry_string = exp.make_line_entry_string(codex_codex)
     >>> print(line_entry_string)
-    line 0 0 1
+    line 1 1 2
 
-### make_indented_point_entries_string
+### make_indented_lpoint_entries_string
+    >>> exp.ordered_codex_label_list = [(0, 'p0'), (1, 'p1')]
+    >>> indented_lpoint_entries_string = exp.make_indented_lpoint_entries_string()
+    >>> print(indented_lpoint_entries_string)
+        point 0 p0
+        point 1 p1
+
+### make_lpoint_entry_string
+    >>> codex_label = (0, 'p0')
+    >>> lpoint_entry_string = exp.make_lpoint_entry_string(codex_label)
+    >>> print(lpoint_entry_string)
+    point 0 p0
 
 ### write_file
     >>> string = 'Kilroy was here'
