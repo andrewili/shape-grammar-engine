@@ -175,7 +175,7 @@ class Exporter2(object):
             <tab><point entry 1>
             ...
         """
-        header_string = self.make_header_string()
+        # header_string = self.make_header_string()
         indented_name_string = self.make_indented_name_string()
         indented_coord_entries_string = (
             self.make_indented_coord_entries_string(self.ordered_coord_list))
@@ -185,7 +185,7 @@ class Exporter2(object):
         indented_point_entries_string = (
             self.make_indented_lpoint_entries_string())
         substrings = [
-            header_string,
+            # header_string,
             indented_name_string,
             indented_coord_entries_string,
             blank_line,
@@ -195,7 +195,7 @@ class Exporter2(object):
         string = '\n'.join(substrings)
         return string
 
-    def make_header_string(self, shape_name='<shape name>'):
+    def make_header_string(self, shape_name='shape-name'):
         string = 'shape ' + shape_name
         return string
 
@@ -276,7 +276,18 @@ class Exporter2(object):
         """Prompts for a file name with is extension. Writes the string to the
         file
         """
-        print(string)
+        shape_name = rs.GetString(
+            'Enter the name of the shape', 'shape name')
+        header = self.make_header_string(shape_name)
+        headed_string = '\n'.join([header, string])
+        filter = "IS file (*.is)|*.is|All files (*.*)|*.*||"
+        file_name = (
+            rs.SaveFileName('Save shape as', filter, '', shape_name))
+        if not file_name: return
+        file = open(file_name, "w" )
+        file.write(headed_string)
+        file.close()
+        print(headed_string)
 
 if __name__ == '__main__':
     exporter2 = Exporter2()

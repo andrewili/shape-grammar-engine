@@ -1,0 +1,9 @@
+shape lines
+    name
+    coords 0 0.0 0.0 0.0
+    coords 1 0.0 32.0 0.0
+    coords 2 32.0 0.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+

@@ -36,12 +36,6 @@
     [(0, 'a'), (2, 'c'), (4, 'e')]
     
 ### compose_string
-    ??? exp.ordered_coord_list = [(0, 0, 0), (1, 1, 1)]
-    
-    ??? element_lists = ([(0, 0, 0), (1, 1, 1)], [(0, 0), (1, 1)], [(0, 'a'), (1, 'b')])
-    ??? string = exp.compose_string(element_lists)
-    ??? print(string)
-
     element list: [(0, 0, 0), (1, 1, 1)]
     element list: [(0, 0), (1, 1)]
     element list: [(0, 'a'), (1, 'b')]
