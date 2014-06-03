@@ -1,0 +1,112 @@
+#   shape_test.txt
+
+    >>> import shape
+
+    >>> def make_drone_shape():
+    ...     name = '<shape name>'
+    ...     line_specs = [((0, 0, 0), (1, 0, 0))]
+    ...     lpoint_specs = [((0, 0, 0), '<label>')]
+    ...     drone_shape = shape.Shape(name, line_specs, lpoint_specs)
+    ...     return drone_shape
+    >>> drone_shape = make_drone_shape()
+
+### make_ordered_index_lists
+    >>> line_specs = [
+    ...     ((0, 8, 0), (6, 0, 0)),
+    ...     ((0, 0, 0), (6, 0, 0)),
+    ...     ((0, 0, 0), (0, 8, 0))]
+    >>> lpoint_specs = [
+    ...     ((3, 4, 0), 'c'),
+    ...     ((3, 0, 0), 'b'),
+    ...     ((0, 4, 0), 'a')]
+
+    >>> ordered_index_lists = drone_shape.make_ordered_index_lists(
+    ...     line_specs, lpoint_specs)
+    >>> print(ordered_index_lists)
+    ([(0, 0, 0), (0, 4, 0), (0, 8, 0), (3, 0, 0), (3, 4, 0), (6, 0, 0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')])
+
+    >>> ordered_index_lists_no_lines = drone_shape.make_ordered_index_lists(
+    ...     [], lpoint_specs)
+    >>> print(ordered_index_lists_no_lines)
+    ([(0, 4, 0), (3, 0, 0), (3, 4, 0)], [], [(0, 'a'), (1, 'b'), (2, 'c')])
+
+    >>> ordered_index_lists_no_lpoints = drone_shape.make_ordered_index_lists(
+    ...     line_specs, [])
+    >>> print(ordered_index_lists_no_lpoints)
+    ([(0, 0, 0), (0, 8, 0), (6, 0, 0)], [(0, 1), (0, 2), (1, 2)], [])
+
+    >>> ordered_index_lists_no_lines_no_lpoints = (
+    ...     drone_shape.make_ordered_index_lists([], []))
+    >>> print(ordered_index_lists_no_lines_no_lpoints)
+    ([], [], [])
+
+### make_ordered_codex_codex_list
+    >>> line_specs = [
+    ...     ((6, 0, 0), (0, 8, 0)),
+    ...     ((0, 0, 0), (6, 0, 0)),
+    ...     ((0, 0, 0), (0, 8, 0))]
+    >>> ordered_coord_list = [
+    ...     (0, 0, 0),
+    ...     (0, 8, 0),
+    ...     (6, 0, 0)]
+    >>> codex_codex_list = drone_shape.make_ordered_codex_codex_list(
+    ...     line_specs, ordered_coord_list)
+    >>> print(codex_codex_list)
+    [(0, 1), (0, 2), (2, 1)]
+
+### make_codex_codex
+    >>> ordered_coord_list = [
+    ...     (0, 0, 0),
+    ...     (0, 8, 0),
+    ...     (6, 0, 0)]
+    >>> line_spec_ok = ((6, 0, 0), (0, 8, 0))
+    >>> line_spec_not_in_list = ((0, 0, 0), (6, 8, 0))
+
+    >>> codex_codex_not_in_list = drone_shape.make_codex_codex(
+    ...     line_spec_not_in_list, ordered_coord_list)
+    At least one of the coords is not in the list
+
+    >>> codex_codex_ok = drone_shape.make_codex_codex(
+    ...     line_spec_ok, ordered_coord_list)
+    >>> print(codex_codex_ok)
+    (2, 1)
+
+### make_ordered_codex_label_list
+    >>> def make_lpoint_specs_and_ordered_coord_list():
+    ...     lpoint_specs = [
+    ...         ((6, 0, 0), 'd'), 
+    ...         ((6, 0, 0), 'c'), 
+    ...         ((0, 8, 0), 'b'),
+    ...         ((0, 0, 0), 'a')]
+    ...     ordered_coord_list = [
+    ...         (0, 0, 0),
+    ...         (0, 8, 0),
+    ...         (6, 0, 0)]
+    ...     return (lpoint_specs, ordered_coord_list)
+    >>> lpoint_specs, ordered_coord_list = (
+    ...     make_lpoint_specs_and_ordered_coord_list())
+
+    >>> codex_label_list = drone_shape.make_ordered_codex_label_list(
+    ...     lpoint_specs, ordered_coord_list)
+    >>> print(codex_label_list)
+    [(0, 'a'), (1, 'b'), (2, 'c'), (2, 'd')]
+
+### make_codex_label
+    >>> ordered_coord_list = [
+    ...     ((0, 0, 0), (0, 8, 0)),
+    ...     ((0, 0, 0), (6, 0, 0)),
+    ...     ((0, 8, 0), (6, 0, 0)),
+    ...     ((3, 4, 0))]
+
+    >>> codex_label_not_in_list = drone_shape.make_codex_label(
+    ...     ((0, 0, 0), '<label>'), ordered_coord_list)
+    The coord is not in the coord list
+
+    >>> codex_label_empty_list = drone_shape.make_codex_label(
+    ...     ((0, 0, 0), '<label>'), [])
+    The coord is not in the coord list
+    
+    >>> codex_label_ok = drone_shape.make_codex_label(
+    ...     ((3, 4, 0), '<label>'), ordered_coord_list)
+    >>> print(codex_label_ok)
+    (3, '<label>')

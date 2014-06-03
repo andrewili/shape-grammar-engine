@@ -1,0 +1,9 @@
+shape lines_lpoint
+    name
+    coords 0 0.0 32.0 0.0
+    coords 1 16.0 16.0 0.0
+    coords 2 32.0 0.0 0.0
+    coords 3 32.0 32.0 0.0
+
+    line 1 0 3
+    line 2 2 3

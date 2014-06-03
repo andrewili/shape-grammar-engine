@@ -1,0 +1,3 @@
+#	rule_exporter_oo_test.txt
+
+# import rhinoscriptsyntax as rs

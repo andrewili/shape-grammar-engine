@@ -1,0 +1,14 @@
+shape lines_n_dots
+    name
+    coords 0 0.0 0.0 0.0
+    coords 1 0.0 32.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 32.0 0.0 0.0
+    coords 4 32.0 32.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 0 00
+    point 2 22

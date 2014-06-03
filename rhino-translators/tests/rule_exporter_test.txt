@@ -1,0 +1,163 @@
+#   rule_exporter_test.txt
+
+    >>> import rule_exporter
+
+    >>> exp = rule_exporter.RuleExporter()
+
+### export_shape
+### receive_elements
+### make_indexed_element_lists
+
+### make_element_lists
+
+### make_ordered_coord_list
+    ??? coords = [(2.3, 2.3, 2.3), (4.5, 4.5, 4.5), (3.4, 3.4, 3.4), (2.3, 2.3, 2.3), (1.2, 1.2, 1.2), (0.1, 0.1, 0.1)]
+    ??? exp.ordered_coord_list = exp.make_ordered_coord_list(coords)
+    ??? print(exp.ordered_coord_list)
+    [(0.1, 0.1, 0.1), (1.2, 1.2, 1.2), (2.3, 2.3, 2.3), (3.4, 3.4, 3.4), (4.5, 4.5, 4.5)]
+
+### make_ordered_codex_codex_list
+    ??? l23 = ((2.3, 2.3, 2.3), (3.4, 3.4, 3.4))
+    ??? l12 = ((1.2, 1.2, 1.2), (2.3, 2.3, 2.3))
+    ??? l01 = ((0.1, 0.1, 0.1), (1.2, 1.2, 1.2))
+    ??? lines = [l23, l12, l01]
+
+    ??? exp.ordered_codex_codex_list = exp.make_ordered_codex_codex_list(lines)
+    ??? print(exp.ordered_codex_codex_list)
+    [(0, 1), (1, 2), (2, 3)]
+
+### make_ordered_codex_label_list
+    ??? lp0 = ((0.1, 0.1, 0.1), 'a')
+    ??? lp2 = ((2.3, 2.3, 2.3), 'c')
+    ??? lp4 = ((4.5, 4.5, 4.5), 'e')
+    ??? lpoints = [lp4, lp2, lp0]
+    ??? ordered_codex_label_list = exp.make_ordered_codex_label_list(lpoints)
+    ??? print(ordered_codex_label_list)
+    [(0, 'a'), (2, 'c'), (4, 'e')]
+    
+### compose_unnamed_rul_string
+    >>> def make_element_lists(side):
+    ...     if side == 'left':
+    ...         shape_name = 'labeled_triangle'
+    ...         ordered_coord_list = [
+    ...             (0, 0, 0), (0, 40, 0), (6, 8, 0), (30, 0, 0)]
+    ...         ordered_codex_codex_list = [(0, 1), (0, 3), (1, 3)]
+    ...         ordered_codex_label_list = [(2, 'a')]
+    ...     elif side == 'right':
+    ...         shape_name = 'labeled_subdivided_triangle'
+    ...         ordered_coord_list = [
+    ...             (0, 0, 0), (0, 20, 0), (0, 40, 0), (3, 4, 0), (3, 24, 0), 
+    ...             (15, 0, 0), (15, 20, 0), (18, 4, 0), (30, 0, 0)]
+    ...         ordered_codex_codex_list = [
+    ...             (0, 2), (0, 8), (1, 5), (1, 6), (2, 8), (5, 6)]
+    ...         ordered_codex_label_list = [(3, 'a'), (4, 'a'), (7, 'a')]
+    ...     else:
+    ...         pass
+    ...     element_lists = [
+    ...         side,
+    ...         shape_name,
+    ...         ordered_coord_list,
+    ...         ordered_codex_codex_list,
+    ...         ordered_codex_label_list]
+    ...     return element_lists
+    >>> left_element_lists = make_element_lists('left')
+    >>> right_element_lists = make_element_lists('right')
+    >>> unnamed_rul_string = exp.compose_unnamed_rul_string(
+    ...     left_element_lists, right_element_lists)
+    >>> print(unnamed_rul_string)
+    shape <left rule shape name>
+        name labeled_triangle
+        coords 0 0 0 0
+        coords 1 0 40 0
+        coords 2 6 8 0
+        coords 3 30 0 0
+
+        line 0 0 1
+        line 1 0 3
+        line 2 1 3
+        point 0 2 a
+    shape <right rule shape name>
+        name labeled_subdivided_triangle
+        coords 0 0 0 0
+        coords 1 0 20 0
+        coords 2 0 40 0
+        coords 3 3 4 0
+        coords 4 3 24 0
+        coords 5 15 0 0
+        coords 6 15 20 0
+        coords 7 18 4 0
+        coords 8 30 0 0
+
+        line 0 0 2
+        line 1 0 8
+        line 2 1 5
+        line 3 1 6
+        line 4 2 8
+        line 5 5 6
+        point 0 3 a
+        point 1 4 a
+        point 2 7 a
+
+### compose_string
+    element list: [(0, 0, 0), (1, 1, 1)]
+    element list: [(0, 0), (1, 1)]
+    element list: [(0, 'a'), (1, 'b')]
+
+### make_header_string
+### make_indented_name_string
+
+### make_indented_coord_entries_string
+    ??? print('ordered codex codex list:')
+    ordered codex codex list:
+    ??? print(exp.ordered_codex_codex_list)
+    [(0, 1), (1, 2), (2, 3)]
+    ??? indented_coord_entries_string = exp.make_indented_coord_entries_string(exp.ordered_coord_list)
+    ??? print(indented_coord_entries_string)
+        coords 0 0.1 0.1 0.1
+        coords 1 1.2 1.2 1.2
+        coords 2 2.3 2.3 2.3
+        coords 3 3.4 3.4 3.4
+        coords 4 4.5 4.5 4.5
+        
+### make_coord_entry_string
+    ??? coord_entry_string = exp.make_coord_entry_string((0.1, 0.1, 0.1))
+    ??? print(coord_entry_string)
+    coords 0 0.1 0.1 0.1
+
+### make_indented_line_entries_string
+    ??? print('ordered codex codex list')
+    ordered codex codex list
+    ??? print(exp.ordered_codex_codex_list)
+    [(0, 1), (1, 2), (2, 3)]
+    ??? indented_line_entries_string = exp.make_indented_line_entries_string()
+    ??? print(indented_line_entries_string)
+        line 0 0 1
+        line 1 1 2
+        line 2 2 3
+
+### make_line_entry_string
+    ??? codex_codex = (1, 2)
+    ??? line_entry_string = exp.make_line_entry_string(codex_codex)
+    ??? print(line_entry_string)
+    line 1 1 2
+
+### make_indented_lpoint_entries_string
+    ??? exp.ordered_codex_label_list = [(0, 'p0'), (1, 'p1')]
+    ??? indented_lpoint_entries_string = exp.make_indented_lpoint_entries_string()
+    ??? print(indented_lpoint_entries_string)
+        point 0 p0
+        point 1 p1
+
+### make_lpoint_entry_string
+    ??? codex_label = (0, 'p0')
+    ??? lpoint_entry_string = exp.make_lpoint_entry_string(codex_label)
+    ??? print(lpoint_entry_string)
+    point 0 p0
+
+### write_rul_file()
+    >>> named_rul_string
+    
+### write_file
+    >>> string = 'Kilroy rule string'
+    >>> exp.write_rul_file(string)
+    Kilroy rule string

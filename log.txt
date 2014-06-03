@@ -145,3 +145,5 @@ Log
         3   Rules. Need visualizer
         4   Model._set_to_empty(lshape)?
         
+#   2014-05-23
+    #   Rhino translator (shape only) completed

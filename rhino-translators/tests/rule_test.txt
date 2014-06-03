@@ -1,0 +1,5 @@
+#   rule_test.txt
+
+# import rhinoscriptsyntax as rs
+
+>>> import rule

@@ -1,8 +1,8 @@
-#   exporter2.py
+#   shape_exporter.py
 
 import rhinoscriptsyntax as rs
 
-class Exporter2(object):
+class ShapeExporter(object):
     def __init__(self):
         # self.ordered_coord_list = []          #   [(num, num, num), ...]
         # self.ordered_codex_codex_list = []    #   [(int, int), ...]
@@ -290,7 +290,7 @@ class Exporter2(object):
         print(headed_string)
 
 if __name__ == '__main__':
-    exporter2 = Exporter2()
-    exporter2.export_shape()
+    shape_exporter = ShapeExporter()
+    shape_exporter.export_shape()
     # import doctest
-    # doctest.testfile('tests/exporter2_test.txt')
+    # doctest.testfile('tests/shape_exporter_test.txt')

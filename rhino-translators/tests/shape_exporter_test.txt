@@ -1,8 +1,8 @@
-#   exporter2_test.txt
+#   shape_exporter_test.txt
 
-    >>> import exporter2
+    >>> import shape_exporter
 
-    >>> exp = exporter2.Exporter2()
+    >>> exp = shape_exporter.ShapeExporter()
 
 ### export_shape
 ### receive_elements
@@ -92,6 +92,6 @@
     point 0 p0
 
 ### write_file
-    >>> string = 'Kilroy was here'
-    >>> exp.write_file(string)
+    ??? string = 'Kilroy was here'
+    ??? exp.write_file(string)
     Kilroy was here
