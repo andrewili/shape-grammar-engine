@@ -3,12 +3,168 @@
     >>> import shape
 
     >>> def make_drone_shape():
-    ...     name = '<shape name>'
-    ...     line_specs = [((0, 0, 0), (1, 0, 0))]
-    ...     lpoint_specs = [((0, 0, 0), '<label>')]
+    ...     name = 'drone'
+    ...     line_specs = [
+    ...         ((0, 0, 0), (1, 0, 0)),
+    ...         ((0, 0, 0), (0, 1, 0))]
+    ...     lpoint_specs = [
+    ...         ((1, 1, 0), 'p11'),
+    ...         ((0, 0, 0), 'p00')]
     ...     drone_shape = shape.Shape(name, line_specs, lpoint_specs)
     ...     return drone_shape
     >>> drone_shape = make_drone_shape()
+
+### __init__, __str__
+    >>> name = 'Kilroy'
+    >>> line_specs = [
+    ...     ((0, 8, 0), (6, 0, 0)),
+    ...     ((0, 0, 0), (6, 0, 0)),
+    ...     ((0, 0, 0), (0, 8, 0))]
+    >>> lpoint_specs = [
+    ...     ((3, 4, 0), 'c'),
+    ...     ((3, 0, 0), 'b'),
+    ...     ((0, 4, 0), 'a')]
+
+    >>> new_shape = shape.Shape(name, line_specs, lpoint_specs)
+    >>> print(new_shape)
+    shape Kilroy
+        name
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 4.000000 0.000000
+        coords 2 0.000000 8.000000 0.000000
+        coords 3 3.000000 0.000000 0.000000
+        coords 4 3.000000 4.000000 0.000000
+        coords 5 6.000000 0.000000 0.000000
+    <BLANKLINE>
+        line 0 0 2
+        line 1 0 5
+        line 2 2 5
+        point 0 1 a
+        point 1 3 b
+        point 2 4 c
+
+    >>> shape_name_not_string = (
+    ...     shape.Shape([], line_specs, lpoint_specs))
+    The arguments must be a string, a list, and a list
+
+    >>> shape_not_lines = shape.Shape(name, 3, lpoint_specs)
+    The arguments must be a string, a list, and a list
+
+    >>> shape_not_lpoints = shape.Shape(name, line_specs, 3)
+    The arguments must be a string, a list, and a list
+
+    >>> shape_name_blank = shape.Shape('', line_specs, lpoint_specs)
+    The name must not be empty
+
+    >>> shape_no_lines = shape.Shape(name, [], lpoint_specs)
+    >>> print(shape_no_lines)
+    shape Kilroy
+        name
+        coords 0 0.000000 4.000000 0.000000
+        coords 1 3.000000 0.000000 0.000000
+        coords 2 3.000000 4.000000 0.000000
+    <BLANKLINE>
+        point 0 0 a
+        point 1 1 b
+        point 2 2 c
+
+    >>> shape_no_lpoints = shape.Shape(name, line_specs, [])
+    >>> print(shape_no_lpoints)
+    shape Kilroy
+        name
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 8.000000 0.000000
+        coords 2 6.000000 0.000000 0.000000
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 2
+        line 2 1 2
+
+    >>> shape_no_lines_no_lpoints = shape.Shape(name, [], [])
+    >>> print(shape_no_lines_no_lpoints)
+    shape Kilroy
+        name
+
+### make_shape_header
+    >>> shape_header = drone_shape.make_shape_header()
+    >>> print(shape_header)
+    shape drone
+
+### make_indented_name_entry_string
+    >>> indented_name_entry_string = drone_shape.make_indented_name_entry_string()
+    >>> print(indented_name_entry_string)
+        name
+
+### make_indented_coord_entries_string
+    >>> indented_coord_entries_string = (
+    ...     drone_shape.make_indented_coord_entries_string())
+    >>> print(indented_coord_entries_string)
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 1.000000 0.000000
+        coords 2 1.000000 0.000000 0.000000
+        coords 3 1.000000 1.000000 0.000000
+
+### make_indented_coord_entry_strings
+    >>> indented_coord_entry_strings = (
+    ...     drone_shape.make_indented_coord_entry_strings())
+    >>> print indented_coord_entry_strings
+    ['    coords 0 0.000000 0.000000 0.000000', '    coords 1 0.000000 1.000000 0.000000', '    coords 2 1.000000 0.000000 0.000000', '    coords 3 1.000000 1.000000 0.000000']
+
+### make_coord_entry_string
+    >>> coord_ok = (1, 0, 0)
+    >>> coord_entry_string = (
+    ...     drone_shape.make_coord_entry_string(coord_ok))
+    >>> print(coord_entry_string)
+    coords 2 1.000000 0.000000 0.000000
+
+    >>> coord_not_in_list = (2, 2, 2)
+    >>> coord_entry_string = (
+    ...     drone_shape.make_coord_entry_string(coord_not_in_list))
+    The coord is not in the list
+
+### make_indented_line_entries_string
+    >>> indented_line_entries_string = (
+    ...     drone_shape.make_indented_line_entries_string())
+    >>> print(indented_line_entries_string)
+        line 0 0 1
+        line 1 0 2
+
+### make_indented_line_entry_strings
+    >>> indented_line_entry_strings = (
+    ...     drone_shape.make_indented_line_entry_strings())
+    >>> print(indented_line_entry_strings)
+    ['    line 0 0 1', '    line 1 0 2']
+
+### make_line_entry_string
+    >>> codex_codex = (0, 1)
+    >>> line_entry_string = drone_shape.make_line_entry_string(codex_codex)
+    >>> print(line_entry_string)
+    line 0 0 1
+
+### make_indented_lpoint_entries_string
+    >>> indented_lpoint_entries_string = (
+    ...     drone_shape.make_indented_lpoint_entries_string())
+    >>> print(indented_lpoint_entries_string)
+        point 0 0 p00
+        point 1 3 p11
+
+### make_indented_lpoint_entry_strings
+    >>> indented_lpoint_entry_strings = (
+    ...     drone_shape.make_indented_lpoint_entry_strings())
+    >>> print(indented_lpoint_entry_strings)
+    ['    point 0 0 p00', '    point 1 3 p11']
+
+### make_lpoint_entry_string
+    >>> codex_label_ok = (0, 'p00')
+    >>> lpoint_entry_string = (
+    ...     drone_shape.make_lpoint_entry_string(codex_label_ok))
+    >>> print lpoint_entry_string
+    point 0 0 p00
+
+    >>> codex_label_not_in_list = (0, 'kilroy')
+    >>> lpoint_entry_string = (
+    ...     drone_shape.make_lpoint_entry_string(codex_label_not_in_list))
+    The codex-label pair is not in the list
 
 ### make_ordered_index_lists
     >>> line_specs = [
@@ -99,14 +255,14 @@
     ...     ((3, 4, 0))]
 
     >>> codex_label_not_in_list = drone_shape.make_codex_label(
-    ...     ((0, 0, 0), '<label>'), ordered_coord_list)
+    ...     ((0, 0, 0), 'p0'), ordered_coord_list)
     The coord is not in the coord list
 
     >>> codex_label_empty_list = drone_shape.make_codex_label(
-    ...     ((0, 0, 0), '<label>'), [])
+    ...     ((0, 0, 0), 'p0'), [])
     The coord is not in the coord list
     
     >>> codex_label_ok = drone_shape.make_codex_label(
-    ...     ((3, 4, 0), '<label>'), ordered_coord_list)
+    ...     ((3, 4, 0), 'p0'), ordered_coord_list)
     >>> print(codex_label_ok)
-    (3, '<label>')
+    (3, 'p0')
