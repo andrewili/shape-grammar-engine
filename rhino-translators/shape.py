@@ -144,7 +144,8 @@ class Shape(object):
 
     ###
     def __str__(self):
-        """Returns a string in the is format:
+        """Returns a string in the is format (i.e., a free-standing shape 
+        string):
             str
         """
         shape_header = self.make_shape_header()
@@ -278,7 +279,7 @@ class Shape(object):
         """Receives a codex-label pair:
             (int, str)
         Returns a string of the form:
-            point <index> <label>
+            point <codex> <label>
         """
         try:
             if not codex_label in self.ordered_codex_label_list:
@@ -288,9 +289,77 @@ class Shape(object):
             print(message)
         else:
             codex, label = codex_label
-            i = self.ordered_codex_label_list.index(codex_label)
-            lpoint_entry_string = 'point %i %i %s' % (i, codex, label)
+            # i = self.ordered_codex_label_list.index(codex_label)
+            # lpoint_entry_string = 'point %i %i %s' % (i, codex, label)
+            lpoint_entry_string = 'point %i %s' % (codex, label)
             return lpoint_entry_string
+
+    def make_rule_shape_string(self, side, rule_name):
+        """Receives the side and the name of the rule (as part of the rule 
+        string):
+            str
+            str
+        Returns the shape part of the rule string in rul format:
+            str
+        """
+        rule_shape_header = self.make_rule_shape_header(side, rule_name)
+        indented_name_entry_string_w_name = (
+            self.make_indented_name_entry_string_w_name())
+        indented_coord_entries_string = (
+            self.make_indented_coord_entries_string())
+        blank_line = ''
+        indented_line_entries_string = (
+            self.make_indented_line_entries_string())
+        indented_lpoint_entries_string = (
+            self.make_indented_lpoint_entries_string())
+        rule_substrings = [
+            rule_shape_header,
+            indented_name_entry_string_w_name]
+        if len(indented_coord_entries_string) > 0:
+            rule_substrings.append(indented_coord_entries_string)
+            rule_substrings.append(blank_line)
+        if len(indented_line_entries_string) > 0:
+            rule_substrings.append(indented_line_entries_string)
+        if len(indented_lpoint_entries_string) > 0:
+            rule_substrings.append(indented_lpoint_entries_string)
+        rule_shape_string = '\n'.join(rule_substrings)
+        return rule_shape_string
+
+    def make_rule_shape_header(self, side, rule_name):
+        """Receives the side and the name of the rule:
+            str
+            str
+        Returns the rule shape header:
+            shape <rule name>_<side-string>
+        where side-string = 'L' | 'R'
+        """
+        try:
+            if not (
+                side == 'left' or
+                side == 'right'
+            ):
+                raise ValueError
+        except ValueError:
+            message = "The side must be either 'left' or 'right'"
+            print(message)
+        else:
+            if side == 'left':
+                side_string = 'L'
+            elif side == 'right':
+                side_string = 'R'
+            else:
+                pass
+            rule_shape_header = 'shape %s_%s' % (rule_name, side_string)
+            return rule_shape_header
+
+    def make_indented_name_entry_string_w_name(self):
+        """Returns the indented name entry with the shape name (for use in 
+        rules)
+            <tab>name <shape name>
+        """
+        indented_name_entry_string_w_name = (
+            '%sname %s' % (self.tab, self.name))
+        return indented_name_entry_string_w_name
 
 if __name__ == '__main__':
     import doctest

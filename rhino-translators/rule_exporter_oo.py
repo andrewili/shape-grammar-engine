@@ -20,9 +20,11 @@ class RuleExporterOO(object):
     def get_shape(self, side):
         """Receives 'left' or 'right':
             str
-        Prompts for a name. Returns the new shape:
+        Prompts for elements (lines and textdots) and a name. Returns the new 
+        shape:
             Shape
         """
+                                        #   left shape must not be empty
         prompt_for_elements = (
             'Select the lines and textdots in the %s shape' % side)
         guids = rs.GetObjects(

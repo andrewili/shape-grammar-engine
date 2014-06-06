@@ -18,8 +18,12 @@ class Rule(object):
     def __str__(self):
         """Returns a string in the rul format
         """
-        left_shape_string = self.left_shape.__str__()
-        right_shape_string = self.right_shape.__str__()
+        left_shape_string = (
+            self.left_shape.get_rule_shape_string('left', self.name))
+        right_shape_string = (
+            self.right_shape.get_rule_shape_string('right', self.name))
+        # left_shape_string = self.left_shape.__str__()
+        # right_shape_string = self.right_shape.__str__()
         rule_name_string = self.make_rule_name_string()
         substrings = [
             left_shape_string,

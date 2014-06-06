@@ -39,9 +39,9 @@
         line 0 0 2
         line 1 0 5
         line 2 2 5
-        point 0 1 a
-        point 1 3 b
-        point 2 4 c
+        point 1 a
+        point 3 b
+        point 4 c
 
     >>> shape_name_not_string = (
     ...     shape.Shape([], line_specs, lpoint_specs))
@@ -64,9 +64,9 @@
         coords 1 3.000000 0.000000 0.000000
         coords 2 3.000000 4.000000 0.000000
     <BLANKLINE>
-        point 0 0 a
-        point 1 1 b
-        point 2 2 c
+        point 0 a
+        point 1 b
+        point 2 c
 
     >>> shape_no_lpoints = shape.Shape(name, line_specs, [])
     >>> print(shape_no_lpoints)
@@ -84,6 +84,38 @@
     >>> print(shape_no_lines_no_lpoints)
     shape Kilroy
         name
+
+### make_rule_shape_string
+    >>> side = 'left'
+    >>> rule_name = 'drone-rule'
+    >>> rule_shape_string = (
+    ...     drone_shape.make_rule_shape_string(side, rule_name))
+    >>> print(rule_shape_string)
+    shape drone-rule_L
+        name drone
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 1.000000 0.000000
+        coords 2 1.000000 0.000000 0.000000
+        coords 3 1.000000 1.000000 0.000000
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 2
+        point 0 p00
+        point 3 p11
+
+### make_rule_shape_header
+    >>> side_ok = 'left'
+    >>> side_bad = 'kilroy'
+    >>> rule_name = '<rule name>'
+
+    >>> rule_shape_header = (
+    ...     drone_shape.make_rule_shape_header(side_ok, rule_name))
+    >>> print(rule_shape_header)
+    shape <rule name>_L
+
+    >>> rule_shape_header = (
+    ...     drone_shape.make_rule_shape_header(side_bad, rule_name))
+    The side must be either 'left' or 'right'
 
 ### make_shape_header
     >>> shape_header = drone_shape.make_shape_header()
@@ -145,21 +177,21 @@
     >>> indented_lpoint_entries_string = (
     ...     drone_shape.make_indented_lpoint_entries_string())
     >>> print(indented_lpoint_entries_string)
-        point 0 0 p00
-        point 1 3 p11
+        point 0 p00
+        point 3 p11
 
 ### make_indented_lpoint_entry_strings
     >>> indented_lpoint_entry_strings = (
     ...     drone_shape.make_indented_lpoint_entry_strings())
     >>> print(indented_lpoint_entry_strings)
-    ['    point 0 0 p00', '    point 1 3 p11']
+    ['    point 0 p00', '    point 3 p11']
 
 ### make_lpoint_entry_string
     >>> codex_label_ok = (0, 'p00')
     >>> lpoint_entry_string = (
     ...     drone_shape.make_lpoint_entry_string(codex_label_ok))
     >>> print lpoint_entry_string
-    point 0 0 p00
+    point 0 p00
 
     >>> codex_label_not_in_list = (0, 'kilroy')
     >>> lpoint_entry_string = (
