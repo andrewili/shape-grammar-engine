@@ -27,11 +27,10 @@ class Shape(object):
             (   self.ordered_coord_list,
                 self.ordered_codex_codex_list,
                 self.ordered_codex_label_list
-            ) = self.make_ordered_index_lists(line_specs, lpoint_specs)
+            ) = self._make_ordered_index_lists(line_specs, lpoint_specs)
             self.tab = '    '
 
-    ###
-    def make_ordered_index_lists(self, line_specs, lpoint_specs):
+    def _make_ordered_index_lists(self, line_specs, lpoint_specs):
         """Receives a list of line specs and a list of labeled point specs:
             [((num, num, num), (num, num, num)), ...]
             [((num, num, num), str), ...]
@@ -40,18 +39,18 @@ class Shape(object):
                 [(int, int), ...],
                 [(int, label), ...])
         """
-        ordered_coord_list = self.make_ordered_coord_list(
+        ordered_coord_list = self._make_ordered_coord_list(
             line_specs, lpoint_specs)
-        ordered_codex_codex_list = self.make_ordered_codex_codex_list(
+        ordered_codex_codex_list = self._make_ordered_codex_codex_list(
             line_specs, ordered_coord_list)
-        ordered_codex_label_list = self.make_ordered_codex_label_list(
+        ordered_codex_label_list = self._make_ordered_codex_label_list(
             lpoint_specs, ordered_coord_list)
         return (
             ordered_coord_list,
             ordered_codex_codex_list,
             ordered_codex_label_list)
 
-    def make_ordered_coord_list(self, line_specs, lpoint_specs):
+    def _make_ordered_coord_list(self, line_specs, lpoint_specs):
         """Receive a list of line specs and a list of labeled point specs:
             [((num, num, num), (num, num, num)), ...]
             [((num, num, num), str), ...]
@@ -71,7 +70,7 @@ class Shape(object):
                 unique_coords.append(coord)
         return sorted(unique_coords)
 
-    def make_ordered_codex_codex_list(self, line_specs, ordered_coord_list):
+    def _make_ordered_codex_codex_list(self, line_specs, ordered_coord_list):
         """Receives a list of line specs and an ordered list of coords:
             [((num, num, num), (num, num, num)), ...]
             [(num, num, num), ...]
@@ -80,11 +79,11 @@ class Shape(object):
         """
         codex_codex_list = []
         for line_spec in line_specs:
-            codex_codex = self.make_codex_codex(line_spec, ordered_coord_list)
+            codex_codex = self._make_codex_codex(line_spec, ordered_coord_list)
             codex_codex_list.append(codex_codex)
         return sorted(codex_codex_list)
 
-    def make_codex_codex(self, line_spec, ordered_coord_list):
+    def _make_codex_codex(self, line_spec, ordered_coord_list):
         """Receives a line spec and an ordered coord list:
             ((num, num, num), (num, num, num))
             [(num, num, num), ...]
@@ -108,7 +107,7 @@ class Shape(object):
             codex_codex = (codex_list[0], codex_list[1])
             return codex_codex
 
-    def make_ordered_codex_label_list(self, lpoint_specs, ordered_coord_list):
+    def _make_ordered_codex_label_list(self, lpoint_specs, ordered_coord_list):
         """Receives a list of labeled point specs and an ordered list of 
         coords:
             [((num, num, num), str), ...]
@@ -118,12 +117,12 @@ class Shape(object):
         """
         codex_label_list = []
         for lpoint_spec in lpoint_specs:
-            codex_label = self.make_codex_label(
+            codex_label = self._make_codex_label(
                 lpoint_spec, ordered_coord_list)
             codex_label_list.append(codex_label)
         return sorted(codex_label_list)
 
-    def make_codex_label(self, lpoint_spec, ordered_coord_list):
+    def _make_codex_label(self, lpoint_spec, ordered_coord_list):
         """Receives a labeled point spec and an ordered list of coords:
             ((num, num, num), str)
             [(num, num, num), ...]
@@ -143,72 +142,120 @@ class Shape(object):
             return codex_label
 
     ###
-    def __str__(self):
-        """Returns a string in the is format (i.e., a free-standing shape 
-        string):
+    def make_initial_shape_string(self):
+        """Returns a string of an initial shape in is format:
             str
         """
-        shape_header = self.make_shape_header()
-        indented_name_entry_string = (
-            self.make_indented_name_entry_string())
+        initial_shape_header_and_name = (
+            self._make_initial_shape_header_and_name())
+        shape_string_remainder = self._make_shape_string_remainder()
+        if len(shape_string_remainder) == 0:
+            initial_shape_string = initial_shape_header_and_name
+        else:
+            initial_shape_string = '%s\n%s' % (
+                initial_shape_header_and_name, 
+                shape_string_remainder)
+        initial_shape_string
+        return initial_shape_string
+        
+    def _make_initial_shape_header_and_name(self):
+        """Returns a string in the form:
+            shape <shape name>
+                name
+        """
+        initial_shape_header = 'shape %s' % self.name
+        indented_shape_name_string = '%sname' % self.tab
+        initial_shape_header_and_name = '\n'.join([
+            initial_shape_header,
+            indented_shape_name_string])
+        return initial_shape_header_and_name
+
+    ###
+    def make_rule_shape_string(self, side, rule_name):
+        """Receives the side and the name of the rule (as part of the rule 
+        string):
+            str
+            str
+        Returns the shape part of the rule string in rul format:
+            str
+        """
+        rule_shape_header_and_name = (
+            self._make_rule_shape_header_and_name(side, rule_name))
+        shape_string_remainder = self._make_shape_string_remainder()
+        rule_shape_substrings = [
+            rule_shape_header_and_name,
+            shape_string_remainder]
+        rule_shape_string = '\n'.join(rule_shape_substrings)
+        return rule_shape_string
+
+    def _make_rule_shape_header_and_name(self, side, rule_name):
+        """Receives the side and the name of the rule:
+            str
+            str
+        Returns a string of the form:
+            shape <rule name>_<side>
+                name <shape name>
+        """
+        if side == 'left':
+            side_string = 'L'
+        elif side == 'right':
+            side_string = 'R'
+        else:
+            pass
+        rule_shape_header = 'shape %s_%s' % (rule_name, side_string)
+        indented_rule_shape_name_string = '%sname %s' % (self.tab, self.name)
+        rule_shape_header_and_name = '\n'.join([
+            rule_shape_header,
+            indented_rule_shape_name_string])
+        return rule_shape_header_and_name
+
+    ###
+    def _make_shape_string_remainder(self):
+        """Returns the shape string excluding the shape header and name lines.
+            str
+        """
         indented_coord_entries_string = (
-            self.make_indented_coord_entries_string())
+            self._make_indented_coord_entries_string())
         blank_line = ''
         indented_line_entries_string = (
-            self.make_indented_line_entries_string())
+            self._make_indented_line_entries_string())
         indented_lpoint_entries_string = (
-            self.make_indented_lpoint_entries_string())
-        is_substrings = [
-            shape_header,
-            indented_name_entry_string]
+            self._make_indented_lpoint_entries_string())
+        shape_remainder_substrings = []
         if len(indented_coord_entries_string) > 0:
-            is_substrings.append(indented_coord_entries_string)
-            is_substrings.append(blank_line)
+            shape_remainder_substrings.append(indented_coord_entries_string)
+            shape_remainder_substrings.append(blank_line)
         if len(indented_line_entries_string) > 0:
-            is_substrings.append(indented_line_entries_string)
+            shape_remainder_substrings.append(indented_line_entries_string)
         if len(indented_lpoint_entries_string) > 0:
-            is_substrings.append(indented_lpoint_entries_string)
-        is_string = '\n'.join(is_substrings)
-        return is_string
+            shape_remainder_substrings.append(indented_lpoint_entries_string)
+        shape_string_remainder = '\n'.join(shape_remainder_substrings)
+        return shape_string_remainder
 
-    def make_shape_header(self):
-        """Returns a string of the form:
-            shape <shape name>
-        """
-        shape_header = 'shape %s' % self.name
-        return shape_header
-
-    def make_indented_name_entry_string(self):
-        """Returns a string of the form:
-            <tab>name
-        """
-        indented_name_entry_string = '%sname' % self.tab
-        return indented_name_entry_string
-
-    def make_indented_coord_entries_string(self):
+    def _make_indented_coord_entries_string(self):
         """Returns a string of the form:
             <indented coord entry>\n...
         """
         indented_coord_entry_strings = (
-            self.make_indented_coord_entry_strings())
+            self._make_indented_coord_entry_strings())
         indented_coord_entries_string = (
             '\n'.join(indented_coord_entry_strings))
         return indented_coord_entries_string
 
-    def make_indented_coord_entry_strings(self):
+    def _make_indented_coord_entry_strings(self):
         """Returns a list of indented coord entry strings:
             [<tab>coords <i_str> <x_str> <y_str> <z_str>, ...]
         """
         indented_coord_entry_strings = []
         for coord in self.ordered_coord_list:
             coord_entry_string = (
-                self.make_coord_entry_string(coord))
+                self._make_coord_entry_string(coord))
             indented_coord_entry_string = (
                 '%s%s' % (self.tab, coord_entry_string))
             indented_coord_entry_strings.append(indented_coord_entry_string)
         return indented_coord_entry_strings
 
-    def make_coord_entry_string(self, coord):
+    def _make_coord_entry_string(self, coord):
         """Receives a coord:
             (num, num, num)
         Returns a string of the form:
@@ -226,25 +273,25 @@ class Shape(object):
             coord_entry_string = 'coords %i %f %f %f' % (i, x, y, z)
             return coord_entry_string
 
-    def make_indented_line_entries_string(self):
+    def _make_indented_line_entries_string(self):
         """Returns a string of the form:
             <indented line entry>\n...
         """
         indented_line_entry_strings = (
-            self.make_indented_line_entry_strings())
+            self._make_indented_line_entry_strings())
         indented_line_entries_string = '\n'.join(indented_line_entry_strings)
         return indented_line_entries_string
 
-    def make_indented_line_entry_strings(self):
+    def _make_indented_line_entry_strings(self):
         indented_line_entry_strings = []
         for codex_codex in self.ordered_codex_codex_list:
-            line_entry_string = self.make_line_entry_string(codex_codex)
+            line_entry_string = self._make_line_entry_string(codex_codex)
             indented_line_entry_string = (
                 '%s%s' % (self.tab, line_entry_string))
             indented_line_entry_strings.append(indented_line_entry_string)
         return indented_line_entry_strings
 
-    def make_line_entry_string(self, codex_codex):
+    def _make_line_entry_string(self, codex_codex):
         """Returns a string of the form:
             line <i> <x> <y> <z>
         """
@@ -253,29 +300,29 @@ class Shape(object):
         line_entry_string = 'line %i %i %i' % (i, codex_1, codex_2)
         return line_entry_string
 
-    def make_indented_lpoint_entries_string(self):
+    def _make_indented_lpoint_entries_string(self):
         """Returns a string of the form:
             <indented lpoint entry>\n...
         """
         indented_lpoint_entry_strings = (
-            self.make_indented_lpoint_entry_strings())
+            self._make_indented_lpoint_entry_strings())
         indented_lpoint_entries_string = (
             '\n'.join(indented_lpoint_entry_strings))
         return indented_lpoint_entries_string
 
-    def make_indented_lpoint_entry_strings(self):
+    def _make_indented_lpoint_entry_strings(self):
         """Returns a list of lpoint entry strings:
             [str, ...]
         """
         indented_lpoint_entry_strings = []
         for codex_label in self.ordered_codex_label_list:
-            lpoint_entry_string = self.make_lpoint_entry_string(codex_label)
+            lpoint_entry_string = self._make_lpoint_entry_string(codex_label)
             indented_lpoint_entry_string = (
                 '%s%s' % (self.tab, lpoint_entry_string))
             indented_lpoint_entry_strings.append(indented_lpoint_entry_string)
         return indented_lpoint_entry_strings
 
-    def make_lpoint_entry_string(self, codex_label):
+    def _make_lpoint_entry_string(self, codex_label):
         """Receives a codex-label pair:
             (int, str)
         Returns a string of the form:
@@ -289,77 +336,17 @@ class Shape(object):
             print(message)
         else:
             codex, label = codex_label
-            # i = self.ordered_codex_label_list.index(codex_label)
-            # lpoint_entry_string = 'point %i %i %s' % (i, codex, label)
             lpoint_entry_string = 'point %i %s' % (codex, label)
             return lpoint_entry_string
 
-    def make_rule_shape_string(self, side, rule_name):
-        """Receives the side and the name of the rule (as part of the rule 
+    ###
+    def __str__(self):
+        """Returns a string in the is format (i.e., a free-standing shape 
         string):
             str
-            str
-        Returns the shape part of the rule string in rul format:
-            str
         """
-        rule_shape_header = self.make_rule_shape_header(side, rule_name)
-        indented_name_entry_string_w_name = (
-            self.make_indented_name_entry_string_w_name())
-        indented_coord_entries_string = (
-            self.make_indented_coord_entries_string())
-        blank_line = ''
-        indented_line_entries_string = (
-            self.make_indented_line_entries_string())
-        indented_lpoint_entries_string = (
-            self.make_indented_lpoint_entries_string())
-        rule_substrings = [
-            rule_shape_header,
-            indented_name_entry_string_w_name]
-        if len(indented_coord_entries_string) > 0:
-            rule_substrings.append(indented_coord_entries_string)
-            rule_substrings.append(blank_line)
-        if len(indented_line_entries_string) > 0:
-            rule_substrings.append(indented_line_entries_string)
-        if len(indented_lpoint_entries_string) > 0:
-            rule_substrings.append(indented_lpoint_entries_string)
-        rule_shape_string = '\n'.join(rule_substrings)
-        return rule_shape_string
-
-    def make_rule_shape_header(self, side, rule_name):
-        """Receives the side and the name of the rule:
-            str
-            str
-        Returns the rule shape header:
-            shape <rule name>_<side-string>
-        where side-string = 'L' | 'R'
-        """
-        try:
-            if not (
-                side == 'left' or
-                side == 'right'
-            ):
-                raise ValueError
-        except ValueError:
-            message = "The side must be either 'left' or 'right'"
-            print(message)
-        else:
-            if side == 'left':
-                side_string = 'L'
-            elif side == 'right':
-                side_string = 'R'
-            else:
-                pass
-            rule_shape_header = 'shape %s_%s' % (rule_name, side_string)
-            return rule_shape_header
-
-    def make_indented_name_entry_string_w_name(self):
-        """Returns the indented name entry with the shape name (for use in 
-        rules)
-            <tab>name <shape name>
-        """
-        indented_name_entry_string_w_name = (
-            '%sname %s' % (self.tab, self.name))
-        return indented_name_entry_string_w_name
+        is_string = self.make_initial_shape_string()
+        return is_string
 
 if __name__ == '__main__':
     import doctest

@@ -85,6 +85,46 @@
     shape Kilroy
         name
 
+### make_initial_shape_string
+    >>> def make_initial_shape_string_test():
+    ...     name = 'Kilroy'
+    ...     line_specs = [
+    ...         ((0, 8, 0), (6, 0, 0)),
+    ...         ((0, 0, 0), (6, 0, 0)),
+    ...         ((0, 0, 0), (0, 8, 0))]
+    ...     lpoint_specs = [
+    ...         ((3, 4, 0), 'c'),
+    ...         ((3, 0, 0), 'b'),
+    ...         ((0, 4, 0), 'a')]
+    ...     new_shape = shape.Shape(name, line_specs, lpoint_specs)
+    ...     initial_shape_string_test = new_shape.make_initial_shape_string()
+    ...     return initial_shape_string_test
+    >>> initial_shape_string_test = make_initial_shape_string_test()
+    >>> print(initial_shape_string_test)
+    shape Kilroy
+        name
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 4.000000 0.000000
+        coords 2 0.000000 8.000000 0.000000
+        coords 3 3.000000 0.000000 0.000000
+        coords 4 3.000000 4.000000 0.000000
+        coords 5 6.000000 0.000000 0.000000
+    <BLANKLINE>
+        line 0 0 2
+        line 1 0 5
+        line 2 2 5
+        point 1 a
+        point 3 b
+        point 4 c
+
+### _make_initial_shape_header_and_name
+    >>> initial_shape_header_and_name = (
+    ...     drone_shape._make_initial_shape_header_and_name())
+    >>> print(initial_shape_header_and_name)
+    shape drone
+        name
+
+###
 ### make_rule_shape_string
     >>> side = 'left'
     >>> rule_name = 'drone-rule'
@@ -103,102 +143,101 @@
         point 0 p00
         point 3 p11
 
-### make_rule_shape_header
-    >>> side_ok = 'left'
-    >>> side_bad = 'kilroy'
-    >>> rule_name = '<rule name>'
+### _make_rule_shape_header_and_name
+    >>> rule_shape_header_and_name = (
+    ...     drone_shape._make_rule_shape_header_and_name(
+    ...         'left', 'kilroy-rule'))
+    >>> print(rule_shape_header_and_name)
+    shape kilroy-rule_L
+        name drone
 
-    >>> rule_shape_header = (
-    ...     drone_shape.make_rule_shape_header(side_ok, rule_name))
-    >>> print(rule_shape_header)
-    shape <rule name>_L
+###
+### _make_shape_string_remainder
+    >>> shape_string_remainder = drone_shape._make_shape_string_remainder()
+    >>> print(shape_string_remainder)
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 1.000000 0.000000
+        coords 2 1.000000 0.000000 0.000000
+        coords 3 1.000000 1.000000 0.000000
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 2
+        point 0 p00
+        point 3 p11
 
-    >>> rule_shape_header = (
-    ...     drone_shape.make_rule_shape_header(side_bad, rule_name))
-    The side must be either 'left' or 'right'
-
-### make_shape_header
-    >>> shape_header = drone_shape.make_shape_header()
-    >>> print(shape_header)
-    shape drone
-
-### make_indented_name_entry_string
-    >>> indented_name_entry_string = drone_shape.make_indented_name_entry_string()
-    >>> print(indented_name_entry_string)
-        name
-
-### make_indented_coord_entries_string
+### _make_indented_coord_entries_string
     >>> indented_coord_entries_string = (
-    ...     drone_shape.make_indented_coord_entries_string())
+    ...     drone_shape._make_indented_coord_entries_string())
     >>> print(indented_coord_entries_string)
         coords 0 0.000000 0.000000 0.000000
         coords 1 0.000000 1.000000 0.000000
         coords 2 1.000000 0.000000 0.000000
         coords 3 1.000000 1.000000 0.000000
 
-### make_indented_coord_entry_strings
+### _make_indented_coord_entry_strings
     >>> indented_coord_entry_strings = (
-    ...     drone_shape.make_indented_coord_entry_strings())
+    ...     drone_shape._make_indented_coord_entry_strings())
     >>> print indented_coord_entry_strings
     ['    coords 0 0.000000 0.000000 0.000000', '    coords 1 0.000000 1.000000 0.000000', '    coords 2 1.000000 0.000000 0.000000', '    coords 3 1.000000 1.000000 0.000000']
 
-### make_coord_entry_string
+### _make_coord_entry_string
     >>> coord_ok = (1, 0, 0)
     >>> coord_entry_string = (
-    ...     drone_shape.make_coord_entry_string(coord_ok))
+    ...     drone_shape._make_coord_entry_string(coord_ok))
     >>> print(coord_entry_string)
     coords 2 1.000000 0.000000 0.000000
 
     >>> coord_not_in_list = (2, 2, 2)
     >>> coord_entry_string = (
-    ...     drone_shape.make_coord_entry_string(coord_not_in_list))
+    ...     drone_shape._make_coord_entry_string(coord_not_in_list))
     The coord is not in the list
 
-### make_indented_line_entries_string
+### _make_indented_line_entries_string
     >>> indented_line_entries_string = (
-    ...     drone_shape.make_indented_line_entries_string())
+    ...     drone_shape._make_indented_line_entries_string())
     >>> print(indented_line_entries_string)
         line 0 0 1
         line 1 0 2
 
-### make_indented_line_entry_strings
+### _make_indented_line_entry_strings
     >>> indented_line_entry_strings = (
-    ...     drone_shape.make_indented_line_entry_strings())
+    ...     drone_shape._make_indented_line_entry_strings())
     >>> print(indented_line_entry_strings)
     ['    line 0 0 1', '    line 1 0 2']
 
-### make_line_entry_string
+### _make_line_entry_string
     >>> codex_codex = (0, 1)
-    >>> line_entry_string = drone_shape.make_line_entry_string(codex_codex)
+    >>> line_entry_string = drone_shape._make_line_entry_string(codex_codex)
     >>> print(line_entry_string)
     line 0 0 1
 
-### make_indented_lpoint_entries_string
+### _make_indented_lpoint_entries_string
     >>> indented_lpoint_entries_string = (
-    ...     drone_shape.make_indented_lpoint_entries_string())
+    ...     drone_shape._make_indented_lpoint_entries_string())
     >>> print(indented_lpoint_entries_string)
         point 0 p00
         point 3 p11
 
-### make_indented_lpoint_entry_strings
+### _make_indented_lpoint_entry_strings
     >>> indented_lpoint_entry_strings = (
-    ...     drone_shape.make_indented_lpoint_entry_strings())
+    ...     drone_shape._make_indented_lpoint_entry_strings())
     >>> print(indented_lpoint_entry_strings)
     ['    point 0 p00', '    point 3 p11']
 
-### make_lpoint_entry_string
+### _make_lpoint_entry_string
     >>> codex_label_ok = (0, 'p00')
     >>> lpoint_entry_string = (
-    ...     drone_shape.make_lpoint_entry_string(codex_label_ok))
+    ...     drone_shape._make_lpoint_entry_string(codex_label_ok))
     >>> print lpoint_entry_string
     point 0 p00
 
     >>> codex_label_not_in_list = (0, 'kilroy')
     >>> lpoint_entry_string = (
-    ...     drone_shape.make_lpoint_entry_string(codex_label_not_in_list))
+    ...     drone_shape._make_lpoint_entry_string(codex_label_not_in_list))
     The codex-label pair is not in the list
 
-### make_ordered_index_lists
+###
+### _make_ordered_index_lists
     >>> line_specs = [
     ...     ((0, 8, 0), (6, 0, 0)),
     ...     ((0, 0, 0), (6, 0, 0)),
@@ -208,27 +247,44 @@
     ...     ((3, 0, 0), 'b'),
     ...     ((0, 4, 0), 'a')]
 
-    >>> ordered_index_lists = drone_shape.make_ordered_index_lists(
+    >>> ordered_index_lists = drone_shape._make_ordered_index_lists(
     ...     line_specs, lpoint_specs)
     >>> print(ordered_index_lists)
     ([(0, 0, 0), (0, 4, 0), (0, 8, 0), (3, 0, 0), (3, 4, 0), (6, 0, 0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')])
 
-    >>> ordered_index_lists_no_lines = drone_shape.make_ordered_index_lists(
+    >>> ordered_index_lists_no_lines = drone_shape._make_ordered_index_lists(
     ...     [], lpoint_specs)
     >>> print(ordered_index_lists_no_lines)
     ([(0, 4, 0), (3, 0, 0), (3, 4, 0)], [], [(0, 'a'), (1, 'b'), (2, 'c')])
 
-    >>> ordered_index_lists_no_lpoints = drone_shape.make_ordered_index_lists(
+    >>> ordered_index_lists_no_lpoints = drone_shape._make_ordered_index_lists(
     ...     line_specs, [])
     >>> print(ordered_index_lists_no_lpoints)
     ([(0, 0, 0), (0, 8, 0), (6, 0, 0)], [(0, 1), (0, 2), (1, 2)], [])
 
     >>> ordered_index_lists_no_lines_no_lpoints = (
-    ...     drone_shape.make_ordered_index_lists([], []))
+    ...     drone_shape._make_ordered_index_lists([], []))
     >>> print(ordered_index_lists_no_lines_no_lpoints)
     ([], [], [])
 
-### make_ordered_codex_codex_list
+### _make_ordered_coord_list
+    >>> def make_ordered_coord_list_test():
+    ...     line_specs = [
+    ...         ((0, 0, 0), (0, 8, 0)),
+    ...         ((0, 0, 0), (6, 0, 0)),
+    ...         ((0, 8, 0), (6, 0, 0))]
+    ...     lpoint_specs = [
+    ...         ((0, 4, 0), 'p04'),
+    ...         ((3, 0, 0), 'p30'),
+    ...         ((3, 4, 0), 'p34')]
+    ...     ordered_coord_list = (
+    ...         drone_shape._make_ordered_coord_list(line_specs, lpoint_specs))
+    ...     return ordered_coord_list
+    >>> ordered_coord_list = make_ordered_coord_list_test()
+    >>> print(ordered_coord_list)
+    [(0, 0, 0), (0, 4, 0), (0, 8, 0), (3, 0, 0), (3, 4, 0), (6, 0, 0)]
+
+### _make_ordered_codex_codex_list
     >>> line_specs = [
     ...     ((6, 0, 0), (0, 8, 0)),
     ...     ((0, 0, 0), (6, 0, 0)),
@@ -237,12 +293,12 @@
     ...     (0, 0, 0),
     ...     (0, 8, 0),
     ...     (6, 0, 0)]
-    >>> codex_codex_list = drone_shape.make_ordered_codex_codex_list(
+    >>> codex_codex_list = drone_shape._make_ordered_codex_codex_list(
     ...     line_specs, ordered_coord_list)
     >>> print(codex_codex_list)
     [(0, 1), (0, 2), (2, 1)]
 
-### make_codex_codex
+### _make_codex_codex
     >>> ordered_coord_list = [
     ...     (0, 0, 0),
     ...     (0, 8, 0),
@@ -250,16 +306,16 @@
     >>> line_spec_ok = ((6, 0, 0), (0, 8, 0))
     >>> line_spec_not_in_list = ((0, 0, 0), (6, 8, 0))
 
-    >>> codex_codex_not_in_list = drone_shape.make_codex_codex(
+    >>> codex_codex_not_in_list = drone_shape._make_codex_codex(
     ...     line_spec_not_in_list, ordered_coord_list)
     At least one of the coords is not in the list
 
-    >>> codex_codex_ok = drone_shape.make_codex_codex(
+    >>> codex_codex_ok = drone_shape._make_codex_codex(
     ...     line_spec_ok, ordered_coord_list)
     >>> print(codex_codex_ok)
     (2, 1)
 
-### make_ordered_codex_label_list
+### _make_ordered_codex_label_list
     >>> def make_lpoint_specs_and_ordered_coord_list():
     ...     lpoint_specs = [
     ...         ((6, 0, 0), 'd'), 
@@ -274,27 +330,27 @@
     >>> lpoint_specs, ordered_coord_list = (
     ...     make_lpoint_specs_and_ordered_coord_list())
 
-    >>> codex_label_list = drone_shape.make_ordered_codex_label_list(
+    >>> codex_label_list = drone_shape._make_ordered_codex_label_list(
     ...     lpoint_specs, ordered_coord_list)
     >>> print(codex_label_list)
     [(0, 'a'), (1, 'b'), (2, 'c'), (2, 'd')]
 
-### make_codex_label
+### _make_codex_label
     >>> ordered_coord_list = [
     ...     ((0, 0, 0), (0, 8, 0)),
     ...     ((0, 0, 0), (6, 0, 0)),
     ...     ((0, 8, 0), (6, 0, 0)),
     ...     ((3, 4, 0))]
 
-    >>> codex_label_not_in_list = drone_shape.make_codex_label(
+    >>> codex_label_not_in_list = drone_shape._make_codex_label(
     ...     ((0, 0, 0), 'p0'), ordered_coord_list)
     The coord is not in the coord list
 
-    >>> codex_label_empty_list = drone_shape.make_codex_label(
+    >>> codex_label_empty_list = drone_shape._make_codex_label(
     ...     ((0, 0, 0), 'p0'), [])
     The coord is not in the coord list
     
-    >>> codex_label_ok = drone_shape.make_codex_label(
+    >>> codex_label_ok = drone_shape._make_codex_label(
     ...     ((3, 4, 0), 'p0'), ordered_coord_list)
     >>> print(codex_label_ok)
     (3, 'p0')
