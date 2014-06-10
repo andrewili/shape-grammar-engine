@@ -1,5 +1,19 @@
 # shape data version 6.00
 unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    kilroys-rule_L
+    name 
+    coords 0 0 0 0
+    coords 1 0 20 0
+    coords 2 10 10 10
+    coords 3 20 0 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 3
+    point 0 p000
+shape    kilroys-rule_R
+    name 
+
 shape    pyramid
     name pyramid
     coords 1 14 11.46410162 9.79795897
@@ -18,6 +32,25 @@ shape    pyramid
     line 5 8 6
     line 6 7 8
     point 1 a
+shape    pyramid_2
+    name 
+    coords 0 0 0 0
+    coords 1 0 20 0
+    coords 2 10 10 10
+    coords 3 20 0 0
+    coords 4 20 20 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 3
+    line 3 1 2
+    line 4 1 4
+    line 5 2 3
+    line 6 2 4
+    line 7 3 2
+    line 8 3 4
+    point 0 p000
+    point 2 p111
 shape    pyramid_L
     name pyramid_1
     coords 1 14 11.46410162 9.79795897
@@ -90,25 +123,7 @@ shape    pyramid_R
     point 2 a
     point 3 a
     point 4 a
-shape    test
-    name 
-    coords 0 0 0 0
-    coords 1 0 32 0
-    coords 2 16 16 0
-    coords 3 16 16 16
-    coords 4 32 0 0
-    coords 5 32 32 0
-
-    line 0 0 1
-    line 1 0 3
-    line 2 0 4
-    line 3 1 3
-    line 4 1 5
-    line 5 4 3
-    line 6 4 5
-    line 7 5 3
-    point 0 00
-    point 2 22
 initial    pyramid
-initial    test
+initial    pyramid_2
+rule    kilroys-rule    kilroys-rule_L -> kilroys-rule_R
 rule    pyramid    pyramid_L -> pyramid_R

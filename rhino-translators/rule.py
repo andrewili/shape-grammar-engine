@@ -1,6 +1,5 @@
 #   rule.py
 
-# import rhinoscriptsyntax as rs
 import shape
 
 class Rule(object):
@@ -10,20 +9,28 @@ class Rule(object):
             Shape
             Shape
         """
-        self.name = name
-        self.left_shape = left_shape
-        self.right_shape = right_shape
+        try:
+            if not (type(name) == str and
+                type(left_shape) == shape.Shape and
+                type(right_shape) == shape.Shape
+            ):
+                raise TypeError
+        except TypeError:
+            message = 'The arguments must be str, Shape, and Shape'
+            print(message)
+        else:
+            self.name = name
+            self.left_shape = left_shape
+            self.right_shape = right_shape
 
     ###
     def __str__(self):
         """Returns a string in the rul format
         """
         left_shape_string = (
-            self.left_shape.get_rule_shape_string('left', self.name))
+            self.left_shape.make_rule_shape_string('left', self.name))
         right_shape_string = (
-            self.right_shape.get_rule_shape_string('right', self.name))
-        # left_shape_string = self.left_shape.__str__()
-        # right_shape_string = self.right_shape.__str__()
+            self.right_shape.make_rule_shape_string('right', self.name))
         rule_name_string = self.make_rule_name_string()
         substrings = [
             left_shape_string,

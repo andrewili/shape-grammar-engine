@@ -1,0 +1,19 @@
+shape pyramid
+    name
+    coords 0 0.0 0.0 0.0
+    coords 1 0.0 20.0 0.0
+    coords 2 10.0 10.0 10.0
+    coords 3 20.0 0.0 0.0
+    coords 4 20.0 20.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 3
+    line 3 1 2
+    line 4 1 4
+    line 5 2 3
+    line 6 2 4
+    line 7 3 2
+    line 8 3 4
+    point 0 p000
+    point 2 p111
