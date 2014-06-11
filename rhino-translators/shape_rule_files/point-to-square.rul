@@ -1,0 +1,24 @@
+shape point-to-square_L
+    name left-shape
+    coords 0 0.000000 0.000000 0.000000
+    coords 1 0.000000 20.000000 0.000000
+    coords 2 10.000000 10.000000 10.000000
+    coords 3 20.000000 0.000000 0.000000
+    coords 4 20.000000 20.000000 0.000000
+
+    line 0 0 2
+    line 1 1 2
+    line 2 2 3
+    line 3 2 4
+shape point-to-square_R
+    name right-shape
+    coords 0 0.000000 0.000000 0.000000
+    coords 1 0.000000 20.000000 0.000000
+    coords 2 20.000000 0.000000 0.000000
+    coords 3 20.000000 20.000000 0.000000
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+rule    point-to-square    point-to-square_L -> point-to-square_R

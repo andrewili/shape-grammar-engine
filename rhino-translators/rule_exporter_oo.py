@@ -116,7 +116,10 @@ class RuleExporterOO(object):
         if not file_name: 
             return
         file = open(file_name, "w" )
-        rule_string = rule_in.__str__()
+        rule_string = '\n'.join([
+            rule_in.__str__(), 
+            ''])                                #   empty last line
+        # rule_string = rule_in.__str__()
         file.write(rule_string)
         file.close()
         print(rule_string)

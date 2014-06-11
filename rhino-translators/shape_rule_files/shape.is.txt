@@ -1,0 +1,11 @@
+shape shape
+    name
+    coords 0 0.0 0.0 0.0
+    coords 1 0.0 20.0 0.0
+    coords 2 10.0 10.0 10.0
+    coords 3 20.0 0.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 3
+    point 0 p000

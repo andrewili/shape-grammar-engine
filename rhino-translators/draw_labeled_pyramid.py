@@ -13,7 +13,6 @@ def draw_labeled_pyramid():
     rs.AddLine(p020, p220)
     rs.AddLine(p111, p200)
     rs.AddLine(p111, p220)
-    rs.AddLine(p200, p111)
     rs.AddLine(p200, p220)
     rs.AddTextDot('p000', p000)
     rs.AddTextDot('p111', p111)
