@@ -8,6 +8,8 @@ class Shape(object):
             [((num, num, num), (num, num, num)), ...]
             [((num, num, num), str), ...]
         """
+                                        #   Allow empty shape as appropriate
+                                        #   Fit to thumbnail
         try:
             if (not type(name) == str or
                 not type(line_specs) == list or

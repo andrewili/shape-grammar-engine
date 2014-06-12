@@ -147,3 +147,8 @@ Log
         
 #   2014-05-23
     #   Rhino translator (shape only) completed
+
+#   2014-06-12
+    #   Rhino rule translator completed
+    >   Rewrite exporters to combine methods
+    >   Allow empty right shape

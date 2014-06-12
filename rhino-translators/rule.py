@@ -9,6 +9,7 @@ class Rule(object):
             Shape
             Shape
         """
+                                        #   Allow empty right shape
         try:
             if not (type(name) == str and
                 type(left_shape) == shape.Shape and

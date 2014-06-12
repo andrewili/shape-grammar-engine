@@ -1,0 +1,9 @@
+shape del-label_L
+    name label
+    coords 0 6.000000 6.000000 8.000000
+
+    point 0 a
+shape del-label_R
+    name empty
+
+rule    del-label    del-label_L -> del-label_R

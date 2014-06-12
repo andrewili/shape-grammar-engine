@@ -29,7 +29,21 @@ class RuleExporterOO(object):
         guids = rs.GetObjects(
             prompt_for_elements,
             rs.filter.curve + rs.filter.textdot)
-        line_specs, lpoint_specs = self._get_line_specs_and_lpoint_specs(guids)
+        if side == 'left':
+            while guids == None:
+                prompt_for_elements = (
+                    'The left shape may not be empty. ' +
+                    'Select the lines and textdots in the left shape')
+                guids = rs.GetObjects(
+                    prompt_for_elements,
+                    rs.filter.curve + rs.filter.textdot)
+        elif side == 'right':
+            if guids == None:
+                guids = []
+        else:
+            pass
+        line_specs, lpoint_specs = (
+            self._get_line_specs_and_lpoint_specs(guids))
         prompt_for_name = (
             'Enter the name of the %s shape' % side)
         name = rs.GetString(prompt_for_name)
@@ -116,9 +130,10 @@ class RuleExporterOO(object):
         if not file_name: 
             return
         file = open(file_name, "w" )
+        empty_line = ''
         rule_string = '\n'.join([
             rule_in.__str__(), 
-            ''])                                #   empty last line
+            empty_line])
         # rule_string = rule_in.__str__()
         file.write(rule_string)
         file.close()

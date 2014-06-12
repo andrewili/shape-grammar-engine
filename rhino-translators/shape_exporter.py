@@ -4,29 +4,33 @@ import rhinoscriptsyntax as rs
 
 class ShapeExporter(object):
     def __init__(self):
-        # self.ordered_coord_list = []          #   [(num, num, num), ...]
-        # self.ordered_codex_codex_list = []    #   [(int, int), ...]
-        # self.ordered_codex_label_list = []    #   [(int, str), ...]
         self.tab = '    '
         self.is_string = ''
 
     def export_shape(self):
-        guids_in = self.receive_guids()
-        element_lists = self.make_indexed_element_lists(guids_in)
-        is_string = self.compose_string(element_lists)
-        self.write_file(is_string)
+        guids_in = self._receive_guids()
+        element_lists = self._make_indexed_element_lists(guids_in)
+        is_string = self._compose_string(element_lists)
+        self._write_file(is_string)
 
-    def receive_guids(self):
+    def _receive_guids(self):
         """Prompts for curve and textdot guids
-        Returns a list of all selected guids: 
+        Returns a non-empty list of all selected guids: 
             [guid, ...]
         """
+        prompt_for_elements = 'Select curves and textdots'
+        prompt_for_non_empty_elements = (
+            'The shape may not be empty. Select curves and textdots')
         guids = rs.GetObjects(
-            'Select curves and textdots', 
+            prompt_for_elements, 
             rs.filter.curve + rs.filter.textdot)
+        while guids == None:
+            guids = rs.GetObjects(
+                prompt_for_non_empty_elements, 
+                rs.filter.curve + rs.filter.textdot)
         return guids
 
-    def make_indexed_element_lists(self, guids_in):
+    def _make_indexed_element_lists(self, guids_in):
         """Receives a list of guids:
             [guid, ...]
         Returns a tuple of ordered lists of coords, codex-codex pairs, and
@@ -34,20 +38,19 @@ class ShapeExporter(object):
             ([(num, num, num), ...], [(int, int), ...], [(int, string), ...])
         """
         self.coords, self.lines, self.lpoints = (
-            self.make_element_lists(guids_in))
-        self.ordered_coord_list = self.make_ordered_coord_list(self.coords)
+            self._make_element_lists(guids_in))
+        self.ordered_coord_list = self._make_ordered_coord_list(self.coords)
         self.ordered_codex_codex_list = (
-            self.make_ordered_codex_codex_list(self.lines))
-        # print('lpoints: %s' % self.lpoints)
+            self._make_ordered_codex_codex_list(self.lines))
         self.ordered_codex_label_list = (
-            self.make_ordered_codex_label_list(self.lpoints))
+            self._make_ordered_codex_label_list(self.lpoints))
         indexed_element_lists = (
             self.ordered_coord_list, 
             self.ordered_codex_codex_list, 
             self.ordered_codex_label_list)
         return indexed_element_lists
 
-    def make_element_lists(self, guids):
+    def _make_element_lists(self, guids):
         """Receives a list of guids:
             [guid, ...]
         Returns lists of coords, lines, and textdots:
@@ -59,24 +62,25 @@ class ShapeExporter(object):
         coords, lines, lpoints = [], [], []
         line_type = 4
         textdot_type = 8192
+        # if not type(guids) == list:
+        #     guids = []
         for guid in guids:
             guid_type = rs.ObjectType(guid)
             if guid_type == line_type:
-                # lines.append(guid)   #   adds a Guid!
-                line_coords = self.get_line_coords(guid)
+                line_coords = self._get_line_coords(guid)
                 lines.append(line_coords)
                 for coord in line_coords:
                     coords.append(coord)
             elif guid_type == textdot_type:
-                coord = self.get_coord(guid)
-                label = self.get_label(guid)
+                coord = self._get_coord(guid)
+                label = self._get_label(guid)
                 coords.append(coord)
                 lpoint = (coord, label)
                 lpoints.append(lpoint)
         element_lists = (coords, lines, lpoints)
         return element_lists
 
-    def get_line_coords(self, line_guid):
+    def _get_line_coords(self, line_guid):
         """Receives a line guid:
             guid
         Returns the line guid's coord pair:
@@ -89,7 +93,7 @@ class ShapeExporter(object):
             coord_pair.append(coord)
         return coord_pair
 
-    def get_coord(self, textdot_guid):
+    def _get_coord(self, textdot_guid):
         """Receives a textdot guid:
             guid
         Returns its coord:
@@ -99,7 +103,7 @@ class ShapeExporter(object):
         coord = (point.X, point.Y, point.Z)
         return coord
 
-    def get_label(self, textdot_guid):
+    def _get_label(self, textdot_guid):
         """Receives a textdot guid:
             guid
         Returns its text:
@@ -108,7 +112,7 @@ class ShapeExporter(object):
         string = rs.TextDotText(textdot_guid)
         return string
         
-    def make_ordered_coord_list(self, coords):
+    def _make_ordered_coord_list(self, coords):
         """Receives a list of coords:
             [(num, num, num), ...]
         Returns an ordered list of unique coords:
@@ -122,7 +126,7 @@ class ShapeExporter(object):
         # print('ordered coord list: %s' % sorted(coord_list))
         return sorted(coord_list)
 
-    def make_ordered_codex_codex_list(self, lines):
+    def _make_ordered_codex_codex_list(self, lines):
         """Receives a list of coord-coord pairs:
             [((num, num, num), (num, num, num)), ...]
         Returns an ordered list of codex-codex pairs:
@@ -131,13 +135,13 @@ class ShapeExporter(object):
         codex_codex_list = []
         for line in lines:
             coord1, coord2 = line
-            codex1 = self.get_coord_index(coord1)
-            codex2 = self.get_coord_index(coord2)
+            codex1 = self._get_coord_index(coord1)
+            codex2 = self._get_coord_index(coord2)
             codex_codex = (codex1, codex2)
             codex_codex_list.append(codex_codex)
         return sorted(codex_codex_list)
 
-    def get_coord_index(self, coord):
+    def _get_coord_index(self, coord):
         """Receives a coord:
             (num, num, num)
         Returns its index:
@@ -146,7 +150,7 @@ class ShapeExporter(object):
         cordex = self.ordered_coord_list.index(coord)
         return cordex
         
-    def make_ordered_codex_label_list(self, lpoints):
+    def _make_ordered_codex_label_list(self, lpoints):
         """Receives a list of labeled points:
             [((num, num, num), string), ...]
         Returns a list of codex-label pairs:
@@ -160,7 +164,7 @@ class ShapeExporter(object):
             codex_label_list.append(codex_label)
         return sorted(codex_label_list)
 
-    def compose_string(self, element_lists):
+    def _compose_string(self, element_lists):
         """Receives a list of coordinates, a list of codex-codex pairs, and a
         list of codex-label pairs:
             ([(num, num, num), ...], [(int, int), ...], [(int, string), ...])
@@ -175,17 +179,15 @@ class ShapeExporter(object):
             <tab><point entry 1>
             ...
         """
-        # header_string = self.make_header_string()
-        indented_name_string = self.make_indented_name_string()
+        indented_name_string = self._make_indented_name_string()
         indented_coord_entries_string = (
-            self.make_indented_coord_entries_string(self.ordered_coord_list))
+            self._make_indented_coord_entries_string(self.ordered_coord_list))
         blank_line = ''
         indented_line_entries_string = (
-            self.make_indented_line_entries_string())
+            self._make_indented_line_entries_string())
         indented_point_entries_string = (
-            self.make_indented_lpoint_entries_string())
+            self._make_indented_lpoint_entries_string())
         substrings = [
-            # header_string,
             indented_name_string,
             indented_coord_entries_string,
             blank_line,
@@ -195,28 +197,28 @@ class ShapeExporter(object):
         string = '\n'.join(substrings)
         return string
 
-    def make_header_string(self, shape_name='shape-name'):
+    def _make_header_string(self, shape_name='shape-name'):
         string = 'shape ' + shape_name
         return string
 
-    def make_indented_name_string(self, name='name'):
+    def _make_indented_name_string(self, name='name'):
         string = self.tab + 'name'
         return string
 
-    def make_indented_coord_entries_string(self, ordered_coord_list):
+    def _make_indented_coord_entries_string(self, ordered_coord_list):
         """Returns a string composed of indented coord entry strings:
             <tab><coord entry 1>\n...
         """
         indented_entry_strings = []
         for coord in ordered_coord_list:
             entry_string = (
-                self.make_coord_entry_string(coord))
+                self._make_coord_entry_string(coord))
             indented_entry_string = self.tab + entry_string
             indented_entry_strings.append(indented_entry_string)
         indented_entries_string = '\n'.join(indented_entry_strings)
         return indented_entries_string
 
-    def make_coord_entry_string(self, coord):
+    def _make_coord_entry_string(self, coord):
         """Receives a coord:
             (num, num, num)
         Returns a coord entry string:
@@ -227,19 +229,19 @@ class ShapeExporter(object):
         string = 'coords %i %s %s %s' % (codex, x, y, z)
         return string
 
-    def make_indented_line_entries_string(self):
+    def _make_indented_line_entries_string(self):
         """Returns a string composed of indented line entry strings:
             <tab><line entry 1>\n...
         """
         entry_strings = []
         for codex_codex in self.ordered_codex_codex_list:
-            entry_string = self.make_line_entry_string(codex_codex)
+            entry_string = self._make_line_entry_string(codex_codex)
             indented_entry_string = self.tab + entry_string
             entry_strings.append(indented_entry_string)
         entries_string = '\n'.join(entry_strings)
         return entries_string
 
-    def make_line_entry_string(self, codex_codex):
+    def _make_line_entry_string(self, codex_codex):
         """Receives a codex-codex pair:
             (int, int)
         Returns a line entry string:
@@ -250,19 +252,19 @@ class ShapeExporter(object):
         line_entry_string = 'line %i %i %i' % (linex, codex1, codex2)
         return line_entry_string
 
-    def make_indented_lpoint_entries_string(self):
+    def _make_indented_lpoint_entries_string(self):
         """Returns a string composed of indented point entry strings:
             <tab><point entry 1>\n...
         """
         indented_lpoint_entry_strings = []
         for codex_label in self.ordered_codex_label_list:
-            lpoint_entry_string = self.make_lpoint_entry_string(codex_label)
+            lpoint_entry_string = self._make_lpoint_entry_string(codex_label)
             indented_lpoint_entry_string = self.tab + lpoint_entry_string
             indented_lpoint_entry_strings.append(indented_lpoint_entry_string)
         lpoint_entries_string = '\n'.join(indented_lpoint_entry_strings)
         return lpoint_entries_string
 
-    def make_lpoint_entry_string(self, codex_label):
+    def _make_lpoint_entry_string(self, codex_label):
         """Receives a codex-label pair:
             (int, str)
         Returns an lpoint entry string:
@@ -272,13 +274,13 @@ class ShapeExporter(object):
         lpoint_entry_string = 'point %i %s' % (codex, label)
         return lpoint_entry_string
         
-    def write_file(self, string):
+    def _write_file(self, string):
         """Prompts for a file name with is extension. Writes the string to the
         file
         """
         shape_name = rs.GetString(
             'Enter the name of the shape', 'shape name')
-        header = self.make_header_string(shape_name)
+        header = self._make_header_string(shape_name)
         headed_string = '\n'.join([header, string])
         filter = "IS file (*.is)|*.is|All files (*.*)|*.*||"
         file_name = (
@@ -292,5 +294,3 @@ class ShapeExporter(object):
 if __name__ == '__main__':
     shape_exporter = ShapeExporter()
     shape_exporter.export_shape()
-    # import doctest
-    # doctest.testfile('tests/shape_exporter_test.txt')
