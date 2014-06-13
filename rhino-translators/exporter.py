@@ -1,320 +1,173 @@
 #   exporter.py
-#   Continues is_file_exporter.py
 
-# import rhinoscriptsyntax as rs
+import rhinoscriptsyntax as rs
+import rule
+import shape
 
 class Exporter(object):
     def __init__(self):
-        self.sorted_coord_list = []
-        self.sorted_line_coord_index_pair_list = []
-        self.sorted_lpoint_coord_list = []      #
-        self.tab = '    '
+        pass
 
     def export_shape(self):
-        """Prompts for labeled points, lines, and shape name. Writes a file in
-        IS format
-        """
-        # selected_lines = rs.GetObjects('Select lines', rs.filter.curve)
-        selected_elements = rs.GetObjects(
-            'Select elements', 
-            rs.filter.curve + rs.filter.textdot)
-        selected_lines, selected_textdots = (
-            self.sort_elements(selected_elements))
-        self.coord_pair_list = self.make_coord_pair_list(selected_lines)
-        self.coord_list = self.make_coord_list(selected_textdots)
-        self.sorted_coord_list = (
-            self.make_sorted_coord_list(
-                self.coord_list, self.coord_pair_list)
-            )
-        # self.sorted_coord_list = (
-        #     self.make_sorted_coord_list(self.coord_pair_list))
-        self.sorted_line_coord_index_pair_list = (
-            self.make_sorted_line_coord_index_pair_list(self.coord_pair_list))
-        is_string = self.compose_is_string(
-            self.sorted_coord_list, self.sorted_line_coord_index_pair_list)
-        self.write_file(is_string)
+        initial_shape = self._get_shape('initial')
+        self._write_shape_file(initial_shape)
+        
+        # guids_in = self._receive_guids()
+        # element_lists = self._make_indexed_element_lists(guids_in)
+        # is_string = self._compose_string(element_lists)
+        # self._write_file(is_string)
 
-    def sort_elements(self, elements):
-        """Receives a list of line and textdot Guids:
-            [Guid, ...]
-        Returns a list of line Guids and a list of textdot Guids:
-            [line_Guid, ...]
-            [textdot_Guid, ...]
+    def export_rule(self):
+        left_shape = self._get_shape('left')
+        right_shape = self._get_shape('right')
+        the_rule = self._get_rule(left_shape, right_shape)
+        self._write_rule_file(the_rule)
+
+    ###
+    def _get_shape(self, side):
+        """Receives 'initial', 'left', or 'right':
+            str
+        Prompts for elements (lines and textdots) and a name. Returns the new 
+        shape:
+            Shape
         """
+        prompt_for_elements = (
+            'Select the lines and textdots in the %s shape' % side)
+        guids = rs.GetObjects(
+            prompt_for_elements,
+            rs.filter.curve + rs.filter.textdot)
+        if side == 'initial':
+            while guids == None:
+                prompt_for_elements = (
+                    'The initial shape may not be empty. ' +
+                    'Select the lines and textdots in the initial shape')
+                guids = rs.GetObjects(
+                    prompt_for_elements,
+                    rs.filter.curve + rs.filter.textdot)
+        elif side == 'left':
+            while guids == None:
+                prompt_for_elements = (
+                    'The left shape may not be empty. ' +
+                    'Select the lines and textdots in the left shape')
+                guids = rs.GetObjects(
+                    prompt_for_elements,
+                    rs.filter.curve + rs.filter.textdot)
+        elif side == 'right':
+            if guids == None:
+                guids = []
+        else:
+            pass
+        line_specs, lpoint_specs = (
+            self._get_line_specs_and_lpoint_specs(guids))
+        prompt_for_name = (
+            'Enter the name of the %s shape' % side)
+        name = rs.GetString(prompt_for_name)
+        new_shape = shape.Shape(name, line_specs, lpoint_specs)
+        return new_shape
+
+    def _get_line_specs_and_lpoint_specs(self, guids):
+        """Receives a list of line or textdot guids:
+            [guid, ...]
+        Returns a list of coord-coord pairs and a list of coord-label pairs:
+            (   [((num, num, num), (num, num, num)), ...],
+                [((num, num, num), str), ...]
+            )
+        """
+        line_specs = []
+        lpoint_specs = []
         line_type = 4
         textdot_type = 8192
-        lines = []
-        textdots = []
-        for element in elements:
-            object_type = rs.ObjectType(element) 
-            if object_type == line_type:
-                lines.append(element)
-            elif object_type == textdot_type:
-                textdots.append(element)
-        return (lines, textdots)
+        for guid in guids:
+            guid_type = rs.ObjectType(guid)
+            if guid_type == line_type:
+                line_spec = self._get_line_spec(guid)
+                line_specs.append(line_spec)
+            elif guid_type == textdot_type:
+                coord, label = self._get_lpoint_spec(guid)
+                lpoint_spec = (coord, label)
+                lpoint_specs.append(lpoint_spec)
+        return (line_specs, lpoint_specs)
 
-    def make_coord_pair_list(self, lines_in):
-        """Receives a list of line Guids:
-            [Guid, ...]
-        Returns a list of (non-unique) line coord pairs:
-            [((num, num, num), (num, num, num)), ...]
-        """
-        coord_pair_list = []
-        for line in lines_in:
-            coord_pair = self.get_coord_pair(line)
-            coord_pair_list.append(coord_pair)
-        return coord_pair_list
-
-    def get_coord_pair(self, line_in):
-        """Receives a line Guid:
+    def _get_line_spec(self, line_guid):
+        """Receives a line guid:
             Guid
-        Returns the line's coords:
-            [(num, num, num), (num, num, num)]
+        Returns a line spec:
+            ((num, num, num,), (num, num, num))
         """
-        point_pair = rs.CurvePoints(line_in)
+        point_pair = rs.CurvePoints(line_guid)
         coord_pair = []
         for point in point_pair:
-            coord = (point.X, point.Y, point.Z)
+            coord = self._point_to_coord(point)
             coord_pair.append(coord)
-        return coord_pair
+        return (coord_pair[0], coord_pair[1])
 
-    def make_coord_list(self, textdots):
-        """Receives a list of textdot Guids:
-            [Guid, ...]
-        Returns a list of the textdots' coords:
-            [(num, num, num), ...]
+    def _get_lpoint_spec(self, textdot_guid):
+        """Receives a textdot guid:
+            Guid
+        Returns a labeled point spec:
+            ((num, num, num), label)
         """
-        coord_list = []
-        for textdot in textdots:
-            point = rs.TextDotPoint(textdot)
-            coord = point.X, point.Y, point.Z
-            coord_list.append(coord)
-        return coord_list
+        point = rs.TextDotPoint(textdot_guid)
+        coord = self._point_to_coord(point)
+        label = rs.TextDotText(textdot_guid)
+        return (coord, label)
 
-    def make_sorted_coord_list(self, coord_list_in, coord_pair_list):
-        """Receives a list of line coord pairs and a list of coords:
-            [((num, num, num), (num, num, num)), ...]
-            [(num, num, num), ...]
-        Returns an ordered list of unique coords:
-            [(num, num, num), ...]
+    def _point_to_coord(self, point):
+        """Receives a point guid:
+            Guid
+        Returns a coord:
+            ((num, num, num))
         """
-        coord_list = []
-        for coord in coord_list_in:
-            if not coord in coord_list:
-                coord_list.append(coord)
-        for coord_pair in coord_pair_list:
-            for coord in coord_pair:
-                if not coord in coord_list:
-                    coord_list.append(coord)
-        return sorted(coord_list)
+        coord = (point.X, point.Y, point.Z)
+        return coord
 
-    # def make_sorted_coord_list(self, coord_pair_list):
-    #     """Receives a list of line coord pairs:
-    #         [((num, num, num), (num, num, num)), ...]
-    #     Returns an ordered list of unique coords:
-    #         [(num, num, num), ...]
-    #     """
-    #     coord_list = []
-    #     for coord_pair in coord_pair_list:
-    #         for coord in coord_pair:
-    #             if not coord in coord_list:
-    #                 coord_list.append(coord)
-    #     return sorted(coord_list)
-
-    def make_sorted_line_coord_index_pair_list(self, coord_pair_list):
-        """Receives a list of line coord pairs:
-            [((num, num, num), (num, num, num)), ...]
-        Returns an ordered list of unique line coord index pairs from the
-        coord list:
-            [(int, int), ...]
+    ###
+    def _get_rule(self, left_shape, right_shape):
+        """Receives the left and right shapes:
+            Shape
+            Shape
+        Prompts for a name. Returns the new rule:
+            Rule
         """
-        index_pair_list = []
-        for coord_pair in coord_pair_list:
-            index_pair = (
-                self.get_index_pair(self.sorted_coord_list, coord_pair))
-            if not index_pair in index_pair_list:
-                index_pair_list.append(index_pair)
-        return sorted(index_pair_list)
+        prompt_for_name = 'Enter the name of the rule'
+        name = rs.GetString(prompt_for_name)
+        new_rule = rule.Rule(name, left_shape, right_shape)
+        return new_rule
 
-    def get_index_pair(self, coord_list, coord_pair):
-        """Receives an ordered list of unique coords and a coord pair:
-            [((num, num, num), (num, num, num)), ...]
-            ((num, num, num), (num, num, num))
-        Returns the index of the coord pair in the coord pair list:
-            int
+    ###
+    def _write_shape_file(self, shape_in):
+        """Writes the shape string to the file <shape name>.is
         """
-        coord1, coord2 = coord_pair
-        index1 = coord_list.index(coord1)
-        index2 = coord_list.index(coord2)
-        index_pair = (index1, index2)
-        return index_pair
+        filter = "IS file (*.is)|*.is|All files (*.*)|*.*||"
+        shape_name = shape_in.name
+        file_name = (
+            rs.SaveFileName('Save shape as', filter, '', shape_name))
+        if not file_name: 
+            return
+        file = open(file_name, "w" )
+        empty_line = ''
+        shape_string = '\n'.join([
+            shape_in.__str__(), 
+            empty_line])
+        file.write(shape_string)
+        file.close()
+        print(shape_string)
 
-    def compose_is_string(
-        self, 
-        coord_list, 
-        line_coord_index_pair_list, 
-        lpoint_coord_index_list
-    ):
-        """Receives 2 lists:
-            [(num, num, num), ...]
-            [(int, int), ...]
-        Returns a string in IS format:
-            <tab><name>
-            <tab><coord entry 1>
-            ...
-            <blank line>
-            <tab><line entry 1>
-            ...
-            <blank line>
-            <tab><point entry 1>
-            ...
+    ###
+    def _write_rule_file(self, rule_in):
+        """Writes the rule string to the file <rule name>.rul
         """
-        indented_name_string = self.make_indented_name_string()
-        indented_coord_entries_string = (
-            self.make_indented_coord_entries_string())
-        blank_line = ''
-        indented_line_entries_string = (
-            self.make_indented_line_entries_string())
-        indented_lpoint_entries_string = (
-            self.make_indented_lpoint_entries_string())
-        substrings = [
-            indented_name_string, 
-            indented_coord_entries_string, 
-            blank_line, 
-            indented_line_entries_string,
-            indented_lpoint_entries_string,
-            blank_line] 
-        string = '\n'.join(substrings)
-        return string
-
-    # def compose_is_string(self, coord_list, line_coord_index_pair_list):
-    #     """Receives 2 lists:
-    #         [(num, num, num), ...]
-    #         [(int, int), ...]
-    #     Returns a string in IS format:
-    #         <tab><name>
-    #         <tab><coord entry 1>
-    #         ...
-    #         <blank line>
-    #         <tab><line entry 1>
-    #         ...
-    #         <blank line>
-    #         <tab><point entry 1>
-    #         ...
-    #     """
-    #     indented_name_string = self.make_indented_name_string()
-    #     indented_coord_entries_string = (
-    #         self.make_indented_coord_entries_string())
-    #     blank_line = ''
-    #     indented_line_entries_string = (
-    #         self.make_indented_line_entries_string())
-    #     substrings = [
-    #         indented_name_string, 
-    #         indented_coord_entries_string, 
-    #         blank_line, 
-    #         indented_line_entries_string,
-    #         blank_line] 
-    #     string = '\n'.join(substrings)
-    #     return string
-
-    def make_header(self, shape_name='<shape name>'):
-        header = 'shape' + ' ' + shape_name
-        return header
-
-    def make_indented_name_string(self):
-        indented_name_string = self.tab + 'name'
-        return indented_name_string
-
-    def make_indented_coord_entries_string(self):
-        """Returns a string composed of indented coord entry strings:
-            <tab><coord entry>\n<...>
-        """
-        indented_coord_entry_strings = []
-        for coord in self.sorted_coord_list:
-            indented_coord_entry_string = (
-                self.make_indented_coord_entry_string(coord))
-            indented_coord_entry_strings.append(indented_coord_entry_string)
-        indented_coord_entries_string = (
-            '\n'.join(indented_coord_entry_strings))
-        return indented_coord_entries_string
-
-    def make_indented_coord_entry_string(self, coord):
-        """Receives a coord:
-            (num, num, num)
-        Returns an indented coord entry string:
-            <tab>coords <i_str> <x_str> <y_str> <z_str>
-        """
-        i = self.sorted_coord_list.index(coord)
-        i_str = str(i)
-        x, y, z = coord[0], coord[1], coord[2]
-        x_str, y_str, z_str = str(x), str(y), str(z)
-        components = [self.tab + 'coords', i_str, x_str, y_str, z_str]
-        indented_coord_entry_string = ' '.join(components)
-        return indented_coord_entry_string
-
-    def make_indented_line_entries_string(self):
-        """Returns a string composed of indented line entry strings:
-            <tab><line entry>\n<...>
-        """
-        indented_line_entry_strings = []
-        for index_pair in self.sorted_line_coord_index_pair_list:
-            indented_line_entry_string = (
-                self.make_indented_line_entry_string(index_pair))
-            indented_line_entry_strings.append(indented_line_entry_string)
-        indented_line_entries_string = '\n'.join(indented_line_entry_strings)
-        return indented_line_entries_string
-
-    def make_indented_line_entry_string(self, index_pair):
-        """Receives a line coord index pair:
-            (int, int)
-        Returns an indented line coord entry string:
-            <tab>line <i_str> <coord_index_str_1> <coord_index_str_2>)
-        """
-        i = self.sorted_line_coord_index_pair_list.index(index_pair) + 1
-        i_str = str(i)
-        coord_index_1, coord_index_2 = index_pair[0], index_pair[1]
-        coord_index_str_1, coord_index_str_2 = (
-            str(coord_index_1), str(coord_index_2))
-        components = [
-            self.tab + 'line',
-            i_str, 
-            coord_index_str_1, 
-            coord_index_str_2]
-        indented_line_entry_string = ' '.join(components)
-        return indented_line_entry_string
-
-    def make_indented_lpoint_entries_string(self):
-        """Returns a string composed of indented lpoint entry strings:
-            <tab><lpoint entry>\n<...>
-        """
-        indented_lpoint_entry_strings = []
-        for lpoint in self.sorted_lpoint_list:  #
-            indented_lpoint_entry_string = '    Kilroy'
-            indented_lpoint_entry_strings.append(indented_lpoint_entry_string)
-        indented_lpoint_entries_string = (
-            '\n'.join(indented_lpoint_entry_strings))
-        return indented_lpoint_entries_string
-
-    def write_file(self, string):
-        """Prompts for a file name with is extension. Writes the string to the
-        file
-        """
-        shape_name = rs.GetString(
-            'Enter the name of the shape', '<shape name>')
-        # filter = "IS file (*.is)|*.is|All files (*.*)|*.*||"
-        # long_file_name = (
-        #     rs.SaveFileName('Save shape as', filter, '', shape_name))
-        # if not long_file_name: return
-
-        header = ' '.join(['shape', shape_name])
-        headed_string = '\n'.join([header, string])
-        # file = open(long_file_name, "w" )
-        # file.write(headed_string)
-        # file.close()
-        print(headed_string)
-
-if __name__ == '__main__':
-    # exporter = Exporter()
-    # exporter.export_shape()
-    import doctest
-    doctest.testfile('tests/exporter_test.txt')
+        filter = "RUL file (*.rul)|*.rul|All files (*.*)|*.*||"
+        rule_name = rule_in.name
+        file_name = (
+            rs.SaveFileName('Save rule as', filter, '', rule_name))
+        if not file_name: 
+            return
+        file = open(file_name, "w" )
+        empty_line = ''
+        rule_string = '\n'.join([
+            rule_in.__str__(), 
+            empty_line])
+        file.write(rule_string)
+        file.close()
+        print(rule_string)

@@ -1,0 +1,9 @@
+shape col-lines
+    name
+    coords 0 0.0 0.0 0.0
+    coords 1 5.0 5.0 0.0
+    coords 2 10.0 10.0 0.0
+
+    line 0 0 1
+    line 1 1 2
+
