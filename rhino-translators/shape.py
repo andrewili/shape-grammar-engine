@@ -8,29 +8,42 @@ class Shape(object):
             [((num, num, num), (num, num, num)), ...]
             [((num, num, num), str), ...]
         """
-                                        #   Allow empty shape as appropriate
-                                        #   Fit to thumbnail
         try:
             if (not type(name) == str or
                 not type(line_specs) == list or
                 not type(lpoint_specs) == list
             ):
                 raise TypeError
-            if name == '':
+            if not self._is_well_formed(name):
                 raise ValueError
         except TypeError:
             message = 'The arguments must be a string, a list, and a list'
             print(message)
         except ValueError:
-            message = 'The name must not be empty'
+            message = 'The name may not contain spaces or # characters'
             print(message)
         else:
+            self.tab = '    '
             self.name = name
             (   self.ordered_coord_list,
                 self.ordered_codex_codex_list,
                 self.ordered_codex_label_list
             ) = self._make_ordered_index_lists(line_specs, lpoint_specs)
-            self.tab = '    '
+
+    def _is_well_formed(self, name):
+        """Receives a name:
+            str
+        Return whether the name is non-empty, contains no spaces or #
+        characters:
+            boolean
+        """
+        value = False
+        if (not name == '' and
+            not ' ' in name and
+            not '#' in name
+        ):
+            value = True
+        return value
 
     def _make_ordered_index_lists(self, line_specs, lpoint_specs):
         """Receives a list of line specs and a list of labeled point specs:
@@ -53,10 +66,10 @@ class Shape(object):
             ordered_codex_label_list)
 
     def _make_ordered_coord_list(self, line_specs, lpoint_specs):
-        """Receive a list of line specs and a list of labeled point specs:
+        """Receives a list of line specs and a list of labeled point specs:
             [((num, num, num), (num, num, num)), ...]
             [((num, num, num), str), ...]
-        Returns an ordered list of unique coords:
+        Returns an ordered list of unique fitted coords:
             [(num, num, num), ...]
         """
         coords = []
@@ -109,7 +122,9 @@ class Shape(object):
             codex_codex = (codex_list[0], codex_list[1])
             return codex_codex
 
-    def _make_ordered_codex_label_list(self, lpoint_specs, ordered_coord_list):
+    def _make_ordered_codex_label_list(
+        self, lpoint_specs, ordered_coord_list
+    ):
         """Receives a list of labeled point specs and an ordered list of 
         coords:
             [((num, num, num), str), ...]
@@ -340,6 +355,24 @@ class Shape(object):
             codex, label = codex_label
             lpoint_entry_string = 'point %i %s' % (codex, label)
             return lpoint_entry_string
+
+    ###
+
+    # def fit(self):
+    #     """Receives thumbnail size
+    #         int
+    #     Returns 
+    #     """
+    #     pass
+
+    # def scale(self):
+    #     """
+    #     """
+    #     pass
+
+    # ###
+    # def translate(self):
+    #     pass
 
     ###
     def __str__(self):

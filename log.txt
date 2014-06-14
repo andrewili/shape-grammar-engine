@@ -150,8 +150,8 @@ Log
 
 #   2014-06-12
     #   Rhino rule translator completed
-    #   Allow empty right shape
-    >   Rewrite exporters to combine methods
-    >   Resize shapes before importing
+    #   Allow empty right shape. Done 2014-06-12
+    #   Rewrite exporters to combine methods. Done 2014-06-13
+    #   Check for ill-formed names. Done 2014-06-13
+    #   Resize shapes before importing. Abandoned 2014-06-13
     >   Make thumbnails
-    >   Check for ill-formed names

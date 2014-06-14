@@ -11,11 +11,6 @@ class Exporter(object):
     def export_shape(self):
         initial_shape = self._get_shape('initial')
         self._write_shape_file(initial_shape)
-        
-        # guids_in = self._receive_guids()
-        # element_lists = self._make_indexed_element_lists(guids_in)
-        # is_string = self._compose_string(element_lists)
-        # self._write_file(is_string)
 
     def export_rule(self):
         left_shape = self._get_shape('left')
@@ -62,8 +57,28 @@ class Exporter(object):
         prompt_for_name = (
             'Enter the name of the %s shape' % side)
         name = rs.GetString(prompt_for_name)
+        while not self._is_well_formed(name):
+            prompt_for_name = (
+                'The name may not contain a space or a #. ' +
+                'Enter the name of the %s shape' % side)
+            name = rs.GetString(prompt_for_name)
         new_shape = shape.Shape(name, line_specs, lpoint_specs)
         return new_shape
+
+    def _is_well_formed(self, name):
+        """Receives a name:
+            str
+        Return whether the name is non-empty, contains no spaces or #
+        characters:
+            boolean
+        """
+        value = False
+        if (not name == '' and
+            not ' ' in name and
+            not '#' in name
+        ):
+            value = True
+        return value
 
     def _get_line_specs_and_lpoint_specs(self, guids):
         """Receives a list of line or textdot guids:
@@ -131,6 +146,11 @@ class Exporter(object):
         """
         prompt_for_name = 'Enter the name of the rule'
         name = rs.GetString(prompt_for_name)
+        while not self._is_well_formed(name):
+            prompt_for_name = (
+                'The name may not contain a space or a #. ' +
+                'Enter the name of the rule')
+            name = rs.GetString(prompt_for_name)
         new_rule = rule.Rule(name, left_shape, right_shape)
         return new_rule
 

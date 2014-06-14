@@ -54,7 +54,7 @@
     The arguments must be a string, a list, and a list
 
     >>> shape_name_blank = shape.Shape('', line_specs, lpoint_specs)
-    The name must not be empty
+    The name may not contain spaces or # characters
 
     >>> shape_no_lines = shape.Shape(name, [], lpoint_specs)
     >>> print(shape_no_lines)
@@ -84,6 +84,27 @@
     >>> print(shape_no_lines_no_lpoints)
     shape Kilroy
         name
+
+### _is_well_formed
+    >>> name_empty = ''
+    >>> drone_shape._is_well_formed(name_empty)
+    False
+
+    >>> name_with_space = 'kil roy'
+    >>> drone_shape._is_well_formed(name_with_space)
+    False
+
+    >>> name_with_hash = 'kil#roy'
+    >>> drone_shape._is_well_formed(name_with_hash)
+    False
+
+    >>> name_with_kanzi = '昭雄'
+    >>> drone_shape._is_well_formed(name_with_kanzi)
+    True
+
+    >>> name_ok = 'kilroy'
+    >>> drone_shape._is_well_formed(name_ok)
+    True
 
 ### make_initial_shape_string
     >>> def make_initial_shape_string_test():
