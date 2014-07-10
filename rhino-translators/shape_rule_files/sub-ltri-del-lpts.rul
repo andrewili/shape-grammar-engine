@@ -1,0 +1,27 @@
+shape sub-ltri-del-lpts_L
+    name ltri
+    coords 0 7.000000 4.000000 0.000000
+    coords 1 7.000000 28.000000 0.000000
+    coords 2 13.000000 12.000000 0.000000
+    coords 3 25.000000 4.000000 0.000000
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 3
+    point 2 a
+shape sub-ltri-del-lpts_R
+    name sub-tri
+    coords 0 7.000000 4.000000 0.000000
+    coords 1 7.000000 16.000000 0.000000
+    coords 2 7.000000 28.000000 0.000000
+    coords 3 16.000000 4.000000 0.000000
+    coords 4 16.000000 16.000000 0.000000
+    coords 5 25.000000 4.000000 0.000000
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 3
+    line 3 1 4
+    line 4 2 5
+    line 5 3 4
+rule    sub-ltri-del-lpts    sub-ltri-del-lpts_L -> sub-ltri-del-lpts_R

@@ -155,3 +155,7 @@ Log
     #   Check for ill-formed names. Done 2014-06-13
     #   Resize shapes before importing. Abandoned 2014-06-13
     >   Make thumbnails
+
+#   2014-06-16
+    >   Rule shape names don't appear in the interpreter
+    >   

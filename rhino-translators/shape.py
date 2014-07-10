@@ -159,6 +159,80 @@ class Shape(object):
             return codex_label
 
     ###
+    @classmethod
+    def new_from_is_text(cls, is_text):
+        """Receives the lines of a file in .is format:
+            [str, ...]
+        Returns:
+            Shape
+        """
+        codex_dict = {}
+        lines = []
+        lpoints = []
+        for text_line in is_text:
+            tokens = text_line.split()
+            if tokens == []:
+                pass
+            else:
+                first_token = tokens.pop(0)
+                if first_token == 'shape':
+                    name = tokens[0]
+                elif first_token == 'name':
+                    pass
+                elif first_token == 'coords':
+                    codex, coord = cls._make_coord_entry(tokens)
+                    codex_dict[codex] = coord
+                elif first_token == 'line':
+                    line_entry = cls._make_line_entry(tokens, codex_dict)
+                    lines.append(line_entry)
+                elif first_token == 'point':
+                    lpoint_entry = cls._make_lpoint_entry(tokens, codex_dict)
+                else:
+                    pass
+        new_shape = Shape(name, lines, lpoints)
+        return new_shape
+
+    @classmethod
+    def _make_coord_entry(cls, tokens):
+        """Receives a list of tokens in the form:
+            [<codex>, <x>, <y>, <z>]
+        Returns a codex-coord pair in the form:
+            (int, [num, num, num])
+        """
+        codex = tokens.pop(0)
+        coord = tokens
+        return (codex, coord)
+
+    @classmethod
+    def _make_line_entry(cls, tokens, codex_dict):
+        """Receives a list of tokens and a codex dict:
+            [<index>, <codex>, <codex>]
+            {int: [num, num, num], ...}
+        Returns a pair of coords:
+            ([num, num, num], [num, num, num])
+        """
+        codex1 = int(tokens[1])
+        codex2 = int(tokens[2])
+        p1 = codex_dict[codex1]
+        p2 = codex_dict[codex2]
+        line_entry = (p1, p2)
+        return line_entry
+
+    @classmethod
+    def _make_lpoint_entry(cls, tokens, codex_dict):
+        """Receives a list of tokens and a codex dict:
+            [<index>, <codex>, <label>]
+            {int: [num, num, num], ...}
+        Returns a coord-label pair:
+            ([num, num, num], label)
+        """
+        codex = int(tokens[0])
+        coord = codex_dict[codex]
+        label = tokens[1]
+        lpoint_entry = (coord, label)
+        return lpoint_entry
+
+    ###
     def make_initial_shape_string(self):
         """Returns a string of an initial shape in is format:
             str
@@ -358,21 +432,44 @@ class Shape(object):
 
     ###
 
-    # def fit(self):
-    #     """Receives thumbnail size
-    #         int
-    #     Returns 
-    #     """
-    #     pass
+    def get_rhino_lines(self):
+        """Returns a list of end-point pairs:
+            [([num, num, num], [num, num, num]), ...]
+        """
+        lists = []
+        for codex_codex in self.ordered_codex_codex_list:
+            codex1, codex2 = codex_codex
+            coord1 = self._get_coord_from_codex(codex1)
+            coord2 = self._get_coord_from_codex(codex2)
+            rhino_p1 = list(coord1)
+            rhino_p2 = list(coord2)
+            rhino_point_pair = (rhino_p1, rhino_p2)
+            lists.append(rhino_point_pair)
+        return lists
 
-    # def scale(self):
-    #     """
-    #     """
-    #     pass
+    def _get_coord_from_codex(self, codex):
+        """Receives a codex:
+            int
+        Returns a coord:
+            (num, num, num)
+        """
+        coord = self.ordered_coord_list[codex]
+        return coord
 
-    # ###
-    # def translate(self):
-    #     pass
+    ###
+
+    def get_rhino_dots(self):
+        """Returns a list of pairs:
+            [(str, [num, num, num]), ...]
+        """
+        dots = []
+        for codex_label in self.ordered_codex_label_list:
+            codex, label = codex_label
+            coord = self._get_coord_from_codex(codex)
+            rhino_point = list(coord)
+            dot = label, rhino_point
+            dots.append(dot)
+        return dots
 
     ###
     def __str__(self):
@@ -382,6 +479,23 @@ class Shape(object):
         """
         is_string = self.make_initial_shape_string()
         return is_string
+
+    ###
+    def __repr__(self):
+        """Returns an (unformatted) string in the form:
+            (   <name>,
+                <ordered_coord_list>,
+                <ordered_codex_codex_list>,
+                <ordered_codex_label_list>)
+        """
+        repr_parts = [
+            self.name, 
+            self.ordered_coord_list.__str__(), 
+            self.ordered_codex_codex_list.__str__(), 
+            self.ordered_codex_label_list.__str__()]
+        joined_repr_parts = ', '.join(repr_parts)
+        repr_string = '(%s)' % joined_repr_parts
+        return repr_string
 
 if __name__ == '__main__':
     import doctest

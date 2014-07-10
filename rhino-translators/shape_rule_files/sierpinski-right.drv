@@ -1,0 +1,6015 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape pyramid
+    name pyramid
+    coords 1  14.00000000 11.46410162 9.79795897
+    coords 2  16.00000000 12.61880215 13.06394529
+    coords 3  8.00000000 8.00000000 0.00000000
+    coords 4  24.00000000 8.00000000 0.00000000
+    coords 5  16.00000000 21.85640646 0.00000000
+    coords 6  16.00000000 21.85640646 0.00000000
+    coords 7  8.00000000 8.00000000 0.00000000
+    coords 8  24.00000000 8.00000000 0.00000000
+
+    line 1  2 3
+    line 2  2 4
+    line 3  2 5
+    line 4  6 7
+    line 5  8 6
+    line 6  7 8
+
+    point 1  a 
+shape pyramid_L
+    name pyramid_1
+    coords 1  14.00000000 11.46410162 9.79795897
+    coords 2  16.00000000 12.61880215 13.06394529
+    coords 3  8.00000000 8.00000000 0.00000000
+    coords 4  24.00000000 8.00000000 0.00000000
+    coords 5  16.00000000 21.85640646 0.00000000
+    coords 6  16.00000000 21.85640646 0.00000000
+    coords 7  8.00000000 8.00000000 0.00000000
+    coords 8  24.00000000 8.00000000 0.00000000
+
+    line 1  2 3
+    line 2  2 4
+    line 3  2 5
+    line 4  6 7
+    line 5  8 6
+    line 6  7 8
+
+    point 1  a 
+shape pyramid_R
+    name pyramid_4
+    coords 1  19.00000000 9.73205081 4.89897949
+    coords 2  15.00000000 16.66025404 4.89897949
+    coords 3  15.00000000 12.04145188 11.43095213
+    coords 4  11.00000000 9.73205081 4.89897949
+    coords 5  12.00000000 14.92820323 0.00000000
+    coords 6  16.00000000 17.23760431 6.53197265
+    coords 7  20.00000000 14.92820323 0.00000000
+    coords 8  20.00000000 10.30940108 6.53197265
+    coords 9  16.00000000 8.00000000 0.00000000
+    coords 10  20.00000000 14.92820323 0.00000000
+    coords 11  16.00000000 17.23760431 6.53197265
+    coords 12  12.00000000 10.30940108 6.53197265
+    coords 13  16.00000000 12.61880215 13.06394529
+    coords 14  16.00000000 21.85640646 0.00000000
+    coords 15  8.00000000 8.00000000 0.00000000
+    coords 16  24.00000000 8.00000000 0.00000000
+    coords 17  12.00000000 10.30940108 6.53197265
+    coords 18  24.00000000 8.00000000 0.00000000
+    coords 19  16.00000000 8.00000000 0.00000000
+    coords 20  16.00000000 8.00000000 0.00000000
+    coords 21  16.00000000 21.85640646 0.00000000
+    coords 22  12.00000000 14.92820323 0.00000000
+    coords 23  12.00000000 10.30940108 6.53197265
+    coords 24  16.00000000 8.00000000 0.00000000
+    coords 25  16.00000000 8.00000000 0.00000000
+    coords 26  12.00000000 10.30940108 6.53197265
+
+    line 1  5 6
+    line 2  6 7
+    line 3  8 9
+    line 4  8 10
+    line 5  11 12
+    line 6  8 11
+    line 7  13 14
+    line 8  15 13
+    line 9  13 16
+    line 10  17 8
+    line 11  18 19
+    line 12  10 18
+    line 13  20 10
+    line 14  21 22
+    line 15  7 21
+    line 16  5 7
+    line 17  23 24
+    line 18  15 5
+    line 19  25 15
+    line 20  5 25
+    line 21  26 5
+
+    point 1  a 
+    point 2  a 
+    point 3  a 
+    point 4  a 
+initial    pyramid
+rule    pyramid    pyramid_L -> pyramid_R
+# derivation record
+shape    tri
+    name 
+    coords 0 1 1 0
+    coords 1 1 25 0
+    coords 2 7 9 0
+    coords 3 19 1 0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 3
+    point 2 a
+rule    sub-tri
+shape    tri_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 4 4 17 0
+    coords 5 4 5 0
+    coords 6 13 5 0
+    coords 7 1 1 0
+    coords 8 19 1 0
+    coords 9 1 25 0
+
+    line 3 7 8
+    line 4 9 8
+    line 5 7 9
+    line 6 10 11
+    line 7 10 12
+    line 8 11 12
+    point 4 a
+    point 5 a
+    point 6 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 5 4 5 0
+    coords 6 13 5 0
+    coords 7 1 1 0
+    coords 8 19 1 0
+
+    line 11 10 11
+    line 12 8 16
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 3 7 8
+    line 7 10 12
+    line 8 11 12
+    point 13 a
+    point 14 a
+    point 15 a
+    point 5 a
+    point 6 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 21 11.5 3 0
+    coords 22 16 3 0
+    coords 23 19 0.999999999999999 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 5 4 5 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 19 7 23
+    line 20 16 23
+    line 21 12 11
+    line 22 24 25
+    line 23 24 26
+    line 24 25 26
+    line 7 10 12
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 5 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 21 11.5 3 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 27 15.25 5 0
+    coords 28 15.25 2 0
+    coords 29 17.5 2 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 5 4 5 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 21 12 11
+    line 22 24 25
+    line 23 24 26
+    line 27 7 30
+    line 28 16 30
+    line 29 26 25
+    line 30 31 32
+    line 31 31 33
+    line 32 32 33
+    line 7 10 12
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 21 a
+    point 27 a
+    point 28 a
+    point 29 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 21 11.5 3 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 28 15.25 2 0
+    coords 29 17.5 2 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 5 4 5 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 21 12 11
+    line 22 24 25
+    line 23 24 26
+    line 27 7 30
+    line 31 31 33
+    line 32 32 33
+    line 36 31 32
+    line 37 16 30
+    line 38 26 25
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 7 10 12
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 21 a
+    point 28 a
+    point 29 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 21 11.5 3 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 29 17.5 2 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 5 4 5 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 21 12 11
+    line 22 24 25
+    line 23 24 26
+    line 32 32 33
+    line 36 31 32
+    line 37 16 30
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 45 30 7
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 7 10 12
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 21 a
+    point 29 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 21 11.5 3 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 5 4 5 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 21 12 11
+    line 22 24 25
+    line 23 24 26
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 53 7 30
+    line 54 16 30
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 21 a
+    point 5 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 43 10.75 5 0
+    coords 44 10.75 2 0
+    coords 45 13 2 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 5 4 5 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 22 24 25
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 54 16 30
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 62 30 7
+    line 63 24 26
+    line 64 11 12
+    line 65 46 47
+    line 66 46 48
+    line 67 47 48
+    line 7 10 12
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 43 a
+    point 44 a
+    point 45 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 43 10.75 5 0
+    coords 44 10.75 2 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 22 24 25
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 54 16 30
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 64 11 12
+    line 65 46 47
+    line 66 46 48
+    line 7 10 12
+    line 71 7 30
+    line 72 24 26
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 43 a
+    point 44 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 44 10.75 2 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 22 24 25
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 54 16 30
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 66 46 48
+    line 7 10 12
+    line 71 7 30
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 82 11 12
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 44 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 13 2.5 21 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 16 1 25 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 7 1 1 0
+
+    line 11 10 11
+    line 13 7 16
+    line 14 17 18
+    line 15 17 19
+    line 16 18 19
+    line 22 24 25
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 54 16 30
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 91 11 12
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 13 a
+    point 14 a
+    point 15 a
+    point 20 a
+    point 5 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 58 1.75 23 0
+    coords 59 1.75 20 0
+    coords 60 4 20 0
+    coords 61 1 25 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 7 1 1 0
+
+    line 100 62 63
+    line 101 62 64
+    line 102 63 64
+    line 11 10 11
+    line 15 17 19
+    line 16 18 19
+    line 22 24 25
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 91 11 12
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    line 97 17 18
+    line 98 30 61
+    line 99 7 61
+    point 14 a
+    point 15 a
+    point 20 a
+    point 5 a
+    point 58 a
+    point 59 a
+    point 60 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 58 1.75 23 0
+    coords 60 4 20 0
+    coords 61 1 25 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 7 1 1 0
+
+    line 100 62 63
+    line 102 63 64
+    line 106 18 17
+    line 107 62 64
+    line 108 61 7
+    line 109 65 66
+    line 11 10 11
+    line 110 65 67
+    line 111 66 67
+    line 15 17 19
+    line 16 18 19
+    line 22 24 25
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 91 11 12
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    line 98 30 61
+    point 14 a
+    point 15 a
+    point 20 a
+    point 5 a
+    point 58 a
+    point 60 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 58 1.75 23 0
+    coords 61 1 25 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+
+    line 100 62 63
+    line 107 62 64
+    line 108 61 7
+    line 109 65 66
+    line 11 10 11
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 116 61 30
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 15 17 19
+    line 16 18 19
+    line 22 24 25
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 91 11 12
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 14 a
+    point 15 a
+    point 20 a
+    point 5 a
+    point 58 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 20 11.5 9 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+
+    line 107 62 64
+    line 109 65 66
+    line 11 10 11
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 124 30 71
+    line 125 7 71
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 15 17 19
+    line 16 18 19
+    line 22 24 25
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 91 11 12
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 14 a
+    point 15 a
+    point 20 a
+    point 5 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 75 10.75 11 0
+    coords 76 10.75 8 0
+    coords 77 13 8 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+
+    line 107 62 64
+    line 109 65 66
+    line 11 10 11
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 125 7 71
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 132 24 25
+    line 133 30 71
+    line 134 12 11
+    line 135 78 79
+    line 136 78 80
+    line 137 79 80
+    line 15 17 19
+    line 16 18 19
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 14 a
+    point 15 a
+    point 5 a
+    point 75 a
+    point 76 a
+    point 77 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 75 10.75 11 0
+    coords 76 10.75 8 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+
+    line 107 62 64
+    line 109 65 66
+    line 11 10 11
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 125 7 71
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 134 12 11
+    line 135 78 79
+    line 136 78 80
+    line 141 24 25
+    line 142 71 30
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 15 17 19
+    line 16 18 19
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 14 a
+    point 15 a
+    point 5 a
+    point 75 a
+    point 76 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 76 10.75 8 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+
+    line 107 62 64
+    line 109 65 66
+    line 11 10 11
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 125 7 71
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 136 78 80
+    line 141 24 25
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 15 17 19
+    line 150 78 79
+    line 151 30 71
+    line 152 12 11
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 16 18 19
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 14 a
+    point 15 a
+    point 5 a
+    point 76 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 14 2.5 15 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+
+    line 107 62 64
+    line 109 65 66
+    line 11 10 11
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 125 7 71
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 15 17 19
+    line 150 78 79
+    line 151 30 71
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 16 18 19
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 14 a
+    point 15 a
+    point 5 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 90 1.75 17 0
+    coords 91 1.75 14 0
+    coords 92 4 14 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 151 30 71
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 16 18 19
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 168 11 10
+    line 169 17 19
+    line 170 71 7
+    line 171 93 94
+    line 172 93 95
+    line 173 94 95
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 15 a
+    point 5 a
+    point 90 a
+    point 91 a
+    point 92 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 90 1.75 17 0
+    coords 91 1.75 14 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 151 30 71
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 16 18 19
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 170 71 7
+    line 171 93 94
+    line 172 93 95
+    line 177 11 10
+    line 178 17 19
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 15 a
+    point 5 a
+    point 90 a
+    point 91 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 91 1.75 14 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 151 30 71
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 16 18 19
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 172 93 95
+    line 177 11 10
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 188 71 7
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 15 a
+    point 5 a
+    point 91 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 11 10 13 0
+    coords 12 10 1 0
+    coords 15 7 15 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 151 30 71
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 16 18 19
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 195 11 10
+    line 196 93 95
+    line 197 7 71
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 15 a
+    point 5 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 105 6.25 17 0
+    coords 106 6.25 14 0
+    coords 107 8.5 14 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 12 10 1 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 197 7 71
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 204 10 11
+    line 205 30 71
+    line 206 19 18
+    line 207 108 109
+    line 208 108 110
+    line 209 109 110
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 105 a
+    point 106 a
+    point 107 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 105 6.25 17 0
+    coords 107 8.5 14 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 12 10 1 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 197 7 71
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 205 30 71
+    line 207 108 109
+    line 209 109 110
+    line 213 11 10
+    line 214 108 110
+    line 215 18 19
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 105 a
+    point 107 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 107 8.5 14 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 12 10 1 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 197 7 71
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 209 109 110
+    line 213 11 10
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 223 71 30
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 107 a
+    point 5 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 5 4 5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 7 1 1 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 197 7 71
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 7 10 12
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 89 7 30
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 5 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 120 2.5 9 0
+    coords 121 2.5 3 0
+    coords 122 7 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 239 30 123
+    line 240 10 12
+    line 241 71 123
+    line 242 124 125
+    line 243 124 126
+    line 244 125 126
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 120 a
+    point 121 a
+    point 122 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 121 2.5 3 0
+    coords 122 7 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 127 1.75 11 0
+    coords 128 1.75 8 0
+    coords 129 4 8 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 239 30 123
+    line 243 124 126
+    line 244 125 126
+    line 248 124 125
+    line 249 12 10
+    line 250 71 123
+    line 251 130 131
+    line 252 130 132
+    line 253 131 132
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 121 a
+    point 122 a
+    point 127 a
+    point 128 a
+    point 129 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 121 2.5 3 0
+    coords 122 7 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 127 1.75 11 0
+    coords 129 4 8 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 239 30 123
+    line 243 124 126
+    line 244 125 126
+    line 249 12 10
+    line 251 130 131
+    line 253 131 132
+    line 257 125 124
+    line 258 130 132
+    line 259 123 71
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 121 a
+    point 122 a
+    point 127 a
+    point 129 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 121 2.5 3 0
+    coords 122 7 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 129 4 8 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 239 30 123
+    line 243 124 126
+    line 244 125 126
+    line 253 131 132
+    line 257 125 124
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 267 12 10
+    line 268 123 71
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 121 a
+    point 122 a
+    point 129 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 121 2.5 3 0
+    coords 122 7 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 239 30 123
+    line 243 124 126
+    line 244 125 126
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 268 123 71
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 276 12 10
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 121 a
+    point 122 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 121 2.5 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 142 6.25 5 0
+    coords 143 6.25 2 0
+    coords 144 8.5 2 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 243 124 126
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 268 123 71
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 284 30 123
+    line 285 10 12
+    line 286 126 125
+    line 287 145 146
+    line 288 145 147
+    line 289 146 147
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 121 a
+    point 142 a
+    point 143 a
+    point 144 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 121 2.5 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 143 6.25 2 0
+    coords 144 8.5 2 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 148 5.5 5.5 0
+    coords 149 6.625 5.5 0
+    coords 150 6.625 4 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 243 124 126
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 268 123 71
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 284 30 123
+    line 288 145 147
+    line 289 146 147
+    line 293 145 146
+    line 294 10 12
+    line 295 126 125
+    line 296 148 149
+    line 297 148 150
+    line 298 149 150
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 121 a
+    point 143 a
+    point 144 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 121 2.5 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 143 6.25 2 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 148 5.5 5.5 0
+    coords 149 6.625 5.5 0
+    coords 150 6.625 4 0
+    coords 151 7.75 2.5 0
+    coords 152 8.875 2.5 0
+    coords 153 8.875 0.999999999999998 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 243 124 126
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 268 123 71
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 288 145 147
+    line 293 145 146
+    line 295 126 125
+    line 296 148 149
+    line 297 148 150
+    line 298 149 150
+    line 302 123 30
+    line 303 10 12
+    line 304 147 146
+    line 305 151 152
+    line 306 151 153
+    line 307 152 153
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 121 a
+    point 143 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 121 2.5 3 0
+    coords 123 1 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 148 5.5 5.5 0
+    coords 149 6.625 5.5 0
+    coords 150 6.625 4 0
+    coords 151 7.75 2.5 0
+    coords 152 8.875 2.5 0
+    coords 153 8.875 0.999999999999998 0
+    coords 154 5.5 2.5 0
+    coords 155 6.625 2.5 0
+    coords 156 6.625 0.999999999999999 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 243 124 126
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 268 123 71
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 293 145 146
+    line 296 148 149
+    line 297 148 150
+    line 298 149 150
+    line 303 10 12
+    line 304 147 146
+    line 305 151 152
+    line 306 151 153
+    line 307 152 153
+    line 311 123 30
+    line 312 145 147
+    line 313 125 126
+    line 314 154 155
+    line 315 154 156
+    line 316 155 156
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 121 a
+rule    sub-tri
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 148 5.5 5.5 0
+    coords 149 6.625 5.5 0
+    coords 150 6.625 4 0
+    coords 151 7.75 2.5 0
+    coords 152 8.875 2.5 0
+    coords 153 8.875 0.999999999999998 0
+    coords 154 5.5 2.5 0
+    coords 155 6.625 2.5 0
+    coords 156 6.625 0.999999999999999 0
+    coords 157 1.75 5 0
+    coords 158 1.75 2 0
+    coords 159 4 2 0
+    coords 160 1 0.999999999999999 0
+    coords 161 1 4 0
+    coords 162 3.25 4 0
+    coords 163 3.25 0.999999999999999 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 293 145 146
+    line 296 148 149
+    line 297 148 150
+    line 298 149 150
+    line 303 10 12
+    line 304 147 146
+    line 305 151 152
+    line 306 151 153
+    line 307 152 153
+    line 312 145 147
+    line 313 125 126
+    line 314 154 155
+    line 315 154 156
+    line 316 155 156
+    line 319 30 160
+    line 320 124 126
+    line 321 71 160
+    line 322 161 162
+    line 323 161 163
+    line 324 162 163
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 157 a
+    point 158 a
+    point 159 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 148 5.5 5.5 0
+    coords 149 6.625 5.5 0
+    coords 150 6.625 4 0
+    coords 151 7.75 2.5 0
+    coords 152 8.875 2.5 0
+    coords 153 8.875 0.999999999999998 0
+    coords 154 5.5 2.5 0
+    coords 155 6.625 2.5 0
+    coords 156 6.625 0.999999999999999 0
+    coords 157 1.75 5 0
+    coords 158 1.75 2 0
+    coords 160 1 0.999999999999999 0
+    coords 161 1 4 0
+    coords 162 3.25 4 0
+    coords 163 3.25 0.999999999999999 0
+    coords 164 3.25 2.5 0
+    coords 165 4.375 2.5 0
+    coords 166 4.375 0.999999999999999 0
+    coords 17 1 19 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 293 145 146
+    line 296 148 149
+    line 297 148 150
+    line 298 149 150
+    line 303 10 12
+    line 304 147 146
+    line 305 151 152
+    line 306 151 153
+    line 307 152 153
+    line 312 145 147
+    line 313 125 126
+    line 314 154 155
+    line 315 154 156
+    line 316 155 156
+    line 321 71 160
+    line 322 161 162
+    line 323 161 163
+    line 328 160 30
+    line 329 124 126
+    line 330 163 162
+    line 331 164 165
+    line 332 164 166
+    line 333 165 166
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 157 a
+    point 158 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 148 5.5 5.5 0
+    coords 149 6.625 5.5 0
+    coords 150 6.625 4 0
+    coords 151 7.75 2.5 0
+    coords 152 8.875 2.5 0
+    coords 153 8.875 0.999999999999998 0
+    coords 154 5.5 2.5 0
+    coords 155 6.625 2.5 0
+    coords 156 6.625 0.999999999999999 0
+    coords 157 1.75 5 0
+    coords 161 1 4 0
+    coords 162 3.25 4 0
+    coords 163 3.25 0.999999999999999 0
+    coords 164 3.25 2.5 0
+    coords 165 4.375 2.5 0
+    coords 166 4.375 0.999999999999999 0
+    coords 167 1 0.999999999999999 0
+    coords 168 1 2.5 0
+    coords 169 2.125 2.5 0
+    coords 17 1 19 0
+    coords 170 2.125 0.999999999999999 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 293 145 146
+    line 296 148 149
+    line 297 148 150
+    line 298 149 150
+    line 303 10 12
+    line 304 147 146
+    line 305 151 152
+    line 306 151 153
+    line 307 152 153
+    line 312 145 147
+    line 313 125 126
+    line 314 154 155
+    line 315 154 156
+    line 316 155 156
+    line 322 161 162
+    line 329 124 126
+    line 330 163 162
+    line 331 164 165
+    line 332 164 166
+    line 333 165 166
+    line 336 30 167
+    line 337 161 163
+    line 338 71 167
+    line 339 168 169
+    line 340 168 170
+    line 341 169 170
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+    point 157 a
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 148 5.5 5.5 0
+    coords 149 6.625 5.5 0
+    coords 150 6.625 4 0
+    coords 151 7.75 2.5 0
+    coords 152 8.875 2.5 0
+    coords 153 8.875 0.999999999999998 0
+    coords 154 5.5 2.5 0
+    coords 155 6.625 2.5 0
+    coords 156 6.625 0.999999999999999 0
+    coords 161 1 4 0
+    coords 162 3.25 4 0
+    coords 163 3.25 0.999999999999999 0
+    coords 164 3.25 2.5 0
+    coords 165 4.375 2.5 0
+    coords 166 4.375 0.999999999999999 0
+    coords 167 1 0.999999999999999 0
+    coords 168 1 2.5 0
+    coords 169 2.125 2.5 0
+    coords 17 1 19 0
+    coords 170 2.125 0.999999999999999 0
+    coords 171 1 5.5 0
+    coords 172 2.125 5.5 0
+    coords 173 2.125 4 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 293 145 146
+    line 296 148 149
+    line 297 148 150
+    line 298 149 150
+    line 303 10 12
+    line 304 147 146
+    line 305 151 152
+    line 306 151 153
+    line 307 152 153
+    line 312 145 147
+    line 313 125 126
+    line 314 154 155
+    line 315 154 156
+    line 316 155 156
+    line 330 163 162
+    line 331 164 165
+    line 332 164 166
+    line 333 165 166
+    line 336 30 167
+    line 337 161 163
+    line 339 168 169
+    line 340 168 170
+    line 341 169 170
+    line 345 161 162
+    line 346 126 124
+    line 347 71 167
+    line 348 171 172
+    line 349 171 173
+    line 350 172 173
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57
+rule    sub-del
+shape    tri_sub-tri_1_sub-tri_2_sub-tri_1_sub-tri_1_sub-del_1_sub-del_2_sub-del_6_sub-tri_1_sub-del_1_sub-del_4_sub-del_2_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1_sub-tri_1_sub-del_1_sub-del_1_sub-del_1
+    name 
+    coords 10 1 13 0
+    coords 100 2.125 17.5 0
+    coords 101 2.125 16 0
+    coords 102 1 14.5 0
+    coords 103 2.125 14.5 0
+    coords 104 2.125 13 0
+    coords 108 5.5 16 0
+    coords 109 7.75 16 0
+    coords 11 10 13 0
+    coords 110 7.75 13 0
+    coords 111 5.5 14.5 0
+    coords 112 6.625 14.5 0
+    coords 113 6.625 13 0
+    coords 114 5.5 17.5 0
+    coords 115 6.625 17.5 0
+    coords 116 6.625 16 0
+    coords 117 7.75 14.5 0
+    coords 118 8.875 14.5 0
+    coords 119 8.875 13 0
+    coords 12 10 1 0
+    coords 124 1 7 0
+    coords 125 5.5 7 0
+    coords 126 5.5 1 0
+    coords 130 0.999999999999999 10 0
+    coords 131 3.25 10 0
+    coords 132 3.25 7 0
+    coords 133 1 8.5 0
+    coords 134 2.125 8.5 0
+    coords 135 2.125 7 0
+    coords 136 0.999999999999998 11.5 0
+    coords 137 2.125 11.5 0
+    coords 138 2.125 10 0
+    coords 139 3.25 8.5 0
+    coords 140 4.375 8.5 0
+    coords 141 4.375 7 0
+    coords 145 5.5 4 0
+    coords 146 7.75 4 0
+    coords 147 7.75 0.999999999999998 0
+    coords 148 5.5 5.5 0
+    coords 149 6.625 5.5 0
+    coords 150 6.625 4 0
+    coords 151 7.75 2.5 0
+    coords 152 8.875 2.5 0
+    coords 153 8.875 0.999999999999998 0
+    coords 154 5.5 2.5 0
+    coords 155 6.625 2.5 0
+    coords 156 6.625 0.999999999999999 0
+    coords 161 1 4 0
+    coords 162 3.25 4 0
+    coords 163 3.25 0.999999999999999 0
+    coords 164 3.25 2.5 0
+    coords 165 4.375 2.5 0
+    coords 166 4.375 0.999999999999999 0
+    coords 167 1 0.999999999999999 0
+    coords 168 1 2.5 0
+    coords 169 2.125 2.5 0
+    coords 17 1 19 0
+    coords 170 2.125 0.999999999999999 0
+    coords 171 1 5.5 0
+    coords 172 2.125 5.5 0
+    coords 173 2.125 4 0
+    coords 18 5.5 19 0
+    coords 19 5.5 13 0
+    coords 24 10 7 0
+    coords 25 14.5 7 0
+    coords 26 14.5 1 0
+    coords 30 19 0.999999999999999 0
+    coords 31 14.5 4 0
+    coords 32 16.75 4 0
+    coords 33 16.75 0.999999999999999 0
+    coords 34 14.5 5.5 0
+    coords 35 15.625 5.5 0
+    coords 36 15.625 4 0
+    coords 37 14.5 2.5 0
+    coords 38 15.625 2.5 0
+    coords 39 15.625 1 0
+    coords 40 16.75 2.5 0
+    coords 41 17.875 2.5 0
+    coords 42 17.875 0.999999999999998 0
+    coords 46 10 4 0
+    coords 47 12.25 4 0
+    coords 48 12.25 0.999999999999998 0
+    coords 49 12.25 2.5 0
+    coords 50 13.375 2.5 0
+    coords 51 13.375 0.999999999999998 0
+    coords 52 10 5.5 0
+    coords 53 11.125 5.5 0
+    coords 54 11.125 4 0
+    coords 55 10 2.5 0
+    coords 56 11.125 2.5 0
+    coords 57 11.125 0.999999999999999 0
+    coords 62 1 22 0
+    coords 63 3.25 22 0
+    coords 64 3.25 19 0
+    coords 65 1 20.5 0
+    coords 66 2.125 20.5 0
+    coords 67 2.125 19 0
+    coords 68 3.25 20.5 0
+    coords 69 4.375 20.5 0
+    coords 70 4.375 19 0
+    coords 71 1.00000000000001 25 0
+    coords 72 1 23.5 0
+    coords 73 2.125 23.5 0
+    coords 74 2.125 22 0
+    coords 78 10 10 0
+    coords 79 12.25 10 0
+    coords 80 12.25 7 0
+    coords 81 12.25 8.5 0
+    coords 82 13.375 8.5 0
+    coords 83 13.375 7 0
+    coords 84 10 11.5 0
+    coords 85 11.125 11.5 0
+    coords 86 11.125 10 0
+    coords 87 10 8.5 0
+    coords 88 11.125 8.5 0
+    coords 89 11.125 7 0
+    coords 93 1 16 0
+    coords 94 3.25 16 0
+    coords 95 3.25 13 0
+    coords 96 3.25 14.5 0
+    coords 97 4.375 14.5 0
+    coords 98 4.375 13 0
+    coords 99 0.999999999999999 17.5 0
+
+    line 107 62 64
+    line 109 65 66
+    line 110 65 67
+    line 111 66 67
+    line 115 17 18
+    line 117 64 63
+    line 118 68 69
+    line 119 68 70
+    line 120 69 70
+    line 123 62 63
+    line 126 72 73
+    line 127 72 74
+    line 128 73 74
+    line 143 80 79
+    line 144 81 82
+    line 145 81 83
+    line 146 82 83
+    line 150 78 79
+    line 153 84 85
+    line 154 84 86
+    line 155 85 86
+    line 159 25 24
+    line 160 78 80
+    line 161 12 11
+    line 162 87 88
+    line 163 87 89
+    line 164 88 89
+    line 179 95 94
+    line 180 96 97
+    line 181 96 98
+    line 182 97 98
+    line 186 93 94
+    line 187 19 17
+    line 189 99 100
+    line 190 99 101
+    line 191 100 101
+    line 196 93 95
+    line 198 102 103
+    line 199 102 104
+    line 200 103 104
+    line 214 108 110
+    line 216 111 112
+    line 217 111 113
+    line 218 112 113
+    line 222 108 109
+    line 224 19 18
+    line 225 114 115
+    line 226 114 116
+    line 227 115 116
+    line 231 10 11
+    line 232 71 30
+    line 233 110 109
+    line 234 117 118
+    line 235 117 119
+    line 236 118 119
+    line 258 130 132
+    line 260 133 134
+    line 261 133 135
+    line 262 134 135
+    line 266 130 131
+    line 269 136 137
+    line 270 136 138
+    line 271 137 138
+    line 275 124 125
+    line 277 132 131
+    line 278 139 140
+    line 279 139 141
+    line 280 140 141
+    line 293 145 146
+    line 296 148 149
+    line 297 148 150
+    line 298 149 150
+    line 303 10 12
+    line 304 147 146
+    line 305 151 152
+    line 306 151 153
+    line 307 152 153
+    line 312 145 147
+    line 313 125 126
+    line 314 154 155
+    line 315 154 156
+    line 316 155 156
+    line 330 163 162
+    line 331 164 165
+    line 332 164 166
+    line 333 165 166
+    line 336 30 167
+    line 337 161 163
+    line 339 168 169
+    line 340 168 170
+    line 341 169 170
+    line 345 161 162
+    line 346 126 124
+    line 347 71 167
+    line 348 171 172
+    line 349 171 173
+    line 350 172 173
+    line 36 31 32
+    line 39 34 35
+    line 40 34 36
+    line 41 35 36
+    line 46 31 33
+    line 47 25 26
+    line 48 37 38
+    line 49 37 39
+    line 50 38 39
+    line 55 33 32
+    line 56 40 41
+    line 57 40 42
+    line 58 41 42
+    line 73 48 47
+    line 74 49 50
+    line 75 49 51
+    line 76 50 51
+    line 80 46 47
+    line 81 26 24
+    line 83 52 53
+    line 84 52 54
+    line 85 53 54
+    line 90 46 48
+    line 92 55 56
+    line 93 55 57
+    line 94 56 57

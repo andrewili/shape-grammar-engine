@@ -1,0 +1,9 @@
+shape delete-lpoin_L
+    name lpoint
+    coords 0 6.000000 6.000000 8.000000
+
+    point 0 a
+shape delete-lpoin_R
+    name empty
+
+rule    delete-lpoin    delete-lpoin_L -> delete-lpoin_R

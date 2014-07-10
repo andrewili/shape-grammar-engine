@@ -1,0 +1,9 @@
+shape del-lpt_L
+    name lpt
+    coords 0 6.000000 6.000000 8.000000
+
+    point 0 a
+shape del-lpt_R
+    name empty
+
+rule    del-lpt    del-lpt_L -> del-lpt_R

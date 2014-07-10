@@ -1,0 +1,9 @@
+shape del-lpoint_L
+    name lpoint
+    coords 0 7.000000 9.000000 0.000000
+
+    point 0 a
+shape del-lpoint_R
+    name empty
+
+rule    del-lpoint    del-lpoint_L -> del-lpoint_R
