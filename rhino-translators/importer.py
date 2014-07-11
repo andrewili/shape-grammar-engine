@@ -12,7 +12,7 @@ class Importer(object):
 	def import_rule(self):
 		rule_in = self._read_rule_file()
 		container_shape = rule_in.get_container_shape()
-		self._draw_shape(container_shape)
+		self._draw_shape(container_shape)		#	source_shape
 
 	def _read_rule_file(self):
 		"""Prompts for a file. Returns:
@@ -21,7 +21,8 @@ class Importer(object):
 	    # 	prompt the user for a file to import
 	    filter = "Rule files (*.rul)|*.rul|All files (*.*)|*.*||"
 	    filename = rs.OpenFileName("Open rule file", filter)
-	    if not filename: return
+	    if not filename: 
+	    	return
 	    
 	    # 	read each line from the file
 	    file = open(filename, "r")

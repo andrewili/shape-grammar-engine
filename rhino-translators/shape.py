@@ -161,15 +161,16 @@ class Shape(object):
     ###
     @classmethod
     def new_from_is_text(cls, is_text):
-        """Receives the lines of a file in .is format:
-            [str, ...]
+        """Receives the text of a file in .is format:
+            str
         Returns:
             Shape
         """
+        text_lines = is_text.split('\n')
         codex_dict = {}
         lines = []
         lpoints = []
-        for text_line in is_text:
+        for text_line in text_lines:
             tokens = text_line.split()
             if tokens == []:
                 pass
@@ -180,27 +181,30 @@ class Shape(object):
                 elif first_token == 'name':
                     pass
                 elif first_token == 'coords':
-                    codex, coord = cls._make_coord_entry(tokens)
+                    codex, coord = cls._make_codex_entry(tokens)
                     codex_dict[codex] = coord
                 elif first_token == 'line':
                     line_entry = cls._make_line_entry(tokens, codex_dict)
                     lines.append(line_entry)
                 elif first_token == 'point':
                     lpoint_entry = cls._make_lpoint_entry(tokens, codex_dict)
+                    lpoints.append(lpoint_entry)
                 else:
                     pass
         new_shape = Shape(name, lines, lpoints)
         return new_shape
 
     @classmethod
-    def _make_coord_entry(cls, tokens):
+    def _make_codex_entry(cls, tokens):
         """Receives a list of tokens in the form:
             [<codex>, <x>, <y>, <z>]
         Returns a codex-coord pair in the form:
-            (int, [num, num, num])
+            (int, (num, num, num)
         """
-        codex = tokens.pop(0)
-        coord = tokens
+        codex_token = tokens.pop(0)
+        codex = int(codex_token)
+        coord_list = [float(token) for token in tokens]
+        coord = tuple(coord_list)
         return (codex, coord)
 
     @classmethod
@@ -209,7 +213,7 @@ class Shape(object):
             [<index>, <codex>, <codex>]
             {int: [num, num, num], ...}
         Returns a pair of coords:
-            ([num, num, num], [num, num, num])
+            ((num, num, num), (num, num, num))
         """
         codex1 = int(tokens[1])
         codex2 = int(tokens[2])
@@ -221,7 +225,7 @@ class Shape(object):
     @classmethod
     def _make_lpoint_entry(cls, tokens, codex_dict):
         """Receives a list of tokens and a codex dict:
-            [<index>, <codex>, <label>]
+            [<codex>, <label>]
             {int: [num, num, num], ...}
         Returns a coord-label pair:
             ([num, num, num], label)
@@ -431,33 +435,22 @@ class Shape(object):
             return lpoint_entry_string
 
     ###
-
     def get_rhino_lines(self):
-        """Returns a list of end-point pairs:
+        """Returns a list of end-point pairs in Rhino format:
             [([num, num, num], [num, num, num]), ...]
         """
         lists = []
         for codex_codex in self.ordered_codex_codex_list:
             codex1, codex2 = codex_codex
-            coord1 = self._get_coord_from_codex(codex1)
-            coord2 = self._get_coord_from_codex(codex2)
+            coord1 = self.ordered_coord_list[codex1]
+            coord2 = self.ordered_coord_list[codex2]
             rhino_p1 = list(coord1)
             rhino_p2 = list(coord2)
             rhino_point_pair = (rhino_p1, rhino_p2)
             lists.append(rhino_point_pair)
         return lists
 
-    def _get_coord_from_codex(self, codex):
-        """Receives a codex:
-            int
-        Returns a coord:
-            (num, num, num)
-        """
-        coord = self.ordered_coord_list[codex]
-        return coord
-
     ###
-
     def get_rhino_dots(self):
         """Returns a list of pairs:
             [(str, [num, num, num]), ...]
@@ -465,7 +458,7 @@ class Shape(object):
         dots = []
         for codex_label in self.ordered_codex_label_list:
             codex, label = codex_label
-            coord = self._get_coord_from_codex(codex)
+            coord = self.ordered_coord_list[codex]
             rhino_point = list(coord)
             dot = label, rhino_point
             dots.append(dot)

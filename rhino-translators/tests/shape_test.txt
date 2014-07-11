@@ -117,32 +117,33 @@
 
 ### new_from_is_text
     >>> is_text = new_shape.__str__()
+
     >>> shape_from_is_text = shape.Shape.new_from_is_text(is_text)
     >>> print(shape_from_is_text.__repr__())
-    (Kilroy, [(0, 0, 0), (0, 4, 0), (0, 8, 0), (3, 0, 0), (3, 4, 0), (6, 0, 0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')])
+    (Kilroy, [(0.0, 0.0, 0.0), (0.0, 4.0, 0.0), (0.0, 8.0, 0.0), (3.0, 0.0, 0.0), (3.0, 4.0, 0.0), (6.0, 0.0, 0.0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')])
 
-### _make_coord_entry
-    >>> tokens_coord = [0, 1.2, 3.4, 5.6]
-    >>> coord_entry = shape.Shape._make_coord_entry(tokens_coord)
+### _make_codex_entry
+    >>> coord_tokens = ['0', '1.2', '3.4', '5.6']
+    >>> coord_entry = shape.Shape._make_codex_entry(coord_tokens)
     >>> print(coord_entry)
-    (0, [1.2, 3.4, 5.6])
+    (0, (1.2, 3.4, 5.6))
 
 ### _make_line_entry
     >>> codex_coord_dict = {
-    ...     0: [0.0, 0.0, 0.0],
-    ...     1: [1.1, 1.1, 1.1]}
-    >>> tokens_line = ['0', '0', '1']
+    ...     0: (0.0, 0.0, 0.0),
+    ...     1: (1.1, 1.1, 1.1)}
+    >>> line_tokens = ['0', '0', '1']
     >>> line_entry = shape.Shape._make_line_entry(
-    ...     tokens_line, codex_coord_dict)
+    ...     line_tokens, codex_coord_dict)
     >>> line_entry
-    ([0.0, 0.0, 0.0], [1.1, 1.1, 1.1])
+    ((0.0, 0.0, 0.0), (1.1, 1.1, 1.1))
 
 ### _make_lpoint_entry
-    >>> tokens_lpoint = ['0', 'a']
+    >>> lpoint_tokens = ['0', 'a']
     >>> lpoint_entry = shape.Shape._make_lpoint_entry(
-    ...     tokens_lpoint, codex_coord_dict)
+    ...     lpoint_tokens, codex_coord_dict)
     >>> lpoint_entry
-    ([0.0, 0.0, 0.0], 'a')
+    ((0.0, 0.0, 0.0), 'a')
 
 ### make_initial_shape_string
     >>> def make_initial_shape_string_test():
