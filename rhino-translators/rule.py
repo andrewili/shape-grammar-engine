@@ -67,7 +67,12 @@ class Rule(object):
 
     ### to do
     def __repr__(self):
-        pass
+        """Returns an (unformatted) string in the form:
+            (   <rule name>,
+                <left shape repr>,
+                <right shape repr>)
+        """
+        repr_string = ', '.join(repr_parts)
 
 if __name__ == '__main__':
     import doctest
