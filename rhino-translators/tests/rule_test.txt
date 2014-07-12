@@ -106,4 +106,4 @@
     [(0, 3), (2, 3)]
     [(1, 'p11'), (3, 'p22')]
 
-### get_container_shape
+### get_source_shape

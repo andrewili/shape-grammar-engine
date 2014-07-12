@@ -160,13 +160,12 @@ class Shape(object):
 
     ###
     @classmethod
-    def new_from_is_text(cls, is_text):
-        """Receives the text of a file in .is format:
-            str
+    def new_from_is_text_lines(cls, text_lines):
+        """Receives the text lines of a file in .is format:
+            [str, ...]
         Returns:
             Shape
         """
-        text_lines = is_text.split('\n')
         codex_dict = {}
         lines = []
         lpoints = []
@@ -452,7 +451,7 @@ class Shape(object):
 
     ###
     def get_rhino_dots(self):
-        """Returns a list of pairs:
+        """Returns a list of pairs in Rhino format:
             [(str, [num, num, num]), ...]
         """
         dots = []

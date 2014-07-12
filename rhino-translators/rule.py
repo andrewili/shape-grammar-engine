@@ -34,7 +34,7 @@ class Rule(object):
         """
         pass
 
-    def get_container_shape(self):
+    def get_source_shape(self):
         """Returns the set containing the elements of the left and right 
         shapes. (This is not an SG shape, so there is no reduction.)
             Shape

@@ -115,11 +115,13 @@
     >>> drone_shape._is_well_formed(name_ok)
     True
 
-### new_from_is_text
+### new_from_is_text_lines
     >>> is_text = new_shape.__str__()
+    >>> is_text_lines = is_text.split('\n')
 
-    >>> shape_from_is_text = shape.Shape.new_from_is_text(is_text)
-    >>> print(shape_from_is_text.__repr__())
+    >>> shape_from_is_text_lines = (
+    ...     shape.Shape.new_from_is_text_lines(is_text_lines))
+    >>> print(shape_from_is_text_lines.__repr__())
     (Kilroy, [(0.0, 0.0, 0.0), (0.0, 4.0, 0.0), (0.0, 8.0, 0.0), (3.0, 0.0, 0.0), (3.0, 4.0, 0.0), (6.0, 0.0, 0.0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')])
 
 ### _make_codex_entry
