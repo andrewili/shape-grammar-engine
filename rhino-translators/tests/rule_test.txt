@@ -96,6 +96,97 @@
 
     >>> new_rule_from_text = rule.Rule.new_from_rul_text(new_rul_text)
     >>> print(new_rule.__repr__())
-    (new-rule, left-shape, [(0, 0, 0), (0, 2, 0), (1, 1, 0), (2, 0, 0)], [(0, 1), (0, 3)], [(0, 'p00'), (2, 'p11')], right-shape, [(0, 2, 0), (1, 1, 0), (2, 0, 0), (2, 2, 0)], [(0, 3), (2, 3)], [(1, 'p11'), (3, 'p22')])
+    new-rule, left-shape, [(0, 0, 0), (0, 2, 0), (1, 1, 0), (2, 0, 0)], [(0, 1), (0, 3)], [(0, 'p00'), (2, 'p11')], right-shape, [(0, 2, 0), (1, 1, 0), (2, 0, 0), (2, 2, 0)], [(0, 3), (2, 3)], [(1, 'p11'), (3, 'p22')]
 
 ### get_source_shape
+    >>> def make_sierpinski_rule():
+    ...     def make_left_shape():
+    ...         left_name = 'left-name'
+    ...         left_line_specs = [
+    ...             ((0, 0, 0), (0, 18, 0)),    # (0, 5)
+    ...             ((0, 0, 0), (18, 0, 0)),    # (0, 14)
+    ...             ((0, 18, 0), (18, 0, 0)),   # (5, 14)
+    ...             ((0, 0, 0), (0, 0, 24)),    # (0, 2)
+    ...             ((0, 0, 24), (0, 18, 0)),   # (2, 5)
+    ...             ((0, 0, 24), (18, 0, 0))]   # (2, 14)
+    ...         left_lpoint_specs = [
+    ...             ((6, 6, 8), 'a')]
+    ...         left_shape = shape.Shape(
+    ...             left_name,
+    ...             left_line_specs,
+    ...             left_lpoint_specs)
+    ...         return left_shape
+    ...     def make_right_shape():
+    ...         right_name = 'right-name'
+    ...         right_line_specs = [
+    ...             ((0, 0, 12), (0, 9, 0)),    # (1, 3)
+    ...             ((0, 0, 12), (9, 0, 0)),    # (1, 10)
+    ...             ((0, 9, 0), (9, 0, 0)),     # (3, 10)
+    ...             ((0, 9, 0), (0, 9, 12)),    # (3, 4)
+    ...             ((0, 9, 0), (9, 9, 0)),     # (3, 12)
+    ...             ((0, 9, 12), (9, 9, 0)),    # (4, 12)
+    ...             ((9, 0, 0), (9, 0, 12)),    # (10, 11)
+    ...             ((9, 0, 0), (9, 9, 0)),     # (10, 12)
+    ...             ((9, 0, 12), (9, 9, 0)),    # (11, 12)
+    ...             ((0, 0, 12), (0, 9, 12)),   # (1, 4)
+    ...             ((0, 0, 12), (9, 0, 12)),   # (1, 11)
+    ...             ((0, 9, 12), (9, 0, 12))]   # (4, 11)
+    ...         right_lpoint_specs = [
+    ...             ((3, 3, 4), 'a'),
+    ...             ((3, 3, 16), 'a'),
+    ...             ((3, 12, 4), 'a'),
+    ...             ((12, 3, 4), 'a')]
+    ...         right_shape = shape.Shape(
+    ...             right_name,
+    ...             right_line_specs,
+    ...             right_lpoint_specs)
+    ...         return right_shape
+    ...     rule_name = 'sierpinski-3d'
+    ...     left_shape = make_left_shape()
+    ...     right_shape = make_right_shape()
+    ...     rule_sierpinski = rule.Rule(
+    ...         rule_name,
+    ...         left_shape,
+    ...         right_shape)
+    ...     return rule_sierpinski
+    >>> sierpinski_rule = make_sierpinski_rule()
+
+    >>> sierpinski_source_shape = sierpinski_rule.get_source_shape()
+    >>> print(sierpinski_source_shape.__repr__())
+    sierpinski-3d-source, [(0, 0, 0), (0, 0, 12), (0, 0, 24), (0, 9, 0), (0, 9, 12), (0, 18, 0), (3, 3, 4), (3, 3, 16), (3, 12, 4), (6, 6, 8), (9, 0, 0), (9, 0, 12), (9, 9, 0), (12, 3, 4), (18, 0, 0)], [(0, 2), (0, 5), (0, 14), (1, 3), (1, 4), (1, 10), (1, 11), (2, 5), (2, 14), (3, 4), (3, 10), (3, 12), (4, 11), (4, 12), (5, 14), (10, 11), (10, 12), (11, 12)], [(6, 'a'), (7, 'a'), (8, 'a'), (9, 'a'), (13, 'a')]
+
+### _get_source_line_specs
+    >>> sierpinski_source_line_specs = sierpinski_rule._get_source_line_specs()
+    >>> sierpinski_source_line_specs
+    [((0, 0, 0), (0, 0, 24)), ((0, 0, 0), (0, 18, 0)), ((0, 0, 0), (18, 0, 0)), ((0, 0, 12), (0, 9, 0)), ((0, 0, 12), (0, 9, 12)), ((0, 0, 12), (9, 0, 0)), ((0, 0, 12), (9, 0, 12)), ((0, 0, 24), (0, 18, 0)), ((0, 0, 24), (18, 0, 0)), ((0, 9, 0), (0, 9, 12)), ((0, 9, 0), (9, 0, 0)), ((0, 9, 0), (9, 9, 0)), ((0, 9, 12), (9, 0, 12)), ((0, 9, 12), (9, 9, 0)), ((0, 18, 0), (18, 0, 0)), ((9, 0, 0), (9, 0, 12)), ((9, 0, 0), (9, 9, 0)), ((9, 0, 12), (9, 9, 0))]
+
+    >>> def make_tri_tri_rule():        #   left and right shapes are same
+    ...     tri_tri_name = 'tri-tri'
+    ...     def make_tri_tri_shape(name):
+    ...         line_specs = [
+    ...             ((0, 0, 0), (3, 0, 0)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 4, 0), (3, 0, 0))]
+    ...         lpoint_specs = [((1, 1, 0), 'x')]
+    ...         tri_tri_shape = shape.Shape(name, line_specs, lpoint_specs)
+    ...         return tri_tri_shape
+    ...     tri_tri_left_shape = make_tri_tri_shape('tri-tri-left')
+    ...     tri_tri_right_shape = make_tri_tri_shape('tri-tri-right')
+    ...     tri_tri_rule = rule.Rule(
+    ...         tri_tri_name, tri_tri_left_shape, tri_tri_right_shape)
+    ...     return tri_tri_rule
+    >>> tri_tri_rule = make_tri_tri_rule()
+    >>> tri_tri_rule_source_line_specs = tri_tri_rule._get_source_line_specs()
+    >>> tri_tri_rule_source_line_specs
+    [((0, 0, 0), (0, 4, 0)), ((0, 0, 0), (3, 0, 0)), ((0, 4, 0), (3, 0, 0))]
+
+### _get_source_lpoint_specs
+    >>> sierpinski_source_lpoint_specs = (
+    ...     sierpinski_rule._get_source_lpoint_specs())
+    >>> sierpinski_source_lpoint_specs
+    [((3, 3, 4), 'a'), ((3, 3, 16), 'a'), ((3, 12, 4), 'a'), ((6, 6, 8), 'a'), ((12, 3, 4), 'a')]
+
+    >>> tri_tri_rule_source_lpoint_specs = (
+    ...     tri_tri_rule._get_source_lpoint_specs())
+    >>> tri_tri_rule_source_lpoint_specs
+    [((1, 1, 0), 'x')]

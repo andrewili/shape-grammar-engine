@@ -11,7 +11,8 @@ class Rule(object):
         """
                                         #   Allow empty right shape
         try:
-            if not (type(name) == str and
+            if not (
+                type(name) == str and
                 type(left_shape) == shape.Shape and
                 type(right_shape) == shape.Shape
             ):
@@ -35,11 +36,38 @@ class Rule(object):
         pass
 
     def get_source_shape(self):
-        """Returns the set containing the elements of the left and right 
-        shapes. (This is not an SG shape, so there is no reduction.)
+        """Returns a shape containing the unique elements of the left and 
+        right shapes. (This is not an SG shape, so there is no reduction.)
             Shape
+        #   Accommodate empty right shape
         """
-        pass
+        source_name = '%s-source' % self.name
+        source_line_specs = self._get_source_line_specs()
+        source_lpoint_specs = self._get_source_lpoint_specs()
+        source_shape = shape.Shape(
+            source_name, source_line_specs, source_lpoint_specs)
+        return source_shape
+
+    def _get_source_line_specs(self):
+        """Returns the list of unique (not maximal) line specs in one or both
+        shapes:
+            [((num, num, num), (num, num, num)), ...]
+        """
+        left_line_specs = self.left_shape.get_line_specs()
+        right_line_specs = self.right_shape.get_line_specs()
+        left_line_specs.extend(right_line_specs)
+        line_spec_list = sorted(list(set(left_line_specs)))
+        return line_spec_list
+
+    def _get_source_lpoint_specs(self):
+        """Returns the list of unique lpoint specs in one or both shapes:
+            [((num, num, num), str), ...]
+        """
+        left_lpoint_specs = self.left_shape.get_lpoint_specs()
+        right_lpoint_specs = self.right_shape.get_lpoint_specs()
+        left_lpoint_specs.extend(right_lpoint_specs)
+        lpoint_spec_list = sorted(list(set(left_lpoint_specs)))
+        return lpoint_spec_list
 
     ###
     def __str__(self):
@@ -68,11 +96,16 @@ class Rule(object):
     ### to do
     def __repr__(self):
         """Returns an (unformatted) string in the form:
-            (   <rule name>,
-                <left shape repr>,
-                <right shape repr>)
+            <rule name>,
+            <left shape repr>,
+            <right shape repr>
         """
+        repr_parts = (
+            self.name, 
+            self.left_shape.__repr__(), 
+            self.right_shape.__repr__())
         repr_string = ', '.join(repr_parts)
+        return repr_string
 
 if __name__ == '__main__':
     import doctest

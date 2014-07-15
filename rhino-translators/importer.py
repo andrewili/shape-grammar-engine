@@ -59,7 +59,7 @@ class Importer(object):
             Shape
         Draws the shape in Rhino
         """
-        rhino_lines = shape.get_rhino_lines()
+        rhino_lines = shape.get_line_specs_as_lists()
         for rhino_line in rhino_lines:
             rhino_p1, rhino_p2 = rhino_line
             rs.AddLine(rhino_p1, rhino_p2)

@@ -434,20 +434,45 @@ class Shape(object):
             return lpoint_entry_string
 
     ###
-    def get_rhino_lines(self):
-        """Returns a list of end-point pairs in Rhino format:
-            [([num, num, num], [num, num, num]), ...]
+
+    def get_line_specs(self):
+        """Returns a list of end-point pairs:
+            [((num, num, num), (num, num, num)), ...]
         """
-        lists = []
+        specs = []
         for codex_codex in self.ordered_codex_codex_list:
             codex1, codex2 = codex_codex
             coord1 = self.ordered_coord_list[codex1]
             coord2 = self.ordered_coord_list[codex2]
-            rhino_p1 = list(coord1)
-            rhino_p2 = list(coord2)
-            rhino_point_pair = (rhino_p1, rhino_p2)
-            lists.append(rhino_point_pair)
-        return lists
+            point_pair = (coord1, coord2)
+            specs.append(point_pair)
+        return specs
+
+    def get_line_specs_as_lists(self):
+        """Returns a list of end-point pairs as lists:
+            [([num, num, num], [num, num, num]), ...]
+        """
+        list_pairs = []
+        tuple_pairs = self.get_line_specs()
+        for spec_pair in tuple_pairs:
+            coord_tuple_1, coord_tuple_2 = spec_pair
+            coord_list_1 = list(coord_tuple_1)
+            coord_list_2 = list(coord_tuple_2)
+            list_pair = (coord_list_1, coord_list_2)
+            list_pairs.append(list_pair)
+        return list_pairs
+
+    def get_lpoint_specs(self):
+        """Returns a list of lpoint specs:
+            [((num, num, num), str), ...]
+        """
+        specs = []
+        for codex_label in self.ordered_codex_label_list:
+            codex, label = codex_label
+            coord = self.ordered_coord_list[codex]
+            spec = (coord, label)
+            specs.append(spec)
+        return(specs)
 
     ###
     def get_rhino_dots(self):
@@ -475,18 +500,17 @@ class Shape(object):
     ###
     def __repr__(self):
         """Returns an (unformatted) string in the form:
-            (   <name>,
-                <ordered_coord_list>,
-                <ordered_codex_codex_list>,
-                <ordered_codex_label_list>)
+            <name>,
+            <ordered_coord_list>,
+            <ordered_codex_codex_list>,
+            <ordered_codex_label_list>
         """
         repr_parts = [
             self.name, 
             self.ordered_coord_list.__str__(), 
             self.ordered_codex_codex_list.__str__(), 
             self.ordered_codex_label_list.__str__()]
-        joined_repr_parts = ', '.join(repr_parts)
-        repr_string = '(%s)' % joined_repr_parts
+        repr_string = ', '.join(repr_parts)
         return repr_string
 
 if __name__ == '__main__':
