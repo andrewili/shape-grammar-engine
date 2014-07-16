@@ -178,7 +178,8 @@ class Shape(object):
                 if first_token == 'shape':
                     name = tokens[0]
                 elif first_token == 'name':
-                    pass
+                    if cls._rule_shape(tokens):
+                        name = tokens[0]
                 elif first_token == 'coords':
                     codex, coord = cls._make_codex_entry(tokens)
                     codex_dict[codex] = coord
@@ -194,11 +195,23 @@ class Shape(object):
         return new_shape
 
     @classmethod
+    def _rule_shape(cls, tokens):
+        """Receives a list of tokens:
+            [str, ...]
+        Returns whether the list is from a shape in a rule. (Such a shape 
+        has 2 names.)
+        """
+        value = False
+        if not tokens == []:
+            value = True
+        return value
+
+    @classmethod
     def _make_codex_entry(cls, tokens):
         """Receives a list of tokens in the form:
             [<codex>, <x>, <y>, <z>]
         Returns a codex-coord pair in the form:
-            (int, (num, num, num)
+            (int, (num, num, num))
         """
         codex_token = tokens.pop(0)
         codex = int(codex_token)

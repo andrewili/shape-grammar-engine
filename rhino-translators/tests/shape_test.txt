@@ -124,6 +124,21 @@
     >>> print(shape_from_is_text_lines.__repr__())
     Kilroy, [(0.0, 0.0, 0.0), (0.0, 4.0, 0.0), (0.0, 8.0, 0.0), (3.0, 0.0, 0.0), (3.0, 4.0, 0.0), (6.0, 0.0, 0.0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')]
 
+    >>> rule_shape_text_lines = [
+    ...     'shape rule_L',
+    ...     '    name left-shape-name',
+    ...     '    coords 0 0.000000 0.000000 0.000000',
+    ...     '    coords 1 0.000000 8.000000 0.000000',
+    ...     '    coords 2 6.000000 0.000000 0.000000',
+    ...     '',
+    ...     '    line 0 0 1',
+    ...     '    line 1 0 2',
+    ...     '    line 2 1 2'
+    ... ]
+    >>> rule_shape = shape.Shape.new_from_is_text_lines(rule_shape_text_lines)
+    >>> print(rule_shape.__repr__())
+    left-shape-name, [(0.0, 0.0, 0.0), (0.0, 8.0, 0.0), (6.0, 0.0, 0.0)], [(0, 1), (0, 2), (1, 2)], []
+
 ### _make_codex_entry
     >>> coord_tokens = ['0', '1.2', '3.4', '5.6']
     >>> coord_entry = shape.Shape._make_codex_entry(coord_tokens)

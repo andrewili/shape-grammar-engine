@@ -27,13 +27,31 @@ class Rule(object):
 
     ### to do
     @classmethod
-    def new_from_rul_text(self, rul_text):
+    def new_from_rul_text_lines(self, text_lines):
         """Receives the lines of a file in .rul format:
             [str, ...]
         Returns:
             Rule
         """
-        pass
+        # left_right_text_lines = [[], []]
+        left_text_lines = []
+        right_text_lines = []
+        next_text_lines = left_text_lines
+        for text_line in text_lines:
+            tokens = text_line.split()
+            if tokens == []:
+                pass
+            else:
+                first_token = tokens[0]
+                if first_token == 'shape':
+                    next_text_lines = left_right_text_lines     ###
+                next_text_lines.append(text_line)
+        left_shape = shape.Shape.new_from_is_text_lines(
+            left_text_lines)
+        right_shape = shape.Shape.new_from_is_text_lines(
+            right_text_lines)
+        new_rule = rule.Rule(name, left_shape, right_shape)
+        return new_rule
 
     def get_source_shape(self):
         """Returns a shape containing the unique elements of the left and 
