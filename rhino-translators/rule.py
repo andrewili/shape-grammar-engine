@@ -25,32 +25,32 @@ class Rule(object):
             self.left_shape = left_shape
             self.right_shape = right_shape
 
-    ### to do
     @classmethod
-    def new_from_rul_text_lines(self, text_lines):
+    def new_from_rul_text_lines(cls, text_lines_in):
         """Receives the lines of a file in .rul format:
             [str, ...]
         Returns:
             Rule
         """
-        # left_right_text_lines = [[], []]
-        left_text_lines = []
-        right_text_lines = []
-        next_text_lines = left_text_lines
-        for text_line in text_lines:
+        text_lines_out = [[], []]
+        i = -1
+        for text_line in text_lines_in:
             tokens = text_line.split()
             if tokens == []:
                 pass
             else:
                 first_token = tokens[0]
                 if first_token == 'shape':
-                    next_text_lines = left_right_text_lines     ###
-                next_text_lines.append(text_line)
+                    i = i + 1
+                elif first_token == 'rule':
+                    name = tokens[1]
+                else:
+                    text_lines_out[i].append(text_line)
         left_shape = shape.Shape.new_from_is_text_lines(
-            left_text_lines)
+            text_lines_out[0])
         right_shape = shape.Shape.new_from_is_text_lines(
-            right_text_lines)
-        new_rule = rule.Rule(name, left_shape, right_shape)
+            text_lines_out[1])
+        new_rule = Rule(name, left_shape, right_shape)
         return new_rule
 
     def get_source_shape(self):

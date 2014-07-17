@@ -93,10 +93,9 @@
     ...     '    point 3 p22',
     ...     'rule    new-rule    new-rule_L -> new-rule_R'
     ... ]
-
     >>> new_rule_from_text = rule.Rule.new_from_rul_text_lines(new_rul_text)
-    >>> new_rule_from_text.__repr__()
-    new-rule, left-shape, [(0, 0, 0), (0, 2, 0), (1, 1, 0), (2, 0, 0)], [(0, 1), (0, 3)], [(0, 'p00'), (2, 'p11')], right-shape, [(0, 2, 0), (1, 1, 0), (2, 0, 0), (2, 2, 0)], [(0, 3), (2, 3)], [(1, 'p11'), (3, 'p22')]
+    >>> print(new_rule_from_text.__repr__())
+    new-rule, left-shape, [(0.0, 0.0, 0.0), (0.0, 2.0, 0.0), (1.0, 1.0, 0.0), (2.0, 0.0, 0.0)], [(0, 1), (0, 3)], [(0, 'p00'), (2, 'p11')], right-shape, [(0.0, 2.0, 0.0), (1.0, 1.0, 0.0), (2.0, 0.0, 0.0), (2.0, 2.0, 0.0)], [(0, 3), (2, 3)], [(1, 'p11'), (3, 'p22')]
 
 ### get_source_shape
     >>> def make_sierpinski_rule():

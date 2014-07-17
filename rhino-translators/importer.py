@@ -29,7 +29,7 @@ class Importer(object):
         contents = file.readlines()
         file.close()
 
-        new_rule = rule.Rule.new_from_rul_text(contents)
+        new_rule = rule.Rule.new_from_rul_text_lines(contents)
         return new_rule
 
     ###
