@@ -9,6 +9,18 @@ class Importer(object):
         pass
 
     ###
+    def import_final_shape(self):
+        derivation_in = self._get_derivation_from_file()
+        current_shape = derivation_in.get_final_shape()
+        self._draw_shape(current_shape)
+
+    def _get_derivation_from_file(self):    #   to do
+        """Prompts for a drv file. Returns:
+            Derivation
+        """
+        pass
+
+    ###
     def import_rule(self):
         rule_in = self._read_rule_file()
         source_shape = rule_in.get_source_shape()

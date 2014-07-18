@@ -149,7 +149,7 @@ Log
     #   Rhino translator (shape only) completed
 
 #   2014-06-12
-    #   Rhino rule translator completed
+    #   Rhino rule translator exporter completed
     #   Allow empty right shape. Done 2014-06-12
     #   Rewrite exporters to combine methods. Done 2014-06-13
     #   Check for ill-formed names. Done 2014-06-13
@@ -158,4 +158,12 @@ Log
 
 #   2014-06-16
     >   Rule shape names don't appear in the interpreter
+
+#   2014-07-17
+    #   Rhino rule importer completed
+    >   Rule importer tests. Clean up
+    >   Implement Rhino derivation importer
+    >   Implement Derivation class. 
+    >   Does the Derivation class include the grammar? Or just the sequence of 
+        shapes and rules? For now, let's include just the sequence. 
     >   

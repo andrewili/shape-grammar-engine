@@ -1,0 +1,114 @@
+#   derivation_test.txt
+
+    >>> import derivation
+    >>> import rule
+    >>> import shape
+
+### __init__, __repr__, __str__
+    >>> def make_list_bad_type():
+    ...     pass
+    >>> list_bad_type = make_list_bad_type()
+    >>> deriv_bad_type = derivation.Derivation(list_bad_type)
+    The argument must be a list of alternating shapes and rules
+
+    >>> def make_list_bad_value():
+    ...     pass
+    >>> list_bad_value = make_list_bad_value()
+    >>> deriv_bad_value = derivation.Derivation(list_bad_value)
+
+    >>> def make_test_deriv():
+    ...     def make_shape_labeled_oblong():
+    ...         line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (8, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (8, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (8, 4, 0)),
+    ...             ((0, 4, 2), (8, 4, 2)),
+    ...             ((8, 0, 0), (8, 0, 2)),
+    ...             ((8, 0, 0), (8, 4, 0)),
+    ...             ((8, 0, 2), (8, 4, 2)),
+    ...             ((8, 4, 0), (8, 4, 2))]
+    ...         lpoint_specs = [((0, 2, 1), 'a')]
+    ...         shape_labeled_oblong = (
+    ...             shape.Shape('labeled-oblong', line_specs, lpoint_specs))
+    ...         return shape_labeled_oblong
+    ...     def make_shape_labeled_obshort():
+    ...         line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (4, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (4, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (4, 4, 0)),
+    ...             ((0, 4, 2), (4, 4, 2)),
+    ...             ((4, 0, 0), (4, 0, 2)),
+    ...             ((4, 0, 0), (4, 4, 0)),
+    ...             ((4, 0, 2), (4, 4, 2)),
+    ...             ((4, 4, 0), (4, 4, 2))]
+    ...         lpoint_specs = [((0, 2, 1), 'a')]
+    ...         shape_labeled_obshort = (
+    ...             shape.Shape('labeled-obshort', line_specs, lpoint_specs))
+    ...         return shape_labeled_obshort
+    ...     def make_shape_unlabeled_obshort():
+    ...         line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (4, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (4, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (4, 4, 0)),
+    ...             ((0, 4, 2), (4, 4, 2)),
+    ...             ((4, 0, 0), (4, 0, 2)),
+    ...             ((4, 0, 0), (4, 4, 0)),
+    ...             ((4, 0, 2), (4, 4, 2)),
+    ...             ((4, 4, 0), (4, 4, 2))]
+    ...         lpoint_specs = []
+    ...         shape_unlabeled_obshort = (
+    ...             shape.Shape(
+    ...                 'unlabeled-obshort',
+    ...                 line_specs,
+    ...                 lpoint_specs))
+    ...         return shape_unlabeled_obshort
+    ...     def make_shape_label():
+    ...         line_specs = []
+    ...         lpoint_specs = [((0, 0, 0), 'a')]
+    ...         shape_label = (
+    ...             shape.Shape('labeled-point', line_specs, lpoint_specs))
+    ...         return shape_label
+    ...     def make_shape_empty():
+    ...         empty_shape = shape.Shape('empty-shape', [], [])
+    ...         return empty_shape
+    ...     shape_labeled_oblong = make_shape_labeled_oblong()
+    ...     shape_labeled_obshort = make_shape_labeled_obshort()
+    ...     shape_unlabeled_obshort = make_shape_unlabeled_obshort()
+    ...     shape_label = make_shape_label()
+    ...     shape_empty = make_shape_empty()
+    ...     rule_shorten_oblong = rule.Rule(
+    ...         'shorten-oblong',
+    ...         shape_labeled_oblong, 
+    ...         shape_labeled_obshort)
+    ...     rule_erase_label = rule.Rule(
+    ...         'erase-label', shape_label, shape_empty)
+    ...     shape_0 = shape_labeled_oblong
+    ...     rule_1 = rule_shorten_oblong
+    ...     shape_1 = shape_labeled_obshort
+    ...     rule_2 = rule_erase_label
+    ...     shape_2 = shape_unlabeled_obshort
+    ...     shape_rule_list = [
+    ...         shape_0,
+    ...         rule_1,
+    ...         shape_1,
+    ...         rule_2,
+    ...         shape_2]
+    ...     deriv = derivation.Derivation(shape_rule_list)
+    ...     return deriv
+    >>> test_deriv = make_test_deriv()
+    >>> print(test_deriv)
+    <__str__>
+    >>> print(test_deriv.__repr__())
+    <__repr__>
