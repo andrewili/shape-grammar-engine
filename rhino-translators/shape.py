@@ -523,7 +523,8 @@ class Shape(object):
             self.ordered_coord_list.__str__(), 
             self.ordered_codex_codex_list.__str__(), 
             self.ordered_codex_label_list.__str__()]
-        repr_string = ', '.join(repr_parts)
+        joined_repr_parts = ', '.join(repr_parts)
+        repr_string = '(%s)' % joined_repr_parts
         return repr_string
 
 if __name__ == '__main__':

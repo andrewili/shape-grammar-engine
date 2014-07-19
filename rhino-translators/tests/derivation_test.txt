@@ -5,110 +5,124 @@
     >>> import shape
 
 ### __init__, __repr__, __str__
-    >>> def make_list_bad_type():
-    ...     pass
-    >>> list_bad_type = make_list_bad_type()
-    >>> deriv_bad_type = derivation.Derivation(list_bad_type)
-    The argument must be a list of alternating shapes and rules
-
-    >>> def make_list_bad_value():
-    ...     pass
-    >>> list_bad_value = make_list_bad_value()
-    >>> deriv_bad_value = derivation.Derivation(list_bad_value)
-
-    >>> def make_test_deriv():
-    ...     def make_shape_labeled_oblong():
-    ...         line_specs = [
-    ...             ((0, 0, 0), (0, 0, 2)),
-    ...             ((0, 0, 0), (0, 4, 0)),
-    ...             ((0, 0, 0), (8, 0, 0)),
-    ...             ((0, 0, 2), (0, 4, 2)),
-    ...             ((0, 0, 2), (8, 0, 2)),
-    ...             ((0, 4, 0), (0, 4, 2)),
-    ...             ((0, 4, 0), (8, 4, 0)),
-    ...             ((0, 4, 2), (8, 4, 2)),
-    ...             ((8, 0, 0), (8, 0, 2)),
-    ...             ((8, 0, 0), (8, 4, 0)),
-    ...             ((8, 0, 2), (8, 4, 2)),
-    ...             ((8, 4, 0), (8, 4, 2))]
-    ...         lpoint_specs = [((0, 2, 1), 'a')]
-    ...         shape_labeled_oblong = (
-    ...             shape.Shape('labeled-oblong', line_specs, lpoint_specs))
-    ...         return shape_labeled_oblong
-    ...     def make_shape_labeled_obshort():
-    ...         line_specs = [
-    ...             ((0, 0, 0), (0, 0, 2)),
-    ...             ((0, 0, 0), (0, 4, 0)),
-    ...             ((0, 0, 0), (4, 0, 0)),
-    ...             ((0, 0, 2), (0, 4, 2)),
-    ...             ((0, 0, 2), (4, 0, 2)),
-    ...             ((0, 4, 0), (0, 4, 2)),
-    ...             ((0, 4, 0), (4, 4, 0)),
-    ...             ((0, 4, 2), (4, 4, 2)),
-    ...             ((4, 0, 0), (4, 0, 2)),
-    ...             ((4, 0, 0), (4, 4, 0)),
-    ...             ((4, 0, 2), (4, 4, 2)),
-    ...             ((4, 4, 0), (4, 4, 2))]
-    ...         lpoint_specs = [((0, 2, 1), 'a')]
-    ...         shape_labeled_obshort = (
-    ...             shape.Shape('labeled-obshort', line_specs, lpoint_specs))
-    ...         return shape_labeled_obshort
-    ...     def make_shape_unlabeled_obshort():
-    ...         line_specs = [
-    ...             ((0, 0, 0), (0, 0, 2)),
-    ...             ((0, 0, 0), (0, 4, 0)),
-    ...             ((0, 0, 0), (4, 0, 0)),
-    ...             ((0, 0, 2), (0, 4, 2)),
-    ...             ((0, 0, 2), (4, 0, 2)),
-    ...             ((0, 4, 0), (0, 4, 2)),
-    ...             ((0, 4, 0), (4, 4, 0)),
-    ...             ((0, 4, 2), (4, 4, 2)),
-    ...             ((4, 0, 0), (4, 0, 2)),
-    ...             ((4, 0, 0), (4, 4, 0)),
-    ...             ((4, 0, 2), (4, 4, 2)),
-    ...             ((4, 4, 0), (4, 4, 2))]
-    ...         lpoint_specs = []
-    ...         shape_unlabeled_obshort = (
-    ...             shape.Shape(
-    ...                 'unlabeled-obshort',
-    ...                 line_specs,
-    ...                 lpoint_specs))
-    ...         return shape_unlabeled_obshort
-    ...     def make_shape_label():
-    ...         line_specs = []
-    ...         lpoint_specs = [((0, 0, 0), 'a')]
-    ...         shape_label = (
-    ...             shape.Shape('labeled-point', line_specs, lpoint_specs))
-    ...         return shape_label
-    ...     def make_shape_empty():
+    >>> def make_deriv_parts():
+    ...     def make_deriv_shapes():
+    ...         def make_labeled_oblong():
+    ...             line_specs = [
+    ...                 ((0, 0, 0), (0, 0, 2)),
+    ...                 ((0, 0, 0), (0, 4, 0)),
+    ...                 ((0, 0, 0), (8, 0, 0)),
+    ...                 ((0, 0, 2), (0, 4, 2)),
+    ...                 ((0, 0, 2), (8, 0, 2)),
+    ...                 ((0, 4, 0), (0, 4, 2)),
+    ...                 ((0, 4, 0), (8, 4, 0)),
+    ...                 ((0, 4, 2), (8, 4, 2)),
+    ...                 ((8, 0, 0), (8, 0, 2)),
+    ...                 ((8, 0, 0), (8, 4, 0)),
+    ...                 ((8, 0, 2), (8, 4, 2)),
+    ...                 ((8, 4, 0), (8, 4, 2))]
+    ...             lpoint_specs = [((0, 2, 1), 'a')]
+    ...             labeled_oblong = shape.Shape(
+    ...                 'labeled-oblong', line_specs, lpoint_specs)
+    ...             return labeled_oblong
+    ...         def make_labeled_obshort():
+    ...             line_specs = [
+    ...                 ((0, 0, 0), (0, 0, 2)),
+    ...                 ((0, 0, 0), (0, 4, 0)),
+    ...                 ((0, 0, 0), (4, 0, 0)),
+    ...                 ((0, 0, 2), (0, 4, 2)),
+    ...                 ((0, 0, 2), (4, 0, 2)),
+    ...                 ((0, 4, 0), (0, 4, 2)),
+    ...                 ((0, 4, 0), (4, 4, 0)),
+    ...                 ((0, 4, 2), (4, 4, 2)),
+    ...                 ((4, 0, 0), (4, 0, 2)),
+    ...                 ((4, 0, 0), (4, 4, 0)),
+    ...                 ((4, 0, 2), (4, 4, 2)),
+    ...                 ((4, 4, 0), (4, 4, 2))]
+    ...             lpoint_specs = [((0, 2, 1), 'a')]
+    ...             labeled_obshort = shape.Shape(
+    ...                 'labeled-obshort', line_specs, lpoint_specs)
+    ...             return labeled_obshort
+    ...         def make_unlabeled_obshort():
+    ...             line_specs = [
+    ...                 ((0, 0, 0), (0, 0, 2)),
+    ...                 ((0, 0, 0), (0, 4, 0)),
+    ...                 ((0, 0, 0), (4, 0, 0)),
+    ...                 ((0, 0, 2), (0, 4, 2)),
+    ...                 ((0, 0, 2), (4, 0, 2)),
+    ...                 ((0, 4, 0), (0, 4, 2)),
+    ...                 ((0, 4, 0), (4, 4, 0)),
+    ...                 ((0, 4, 2), (4, 4, 2)),
+    ...                 ((4, 0, 0), (4, 0, 2)),
+    ...                 ((4, 0, 0), (4, 4, 0)),
+    ...                 ((4, 0, 2), (4, 4, 2)),
+    ...                 ((4, 4, 0), (4, 4, 2))]
+    ...             lpoint_specs = []
+    ...             shape_unlabeled_obshort = shape.Shape(
+    ...                 'unlabeled-obshort', line_specs, lpoint_specs)
+    ...             return shape_unlabeled_obshort
+    ...         def make_lpoint():
+    ...             line_specs = []
+    ...             lpoint_specs = [((0, 0, 0), 'a')]
+    ...             lpoint = shape.Shape(
+    ...                 'labeled-point', line_specs, lpoint_specs)
+    ...             return lpoint
+    ...         labeled_oblong = make_labeled_oblong()
+    ...         labeled_obshort = make_labeled_obshort()
+    ...         unlabeled_obshort = make_unlabeled_obshort()
+    ...         lpoint = make_lpoint()
     ...         empty_shape = shape.Shape('empty-shape', [], [])
-    ...         return empty_shape
-    ...     shape_labeled_oblong = make_shape_labeled_oblong()
-    ...     shape_labeled_obshort = make_shape_labeled_obshort()
-    ...     shape_unlabeled_obshort = make_shape_unlabeled_obshort()
-    ...     shape_label = make_shape_label()
-    ...     shape_empty = make_shape_empty()
+    ...         return (
+    ...             labeled_oblong,
+    ...             labeled_obshort,
+    ...             unlabeled_obshort,
+    ...             lpoint,
+    ...             empty_shape
+    ...         )
+    ...     (   labeled_oblong,
+    ...         labeled_obshort,
+    ...         unlabeled_obshort,
+    ...         lpoint,
+    ...         empty_shape
+    ...     ) = make_deriv_shapes()
+    ...     initial_shape = labeled_oblong
     ...     rule_shorten_oblong = rule.Rule(
     ...         'shorten-oblong',
-    ...         shape_labeled_oblong, 
-    ...         shape_labeled_obshort)
-    ...     rule_erase_label = rule.Rule(
-    ...         'erase-label', shape_label, shape_empty)
-    ...     shape_0 = shape_labeled_oblong
-    ...     rule_1 = rule_shorten_oblong
-    ...     shape_1 = shape_labeled_obshort
-    ...     rule_2 = rule_erase_label
-    ...     shape_2 = shape_unlabeled_obshort
-    ...     shape_rule_list = [
-    ...         shape_0,
-    ...         rule_1,
-    ...         shape_1,
-    ...         rule_2,
-    ...         shape_2]
-    ...     deriv = derivation.Derivation(shape_rule_list)
-    ...     return deriv
-    >>> test_deriv = make_test_deriv()
-    >>> print(test_deriv)
-    <__str__>
-    >>> print(test_deriv.__repr__())
-    <__repr__>
+    ...         labeled_oblong,
+    ...         labeled_obshort)
+    ...     rule_erase_lpoint = rule.Rule(
+    ...         'erase-lpoint',
+    ...         lpoint,
+    ...         empty_shape)
+    ...     rules = [rule_shorten_oblong, rule_erase_lpoint]
+    ...     next_shapes = [labeled_obshort, unlabeled_obshort]
+    ...     deriv_parts = (initial_shape, rules, next_shapes)
+    ...     return (deriv_parts)
+    
+    >>> initial_shape, rules, next_shapes = make_deriv_parts()
+    >>> deriv_bad_initial_shape = derivation.Derivation(
+    ...     'kilroy', rules, next_shapes)
+    The arguments must be a shape, a list of rules, and a list of shapes
+    >>> deriv_bad_rules = derivation.Derivation(
+    ...     initial_shape, next_shapes, next_shapes)
+    The arguments must be a shape, a list of rules, and a list of shapes
+    >>> deriv_bad_shapes = derivation.Derivation(
+    ...     initial_shape, rules, rules)
+    The arguments must be a shape, a list of rules, and a list of shapes
+    >>> test_deriv = derivation.Derivation(
+    ...     initial_shape, rules, next_shapes)
+
+    ??? print(test_deriv)
+
+    ??? print(test_deriv.__repr__())
+    <initial shape>
+    <rules>
+    <next shapes>
+
+### _make_rules_repr
+    >>> rules_repr = test_deriv._make_rules_repr()
+    >>> print(rules_repr)
+    [(shorten-oblong, (labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])), (erase-lpoint, (labeled-point, [(0, 0, 0)], [], [(0, 'a')]), (empty-shape, [], [], []))]
+
+
+### _make_next_shape_repr

@@ -122,7 +122,8 @@ class Rule(object):
             self.name, 
             self.left_shape.__repr__(), 
             self.right_shape.__repr__())
-        repr_string = ', '.join(repr_parts)
+        joined_repr_parts = ', '.join(repr_parts)
+        repr_string = '(%s)' % joined_repr_parts
         return repr_string
 
 if __name__ == '__main__':
