@@ -73,11 +73,12 @@ class Derivation(object):
         pass
 
     def __str__(self):                  #   to do
-        """
+        """Returns a string in the drv format:
+            str
         """
         return 'kilroy str'
 
-    def __repr__(self):                 #   to do
+    def __repr__(self):
         """Returns an (unformatted) string in the form:
             <initial shape>,
             <rules>,
@@ -89,7 +90,8 @@ class Derivation(object):
             self.initial_shape.__repr__(),
             rules_repr,
             next_shapes_repr]
-        repr_string = '\n'.join(repr_parts)
+        joined_repr_parts = ', '.join(repr_parts)
+        repr_string = '(%s)' % joined_repr_parts
         return repr_string
 
     def _make_rules_repr(self):
@@ -105,7 +107,11 @@ class Derivation(object):
         """Returns an (unformatted) string in the form:
             [<shape>, ...]
         """
-        pass
+        next_shape_reprs = [
+            next_shape.__repr__() for next_shape in self.next_shapes]
+        joined_next_shape_reprs = ', '.join(next_shape_reprs)
+        repr_string = '[%s]' % joined_next_shape_reprs
+        return repr_string
 
 if __name__ == '__main__':
     import doctest
