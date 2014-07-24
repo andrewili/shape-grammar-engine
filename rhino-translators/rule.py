@@ -90,6 +90,7 @@ class Rule(object):
     ###
     def __str__(self):
         """Returns a string in the rul format
+            str
         """
         left_shape_string = (
             self.left_shape.make_rule_shape_string('left', self.name))

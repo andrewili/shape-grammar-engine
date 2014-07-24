@@ -253,19 +253,9 @@ class Shape(object):
         """Returns a string of an initial shape in is format:
             str
         """
-        initial_shape_header_and_name = (
-            self._make_initial_shape_header_and_name())
-        shape_string_remainder = self._make_shape_string_remainder()
-        if len(shape_string_remainder) == 0:
-            initial_shape_string = initial_shape_header_and_name
-        else:
-            initial_shape_string = '%s\n%s' % (
-                initial_shape_header_and_name, 
-                shape_string_remainder)
-        initial_shape_string
-        return initial_shape_string
+        return self.__str__()
         
-    def _make_initial_shape_header_and_name(self):
+    def _make_shape_header_and_name(self):
         """Returns a string in the form:
             shape <shape name>
                 name
@@ -507,8 +497,16 @@ class Shape(object):
         string):
             str
         """
-        is_string = self.make_initial_shape_string()
-        return is_string
+        shape_header_and_name = (
+            self._make_shape_header_and_name())
+        shape_string_remainder = self._make_shape_string_remainder()
+        if len(shape_string_remainder) == 0:
+            shape_string = shape_header_and_name
+        else:
+            shape_string = '%s\n%s' % (
+                shape_header_and_name, 
+                shape_string_remainder)
+        return shape_string
 
     ###
     def __repr__(self):

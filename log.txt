@@ -166,4 +166,19 @@ Log
     >   Implement Derivation class. 
     >   Does the Derivation class include the grammar? Or just the sequence of 
         shapes and rules? For now, let's include just the sequence. 
-    >   
+
+#   2014-07-23
+    >   The derivation produced by the interpreter shows the values of coord 
+        indices, but they're supposed to be integers!
+            coords 10 0 4 2.16840434497101e-016
+            coords 11 4 4 2.16840434497101e-016
+            coords 12 4 4 2
+            coords 13 0 4.33680868994202e-016 2
+            coords 14 0 4 2
+            coords 15 4 4.33680868994202e-016 2
+            coords 16 0 4.33680868994202e-016 2.16840434497101e-016
+            coords 17 4 4.33680868994202e-016 2.16840434497101e-016
+            coords 9 0 2 1
+    >   The derivation object should be called something else, since it 
+        contains both the grammar (initial shape and rules) and the 
+        "derivation record" (the "actual" derivation). 

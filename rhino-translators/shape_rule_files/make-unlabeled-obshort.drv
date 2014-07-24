@@ -1,0 +1,168 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    erase-lpoint_L
+    name 
+    coords 0 0 2 1
+
+    point 0 a
+shape    erase-lpoint_R
+    name 
+
+shape    labeled-oblong
+    name 
+    coords 0 0 0 0
+    coords 1 0 0 2
+    coords 2 0 2 1
+    coords 3 0 4 0
+    coords 4 0 4 2
+    coords 5 8 0 0
+    coords 6 8 0 2
+    coords 7 8 4 0
+    coords 8 8 4 2
+
+    line 0 0 1
+    line 1 0 3
+    line 10 6 8
+    line 11 7 8
+    line 2 0 5
+    line 3 1 4
+    line 4 1 6
+    line 5 3 4
+    line 6 3 7
+    line 7 4 8
+    line 8 5 6
+    line 9 5 7
+    point 2 a
+shape    shorten-oblong_L
+    name 
+    coords 0 0 0 0
+    coords 1 0 0 2
+    coords 2 0 2 1
+    coords 3 0 4 0
+    coords 4 0 4 2
+    coords 5 8 0 0
+    coords 6 8 0 2
+    coords 7 8 4 0
+    coords 8 8 4 2
+
+    line 0 0 1
+    line 1 0 3
+    line 10 6 8
+    line 11 7 8
+    line 2 0 5
+    line 3 1 4
+    line 4 1 6
+    line 5 3 4
+    line 6 3 7
+    line 7 4 8
+    line 8 5 6
+    line 9 5 7
+    point 2 a
+shape    shorten-oblong_R
+    name 
+    coords 0 0 0 0
+    coords 1 0 0 2
+    coords 10 4 4 0
+    coords 11 4 4 2
+    coords 2 0 2 1
+    coords 3 0 4 0
+    coords 4 0 4 2
+    coords 5 4 0 0
+    coords 6 4 0 2
+    coords 7 4 4 0
+    coords 8 4 0 0
+    coords 9 4 0 2
+
+    line 0 0 1
+    line 1 0 3
+    line 10 8 9
+    line 11 10 11
+    line 2 0 8
+    line 3 1 4
+    line 4 1 6
+    line 5 3 4
+    line 6 3 7
+    line 7 4 11
+    line 8 5 7
+    line 9 6 11
+    point 2 a
+initial    labeled-oblong
+rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R
+rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
+# derivation record
+shape    labeled-oblong
+    name 
+    coords 0 0 0 0
+    coords 1 0 0 2
+    coords 2 0 2 1
+    coords 3 0 4 0
+    coords 4 0 4 2
+    coords 5 8 0 0
+    coords 6 8 0 2
+    coords 7 8 4 0
+    coords 8 8 4 2
+
+    line 0 0 1
+    line 1 0 3
+    line 10 6 8
+    line 11 7 8
+    line 2 0 5
+    line 3 1 4
+    line 4 1 6
+    line 5 3 4
+    line 6 3 7
+    line 7 4 8
+    line 8 5 6
+    line 9 5 7
+    point 2 a
+rule    shorten-oblong
+shape    labeled-oblong_shorten-oblong_1
+    name 
+    coords 10 0 4 2.16840434497101e-016
+    coords 11 4 4 2.16840434497101e-016
+    coords 12 4 4 2
+    coords 13 0 4.33680868994202e-016 2
+    coords 14 0 4 2
+    coords 15 4 4.33680868994202e-016 2
+    coords 16 0 4.33680868994202e-016 2.16840434497101e-016
+    coords 17 4 4.33680868994202e-016 2.16840434497101e-016
+    coords 9 0 2 1
+
+    line 12 10 11
+    line 13 11 12
+    line 14 13 14
+    line 15 14 12
+    line 16 15 12
+    line 17 16 17
+    line 18 17 11
+    line 19 13 15
+    line 20 16 10
+    line 21 16 13
+    line 22 17 15
+    line 23 10 14
+    point 9 a
+rule    erase-lpoint
+shape    labeled-oblong_shorten-oblong_1_erase-lpoint_1
+    name 
+    coords 10 0 4 2.16840434497101e-016
+    coords 11 4 4 2.16840434497101e-016
+    coords 12 4 4 2
+    coords 13 0 4.33680868994202e-016 2
+    coords 14 0 4 2
+    coords 15 4 4.33680868994202e-016 2
+    coords 16 0 4.33680868994202e-016 2.16840434497101e-016
+    coords 17 4 4.33680868994202e-016 2.16840434497101e-016
+    coords 9 0 2 1
+
+    line 12 10 11
+    line 13 11 12
+    line 14 13 14
+    line 15 14 12
+    line 16 15 12
+    line 17 16 17
+    line 18 17 11
+    line 19 13 15
+    line 20 16 10
+    line 21 16 13
+    line 22 17 15
+    line 23 10 14

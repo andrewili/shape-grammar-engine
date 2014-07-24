@@ -1,0 +1,9 @@
+shape erase-lpoint_L
+    name labeled-point
+    coords 0 0.000000 2.000000 1.000000
+
+    point 0 a
+shape erase-lpoint_R
+    name empty-shape
+
+rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R

@@ -7,56 +7,59 @@
 ### __init__, __repr__, __str__
     >>> def make_deriv_parts():
     ...     def make_deriv_shapes():
+    ...         labeled_oblong_line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (8, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (8, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (8, 4, 0)),
+    ...             ((0, 4, 2), (8, 4, 2)),
+    ...             ((8, 0, 0), (8, 0, 2)),
+    ...             ((8, 0, 0), (8, 4, 0)),
+    ...             ((8, 0, 2), (8, 4, 2)),
+    ...             ((8, 4, 0), (8, 4, 2))]
+    ...         labeled_obshort_line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (4, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (4, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (4, 4, 0)),
+    ...             ((0, 4, 2), (4, 4, 2)),
+    ...             ((4, 0, 0), (4, 0, 2)),
+    ...             ((4, 0, 0), (4, 4, 0)),
+    ...             ((4, 0, 2), (4, 4, 2)),
+    ...             ((4, 4, 0), (4, 4, 2))]
+    ...         unlabeled_obshort_line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (4, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (4, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (4, 4, 0)),
+    ...             ((0, 4, 2), (4, 4, 2)),
+    ...             ((4, 0, 0), (4, 0, 2)),
+    ...             ((4, 0, 0), (4, 4, 0)),
+    ...             ((4, 0, 2), (4, 4, 2)),
+    ...             ((4, 4, 0), (4, 4, 2))]
     ...         def make_labeled_oblong():
-    ...             line_specs = [
-    ...                 ((0, 0, 0), (0, 0, 2)),
-    ...                 ((0, 0, 0), (0, 4, 0)),
-    ...                 ((0, 0, 0), (8, 0, 0)),
-    ...                 ((0, 0, 2), (0, 4, 2)),
-    ...                 ((0, 0, 2), (8, 0, 2)),
-    ...                 ((0, 4, 0), (0, 4, 2)),
-    ...                 ((0, 4, 0), (8, 4, 0)),
-    ...                 ((0, 4, 2), (8, 4, 2)),
-    ...                 ((8, 0, 0), (8, 0, 2)),
-    ...                 ((8, 0, 0), (8, 4, 0)),
-    ...                 ((8, 0, 2), (8, 4, 2)),
-    ...                 ((8, 4, 0), (8, 4, 2))]
+    ...             line_specs = labeled_oblong_line_specs
     ...             lpoint_specs = [((0, 2, 1), 'a')]
     ...             labeled_oblong = shape.Shape(
     ...                 'labeled-oblong', line_specs, lpoint_specs)
     ...             return labeled_oblong
     ...         def make_labeled_obshort():
-    ...             line_specs = [
-    ...                 ((0, 0, 0), (0, 0, 2)),
-    ...                 ((0, 0, 0), (0, 4, 0)),
-    ...                 ((0, 0, 0), (4, 0, 0)),
-    ...                 ((0, 0, 2), (0, 4, 2)),
-    ...                 ((0, 0, 2), (4, 0, 2)),
-    ...                 ((0, 4, 0), (0, 4, 2)),
-    ...                 ((0, 4, 0), (4, 4, 0)),
-    ...                 ((0, 4, 2), (4, 4, 2)),
-    ...                 ((4, 0, 0), (4, 0, 2)),
-    ...                 ((4, 0, 0), (4, 4, 0)),
-    ...                 ((4, 0, 2), (4, 4, 2)),
-    ...                 ((4, 4, 0), (4, 4, 2))]
+    ...             line_specs = labeled_obshort_line_specs
     ...             lpoint_specs = [((0, 2, 1), 'a')]
     ...             labeled_obshort = shape.Shape(
     ...                 'labeled-obshort', line_specs, lpoint_specs)
     ...             return labeled_obshort
     ...         def make_unlabeled_obshort():
-    ...             line_specs = [
-    ...                 ((0, 0, 0), (0, 0, 2)),
-    ...                 ((0, 0, 0), (0, 4, 0)),
-    ...                 ((0, 0, 0), (4, 0, 0)),
-    ...                 ((0, 0, 2), (0, 4, 2)),
-    ...                 ((0, 0, 2), (4, 0, 2)),
-    ...                 ((0, 4, 0), (0, 4, 2)),
-    ...                 ((0, 4, 0), (4, 4, 0)),
-    ...                 ((0, 4, 2), (4, 4, 2)),
-    ...                 ((4, 0, 0), (4, 0, 2)),
-    ...                 ((4, 0, 0), (4, 4, 0)),
-    ...                 ((4, 0, 2), (4, 4, 2)),
-    ...                 ((4, 4, 0), (4, 4, 2))]
+    ...             line_specs = unlabeled_obshort_line_specs
     ...             lpoint_specs = []
     ...             shape_unlabeled_obshort = shape.Shape(
     ...                 'unlabeled-obshort', line_specs, lpoint_specs)
@@ -67,23 +70,47 @@
     ...             lpoint = shape.Shape(
     ...                 'labeled-point', line_specs, lpoint_specs)
     ...             return lpoint
+    ...         def make_labeled_oblong_shorten_oblong():
+    ...             line_specs = labeled_obshort_line_specs
+    ...             lpoint_specs = [((0, 2, 1), 'a')]
+    ...             shape_out = shape.Shape(
+    ...                 'labeled-oblong_shorten-oblong',
+    ...                 line_specs,
+    ...                 lpoint_specs)
+    ...             return shape_out
+    ...         def make_labeled_oblong_shorten_oblong_erase_lpoint():
+    ...             line_specs = unlabeled_obshort_line_specs
+    ...             lpoint_specs = []
+    ...             shape_out = shape.Shape(
+    ...                 'labeled-oblong_shorten-oblong_erase-lpoint',
+    ...                 line_specs,
+    ...                 lpoint_specs)
+    ...             return shape_out
     ...         labeled_oblong = make_labeled_oblong()
     ...         labeled_obshort = make_labeled_obshort()
     ...         unlabeled_obshort = make_unlabeled_obshort()
     ...         lpoint = make_lpoint()
     ...         empty_shape = shape.Shape('empty-shape', [], [])
+    ...         labeled_oblong_shorten_oblong = (
+    ...             make_labeled_oblong_shorten_oblong())
+    ...         labeled_oblong_shorten_oblong_erase_lpoint = (
+    ...             make_labeled_oblong_shorten_oblong_erase_lpoint())
     ...         return (
     ...             labeled_oblong,
     ...             labeled_obshort,
     ...             unlabeled_obshort,
     ...             lpoint,
-    ...             empty_shape
+    ...             empty_shape,
+    ...             labeled_oblong_shorten_oblong,
+    ...             labeled_oblong_shorten_oblong_erase_lpoint
     ...         )
     ...     (   labeled_oblong,
     ...         labeled_obshort,
     ...         unlabeled_obshort,
     ...         lpoint,
-    ...         empty_shape
+    ...         empty_shape,
+    ...         labeled_oblong_shorten_oblong,
+    ...         labeled_oblong_shorten_oblong_erase_lpoint
     ...     ) = make_deriv_shapes()
     ...     initial_shape = labeled_oblong
     ...     rule_shorten_oblong = rule.Rule(
@@ -95,9 +122,13 @@
     ...         lpoint,
     ...         empty_shape)
     ...     rules = [rule_shorten_oblong, rule_erase_lpoint]
-    ...     next_shapes = [labeled_obshort, unlabeled_obshort]
+    ...     next_shapes = [
+    ...         labeled_oblong_shorten_oblong, 
+    ...         labeled_oblong_shorten_oblong_erase_lpoint]
     ...     deriv_parts = (initial_shape, rules, next_shapes)
     ...     return (deriv_parts)
+
+    ???     # next_shapes = [labeled_obshort, unlabeled_obshort]
     
     >>> initial_shape, rules, next_shapes = make_deriv_parts()
     >>> deriv_bad_initial_shape = derivation.Derivation(
@@ -112,39 +143,178 @@
     >>> test_deriv = derivation.Derivation(
     ...     initial_shape, rules, next_shapes)
 
-    >>> print(test_deriv)
+    ??? print(test_deriv)                       ###
     # derivation file version 1.00                           --chen liang 2007/08/06
     shape    erase-lpoint_L
+        name 
+        coords 0 0 2 1
+    <BLANKLINE>
+        point 0 a
     shape    erase-lpoint_R
+        name
+    <BLANKLINE>
+    shape    labeled-oblong
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 8 0 0
+        coords 6 8 0 2
+        coords 7 8 4 0
+        coords 8 8 4 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 6 8
+        line 11 7 8
+        line 2 0 5
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 8
+        line 8 5 6
+        line 9 5 7
+        point 2 a
     shape    shorten-oblong_L
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 8 0 0
+        coords 6 8 0 2
+        coords 7 8 4 0
+        coords 8 8 4 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 6 8
+        line 11 7 8
+        line 2 0 5
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 8
+        line 8 5 6
+        line 9 5 7
+        point 2 a
     shape    shorten-oblong_R
-    initial    shorten-oblong_L     # right name?
-    rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 10 4 4 0
+        coords 11 4 4 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 4 0 0
+        coords 6 4 0 2
+        coords 7 4 4 0
+        coords 8 4 0 0
+        coords 9 4 0 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 8 9
+        line 11 10 11
+        line 2 0 8
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 11
+        line 8 5 7
+        line 9 6 11
+        point 2 a
+    initial    labeled-oblong
     rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R
+    rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
     # derivation record
     shape    labeled-oblong
-        name
-        coords
-
-        line
-        point
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 8 0 0
+        coords 6 8 0 2
+        coords 7 8 4 0
+        coords 8 8 4 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 6 8
+        line 11 7 8
+        line 2 0 5
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 8
+        line 8 5 6
+        line 9 5 7
+        point 2 a
     rule    shorten-oblong
-    shape    labeled-obshort
-        name
-        coords
-
-        line
-        point
+    shape    labeled-oblong_shorten-oblong
+        name 
+        coords 10 0 4 2
+        coords 11 4 4 2
+        coords 12 4 4 2
+        coords 13 0 4 2
+        coords 14 0 4 2
+        coords 15 4 4 2
+        coords 16 0 4 2
+        coords 17 4 4 2
+        coords 9 0 2 1
+    <BLANKLINE>
+        line 12 10 11
+        line 13 11 12
+        line 14 13 14
+        line 15 14 12
+        line 16 15 12
+        line 17 16 17
+        line 18 17 11
+        line 19 13 15
+        line 20 16 10
+        line 21 16 13
+        line 22 17 15
+        line 23 10 14
+        point 9 a
     rule    erase-lpoint
-    shape    unlabeled-obshort
-        name
-        coords
+    shape    labeled-oblong_shorten-oblong_erase-lpoint
+        name 
+        coords 10 0 4 2
+        coords 11 4 4 2
+        coords 12 4 4 2
+        coords 13 0 4 2
+        coords 14 0 4 2
+        coords 15 4 4 2
+        coords 16 0 4 2
+        coords 17 4 4 2
+        coords 9 0 2 1
+    <BLANKLINE>
+        line 12 10 11
+        line 13 11 12
+        line 14 13 14
+        line 15 14 12
+        line 16 15 12
+        line 17 16 17
+        line 18 17 11
+        line 19 13 15
+        line 20 16 10
+        line 21 16 13
+        line 22 17 15
+        line 23 10 14
 
-        line
-        point
-
+### __repr__
     >>> print(test_deriv.__repr__())
-    ((labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), [(shorten-oblong, (labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])), (erase-lpoint, (labeled-point, [(0, 0, 0)], [], [(0, 'a')]), (empty-shape, [], [], []))], [(labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (unlabeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])])
+    ((labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), [(shorten-oblong, (labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])), (erase-lpoint, (labeled-point, [(0, 0, 0)], [], [(0, 'a')]), (empty-shape, [], [], []))], [(labeled-oblong_shorten-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-oblong_shorten-oblong_erase-lpoint, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])])
 
 ### _make_rules_repr
     >>> rules_repr = test_deriv._make_rules_repr()
@@ -154,4 +324,9 @@
 ### _make_next_shape_repr
     >>> next_shapes_repr = test_deriv._make_next_shapes_repr()
     >>> print(next_shapes_repr)
-    [(labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (unlabeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])]
+    [(labeled-oblong_shorten-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-oblong_shorten-oblong_erase-lpoint, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])]
+
+### get_final_shape
+    >>> test_deriv_final_shape = test_deriv.get_final_shape()
+    >>> print(test_deriv_final_shape.__repr__())
+    (labeled-oblong_shorten-oblong_erase-lpoint, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])

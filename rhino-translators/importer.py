@@ -11,14 +11,22 @@ class Importer(object):
     ###
     def import_final_shape(self):
         derivation_in = self._get_derivation_from_file()
-        current_shape = derivation_in.get_final_shape()
-        self._draw_shape(current_shape)
+        final_shape = derivation_in.get_final_shape()
+        self._draw_shape(final_shape)
 
-    def _get_derivation_from_file(self):    #   to do
+    def _get_derivation_from_file(self):        ###
         """Prompts for a drv file. Returns:
             Derivation
         """
-        pass
+        filter = "Rule files (*.drv)|*.drv|All files (*.*)|*.*||"
+        filename = rs.OpenFileName("Open derivation file", filter)
+        if not filename: 
+            return
+        file = open(filename, "r")
+        contents = file.readlines()
+        file.close()
+        new_derivation = derivation.Derivation.new_from_drv_text_lines(contents)
+        return new_derivation
 
     ###
     def import_rule(self):

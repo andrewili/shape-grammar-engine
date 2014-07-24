@@ -194,10 +194,9 @@
         point 3 b
         point 4 c
 
-### _make_initial_shape_header_and_name
-    >>> initial_shape_header_and_name = (
-    ...     drone_shape._make_initial_shape_header_and_name())
-    >>> print(initial_shape_header_and_name)
+### _make_shape_header_and_name
+    >>> shape_header_and_name = drone_shape._make_shape_header_and_name()
+    >>> print(shape_header_and_name)
     shape drone
         name
 
