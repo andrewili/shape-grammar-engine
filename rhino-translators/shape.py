@@ -248,6 +248,15 @@ class Shape(object):
         lpoint_entry = (coord, label)
         return lpoint_entry
 
+    @classmethod
+    def get_final_shape_text_lines_from_drv_text_lines(cls, drv_text_lines):
+        """Receives the text lines of a drv file:
+            [<drv-text-line>, ...]
+        Returns the text lines of the final shape:
+            [<final-shape-text-line>, ...]
+        """
+        pass
+
     ###
     def make_initial_shape_string(self):
         """Returns a string of an initial shape in is format:

@@ -57,56 +57,43 @@ class Derivation(object):
     #     else:
     #         self.shape_rule_list = shape_rule_list
 
-    @classmethod                                ###
-    def new_from_drv_text_lines(cls, text_lines_in):
-        """Receives the text lines of the derivation record of a drv file:
-            [str, ...]
-        Returns:
-            Derivation
-        """
-        (   initial_shape_text_lines,
-            rules_text_lines,
-            next_shapes_text_lines
-        ) = self._get_sorted_drv_text_lines(text_lines_in)
-        initial_shape = shape.Shape.new_from_is_text_lines(
-            initial_shape_text_lines)
-        rules = self._make_rules_from_text_lines(rules_text_lines)
-        next_shapes = self._make_next_shapes_from_text_lines(
-            next_shapes_text_lines)
-        new_derivation = Derivation(initial_shape, rules, next_shapes)
-        return new_derivation
+    # @classmethod
+    # def new_from_drv_text_lines(cls, text_lines_in):
+    #     """Receives the text lines of the derivation record of a drv file:
+    #         [str, ...]
+    #     Returns:
+    #         Derivation
+    #     """
+    #     (   initial_shape_text_lines,
+    #         rules_text_lines,
+    #         next_shapes_text_lines
+    #     ) = self._get_sorted_drv_text_lines(text_lines_in)
+    #     initial_shape = shape.Shape.new_from_is_text_lines(
+    #         initial_shape_text_lines)
+    #     rules = self._make_rules_from_text_lines(rules_text_lines)
+    #     next_shapes = self._make_next_shapes_from_text_lines(
+    #         next_shapes_text_lines)
+    #     new_derivation = Derivation(initial_shape, rules, next_shapes)
+    #     return new_derivation
 
-    @classmethod                                ###
-    def _get_sorted_drv_text_lines(cls, text_lines_in):
-        """Returns a 3-tuple of text line lists for the initial shape, the 
-        rules, and the next shapes:
-            (   [<initial-shape-text-line>, ...],
-                [<rule-text-line>, ...],
-                [<next-shape-line>, ...])
-        """
-        initial_shape_text_lines = []
-        rules_text_lines = []
-        next_shape_text_lines = []
-        for line in text_lines_in:
-            if 
-        drv_text_line_tuple = (
-            initial_shape_text_lines,
-            rules_text_lines,
-            next_shape_text_lines)
-        return drv_text_line_tuple
-
-    @classmethod                                ###
-    def _make_rules_from_text_lines(cls):
-        """
-        """
-        pass
-
-    @classmethod                                ###
-    def _make_next_shapes_from_text_lines(cls):
-        """
-        """
-        pass
-
+    # @classmethod
+    # def _get_sorted_drv_text_lines(cls, text_lines_in):
+    #     """Returns a 3-tuple of text line lists for the initial shape, the 
+    #     rules, and the next shapes:
+    #         (   [<initial-shape-text-line>, ...],
+    #             [<rule-text-line>, ...],
+    #             [<next-shape-line>, ...])
+    #     """
+    #     initial_shape_text_lines = []
+    #     rules_text_lines = []
+    #     next_shape_text_lines = []
+    #     for line in text_lines_in:
+    #         if 
+    #     drv_text_line_tuple = (
+    #         initial_shape_text_lines,
+    #         rules_text_lines,
+    #         next_shape_text_lines)
+    #     return drv_text_line_tuple
 
     def get_final_shape(self):
         """Returns the final shape in the derivation:

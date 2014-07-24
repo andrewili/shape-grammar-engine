@@ -10,23 +10,62 @@ class Importer(object):
 
     ###
     def import_final_shape(self):
-        derivation_in = self._get_derivation_from_file()
-        final_shape = derivation_in.get_final_shape()
+        """Prompts for a drv file. Draws the final shape in the derivation.
+        """
+        drv_text_lines = self._get_text_lines_from_drv_file()
+        final_shape_text_lines = (
+            shape.Shape.get_final_shape_text_lines_from_drv_text_lines(
+                drv_text_lines))
+        final_shape = shape.Shape.new_from_is_text_lines(
+            final_shape_text_lines)
+        # derivation_in = self._get_derivation_from_file()
+        # final_shape = derivation_in.get_final_shape()
         self._draw_shape(final_shape)
 
-    def _get_derivation_from_file(self):        ###
-        """Prompts for a drv file. Returns:
-            Derivation
+    def _get_text_lines_from_drv_file(self):
+        """Prompts for a drv file. Returns its text lines:
+            [drv_text_line, ...]
         """
-        filter = "Rule files (*.drv)|*.drv|All files (*.*)|*.*||"
-        filename = rs.OpenFileName("Open derivation file", filter)
-        if not filename: 
+        filter = "Derivation files (*.drv)|*.drv|All files (*.*)|*.*||"
+        filename = rs.OpenFileName('Open derivation file', filter)
+        if not filename:
             return
-        file = open(filename, "r")
-        contents = file.readlines()
+        file = open(filename, 'r')
+        drv_text_lines = file.readlines()
         file.close()
-        new_derivation = derivation.Derivation.new_from_drv_text_lines(contents)
-        return new_derivation
+        return drv_text_lines
+
+    # def _get_final_shape_text_lines_from_drv_text_lines(self, drv_text_lines):
+    #     """Receives the text lines of a drv file:
+    #         [<drv-text-line>, ...]
+    #     Returns the text lines of the final shape:
+    #         [<final-shape-text-line>, ...]
+    #     """
+    #     pass
+
+    # def _get_final_shape_from_drv_text_lines(self, drv_text_lines):
+    #     """Receives the text lines of a drv file:
+    #         [string, ...]
+    #     Returns the final shape in the derivation:
+    #         Shape
+    #     """
+    #     is_text_lines = []
+    #     final_shape = shape.Shape.new_from_is_text_lines(is_text_lines)
+    #     return final_shape
+
+    # def _get_derivation_from_file(self):        ###
+    #     """Prompts for a drv file. Returns:
+    #         Derivation
+    #     """
+    #     filter = "Derivation files (*.drv)|*.drv|All files (*.*)|*.*||"
+    #     filename = rs.OpenFileName("Open derivation file", filter)
+    #     if not filename: 
+    #         return
+    #     file = open(filename, "r")
+    #     contents = file.readlines()
+    #     file.close()
+    #     new_derivation = derivation.Derivation.new_from_drv_text_lines(contents)
+    #     return new_derivation
 
     ###
     def import_rule(self):

@@ -162,6 +162,13 @@
     >>> lpoint_entry
     ((0.0, 0.0, 0.0), 'a')
 
+### get_final_shape_text_lines_from_drv_text_lines
+    >>> drv_text_lines = ['?', '??', '???']
+    >>> final_shape_text_lines = (
+    ...     shape.Shape.get_final_shape_text_lines_from_drv_text_lines(
+    ...         drv_text_lines))
+    >>> print(final_shape_text_lines)
+
 ### make_initial_shape_string
     >>> def make_initial_shape_string_test():
     ...     name = 'Kilroy'
