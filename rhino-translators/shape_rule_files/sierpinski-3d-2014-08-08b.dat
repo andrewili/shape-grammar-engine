@@ -8,7 +8,7 @@ shape    del-lpoint_L
 shape    del-lpoint_R
     name 
 
-shape    subdivide-tetrahedron_L
+shape    divide-tet_L
     name 
     coords 0 0 0 0
     coords 1 0 0 24
@@ -23,7 +23,7 @@ shape    subdivide-tetrahedron_L
     line 4 1 4
     line 5 2 4
     point 3 a
-shape    subdivide-tetrahedron_R
+shape    divide-tet_R
     name 
     coords 0 0 0 0
     coords 1 0 0 12
@@ -43,13 +43,12 @@ shape    subdivide-tetrahedron_R
     line 0 0 2
     line 1 0 5
     line 10 3 9
-    line 11 3 11
-    line 12 4 10
-    line 13 4 11
-    line 14 5 13
-    line 15 9 10
-    line 16 9 11
-    line 17 10 11
+    line 11 4 10
+    line 12 4 11
+    line 13 5 13
+    line 14 9 10
+    line 15 9 11
+    line 16 10 11
     line 2 0 13
     line 3 1 3
     line 4 1 4
@@ -79,4 +78,4 @@ shape    undivided-tetrahedron
     point 3 a
 initial    undivided-tetrahedron
 rule    del-lpoint    del-lpoint_L -> del-lpoint_R
-rule    subdivide-tetrahedron    subdivide-tetrahedron_L -> subdivide-tetrahedron_R
+rule    divide-tet    divide-tet_L -> divide-tet_R

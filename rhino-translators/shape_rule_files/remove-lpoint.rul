@@ -1,0 +1,9 @@
+shape remove-lpoint_L
+    name lpoint
+    coords 0 6.000000 6.000000 8.000000
+
+    point 0 a
+shape remove-lpoint_R
+    name empty
+
+rule    remove-lpoint    remove-lpoint_L -> remove-lpoint_R

@@ -255,7 +255,28 @@ class Shape(object):
         Returns the text lines of the final shape:
             [<final-shape-text-line>, ...]
         """
-        pass
+        final_shape_text_lines_reversed = []
+        for drv_text_line in reversed(drv_text_lines):
+            if (drv_text_line == '' or
+                drv_text_line.isspace()
+            ):
+                final_shape_text_lines_reversed.append(drv_text_line)
+            else:
+                tokens = drv_text_line.split()
+                first_token = tokens[0]
+                if first_token == 'line':
+                    final_shape_text_lines_reversed.append(drv_text_line)
+                elif first_token == 'coords':
+                    final_shape_text_lines_reversed.append(drv_text_line)
+                elif first_token == 'name':
+                    final_shape_text_lines_reversed.append(drv_text_line)
+                elif first_token == 'shape':
+                    final_shape_text_lines_reversed.append(drv_text_line)
+                    break
+        final_shape_text_lines = [
+            drv_text_line for drv_text_line in reversed(
+                final_shape_text_lines_reversed)]
+        return final_shape_text_lines
 
     ###
     def make_initial_shape_string(self):

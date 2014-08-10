@@ -1,0 +1,2579 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    del-lpoint_L
+    name 
+    coords 0 7 9 0
+
+    point 0 a
+shape    del-lpoint_R
+    name 
+
+shape    subdivide-tetrahedron_L
+    name 
+    coords 0 0 0 0
+    coords 1 0 0 24
+    coords 2 0 18 0
+    coords 3 6 6 8
+    coords 4 18 0 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+shape    subdivide-tetrahedron_R
+    name 
+    coords 0 0 0 0
+    coords 1 0 0 12
+    coords 10 9 0 12
+    coords 11 9 9 0
+    coords 12 12 3 4
+    coords 13 18 0 0
+    coords 2 0 0 24
+    coords 3 0 9 0
+    coords 4 0 9 12
+    coords 5 0 18 0
+    coords 6 3 3 4
+    coords 7 3 3 16
+    coords 8 3 12 4
+    coords 9 9 0 0
+
+    line 0 0 2
+    line 1 0 5
+    line 10 3 9
+    line 11 3 11
+    line 12 4 10
+    line 13 4 11
+    line 14 5 13
+    line 15 9 10
+    line 16 9 11
+    line 17 10 11
+    line 2 0 13
+    line 3 1 3
+    line 4 1 4
+    line 5 1 9
+    line 6 1 10
+    line 7 2 5
+    line 8 2 13
+    line 9 3 4
+    point 12 a
+    point 6 a
+    point 7 a
+    point 8 a
+shape    undivided-tetrahedron
+    name 
+    coords 0 0 0 0
+    coords 1 0 0 24
+    coords 2 0 18 0
+    coords 3 6 6 8
+    coords 4 18 0 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+initial    undivided-tetrahedron
+rule    del-lpoint    del-lpoint_L -> del-lpoint_R
+rule    subdivide-tetrahedron    subdivide-tetrahedron_L -> subdivide-tetrahedron_R
+# derivation record
+shape    undivided-tetrahedron
+    name 
+    coords 0 0 0 0
+    coords 1 0 0 24
+    coords 2 0 18 0
+    coords 3 6 6 8
+    coords 4 18 0 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+rule    subdivide-tetrahedron
+shape    undivided-tetrahedron_subdivide-tetrahedron_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 11 -1.26981758441502e-015 -1.26981758441502e-015 24
+    coords 12 1.39471767468535e-015 18 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 14 -2.60208521396521e-015 -2.60208521396521e-015 0
+    coords 15 18 1.39471767468535e-015 9.99200722162641e-016
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 5 3 3 4
+    coords 6 3 12 4
+    coords 7 3 3 16
+    coords 8 12 3 4
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 10 14 12
+    line 11 14 11
+    line 12 16 10
+    line 13 17 10
+    line 14 18 13
+    line 15 18 9
+    line 16 9 16
+    line 17 16 13
+    line 18 17 13
+    line 19 12 15
+    line 20 11 15
+    line 21 18 16
+    line 22 9 17
+    line 23 18 17
+    line 6 9 10
+    line 7 11 12
+    line 8 13 10
+    line 9 14 15
+    point 5 a
+    point 6 a
+    point 7 a
+    point 8 a
+rule    subdivide-tetrahedron
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 11 -1.26981758441502e-015 -1.26981758441502e-015 24
+    coords 12 1.39471767468535e-015 18 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 14 -2.60208521396521e-015 -2.60208521396521e-015 0
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 5 3 3 4
+    coords 6 3 12 4
+    coords 7 3 3 16
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 10 14 12
+    line 11 14 11
+    line 12 16 10
+    line 14 18 13
+    line 15 18 9
+    line 16 9 16
+    line 17 16 13
+    line 21 18 16
+    line 22 9 17
+    line 23 18 17
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 30 14 26
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 40 12 26
+    line 41 11 26
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 6 9 10
+    line 7 11 12
+    point 19 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 5 a
+    point 6 a
+    point 7 a
+rule    subdivide-tetrahedron
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 11 -1.26981758441502e-015 -1.26981758441502e-015 24
+    coords 13 9 6.24500451351651e-017 12
+    coords 14 -2.60208521396521e-015 -2.60208521396521e-015 0
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 5 3 3 4
+    coords 7 3 3 16
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 11 14 11
+    line 14 18 13
+    line 15 18 9
+    line 17 16 13
+    line 21 18 16
+    line 22 9 17
+    line 23 18 17
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 30 14 26
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 41 11 26
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 49 11 36
+    line 50 37 35
+    line 51 9 10
+    line 52 14 36
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    point 19 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 30 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 5 a
+    point 7 a
+rule    subdivide-tetrahedron
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 14 -2.60208521396521e-015 -2.60208521396521e-015 0
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 5 3 3 4
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 15 18 9
+    line 22 9 17
+    line 23 18 17
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 30 14 26
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 52 14 36
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 74 14 47
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    point 19 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 30 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 5 a
+rule    subdivide-tetrahedron
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 19 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 30 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 20 a
+    point 21 a
+    point 22 a
+    point 30 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 21 a
+    point 22 a
+    point 30 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 22 a
+    point 30 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 30 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 31 a
+    point 32 a
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 32 a
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 33 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 42 a
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 43 a
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 44 a
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 53 a
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 54 a
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 55 a
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57
+    point 56 a
+rule    del-lpoint
+shape    undivided-tetrahedron_subdivide-tetrahedron_1_subdivide-tetrahedron_1_subdivide-tetrahedron_2_subdivide-tetrahedron_4_subdivide-tetrahedron_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 10 9 9 9.99200722162641e-016
+    coords 13 9 6.24500451351651e-017 12
+    coords 16 6.24500451351651e-017 9 12
+    coords 17 9 -6.03683769639929e-016 4.9960036108132e-016
+    coords 18 -1.93595139919012e-015 -1.93595139919012e-015 12
+    coords 19 10.5 1.5 2
+    coords 20 10.5 6 2
+    coords 21 10.5 1.5 8
+    coords 22 15 1.5 2
+    coords 23 9 4.5 1.01128280012228e-015
+    coords 24 13.5 4.5 1.36696209906972e-015
+    coords 25 13.5 7.80625564189563e-016 6
+    coords 26 18 2.19615992058664e-015 1.5787203358833e-015
+    coords 27 9 4.5 6
+    coords 28 13.5 4.47558656802016e-016 1.22304103693585e-015
+    coords 29 9 -9.67975699595058e-016 6
+    coords 30 1.5 10.5 2
+    coords 31 1.5 15 2
+    coords 32 1.5 10.5 8
+    coords 33 6 10.5 2
+    coords 34 4.47558656802016e-016 13.5 1.22304103693585e-015
+    coords 35 4.5 13.5 1.36696209906972e-015
+    coords 36 2.19615992058664e-015 18 1.5787203358833e-015
+    coords 37 4.5 9 6
+    coords 38 7.80625564189563e-016 13.5 6
+    coords 39 4.5 9 1.01128280012228e-015
+    coords 40 -9.67975699595058e-016 9 6
+    coords 41 1.5 1.5 14
+    coords 42 1.5 6 14
+    coords 43 1.5 1.5 20
+    coords 44 6 1.5 14
+    coords 45 -2.53616572187809e-015 4.5 12
+    coords 46 4.5 4.5 12
+    coords 47 -1.70349845340922e-015 -1.70349845340922e-015 24
+    coords 48 4.5 -1.870031907103e-015 18
+    coords 49 -1.870031907103e-015 4.5 18
+    coords 50 4.5 -2.53616572187809e-015 12
+    coords 51 -2.36963226818432e-015 -2.36963226818432e-015 18
+    coords 52 4.5 -1.26981758441502e-015 6
+    coords 53 1.5 1.5 2
+    coords 54 1.5 6 2
+    coords 55 1.5 1.5 8
+    coords 56 6 1.5 2
+    coords 57 -2.96984659087229e-015 4.5 -4.9960036108132e-016
+    coords 58 4.5 4.5 -9.99200722162641e-016
+    coords 59 -3.46944695195361e-015 -3.46944695195361e-015 0
+    coords 60 -2.3037127760972e-015 4.5 6
+    coords 61 4.5 -2.96984659087229e-015 -4.9960036108132e-016
+    coords 62 -2.80331313717852e-015 -2.80331313717852e-015 6
+    coords 9 -6.03683769639929e-016 9 4.9960036108132e-016
+
+    line 100 57 60
+    line 101 60 52
+    line 102 61 52
+    line 103 9 17
+    line 104 18 17
+    line 105 62 60
+    line 106 57 61
+    line 107 62 61
+    line 27 23 24
+    line 28 13 10
+    line 29 25 24
+    line 31 17 10
+    line 32 17 13
+    line 33 27 24
+    line 34 28 24
+    line 35 29 25
+    line 36 29 23
+    line 37 23 27
+    line 38 27 25
+    line 39 28 25
+    line 42 29 27
+    line 43 23 28
+    line 44 29 28
+    line 48 34 35
+    line 50 37 35
+    line 51 9 10
+    line 53 9 16
+    line 54 38 35
+    line 55 39 35
+    line 56 40 37
+    line 57 40 34
+    line 58 34 38
+    line 59 38 37
+    line 60 39 37
+    line 61 26 36
+    line 62 16 10
+    line 63 40 38
+    line 64 34 39
+    line 65 40 39
+    line 69 45 46
+    line 70 36 47
+    line 71 48 46
+    line 72 18 13
+    line 73 18 16
+    line 75 49 46
+    line 76 50 46
+    line 77 51 48
+    line 78 51 45
+    line 79 45 49
+    line 80 49 48
+    line 81 50 48
+    line 82 16 13
+    line 83 26 47
+    line 84 51 49
+    line 85 45 50
+    line 86 51 50
+    line 90 57 58
+    line 91 18 9
+    line 92 52 58
+    line 93 26 59
+    line 94 36 59
+    line 95 47 59
+    line 96 60 58
+    line 97 61 58
+    line 98 62 52
+    line 99 62 57

@@ -1,0 +1,181 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    +->x_L
+    name cross+
+    coords 0 16 24 0
+    coords 1 16 8 0
+    coords 2 8 16 0
+    coords 3 24 16 0
+
+    line 1 0 1
+    line 2 2 3
+shape    +->x_R
+    name x!
+    coords 0 8 24 0
+    coords 1 24 8 0
+    coords 2 8 8 0
+    coords 3 24 24 0
+
+    line 1 0 1
+    line 2 2 3
+shape    sq-2sq_L
+    name sq
+    coords 0 8 24 0
+    coords 1 16 24 0
+    coords 2 8 16 0
+    coords 3 16 16 0
+
+    line 1 0 1
+    line 2 0 2
+    line 3 2 3
+    line 4 1 3
+shape    sq-2sq_R
+    name 2sq
+    coords 0 8 16 0
+    coords 1 16 16 0
+    coords 2 8 24 0
+    coords 3 12 20 0
+    coords 4 20 20 0
+    coords 5 12 12 0
+    coords 6 20 12 0
+    coords 7 16 24 0
+
+    line 17 0 1
+    line 18 2 0
+    line 19 3 4
+    line 20 3 5
+    line 21 5 6
+    line 22 4 6
+    line 23 7 1
+    line 24 2 7
+shape    sq-x_L
+    name sq
+    coords 0 12 20 0
+    coords 1 20 20 0
+    coords 2 12 12 0
+    coords 3 20 12 0
+
+    line 1 0 1
+    line 2 0 2
+    line 3 2 3
+    line 4 1 3
+shape    sq-x_R
+    name x
+    coords 0 12 12 0
+    coords 1 20 20 0
+    coords 2 12 20 0
+    coords 3 20 12 0
+
+    line 1 0 1
+    line 2 2 3
+shape    what?
+    name 
+    coords 0 8 24.8 0
+    coords 1 24.8 24.8 0
+    coords 2 8 8 0
+    coords 3 24.8 8 0
+
+    line 1 0 1
+    line 2 0 2
+    line 3 2 3
+    line 4 1 3
+initial    what?
+rule    +->x    +->x_L -> +->x_R
+rule    sq-2sq    sq-2sq_L -> sq-2sq_R
+rule    sq-x    sq-x_L -> sq-x_R
+# derivation record
+shape    what?
+    name 
+    coords 0 8 24.8 0
+    coords 1 24.8 24.8 0
+    coords 2 8 8 0
+    coords 3 24.8 8 0
+
+    line 1 0 1
+    line 2 0 2
+    line 3 2 3
+    line 4 1 3
+rule    sq-2sq
+shape    what?_sq-2sq_5
+    name 
+    coords 10 16.4 16.4 0
+    coords 11 24.8 24.8 0
+    coords 12 24.8 16.4 0
+    coords 13 16.4 24.8 0
+    coords 4 16.4 33.2 0
+    coords 5 33.2 33.2 0
+    coords 6 8 8 0
+    coords 7 24.8 8 0
+    coords 8 33.2 16.4 0
+    coords 9 8 24.8 0
+
+    line 10 9 11
+    line 11 7 11
+    line 12 10 8
+    line 5 4 5
+    line 6 6 7
+    line 7 8 5
+    line 8 6 9
+    line 9 10 4
+rule    sq-2sq
+shape    what?_sq-2sq_5_sq-2sq_3
+    name 
+    coords 11 24.8 24.8 0
+    coords 12 24.8 16.4 0
+    coords 13 16.4 24.8 0
+    coords 14 24.8 41.6 0
+    coords 15 41.6 41.6 0
+    coords 16 16.4 16.4 0
+    coords 17 33.2 16.4 0
+    coords 18 41.6 24.8 0
+    coords 19 16.4 33.2 0
+    coords 20 33.2 33.2 0
+    coords 21 24.8 33.2 0
+    coords 22 33.2 24.8 0
+    coords 6 8 8 0
+    coords 7 24.8 8 0
+    coords 9 8 24.8 0
+
+    line 13 14 15
+    line 14 16 17
+    line 15 18 15
+    line 16 16 19
+    line 17 7 14
+    line 18 19 20
+    line 19 17 20
+    line 20 9 18
+    line 6 6 7
+    line 8 6 9
+rule    +->x
+shape    what?_sq-2sq_5_sq-2sq_3_+->x_9
+    name 
+    coords 11 24.8 24.8 0
+    coords 12 24.8 16.4 0
+    coords 13 16.4 24.8 0
+    coords 14 24.8 41.6 0
+    coords 15 41.6 41.6 0
+    coords 16 16.4 16.4 0
+    coords 17 33.2 16.4 0
+    coords 18 41.6 24.8 0
+    coords 19 16.4 33.2 0
+    coords 20 33.2 33.2 0
+    coords 21 24.8 33.2 0
+    coords 22 33.2 24.8 0
+    coords 6 8 8 0
+    coords 7 24.8 8 0
+    coords 9 8 24.8 0
+
+    line 13 14 15
+    line 14 16 17
+    line 15 18 15
+    line 16 16 19
+    line 18 19 20
+    line 19 17 20
+    line 21 7 12
+    line 22 14 21
+    line 23 9 13
+    line 24 18 22
+    line 25 16 20
+    line 26 19 17
+    line 6 6 7
+    line 8 6 9
