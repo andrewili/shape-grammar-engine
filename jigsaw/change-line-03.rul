@@ -1,0 +1,20 @@
+shape change-line-03_L
+    name line
+    coords 0 8.000000 21.000000 0.000000
+    coords 1 10.000000 20.000000 0.000000
+    coords 2 20.000000 20.000000 0.000000
+
+    line 0 1 2
+    point 0 t
+    point 2 h
+shape change-line-03_R
+    name changed-line
+    coords 0 13.000000 21.000000 0.000000
+    coords 1 17.000000 19.000000 0.000000
+    coords 2 18.000000 21.000000 0.000000
+    coords 3 30.000000 20.000000 0.000000
+
+    line 0 0 1
+    point 2 t
+    point 3 h
+rule    change-line-03    change-line-03_L -> change-line-03_R

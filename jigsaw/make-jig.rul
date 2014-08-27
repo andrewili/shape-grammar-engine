@@ -1,0 +1,31 @@
+shape make-jig_L
+    name line
+    coords 0 0.000000 10.000000 0.000000
+    coords 1 9.000000 11.000000 0.000000
+    coords 2 10.000000 10.000000 0.000000
+
+    line 0 0 2
+    point 1 a
+shape make-jig_R
+    name jig
+    coords 0 0.000000 10.000000 0.000000
+    coords 1 1.000000 9.000000 0.000000
+    coords 2 3.000000 9.000000 0.000000
+    coords 3 3.000000 11.000000 0.000000
+    coords 4 5.000000 9.000000 0.000000
+    coords 5 5.000000 11.000000 0.000000
+    coords 6 7.000000 9.000000 0.000000
+    coords 7 7.000000 11.000000 0.000000
+    coords 8 9.000000 11.000000 0.000000
+    coords 9 10.000000 10.000000 0.000000
+
+    line 0 0 1
+    line 1 2 1
+    line 2 3 2
+    line 3 4 5
+    line 4 4 6
+    line 5 5 3
+    line 6 7 6
+    line 7 8 7
+    line 8 8 9
+rule    make-jig    make-jig_L -> make-jig_R

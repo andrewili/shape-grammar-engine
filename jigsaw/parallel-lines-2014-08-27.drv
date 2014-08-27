@@ -1,0 +1,185 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    1
+    name 
+    coords 0 16 24 0
+    coords 1 16 16 0
+    coords 2 16.8 16 0
+
+    line 1 0 1
+    point 2 1
+shape    1-2_L
+    name 1
+    coords 0 16 24 0
+    coords 1 16 16 0
+    coords 2 16.8 16 0
+
+    line 1 0 1
+    point 2 1
+shape    1-2_R
+    name 2
+    coords 0 16 24 0
+    coords 1 16 16 0
+    coords 2 16.8 24 0
+    coords 3 16.8 16 0
+    coords 4 17.6 16 0
+
+    line 1 0 1
+    line 2 2 3
+    point 4 2
+shape    2-3_L
+    name 2
+    coords 0 16 24 0
+    coords 1 16 16 0
+    coords 2 16.8 16 0
+
+    line 1 0 1
+    point 2 2
+shape    2-3_R
+    name 3
+    coords 0 16 24 0
+    coords 1 16 16 0
+    coords 2 16.8 24 0
+    coords 3 16.8 16 0
+    coords 4 17.6 16 0
+
+    line 1 0 1
+    line 2 2 3
+    point 4 3
+shape    3-4_L
+    name 3
+    coords 0 16 24 0
+    coords 1 16 16 0
+    coords 2 16.8 16 0
+
+    line 1 0 1
+    point 2 3
+shape    3-4_R
+    name 4
+    coords 0 16 24 0
+    coords 1 16 16 0
+    coords 2 16.8 24 0
+    coords 3 16.8 16 0
+    coords 4 17.6 16 0
+
+    line 1 0 1
+    line 2 2 3
+    point 4 4
+shape    erase-label-4_L
+    name label-4
+    coords 0 16 16 0
+
+    point 0 4
+shape    erase-label-4_R
+    name empty
+
+initial    1
+rule    1-2    1-2_L -> 1-2_R
+rule    2-3    2-3_L -> 2-3_R
+rule    3-4    3-4_L -> 3-4_R
+rule    erase-label-4    erase-label-4_L -> erase-label-4_R
+# derivation record
+shape    1
+    name 
+    coords 0 16 24 0
+    coords 1 16 16 0
+    coords 2 16.8 16 0
+
+    line 1 0 1
+    point 2 1
+rule    
+shape    x1_1-2_1
+    name 
+    coords 3 17.6 16 0
+    coords 4 16 24 0
+    coords 5 16 16 0
+    coords 6 16.8 24 0
+    coords 7 16.8 16 0
+
+    line 2 4 5
+    line 3 6 7
+    point 3 2
+rule    
+shape    xx1_1-2_1_2-3_1
+    name 
+    coords 10 16.8 16 0
+    coords 11 17.6 24 0
+    coords 12 17.6 16 0
+    coords 4 16 24 0
+    coords 5 16 16 0
+    coords 8 18.4 16 0
+    coords 9 16.8 24 0
+
+    line 2 4 5
+    line 4 9 10
+    line 5 11 12
+    point 8 3
+rule    
+shape    xxx1_1-2_1_2-3_1_3-4_1
+    name 
+    coords 10 16.8 16 0
+    coords 13 19.2 16 0
+    coords 14 17.6 24 0
+    coords 15 17.6 16 0
+    coords 16 18.4 24 0
+    coords 17 18.4 16 0
+    coords 4 16 24 0
+    coords 5 16 16 0
+    coords 9 16.8 24 0
+
+    line 2 4 5
+    line 4 9 10
+    line 6 14 15
+    line 7 16 17
+    point 13 4
+rule    
+shape    xxxx1_1-2_1_2-3_1_3-4_1_erase-label-4_1
+    name 
+    coords 10 16.8 16 0
+    coords 13 19.2 16 0
+    coords 14 17.6 24 0
+    coords 15 17.6 16 0
+    coords 16 18.4 24 0
+    coords 17 18.4 16 0
+    coords 4 16 24 0
+    coords 5 16 16 0
+    coords 9 16.8 24 0
+
+    line 2 4 5
+    line 4 9 10
+    line 6 14 15
+    line 7 16 17
+rule    
+shape    xxxx1_1-2_1_2-3_1_3-4_1_erase-label-4_1
+    name 
+    coords 10 16.8 16 0
+    coords 13 19.2 16 0
+    coords 14 17.6 24 0
+    coords 15 17.6 16 0
+    coords 16 18.4 24 0
+    coords 17 18.4 16 0
+    coords 4 16 24 0
+    coords 5 16 16 0
+    coords 9 16.8 24 0
+
+    line 2 4 5
+    line 4 9 10
+    line 6 14 15
+    line 7 16 17
+rule    
+shape    xxxx1_1-2_1_2-3_1_3-4_1_erase-label-4_1
+    name 
+    coords 10 16.8 16 0
+    coords 13 19.2 16 0
+    coords 14 17.6 24 0
+    coords 15 17.6 16 0
+    coords 16 18.4 24 0
+    coords 17 18.4 16 0
+    coords 4 16 24 0
+    coords 5 16 16 0
+    coords 9 16.8 24 0
+
+    line 2 4 5
+    line 4 9 10
+    line 6 14 15
+    line 7 16 17

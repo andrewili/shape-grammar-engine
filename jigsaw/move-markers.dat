@@ -1,0 +1,159 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    change-line_L
+    name 
+    coords 0 8 41 0
+    coords 1 10 40 0
+    coords 2 18 41 0
+    coords 3 20 40 0
+
+    line 0 1 3
+    line 1 3 2
+    point 0 t
+    point 3 h
+shape    change-line_R
+    name 
+    coords 0 13 41 0
+    coords 1 17 39 0
+    coords 2 18 41 0
+    coords 3 28 41 0
+    coords 4 30 40 0
+    coords 5 30 40 0
+
+    line 0 0 1
+    line 1 5 3
+    point 2 t
+    point 4 h
+shape    marked-grid
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 29 0
+    coords 11 9 31 0
+    coords 12 9 39 0
+    coords 13 9 41 0
+    coords 14 9 49 0
+    coords 15 10 0 0
+    coords 16 10 10 0
+    coords 17 10 20 0
+    coords 18 10 30 0
+    coords 19 10 40 0
+    coords 2 0 20 0
+    coords 20 10 50 0
+    coords 21 19 9 0
+    coords 22 19 11 0
+    coords 23 19 19 0
+    coords 24 19 21 0
+    coords 25 19 29 0
+    coords 26 19 31 0
+    coords 27 19 39 0
+    coords 28 19 41 0
+    coords 29 19 49 0
+    coords 3 0 30 0
+    coords 30 20 0 0
+    coords 31 20 10 0
+    coords 32 20 20 0
+    coords 33 20 30 0
+    coords 34 20 40 0
+    coords 35 20 50 0
+    coords 36 29 9 0
+    coords 37 29 11 0
+    coords 38 29 19 0
+    coords 39 29 21 0
+    coords 4 0 40 0
+    coords 40 29 29 0
+    coords 41 29 31 0
+    coords 42 29 39 0
+    coords 43 29 41 0
+    coords 44 29 49 0
+    coords 45 30 0 0
+    coords 46 30 10 0
+    coords 47 30 20 0
+    coords 48 30 30 0
+    coords 49 30 40 0
+    coords 5 0 50 0
+    coords 50 30 50 0
+    coords 51 39 9 0
+    coords 52 39 11 0
+    coords 53 39 19 0
+    coords 54 39 21 0
+    coords 55 39 29 0
+    coords 56 39 31 0
+    coords 57 39 39 0
+    coords 58 39 41 0
+    coords 59 39 49 0
+    coords 6 9 9 0
+    coords 60 40 0 0
+    coords 61 40 10 0
+    coords 62 40 20 0
+    coords 63 40 30 0
+    coords 64 40 40 0
+    coords 65 40 50 0
+    coords 66 49 11 0
+    coords 67 49 21 0
+    coords 68 49 31 0
+    coords 69 49 41 0
+    coords 7 9 11 0
+    coords 70 50 0 0
+    coords 71 50 10 0
+    coords 72 50 20 0
+    coords 73 50 30 0
+    coords 74 50 40 0
+    coords 75 50 50 0
+    coords 8 9 19 0
+    coords 9 9 21 0
+
+    line 0 0 5
+    line 1 0 70
+    line 10 17 8
+    line 11 17 9
+    line 12 18 10
+    line 13 18 11
+    line 14 19 12
+    line 15 19 13
+    line 16 20 14
+    line 17 30 35
+    line 18 31 21
+    line 19 31 22
+    line 2 1 71
+    line 20 32 23
+    line 21 32 24
+    line 22 33 25
+    line 23 33 26
+    line 24 34 27
+    line 25 34 28
+    line 26 35 29
+    line 27 45 50
+    line 28 46 36
+    line 29 46 37
+    line 3 2 72
+    line 30 47 38
+    line 31 47 39
+    line 32 48 40
+    line 33 48 41
+    line 34 49 42
+    line 35 49 43
+    line 36 50 44
+    line 37 60 65
+    line 38 61 51
+    line 39 61 52
+    line 4 3 73
+    line 40 62 53
+    line 41 62 54
+    line 42 63 55
+    line 43 63 56
+    line 44 64 57
+    line 45 64 58
+    line 46 65 59
+    line 47 70 75
+    line 48 71 66
+    line 49 72 67
+    line 5 4 74
+    line 50 73 68
+    line 51 74 69
+    line 6 5 75
+    line 7 15 20
+    line 8 16 6
+    line 9 16 7
+initial    marked-grid
+rule    change-line    change-line_L -> change-line_R

@@ -1,0 +1,165 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    assym_marked_grid
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 8 0
+    coords 11 9 18 0
+    coords 12 9 28 0
+    coords 13 9 38 0
+    coords 14 9 48 0
+    coords 15 10 0 0
+    coords 16 10 10 0
+    coords 17 10 20 0
+    coords 18 10 30 0
+    coords 19 10 40 0
+    coords 2 0 20 0
+    coords 20 10 50 0
+    coords 21 18 11 0
+    coords 22 18 21 0
+    coords 23 18 31 0
+    coords 24 18 41 0
+    coords 25 19 8 0
+    coords 26 19 18 0
+    coords 27 19 28 0
+    coords 28 19 38 0
+    coords 29 19 48 0
+    coords 3 0 30 0
+    coords 30 20 0 0
+    coords 31 20 10 0
+    coords 32 20 20 0
+    coords 33 20 30 0
+    coords 34 20 40 0
+    coords 35 20 50 0
+    coords 36 28 11 0
+    coords 37 28 21 0
+    coords 38 28 31 0
+    coords 39 28 41 0
+    coords 4 0 40 0
+    coords 40 29 8 0
+    coords 41 29 18 0
+    coords 42 29 28 0
+    coords 43 29 38 0
+    coords 44 29 48 0
+    coords 45 30 0 0
+    coords 46 30 10 0
+    coords 47 30 20 0
+    coords 48 30 30 0
+    coords 49 30 40 0
+    coords 5 0 50 0
+    coords 50 30 50 0
+    coords 51 38 11 0
+    coords 52 38 21 0
+    coords 53 38 31 0
+    coords 54 38 41 0
+    coords 55 39 8 0
+    coords 56 39 18 0
+    coords 57 39 28 0
+    coords 58 39 38 0
+    coords 59 39 48 0
+    coords 6 8 11 0
+    coords 60 40 0 0
+    coords 61 40 10 0
+    coords 62 40 20 0
+    coords 63 40 30 0
+    coords 64 40 40 0
+    coords 65 40 50 0
+    coords 66 48 11 0
+    coords 67 48 21 0
+    coords 68 48 31 0
+    coords 69 48 41 0
+    coords 7 8 21 0
+    coords 70 50 0 0
+    coords 71 50 10 0
+    coords 72 50 20 0
+    coords 73 50 30 0
+    coords 74 50 40 0
+    coords 75 50 50 0
+    coords 8 8 31 0
+    coords 9 8 41 0
+
+    line 0 0 5
+    line 1 0 70
+    line 10 17 7
+    line 11 17 11
+    line 12 18 8
+    line 13 18 12
+    line 14 19 9
+    line 15 19 13
+    line 16 20 14
+    line 17 30 35
+    line 18 31 21
+    line 19 31 25
+    line 2 1 71
+    line 20 32 22
+    line 21 32 26
+    line 22 33 23
+    line 23 33 27
+    line 24 34 24
+    line 25 34 28
+    line 26 35 29
+    line 27 45 50
+    line 28 46 36
+    line 29 46 40
+    line 3 2 72
+    line 30 47 37
+    line 31 47 41
+    line 32 48 38
+    line 33 48 42
+    line 34 49 39
+    line 35 49 43
+    line 36 50 44
+    line 37 60 65
+    line 38 61 51
+    line 39 61 55
+    line 4 3 73
+    line 40 62 52
+    line 41 62 56
+    line 42 63 53
+    line 43 63 57
+    line 44 64 54
+    line 45 64 58
+    line 46 65 59
+    line 47 70 75
+    line 48 71 66
+    line 49 72 67
+    line 5 4 74
+    line 50 73 68
+    line 51 74 69
+    line 6 5 75
+    line 7 15 20
+    line 8 16 6
+    line 9 16 10
+shape    replace-marked-line_L
+    name 
+    coords 0 10 10 0
+    coords 1 18 11 0
+    coords 2 20 10 0
+
+    line 0 0 2
+    line 1 2 1
+shape    replace-marked-line_R
+    name 
+    coords 0 10 10 0
+    coords 1 11 9 0
+    coords 2 13 9 0
+    coords 3 13 11 0
+    coords 4 15 9 0
+    coords 5 15 11 0
+    coords 6 17 9 0
+    coords 7 17 11 0
+    coords 8 19 11 0
+    coords 9 20 10 0
+
+    line 0 0 1
+    line 1 1 2
+    line 2 2 3
+    line 3 3 5
+    line 4 4 6
+    line 5 5 4
+    line 6 6 7
+    line 7 7 8
+    line 8 8 9
+initial    assym_marked_grid
+rule    replace-marked-line    replace-marked-line_L -> replace-marked-line_R

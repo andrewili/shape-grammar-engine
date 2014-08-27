@@ -1,8 +1,8 @@
-#   make-grid.py
+#   draw-labeled-grid.py
 
 import rhinoscriptsyntax as rs
 
-def draw_grid():
+def draw_labeled_grid():
     """Prompts for the number of cells and the length of each side.
     Draws the grid, with labels
     But first, 4 x 4 cells, 10 units on a side
@@ -64,4 +64,4 @@ def draw_grid():
     draw_vert_labels(points)
 
 
-draw_grid()
+draw_labeled_grid()

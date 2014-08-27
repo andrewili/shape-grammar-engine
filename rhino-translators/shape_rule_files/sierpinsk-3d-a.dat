@@ -1,0 +1,153 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    labeled-grid
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 29 0
+    coords 11 9 31 0
+    coords 12 9 39 0
+    coords 13 9 41 0
+    coords 14 10 0 0
+    coords 15 10 50 0
+    coords 16 19 9 0
+    coords 17 19 11 0
+    coords 18 19 19 0
+    coords 19 19 21 0
+    coords 2 0 20 0
+    coords 20 19 29 0
+    coords 21 19 31 0
+    coords 22 19 39 0
+    coords 23 19 41 0
+    coords 24 20 0 0
+    coords 25 20 50 0
+    coords 26 29 9 0
+    coords 27 29 11 0
+    coords 28 29 19 0
+    coords 29 29 21 0
+    coords 3 0 30 0
+    coords 30 29 29 0
+    coords 31 29 31 0
+    coords 32 29 39 0
+    coords 33 29 41 0
+    coords 34 30 0 0
+    coords 35 30 50 0
+    coords 36 39 9 0
+    coords 37 39 11 0
+    coords 38 39 19 0
+    coords 39 39 21 0
+    coords 4 0 40 0
+    coords 40 39 29 0
+    coords 41 39 31 0
+    coords 42 39 39 0
+    coords 43 39 41 0
+    coords 44 40 0 0
+    coords 45 40 50 0
+    coords 46 50 0 0
+    coords 47 50 10 0
+    coords 48 50 20 0
+    coords 49 50 30 0
+    coords 5 0 50 0
+    coords 50 50 40 0
+    coords 51 50 50 0
+    coords 6 9 9 0
+    coords 7 9 11 0
+    coords 8 9 19 0
+    coords 9 9 21 0
+
+    line 0 0 5
+    line 1 0 46
+    line 10 44 45
+    line 11 46 51
+    line 2 1 47
+    line 3 2 48
+    line 4 3 49
+    line 5 4 50
+    line 6 5 51
+    line 7 14 15
+    line 8 24 25
+    line 9 34 35
+    point 10 a
+    point 11 a
+    point 12 a
+    point 13 a
+    point 16 a
+    point 17 a
+    point 18 a
+    point 19 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 23 a
+    point 26 a
+    point 27 a
+    point 28 a
+    point 29 a
+    point 30 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 36 a
+    point 37 a
+    point 38 a
+    point 39 a
+    point 40 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 6 a
+    point 7 a
+    point 8 a
+    point 9 a
+shape    make-jig_L
+    name 
+    coords 0 0 10 0
+    coords 1 9 11 0
+    coords 2 10 10 0
+
+    line 0 0 2
+    point 1 a
+shape    make-jig_R
+    name 
+    coords 0 0 10 0
+    coords 1 1 9 0
+    coords 2 3 9 0
+    coords 3 3 11 0
+    coords 4 5 9 0
+    coords 5 5 11 0
+    coords 6 7 9 0
+    coords 7 7 11 0
+    coords 8 9 11 0
+    coords 9 10 10 0
+
+    line 0 0 1
+    line 1 2 1
+    line 2 3 2
+    line 3 4 5
+    line 4 4 6
+    line 5 5 3
+    line 6 7 6
+    line 7 8 7
+    line 8 8 9
+shape    sq
+    name 
+    coords 0 -1 9 0
+    coords 1 0 0 0
+    coords 2 0 10 0
+    coords 3 1 -1 0
+    coords 4 9 11 0
+    coords 5 10 0 0
+    coords 6 10 10 0
+    coords 7 11 1 0
+
+    line 0 1 5
+    line 1 2 1
+    line 2 2 6
+    line 3 6 5
+    point 0 a
+    point 3 a
+    point 4 a
+    point 7 a
+initial    labeled-grid
+initial    sq
+rule    make-jig    make-jig_L -> make-jig_R
