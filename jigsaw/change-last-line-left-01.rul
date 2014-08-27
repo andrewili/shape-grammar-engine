@@ -1,0 +1,22 @@
+shape change-last-line-left-01_L
+    name line
+    coords 0 8.000000 21.000000 0.000000
+    coords 1 10.000000 20.000000 0.000000
+    coords 2 20.000000 20.000000 0.000000
+    coords 3 22.000000 25.000000 0.000000
+
+    line 0 1 2
+    point 0 t
+    point 2 h
+    point 3 x
+shape change-last-line-left-01_R
+    name changed-line
+    coords 0 10.000000 30.000000 0.000000
+    coords 1 13.000000 21.000000 0.000000
+    coords 2 17.000000 19.000000 0.000000
+    coords 3 22.000000 29.000000 0.000000
+
+    line 0 1 2
+    point 0 h
+    point 3 t
+rule    change-last-line-left-01    change-last-line-left-01_L -> change-last-line-left-01_R
