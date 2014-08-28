@@ -1,0 +1,2866 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    marked-grid-3x3
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 12 10 0 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 17 18 11 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 5 8 11 0
+    coords 6 8 21 0
+    coords 7 8 31 0
+    coords 8 9 8 0
+    coords 9 9 18 0
+
+    line 0 0 4
+    line 1 0 44
+    line 10 14 9
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 15 25 17
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 2 1 45
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 4 3 47
+    line 5 4 48
+    line 6 12 16
+    line 7 13 5
+    line 8 13 8
+    line 9 14 6
+shape    replace-marked-line_L
+    name 
+    coords 0 10 10 0
+    coords 1 18 11 0
+    coords 2 20 10 0
+
+    line 0 0 2
+    line 1 2 1
+shape    replace-marked-line_R
+    name 
+    coords 0 10 10 0
+    coords 1 11 9 0
+    coords 2 13 9 0
+    coords 3 13 11 0
+    coords 4 15 9 0
+    coords 5 15 11 0
+    coords 6 17 9 0
+    coords 7 17 11 0
+    coords 8 19 11 0
+    coords 9 20 10 0
+
+    line 0 0 1
+    line 1 1 2
+    line 2 2 3
+    line 3 3 5
+    line 4 4 6
+    line 5 5 4
+    line 6 6 7
+    line 7 7 8
+    line 8 8 9
+initial    marked-grid-3x3
+rule    replace-marked-line    replace-marked-line_L -> replace-marked-line_R
+# derivation record
+shape    marked-grid-3x3
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 12 10 0 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 17 18 11 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 5 8 11 0
+    coords 6 8 21 0
+    coords 7 8 31 0
+    coords 8 9 8 0
+    coords 9 9 18 0
+
+    line 0 0 4
+    line 1 0 44
+    line 10 14 9
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 15 25 17
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 2 1 45
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 4 3 47
+    line 5 4 48
+    line 6 12 16
+    line 7 13 5
+    line 8 13 8
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 12 10 0 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 17 18 11 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 6 8 21 0
+    coords 7 8 31 0
+    coords 8 9 8 0
+    coords 9 9 18 0
+
+    line 0 0 4
+    line 1 0 44
+    line 10 14 9
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 15 25 17
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 34 45 13
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 39 53 13
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 5 4 48
+    line 6 12 16
+    line 8 13 8
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 12 10 0 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 17 18 11 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 6 8 21 0
+    coords 7 8 31 0
+    coords 8 9 8 0
+    coords 9 9 18 0
+
+    line 0 0 4
+    line 1 0 44
+    line 10 14 9
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 15 25 17
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 34 45 13
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 39 53 13
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 5 4 48
+    line 6 12 16
+    line 8 13 8
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 17 18 11 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 7 8 31 0
+    coords 9 9 18 0
+
+    line 0 0 4
+    line 1 0 44
+    line 10 14 9
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 15 25 17
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 34 45 13
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 39 53 13
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 44 16 13
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 49 62 13
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 17 18 11 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 7 8 31 0
+    coords 9 9 18 0
+
+    line 0 0 4
+    line 1 0 44
+    line 10 14 9
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 15 25 17
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 34 45 13
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 39 53 13
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 44 16 13
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 49 62 13
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 9 9 18 0
+
+    line 0 0 4
+    line 1 0 44
+    line 10 14 9
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 44 16 13
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 49 62 13
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 9 9 18 0
+
+    line 0 0 4
+    line 1 0 44
+    line 10 14 9
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 44 16 13
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 49 62 13
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+
+    line 0 0 4
+    line 1 0 44
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 64 16 14
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 69 79 14
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 10 9 28 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+
+    line 0 0 4
+    line 1 0 44
+    line 11 15 7
+    line 12 15 10
+    line 13 16 11
+    line 14 24 28
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 64 16 14
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 69 79 14
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+
+    line 0 0 4
+    line 1 0 44
+    line 11 15 7
+    line 13 16 11
+    line 14 24 28
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 74 16 15
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 79 87 15
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 18 18 21 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+
+    line 0 0 4
+    line 1 0 44
+    line 11 15 7
+    line 13 16 11
+    line 14 24 28
+    line 16 25 20
+    line 17 26 18
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 3 2 46
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 74 16 15
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 79 87 15
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 9 14 6
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+    coords 91 17 19 0
+    coords 92 17 21 0
+    coords 93 13 21 0
+    coords 94 15 21 0
+    coords 95 19 21 0
+    coords 96 13 19 0
+    coords 97 11 19 0
+    coords 98 15 19 0
+
+    line 0 0 4
+    line 1 0 44
+    line 11 15 7
+    line 13 16 11
+    line 14 24 28
+    line 16 25 20
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 74 16 15
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 79 87 15
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 84 2 14
+    line 85 46 26
+    line 86 91 92
+    line 87 93 94
+    line 88 92 95
+    line 89 96 93
+    line 9 14 6
+    line 90 95 26
+    line 91 97 96
+    line 92 98 91
+    line 93 14 97
+    line 94 94 98
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 11 9 38 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 16 10 40 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+    coords 91 17 19 0
+    coords 92 17 21 0
+    coords 93 13 21 0
+    coords 94 15 21 0
+    coords 95 19 21 0
+    coords 96 13 19 0
+    coords 97 11 19 0
+    coords 98 15 19 0
+
+    line 0 0 4
+    line 1 0 44
+    line 11 15 7
+    line 13 16 11
+    line 14 24 28
+    line 16 25 20
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 74 16 15
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 79 87 15
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 84 2 14
+    line 85 46 26
+    line 86 91 92
+    line 87 93 94
+    line 88 92 95
+    line 89 96 93
+    line 9 14 6
+    line 90 95 26
+    line 91 97 96
+    line 92 98 91
+    line 93 14 97
+    line 94 94 98
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 100 9 37 0
+    coords 101 9 33 0
+    coords 102 9 35 0
+    coords 103 9 39 0
+    coords 104 11 33 0
+    coords 105 10 40 0
+    coords 106 11 31 0
+    coords 107 11 35 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+    coords 91 17 19 0
+    coords 92 17 21 0
+    coords 93 13 21 0
+    coords 94 15 21 0
+    coords 95 19 21 0
+    coords 96 13 19 0
+    coords 97 11 19 0
+    coords 98 15 19 0
+    coords 99 11 37 0
+
+    line 0 0 4
+    line 1 0 44
+    line 100 106 104
+    line 101 107 99
+    line 102 87 106
+    line 103 102 107
+    line 11 15 7
+    line 14 24 28
+    line 16 25 20
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 84 2 14
+    line 85 46 26
+    line 86 91 92
+    line 87 93 94
+    line 88 92 95
+    line 89 96 93
+    line 9 14 6
+    line 90 95 26
+    line 91 97 96
+    line 92 98 91
+    line 93 14 97
+    line 94 94 98
+    line 95 99 100
+    line 96 101 102
+    line 97 100 103
+    line 98 104 101
+    line 99 103 105
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 100 9 37 0
+    coords 101 9 33 0
+    coords 102 9 35 0
+    coords 103 9 39 0
+    coords 104 11 33 0
+    coords 105 10 40 0
+    coords 106 11 31 0
+    coords 107 11 35 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 19 18 31 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+    coords 91 17 19 0
+    coords 92 17 21 0
+    coords 93 13 21 0
+    coords 94 15 21 0
+    coords 95 19 21 0
+    coords 96 13 19 0
+    coords 97 11 19 0
+    coords 98 15 19 0
+    coords 99 11 37 0
+
+    line 0 0 4
+    line 1 0 44
+    line 100 106 104
+    line 101 107 99
+    line 102 87 106
+    line 103 102 107
+    line 11 15 7
+    line 14 24 28
+    line 16 25 20
+    line 18 26 21
+    line 19 27 19
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 4 3 47
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 84 2 14
+    line 85 46 26
+    line 86 91 92
+    line 87 93 94
+    line 88 92 95
+    line 89 96 93
+    line 9 14 6
+    line 90 95 26
+    line 91 97 96
+    line 92 98 91
+    line 93 14 97
+    line 94 94 98
+    line 95 99 100
+    line 96 101 102
+    line 97 100 103
+    line 98 104 101
+    line 99 103 105
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 100 9 37 0
+    coords 101 9 33 0
+    coords 102 9 35 0
+    coords 103 9 39 0
+    coords 104 11 33 0
+    coords 105 10 40 0
+    coords 106 11 31 0
+    coords 107 11 35 0
+    coords 108 17 29 0
+    coords 109 17 31 0
+    coords 110 13 31 0
+    coords 111 15 31 0
+    coords 112 19 31 0
+    coords 113 13 29 0
+    coords 114 11 29 0
+    coords 115 15 29 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+    coords 91 17 19 0
+    coords 92 17 21 0
+    coords 93 13 21 0
+    coords 94 15 21 0
+    coords 95 19 21 0
+    coords 96 13 19 0
+    coords 97 11 19 0
+    coords 98 15 19 0
+    coords 99 11 37 0
+
+    line 0 0 4
+    line 1 0 44
+    line 100 106 104
+    line 101 107 99
+    line 102 87 106
+    line 103 102 107
+    line 104 3 15
+    line 105 47 27
+    line 106 108 109
+    line 107 110 111
+    line 108 109 112
+    line 109 113 110
+    line 11 15 7
+    line 110 112 27
+    line 111 114 113
+    line 112 115 108
+    line 113 15 114
+    line 114 111 115
+    line 14 24 28
+    line 16 25 20
+    line 18 26 21
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 84 2 14
+    line 85 46 26
+    line 86 91 92
+    line 87 93 94
+    line 88 92 95
+    line 89 96 93
+    line 9 14 6
+    line 90 95 26
+    line 91 97 96
+    line 92 98 91
+    line 93 14 97
+    line 94 94 98
+    line 95 99 100
+    line 96 101 102
+    line 97 100 103
+    line 98 104 101
+    line 99 103 105
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 100 9 37 0
+    coords 101 9 33 0
+    coords 102 9 35 0
+    coords 103 9 39 0
+    coords 104 11 33 0
+    coords 105 10 40 0
+    coords 106 11 31 0
+    coords 107 11 35 0
+    coords 108 17 29 0
+    coords 109 17 31 0
+    coords 110 13 31 0
+    coords 111 15 31 0
+    coords 112 19 31 0
+    coords 113 13 29 0
+    coords 114 11 29 0
+    coords 115 15 29 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 2 0 20 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 6 8 21 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+    coords 91 17 19 0
+    coords 92 17 21 0
+    coords 93 13 21 0
+    coords 94 15 21 0
+    coords 95 19 21 0
+    coords 96 13 19 0
+    coords 97 11 19 0
+    coords 98 15 19 0
+    coords 99 11 37 0
+
+    line 0 0 4
+    line 1 0 44
+    line 100 106 104
+    line 101 107 99
+    line 102 87 106
+    line 103 102 107
+    line 104 3 15
+    line 105 47 27
+    line 106 108 109
+    line 107 110 111
+    line 108 109 112
+    line 109 113 110
+    line 11 15 7
+    line 110 112 27
+    line 111 114 113
+    line 112 115 108
+    line 113 15 114
+    line 114 111 115
+    line 14 24 28
+    line 16 25 20
+    line 18 26 21
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 84 2 14
+    line 85 46 26
+    line 86 91 92
+    line 87 93 94
+    line 88 92 95
+    line 89 96 93
+    line 9 14 6
+    line 90 95 26
+    line 91 97 96
+    line 92 98 91
+    line 93 14 97
+    line 94 94 98
+    line 95 99 100
+    line 96 101 102
+    line 97 100 103
+    line 98 104 101
+    line 99 103 105
+rule    replace-marked-line
+shape    marked-grid-3x3_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1_replace-marked-line_1
+    name 
+    coords 0 0 0 0
+    coords 100 9 37 0
+    coords 101 9 33 0
+    coords 102 9 35 0
+    coords 103 9 39 0
+    coords 104 11 33 0
+    coords 105 10 40 0
+    coords 106 11 31 0
+    coords 107 11 35 0
+    coords 108 17 29 0
+    coords 109 17 31 0
+    coords 110 13 31 0
+    coords 111 15 31 0
+    coords 112 19 31 0
+    coords 113 13 29 0
+    coords 114 11 29 0
+    coords 115 15 29 0
+    coords 116 7 19 0
+    coords 117 7 21 0
+    coords 118 3 21 0
+    coords 119 5 21 0
+    coords 120 8.99999999999999 21 0
+    coords 121 3 19 0
+    coords 122 0.999999999999999 19 0
+    coords 123 5 19 0
+    coords 124 0 20 0
+    coords 13 10 10 0
+    coords 14 10 20 0
+    coords 15 10 30 0
+    coords 20 19 8 0
+    coords 21 19 18 0
+    coords 22 19 28 0
+    coords 23 19 38 0
+    coords 24 20 0 0
+    coords 25 20 10 0
+    coords 26 20 20 0
+    coords 27 20 30 0
+    coords 28 20 40 0
+    coords 29 28 11 0
+    coords 3 0 30 0
+    coords 30 28 21 0
+    coords 31 28 31 0
+    coords 32 29 8 0
+    coords 33 29 18 0
+    coords 34 29 28 0
+    coords 35 29 38 0
+    coords 36 30 0 0
+    coords 37 30 10 0
+    coords 38 30 20 0
+    coords 39 30 30 0
+    coords 4 0 40 0
+    coords 40 30 40 0
+    coords 41 38 11 0
+    coords 42 38 21 0
+    coords 43 38 31 0
+    coords 44 40 0 0
+    coords 45 40 10 0
+    coords 46 40 20 0
+    coords 47 40 30 0
+    coords 48 40 40 0
+    coords 49 7 9 0
+    coords 50 7 11 0
+    coords 51 3 11 0
+    coords 52 5 11 0
+    coords 53 9 11 0
+    coords 54 3 9 0
+    coords 55 0.999999999999999 9 0
+    coords 56 5 9 0
+    coords 57 0 10 0
+    coords 58 11 7 0
+    coords 59 9 7 0
+    coords 60 9 3 0
+    coords 61 9 5 0
+    coords 62 9 9 0
+    coords 63 11 3 0
+    coords 64 11 0.999999999999999 0
+    coords 65 11 5 0
+    coords 66 10 0 0
+    coords 67 17 9 0
+    coords 68 17 11 0
+    coords 69 13 11 0
+    coords 7 8 31 0
+    coords 70 15 11 0
+    coords 71 19 11 0
+    coords 72 13 9 0
+    coords 73 11 9 0
+    coords 74 15 9 0
+    coords 75 11 17 0
+    coords 76 9 17 0
+    coords 77 9 13 0
+    coords 78 9 15 0
+    coords 79 9 19 0
+    coords 80 11 13 0
+    coords 81 11 11 0
+    coords 82 11 15 0
+    coords 83 11 27 0
+    coords 84 9 27 0
+    coords 85 9 23 0
+    coords 86 9 25 0
+    coords 87 9 29 0
+    coords 88 11 23 0
+    coords 89 11 21 0
+    coords 90 11 25 0
+    coords 91 17 19 0
+    coords 92 17 21 0
+    coords 93 13 21 0
+    coords 94 15 21 0
+    coords 95 19 21 0
+    coords 96 13 19 0
+    coords 97 11 19 0
+    coords 98 15 19 0
+    coords 99 11 37 0
+
+    line 0 0 4
+    line 1 0 44
+    line 100 106 104
+    line 101 107 99
+    line 102 87 106
+    line 103 102 107
+    line 104 3 15
+    line 105 47 27
+    line 106 108 109
+    line 107 110 111
+    line 108 109 112
+    line 109 113 110
+    line 11 15 7
+    line 110 112 27
+    line 111 114 113
+    line 112 115 108
+    line 113 15 114
+    line 114 111 115
+    line 115 116 117
+    line 116 118 119
+    line 117 117 120
+    line 118 121 118
+    line 119 97 120
+    line 120 122 121
+    line 121 123 116
+    line 122 124 122
+    line 123 119 123
+    line 14 24 28
+    line 16 25 20
+    line 18 26 21
+    line 20 27 22
+    line 21 28 23
+    line 22 36 40
+    line 23 37 29
+    line 24 37 32
+    line 25 38 30
+    line 26 38 33
+    line 27 39 31
+    line 28 39 34
+    line 29 40 35
+    line 30 44 48
+    line 31 45 41
+    line 32 46 42
+    line 33 47 43
+    line 35 49 50
+    line 36 51 52
+    line 37 50 53
+    line 38 54 51
+    line 40 55 54
+    line 41 56 49
+    line 42 57 55
+    line 43 52 56
+    line 45 58 59
+    line 46 60 61
+    line 47 59 62
+    line 48 63 60
+    line 5 4 48
+    line 50 64 63
+    line 51 65 58
+    line 52 66 64
+    line 53 61 65
+    line 54 45 25
+    line 55 67 68
+    line 56 69 70
+    line 57 68 71
+    line 58 72 69
+    line 59 71 25
+    line 60 73 72
+    line 61 74 67
+    line 62 53 73
+    line 63 70 74
+    line 65 75 76
+    line 66 77 78
+    line 67 76 79
+    line 68 80 77
+    line 70 81 80
+    line 71 82 75
+    line 72 62 81
+    line 73 78 82
+    line 75 83 84
+    line 76 85 86
+    line 77 84 87
+    line 78 88 85
+    line 80 89 88
+    line 81 90 83
+    line 82 79 89
+    line 83 86 90
+    line 85 46 26
+    line 86 91 92
+    line 87 93 94
+    line 88 92 95
+    line 89 96 93
+    line 90 95 26
+    line 91 97 96
+    line 92 98 91
+    line 94 94 98
+    line 95 99 100
+    line 96 101 102
+    line 97 100 103
+    line 98 104 101
+    line 99 103 105

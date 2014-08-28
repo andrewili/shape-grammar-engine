@@ -1,0 +1,8532 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    change-line-04_L
+    name 
+    coords 0 8 11 0
+    coords 1 10 10 0
+    coords 2 18 11 0
+    coords 3 20 10 0
+
+    line 0 1 3
+    line 1 3 2
+    point 0 t
+shape    change-line-04_R
+    name 
+    coords 0 10 10 0
+    coords 1 11 9 0
+    coords 2 13 9 0
+    coords 3 13 11 0
+    coords 4 15 9 0
+    coords 5 15 11 0
+    coords 6 17 9 0
+    coords 7 17 11 0
+    coords 8 19 11 0
+    coords 9 20 10 0
+
+    line 0 0 1
+    line 1 1 2
+    line 2 2 3
+    line 3 3 5
+    line 4 4 6
+    line 5 5 4
+    line 6 6 7
+    line 7 7 8
+    line 8 8 9
+shape    generic-grid-07
+    name 
+    coords 0 -2 41 0
+    coords 1 0 0 0
+    coords 10 8 41 0
+    coords 11 9 8 0
+    coords 12 9 18 0
+    coords 13 9 28 0
+    coords 14 9 38 0
+    coords 15 9 48 0
+    coords 16 10 0 0
+    coords 17 10 10 0
+    coords 18 10 20 0
+    coords 19 10 30 0
+    coords 2 0 10 0
+    coords 20 10 40 0
+    coords 21 10 50 0
+    coords 22 18 11 0
+    coords 23 18 21 0
+    coords 24 18 31 0
+    coords 25 18 41 0
+    coords 26 19 8 0
+    coords 27 19 18 0
+    coords 28 19 28 0
+    coords 29 19 38 0
+    coords 3 0 20 0
+    coords 30 19 48 0
+    coords 31 20 0 0
+    coords 32 20 10 0
+    coords 33 20 20 0
+    coords 34 20 30 0
+    coords 35 20 40 0
+    coords 36 20 50 0
+    coords 37 28 11 0
+    coords 38 28 21 0
+    coords 39 28 31 0
+    coords 4 0 30 0
+    coords 40 28 41 0
+    coords 41 29 8 0
+    coords 42 29 18 0
+    coords 43 29 28 0
+    coords 44 29 38 0
+    coords 45 29 48 0
+    coords 46 30 0 0
+    coords 47 30 10 0
+    coords 48 30 20 0
+    coords 49 30 30 0
+    coords 5 0 40 0
+    coords 50 30 40 0
+    coords 51 30 50 0
+    coords 52 38 11 0
+    coords 53 38 21 0
+    coords 54 38 31 0
+    coords 55 38 41 0
+    coords 56 39 8 0
+    coords 57 39 18 0
+    coords 58 39 28 0
+    coords 59 39 38 0
+    coords 6 0 50 0
+    coords 60 39 48 0
+    coords 61 40 0 0
+    coords 62 40 10 0
+    coords 63 40 20 0
+    coords 64 40 30 0
+    coords 65 40 40 0
+    coords 66 40 50 0
+    coords 67 48 11 0
+    coords 68 48 21 0
+    coords 69 48 31 0
+    coords 7 8 11 0
+    coords 70 48 41 0
+    coords 71 50 0 0
+    coords 72 50 10 0
+    coords 73 50 20 0
+    coords 74 50 30 0
+    coords 75 50 40 0
+    coords 76 50 50 0
+    coords 8 8 21 0
+    coords 9 8 31 0
+
+    line 0 1 6
+    line 1 1 71
+    line 10 18 8
+    line 11 18 12
+    line 12 19 9
+    line 13 19 13
+    line 14 20 10
+    line 15 20 14
+    line 16 21 15
+    line 17 31 36
+    line 18 32 22
+    line 19 32 26
+    line 2 2 72
+    line 20 33 23
+    line 21 33 27
+    line 22 34 24
+    line 23 34 28
+    line 24 35 25
+    line 25 35 29
+    line 26 36 30
+    line 27 46 51
+    line 28 47 37
+    line 29 47 41
+    line 3 3 73
+    line 30 48 38
+    line 31 48 42
+    line 32 49 39
+    line 33 49 43
+    line 34 50 40
+    line 35 50 44
+    line 36 51 45
+    line 37 61 66
+    line 38 62 52
+    line 39 62 56
+    line 4 4 74
+    line 40 63 53
+    line 41 63 57
+    line 42 64 54
+    line 43 64 58
+    line 44 65 55
+    line 45 65 59
+    line 46 66 60
+    line 47 71 76
+    line 48 72 67
+    line 49 73 68
+    line 5 5 75
+    line 50 74 69
+    line 51 75 70
+    line 6 6 76
+    line 7 16 21
+    line 8 17 7
+    line 9 17 11
+    point 0 t
+    point 10 t
+    point 25 t
+    point 40 t
+    point 55 t
+initial    generic-grid-07
+rule    change-line-04    change-line-04_L -> change-line-04_R
+# derivation record
+shape    generic-grid-09
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 8 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 11 9 18 0
+    coords 12 9 18 0
+    coords 13 9 28 0
+    coords 14 9 28 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 17 9 48 0
+    coords 18 9 48 0
+    coords 19 10 0 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 24 10 50 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 11 21 12
+    line 12 22 8
+    line 13 22 14
+    line 14 23 9
+    line 15 23 16
+    line 16 24 18
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 6 5 107
+    line 7 19 24
+    line 8 20 6
+    line 9 20 10
+    point 10 c1
+    point 100 r4
+    point 11 c1
+    point 13 c1
+    point 15 c1
+    point 17 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    
+shape    generic-grid-09
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 8 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 11 9 18 0
+    coords 12 9 18 0
+    coords 13 9 28 0
+    coords 14 9 28 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 17 9 48 0
+    coords 18 9 48 0
+    coords 19 10 0 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 24 10 50 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 11 21 12
+    line 12 22 8
+    line 13 22 14
+    line 14 23 9
+    line 15 23 16
+    line 16 24 18
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 6 5 107
+    line 7 19 24
+    line 8 20 6
+    line 9 20 10
+    point 10 c1
+    point 100 r4
+    point 11 c1
+    point 13 c1
+    point 15 c1
+    point 17 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 8 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 11 9 18 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 12 9 18 0
+    coords 13 9 28 0
+    coords 14 9 28 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 19 10 0 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 11 21 12
+    line 12 22 8
+    line 13 22 14
+    line 14 23 9
+    line 15 23 16
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 52 19 23
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 60 23 115
+    line 61 111 116
+    line 8 20 6
+    line 9 20 10
+    point 10 c1
+    point 100 r4
+    point 11 c1
+    point 13 c1
+    point 15 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 10 9 8 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 11 9 18 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 12 9 18 0
+    coords 13 9 28 0
+    coords 14 9 28 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 19 10 0 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 11 21 12
+    line 12 22 8
+    line 13 22 14
+    line 14 23 9
+    line 15 23 16
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 52 19 23
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 60 23 115
+    line 61 111 116
+    line 8 20 6
+    line 9 20 10
+    point 10 c1
+    point 100 r4
+    point 11 c1
+    point 13 c1
+    point 15 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 11 9 18 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 12 9 18 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 13 9 28 0
+    coords 14 9 28 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 11 21 12
+    line 12 22 8
+    line 13 22 14
+    line 14 23 9
+    line 15 23 16
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 60 23 115
+    line 61 111 116
+    line 62 23 20
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 67 121 20
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 8 20 6
+    point 100 r4
+    point 11 c1
+    point 13 c1
+    point 15 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 11 9 18 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 12 9 18 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 13 9 28 0
+    coords 14 9 28 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 11 21 12
+    line 12 22 8
+    line 13 22 14
+    line 14 23 9
+    line 15 23 16
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 60 23 115
+    line 61 111 116
+    line 62 23 20
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 67 121 20
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 8 20 6
+    point 100 r4
+    point 11 c1
+    point 13 c1
+    point 15 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 13 9 28 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 14 9 28 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 12 22 8
+    line 13 22 14
+    line 14 23 9
+    line 15 23 16
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 60 23 115
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 72 23 21
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 77 130 21
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    point 100 r4
+    point 13 c1
+    point 15 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 13 9 28 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 14 9 28 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 12 22 8
+    line 13 22 14
+    line 14 23 9
+    line 15 23 16
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 60 23 115
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 72 23 21
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 77 130 21
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    point 100 r4
+    point 13 c1
+    point 15 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 12 22 8
+    line 14 23 9
+    line 15 23 16
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 60 23 115
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 82 23 22
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 87 138 22
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    point 100 r4
+    point 15 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 15 9 38 0
+    coords 16 9 38 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 12 22 8
+    line 14 23 9
+    line 15 23 16
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 60 23 115
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 82 23 22
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 87 138 22
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    point 100 r4
+    point 15 c1
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 12 22 8
+    line 14 23 9
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c1
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 33 19 8 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 42 20 0 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 12 22 8
+    line 14 23 9
+    line 17 42 47
+    line 18 43 26
+    line 19 43 33
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 33 c2
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 101 47 43
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 106 154 43
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 12 22 8
+    line 14 23 9
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 36 19 28 0
+    coords 37 19 28 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 101 47 43
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 106 154 43
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 12 22 8
+    line 14 23 9
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 23 45 37
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 34 c2
+    point 36 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 106 154 43
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 111 47 45
+    line 112 43 44
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 117 163 45
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 120 44 165
+    line 121 162 166
+    line 14 23 9
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 34 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 40 19 48 0
+    coords 41 19 48 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 47 20 50 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 106 154 43
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 111 47 45
+    line 112 43 44
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 117 163 45
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 120 44 165
+    line 121 162 166
+    line 14 23 9
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 24 46 32
+    line 25 46 39
+    line 26 47 41
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 34 c2
+    point 38 c2
+    point 40 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 106 154 43
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 112 43 44
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 117 163 45
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 120 44 165
+    line 121 162 166
+    line 122 45 46
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 130 46 174
+    line 131 170 175
+    line 14 23 9
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 24 46 32
+    line 25 46 39
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 34 c2
+    point 38 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 38 19 38 0
+    coords 39 19 38 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 106 154 43
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 112 43 44
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 117 163 45
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 120 44 165
+    line 121 162 166
+    line 122 45 46
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 130 46 174
+    line 131 170 175
+    line 14 23 9
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 24 46 32
+    line 25 46 39
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 34 c2
+    point 38 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 106 154 43
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 112 43 44
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 120 44 165
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 24 46 32
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 34 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 34 19 18 0
+    coords 35 19 18 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 106 154 43
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 112 43 44
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 120 44 165
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 21 44 35
+    line 22 45 30
+    line 24 46 32
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 34 c2
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c2
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 63 29 48 0
+    coords 64 29 48 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 70 30 50 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 27 65 70
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 36 70 64
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 63 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c3
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c3_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 192 31 47 0
+    coords 193 29 47 0
+    coords 194 29 43 0
+    coords 195 29 45 0
+    coords 196 29 49 0
+    coords 197 31 43 0
+    coords 198 30 50 0
+    coords 199 31 41 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 200 31 45 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 150 65 69
+    line 151 192 193
+    line 152 194 195
+    line 153 193 196
+    line 154 197 194
+    line 155 196 198
+    line 156 199 197
+    line 157 200 192
+    line 158 69 199
+    line 159 195 200
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c3
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c3_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 192 31 47 0
+    coords 193 29 47 0
+    coords 194 29 43 0
+    coords 195 29 45 0
+    coords 196 29 49 0
+    coords 197 31 43 0
+    coords 198 30 50 0
+    coords 199 31 41 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 200 31 45 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 57 29 18 0
+    coords 58 29 18 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 150 65 69
+    line 151 192 193
+    line 152 194 195
+    line 153 193 196
+    line 154 197 194
+    line 155 196 198
+    line 156 199 197
+    line 157 200 192
+    line 158 69 199
+    line 159 195 200
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 31 67 58
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 57 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c3
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c3_1_change-line-06-c3_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 192 31 47 0
+    coords 193 29 47 0
+    coords 194 29 43 0
+    coords 195 29 45 0
+    coords 196 29 49 0
+    coords 197 31 43 0
+    coords 198 30 50 0
+    coords 199 31 41 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 200 31 45 0
+    coords 201 31 17 0
+    coords 202 29 17 0
+    coords 203 29 13 0
+    coords 204 29 15 0
+    coords 205 29 19 0
+    coords 206 31 13 0
+    coords 207 31 11 0
+    coords 208 31 15 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 151 192 193
+    line 152 194 195
+    line 153 193 196
+    line 154 197 194
+    line 155 196 198
+    line 156 199 197
+    line 157 200 192
+    line 158 69 199
+    line 159 195 200
+    line 160 65 66
+    line 161 69 67
+    line 162 201 202
+    line 163 203 204
+    line 164 202 205
+    line 165 206 203
+    line 166 205 67
+    line 167 207 206
+    line 168 208 201
+    line 169 66 207
+    line 170 204 208
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c3
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c3_1_change-line-06-c3_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 192 31 47 0
+    coords 193 29 47 0
+    coords 194 29 43 0
+    coords 195 29 45 0
+    coords 196 29 49 0
+    coords 197 31 43 0
+    coords 198 30 50 0
+    coords 199 31 41 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 200 31 45 0
+    coords 201 31 17 0
+    coords 202 29 17 0
+    coords 203 29 13 0
+    coords 204 29 15 0
+    coords 205 29 19 0
+    coords 206 31 13 0
+    coords 207 31 11 0
+    coords 208 31 15 0
+    coords 21 10 20 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 61 29 38 0
+    coords 62 29 38 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 151 192 193
+    line 152 194 195
+    line 153 193 196
+    line 154 197 194
+    line 155 196 198
+    line 156 199 197
+    line 157 200 192
+    line 158 69 199
+    line 159 195 200
+    line 160 65 66
+    line 161 69 67
+    line 162 201 202
+    line 163 203 204
+    line 164 202 205
+    line 165 206 203
+    line 166 205 67
+    line 167 207 206
+    line 168 208 201
+    line 169 66 207
+    line 170 204 208
+    line 18 43 26
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 35 69 62
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 59 c3
+    point 6 r1
+    point 61 c3
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c3
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c3_1_change-line-06-c3_1_change-line-06-c3_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 192 31 47 0
+    coords 193 29 47 0
+    coords 194 29 43 0
+    coords 195 29 45 0
+    coords 196 29 49 0
+    coords 197 31 43 0
+    coords 198 30 50 0
+    coords 199 31 41 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 200 31 45 0
+    coords 201 31 17 0
+    coords 202 29 17 0
+    coords 203 29 13 0
+    coords 204 29 15 0
+    coords 205 29 19 0
+    coords 206 31 13 0
+    coords 207 31 11 0
+    coords 208 31 15 0
+    coords 209 31 37 0
+    coords 21 10 20 0
+    coords 210 29 37 0
+    coords 211 29 33 0
+    coords 212 29 35 0
+    coords 213 29 39 0
+    coords 214 31 33 0
+    coords 215 31 31 0
+    coords 216 31 35 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 151 192 193
+    line 152 194 195
+    line 153 193 196
+    line 154 197 194
+    line 155 196 198
+    line 156 199 197
+    line 157 200 192
+    line 159 195 200
+    line 160 65 66
+    line 162 201 202
+    line 163 203 204
+    line 164 202 205
+    line 165 206 203
+    line 166 205 67
+    line 167 207 206
+    line 168 208 201
+    line 169 66 207
+    line 170 204 208
+    line 171 67 68
+    line 172 209 210
+    line 173 211 212
+    line 174 210 213
+    line 175 214 211
+    line 176 199 213
+    line 177 215 214
+    line 178 216 209
+    line 179 68 215
+    line 18 43 26
+    line 180 212 216
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 59 c3
+    point 6 r1
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c3
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c3_1_change-line-06-c3_1_change-line-06-c3_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 192 31 47 0
+    coords 193 29 47 0
+    coords 194 29 43 0
+    coords 195 29 45 0
+    coords 196 29 49 0
+    coords 197 31 43 0
+    coords 198 30 50 0
+    coords 199 31 41 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 200 31 45 0
+    coords 201 31 17 0
+    coords 202 29 17 0
+    coords 203 29 13 0
+    coords 204 29 15 0
+    coords 205 29 19 0
+    coords 206 31 13 0
+    coords 207 31 11 0
+    coords 208 31 15 0
+    coords 209 31 37 0
+    coords 21 10 20 0
+    coords 210 29 37 0
+    coords 211 29 33 0
+    coords 212 29 35 0
+    coords 213 29 39 0
+    coords 214 31 33 0
+    coords 215 31 31 0
+    coords 216 31 35 0
+    coords 22 10 30 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 59 29 28 0
+    coords 6 8 11 0
+    coords 60 29 28 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 151 192 193
+    line 152 194 195
+    line 153 193 196
+    line 154 197 194
+    line 155 196 198
+    line 156 199 197
+    line 157 200 192
+    line 159 195 200
+    line 160 65 66
+    line 162 201 202
+    line 163 203 204
+    line 164 202 205
+    line 165 206 203
+    line 166 205 67
+    line 167 207 206
+    line 168 208 201
+    line 169 66 207
+    line 170 204 208
+    line 171 67 68
+    line 172 209 210
+    line 173 211 212
+    line 174 210 213
+    line 175 214 211
+    line 176 199 213
+    line 177 215 214
+    line 178 216 209
+    line 179 68 215
+    line 18 43 26
+    line 180 212 216
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 32 68 53
+    line 33 68 60
+    line 34 69 55
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 59 c3
+    point 6 r1
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3
+rule    change-line-06-c3
+shape    generic-grid-09_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c1_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c2_1_change-line-06-c3_1_change-line-06-c3_1_change-line-06-c3_1_change-line-06-c3_1
+    name 
+    coords 0 0 0 0
+    coords 1 0 10 0
+    coords 100 48 41 0
+    coords 101 48 41 0
+    coords 102 50 0 0
+    coords 103 50 10 0
+    coords 104 50 20 0
+    coords 105 50 30 0
+    coords 106 50 40 0
+    coords 107 50 50 0
+    coords 108 11 47 0
+    coords 109 9 47 0
+    coords 110 9 43 0
+    coords 111 9 45 0
+    coords 112 9 49 0
+    coords 113 11 43 0
+    coords 114 10 50 0
+    coords 115 11 41 0
+    coords 116 11 45 0
+    coords 117 11 7 0
+    coords 118 9 7 0
+    coords 119 9 3 0
+    coords 120 9 5 0
+    coords 121 9 9 0
+    coords 122 11 3 0
+    coords 123 11 1 0
+    coords 124 11 5 0
+    coords 125 10 1.73472347597681e-015 0
+    coords 126 11 17 0
+    coords 127 9 17 0
+    coords 128 9 13 0
+    coords 129 9 15 0
+    coords 130 9 19 0
+    coords 131 11 13 0
+    coords 132 11 11 0
+    coords 133 11 15 0
+    coords 134 11 27 0
+    coords 135 9 27 0
+    coords 136 9 23 0
+    coords 137 9 25 0
+    coords 138 9 29 0
+    coords 139 11 23 0
+    coords 140 11 21 0
+    coords 141 11 25 0
+    coords 142 11 37 0
+    coords 143 9 37 0
+    coords 144 9 33 0
+    coords 145 9 35 0
+    coords 146 9 39 0
+    coords 147 11 33 0
+    coords 148 11 31 0
+    coords 149 11 35 0
+    coords 150 21 7 0
+    coords 151 19 7 0
+    coords 152 19 3 0
+    coords 153 19 5 0
+    coords 154 19 9 0
+    coords 155 21 3 0
+    coords 156 21 1 0
+    coords 157 21 5 0
+    coords 158 20 3.46944695195361e-015 0
+    coords 159 21 27 0
+    coords 160 19 27 0
+    coords 161 19 23 0
+    coords 162 19 25 0
+    coords 163 19 29 0
+    coords 164 21 23 0
+    coords 165 21 21 0
+    coords 166 21 25 0
+    coords 167 21 47 0
+    coords 168 19 47 0
+    coords 169 19 43 0
+    coords 170 19 45 0
+    coords 171 19 49 0
+    coords 172 21 43 0
+    coords 173 20 50 0
+    coords 174 21 41 0
+    coords 175 21 45 0
+    coords 176 21 37 0
+    coords 177 19 37 0
+    coords 178 19 33 0
+    coords 179 19 35 0
+    coords 180 19 39 0
+    coords 181 21 33 0
+    coords 182 21 31 0
+    coords 183 21 35 0
+    coords 184 21 17 0
+    coords 185 19 17 0
+    coords 186 19 13 0
+    coords 187 19 15 0
+    coords 188 19 19 0
+    coords 189 21 13 0
+    coords 190 21 11 0
+    coords 191 21 15 0
+    coords 192 31 47 0
+    coords 193 29 47 0
+    coords 194 29 43 0
+    coords 195 29 45 0
+    coords 196 29 49 0
+    coords 197 31 43 0
+    coords 198 30 50 0
+    coords 199 31 41 0
+    coords 2 0 20 0
+    coords 20 10 10 0
+    coords 200 31 45 0
+    coords 201 31 17 0
+    coords 202 29 17 0
+    coords 203 29 13 0
+    coords 204 29 15 0
+    coords 205 29 19 0
+    coords 206 31 13 0
+    coords 207 31 11 0
+    coords 208 31 15 0
+    coords 209 31 37 0
+    coords 21 10 20 0
+    coords 210 29 37 0
+    coords 211 29 33 0
+    coords 212 29 35 0
+    coords 213 29 39 0
+    coords 214 31 33 0
+    coords 215 31 31 0
+    coords 216 31 35 0
+    coords 217 31 27 0
+    coords 218 29 27 0
+    coords 219 29 23 0
+    coords 22 10 30 0
+    coords 220 29 25 0
+    coords 221 29 29 0
+    coords 222 31 23 0
+    coords 223 31 21 0
+    coords 224 31 25 0
+    coords 23 10 40 0
+    coords 25 18 11 0
+    coords 26 18 11 0
+    coords 27 18 21 0
+    coords 28 18 21 0
+    coords 29 18 31 0
+    coords 3 0 30 0
+    coords 30 18 31 0
+    coords 31 18 41 0
+    coords 32 18 41 0
+    coords 4 0 40 0
+    coords 43 20 10 0
+    coords 44 20 20 0
+    coords 45 20 30 0
+    coords 46 20 40 0
+    coords 48 28 11 0
+    coords 49 28 11 0
+    coords 5 0 50 0
+    coords 50 28 21 0
+    coords 51 28 21 0
+    coords 52 28 31 0
+    coords 53 28 31 0
+    coords 54 28 41 0
+    coords 55 28 41 0
+    coords 56 29 8 0
+    coords 6 8 11 0
+    coords 65 30 0 0
+    coords 66 30 10 0
+    coords 67 30 20 0
+    coords 68 30 30 0
+    coords 69 30 40 0
+    coords 7 8 21 0
+    coords 71 38 11 0
+    coords 72 38 11 0
+    coords 73 38 21 0
+    coords 74 38 21 0
+    coords 75 38 31 0
+    coords 76 38 31 0
+    coords 77 38 41 0
+    coords 78 38 41 0
+    coords 79 39 8 0
+    coords 8 8 31 0
+    coords 80 39 18 0
+    coords 81 39 18 0
+    coords 82 39 28 0
+    coords 83 39 28 0
+    coords 84 39 38 0
+    coords 85 39 38 0
+    coords 86 39 48 0
+    coords 87 39 48 0
+    coords 88 40 0 0
+    coords 89 40 10 0
+    coords 9 8 41 0
+    coords 90 40 20 0
+    coords 91 40 30 0
+    coords 92 40 40 0
+    coords 93 40 50 0
+    coords 94 48 11 0
+    coords 95 48 11 0
+    coords 96 48 21 0
+    coords 97 48 21 0
+    coords 98 48 31 0
+    coords 99 48 31 0
+
+    line 0 0 5
+    line 1 0 102
+    line 10 21 7
+    line 100 145 149
+    line 102 150 151
+    line 103 152 153
+    line 104 151 154
+    line 105 155 152
+    line 107 156 155
+    line 108 157 150
+    line 109 158 156
+    line 110 153 157
+    line 113 159 160
+    line 114 161 162
+    line 115 160 163
+    line 116 164 161
+    line 118 165 164
+    line 119 166 159
+    line 12 22 8
+    line 121 162 166
+    line 123 167 168
+    line 124 169 170
+    line 125 168 171
+    line 126 172 169
+    line 127 171 173
+    line 128 174 172
+    line 129 175 167
+    line 131 170 175
+    line 132 176 177
+    line 133 178 179
+    line 134 177 180
+    line 135 181 178
+    line 136 174 180
+    line 137 182 181
+    line 138 183 176
+    line 139 163 182
+    line 14 23 9
+    line 140 179 183
+    line 141 184 185
+    line 142 186 187
+    line 143 185 188
+    line 144 189 186
+    line 145 165 188
+    line 146 190 189
+    line 147 191 184
+    line 148 154 190
+    line 149 187 191
+    line 151 192 193
+    line 152 194 195
+    line 153 193 196
+    line 154 197 194
+    line 155 196 198
+    line 156 199 197
+    line 157 200 192
+    line 159 195 200
+    line 160 65 66
+    line 162 201 202
+    line 163 203 204
+    line 164 202 205
+    line 165 206 203
+    line 167 207 206
+    line 168 208 201
+    line 169 66 207
+    line 170 204 208
+    line 172 209 210
+    line 173 211 212
+    line 174 210 213
+    line 175 214 211
+    line 176 199 213
+    line 177 215 214
+    line 178 216 209
+    line 18 43 26
+    line 180 212 216
+    line 181 217 218
+    line 182 219 220
+    line 183 218 221
+    line 184 222 219
+    line 185 215 221
+    line 186 223 222
+    line 187 224 217
+    line 188 205 223
+    line 189 220 224
+    line 2 1 103
+    line 20 44 28
+    line 22 45 30
+    line 24 46 32
+    line 28 66 49
+    line 29 66 56
+    line 3 2 104
+    line 30 67 51
+    line 32 68 53
+    line 34 69 55
+    line 37 88 93
+    line 38 89 72
+    line 39 89 79
+    line 4 3 105
+    line 40 90 74
+    line 41 90 81
+    line 42 91 76
+    line 43 91 83
+    line 44 92 78
+    line 45 92 85
+    line 46 93 87
+    line 47 102 107
+    line 48 103 95
+    line 49 104 97
+    line 5 4 106
+    line 50 105 99
+    line 51 106 101
+    line 53 108 109
+    line 54 110 111
+    line 55 109 112
+    line 56 113 110
+    line 57 112 114
+    line 58 115 113
+    line 59 116 108
+    line 6 5 107
+    line 61 111 116
+    line 63 117 118
+    line 64 119 120
+    line 65 118 121
+    line 66 122 119
+    line 68 123 122
+    line 69 124 117
+    line 70 125 123
+    line 71 120 124
+    line 73 126 127
+    line 74 128 129
+    line 75 127 130
+    line 76 131 128
+    line 78 132 131
+    line 79 133 126
+    line 8 20 6
+    line 80 121 132
+    line 81 129 133
+    line 83 134 135
+    line 84 136 137
+    line 85 135 138
+    line 86 139 136
+    line 88 140 139
+    line 89 141 134
+    line 90 130 140
+    line 91 137 141
+    line 92 142 143
+    line 93 144 145
+    line 94 143 146
+    line 95 147 144
+    line 96 115 146
+    line 97 148 147
+    line 98 149 142
+    line 99 138 148
+    point 100 r4
+    point 25 r1
+    point 27 r2
+    point 29 r3
+    point 31 r4
+    point 48 r1
+    point 50 r2
+    point 52 r3
+    point 54 r4
+    point 56 c3
+    point 6 r1
+    point 7 r2
+    point 71 r1
+    point 73 r2
+    point 75 r3
+    point 77 r4
+    point 79 c4
+    point 8 r3
+    point 80 c4
+    point 82 c4
+    point 84 c4
+    point 86 c4
+    point 9 r4
+    point 94 r1
+    point 96 r2
+    point 98 r3

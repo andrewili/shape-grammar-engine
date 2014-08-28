@@ -1,0 +1,32 @@
+shape change-line-06-r1_L
+    name line
+    coords 0 10.000000 10.000000 0.000000
+    coords 1 18.000000 11.000000 0.000000
+    coords 2 20.000000 10.000000 0.000000
+
+    line 0 0 2
+    line 1 2 1
+    point 1 r1
+shape change-line-06-r1_R
+    name zigzag
+    coords 0 10.000000 10.000000 0.000000
+    coords 1 11.000000 9.000000 0.000000
+    coords 2 13.000000 9.000000 0.000000
+    coords 3 13.000000 11.000000 0.000000
+    coords 4 15.000000 9.000000 0.000000
+    coords 5 15.000000 11.000000 0.000000
+    coords 6 17.000000 9.000000 0.000000
+    coords 7 17.000000 11.000000 0.000000
+    coords 8 19.000000 11.000000 0.000000
+    coords 9 20.000000 10.000000 0.000000
+
+    line 0 0 1
+    line 1 1 2
+    line 2 2 3
+    line 3 3 5
+    line 4 4 6
+    line 5 5 4
+    line 6 6 7
+    line 7 7 8
+    line 8 8 9
+rule    change-line-06-r1    change-line-06-r1_L -> change-line-06-r1_R
