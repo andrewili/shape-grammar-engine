@@ -1,6 +1,6 @@
 # shape data version 6.00
 unit  mm  # mm - millimetre, cm - centimetre, m - metre
-shape    change-line-09-c1_L
+shape    0_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -9,10 +9,10 @@ shape    change-line-09-c1_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 c1-a
-    point 2 c1-c
-    point 3 c1-b
-shape    change-line-09-c1_R
+    point 1 c4b
+    point 2 c4c
+    point 3 c4a
+shape    0_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -34,7 +34,7 @@ shape    change-line-09-c1_R
     line 6 6 7
     line 7 7 8
     line 8 8 9
-shape    change-line-09-c2_L
+shape    change-line-08-c1_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -43,10 +43,10 @@ shape    change-line-09-c2_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 c2-a
-    point 2 c2-c
-    point 3 c2-b
-shape    change-line-09-c2_R
+    point 1 c1b
+    point 2 c1c
+    point 3 c1a
+shape    change-line-08-c1_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -68,7 +68,7 @@ shape    change-line-09-c2_R
     line 6 6 7
     line 7 7 8
     line 8 8 9
-shape    change-line-09-c3_L
+shape    change-line-08-c2_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -77,10 +77,10 @@ shape    change-line-09-c3_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 c3-a
-    point 2 c3-c
-    point 3 c3-b
-shape    change-line-09-c3_R
+    point 1 c2b
+    point 2 c2c
+    point 3 c2a
+shape    change-line-08-c2_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -102,7 +102,7 @@ shape    change-line-09-c3_R
     line 6 6 7
     line 7 7 8
     line 8 8 9
-shape    change-line-09-c4_L
+shape    change-line-08-c3_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -111,10 +111,10 @@ shape    change-line-09-c4_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 c4-a
-    point 2 c4-c
-    point 3 c4-b
-shape    change-line-09-c4_R
+    point 1 c3b
+    point 2 c3c
+    point 3 c3a
+shape    change-line-08-c3_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -136,7 +136,7 @@ shape    change-line-09-c4_R
     line 6 6 7
     line 7 7 8
     line 8 8 9
-shape    change-line-09-c5_L
+shape    change-line-08-c4_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -145,10 +145,10 @@ shape    change-line-09-c5_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 c5-a
-    point 2 c5-c
-    point 3 c5-b
-shape    change-line-09-c5_R
+    point 1 c4b
+    point 2 c4c
+    point 3 c4a
+shape    change-line-08-c4_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -170,7 +170,7 @@ shape    change-line-09-c5_R
     line 6 6 7
     line 7 7 8
     line 8 8 9
-shape    change-line-09-r1_L
+shape    change-line-08-c5_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -179,10 +179,10 @@ shape    change-line-09-r1_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 r1-a
-    point 2 r1-c
-    point 3 r1-b
-shape    change-line-09-r1_R
+    point 1 c5b
+    point 2 c5c
+    point 3 c5a
+shape    change-line-08-c5_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -204,7 +204,7 @@ shape    change-line-09-r1_R
     line 6 6 7
     line 7 7 8
     line 8 8 9
-shape    change-line-09-r2_L
+shape    change-line-08-r1_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -213,10 +213,10 @@ shape    change-line-09-r2_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 r2-a
-    point 2 r2-c
-    point 3 r2-b
-shape    change-line-09-r2_R
+    point 1 r1b
+    point 2 r1c
+    point 3 r1a
+shape    change-line-08-r1_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -238,7 +238,7 @@ shape    change-line-09-r2_R
     line 6 6 7
     line 7 7 8
     line 8 8 9
-shape    change-line-09-r3_L
+shape    change-line-08-r2_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -247,10 +247,10 @@ shape    change-line-09-r3_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 r3-a
-    point 2 r3-c
-    point 3 r3-b
-shape    change-line-09-r3_R
+    point 1 r2b
+    point 2 r2c
+    point 3 r2a
+shape    change-line-08-r2_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -272,7 +272,7 @@ shape    change-line-09-r3_R
     line 6 6 7
     line 7 7 8
     line 8 8 9
-shape    change-line-09-r4_L
+shape    change-line-08-r3_L
     name 
     coords 0 10 10 0
     coords 1 11 10 0
@@ -281,10 +281,78 @@ shape    change-line-09-r4_L
     coords 4 20 10 0
 
     line 0 0 4
-    point 1 r4-a
-    point 2 r4-c
-    point 3 r4-b
-shape    change-line-09-r4_R
+    point 1 r3b
+    point 2 r3c
+    point 3 r3a
+shape    change-line-08-r3_R
+    name 
+    coords 0 10 10 0
+    coords 1 11 9 0
+    coords 2 13 9 0
+    coords 3 13 11 0
+    coords 4 15 9 0
+    coords 5 15 11 0
+    coords 6 17 9 0
+    coords 7 17 11 0
+    coords 8 19 11 0
+    coords 9 20 10 0
+
+    line 0 0 1
+    line 1 1 2
+    line 2 2 3
+    line 3 3 5
+    line 4 4 6
+    line 5 5 4
+    line 6 6 7
+    line 7 7 8
+    line 8 8 9
+shape    change-line-08-r4_L
+    name 
+    coords 0 10 10 0
+    coords 1 11 10 0
+    coords 2 11 11 0
+    coords 3 19 10 0
+    coords 4 20 10 0
+
+    line 0 0 4
+    point 1 r4b
+    point 2 r4c
+    point 3 r4a
+shape    change-line-08-r4_R
+    name 
+    coords 0 10 10 0
+    coords 1 11 9 0
+    coords 2 13 9 0
+    coords 3 13 11 0
+    coords 4 15 9 0
+    coords 5 15 11 0
+    coords 6 17 9 0
+    coords 7 17 11 0
+    coords 8 19 11 0
+    coords 9 20 10 0
+
+    line 0 0 1
+    line 1 1 2
+    line 2 2 3
+    line 3 3 5
+    line 4 4 6
+    line 5 5 4
+    line 6 6 7
+    line 7 7 8
+    line 8 8 9
+shape    change-line-08-r5_L
+    name 
+    coords 0 10 10 0
+    coords 1 11 10 0
+    coords 2 11 11 0
+    coords 3 19 10 0
+    coords 4 20 10 0
+
+    line 0 0 4
+    point 1 r5b
+    point 2 r5c
+    point 3 r5a
+shape    change-line-08-r5_R
     name 
     coords 0 10 10 0
     coords 1 11 9 0
@@ -621,12 +689,14 @@ shape    uneven-grid-01
     point 98 c4-c
     point 99 r4-b
 initial    uneven-grid-01
-rule    change-line-09-c1    change-line-09-c1_L -> change-line-09-c1_R
-rule    change-line-09-c2    change-line-09-c2_L -> change-line-09-c2_R
-rule    change-line-09-c3    change-line-09-c3_L -> change-line-09-c3_R
-rule    change-line-09-c4    change-line-09-c4_L -> change-line-09-c4_R
-rule    change-line-09-c5    change-line-09-c5_L -> change-line-09-c5_R
-rule    change-line-09-r1    change-line-09-r1_L -> change-line-09-r1_R
-rule    change-line-09-r2    change-line-09-r2_L -> change-line-09-r2_R
-rule    change-line-09-r3    change-line-09-r3_L -> change-line-09-r3_R
-rule    change-line-09-r4    change-line-09-r4_L -> change-line-09-r4_R
+rule    0    0_L -> 0_R
+rule    change-line-08-c1    change-line-08-c1_L -> change-line-08-c1_R
+rule    change-line-08-c2    change-line-08-c2_L -> change-line-08-c2_R
+rule    change-line-08-c3    change-line-08-c3_L -> change-line-08-c3_R
+rule    change-line-08-c4    change-line-08-c4_L -> change-line-08-c4_R
+rule    change-line-08-c5    change-line-08-c5_L -> change-line-08-c5_R
+rule    change-line-08-r1    change-line-08-r1_L -> change-line-08-r1_R
+rule    change-line-08-r2    change-line-08-r2_L -> change-line-08-r2_R
+rule    change-line-08-r3    change-line-08-r3_L -> change-line-08-r3_R
+rule    change-line-08-r4    change-line-08-r4_L -> change-line-08-r4_R
+rule    change-line-08-r5    change-line-08-r5_L -> change-line-08-r5_R
