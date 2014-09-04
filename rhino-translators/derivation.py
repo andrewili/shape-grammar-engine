@@ -33,6 +33,107 @@ class Derivation(object):
             self.rules = rules
             self.next_shapes = next_shapes
 
+    @classmethod
+    def new_from_drv_text_lines(cls, drv_text_lines):
+        """Receives the text lines of a drv file:
+            [<drv-text-line>, ...]
+        Returns:
+            Derivation
+        """
+        grammar_shapes = []
+        grammar_rules = []
+        derivation_rules = []
+        next_shapes = []
+        # initial_shape = None
+        shape_text_lines = []
+        for text_line in drv_text_lines:
+            tokens = text_line.split()
+            if tokens == []:
+                pass
+            else:
+                first_token = tokens[0]
+                if first_token == '#':
+                    if tokens[2] == 'file':
+                        subfile = 'grammar'
+                    elif tokens[2] == 'record':
+                        subfile = 'derivation'
+                    else:
+                        pass
+                #   grammar shapes
+                elif (
+                    first_token == 'shape' and
+                    subfile == 'grammar'        ##  grammar record
+                ):
+                    new_grammar_shape = (
+                        shape.Shape.new_from_is_text_lines(shape_text_lines))
+                    grammar_shapes.append(new_grammar_shape)
+                    shape_text_lines = [tokens] ##  start new shape
+                elif first_token == 'name':
+                    shape_text_lines.append(tokens)
+                elif first_token == 'coords':
+                    shape_text_lines.append(tokens)
+                elif first_token == 'line':
+                    shape_text_lines.append(tokens)
+                elif first_token == 'point':
+                    shape_text_lines.append(tokens)
+                ##  grammar summary
+                elif first_token == 'initial':
+                    initial_shape_name = tokens[0]
+                    initial_shape = (           ###
+                        cls._get_shape_from_name(initial_shape_name))
+                elif (
+                    first_token == 'rule' and
+                    subfile == 'grammar'
+                ):
+                    name, left_shape, right_shape = (
+                        tokens[0], tokens[1], tokens[3])
+                    new_rule = rule.Rule(name, left_shape, right_shape)
+                    grammar_rules.append(new_rule)
+                ##  derivation shapes and rule names
+                elif (
+                    first_token == 'shape' and
+                    subfile == 'derivation'     ##  derivation record
+                ):
+                    derivation_shape = (
+                        shape.Shape.new_from_is_text_lines(shape_text_lines))
+                    derivation_shapes.append(derivation_shape)
+                    shape_text_lines = [tokens]
+                elif (
+                    first_token == 'rule' and
+                    subfile == 'derivation'
+                ):
+                    derivation_rule_name = tokens[0]
+                    derivation_rule = (         ###
+                        cls._get_rule_from_name(
+                            derivation_rule_name, grammar_rules))
+                    derivation_rules.append(derivation_rule)
+
+        new_derivation = Derivation(
+            initial_shape, derivation_rules, derivation_shapes)
+        return new_derivation
+
+    @classmethod
+    def _get_shape_from_name(cls, name, shapes):
+        """Receives a shape name and a list of shapes:
+            str
+            [Shape, ...]
+        Returns the shape with that name:
+            Shape
+        """
+        pass
+        # return shape
+
+    @classmethod
+    def _get_rule_from_name(cls, name, rules):
+        """Receives a rule name and a list of rules:
+            str
+            [Rule, ...]
+        Returns the rule with that name:
+            Rule
+        """
+        pass
+        # return rule
+
     def get_final_shape(self):
         """Returns the final shape in the derivation:
             Shape

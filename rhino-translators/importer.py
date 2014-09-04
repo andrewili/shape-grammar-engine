@@ -9,6 +9,25 @@ class Importer(object):
         pass
 
     ###
+    def import_derivation(self):
+        """Prompts for a drv file. Draws the derivation.
+        """
+        drv_text_lines = self._get_text_lines_from_drv_file()
+        # derivation = (
+        #     shape.Shape.get_derivation_from_drv_text_lines(drv_text_lines))
+        derivation = (
+            derivation.Derivation.new_from_drv_text_lines(drv_text_lines))
+        # layout = self._set_layout(derivation)
+        self._draw_derivation(derivation, layout)
+
+    def _draw_derivation(self, derivation):
+        """Receives a derivation: 
+            [Shape, ...]
+        Lays out and draws the derivation
+        """
+        pass
+
+    ###
     def import_final_shape(self):
         """Prompts for a drv file. Draws the final shape in the derivation.
         """
@@ -33,6 +52,12 @@ class Importer(object):
         file.close()
         return drv_text_lines
 
+    ###
+    def import_grammar(self):
+        """Prompts for a drv file. Draws the grammar in the derivation.
+        """
+        pass
+        
     ###
     def import_rule(self):
         rule_in = self._read_rule_file()
