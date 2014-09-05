@@ -41,7 +41,7 @@ class Rule(object):
             else:
                 first_token = tokens[0]
                 if first_token == 'shape':
-                    i = i + 1
+                    i = i + 1                   ##  start new list
                 elif first_token == 'rule':
                     name = tokens[1]
                 else:

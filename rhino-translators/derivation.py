@@ -59,11 +59,12 @@ class Derivation(object):
                         subfile = 'derivation'
                     else:
                         pass
-                #   grammar shapes
+                ##  grammar shapes
                 elif (
                     first_token == 'shape' and
                     subfile == 'grammar'        ##  grammar record
                 ):
+                    ##  account for the first case
                     new_grammar_shape = (
                         shape.Shape.new_from_is_text_lines(shape_text_lines))
                     grammar_shapes.append(new_grammar_shape)
@@ -85,54 +86,53 @@ class Derivation(object):
                     first_token == 'rule' and
                     subfile == 'grammar'
                 ):
-                    name, left_shape, right_shape = (
+                    grammar_rule_name, left_shape, right_shape = (
                         tokens[0], tokens[1], tokens[3])
-                    new_rule = rule.Rule(name, left_shape, right_shape)
-                    grammar_rules.append(new_rule)
+                                                ##  but these are all strings
+                    grammar_rule = (
+                        rule.Rule(grammar_rule_name, left_shape, right_shape))
+                    grammar_rules_dict[grammar_rule_name] = grammar_rule
+                    # new_rule = rule.Rule(name, left_shape, right_shape)
+                    # grammar_rules.append(new_rule)
                 ##  derivation shapes and rule names
                 elif (
                     first_token == 'shape' and
-                    subfile == 'derivation'     ##  derivation record
+                    subfile == 'derivation'
                 ):
-                    derivation_shape = (
-                        shape.Shape.new_from_is_text_lines(shape_text_lines))
-                    derivation_shapes.append(derivation_shape)
-                    shape_text_lines = [tokens]
+                    shape_pending = True
+                    if shape_text_lines == []:
+                        shape_pending = False
+                    if shape_pending:           ##  wrap up the pending shape
+                        derivation_shape = (
+                            shape.Shape.new_from_is_text_lines(
+                                shape_text_lines))
+                        derivation_shapes.append(derivation_shape)
+                    shape_text_lines = [tokens] ##  start the new shape
                 elif (
                     first_token == 'rule' and
                     subfile == 'derivation'
                 ):
+                    cls._extract_derivation_rule(tokens, derivation_rules)
                     derivation_rule_name = tokens[0]
-                    derivation_rule = (         ###
-                        cls._get_rule_from_name(
-                            derivation_rule_name, grammar_rules))
+                    derivation_rule = (
+                        grammar_rules_dict[derivation_rule_name])
                     derivation_rules.append(derivation_rule)
-
         new_derivation = Derivation(
             initial_shape, derivation_rules, derivation_shapes)
         return new_derivation
 
     @classmethod
-    def _get_shape_from_name(cls, name, shapes):
-        """Receives a shape name and a list of shapes:
-            str
-            [Shape, ...]
-        Returns the shape with that name:
-            Shape
-        """
-        pass
-        # return shape
-
-    @classmethod
-    def _get_rule_from_name(cls, name, rules):
-        """Receives a rule name and a list of rules:
-            str
+    def _extract_derivation_rule(cls, tokens, derivation_rules):
+        """Receives a list of one token: the name of a derivation rule:
+            [str]
             [Rule, ...]
-        Returns the rule with that name:
-            Rule
+        Appends the rule to the list
         """
-        pass
-        # return rule
+        derivation_rule_name = tokens[0]
+        derivation_rule = (
+            grammar_rules_dict[derivation_rule_name])
+        derivation_rules.append(derivation_rule)
+        # pass
 
     def get_final_shape(self):
         """Returns the final shape in the derivation:
