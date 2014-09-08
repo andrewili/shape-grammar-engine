@@ -45,7 +45,8 @@ class Rule(object):
                 elif first_token == 'rule':
                     name = tokens[1]
                 else:
-                    text_lines_out[i].append(text_line)
+                    pass
+                text_lines_out[i].append(text_line)
         left_shape = shape.Shape.new_from_is_text_lines(
             text_lines_out[0])
         right_shape = shape.Shape.new_from_is_text_lines(

@@ -1,0 +1,9 @@
+shape delete-label-2_L
+    name label
+    coords 0 3.000000 11.000000 0.000000
+
+    point 0 a
+shape delete-label-2_R
+    name empty
+
+rule    delete-label-2    delete-label-2_L -> delete-label-2_R

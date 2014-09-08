@@ -40,11 +40,10 @@ class Derivation(object):
         Returns:
             Derivation
         """
-        grammar_shapes = []
-        grammar_rules = []
+        grammar_shapes_dict = {}
+        grammar_rules_dict = {}
         derivation_rules = []
-        next_shapes = []
-        # initial_shape = None
+        next_shapes = []                        ##  rename derivation_shapes?
         shape_text_lines = []
         for text_line in drv_text_lines:
             tokens = text_line.split()
@@ -67,21 +66,25 @@ class Derivation(object):
                     ##  account for the first case
                     new_grammar_shape = (
                         shape.Shape.new_from_is_text_lines(shape_text_lines))
-                    grammar_shapes.append(new_grammar_shape)
+                    grammar_shapes_dict[new_grammar_shape.name] = (
+                        new_grammar_shape)
                     shape_text_lines = [tokens] ##  start new shape
-                elif first_token == 'name':
+                elif first_token in ['name', 'coords', 'line', 'point']:
                     shape_text_lines.append(tokens)
-                elif first_token == 'coords':
-                    shape_text_lines.append(tokens)
-                elif first_token == 'line':
-                    shape_text_lines.append(tokens)
-                elif first_token == 'point':
-                    shape_text_lines.append(tokens)
+                # elif first_token == 'name':
+                #     shape_text_lines.append(tokens)
+                # elif first_token == 'coords':
+                #     shape_text_lines.append(tokens)
+                # elif first_token == 'line':
+                #     shape_text_lines.append(tokens)
+                # elif first_token == 'point':
+                #     shape_text_lines.append(tokens)
                 ##  grammar summary
                 elif first_token == 'initial':
                     initial_shape_name = tokens[0]
-                    initial_shape = (           ###
-                        cls._get_shape_from_name(initial_shape_name))
+                    initial_shape = grammar_shapes_dict[initial_shape_name]
+                    # initial_shape = (           ###
+                    #     cls._get_shape_from_name(initial_shape_name))
                 elif (
                     first_token == 'rule' and
                     subfile == 'grammar'
@@ -99,40 +102,49 @@ class Derivation(object):
                     first_token == 'shape' and
                     subfile == 'derivation'
                 ):
-                    shape_pending = True
-                    if shape_text_lines == []:
-                        shape_pending = False
-                    if shape_pending:           ##  wrap up the pending shape
-                        derivation_shape = (
-                            shape.Shape.new_from_is_text_lines(
-                                shape_text_lines))
-                        derivation_shapes.append(derivation_shape)
+                    if cls._shape_pending(shape_text_lines):
+                        cls._wrap_up_pending_shape(
+                            shape_text_lines, next_shapes)
                     shape_text_lines = [tokens] ##  start the new shape
                 elif (
                     first_token == 'rule' and
                     subfile == 'derivation'
                 ):
-                    cls._extract_derivation_rule(tokens, derivation_rules)
-                    derivation_rule_name = tokens[0]
-                    derivation_rule = (
-                        grammar_rules_dict[derivation_rule_name])
+                    derivation_rule = cls._look_up_derivation_rule(
+                        tokens, grammar_rules_dict)
                     derivation_rules.append(derivation_rule)
         new_derivation = Derivation(
-            initial_shape, derivation_rules, derivation_shapes)
+            initial_shape, derivation_rules, next_shapes)
         return new_derivation
 
     @classmethod
-    def _extract_derivation_rule(cls, tokens, derivation_rules):
-        """Receives a list of one token: the name of a derivation rule:
+    def _shape_pending(cls, text_lines):
+        value = True
+        if text_lines == []:
+            value = False
+        return value
+
+    @classmethod
+    def _wrap_up_pending_shape(cls, shape_text_lines, next_shapes):
+        """Receives a list of shape text lines:
+            [str, ...]
+        Creates a shape and appends it to the derivation shape list
+        """
+        next_shape = (
+            shape.Shape.new_from_is_text_lines(shape_text_lines))
+        next_shapes.append(next_shape)
+
+    @classmethod
+    def _look_up_derivation_rule(cls, tokens, grammar_rules_dict):
+        """Receives a list of one token (the name of a derivation rule) and a 
+        dictionary of name:rule entries:
             [str]
-            [Rule, ...]
-        Appends the rule to the list
+            {str: Rule, ...}
+        Returns the named rule
         """
         derivation_rule_name = tokens[0]
-        derivation_rule = (
-            grammar_rules_dict[derivation_rule_name])
-        derivation_rules.append(derivation_rule)
-        # pass
+        derivation_rule = (grammar_rules_dict[derivation_rule_name])
+        return derivation_rule
 
     def get_final_shape(self):
         """Returns the final shape in the derivation:
@@ -209,9 +221,10 @@ class Derivation(object):
 
     def __repr__(self):
         """Returns an (unformatted) string in the form:
-            <initial shape>,
-            <rules>,
-            <next shapes>
+            (   <initial shape>,
+                <rules>,
+                <next shapes>
+            )
         """
         rules_repr = self._make_rules_repr()
         next_shapes_repr = self._make_next_shapes_repr()

@@ -1,0 +1,88 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    delete-label-2_L
+    name 
+    coords 0 3 11 0
+
+    point 0 a
+shape    delete-label-2_R
+    name 
+
+shape    labeled-oblong-2
+    name 
+    coords 0 1 1 0
+    coords 1 1 1 20
+    coords 2 1 21 0
+    coords 3 1 21 20
+    coords 4 3 11 0
+    coords 5 31 1 0
+    coords 6 31 1 20
+    coords 7 31 21 0
+    coords 8 31 21 20
+
+    line 0 0 1
+    line 1 0 2
+    line 10 6 8
+    line 11 7 8
+    line 2 0 5
+    line 3 1 3
+    line 4 1 6
+    line 5 2 3
+    line 6 2 7
+    line 7 3 8
+    line 8 5 6
+    line 9 5 7
+    point 4 a
+shape    shorten-labeled-oblong-2_L
+    name 
+    coords 0 1 1 0
+    coords 1 1 1 20
+    coords 2 1 21 0
+    coords 3 1 21 20
+    coords 4 3 11 0
+    coords 5 31 1 0
+    coords 6 31 1 20
+    coords 7 31 21 0
+    coords 8 31 21 20
+
+    line 0 0 1
+    line 1 0 2
+    line 10 6 8
+    line 11 7 8
+    line 2 0 5
+    line 3 1 3
+    line 4 1 6
+    line 5 2 3
+    line 6 2 7
+    line 7 3 8
+    line 8 5 6
+    line 9 5 7
+    point 4 a
+shape    shorten-labeled-oblong-2_R
+    name 
+    coords 0 1 1 0
+    coords 1 1 1 20
+    coords 2 1 21 0
+    coords 3 1 21 20
+    coords 4 3 11 0
+    coords 5 21 1 0
+    coords 6 21 1 20
+    coords 7 21 21 0
+    coords 8 21 21 20
+
+    line 0 0 1
+    line 1 0 2
+    line 10 6 8
+    line 11 7 8
+    line 2 0 5
+    line 3 1 3
+    line 4 1 6
+    line 5 2 3
+    line 6 2 7
+    line 7 3 8
+    line 8 5 6
+    line 9 5 7
+    point 4 a
+initial    labeled-oblong-2
+rule    delete-label-2    delete-label-2_L -> delete-label-2_R
+rule    shorten-labeled-oblong-2    shorten-labeled-oblong-2_L -> shorten-labeled-oblong-2_R

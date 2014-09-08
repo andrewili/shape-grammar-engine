@@ -182,3 +182,9 @@ Log
     >   The derivation object should be called something else, since it 
         contains both the grammar (initial shape and rules) and the 
         "derivation record" (the "actual" derivation). 
+
+#   2014-09-06
+    >   The drv file from interpreter sometimes lists a coord triple more than 
+        once. So lines meeting at the same point sometimes have different 
+        coord indices. Disturbing, but no apparent harm. Yet. 
+        
