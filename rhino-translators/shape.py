@@ -170,7 +170,7 @@ class Shape(object):
         lines = []
         lpoints = []
         for text_line in text_lines:
-            tokens = text_line.split()
+            tokens = text_line.split()          ##  text_line is a list
             if tokens == []:
                 pass
             else:
