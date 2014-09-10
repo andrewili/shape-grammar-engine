@@ -42,7 +42,6 @@ class Derivation(object):
         """
         grammar_shapes_dict = {}
         grammar_rules_dict = {}
-        # derivation_rules_dict = {}
         derivation_rules = []
         next_shapes = []                        ##  rename derivation_shapes?
         shape_text_lines = []
@@ -68,11 +67,9 @@ class Derivation(object):
                         cls._wrap_up_pending_grammar_shape(
                             shape_text_lines, grammar_shapes_dict)
                     shape_text_lines = [text_line]  ##  start new shape
-                    # shape_text_lines = [tokens] ##  start new shape
                 elif first_token in ['name', 'coords', 'line', 'point']:
                     shape_text_lines.append(text_line)
-                    # shape_text_lines.append(tokens)
-                elif first_token == 'initial':      ##  if none?
+                elif first_token == 'initial':  ##  if none?
                     if cls._shape_pending(shape_text_lines):
                         cls._wrap_up_pending_grammar_shape(
                             shape_text_lines, grammar_shapes_dict)
@@ -98,7 +95,6 @@ class Derivation(object):
                         cls._wrap_up_pending_derivation_shape(
                             shape_text_lines, next_shapes)
                     shape_text_lines = [text_line]  ##  start new shape
-                    # shape_text_lines = [tokens] ##  start new shape
                 elif (
                     first_token == 'rule' and
                     subfile == 'derivation'
@@ -106,7 +102,6 @@ class Derivation(object):
                     derivation_rule_name = tokens[1]
                     derivation_rule = (
                         grammar_rules_dict[derivation_rule_name])
-                    # derivation_rule = derivation_rules[derivation_rule_name]
                     derivation_rules.append(derivation_rule)
                 ##  other case?
         new_derivation = Derivation(
@@ -122,7 +117,7 @@ class Derivation(object):
 
     @classmethod
     def _wrap_up_pending_grammar_shape(
-        cls, shape_text_lines, derivation_shapes_dict
+        cls, shape_text_lines, grammar_shapes_dict
     ):
         """Receives a list of shape text lines and a dictionary of name-shape 
         entries:
@@ -131,7 +126,7 @@ class Derivation(object):
         Creates a shape and enters it in the dictionary
         """
         new_shape = shape.Shape.new_from_is_text_lines(shape_text_lines)
-        derivation_shapes_dict[new_shape.name] = new_shape
+        grammar_shapes_dict[new_shape.name] = new_shape
 
     @classmethod
     def _wrap_up_pending_derivation_shape(cls, shape_text_lines, next_shapes):
