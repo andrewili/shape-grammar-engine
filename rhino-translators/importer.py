@@ -1,5 +1,6 @@
 #   importer.py
 
+import derivation
 import rhinoscriptsyntax as rs
 import rule
 import shape
@@ -13,19 +14,20 @@ class Importer(object):
         """Prompts for a drv file. Draws the derivation.
         """
         drv_text_lines = self._get_text_lines_from_drv_file()
-        # derivation = (
-        #     shape.Shape.get_derivation_from_drv_text_lines(drv_text_lines))
-        derivation = (
+        derivation_in = (
             derivation.Derivation.new_from_drv_text_lines(drv_text_lines))
-        # layout = self._set_layout(derivation)
-        self._draw_derivation(derivation, layout)
+        self._draw_derivation(derivation_in)
 
-    def _draw_derivation(self, derivation):
+    def _draw_derivation(self, derivation_in):
         """Receives a derivation: 
             [Shape, ...]
-        Lays out and draws the derivation
+        Lays out and draws the derivation. For now, left to right
         """
-        pass
+        # self._draw_shape(derivation_in.initial_shape)
+        for next_shape in derivation_in.next_shapes:
+            # self._draw_shape(next_shape)
+            local_origin = (10, 10, 0)
+            self._draw_shape(next_shape, local_origin)
 
     ###
     def import_final_shape(self):
@@ -104,7 +106,7 @@ class Importer(object):
         new_shape = shape.Shape.new_from_is_text_lines(contents)
         return new_shape
 
-    def _draw_shape(self, shape):
+    def _draw_shape(self, shape, origin=(0, 0, 0)):
         """Receives: 
             Shape
         Draws the shape in Rhino

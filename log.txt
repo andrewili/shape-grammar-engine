@@ -188,3 +188,7 @@ Log
         once. So lines meeting at the same point sometimes have different 
         coord indices. Disturbing, but no apparent harm. Yet. 
         
+#   2014-09-11
+    >   Importer.import_derivation. Chokes when a derivation rule name is not
+        in the grammar rule dictionary. This happens when the rule names are 
+        different, although I don't know exactly how that happens.
