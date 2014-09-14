@@ -23,10 +23,8 @@ class Importer(object):
             [Shape, ...]
         Lays out and draws the derivation. For now, left to right
         """
-        self._draw_shape(derivation_in.initial_shape, [0, 0, 0])
         offset_increment = [20, 0, 0]
-        print('shape x: %s' % derivation_in.initial_shape.name)
-        i = 1
+        i = 0
         for shape in derivation_in.next_shapes:
             offset = self._calculate_offset(offset_increment, i)
             self._draw_shape(shape, offset)

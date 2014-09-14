@@ -105,6 +105,9 @@ class Derivation(object):
                         grammar_rules_dict[derivation_rule_name])
                     derivation_rules.append(derivation_rule)
                 ##  other case?
+        if not shape_text_lines == []:
+            cls._wrap_up_pending_derivation_shape(
+                shape_text_lines, next_shapes)
         new_derivation = Derivation(
             initial_shape, derivation_rules, next_shapes)
         return new_derivation
