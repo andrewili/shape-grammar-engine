@@ -23,12 +23,24 @@ class Importer(object):
             [Shape, ...]
         Lays out and draws the derivation. For now, left to right
         """
-        # self._draw_shape(derivation_in.initial_shape)
-        for next_shape in derivation_in.next_shapes:
-            # self._draw_shape(next_shape)
-            local_origin = (10, 10, 0)
-            self._draw_shape(next_shape, local_origin)
+        self._draw_shape(derivation_in.initial_shape, [0, 0, 0])
+        offset_increment = [20, 0, 0]
+        print('shape x: %s' % derivation_in.initial_shape.name)
+        i = 1
+        for shape in derivation_in.next_shapes:
+            offset = self._calculate_offset(offset_increment, i)
+            self._draw_shape(shape, offset)
+            print('shape %i: %s' % (i, shape.name))
+            i = i + 1
 
+    def _calculate_offset(self, offset_increment, i):
+        """Receives an offset increment and an index:
+            [num, num, num]
+            int
+        Returns an offset, i.e., vector or local origin
+        """
+        offset = [coord_offset * i for coord_offset in offset_increment]
+        return offset
     ###
     def import_final_shape(self):
         """Prompts for a drv file. Draws the final shape in the derivation.
@@ -106,16 +118,31 @@ class Importer(object):
         new_shape = shape.Shape.new_from_is_text_lines(contents)
         return new_shape
 
-    def _draw_shape(self, shape, origin=(0, 0, 0)):
-        """Receives: 
+    def _draw_shape(self, shape, offset=[0, 0, 0]):
+        """Receives a shape and a list denoting the local origin: 
             Shape
-        Draws the shape in Rhino
+            [num, num, num]
+        Draws the shape in Rhino at the local origin
         """
         rhino_lines = shape.get_line_specs_as_lists()
         for rhino_line in rhino_lines:
             rhino_p1, rhino_p2 = rhino_line
-            rs.AddLine(rhino_p1, rhino_p2)
+            self._draw_offset_line(rhino_p1, rhino_p2, offset)
+            # rs.AddLine(rhino_p1, rhino_p2)
         rhino_dots = shape.get_rhino_dots()
         for rhino_dot in rhino_dots:
             label, rhino_point = rhino_dot
-            rs.AddTextDot(label, rhino_point)
+            self._draw_offset_rhino_dot(label, rhino_point, offset)
+            # rs.AddTextDot(label, rhino_point)
+
+    def _draw_offset_line(self, p1, p2, offset):
+        p1a = map(self._offset_coord, p1, offset)
+        p2a = map(self._offset_coord, p2, offset)
+        rs.AddLine(p1a, p2a)
+
+    def _draw_offset_rhino_dot(self, label, rhino_point, offset):
+        offset_rhino_point = map(self._offset_coord, rhino_point, offset)
+        rs.AddTextDot(label, offset_rhino_point)
+
+    def _offset_coord(self, coord, offset):
+        return coord + offset
