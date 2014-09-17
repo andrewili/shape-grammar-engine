@@ -65,7 +65,7 @@ class Importer(object):
         return drv_text_lines
 
     ###
-    def import_grammar(self):
+    def import_grammar(self):                   ##  to do
         """Prompts for a drv file. Draws the grammar in the derivation.
         """
         pass

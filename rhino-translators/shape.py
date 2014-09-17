@@ -178,8 +178,9 @@ class Shape(object):
                 if first_token == 'shape':
                     name = tokens[0]
                 elif first_token == 'name':
-                    if cls._rule_shape(tokens):
-                        name = tokens[0]
+                    pass
+                    # if cls._rule_shape(tokens):
+                    #     name = tokens[0]
                 elif first_token == 'coords':
                     codex, coord = cls._make_codex_entry(tokens)
                     codex_dict[codex] = coord

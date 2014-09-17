@@ -192,3 +192,16 @@ Log
     >   Importer.import_derivation. Chokes when a derivation rule name is not
         in the grammar rule dictionary. This happens when the rule names are 
         different, although I don't know exactly how that happens.
+
+#   2014-09-16
+    >   In the drv file, the name of the rule in the derivation sometimes 
+        doesn't appear. It seems to happen when the rule application is deterministic, i.e., when there was only the one rule that could be 
+        applied. E.g., parallel-lines-2014-08-27.drv
+    >   In the drv file, a next shape is sometimes repeated. Don't see a 
+        reason. 
+
+#   2014-09-17
+    >   In some drv files, derivation subfile, the first several rules are 
+        unnamed and the remaining rules all have (the same) rule name that is 
+        not in the grammar. Example: jigsaw-02-step-01-2014-08-28.drv
+    

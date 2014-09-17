@@ -100,10 +100,21 @@ class Derivation(object):
                     first_token == 'rule' and
                     subfile == 'derivation'
                 ):
-                    derivation_rule_name = tokens[1]
-                    derivation_rule = (
-                        grammar_rules_dict[derivation_rule_name])
-                    derivation_rules.append(derivation_rule)
+                    ##  if the rule is unidentified
+                    if cls._rule_is_unidentified(tokens):
+                        # derivation_rules['unidentified'] = None
+                        pass
+                    elif cls._rule_is_unknown(tokens, grammar_rules_dict):
+                        pass
+                    else:
+                        derivation_rule_name = tokens[1]
+                        derivation_rule = (
+                            grammar_rules_dict[derivation_rule_name])
+                        derivation_rules.append(derivation_rule)
+                    # derivation_rule_name = tokens[1]
+                    # derivation_rule = (
+                    #     grammar_rules_dict[derivation_rule_name])
+                    # derivation_rules.append(derivation_rule)
                 ##  other case?
         if not shape_text_lines == []:
             cls._wrap_up_pending_derivation_shape(
@@ -117,6 +128,21 @@ class Derivation(object):
         value = True
         if text_lines == []:
             value = False
+        return value
+
+    @classmethod
+    def _rule_is_unidentified(cls, tokens):
+        value = False
+        if len(tokens) == 1:
+            value = True
+        return value
+
+    @classmethod
+    def _rule_is_unknown(cls, tokens, grammar_rules_dict):
+        rule_name = tokens[1]
+        value = False
+        if not rule_name in grammar_rules_dict:
+            value = True
         return value
 
     @classmethod
