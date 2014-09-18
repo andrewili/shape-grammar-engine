@@ -11,7 +11,8 @@ class Importer(object):
 
     ###
     def import_derivation(self):
-        """Prompts for a drv file. Draws the derivation.
+        """Prompts for a drv file. Draws the derivation. 
+        ##  Draws the grammar?
         """
         drv_text_lines = self._get_text_lines_from_drv_file()
         derivation_in = (
@@ -21,14 +22,23 @@ class Importer(object):
     def _draw_derivation(self, derivation_in):
         """Receives a derivation: 
             [Shape, ...]
-        Lays out and draws the derivation. For now, left to right
+        Lays out and draws the derivation. For now, left to right in the upper 
+        right quadrant.
         """
-        offset_increment = [20, 0, 0]
+        double_arrow_width = 10
+        shape_width = 32
+        double_arrow_and_shape_width = double_arrow_width + shape_width
+        offset_increment = [double_arrow_and_shape_width, 0, 0]
         i = 0
         for shape in derivation_in.next_shapes:
             offset = self._calculate_offset(offset_increment, i)
-            self._draw_shape(shape, offset)
-            print('shape %i: %s' % (i, shape.name))
+            if i == 0:
+                self._draw_shape(shape, offset)
+            else:
+                self._draw_shape(shape, offset) ##  double arrow disabled
+                # self._draw_double_arrow_and_shape(
+                #     shape, offset, double_arrow_width)
+                print('shape %i: %s' % (i, shape.name))
             i = i + 1
 
     def _calculate_offset(self, offset_increment, i):
@@ -115,6 +125,37 @@ class Importer(object):
 
         new_shape = shape.Shape.new_from_is_text_lines(contents)
         return new_shape
+
+    def _draw_double_arrow_and_shape(
+        self, shape, offset, double_arrow_width
+    ):
+        """Receives:
+            Shape
+            [num, num, num]
+            num
+        Draws a double arrow and the shape at the offset locations.
+        """
+        self._draw_double_arrow(offset)
+        shape_offset = [offset[0] + double_arrow_width, offset[1], offset[2]]
+        self._draw_shape(shape, shape_offset)
+
+    def _draw_double_arrow(self, offset):
+        """Receives an offset:
+            [num, num, num]
+        Draws a double arrow at that offset.
+        """
+        p12 = [1, 2, 0]
+        p14 = [1, 4, 0]
+        p60 = [6, 0, 0]
+        p66 = [6, 6, 0]
+        p82 = [8, 2, 0]
+        p84 = [8, 4, 0]
+        p86 = [8, 8, 0]
+        p93 = [9, 3, 0]
+        self._draw_offset_line(p12, p82, offset)
+        self._draw_offset_line(p14, p84, offset)
+        self._draw_offset_line(p60, p93, offset)
+        self._draw_offset_line(p66, p93, offset)
 
     def _draw_shape(self, shape, offset=[0, 0, 0]):
         """Receives a shape and a list denoting the local origin: 
