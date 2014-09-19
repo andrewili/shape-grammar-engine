@@ -20,8 +20,8 @@ class Importer(object):
         self._draw_derivation(derivation_in)
 
     def _draw_derivation(self, derivation_in):
-        """Receives a derivation: 
-            [Shape, ...]
+        """Receives: 
+            Derivation
         Lays out and draws the derivation. For now, left to right in the upper 
         right quadrant.
         """
@@ -49,6 +49,44 @@ class Importer(object):
         """
         offset = [coord_offset * i for coord_offset in offset_increment]
         return offset
+
+    ###
+    def import_grammar(self):
+        """Prompts for a drv file. Draws the grammar.
+        """
+        drv_text_lines = self._get_text_lines_from_drv_file()
+        derivation_in = (
+            derivation.Derivation.new_from_drv_text_lines(drv_text_lines))
+        self._draw_grammar(derivation_in)
+
+    def _draw_grammar(self, derivation_in):
+        """Receives: 
+            Derivation
+        Draws the grammar. For now, top to bottom in the lower right quadrant.
+        """
+        # offset = self._calculate_offset(offset_increment, i)
+        self._draw_shape(derivation_in.initial_shape)
+                                                ##  more than 1 initial shape?
+        self._draw_rules(derivation_in.rules)
+
+    def _draw_rules(self, rules):
+        """Receives a list of rules:
+            [Rule, ...]
+        Draws the rules below the initial shape, from top to bottom.
+        """
+        for rule_i in rules:
+            self._draw_rule(rule, offset)
+
+    def _draw_rule(self, rule_in, offset):
+        """Receives a rule and an offset:
+            Rule
+            [num, num, num]
+        Draws the rule at the offset.
+        """
+        self._write_shape_name(rule_in.name, offset_name)
+        self._draw_shape(rule_in.left_shape, offset_left)
+        self._draw_shape(rule_in.right_shape, offset_right)
+
     ###
     def import_final_shape(self):
         """Prompts for a drv file. Draws the final shape in the derivation.
@@ -74,12 +112,6 @@ class Importer(object):
         file.close()
         return drv_text_lines
 
-    ###
-    def import_grammar(self):                   ##  to do
-        """Prompts for a drv file. Draws the grammar in the derivation.
-        """
-        pass
-        
     ###
     def import_rule(self):
         rule_in = self._read_rule_file()
