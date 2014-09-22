@@ -7,7 +7,8 @@ import shape
 
 class Importer(object):
     def __init__(self):
-        pass
+        self.padded_next_shape_size = [42, 42, 0]
+        self.padded_rule_size = [84, 42, 0]
 
     ###
     def import_derivation(self):
@@ -36,7 +37,7 @@ class Importer(object):
                 self._draw_shape(shape, offset)
             else:
                 self._draw_shape(shape, offset) ##  double arrow disabled
-                # self._draw_double_arrow_and_shape(
+                # self._draw_derivation_arrow_and_shape(
                 #     shape, offset, double_arrow_width)
                 print('shape %i: %s' % (i, shape.name))
             i = i + 1
@@ -45,7 +46,8 @@ class Importer(object):
         """Receives an offset increment and an index:
             [num, num, num]
             int
-        Returns an offset, i.e., vector or local origin
+        Returns an offset, i.e., vector or local origin:
+            [num, num, num]
         """
         offset = [coord_offset * i for coord_offset in offset_increment]
         return offset
@@ -64,28 +66,84 @@ class Importer(object):
             Derivation
         Draws the grammar. For now, top to bottom in the lower right quadrant.
         """
-        # offset = self._calculate_offset(offset_increment, i)
-        self._draw_shape(derivation_in.initial_shape)
+        i = 1
+        offset_multiplier = self._calculate_offset([0, -1, 0], i)
+        offset = map(self._multiply, self.padded_rule_size, offset_multiplier)
+        self._draw_shape(derivation_in.initial_shape, offset)
                                                 ##  more than 1 initial shape?
-        self._draw_rules(derivation_in.rules)
+        offset_multiplier = self._calculate_offset([0, -1, 0], i + 1)
+        offset = map(self._multiply, self.padded_rule_size, offset_multiplier)
+        self._draw_rules(derivation_in.rules, offset)
 
-    def _draw_rules(self, rules):
-        """Receives a list of rules:
+    def _multiply(self, num1, num2):
+        product = num1 * num2
+        return product
+
+    def _draw_rules(self, rules, offset=[0, 0, 0]):
+        """Receives a list of rules and an offset:
             [Rule, ...]
-        Draws the rules below the initial shape, from top to bottom.
+            [num, num, num]
+        Draws the rules from top to bottom, starting at the offset.
         """
+        offset_increment = [0, -42, 0]
+        i = 2
         for rule_i in rules:
-            self._draw_rule(rule, offset)
+            offset = self._calculate_offset(offset_increment, i)
+            self._draw_rule(rule_i, offset)
+            i = i + 1
 
-    def _draw_rule(self, rule_in, offset):
+    def _draw_rule(self, rule_in, offset=[0, 0, 0]):
         """Receives a rule and an offset:
             Rule
             [num, num, num]
         Draws the rule at the offset.
         """
-        self._write_shape_name(rule_in.name, offset_name)
-        self._draw_shape(rule_in.left_shape, offset_left)
-        self._draw_shape(rule_in.right_shape, offset_right)
+        net_offset_name, net_offset_left, net_offset_arrow, net_offset_right = (
+            self._calculate_rule_part_offsets(offset))
+        self._write_shape_name(rule_in.name, net_offset_name)
+        self._draw_shape(rule_in.left_shape, net_offset_left)
+        self._draw_rule_arrow(net_offset_arrow)
+        self._draw_shape(rule_in.right_shape, net_offset_right)
+
+    def _calculate_rule_part_offsets(self, net_offset_rule):
+        """Receives the rule's net offset:
+            [num, num, num]
+        Returns the origins of the rule's name, left shape, arrow, and 
+        right shape:
+            (   [num, num, num], 
+                [num, num, num], 
+                [num, num, num], 
+                [num, num, num])
+        """
+        offset_rule_name = [0, 0, 0]
+        offset_rule_left = [20, 0, 0]
+        offset_rule_arrow = [52, 0, 0]
+        offset_rule_right = [62, 0, 0]
+        net_offset_name = self._add_vectors(net_offset_rule, offset_rule_name)
+        net_offset_left = self._add_vectors(net_offset_rule, offset_rule_left)
+        net_offset_arrow = self._add_vectors(
+            net_offset_rule, offset_rule_arrow)
+        net_offset_right = self._add_vectors(
+            net_offset_rule, offset_rule_right)
+        return (
+            net_offset_name, 
+            net_offset_left, 
+            net_offset_arrow, 
+            net_offset_right)
+
+    def _add_vectors(self, v1, v2):
+        """Receives two vectors or points:
+            [num, num, num]
+            [num, num, num]
+        Returns the sum:
+            [num, num, num]
+        """
+        vector_sum = map(self._add, v1, v2)
+        return vector_sum
+
+    def _add(self, num1, num2):
+        total = num1 + num2
+        return total
 
     ###
     def import_final_shape(self):
@@ -158,7 +216,19 @@ class Importer(object):
         new_shape = shape.Shape.new_from_is_text_lines(contents)
         return new_shape
 
-    def _draw_double_arrow_and_shape(
+    def _write_shape_name(self, name, offset=[0, 0, 0]):
+        """
+        """
+        print('In lieu of writing a shape name')
+
+    def _draw_rule_arrow(self, offset=[0, 0, 0]):
+        """Receives the global offset:
+            [num, num, num]
+        Draws a rule arrow at that location.
+        """
+        print('In lieu of drawing a rule arrow')
+
+    def _draw_derivation_arrow_and_shape(       ##  not called
         self, shape, offset, double_arrow_width
     ):
         """Receives:
@@ -184,10 +254,10 @@ class Importer(object):
         p84 = [8, 4, 0]
         p86 = [8, 8, 0]
         p93 = [9, 3, 0]
-        self._draw_offset_line(p12, p82, offset)
-        self._draw_offset_line(p14, p84, offset)
-        self._draw_offset_line(p60, p93, offset)
-        self._draw_offset_line(p66, p93, offset)
+        self._draw_line(p12, p82, offset)
+        self._draw_line(p14, p84, offset)
+        self._draw_line(p60, p93, offset)
+        self._draw_line(p66, p93, offset)
 
     def _draw_shape(self, shape, offset=[0, 0, 0]):
         """Receives a shape and a list denoting the local origin: 
@@ -198,20 +268,18 @@ class Importer(object):
         rhino_lines = shape.get_line_specs_as_lists()
         for rhino_line in rhino_lines:
             rhino_p1, rhino_p2 = rhino_line
-            self._draw_offset_line(rhino_p1, rhino_p2, offset)
-            # rs.AddLine(rhino_p1, rhino_p2)
+            self._draw_line(rhino_p1, rhino_p2, offset)
         rhino_dots = shape.get_rhino_dots()
         for rhino_dot in rhino_dots:
             label, rhino_point = rhino_dot
-            self._draw_offset_rhino_dot(label, rhino_point, offset)
-            # rs.AddTextDot(label, rhino_point)
+            self._draw_rhino_dot(label, rhino_point, offset)
 
-    def _draw_offset_line(self, p1, p2, offset):
+    def _draw_line(self, p1, p2, offset):
         p1a = map(self._offset_coord, p1, offset)
         p2a = map(self._offset_coord, p2, offset)
         rs.AddLine(p1a, p2a)
 
-    def _draw_offset_rhino_dot(self, label, rhino_point, offset):
+    def _draw_rhino_dot(self, label, rhino_point, offset):
         offset_rhino_point = map(self._offset_coord, rhino_point, offset)
         rs.AddTextDot(label, offset_rhino_point)
 
