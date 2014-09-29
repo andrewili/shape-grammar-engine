@@ -5,6 +5,7 @@ import shape
 
 class Derivation(object):
     def __init__(self, initial_shape, rules, next_shapes):
+                                                ##  test for exceptions
         """Receives:
             Shape
             [Rule, ...]

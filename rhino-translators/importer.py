@@ -74,13 +74,14 @@ class Importer(object):
         """Prompts for a drv file. Draws the grammar.
         """
         drv_text_lines = self._get_text_lines_from_drv_file()
-        derivation_in = (
-            derivation.Derivation.new_from_drv_text_lines(drv_text_lines))
-        self._draw_grammar(derivation_in)
+        grammar_in = grammar.Grammar.new_from_drv_text_lines(drv_text_lines)
+        # derivation_in = (
+        #     derivation.Derivation.new_from_drv_text_lines(drv_text_lines))
+        self._draw_grammar(grammar_in)
 
-    def _draw_grammar(self, derivation_in):
+    def _draw_grammar(self, grammar_in):
         """Receives: 
-            Derivation
+            Grammar
         Draws the grammar. For now, top to bottom in the lower right quadrant.
         """
         origin = [0, 0, 0]
@@ -91,14 +92,14 @@ class Importer(object):
         initial_shapes_location = self._add_vectors(
             origin, 
             self._multiply_vector_scalar(offset_increment, i))
-        self._draw_shape(derivation_in.initial_shape, initial_shapes_location)
+        self._draw_shape(grammar_in.initial_shape, initial_shapes_location)
         i = i + 1
-        for rule_i in derivation_in.rules:
+        for rule_i in grammar_in.rules:
             offset_multiplier = self._calculate_offset(offset_direction, i)
             rule_location = self._add_vectors(
                 origin,
                 self._multiply_vector_scalar(offset_increment, i))
-            self._draw_rule(rule_i, rule_location)
+            self.2_draw_rule(rule_i, rule_location)
             i = i + 1
 
     def _multiply_vectors(self, v1, v2):        ##  right name?
@@ -152,11 +153,12 @@ class Importer(object):
                 [num, num, num], 
                 [num, num, num])
         """
-        # self.padded_shape_size = [40, 40, 0]
-        # self.padded_arrow_size = [24, 0, 0]          ##  dy?
         offset_rule_left = [0, 0, 0]
         offset_rule_name = [self.padded_shape_size[0], 0, 0]    ##  temp
-        offset_rule_arrow = [self.padded_shape_size[0], 0, 0]
+        offset_rule_arrow = [
+            self.padded_shape_size[0], 
+            (self.shape_size[1] - self.arrow_size[1]) / 2, 
+            0]
         offset_rule_right = [
             offset_rule_arrow[0] + self.padded_arrow_size[0], 
             0, 
@@ -322,10 +324,10 @@ class Importer(object):
             label, rhino_point = rhino_dot
             self._draw_rhino_dot(label, rhino_point, location)
 
-    def _draw_shape_ground(self, offset=[0, 0, 0]):
-        """Receives an offset:
+    def _draw_shape_ground(self, location=[0, 0, 0]):
+        """Receives a location:
             [num, num, num]
-        Draws a square at the offset.
+        Draws a square at the location.
         """
         dx = self.padded_shape_size[0]
         dy = self.padded_shape_size[1]
@@ -333,10 +335,10 @@ class Importer(object):
         p01 = [0, dy, 0]
         p10 = [dx, 0, 0]
         p11 = [dx, dy, 0]
-        self._draw_line(p00, p01, offset)
-        self._draw_line(p00, p10, offset)
-        self._draw_line(p01, p11, offset)
-        self._draw_line(p10, p11, offset)
+        self._draw_line(p00, p01, location)
+        self._draw_line(p00, p10, location)
+        self._draw_line(p01, p11, location)
+        self._draw_line(p10, p11, location)
 
     def _draw_line(self, p1, p2, offset):
         p1a = map(self._offset_coord, p1, offset)
