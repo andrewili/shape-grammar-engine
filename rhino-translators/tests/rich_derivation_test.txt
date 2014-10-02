@@ -1,0 +1,120 @@
+#   rich_derivation_test.txt
+
+    >>> import rich_derivation
+    >>> import rule
+
+    >>> rich_derivation_drone = rich_derivation.RichDerivation(['kilroy'])
+
+### __init__
+    ??? rich_derivation_from_non_list = rich_derivation.RichDerivation(37)
+    The argument must be a non-empty list of strings
+    ??? rich_derivation_from_empty_list = rich_derivation.RichDerivation([])
+    The argument must be a non-empty list of strings
+    ??? rich_derivation_from_list_of_non_strings = rich_derivation.RichDerivation(
+    ...     [23, 37])
+    The argument must be a non-empty list of strings
+
+    ??? def make_rich_derivation_from_good_file():
+    ...     good_file = ['a', 'b']
+    ...     new_rich_derivation = rich_derivation.RichDerivation(good_file)
+    ...     return new_rich_derivation
+    ??? rich_derivation_from_good_file = make_rich_derivation_from_good_file()
+    ??? print(rich_derivation_from_good_file.__repr__())
+    <__repr__>
+
+### _get_grammar_and_derivation_parts
+    ??? def get_sierpinski_grammar_and_derivation_parts():
+    ...     sierpinski_drv_text_lines = []
+    ...     parts = sierpinski_rich_derivation._get_grammar_and_derivation_parts(
+    ...         sierpinski_drv_text_lines)
+    ...     return parts
+    ??? sierpinski_grammar_and_derivation_parts = (
+    ...     get_sierpinski_grammar_and_derivation_parts())
+    ??? (   grammar_initial_shapes, grammar_rules,
+    ...     derivation_initial_shape,
+    ...     derivation_rules,
+    ...     derivation_next_shapes
+    ... ) = sierpinski_grammar_and_derivation_parts
+    ??? for initial_shape in grammar_initial_shapes:
+    ...     print(initial_shape.__repr__())
+    ??? for grammar_rule in grammar_rules:
+    ...     print(grammar_rule.__repr__())
+    ??? print(derivation_initial_shape.__repr__()
+    ??? for derivation_rule in derivation_rules:
+    ...     print(derivation_rule)
+    ??? for derivation_next_shape in derivation_next_shapes:
+    ...     print(derivation_next_shape.__repr__())
+
+### _look_up_derivation_rule
+    >>> def make_parts_for_look_up_derivation_rule():
+    ...     def make_shorten_oblong():
+    ...         shorten_oblong_text_lines = [
+    ...             'shape    shorten-oblong_L',
+    ...             '    name ',
+    ...             '    coords 0 0 0 0',
+    ...             '    coords 1 0 0 2',
+    ...             '    coords 2 0 2 1',
+    ...             '    coords 3 0 4 0',
+    ...             '    coords 4 0 4 2',
+    ...             '    coords 5 8 0 0',
+    ...             '    coords 6 8 0 2',
+    ...             '    coords 7 8 4 0',
+    ...             '    coords 8 8 4 2',
+    ...             '<BLANKLINE>',
+    ...             '    line 0 0 1',
+    ...             '    line 1 0 3',
+    ...             '    line 10 6 8',
+    ...             '    line 11 7 8',
+    ...             '    line 2 0 5',
+    ...             '    line 3 1 4',
+    ...             '    line 4 1 6',
+    ...             '    line 5 3 4',
+    ...             '    line 6 3 7',
+    ...             '    line 7 4 8',
+    ...             '    line 8 5 6',
+    ...             '    line 9 5 7',
+    ...             '    point 2 a',
+    ...             'shape    shorten-oblong_R',
+    ...             '    name ',
+    ...             '    coords 0 0 0 0',
+    ...             '    coords 1 0 0 2',
+    ...             '    coords 10 4 4 0',
+    ...             '    coords 11 4 4 2',
+    ...             '    coords 2 0 2 1',
+    ...             '    coords 3 0 4 0',
+    ...             '    coords 4 0 4 2',
+    ...             '    coords 5 4 0 0',
+    ...             '    coords 6 4 0 2',
+    ...             '    coords 7 4 4 0',
+    ...             '    coords 8 4 0 0',
+    ...             '    coords 9 4 0 2',
+    ...             '<BLANKLINE>',
+    ...             '    line 0 0 1',
+    ...             '    line 1 0 3',
+    ...             '    line 10 8 9',
+    ...             '    line 11 10 11',
+    ...             '    line 2 0 8',
+    ...             '    line 3 1 4',
+    ...             '    line 4 1 6',
+    ...             '    line 5 3 4',
+    ...             '    line 6 3 7',
+    ...             '    line 7 4 11',
+    ...             '    line 8 5 7',
+    ...             '    line 9 6 11',
+    ...             '    point 2 a',
+    ...             'rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R'
+    ...         ]
+    ...         shorten_oblong = rule.Rule.new_from_rul_text_lines(
+    ...             shorten_oblong_text_lines)
+    ...         return shorten_oblong
+    ...     tokens = ['shorten-oblong']
+    ...     shorten_oblong = make_shorten_oblong()
+    ...     grammar_rules_dict = {shorten_oblong.name: shorten_oblong}
+    ...     return (tokens, grammar_rules_dict)
+    >>> tokens, grammar_rules_dict = (
+    ...     make_parts_for_look_up_derivation_rule())
+    >>> new_derivation_rule = (
+    ...     rich_derivation.RichDerivation._look_up_derivation_rule(
+    ...         tokens, grammar_rules_dict))
+    >>> print(new_derivation_rule.__repr__())
+    (shorten-oblong, (shorten-oblong_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (shorten-oblong_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (4.0, 0.0, 0.0), (4.0, 0.0, 2.0), (4.0, 4.0, 0.0), (4.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]))
