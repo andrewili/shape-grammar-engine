@@ -2,6 +2,7 @@
 
 import derivation
 import grammar
+import shape
 
 class RichDerivation(object):
     def __init__(self, drv_text_lines):
@@ -40,7 +41,7 @@ class RichDerivation(object):
             [str, ...]
         Returns a list of the grammar's initial shapes, a list of the 
         grammar's rules, the derivation's initial shape, a list of the 
-        derivation's rules, and a list of the derivation's next shapes:
+        derivation's rules, and a tuple of the derivation's next shapes:
             (   
                 # [Shape, ...],
                 # [Rule, ...],
@@ -51,8 +52,9 @@ class RichDerivation(object):
         grammar_shapes_dict = {}
         grammar_rules_dict = {}
         derivation_rules = []
-        next_shapes = []                        ##  rename derivation_shapes?
+        derivation_next_shapes = []
         shape_text_lines = []
+        is_first_derivation_shape = True
         for text_line in drv_text_lines:
             tokens = text_line.split()
             if tokens == []:
@@ -74,7 +76,8 @@ class RichDerivation(object):
                     if self._shape_pending(shape_text_lines):
                         self._wrap_up_pending_grammar_shape(
                             shape_text_lines, grammar_shapes_dict)
-                    shape_text_lines = [text_line]  ##  start new shape
+                    shape_text_lines = self._reset_shape_text_lines(
+                        text_line, shape_text_lines)
                 elif first_token in ['name', 'coords', 'line', 'point']:
                     shape_text_lines.append(text_line)
                 elif first_token == 'initial':  ##  if none?
@@ -100,10 +103,16 @@ class RichDerivation(object):
                     first_token == 'shape' and
                     subfile == 'derivation'
                 ):
-                    if self._shape_pending(shape_text_lines):
-                        self._wrap_up_pending_derivation_shape(
-                            shape_text_lines, next_shapes)
-                    shape_text_lines = [text_line]  ##  start new shape
+                    if is_first_derivation_shape:
+                        derivation_initial_shape = (
+                            shape.Shape.new_from_is_text_lines(
+                                shape_text_lines))
+                        is_first_derivation_shape = False
+                    else:
+                        if self._shape_pending(shape_text_lines):
+                            self._wrap_up_pending_derivation_shape(
+                                shape_text_lines, derivation_next_shapes)
+                    shape_text_lines = self._reset_shape_text_lines(text_line)
                 elif (
                     first_token == 'rule' and
                     subfile == 'derivation'
@@ -120,7 +129,7 @@ class RichDerivation(object):
                 ##  other case?
         if not shape_text_lines == []:
             self._wrap_up_pending_derivation_shape(
-                shape_text_lines, next_shapes)
+                shape_text_lines, derivation_next_shapes)
         return (
             # grammar_initial_shapes,
             # grammar_rule,
@@ -133,6 +142,16 @@ class RichDerivation(object):
         if text_lines == []:
             value = False
         return value
+
+    def _reset_shape_text_lines(self, text_line, shape_text_lines):
+        """Receives a shape text line and a list of shape text lines:
+            str
+            [str, ...]
+        Resets the list with the text line and returns the list:
+            [str]
+        """
+        shape_text_lines = [text_line]
+        return shape_text_lines
 
     def _rule_is_unidentified(self, tokens):
         value = False
@@ -153,6 +172,18 @@ class RichDerivation(object):
         if not rule_name in grammar_rules_dict:
             value = True
         return value
+
+    def _wrap_up_pending_grammar_shape(
+        self, shape_text_lines, grammar_shapes_dict
+    ):
+        """Receives a list of shape text lines and dictionary of grammar 
+        name-shape entries:
+            [str, ...]
+            {str: Shape, ...}
+        Creates a Shape and adds the name-Shape entry to the dictionary
+        """
+        new_shape = shape.Shape.new_from_is_text_lines(shape_text_lines)
+        grammar_shapes_dict[new_shape.name] = new_shape
 
     def _wrap_up_pending_derivation_shape(
         self, shape_text_lines, next_shapes

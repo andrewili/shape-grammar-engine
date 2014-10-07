@@ -3,7 +3,41 @@
     >>> import rich_derivation
     >>> import rule
 
-    >>> rich_derivation_drone = rich_derivation.RichDerivation(['kilroy'])
+    ??? def make_minimal_rich_derivation():
+    ...     minimal_rich_drv_text_lines = [
+    ...         '# derivation file version 1.00                           --chen liang 2007/08/06',
+    ...         '<BLANKLINE>',
+    ...         'shape    erase-lpoint_L',
+    ...         '    name ',
+    ...         '    coords 0 1 1 1',
+    ...         '<BLANKLINE>',
+    ...         '    point 0 a',
+    ...         'shape    erase-lpoint_R',
+    ...         '    name ',
+    ...         'shape    labeled_point',
+    ...         '    name ',
+    ...         '    coords 0 0 0 0',
+    ...         '<BLANKLINE>',
+    ...         '    point 0 a',
+    ...         'initial    labeled-point',
+    ...         'rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R',
+    ...         '# derivation record',
+    ...         'shape    labeled-point',
+    ...         '    name ',
+    ...         '    name ',
+    ...         '    coords 0 0 0 0',
+    ...         '<BLANKLINE>',
+    ...         '    point 0 a',
+    ...         'rule    erase-lpoint',
+    ...         'shape    labeled-point_erase-lpoint',
+    ...         '    name ',
+    ...     ]
+    ...     minimal_rich_derivation = rich_derivation.RichDerivation(
+    ...         minimal_rich_drv_text_lines)
+    ...     return minimal_rich_derivation
+    ??? minimal_rich_derivation = make_minimal_rich_derivation()
+
+    ??? rich_derivation_drone = rich_derivation.RichDerivation(['kilroy'])
 
 ### __init__
     ??? rich_derivation_from_non_list = rich_derivation.RichDerivation(37)
@@ -23,26 +57,103 @@
     <__repr__>
 
 ### _get_grammar_and_derivation_parts
-    ??? def get_sierpinski_grammar_and_derivation_parts():
-    ...     sierpinski_drv_text_lines = []
-    ...     parts = sierpinski_rich_derivation._get_grammar_and_derivation_parts(
-    ...         sierpinski_drv_text_lines)
+    >>> def get_sierpinski_grammar_and_derivation_parts():
+    ...     def make_grammar_shapes():
+    ...         labeled_tetrahedron = shape.Shape(
+    ...             'labeled_tetrahedron',
+    ...             [   ((0, 0, 0), (0, 8, 0)), 
+    ...                 ((0, 0, 0), (8, 0, 0)), 
+    ...                 ((0, 0, 0), (0, 0, 8)),
+    ...                 ((0, 0, 8), (0, 8, 0)),
+    ...                 ((0, 0, 8), (8, 0, 0)),
+    ...                 ((0, 8, 0), (0, 0, 8)),
+    ...                 ((0, 8, 0), (8, 0, 0))],
+    ...             [((2, 2, 2), 'a')])
+    ...         subdivided_labeled_tetrahedron = shape.Shape(
+    ...             'subdivided_labeled_tetrahedron',
+    ...             [   ((0, 0, 0), (0, 0, 8)),
+    ...                 ((0, 0, 0), (0, 8, 0)), 
+    ...                 ((0, 0, 0), (8, 0, 0)), 
+    ...                 ((0, 0, 4), (0, 4, 0)),
+    ...                 ((0, 0, 4), (0, 4, 4)),
+    ...                 ((0, 0, 4), (4, 0, 0)),
+    ...                 ((0, 0, 4), (4, 0, 4)),
+    ...                 ((0, 0, 8), (0, 8, 0)),
+    ...                 ((0, 0, 8), (8, 0, 0)),
+    ...                 ((0, 4, 0), (0, 4, 4)),
+    ...                 ((0, 4, 0), (4, 0, 0)),
+    ...                 ((0, 4, 0), (4, 4, 0)),
+    ...                 ((0, 4, 4), (4, 0, 4)),
+    ...                 ((0, 4, 4), (4, 4, 0)),
+    ...                 ((0, 8, 0), (0, 0, 8)),
+    ...                 ((0, 8, 0), (8, 0, 0)),
+    ...                 ((4, 0, 0), (4, 0, 4)),
+    ...                 ((4, 0, 0), (4, 4, 0)),
+    ...                 ((4, 0, 4), (4, 4, 0))],
+    ...             [   ((1, 1, 1), 'a'),
+    ...                 ((1, 1, 5), 'a'),
+    ...                 ((1, 5, 1), 'a'),
+    ...                 ((5, 1, 1), 'a')])
+    ...         delete_labeled_point_L = shape.Shape(
+    ...             'labeled_point_L',
+    ...             [],
+    ...             [((0, 0, 0), 'a')])
+    ...         delete_labeled_point_R = shape.Shape('empty_shape', [], [])
+    ...         grammar_shapes = (
+    ...             labeled_tetrahedron,
+    ...             subdivided_labeled_tetrahedron,
+    ...             delete_labeled_point_L, 
+    ...             delete_labeled_point_R)
+    ...         return grammar_shapes
+    ...     def make_grammar_rules():
+    ...         subdivide_tetrahedron = 
+    ...         delete_labeled_point = 
+    ...         grammar_rules = (
+    ...             subdivide_tetrahedron, delete_labeled_point)
+    ...         return grammar_rules
+    ...     def make_derivation_initial_shape():
+    ...         derivation_initial_shape = labeled_tetrahedron
+    ...         return derivation_initial_shape
+    ...     def make_derivation_rules():
+    ...         subdivide_tetrahedron = 
+    ...         delete_labeled_point = 
+    ...         derivation_rules = (
+    ...             subdivide_tetrahedron, delete_labeled_point)
+    ...         return derivation_rules 
+    ...     def make_derivation_next_shapes():
+    ...         labeled_tetrahedron_subdivide_tetrahedron = 
+    ...         labeled_tetrahedron_subdivide_tetrahedron_delete_labeled_point = 
+    ...         derivation_next_shapes = (
+    ...             labeled_tetrahedron_subdivide_tetrahedron,
+    ...             labeled_tetrahedron_subdivide_tetrahedron_delete_labeled_point)
+    ...         return derivation_next_shapes
+    ...     grammar_shapes = make_grammar_shapes()
+    ...     grammar_rules = make_grammar_rules()
+    ...     derivation_initial_shape = make_derivation_initial_shape()
+    ...     derivation_rules = make_derivation_rules()
+    ...     derivation_next_shapes = make_derivation_next_shapes()
+    ...     parts = (
+    ...         grammar_shapes,
+    ...         grammar_rules,
+    ...         derivation_initial_shape,
+    ...         derivation_rules,
+    ...         derivation_next_shapes)
     ...     return parts
-    ??? sierpinski_grammar_and_derivation_parts = (
+    >>> sierpinski_grammar_and_derivation_parts = (
     ...     get_sierpinski_grammar_and_derivation_parts())
-    ??? (   grammar_initial_shapes, grammar_rules,
+    >>> (   grammar_initial_shapes, grammar_rules,
     ...     derivation_initial_shape,
     ...     derivation_rules,
     ...     derivation_next_shapes
     ... ) = sierpinski_grammar_and_derivation_parts
-    ??? for initial_shape in grammar_initial_shapes:
+    >>> for initial_shape in grammar_initial_shapes:
     ...     print(initial_shape.__repr__())
-    ??? for grammar_rule in grammar_rules:
+    >>> for grammar_rule in grammar_rules:
     ...     print(grammar_rule.__repr__())
-    ??? print(derivation_initial_shape.__repr__()
-    ??? for derivation_rule in derivation_rules:
+    >>> print(derivation_initial_shape.__repr__()
+    >>> for derivation_rule in derivation_rules:
     ...     print(derivation_rule)
-    ??? for derivation_next_shape in derivation_next_shapes:
+    >>> for derivation_next_shape in derivation_next_shapes:
     ...     print(derivation_next_shape.__repr__())
 
 ### _look_up_derivation_rule

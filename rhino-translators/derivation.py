@@ -164,18 +164,18 @@ class Derivation(object):
             shape.Shape.new_from_is_text_lines(shape_text_lines))
         next_shapes.append(next_shape)
 
-    @classmethod
-    def _look_up_derivation_rule(cls, tokens, grammar_rules_dict):
-        """Receives a list of one token (the name of a derivation rule) and a 
-        dictionary of name-rule entries:
-            [str]
-            {str: Rule, ...}
-        Returns the named rule:
-            Rule
-        """
-        derivation_rule_name = tokens[0]
-        derivation_rule = (grammar_rules_dict[derivation_rule_name])
-        return derivation_rule
+    # @classmethod
+    # def _look_up_derivation_rule(cls, tokens, grammar_rules_dict):
+    #     """Receives a list of one token (the name of a derivation rule) and a 
+    #     dictionary of name-rule entries:
+    #         [str]
+    #         {str: Rule, ...}
+    #     Returns the named rule:
+    #         Rule
+    #     """
+    #     derivation_rule_name = tokens[0]
+    #     derivation_rule = (grammar_rules_dict[derivation_rule_name])
+    #     return derivation_rule
 
     def get_final_shape(self):
         """Returns the final shape in the derivation:
