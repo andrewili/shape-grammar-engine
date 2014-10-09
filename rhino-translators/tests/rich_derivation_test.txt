@@ -71,8 +71,8 @@
     ...             [((2, 2, 2), 'a')])
     ...         subdivide_tetrahedron_L = shape.Shape(
     ...             'subdivide_tetrahedron_L',
-    ...             [   ((0, 0, 0), (0, 8, 0)), 
-    ...                 ((0, 0, 0), (8, 0, 0)), 
+    ...             [   ((0, 0, 0), (0, 8, 0)),
+    ...                 ((0, 0, 0), (8, 0, 0)),
     ...                 ((0, 0, 0), (0, 0, 8)),
     ...                 ((0, 0, 8), (0, 8, 0)),
     ...                 ((0, 0, 8), (8, 0, 0)),
@@ -81,8 +81,8 @@
     ...         subdivide_tetrahedron_R = shape.Shape(
     ...             'subdivide_tetrahedron_R',
     ...             [   ((0, 0, 0), (0, 0, 8)),
-    ...                 ((0, 0, 0), (0, 8, 0)), 
-    ...                 ((0, 0, 0), (8, 0, 0)), 
+    ...                 ((0, 0, 0), (0, 8, 0)),
+    ...                 ((0, 0, 0), (8, 0, 0)),
     ...                 ((0, 0, 4), (0, 4, 0)),
     ...                 ((0, 0, 4), (0, 4, 4)),
     ...                 ((0, 0, 4), (4, 0, 0)),
@@ -103,10 +103,11 @@
     ...                 ((1, 5, 1), 'a'),
     ...                 ((5, 1, 1), 'a')])
     ...         delete_labeled_point_L = shape.Shape(
-    ...             'labeled_point_L',
+    ...             'delete_labeled_point_L',
     ...             [],
     ...             [((0, 0, 0), 'a')])
-    ...         delete_labeled_point_R = shape.Shape('empty_shape', [], [])
+    ...         delete_labeled_point_R = shape.Shape(
+    ...             'delete_labeled_point_R', [], [])
     ...         grammar_shapes = (
     ...             labeled_tetrahedron,
     ...             subdivide_tetrahedron_L,
@@ -207,23 +208,8 @@
     (labeled_tetrahedron, [(0, 0, 0), (0, 0, 8), (0, 8, 0), (2, 2, 2), (8, 0, 0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')])
     >>> for grammar_rule in grammar_rules:
     ...     print(grammar_rule.__repr__())
-    <rule_1>
-    (   subdivide_tetrahedron,
-        (   <name>,
-            <ordered coord list>,
-            <ordered codex codex list>,
-            <ordered codex label list>
-        )
-        (   <name>,
-            <ordered coord list>,
-            <ordered codex codex list>,
-            <ordered codex label list>
-        )
-    )
-    <rule_2>
-    (   delete_labeled_point,
-        <left shape repr>,
-        <right shape repr>)
+    [(subdivide_tetrahedron, (subdivide_tetrahedron_L, [(0, 0, 0), (0, 0, 8), (0, 8, 0), (2, 2, 2), (8, 0, 0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')]), (subdivide_tetrahedron_R, [(0, 0, 0), (0, 0, 4), (0, 0, 8), (0, 4, 0), (0, 4, 4), (0, 8, 0), (1, 1, 1), (1, 1, 5), (1, 5, 1), (4, 0, 0), (4, 0, 4), (4, 4, 0), (5, 1, 1), (8, 0, 0)], [(0, 2), (0, 5), (0, 13), (1, 3), (1, 4), (1, 9), (1, 10), (2, 5), (2, 13), (3, 4), (3, 9), (3, 11), (4, 10), (4, 11), (4, 13), (9, 10), (9, 11), (10, 11)], [(5, 'a'), (6, 'a'), (7, 'a'), (12, 'a')]))]
+    [(delete_labeled_point, (delete_labeled_point_L, [(0, 0, 0)], [], [(0, 'a')]), (delete_labeled_point_R, [], [], []))]
     >>> print(derivation_initial_shape.__repr__()
     >>> for derivation_rule in derivation_rules:
     ...     print(derivation_rule)
