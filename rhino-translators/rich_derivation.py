@@ -26,7 +26,7 @@ class RichDerivation(object):
                 grammar_rules,
                 derivation_shapes,
                 derivation_rules
-            ) = self._get_grammar_and_derivation_parts(drv_text_lines)
+            ) = self._get_rich_derivation_parts(drv_text_lines)
             self.grammar = grammar.Grammar(
                 grammar_initial_shapes, 
                 grammar_rules)
@@ -41,7 +41,7 @@ class RichDerivation(object):
             grammar_rules,
             derivation_shapes,
             derivation_rules
-        ) = cls._get_grammar_and_derivation_parts(drv_text_lines)
+        ) = cls._get_rich_derivation_parts(drv_text_lines)
         new_rich_derivation = RichDerivation(
             grammar_shapes_dict,
             grammar_initial_shapes,
@@ -51,7 +51,7 @@ class RichDerivation(object):
         return new_rich_derivation
 
     @classmethod
-    def _get_grammar_and_derivation_parts(cls, drv_text_lines):
+    def _get_rich_derivation_parts(cls, drv_text_lines):
         """Receives a list of drv text lines:
             [str, ...]
         Returns 1) a name-Shape dictionary of the grammar's shapes, 2) a list 
@@ -59,11 +59,10 @@ class RichDerivation(object):
         4) a list of the derivation's shapes, and 5) a list (of the names) of 
         the derivation's rules:
             (   
-                {str: Shape, ...},              ##  omit
-                [Shape, ...],                   ##  ordered how?
-                [Rule, ...],                    ##  ordered how?
                 [Shape, ...],
-                [Rule, ...]                     ##  ordered how?
+                [Rule, ...],
+                [Shape, ...],
+                [Rule, ...]
             )
         """
         grammar_shapes_dict = {}
@@ -117,6 +116,7 @@ class RichDerivation(object):
                     grammar_rule = (
                         rule.Rule(grammar_rule_name, left_shape, right_shape))
                     grammar_rules_dict[grammar_rule_name] = grammar_rule
+                    grammar_rules.append(grammar_rule)
                 elif (
                     first_token == 'shape' and
                     subfile == 'derivation'
@@ -149,7 +149,7 @@ class RichDerivation(object):
             cls._wrap_up_pending_derivation_shape(
                 shape_text_lines, derivation_shapes)
         return (
-            grammar_shapes_dict,
+            # grammar_shapes_dict,
             grammar_initial_shapes,
             grammar_rules,
             derivation_shapes,

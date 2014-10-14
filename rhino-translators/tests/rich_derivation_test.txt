@@ -4,41 +4,6 @@
     >>> import rule
     >>> import shape
 
-    ??? def make_minimal_rich_derivation():
-    ...     minimal_rich_drv_text_lines = [
-    ...         '# derivation file version 1.00                           --chen liang 2007/08/06',
-    ...         '<BLANKLINE>',
-    ...         'shape    erase-lpoint_L',
-    ...         '    name ',
-    ...         '    coords 0 1 1 1',
-    ...         '<BLANKLINE>',
-    ...         '    point 0 a',
-    ...         'shape    erase-lpoint_R',
-    ...         '    name ',
-    ...         'shape    labeled_point',
-    ...         '    name ',
-    ...         '    coords 0 0 0 0',
-    ...         '<BLANKLINE>',
-    ...         '    point 0 a',
-    ...         'initial    labeled-point',
-    ...         'rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R',
-    ...         '# derivation record',
-    ...         'shape    labeled-point',
-    ...         '    name ',
-    ...         '    name ',
-    ...         '    coords 0 0 0 0',
-    ...         '<BLANKLINE>',
-    ...         '    point 0 a',
-    ...         'rule    erase-lpoint',
-    ...         'shape    labeled-point_erase-lpoint',
-    ...         '    name ',
-    ...     ]
-    ...     minimal_rich_derivation = rich_derivation.RichDerivation(
-    ...         minimal_rich_drv_text_lines)
-    ...     return minimal_rich_derivation
-    ??? minimal_rich_derivation = make_minimal_rich_derivation()
-
-    ??? rich_derivation_drone = rich_derivation.RichDerivation(['kilroy'])
 
 ### __init__
     ??? rich_derivation_from_non_list = rich_derivation.RichDerivation(37)
@@ -57,154 +22,7 @@
     ??? print(rich_derivation_from_good_file.__repr__())
     <__repr__>
 
-### _get_grammar_and_derivation_parts   ##  first try
-    ??? def get_sierpinski_grammar_and_derivation_parts():
-    ...     def make_grammar_shapes():
-    ...         labeled_tetrahedron = shape.Shape(
-    ...             'labeled_tetrahedron',
-    ...             [   ((0, 0, 0), (0, 8, 0)), 
-    ...                 ((0, 0, 0), (8, 0, 0)), 
-    ...                 ((0, 0, 0), (0, 0, 8)),
-    ...                 ((0, 0, 8), (0, 8, 0)),
-    ...                 ((0, 0, 8), (8, 0, 0)),
-    ...                 ((0, 8, 0), (8, 0, 0))],
-    ...             [((2, 2, 2), 'a')])
-    ...         subdivide_tetrahedron_L = shape.Shape(
-    ...             'subdivide_tetrahedron_L',
-    ...             [   ((0, 0, 0), (0, 8, 0)),
-    ...                 ((0, 0, 0), (8, 0, 0)),
-    ...                 ((0, 0, 0), (0, 0, 8)),
-    ...                 ((0, 0, 8), (0, 8, 0)),
-    ...                 ((0, 0, 8), (8, 0, 0)),
-    ...                 ((0, 8, 0), (8, 0, 0))],
-    ...             [((2, 2, 2), 'a')])
-    ...         subdivide_tetrahedron_R = shape.Shape(
-    ...             'subdivide_tetrahedron_R',
-    ...             [   ((0, 0, 0), (0, 0, 8)),
-    ...                 ((0, 0, 0), (0, 8, 0)),
-    ...                 ((0, 0, 0), (8, 0, 0)),
-    ...                 ((0, 0, 4), (0, 4, 0)),
-    ...                 ((0, 0, 4), (0, 4, 4)),
-    ...                 ((0, 0, 4), (4, 0, 0)),
-    ...                 ((0, 0, 4), (4, 0, 4)),
-    ...                 ((0, 0, 8), (0, 8, 0)),
-    ...                 ((0, 0, 8), (8, 0, 0)),
-    ...                 ((0, 4, 0), (0, 4, 4)),
-    ...                 ((0, 4, 0), (4, 0, 0)),
-    ...                 ((0, 4, 0), (4, 4, 0)),
-    ...                 ((0, 4, 4), (4, 0, 4)),
-    ...                 ((0, 4, 4), (4, 4, 0)),
-    ...                 ((0, 8, 0), (8, 0, 0)),
-    ...                 ((4, 0, 0), (4, 0, 4)),
-    ...                 ((4, 0, 0), (4, 4, 0)),
-    ...                 ((4, 0, 4), (4, 4, 0))],
-    ...             [   ((1, 1, 1), 'a'),
-    ...                 ((1, 1, 5), 'a'),
-    ...                 ((1, 5, 1), 'a'),
-    ...                 ((5, 1, 1), 'a')])
-    ...         delete_labeled_point_L = shape.Shape(
-    ...             'delete_labeled_point_L',
-    ...             [],
-    ...             [((0, 0, 0), 'a')])
-    ...         delete_labeled_point_R = shape.Shape(
-    ...             'delete_labeled_point_R', [], [])
-    ...         grammar_shapes = (
-    ...             labeled_tetrahedron,
-    ...             subdivide_tetrahedron_L,
-    ...             subdivide_tetrahedron_R,
-    ...             delete_labeled_point_L, 
-    ...             delete_labeled_point_R)
-    ...         return grammar_shapes
-    ...     def make_grammar_rules():
-    ...         subdivide_tetrahedron = rule.Rule(
-    ...             'subdivide_tetrahedron',
-    ...             grammar_shapes[1],
-    ...             grammar_shapes[2])
-    ...         delete_labeled_point = rule.Rule(
-    ...             'delete_labeled_point',
-    ...             grammar_shapes[3],
-    ...             grammar_shapes[4])
-    ...         grammar_rules = (
-    ...             subdivide_tetrahedron, delete_labeled_point)
-    ...         return grammar_rules
-    ...     def make_derivation_rules():
-    ...         derivation_rules = (
-    ...             grammar_rules[0], 
-    ...             grammar_rules[1])
-    ...         return derivation_rules 
-    ...     def make_derivation_next_shapes():
-    ...         labeled_tetrahedron_subdivide_tetrahedron = shape.Shape(
-    ...             'labeled_tetrahedron_subdivide_tetrahedron',
-    ...             [   ((0, 0, 0), (0, 0, 8)),
-    ...                 ((0, 0, 0), (0, 8, 0)), 
-    ...                 ((0, 0, 0), (8, 0, 0)), 
-    ...                 ((0, 0, 4), (0, 4, 0)),
-    ...                 ((0, 0, 4), (0, 4, 4)),
-    ...                 ((0, 0, 4), (4, 0, 0)),
-    ...                 ((0, 0, 4), (4, 0, 4)),
-    ...                 ((0, 0, 8), (0, 8, 0)),
-    ...                 ((0, 0, 8), (8, 0, 0)),
-    ...                 ((0, 4, 0), (0, 4, 4)),
-    ...                 ((0, 4, 0), (4, 0, 0)),
-    ...                 ((0, 4, 0), (4, 4, 0)),
-    ...                 ((0, 4, 4), (4, 0, 4)),
-    ...                 ((0, 4, 4), (4, 4, 0)),
-    ...                 ((0, 8, 0), (8, 0, 0)),
-    ...                 ((4, 0, 0), (4, 0, 4)),
-    ...                 ((4, 0, 0), (4, 4, 0)),
-    ...                 ((4, 0, 4), (4, 4, 0))],
-    ...             [   ((1, 1, 1), 'a'),
-    ...                 ((1, 1, 5), 'a'),
-    ...                 ((1, 5, 1), 'a'),
-    ...                 ((5, 1, 1), 'a')])
-    ...         labeled_tetrahedron_subdivide_tetrahedron_delete_labeled_point = shape.Shape(
-    ...             'labeled_tetrahedron_subdivide_tetrahedron_delete_labeled_point',
-    ...             [   ((0, 0, 0), (0, 0, 8)),
-    ...                 ((0, 0, 0), (0, 8, 0)), 
-    ...                 ((0, 0, 0), (8, 0, 0)), 
-    ...                 ((0, 0, 4), (0, 4, 0)),
-    ...                 ((0, 0, 4), (0, 4, 4)),
-    ...                 ((0, 0, 4), (4, 0, 0)),
-    ...                 ((0, 0, 4), (4, 0, 4)),
-    ...                 ((0, 0, 8), (0, 8, 0)),
-    ...                 ((0, 0, 8), (8, 0, 0)),
-    ...                 ((0, 4, 0), (0, 4, 4)),
-    ...                 ((0, 4, 0), (4, 0, 0)),
-    ...                 ((0, 4, 0), (4, 4, 0)),
-    ...                 ((0, 4, 4), (4, 0, 4)),
-    ...                 ((0, 4, 4), (4, 4, 0)),
-    ...                 ((0, 8, 0), (8, 0, 0)),
-    ...                 ((4, 0, 0), (4, 0, 4)),
-    ...                 ((4, 0, 0), (4, 4, 0)),
-    ...                 ((4, 0, 4), (4, 4, 0))],
-    ...             [])
-    ...         derivation_next_shapes = (
-    ...             labeled_tetrahedron_subdivide_tetrahedron,
-    ...             labeled_tetrahedron_subdivide_tetrahedron_delete_labeled_point)
-    ...         return derivation_next_shapes
-    ...     grammar_shapes = make_grammar_shapes()
-    ...     grammar_initial_shapes = [grammar_shapes[0]]
-    ...     grammar_rules = make_grammar_rules()
-    ...     derivation_initial_shape = grammar_shapes[0]
-    ...     derivation_rules = make_derivation_rules()
-    ...     derivation_next_shapes = make_derivation_next_shapes()
-    ...     parts = (
-    ...         grammar_initial_shapes,
-    ...         grammar_rules,
-    ...         derivation_initial_shape,
-    ...         derivation_rules,
-    ...         derivation_next_shapes)
-    ...     return parts
-    ??? sierpinski_grammar_and_derivation_parts = (
-    ...     get_sierpinski_grammar_and_derivation_parts())
-    ??? (   sierpinski_grammar_initial_shapes,
-    ...     sierpinski_grammar_rules,
-    ...     sierpinski_derivation_initial_shape,
-    ...     sierpinski_derivation_shapes,
-    ...     sierpinski_derivation_rules
-    ... ) = sierpinski_grammar_and_derivation_parts
-
-### _get_grammar_and_derivation_parts   ##  second try, as class method
+### _get_rich_derivation_parts
     >>> sierpinski_drv_text_lines = [
     ...     '# derivation file version 1.00                           --chen liang 2007/08/06',
     ...     '<BLANKLINE>',
@@ -376,18 +194,17 @@
     ...     '    line 8 2 9', 
     ...     '    line 9 3 4'
     ... ]
-    >>> sierpinski_grammar_and_derivation_parts = (
-    ...     rich_derivation.RichDerivation._get_grammar_and_derivation_parts(
+    >>> sierpinski_rich_derivation_parts = (
+    ...     rich_derivation.RichDerivation._get_rich_derivation_parts(
     ...         sierpinski_drv_text_lines))
     >>> (   
-    ...     sierpinski_grammar_shapes_dict,
     ...     sierpinski_grammar_initial_shapes,
     ...     sierpinski_grammar_rules,
     ...     sierpinski_derivation_shapes,
     ...     sierpinski_derivation_rules
-    ... ) = sierpinski_grammar_and_derivation_parts
+    ... ) = sierpinski_rich_derivation_parts
 
-    >>> for shape_i in sorted(sierpinski_grammar_shapes_dict):
+    ??? for shape_i in sorted(sierpinski_grammar_shapes_dict):
     ...     print(sierpinski_grammar_shapes_dict[shape_i].__repr__())
     (delete_labeled_point_L, [(0.0, 0.0, 0.0)], [], [(0, 'a')])
     (delete_labeled_point_R, [], [], [])
@@ -403,9 +220,6 @@
     ...     print(rule_i.__repr__())
     (subdivide_tetrahedron, (subdivide_tetrahedron_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 8.0), (0.0, 8.0, 0.0), (2.0, 2.0, 2.0), (8.0, 0.0, 0.0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')]), (subdivide_tetrahedron_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 4.0), (0.0, 0.0, 8.0), (0.0, 4.0, 0.0), (0.0, 4.0, 4.0), (0.0, 8.0, 0.0), (1.0, 1.0, 1.0), (1.0, 1.0, 5.0), (1.0, 5.0, 1.0), (4.0, 0.0, 0.0), (4.0, 0.0, 4.0), (4.0, 4.0, 0.0), (5.0, 1.0, 1.0), (8.0, 0.0, 0.0)], [(0, 2), (0, 5), (0, 13), (1, 3), (1, 4), (1, 9), (1, 10), (2, 5), (2, 13), (3, 4), (3, 9), (3, 11), (4, 10), (4, 11), (5, 13), (9, 10), (9, 11), (10, 11)], [(6, 'a'), (7, 'a'), (8, 'a'), (12, 'a')]))
     (delete_labeled_point, (delete_labeled_point_L, [(0.0, 0.0, 0.0)], [], [(0, 'a')]), (delete_labeled_point_R, [], [], []))
-
-    ??? print(sierpinski_derivation_initial_shape.__repr__())
-    (labeled_tetrahedron, [(0, 0, 0), (0, 0, 8), (0, 8, 0), (2, 2, 2), (8, 0, 0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')])
 
     >>> for derivation_rule in sierpinski_derivation_rules:
     ...     print(derivation_rule.__repr__())
