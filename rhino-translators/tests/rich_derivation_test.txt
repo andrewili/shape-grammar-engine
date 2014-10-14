@@ -381,8 +381,8 @@
     ...         sierpinski_drv_text_lines))
     >>> (   
     ...     sierpinski_grammar_shapes_dict,
-    ...     # sierpinski_grammar_initial_shapex_list,
-    ...     # sierpinski_grammar_rulex_list,
+    ...     sierpinski_grammar_initial_shapes,
+    ...     sierpinski_grammar_rules,
     ...     sierpinski_derivation_shapes,
     ...     sierpinski_derivation_rules
     ... ) = sierpinski_grammar_and_derivation_parts
@@ -395,11 +395,12 @@
     (subdivide_tetrahedron_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 8.0), (0.0, 8.0, 0.0), (2.0, 2.0, 2.0), (8.0, 0.0, 0.0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')])
     (subdivide_tetrahedron_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 4.0), (0.0, 0.0, 8.0), (0.0, 4.0, 0.0), (0.0, 4.0, 4.0), (0.0, 8.0, 0.0), (1.0, 1.0, 1.0), (1.0, 1.0, 5.0), (1.0, 5.0, 1.0), (4.0, 0.0, 0.0), (4.0, 0.0, 4.0), (4.0, 4.0, 0.0), (5.0, 1.0, 1.0), (8.0, 0.0, 0.0)], [(0, 2), (0, 5), (0, 13), (1, 3), (1, 4), (1, 9), (1, 10), (2, 5), (2, 13), (3, 4), (3, 9), (3, 11), (4, 10), (4, 11), (5, 13), (9, 10), (9, 11), (10, 11)], [(6, 'a'), (7, 'a'), (8, 'a'), (12, 'a')])
 
-    ??? for initial_shape in sierpinski_grammar_initial_shapes:
-    ...     print(initial_shape.__repr__())
+    >>> for shape_i in sierpinski_grammar_initial_shapes:
+    ...     print(shape_i.__repr__())
     (labeled_tetrahedron, [(0.0, 0.0, 0.0), (0.0, 0.0, 8.0), (0.0, 8.0, 0.0), (2.0, 2.0, 2.0), (8.0, 0.0, 0.0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')])
-    ??? for grammar_rule in sierpinski_grammar_rules:
-    ...     print(grammar_rule.__repr__())
+
+    >>> for rule_i in sierpinski_grammar_rules:
+    ...     print(rule_i.__repr__())
     (subdivide_tetrahedron, (subdivide_tetrahedron_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 8.0), (0.0, 8.0, 0.0), (2.0, 2.0, 2.0), (8.0, 0.0, 0.0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')]), (subdivide_tetrahedron_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 4.0), (0.0, 0.0, 8.0), (0.0, 4.0, 0.0), (0.0, 4.0, 4.0), (0.0, 8.0, 0.0), (1.0, 1.0, 1.0), (1.0, 1.0, 5.0), (1.0, 5.0, 1.0), (4.0, 0.0, 0.0), (4.0, 0.0, 4.0), (4.0, 4.0, 0.0), (5.0, 1.0, 1.0), (8.0, 0.0, 0.0)], [(0, 2), (0, 5), (0, 13), (1, 3), (1, 4), (1, 9), (1, 10), (2, 5), (2, 13), (3, 4), (3, 9), (3, 11), (4, 10), (4, 11), (5, 13), (9, 10), (9, 11), (10, 11)], [(6, 'a'), (7, 'a'), (8, 'a'), (12, 'a')]))
     (delete_labeled_point, (delete_labeled_point_L, [(0.0, 0.0, 0.0)], [], [(0, 'a')]), (delete_labeled_point_R, [], [], []))
 
@@ -410,6 +411,7 @@
     ...     print(derivation_rule.__repr__())
     (subdivide_tetrahedron, (subdivide_tetrahedron_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 8.0), (0.0, 8.0, 0.0), (2.0, 2.0, 2.0), (8.0, 0.0, 0.0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')]), (subdivide_tetrahedron_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 4.0), (0.0, 0.0, 8.0), (0.0, 4.0, 0.0), (0.0, 4.0, 4.0), (0.0, 8.0, 0.0), (1.0, 1.0, 1.0), (1.0, 1.0, 5.0), (1.0, 5.0, 1.0), (4.0, 0.0, 0.0), (4.0, 0.0, 4.0), (4.0, 4.0, 0.0), (5.0, 1.0, 1.0), (8.0, 0.0, 0.0)], [(0, 2), (0, 5), (0, 13), (1, 3), (1, 4), (1, 9), (1, 10), (2, 5), (2, 13), (3, 4), (3, 9), (3, 11), (4, 10), (4, 11), (5, 13), (9, 10), (9, 11), (10, 11)], [(6, 'a'), (7, 'a'), (8, 'a'), (12, 'a')]))
     (delete_labeled_point, (delete_labeled_point_L, [(0.0, 0.0, 0.0)], [], [(0, 'a')]), (delete_labeled_point_R, [], [], []))
+
     >>> for shape_i in sierpinski_derivation_shapes:
     ...     print(shape_i.__repr__())
     (labeled_tetrahedron, [(0.0, 0.0, 0.0), (0.0, 0.0, 8.0), (0.0, 8.0, 0.0), (2.0, 2.0, 2.0), (8.0, 0.0, 0.0)], [(0, 1), (0, 2), (0, 4), (1, 2), (1, 4), (2, 4)], [(3, 'a')])

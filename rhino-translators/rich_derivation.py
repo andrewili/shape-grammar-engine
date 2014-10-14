@@ -56,16 +56,20 @@ class RichDerivation(object):
             [str, ...]
         Returns 1) a name-Shape dictionary of the grammar's shapes, 2) a list 
         of the grammar's initial shapes, 3) a list of the grammar's rules, 
-        4) a list of the derivation's shapes, and 5) a list of the 
-        derivation's rules:
-            (   {str: Shape, ...},
+        4) a list of the derivation's shapes, and 5) a list (of the names) of 
+        the derivation's rules:
+            (   
+                {str: Shape, ...},              ##  omit
+                [Shape, ...],                   ##  ordered how?
+                [Rule, ...],                    ##  ordered how?
                 [Shape, ...],
-                [Rule, ...],
-                [Shape, ...],
-                [Rule, ...])
+                [Rule, ...]                     ##  ordered how?
+            )
         """
         grammar_shapes_dict = {}
         grammar_rules_dict = {}
+        grammar_initial_shapes = []
+        grammar_rules = []
         derivation_rules = []
         derivation_shapes = []
         shape_text_lines = []
@@ -101,6 +105,7 @@ class RichDerivation(object):
                         shape_text_lines = []   ##  new
                     initial_shape_name = tokens[1]
                     initial_shape = grammar_shapes_dict[initial_shape_name]
+                    grammar_initial_shapes.append(initial_shape)
                 elif (
                     first_token == 'rule' and
                     subfile == 'grammar'
@@ -145,8 +150,8 @@ class RichDerivation(object):
                 shape_text_lines, derivation_shapes)
         return (
             grammar_shapes_dict,
-            # grammar_initial_shapes,
-            # grammar_rules,
+            grammar_initial_shapes,
+            grammar_rules,
             derivation_shapes,
             derivation_rules)
 
