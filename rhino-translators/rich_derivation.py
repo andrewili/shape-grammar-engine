@@ -6,10 +6,20 @@ import rule
 import shape
 
 class RichDerivation(object):
-    def __init__(self, drv_text_lines):
-        """Receives a list of drv text lines:
-            [str, ...]
-        """
+    def __init__(
+        self,
+        grammar_initial_shapes,
+        grammar_rules,
+        derivation_shapes,
+        derivation_rules
+    ):
+        self.grammar_initial_shapes = grammar_initial_shapes
+        self.grammar_rules = grammar_rules
+        self.derivation_shapes = derivation_shapes
+        self.derivation_rules = derivation_rules
+        
+    @classmethod
+    def new_from_drv_text_lines(cls, drv_text_lines):
         try:
             if not type(drv_text_lines) == list:
                 raise TypeError
@@ -26,29 +36,14 @@ class RichDerivation(object):
                 grammar_rules,
                 derivation_shapes,
                 derivation_rules
-            ) = self._get_rich_derivation_parts(drv_text_lines)
-            self.grammar = grammar.Grammar(
-                grammar_initial_shapes, 
-                grammar_rules)
-            self.derivation = derivation.Derivation(
+            ) = cls._get_rich_derivation_parts(drv_text_lines)
+            new_rich_derivation = RichDerivation(
+                grammar_shapes_dict,
+                grammar_initial_shapes,
+                grammar_rules,
                 derivation_shapes,
                 derivation_rules)
-
-    @classmethod
-    def new_from_drv_text_lines(cls, drv_text_lines):
-        (   grammar_shapes_dict,
-            grammar_initial_shapes,
-            grammar_rules,
-            derivation_shapes,
-            derivation_rules
-        ) = cls._get_rich_derivation_parts(drv_text_lines)
-        new_rich_derivation = RichDerivation(
-            grammar_shapes_dict,
-            grammar_initial_shapes,
-            grammar_rules,
-            derivation_shapes,
-            derivation_rules)
-        return new_rich_derivation
+            return new_rich_derivation
 
     @classmethod
     def _get_rich_derivation_parts(cls, drv_text_lines):
@@ -58,8 +53,7 @@ class RichDerivation(object):
         of the grammar's initial shapes, 3) a list of the grammar's rules, 
         4) a list of the derivation's shapes, and 5) a list (of the names) of 
         the derivation's rules:
-            (   
-                [Shape, ...],
+            (   [Shape, ...],
                 [Rule, ...],
                 [Shape, ...],
                 [Rule, ...]
@@ -149,7 +143,6 @@ class RichDerivation(object):
             cls._wrap_up_pending_derivation_shape(
                 shape_text_lines, derivation_shapes)
         return (
-            # grammar_shapes_dict,
             grammar_initial_shapes,
             grammar_rules,
             derivation_shapes,
@@ -228,7 +221,33 @@ class RichDerivation(object):
         return derivation_rule
 
     ###
+    def __str__(self):
+        """Returns a string in the drv format
+            str
+        """
+        strings = [
+            self.grammar_string(),
+            self.derivation_string()]
+        string = '\n'.join(strings)
+        return string
+
+    def grammar_string(self):
+        """Returns a representation in the drv format:
+            str
+        """
+        string = '<grammar string place holder>'
+        return string
+
+    def derivation_string(self):
+        """returns a representation in the drv format:
+            str
+        """
+        string = '<derivation string place holder>'
+        return string
+
     def __repr__(self):
+        """Returns a list of strings
+        """
         string = '<__repr__>'
         return string
 

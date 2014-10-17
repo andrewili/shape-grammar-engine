@@ -52,7 +52,7 @@ class Grammar(object):
 		"""Returns a string in the drv format:
 			str
 		"""
-		string = 'place-holding string'
+		string = '<string place holder>'
 		return string
 
 	def __repr__(self):
@@ -61,7 +61,7 @@ class Grammar(object):
 				[<rule>, ...]
 			)
 		"""
-		string = 'place-holding repr'
+		string = '<repr place holder>'
 		return string
 
 if __name__ == '__main__':

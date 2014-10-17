@@ -185,8 +185,8 @@ The argument must be a list of strings
 >>> grammar_from_good_file = grammar.Grammar.new_from_drv_text_lines(
 ...     make_labeled_obshort_drv_lines)
 >>> print(grammar_from_good_file)
-place-holding string
+<string place holder>
 >>> print(grammar_from_good_file.__repr__())
-place-holding repr
+<repr place holder>
 
 ### new_from_drv_text_lines: called functions

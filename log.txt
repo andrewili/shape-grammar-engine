@@ -210,3 +210,8 @@ Log
         the grammar? Or only to the derivation narrowly defined, i.e., the 
         sequence of shapes from initial to final? The interpreter command 
         "save derivation" uses the broad definition. 
+
+#   2014-10-16
+    >   __repr__ strings. Revise to make them runnable by eval. In unit tests, 
+        try checking that eval(repr(foo)) == foo. 
+        

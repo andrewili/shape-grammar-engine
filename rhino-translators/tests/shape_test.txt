@@ -137,7 +137,7 @@
     ... ]
     >>> rule_shape = shape.Shape.new_from_is_text_lines(rule_shape_text_lines)
     >>> print(rule_shape.__repr__())
-    (left-shape-name, [(0.0, 0.0, 0.0), (0.0, 8.0, 0.0), (6.0, 0.0, 0.0)], [(0, 1), (0, 2), (1, 2)], [])
+    (rule_L, [(0.0, 0.0, 0.0), (0.0, 8.0, 0.0), (6.0, 0.0, 0.0)], [(0, 1), (0, 2), (1, 2)], [])
 
 ### _make_codex_entry
     >>> coord_tokens = ['0', '1.2', '3.4', '5.6']
