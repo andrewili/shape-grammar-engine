@@ -1,192 +1,397 @@
 #   grammar_test.txt
 
->>> import grammar
->>> import rule
->>> import shape
+    >>> import grammar
+    >>> import rule
+    >>> import shape
 
->>> make_labeled_obshort_drv_lines = [
-...     '# derivation file version 1.00                           --chen liang 2007/08/06',
-...     '<BLANKLINE>',
-...     'shape    erase-lpoint_L',
-...     '    name ',
-...     '    coords 0 0 2 1',
-...     '<BLANKLINE>',
-...     '    point 0 a',
-...     'shape    erase-lpoint_R',
-...     '    name ',
-...     '<BLANKLINE>',
-...     'shape    labeled-oblong',
-...     '    name ',
-...     '    coords 0 0 0 0',
-...     '    coords 1 0 0 2',
-...     '    coords 2 0 2 1',
-...     '    coords 3 0 4 0',
-...     '    coords 4 0 4 2',
-...     '    coords 5 8 0 0',
-...     '    coords 6 8 0 2',
-...     '    coords 7 8 4 0',
-...     '    coords 8 8 4 2',
-...     '<BLANKLINE>',
-...     '    line 0 0 1',
-...     '    line 1 0 3',
-...     '    line 10 6 8',
-...     '    line 11 7 8',
-...     '    line 2 0 5',
-...     '    line 3 1 4',
-...     '    line 4 1 6',
-...     '    line 5 3 4',
-...     '    line 6 3 7',
-...     '    line 7 4 8',
-...     '    line 8 5 6',
-...     '    line 9 5 7',
-...     '    point 2 a',
-...     'shape    shorten-oblong_L',
-...     '    name ',
-...     '    coords 0 0 0 0',
-...     '    coords 1 0 0 2',
-...     '    coords 2 0 2 1',
-...     '    coords 3 0 4 0',
-...     '    coords 4 0 4 2',
-...     '    coords 5 8 0 0',
-...     '    coords 6 8 0 2',
-...     '    coords 7 8 4 0',
-...     '    coords 8 8 4 2',
-...     '<BLANKLINE>',
-...     '    line 0 0 1',
-...     '    line 1 0 3',
-...     '    line 10 6 8',
-...     '    line 11 7 8',
-...     '    line 2 0 5',
-...     '    line 3 1 4',
-...     '    line 4 1 6',
-...     '    line 5 3 4',
-...     '    line 6 3 7',
-...     '    line 7 4 8',
-...     '    line 8 5 6',
-...     '    line 9 5 7',
-...     '    point 2 a',
-...     'shape    shorten-oblong_R',
-...     '    name ',
-...     '    coords 0 0 0 0',
-...     '    coords 1 0 0 2',
-...     '    coords 10 4 4 0',
-...     '    coords 11 4 4 2',
-...     '    coords 2 0 2 1',
-...     '    coords 3 0 4 0',
-...     '    coords 4 0 4 2',
-...     '    coords 5 4 0 0',
-...     '    coords 6 4 0 2',
-...     '    coords 7 4 4 0',
-...     '    coords 8 4 0 0',
-...     '    coords 9 4 0 2',
-...     '<BLANKLINE>',
-...     '    line 0 0 1',
-...     '    line 1 0 3',
-...     '    line 10 8 9',
-...     '    line 11 10 11',
-...     '    line 2 0 8',
-...     '    line 3 1 4',
-...     '    line 4 1 6',
-...     '    line 5 3 4',
-...     '    line 6 3 7',
-...     '    line 7 4 11',
-...     '    line 8 5 7',
-...     '    line 9 6 11',
-...     '    point 2 a',
-...     'initial    labeled-oblong',
-...     'rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R',
-...     'rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R',
-...     '# derivation record',
-...     'shape    labeled-oblong',
-...     '    name ',
-...     '    coords 0 0 0 0',
-...     '    coords 1 0 0 2',
-...     '    coords 2 0 2 1',
-...     '    coords 3 0 4 0',
-...     '    coords 4 0 4 2',
-...     '    coords 5 8 0 0',
-...     '    coords 6 8 0 2',
-...     '    coords 7 8 4 0',
-...     '    coords 8 8 4 2',
-...     '<BLANKLINE>',
-...     '    line 0 0 1',
-...     '    line 1 0 3',
-...     '    line 10 6 8',
-...     '    line 11 7 8',
-...     '    line 2 0 5',
-...     '    line 3 1 4',
-...     '    line 4 1 6',
-...     '    line 5 3 4',
-...     '    line 6 3 7',
-...     '    line 7 4 8',
-...     '    line 8 5 6',
-...     '    line 9 5 7',
-...     '    point 2 a',
-...     'rule    shorten-oblong',
-...     'shape    labeled-oblong_shorten-oblong_1',
-...     '    name ',
-...     '    coords 10 0 4 2.16840434497101e-016',
-...     '    coords 11 4 4 2.16840434497101e-016',
-...     '    coords 12 4 4 2',
-...     '    coords 13 0 4.33680868994202e-016 2',
-...     '    coords 14 0 4 2',
-...     '    coords 15 4 4.33680868994202e-016 2',
-...     '    coords 16 0 4.33680868994202e-016 2.16840434497101e-016',
-...     '    coords 17 4 4.33680868994202e-016 2.16840434497101e-016',
-...     '    coords 9 0 2 1',
-...     '<BLANKLINE>',
-...     '    line 12 10 11',
-...     '    line 13 11 12',
-...     '    line 14 13 14',
-...     '    line 15 14 12',
-...     '    line 16 15 12',
-...     '    line 17 16 17',
-...     '    line 18 17 11',
-...     '    line 19 13 15',
-...     '    line 20 16 10',
-...     '    line 21 16 13',
-...     '    line 22 17 15',
-...     '    line 23 10 14',
-...     '    point 9 a',
-...     'rule    erase-lpoint',
-...     'shape    labeled-oblong_shorten-oblong_1_erase-lpoint_1',
-...     '    name ',
-...     '    coords 10 0 4 2.16840434497101e-016',
-...     '    coords 11 4 4 2.16840434497101e-016',
-...     '    coords 12 4 4 2',
-...     '    coords 13 0 4.33680868994202e-016 2',
-...     '    coords 14 0 4 2',
-...     '    coords 15 4 4.33680868994202e-016 2',
-...     '    coords 16 0 4.33680868994202e-016 2.16840434497101e-016',
-...     '    coords 17 4 4.33680868994202e-016 2.16840434497101e-016',
-...     '    coords 9 0 2 1',
-...     '<BLANKLINE>',
-...     '    line 12 10 11',
-...     '    line 13 11 12',
-...     '    line 14 13 14',
-...     '    line 15 14 12',
-...     '    line 16 15 12',
-...     '    line 17 16 17',
-...     '    line 18 17 11',
-...     '    line 19 13 15',
-...     '    line 20 16 10',
-...     '    line 21 16 13',
-...     '    line 22 17 15',
-...     '    line 23 10 14',
-... ]
+    >>> labeled_obshort_drv_text_lines = [
+    ...     '# derivation file version 1.00                           --chen liang 2007/08/06',
+    ...     '<BLANKLINE>',
+    ...     'shape    erase-lpoint_L',
+    ...     '    name ',
+    ...     '    coords 0 0 2 1',
+    ...     '<BLANKLINE>',
+    ...     '    point 0 a',
+    ...     'shape    erase-lpoint_R',
+    ...     '    name ',
+    ...     '<BLANKLINE>',
+    ...     'shape    labeled-oblong',
+    ...     '    name ',
+    ...     '    coords 0 0 0 0',
+    ...     '    coords 1 0 0 2',
+    ...     '    coords 2 0 2 1',
+    ...     '    coords 3 0 4 0',
+    ...     '    coords 4 0 4 2',
+    ...     '    coords 5 8 0 0',
+    ...     '    coords 6 8 0 2',
+    ...     '    coords 7 8 4 0',
+    ...     '    coords 8 8 4 2',
+    ...     '<BLANKLINE>',
+    ...     '    line 0 0 1',
+    ...     '    line 1 0 3',
+    ...     '    line 10 6 8',
+    ...     '    line 11 7 8',
+    ...     '    line 2 0 5',
+    ...     '    line 3 1 4',
+    ...     '    line 4 1 6',
+    ...     '    line 5 3 4',
+    ...     '    line 6 3 7',
+    ...     '    line 7 4 8',
+    ...     '    line 8 5 6',
+    ...     '    line 9 5 7',
+    ...     '    point 2 a',
+    ...     'shape    shorten-oblong_L',
+    ...     '    name ',
+    ...     '    coords 0 0 0 0',
+    ...     '    coords 1 0 0 2',
+    ...     '    coords 2 0 2 1',
+    ...     '    coords 3 0 4 0',
+    ...     '    coords 4 0 4 2',
+    ...     '    coords 5 8 0 0',
+    ...     '    coords 6 8 0 2',
+    ...     '    coords 7 8 4 0',
+    ...     '    coords 8 8 4 2',
+    ...     '<BLANKLINE>',
+    ...     '    line 0 0 1',
+    ...     '    line 1 0 3',
+    ...     '    line 10 6 8',
+    ...     '    line 11 7 8',
+    ...     '    line 2 0 5',
+    ...     '    line 3 1 4',
+    ...     '    line 4 1 6',
+    ...     '    line 5 3 4',
+    ...     '    line 6 3 7',
+    ...     '    line 7 4 8',
+    ...     '    line 8 5 6',
+    ...     '    line 9 5 7',
+    ...     '    point 2 a',
+    ...     'shape    shorten-oblong_R',
+    ...     '    name ',
+    ...     '    coords 0 0 0 0',
+    ...     '    coords 1 0 0 2',
+    ...     '    coords 10 4 4 0',
+    ...     '    coords 11 4 4 2',
+    ...     '    coords 2 0 2 1',
+    ...     '    coords 3 0 4 0',
+    ...     '    coords 4 0 4 2',
+    ...     '    coords 5 4 0 0',
+    ...     '    coords 6 4 0 2',
+    ...     '    coords 7 4 4 0',
+    ...     '    coords 8 4 0 0',
+    ...     '    coords 9 4 0 2',
+    ...     '<BLANKLINE>',
+    ...     '    line 0 0 1',
+    ...     '    line 1 0 3',
+    ...     '    line 10 8 9',
+    ...     '    line 11 10 11',
+    ...     '    line 2 0 8',
+    ...     '    line 3 1 4',
+    ...     '    line 4 1 6',
+    ...     '    line 5 3 4',
+    ...     '    line 6 3 7',
+    ...     '    line 7 4 11',
+    ...     '    line 8 5 7',
+    ...     '    line 9 6 11',
+    ...     '    point 2 a',
+    ...     'initial    labeled-oblong',
+    ...     'rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R',
+    ...     'rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R',
+    ...     '# derivation record',
+    ...     'shape    labeled-oblong',
+    ...     '    name ',
+    ...     '    coords 0 0 0 0',
+    ...     '    coords 1 0 0 2',
+    ...     '    coords 2 0 2 1',
+    ...     '    coords 3 0 4 0',
+    ...     '    coords 4 0 4 2',
+    ...     '    coords 5 8 0 0',
+    ...     '    coords 6 8 0 2',
+    ...     '    coords 7 8 4 0',
+    ...     '    coords 8 8 4 2',
+    ...     '<BLANKLINE>',
+    ...     '    line 0 0 1',
+    ...     '    line 1 0 3',
+    ...     '    line 10 6 8',
+    ...     '    line 11 7 8',
+    ...     '    line 2 0 5',
+    ...     '    line 3 1 4',
+    ...     '    line 4 1 6',
+    ...     '    line 5 3 4',
+    ...     '    line 6 3 7',
+    ...     '    line 7 4 8',
+    ...     '    line 8 5 6',
+    ...     '    line 9 5 7',
+    ...     '    point 2 a',
+    ...     'rule    shorten-oblong',
+    ...     'shape    labeled-oblong_shorten-oblong_1',
+    ...     '    name ',
+    ...     '    coords 10 0 4 2.16840434497101e-016',
+    ...     '    coords 11 4 4 2.16840434497101e-016',
+    ...     '    coords 12 4 4 2',
+    ...     '    coords 13 0 4.33680868994202e-016 2',
+    ...     '    coords 14 0 4 2',
+    ...     '    coords 15 4 4.33680868994202e-016 2',
+    ...     '    coords 16 0 4.33680868994202e-016 2.16840434497101e-016',
+    ...     '    coords 17 4 4.33680868994202e-016 2.16840434497101e-016',
+    ...     '    coords 9 0 2 1',
+    ...     '<BLANKLINE>',
+    ...     '    line 12 10 11',
+    ...     '    line 13 11 12',
+    ...     '    line 14 13 14',
+    ...     '    line 15 14 12',
+    ...     '    line 16 15 12',
+    ...     '    line 17 16 17',
+    ...     '    line 18 17 11',
+    ...     '    line 19 13 15',
+    ...     '    line 20 16 10',
+    ...     '    line 21 16 13',
+    ...     '    line 22 17 15',
+    ...     '    line 23 10 14',
+    ...     '    point 9 a',
+    ...     'rule    erase-lpoint',
+    ...     'shape    labeled-oblong_shorten-oblong_1_erase-lpoint_1',
+    ...     '    name ',
+    ...     '    coords 10 0 4 2.16840434497101e-016',
+    ...     '    coords 11 4 4 2.16840434497101e-016',
+    ...     '    coords 12 4 4 2',
+    ...     '    coords 13 0 4.33680868994202e-016 2',
+    ...     '    coords 14 0 4 2',
+    ...     '    coords 15 4 4.33680868994202e-016 2',
+    ...     '    coords 16 0 4.33680868994202e-016 2.16840434497101e-016',
+    ...     '    coords 17 4 4.33680868994202e-016 2.16840434497101e-016',
+    ...     '    coords 9 0 2 1',
+    ...     '<BLANKLINE>',
+    ...     '    line 12 10 11',
+    ...     '    line 13 11 12',
+    ...     '    line 14 13 14',
+    ...     '    line 15 14 12',
+    ...     '    line 16 15 12',
+    ...     '    line 17 16 17',
+    ...     '    line 18 17 11',
+    ...     '    line 19 13 15',
+    ...     '    line 20 16 10',
+    ...     '    line 21 16 13',
+    ...     '    line 22 17 15',
+    ...     '    line 23 10 14',
+    ... ]
 
 ### __init__, __repr__, __str__
-### new_from_drv_text_lines
->>> grammar_from_non_list = grammar.Grammar.new_from_drv_text_lines(37)
-The argument must be a list of strings
->>> grammar_from_list_of_non_strings = (
-...     grammar.Grammar.new_from_drv_text_lines([23, 37]))
-The argument must be a list of strings
->>> grammar_from_good_file = grammar.Grammar.new_from_drv_text_lines(
-...     make_labeled_obshort_drv_lines)
->>> print(grammar_from_good_file)
-<string place holder>
->>> print(grammar_from_good_file.__repr__())
-<repr place holder>
+    >>> def make_simple_shapes_and_rules():
+    ...     labeled_point = shape.Shape('labeled_point', [], [((0, 0, 0), 'a')])
+    ...     empty_shape = shape.Shape('empty_shape', [], [])
+    ...     delete_labeled_point = (
+    ...         rule.Rule('delete_labeled_point', labeled_point, empty_shape))
+    ...     simple_shape_list = [labeled_point]
+    ...     simple_rule_list = [delete_labeled_point]
+    ...     return (simple_shape_list, simple_rule_list)
+    >>> (simple_shape_list, simple_rule_list) = make_simple_shapes_and_rules()
 
-### new_from_drv_text_lines: called functions
+    >>> grammar_from_non_list_list = grammar.Grammar(('a'), simple_rule_list)
+    The arguments must be: 1) a non-empty list of Shapes, and 2) a non-empty list of Rules
+    >>> grammar_from_list_non_list = grammar.Grammar(simple_shape_list, ('a'))
+    The arguments must be: 1) a non-empty list of Shapes, and 2) a non-empty list of Rules
+    >>> grammar_from_non_shape_list_list = grammar.Grammar([0], simple_rule_list)
+    The arguments must be: 1) a non-empty list of Shapes, and 2) a non-empty list of Rules
+    >>> grammar_from_list_non_rule_list = grammar.Grammar(simple_shape_list, [0])
+    The arguments must be: 1) a non-empty list of Shapes, and 2) a non-empty list of Rules
+
+### new_from_drv_text_lines
+    ??? grammar_from_non_list = grammar.Grammar.new_from_drv_text_lines(37)
+    The argument must be a list of strings
+    ??? grammar_from_list_of_non_strings = (
+    ...     grammar.Grammar.new_from_drv_text_lines([23, 37]))
+    The argument must be a list of strings
+    ??? obshort_grammar = grammar.Grammar.new_from_drv_text_lines(
+    ...     labeled_obshort_drv_text_lines)
+
+    ??? print(obshort_grammar)
+    shape    erase-lpoint_L
+        name 
+        coords 0 0 2 1
+    <BLANKLINE>
+        point 0 a
+    shape    erase-lpoint_R
+        name 
+    <BLANKLINE>
+    shape    labeled-oblong
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 8 0 0
+        coords 6 8 0 2
+        coords 7 8 4 0
+        coords 8 8 4 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 6 8
+        line 11 7 8
+        line 2 0 5
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 8
+        line 8 5 6
+        line 9 5 7
+        point 2 a
+    shape    shorten-oblong_L
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 8 0 0
+        coords 6 8 0 2
+        coords 7 8 4 0
+        coords 8 8 4 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 6 8
+        line 11 7 8
+        line 2 0 5
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 8
+        line 8 5 6
+        line 9 5 7
+        point 2 a
+    shape    shorten-oblong_R
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 10 4 4 0
+        coords 11 4 4 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 4 0 0
+        coords 6 4 0 2
+        coords 7 4 4 0
+        coords 8 4 0 0
+        coords 9 4 0 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 8 9
+        line 11 10 11
+        line 2 0 8
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 11
+        line 8 5 7
+        line 9 6 11
+        point 2 a
+    initial    labeled-oblong
+    rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R
+    rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
+    ??? print(obshort_grammar.__repr__())
+    <repr place holder>
+
+### _extract_grammar_parts
+    >>> (sierpinski_initial_shapes, sierpinski_rules) = (
+    ...     grammar.Grammar._extract_grammar_parts(
+    ...         labeled_obshort_drv_text_lines))
+    >>> for shape_i in sierpinski_initial_shapes:
+    ...     print(shape_i)
+    shape    labeled-oblong
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 8 0 0
+        coords 6 8 0 2
+        coords 7 8 4 0
+        coords 8 8 4 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 6 8
+        line 11 7 8
+        line 2 0 5
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 8
+        line 8 5 6
+        line 9 5 7
+        point 2 a
+
+    ??? for rule_i in sierpinski_rules:
+    ...     print(rule_i)
+    shape    erase-lpoint_L
+        name 
+        coords 0 0 2 1
+    <BLANKLINE>
+        point 0 a
+    shape    erase-lpoint_R
+        name 
+    <BLANKLINE>
+    rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R
+    shape    shorten-oblong_L
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 8 0 0
+        coords 6 8 0 2
+        coords 7 8 4 0
+        coords 8 8 4 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 6 8
+        line 11 7 8
+        line 2 0 5
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 8
+        line 8 5 6
+        line 9 5 7
+        point 2 a
+    shape    shorten-oblong_R
+        name 
+        coords 0 0 0 0
+        coords 1 0 0 2
+        coords 10 4 4 0
+        coords 11 4 4 2
+        coords 2 0 2 1
+        coords 3 0 4 0
+        coords 4 0 4 2
+        coords 5 4 0 0
+        coords 6 4 0 2
+        coords 7 4 4 0
+        coords 8 4 0 0
+        coords 9 4 0 2
+    <BLANKLINE>
+        line 0 0 1
+        line 1 0 3
+        line 10 8 9
+        line 11 10 11
+        line 2 0 8
+        line 3 1 4
+        line 4 1 6
+        line 5 3 4
+        line 6 3 7
+        line 7 4 11
+        line 8 5 7
+        line 9 6 11
+        point 2 a
+    rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
+    

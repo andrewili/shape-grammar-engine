@@ -8,15 +8,11 @@ import shape
 class RichDerivation(object):
     def __init__(
         self,
-        grammar_initial_shapes,
-        grammar_rules,
-        derivation_shapes,
-        derivation_rules
+        grammar_in,
+        derivation_in
     ):
-        self.grammar_initial_shapes = grammar_initial_shapes
-        self.grammar_rules = grammar_rules
-        self.derivation_shapes = derivation_shapes
-        self.derivation_rules = derivation_rules
+        self.grammar = '<grammar>'
+        self.derivation = '<derivation>'
         
     @classmethod
     def new_from_drv_text_lines(cls, drv_text_lines):
@@ -32,18 +28,37 @@ class RichDerivation(object):
             message = 'The argument must be a non-empty list of strings'
             print(message)
         else:
-            (   grammar_initial_shapes,
-                grammar_rules,
-                derivation_shapes,
-                derivation_rules
-            ) = cls._get_rich_derivation_parts(drv_text_lines)
-            new_rich_derivation = RichDerivation(
-                grammar_shapes_dict,
-                grammar_initial_shapes,
-                grammar_rules,
-                derivation_shapes,
-                derivation_rules)
+            (grammar_drv_text_lines, derivation_drv_text_lines) = (
+                cls._separate_drv_text_lines(drv_text_lines))
+            new_grammar = grammar.Grammar.new_from_drv_text_lines(
+                grammar_drv_text_lines)
+            new_derivation = derivation.Derivation.new_from_drv_text_lines(
+                derivation_drv_text_lines)
+            new_rich_derivation = RichDerivation(new_grammar, new_derivation)
             return new_rich_derivation
+
+    @classmethod
+    def _separate_drv_text_lines(cls, drv_text_lines):
+        """Receives a list of drv text lines:
+            [str, ...]
+        Returns a list of grammar drv text lines and a list of derivation drv 
+        text lines:
+            [str, ...]
+            [str, ...]
+        """
+        grammar_drv_text_lines = []
+        derivation_drv_text_lines = []
+        subfile = 'grammar'
+        for text_line in drv_text_lines:
+            if 'derivation record' in text_line:
+                subfile = 'derivation'
+            if subfile == 'grammar':
+                grammar_drv_text_lines.append(text_line)
+            elif subfile == 'derivation':
+                derivation_drv_text_lines.append(text_line)
+            else:
+                pass
+        return (grammar_drv_text_lines, derivation_drv_text_lines)
 
     @classmethod
     def _get_rich_derivation_parts(cls, drv_text_lines):
@@ -226,23 +241,9 @@ class RichDerivation(object):
             str
         """
         strings = [
-            self.grammar_string(),
-            self.derivation_string()]
+            self.grammar.__str__(),
+            self.derivation.__str__()]
         string = '\n'.join(strings)
-        return string
-
-    def grammar_string(self):
-        """Returns a representation in the drv format:
-            str
-        """
-        string = '<grammar string place holder>'
-        return string
-
-    def derivation_string(self):
-        """returns a representation in the drv format:
-            str
-        """
-        string = '<derivation string place holder>'
         return string
 
     def __repr__(self):
