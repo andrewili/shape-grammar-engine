@@ -28,7 +28,7 @@
 
     >>> new_shape = shape.Shape(name, line_specs, lpoint_specs)
     >>> print(new_shape)
-    shape Kilroy
+    shape    Kilroy
         name
         coords 0 0.000000 0.000000 0.000000
         coords 1 0.000000 4.000000 0.000000
@@ -61,7 +61,7 @@
 
     >>> shape_no_lines = shape.Shape(name, [], lpoint_specs)
     >>> print(shape_no_lines)
-    shape Kilroy
+    shape    Kilroy
         name
         coords 0 0.000000 4.000000 0.000000
         coords 1 3.000000 0.000000 0.000000
@@ -75,7 +75,7 @@
 
     >>> shape_no_lpoints = shape.Shape(name, line_specs, [])
     >>> print(shape_no_lpoints)
-    shape Kilroy
+    shape    Kilroy
         name
         coords 0 0.000000 0.000000 0.000000
         coords 1 0.000000 8.000000 0.000000
@@ -89,7 +89,7 @@
 
     >>> shape_no_lines_no_lpoints = shape.Shape(name, [], [])
     >>> print(shape_no_lines_no_lpoints)
-    shape Kilroy
+    shape    Kilroy
         name
     >>> print(shape_no_lines_no_lpoints.__repr__())
     (Kilroy, [], [], [])
@@ -125,8 +125,8 @@
     (Kilroy, [(0.0, 0.0, 0.0), (0.0, 4.0, 0.0), (0.0, 8.0, 0.0), (3.0, 0.0, 0.0), (3.0, 4.0, 0.0), (6.0, 0.0, 0.0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')])
 
     >>> rule_shape_text_lines = [
-    ...     'shape rule_L',
-    ...     '    name left-shape-name',
+    ...     'shape    rule_L',
+    ...     '    name    left-shape-name',
     ...     '    coords 0 0.000000 0.000000 0.000000',
     ...     '    coords 1 0.000000 8.000000 0.000000',
     ...     '    coords 2 6.000000 0.000000 0.000000',
@@ -355,7 +355,7 @@
     ...     return initial_shape_string_test
     >>> initial_shape_string_test = make_initial_shape_string_test()
     >>> print(initial_shape_string_test)
-    shape Kilroy
+    shape    Kilroy
         name
         coords 0 0.000000 0.000000 0.000000
         coords 1 0.000000 4.000000 0.000000
@@ -374,7 +374,7 @@
 ### _make_shape_header_and_name
     >>> shape_header_and_name = drone_shape._make_shape_header_and_name()
     >>> print(shape_header_and_name)
-    shape drone
+    shape    drone
         name
 
 ###
@@ -384,8 +384,8 @@
     >>> rule_shape_string = (
     ...     drone_shape.make_rule_shape_string(side, rule_name))
     >>> print(rule_shape_string)
-    shape drone-rule_L
-        name drone
+    shape    drone-rule_L
+        name    drone
         coords 0 0.000000 0.000000 0.000000
         coords 1 0.000000 1.000000 0.000000
         coords 2 1.000000 0.000000 0.000000
@@ -401,8 +401,8 @@
     ...     drone_shape._make_rule_shape_header_and_name(
     ...         'left', 'kilroy-rule'))
     >>> print(rule_shape_header_and_name)
-    shape kilroy-rule_L
-        name drone
+    shape    kilroy-rule_L
+        name    drone
 
 ###
 ### _make_shape_string_remainder

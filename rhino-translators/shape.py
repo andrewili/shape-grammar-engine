@@ -286,10 +286,10 @@ class Shape(object):
         
     def _make_shape_header_and_name(self):
         """Returns a string in the form:
-            shape <shape name>
+            shape    <shape name>
                 name
         """
-        initial_shape_header = 'shape %s' % self.name
+        initial_shape_header = 'shape    %s' % self.name
         indented_shape_name_string = '%sname' % self.tab
         initial_shape_header_and_name = '\n'.join([
             initial_shape_header,
@@ -319,8 +319,8 @@ class Shape(object):
             str
             str
         Returns a string of the form:
-            shape <rule name>_<side>
-                name <shape name>
+            shape    <rule name>_<side>
+                name    <shape name>
         """
         if side == 'left':
             side_string = 'L'
@@ -328,8 +328,13 @@ class Shape(object):
             side_string = 'R'
         else:
             pass
-        rule_shape_header = 'shape %s_%s' % (rule_name, side_string)
-        indented_rule_shape_name_string = '%sname %s' % (self.tab, self.name)
+        rule_shape_header = 'shape    %s_%s' % (rule_name, side_string)
+        if self.name == '':
+            indented_rule_shape_name_string = (
+                '%sname' % self.tab)
+        else:
+            indented_rule_shape_name_string = (
+                '%sname    %s' % (self.tab, self.name))
         rule_shape_header_and_name = '\n'.join([
             rule_shape_header,
             indented_rule_shape_name_string])

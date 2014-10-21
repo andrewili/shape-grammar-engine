@@ -71,18 +71,23 @@ class Grammar(object):
             else:
                 first_token = tokens[0]
                 if first_token == '#':
-                    pass
-                elif first_token == 'shape':
-                    # if there_is_a_shape_pending:
-                    #     make_shape_from_text_lines_in_buffer
-                    #     add_shape_to_shapes_dict
-                    # reset_buffer_with_first_new_text_line
-                    if cls._shape_pending(shape_text_lines_buffer):
-                        new_shape = (
-                            shape.Shape.new_from_is_text_lines(
-                                shape_text_lines_buffer))
-                        shapes_dict[new_shape.name] = new_shape
+                    if tokens[2] == 'file':
+                        subfile = 'grammar'
+                    elif tokens[2] == 'record':
+                        subfile = 'derivation'
+                elif (
+                    first_token == 'shape' and
+                    subfile == 'grammar'
+                ):
+                    if cls._grammar_shape_pending(shape_text_lines_buffer):
+                        cls._wrap_up_pending_grammar_shape(
+                            shape_text_lines_buffer, shapes_dict)
                     shape_text_lines_buffer = [text_line]
+                elif (
+                    first_token == 'shape' and
+                    subfile == 'derivation'
+                ):
+                    pass
                 elif (
                     first_token == 'name' or
                     first_token == 'coords' or
@@ -91,29 +96,49 @@ class Grammar(object):
                 ):
                     shape_text_lines_buffer.append(text_line)
                 elif first_token == 'initial':
-                    # add_shape_to_initial_shapes
-                    name = tokens[1]
-                    new_initial_shape = shapes_dict[name]
+                    cls._wrap_up_pending_grammar_shape(
+                        shape_text_lines_buffer, shapes_dict)
+                    shape_name = tokens[1]
+                    new_initial_shape = shapes_dict[shape_name]
                     initial_shapes.append(new_initial_shape)
-                elif first_token == 'rule':
-                    # add_rule_to_rules
-                    rule_name = tokens[1]
-                    left_shape_name = tokens[2]
-                    right_shape_name = tokens[4]
-                    left_shape = shapes_dict[left_shape_name]
-                    right_shape = shapes_dict[right_shape_name]
-                    new_rule = rule.Rule(rule_name, left_shape, right_shape)
-                    rules.append(new_rule)
+                elif (
+                    first_token == 'rule' and
+                    subfile == 'grammar'
+                ):
+                    cls._add_new_rule(tokens, shapes_dict, rules)
+                elif (
+                    first_token == 'rule' and
+                    subfile == 'derivation'
+                ):
+                    pass
                 else:
                     pass
         return (initial_shapes, rules)
 
     @classmethod
-    def _shape_pending(cls, shape_text_lines):
+    def _grammar_shape_pending(cls, shape_text_lines):
         value = False
         if not shape_text_lines == []:
             value = True
         return value
+
+    @classmethod
+    def _wrap_up_pending_grammar_shape(
+        cls, shape_text_lines_buffer, shapes_dict
+    ):
+        new_shape = (
+            shape.Shape.new_from_is_text_lines(shape_text_lines_buffer))
+        shapes_dict[new_shape.name] = new_shape
+
+    @classmethod
+    def _add_new_rule(cls, tokens, shapes_dict, rules):
+        rule_name = tokens[1]
+        left_shape_name = tokens[2]
+        right_shape_name = tokens[4]
+        left_shape = shapes_dict[left_shape_name]
+        right_shape = shapes_dict[right_shape_name]
+        new_rule = rule.Rule(rule_name, left_shape, right_shape)
+        rules.append(new_rule)
 
     def __str__(self):
         """Returns a string in the drv format:

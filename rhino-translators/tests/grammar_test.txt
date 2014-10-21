@@ -69,29 +69,26 @@
     ...     '    name ',
     ...     '    coords 0 0 0 0',
     ...     '    coords 1 0 0 2',
-    ...     '    coords 10 4 4 0',
-    ...     '    coords 11 4 4 2',
     ...     '    coords 2 0 2 1',
     ...     '    coords 3 0 4 0',
     ...     '    coords 4 0 4 2',
     ...     '    coords 5 4 0 0',
     ...     '    coords 6 4 0 2',
     ...     '    coords 7 4 4 0',
-    ...     '    coords 8 4 0 0',
-    ...     '    coords 9 4 0 2',
+    ...     '    coords 8 4 4 2',
     ...     '<BLANKLINE>',
     ...     '    line 0 0 1',
     ...     '    line 1 0 3',
-    ...     '    line 10 8 9',
-    ...     '    line 11 10 11',
-    ...     '    line 2 0 8',
+    ...     '    line 10 5 6',
+    ...     '    line 11 7 8',
+    ...     '    line 2 0 5',
     ...     '    line 3 1 4',
     ...     '    line 4 1 6',
     ...     '    line 5 3 4',
     ...     '    line 6 3 7',
-    ...     '    line 7 4 11',
+    ...     '    line 7 4 8',
     ...     '    line 8 5 7',
-    ...     '    line 9 6 11',
+    ...     '    line 9 6 8',
     ...     '    point 2 a',
     ...     'initial    labeled-oblong',
     ...     'rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R',
@@ -304,21 +301,19 @@
     >>> for shape_i in sierpinski_initial_shapes:
     ...     print(shape_i)
     shape    labeled-oblong
-        name 
-        coords 0 0 0 0
-        coords 1 0 0 2
-        coords 2 0 2 1
-        coords 3 0 4 0
-        coords 4 0 4 2
-        coords 5 8 0 0
-        coords 6 8 0 2
-        coords 7 8 4 0
-        coords 8 8 4 2
+        name
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 0.000000 2.000000
+        coords 2 0.000000 2.000000 1.000000
+        coords 3 0.000000 4.000000 0.000000
+        coords 4 0.000000 4.000000 2.000000
+        coords 5 8.000000 0.000000 0.000000
+        coords 6 8.000000 0.000000 2.000000
+        coords 7 8.000000 4.000000 0.000000
+        coords 8 8.000000 4.000000 2.000000
     <BLANKLINE>
         line 0 0 1
         line 1 0 3
-        line 10 6 8
-        line 11 7 8
         line 2 0 5
         line 3 1 4
         line 4 1 6
@@ -327,35 +322,35 @@
         line 7 4 8
         line 8 5 6
         line 9 5 7
+        line 10 6 8
+        line 11 7 8
         point 2 a
 
-    ??? for rule_i in sierpinski_rules:
+    >>> for rule_i in sierpinski_rules:
     ...     print(rule_i)
     shape    erase-lpoint_L
-        name 
-        coords 0 0 2 1
+        name    erase-lpoint_L
+        coords 0 0.000000 2.000000 1.000000
     <BLANKLINE>
         point 0 a
     shape    erase-lpoint_R
-        name 
+        name    erase-lpoint_R
     <BLANKLINE>
     rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R
     shape    shorten-oblong_L
-        name 
-        coords 0 0 0 0
-        coords 1 0 0 2
-        coords 2 0 2 1
-        coords 3 0 4 0
-        coords 4 0 4 2
-        coords 5 8 0 0
-        coords 6 8 0 2
-        coords 7 8 4 0
-        coords 8 8 4 2
+        name    shorten-oblong_L
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 0.000000 2.000000
+        coords 2 0.000000 2.000000 1.000000
+        coords 3 0.000000 4.000000 0.000000
+        coords 4 0.000000 4.000000 2.000000
+        coords 5 8.000000 0.000000 0.000000
+        coords 6 8.000000 0.000000 2.000000
+        coords 7 8.000000 4.000000 0.000000
+        coords 8 8.000000 4.000000 2.000000
     <BLANKLINE>
         line 0 0 1
         line 1 0 3
-        line 10 6 8
-        line 11 7 8
         line 2 0 5
         line 3 1 4
         line 4 1 6
@@ -364,34 +359,33 @@
         line 7 4 8
         line 8 5 6
         line 9 5 7
+        line 10 6 8
+        line 11 7 8
         point 2 a
     shape    shorten-oblong_R
-        name 
-        coords 0 0 0 0
-        coords 1 0 0 2
-        coords 10 4 4 0
-        coords 11 4 4 2
-        coords 2 0 2 1
-        coords 3 0 4 0
-        coords 4 0 4 2
-        coords 5 4 0 0
-        coords 6 4 0 2
-        coords 7 4 4 0
-        coords 8 4 0 0
-        coords 9 4 0 2
+        name    shorten-oblong_R
+        coords 0 0.000000 0.000000 0.000000
+        coords 1 0.000000 0.000000 2.000000
+        coords 2 0.000000 2.000000 1.000000
+        coords 3 0.000000 4.000000 0.000000
+        coords 4 0.000000 4.000000 2.000000
+        coords 5 4.000000 0.000000 0.000000
+        coords 6 4.000000 0.000000 2.000000
+        coords 7 4.000000 4.000000 0.000000
+        coords 8 4.000000 4.000000 2.000000
     <BLANKLINE>
         line 0 0 1
         line 1 0 3
-        line 10 8 9
-        line 11 10 11
-        line 2 0 8
+        line 2 0 5
         line 3 1 4
         line 4 1 6
         line 5 3 4
         line 6 3 7
-        line 7 4 11
-        line 8 5 7
-        line 9 6 11
+        line 7 4 8
+        line 8 5 6
+        line 9 5 7
+        line 10 6 8
+        line 11 7 8
         point 2 a
     rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
     
