@@ -9,8 +9,8 @@ class Grammar(object):
             if not (
                 type(initial_shapes) == list and
                 type(rules) == list and
-                len(initial_shapes) == 0 and
-                len(rules) == 0
+                len(initial_shapes) > 0 and
+                len(rules) > 0
             ):
                 raise TypeError
             for item in initial_shapes:
@@ -150,8 +150,7 @@ class Grammar(object):
         for shape_i in self.initial_shapes:
             shapes_dict[shape_i.name] = shape_i
             shape_i_name_spec = 'initial    %s' % shape_i.name
-            initial_shape_names.add(shape_i_name_spec)
-        print('len(initial_shapes): %i' % len(self.initial_shapes))
+            initial_shape_names.append(shape_i_name_spec)
         for rule_i in self.rules:
             left_name = rule_i.left_shape.name
             left_shape = rule_i.left_shape
@@ -162,18 +161,19 @@ class Grammar(object):
             rule_i_name_triple = (
                 'rule    %s    %s -> %s' % (
                     rule_i.name, left_name, right_name))
-            rule_name_triples.add(rule_i_name_triple)
-        print('len(rules): %i' % len(self.rules))
+            rule_name_triples.append(rule_i_name_triple)
         drv_text_lines = []
-        for shape_i in sorted(shapes_dict):
-            drv_text_lines.extend(str(shape_i))
+        for shape_name_i in sorted(shapes_dict):
+            shape_i = shapes_dict[shape_name_i]
+            drv_text_lines.append(str(shape_i))
+        # print(shapes_dict['erase-lpoint_L'])
         for initial_shape_name_spec in initial_shape_names:
-            drv_text_lines.extend(initial_shape_name_spec)
+            drv_text_lines.append(initial_shape_name_spec)
         for rule_name_triple in rule_name_triples:
-            drv_text_lines.add(rule_name_triple)
-        print('len(drv_text_lines): %i' % len(drv_text_lines))
+            drv_text_lines.append(rule_name_triple)
         string = '\n'.join(drv_text_lines)
         return string
+        # return ''
 
     def __repr__(self):
         """Returns an (unformatted) string in the form:
