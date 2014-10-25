@@ -184,13 +184,13 @@
     >>> (simple_shape_list, simple_rule_list) = make_simple_shapes_and_rules()
 
     >>> grammar_from_non_list_list = grammar.Grammar(('a'), simple_rule_list)
-    The arguments must be: 1) a non-empty list of Shapes, and 2) a non-empty list of Rules
+    The arguments must be: 1) a non-empty list of Shapes and 2) a non-empty list of Rules
     >>> grammar_from_list_non_list = grammar.Grammar(simple_shape_list, ('a'))
-    The arguments must be: 1) a non-empty list of Shapes, and 2) a non-empty list of Rules
+    The arguments must be: 1) a non-empty list of Shapes and 2) a non-empty list of Rules
     >>> grammar_from_non_shape_list_list = grammar.Grammar([0], simple_rule_list)
-    The arguments must be: 1) a non-empty list of Shapes, and 2) a non-empty list of Rules
+    The arguments must be: 1) a non-empty list of Shapes and 2) a non-empty list of Rules
     >>> grammar_from_list_non_rule_list = grammar.Grammar(simple_shape_list, [0])
-    The arguments must be: 1) a non-empty list of Shapes, and 2) a non-empty list of Rules
+    The arguments must be: 1) a non-empty list of Shapes and 2) a non-empty list of Rules
 
 ### new_from_drv_text_lines, __init__
     >>> grammar_from_non_list = grammar.Grammar.new_from_drv_text_lines(37)
@@ -287,6 +287,9 @@
     initial    labeled-oblong
     rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R
     rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
+
+    >>> print(obshort_grammar.__repr__())
+    ([(erase-lpoint_L, [(0.0, 2.0, 1.0)], [], [(0, a)]), (erase-lpoint_R, [], [], []), (labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (shorten-oblong_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (shorten-oblong_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (4.0, 0.0, 0.0), (4.0, 0.0, 2.0), (4.0, 4.0, 0.0), (4.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)])], [labeled-oblong], [(erase-lpoint, erase-lpoint_L, erase-lpoint_R), (shorten-oblong, shorten-oblong_L, shorten-oblong_R)])
 
 ### _extract_grammar_parts
     >>> (sierpinski_initial_shapes, sierpinski_rules) = (

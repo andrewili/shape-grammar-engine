@@ -554,10 +554,23 @@ class Shape(object):
             self.name, 
             self.ordered_coord_list.__str__(), 
             self.ordered_codex_codex_list.__str__(), 
-            self.ordered_codex_label_list.__str__()]
+            self._get_ordered_codex_label_list_repr()
+        ]
         joined_repr_parts = ', '.join(repr_parts)
         repr_string = '(%s)' % joined_repr_parts
         return repr_string
+
+    def _get_ordered_codex_label_list_repr(self):
+        """Returns a repr of the ordered codex label list:
+            str
+        """
+        repr_strings = []
+        for codex_label in self.ordered_codex_label_list:
+            (codex, label) = codex_label
+            repr_string = '(%i, %s)' % (codex, label)
+            repr_strings.append(repr_string)
+        reprs_string = ', '.join(repr_strings)
+        return '[%s]' % reprs_string
 
 if __name__ == '__main__':
     import doctest

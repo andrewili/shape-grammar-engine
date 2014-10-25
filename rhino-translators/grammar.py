@@ -4,7 +4,7 @@ import rule
 import shape
 
 class Grammar(object):
-    def __init__(self, initial_shapes, rules):
+    def __init__(self, initial_shapes, rules):  ##  name?
         try:
             if not (
                 type(initial_shapes) == list and
@@ -22,7 +22,7 @@ class Grammar(object):
         except TypeError:
             message = '%s %s %s' % (
                 'The arguments must be:',
-                '1) a non-empty list of Shapes, and',
+                '1) a non-empty list of Shapes and',
                 '2) a non-empty list of Rules')
             print(message)
         else:
@@ -166,23 +166,119 @@ class Grammar(object):
         for shape_name_i in sorted(shapes_dict):
             shape_i = shapes_dict[shape_name_i]
             drv_text_lines.append(str(shape_i))
-        # print(shapes_dict['erase-lpoint_L'])
         for initial_shape_name_spec in initial_shape_names:
             drv_text_lines.append(initial_shape_name_spec)
         for rule_name_triple in rule_name_triples:
             drv_text_lines.append(rule_name_triple)
         string = '\n'.join(drv_text_lines)
         return string
-        # return ''
 
     def __repr__(self):
         """Returns an (unformatted) string in the form:
-            (   <initial shape>,
-                [<rule>, ...]
-            )
+            (   <sorted_shapes>,
+                <initial_shape_names>,
+                <rule_name_triples>)
         """
-        string = '<repr place holder>'
-        return string
+        repr_parts = self._extract_repr_parts()
+        repr_part_strings = self._get_strings_from_repr_parts(repr_parts)
+        joined_repr_part_strings = ', '.join(repr_part_strings)
+        repr_string = '(%s)' % joined_repr_part_strings
+        return repr_string
+
+    def _extract_repr_parts(self):
+        """Returns 1) a sorted list of shapes, 2) a list of initial shape 
+        names, and 3) a list of rule-shape-shape name triples:
+            [Shape, ...]
+            [str, ...]
+            [(str, str, str), ...]
+        """
+        shapes = []
+        initial_shape_names = []
+        rule_name_triples = []
+        for shape_i in self.initial_shapes:
+            shapes.append(shape_i)
+            initial_shape_names.append(shape_i.name)
+        for rule_i in self.rules:
+            shapes.append(rule_i.left_shape)
+            shapes.append(rule_i.right_shape)
+            rule_name_triple_i = (
+                rule_i.name,
+                rule_i.left_shape.name,
+                rule_i.right_shape.name)
+            rule_name_triples.append(rule_name_triple_i)
+        return (
+            sorted(shapes),
+            initial_shape_names,
+            rule_name_triples)
+
+    def _get_strings_from_repr_parts(self, repr_parts):
+        """Receives 1) a sorted list of shapes, 2) a list of initial shape 
+        names, and 3) a list of rule-shape-shape name triples:
+            [Shape, ...]
+            [str, ...]
+            [(str, str, str), ...]
+        Returns the corresponding strings:
+            str
+            str
+            str
+        """
+        (   sorted_shapes,
+            initial_shape_names,
+            rule_name_triples
+        ) = repr_parts
+        shape_reprs_string = self._get_reprs_string_from_shapes(sorted_shapes)
+        initial_shape_names_string = (
+            self._get_string_from_initial_shape_names(initial_shape_names))
+        rule_name_triples_string = (
+            self._get_string_from_rule_name_triples(rule_name_triples))
+        return (
+            shape_reprs_string,
+            initial_shape_names_string,
+            rule_name_triples_string)
+
+    def _get_reprs_string_from_shapes(self, shapes):
+        """Receives a list of shapes:
+            [Shape, ...]
+        Returns the combined reprs of the shapes:
+            str
+        """
+        shape_reprs = []
+        for shape_i in shapes:
+            shape_repr = shape_i.__repr__()
+            shape_reprs.append(shape_repr)
+        reprs_string = ', '.join(shape_reprs)
+        return '[%s]' % reprs_string
+
+    def _get_string_from_initial_shape_names(self, names):
+        """Receives a list of shape names:
+            [str, ...]
+        Returns the combined names in brackets:
+            str
+        """
+        names_string = ', '.join(names)
+        return '[%s]' % names_string
+
+    def _get_string_from_rule_name_triples(self, name_triples):
+        """Receives a list of rule-shape-shape name triples:
+            [(str, str, str), ...]
+        Returns the combined triples in brackets:
+            str
+        """
+        name_triple_strings = []
+        for name_triple in name_triples:
+            name_triple_string = self._get_string_from_name_triple(name_triple)
+            name_triple_strings.append(name_triple_string)
+        name_triples_string = ', '.join(name_triple_strings)
+        return '[%s]' % name_triples_string
+
+    def _get_string_from_name_triple(self, name_triple):
+        """Receives a rule-shape-shape name triple:
+            (str, str, str)
+        Returns the combined string in parentheses:
+            str
+        """
+        string = ', '.join(name_triple)
+        return '(%s)' % string
 
 if __name__ == '__main__':
     import doctest
