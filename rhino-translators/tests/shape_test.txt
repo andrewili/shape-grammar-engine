@@ -46,8 +46,6 @@
     >>> print(new_shape.__repr__())
     (Kilroy, [(0, 0, 0), (0, 4, 0), (0, 8, 0), (3, 0, 0), (3, 4, 0), (6, 0, 0)], [(0, 2), (0, 5), (2, 5)], [(1, a), (3, b), (4, c)])
 
-    (Kilroy, [(0, 0, 0), (0, 4, 0), (0, 8, 0), (3, 0, 0), (3, 4, 0), (6, 0, 0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')])
-
     >>> shape_name_not_string = (
     ...     shape.Shape([], line_specs, lpoint_specs))
     The arguments must be a string, a list, and a list
@@ -74,8 +72,6 @@
         point 2 c
     >>> print(shape_no_lines.__repr__())
     (Kilroy, [(0, 4, 0), (3, 0, 0), (3, 4, 0)], [], [(0, a), (1, b), (2, c)])
-
-    (Kilroy, [(0, 4, 0), (3, 0, 0), (3, 4, 0)], [], [(0, 'a'), (1, 'b'), (2, 'c')])
 
     >>> shape_no_lpoints = shape.Shape(name, line_specs, [])
     >>> print(shape_no_lpoints)
@@ -127,8 +123,6 @@
     ...     shape.Shape.new_from_is_text_lines(is_text_lines))
     >>> print(shape_from_is_text_lines.__repr__())
     (Kilroy, [(0.0, 0.0, 0.0), (0.0, 4.0, 0.0), (0.0, 8.0, 0.0), (3.0, 0.0, 0.0), (3.0, 4.0, 0.0), (6.0, 0.0, 0.0)], [(0, 2), (0, 5), (2, 5)], [(1, a), (3, b), (4, c)])
-
-    (Kilroy, [(0.0, 0.0, 0.0), (0.0, 4.0, 0.0), (0.0, 8.0, 0.0), (3.0, 0.0, 0.0), (3.0, 4.0, 0.0), (6.0, 0.0, 0.0)], [(0, 2), (0, 5), (2, 5)], [(1, 'a'), (3, 'b'), (4, 'c')])
 
     >>> rule_shape_text_lines = [
     ...     'shape    rule_L',

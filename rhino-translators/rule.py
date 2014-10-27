@@ -58,7 +58,7 @@ class Rule(object):
         """Returns a shape containing the unique elements of the left and 
         right shapes. (This is not an SG shape, so there is no reduction.)
             Shape
-        #   Accommodate empty right shape
+        ##  Accommodate empty right shape
         """
         source_name = '%s-source' % self.name
         source_line_specs = self._get_source_line_specs()
