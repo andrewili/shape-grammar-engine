@@ -4,8 +4,8 @@
     >>> import rule
     >>> import shape
 
-    >>> def make_deriv_parts():
-    ...     def make_deriv_shapes():
+    >>> def make_obshort_derivation_shapes_and_rules():
+    ...     def make_shapes():
     ...         labeled_oblong_line_specs = [
     ...             ((0, 0, 0), (0, 0, 2)),
     ...             ((0, 0, 0), (0, 4, 0)),
@@ -110,8 +110,7 @@
     ...         empty_shape,
     ...         labeled_oblong_shorten_oblong,
     ...         labeled_oblong_shorten_oblong_erase_lpoint
-    ...     ) = make_deriv_shapes()
-    ...     initial_shape = labeled_oblong
+    ...     ) = make_shapes()
     ...     rule_shorten_oblong = rule.Rule(
     ...         'shorten-oblong',
     ...         labeled_oblong,
@@ -120,119 +119,24 @@
     ...         'erase-lpoint',
     ...         lpoint,
     ...         empty_shape)
-    ...     rules = [rule_shorten_oblong, rule_erase_lpoint]
-    ...     next_shapes = [
+    ...     rules = [
+    ...         rule_shorten_oblong,
+    ...         rule_erase_lpoint]
+    ...     shapes = [
+    ...         labeled_oblong,
     ...         labeled_oblong_shorten_oblong, 
     ...         labeled_oblong_shorten_oblong_erase_lpoint]
-    ...     deriv_parts = (initial_shape, rules, next_shapes)
-    ...     return (deriv_parts)
+    ...     return (shapes, rules)
 
-### __init__, __repr__, __str__
-    >>> labeled_oblong, obshort_rules, obshort_next_shapes = (
-    ...     make_deriv_parts())
-    >>> deriv_bad_initial_shape = derivation.Derivation(
-    ...     'kilroy', obshort_rules, obshort_next_shapes)
-    The arguments must be a shape, a list of rules, and a list of shapes
-    >>> deriv_bad_rules = derivation.Derivation(
-    ...     labeled_oblong, obshort_next_shapes, obshort_next_shapes)
-    The arguments must be a shape, a list of rules, and a list of shapes
-    >>> deriv_bad_shapes = derivation.Derivation(
-    ...     labeled_oblong, obshort_rules, obshort_rules)
-    The arguments must be a shape, a list of rules, and a list of shapes
-    >>> test_deriv = derivation.Derivation(
-    ...     labeled_oblong, obshort_rules, obshort_next_shapes)
+### __init__, __repr__, __str__                 ##  here 2014-10-28
+    >>> (obshort_shapes, obshort_rules) = make_obshort_derivation_shapes_and_rules()
 
-    ??? print(test_deriv)                       ###
-    # derivation file version 1.00                           --chen liang 2007/08/06
-    shape    erase-lpoint_L
-        name 
-        coords 0 0 2 1
-    <BLANKLINE>
-        point 0 a
-    shape    erase-lpoint_R
-        name
-    <BLANKLINE>
-    shape    labeled-oblong
-        name 
-        coords 0 0 0 0
-        coords 1 0 0 2
-        coords 2 0 2 1
-        coords 3 0 4 0
-        coords 4 0 4 2
-        coords 5 8 0 0
-        coords 6 8 0 2
-        coords 7 8 4 0
-        coords 8 8 4 2
-    <BLANKLINE>
-        line 0 0 1
-        line 1 0 3
-        line 10 6 8
-        line 11 7 8
-        line 2 0 5
-        line 3 1 4
-        line 4 1 6
-        line 5 3 4
-        line 6 3 7
-        line 7 4 8
-        line 8 5 6
-        line 9 5 7
-        point 2 a
-    shape    shorten-oblong_L
-        name 
-        coords 0 0 0 0
-        coords 1 0 0 2
-        coords 2 0 2 1
-        coords 3 0 4 0
-        coords 4 0 4 2
-        coords 5 8 0 0
-        coords 6 8 0 2
-        coords 7 8 4 0
-        coords 8 8 4 2
-    <BLANKLINE>
-        line 0 0 1
-        line 1 0 3
-        line 10 6 8
-        line 11 7 8
-        line 2 0 5
-        line 3 1 4
-        line 4 1 6
-        line 5 3 4
-        line 6 3 7
-        line 7 4 8
-        line 8 5 6
-        line 9 5 7
-        point 2 a
-    shape    shorten-oblong_R
-        name 
-        coords 0 0 0 0
-        coords 1 0 0 2
-        coords 10 4 4 0
-        coords 11 4 4 2
-        coords 2 0 2 1
-        coords 3 0 4 0
-        coords 4 0 4 2
-        coords 5 4 0 0
-        coords 6 4 0 2
-        coords 7 4 4 0
-        coords 8 4 0 0
-        coords 9 4 0 2
-    <BLANKLINE>
-        line 0 0 1
-        line 1 0 3
-        line 10 8 9
-        line 11 10 11
-        line 2 0 8
-        line 3 1 4
-        line 4 1 6
-        line 5 3 4
-        line 6 3 7
-        line 7 4 11
-        line 8 5 7
-        line 9 6 11
-        point 2 a
-    initial    labeled-oblong
-    rule    erase-lpoint    erase-lpoint_L -> erase-lpoint_R
-    rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
+    >>> derivation_from_bad_shapes = derivation.Derivation([0], obshort_rules)
+    The arguments must be a list of shapes and a list of rules
+    >>> derivation_from_bad_rules = derivation.Derivation(obshort_shapes, [0])
+    The arguments must be a list of shapes and a list of rules
+    >>> obshort_derivation = derivation.Derivation(obshort_shapes, obshort_rules)
+    >>> print(obshort_derivation)
     # derivation record
     shape    labeled-oblong
         name 
@@ -313,17 +217,17 @@
 
 ### __repr__
     >>> print(test_deriv.__repr__())
-    ((labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), [(shorten-oblong, (labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])), (erase-lpoint, (labeled-point, [(0, 0, 0)], [], [(0, 'a')]), (empty-shape, [], [], []))], [(labeled-oblong_shorten-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-oblong_shorten-oblong_erase-lpoint, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])])
+    ((labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), [(shorten-oblong, (labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)])), (erase-lpoint, (labeled-point, [(0, 0, 0)], [], [(0, a)]), (empty-shape, [], [], []))], [(labeled-oblong_shorten-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (labeled-oblong_shorten-oblong_erase-lpoint, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])])
 
 ### _make_rules_repr
     >>> rules_repr = test_deriv._make_rules_repr()
     >>> print(rules_repr)
-    [(shorten-oblong, (labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])), (erase-lpoint, (labeled-point, [(0, 0, 0)], [], [(0, 'a')]), (empty-shape, [], [], []))]
+    [(shorten-oblong, (labeled-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (8, 0, 0), (8, 0, 2), (8, 4, 0), (8, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (labeled-obshort, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)])), (erase-lpoint, (labeled-point, [(0, 0, 0)], [], [(0, a)]), (empty-shape, [], [], []))]
 
 ### _make_next_shape_repr
     >>> next_shapes_repr = test_deriv._make_next_shapes_repr()
     >>> print(next_shapes_repr)
-    [(labeled-oblong_shorten-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-oblong_shorten-oblong_erase-lpoint, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])]
+    [(labeled-oblong_shorten-oblong, [(0, 0, 0), (0, 0, 2), (0, 2, 1), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (labeled-oblong_shorten-oblong_erase-lpoint, [(0, 0, 0), (0, 0, 2), (0, 4, 0), (0, 4, 2), (4, 0, 0), (4, 0, 2), (4, 4, 0), (4, 4, 2)], [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3), (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)], [])]
 
 ### new_from_drv_text_lines                     ##  extra space: 'name '
     >>> obshort_drv_text_lines = [
@@ -501,7 +405,7 @@
     ...     derivation.Derivation.new_from_drv_text_lines(
     ...         obshort_drv_text_lines))
     >>> print(obshort_derivation.__repr__())
-    ((labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), [(shorten-oblong, (shorten-oblong_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (shorten-oblong_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (4.0, 0.0, 0.0), (4.0, 0.0, 2.0), (4.0, 4.0, 0.0), (4.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])), (erase-lpoint, (erase-lpoint_L, [(0.0, 2.0, 1.0)], [], [(0, 'a')]), (erase-lpoint_R, [], [], []))], [(labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (labeled-oblong_shorten-oblong, [(0.0, 2.0, 1.0), (0.0, 4.0, 2.0), (4.0, 4.0, 2.0)], [(1, 1), (1, 1), (1, 1), (1, 1), (1, 2), (1, 2), (1, 2), (1, 2), (2, 2), (2, 2), (2, 2), (2, 2)], [(0, 'a')]), (labeled-oblong_shorten-oblong_erase-lpoint, [(0.0, 4.0, 2.0), (4.0, 4.0, 2.0)], [(0, 0), (0, 0), (0, 0), (0, 0), (0, 1), (0, 1), (0, 1), (0, 1), (1, 1), (1, 1), (1, 1), (1, 1)], [])])
+    ((labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), [(shorten-oblong, (shorten-oblong_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (shorten-oblong_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (4.0, 0.0, 0.0), (4.0, 0.0, 2.0), (4.0, 4.0, 0.0), (4.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)])), (erase-lpoint, (erase-lpoint_L, [(0.0, 2.0, 1.0)], [], [(0, a)]), (erase-lpoint_R, [], [], []))], [(labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (labeled-oblong_shorten-oblong, [(0.0, 2.0, 1.0), (0.0, 4.0, 2.0), (4.0, 4.0, 2.0)], [(1, 1), (1, 1), (1, 1), (1, 1), (1, 2), (1, 2), (1, 2), (1, 2), (2, 2), (2, 2), (2, 2), (2, 2)], [(0, a)]), (labeled-oblong_shorten-oblong_erase-lpoint, [(0.0, 4.0, 2.0), (4.0, 4.0, 2.0)], [(0, 0), (0, 0), (0, 0), (0, 0), (0, 1), (0, 1), (0, 1), (0, 1), (1, 1), (1, 1), (1, 1), (1, 1)], [])])
 
 
 
@@ -604,7 +508,7 @@
     ...     shape_text_lines, derivation_shapes_dict)
     >>> for shape_name in derivation_shapes_dict:
     ...     print(derivation_shapes_dict[shape_name].__repr__())
-    (labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])
+    (labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)])
 
 ### _wrap_up_pending_derivation_shape
     >>> def make_parts_for_wrap_up_pending_derivation_shape():
@@ -645,21 +549,8 @@
     ...     text_lines, next_shapes)
     >>> for next_shape in next_shapes:
     ...     print(next_shape.__repr__())
-    (labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])
-    (labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')])
-
-### _look_up_derivation_rule
-    >>> def make_parts_for_look_up_derivation_rule():
-    ...     tokens = ['shorten-oblong']
-    ...     shorten_oblong = make_shorten_oblong()
-    ...     grammar_rules_dict = {shorten_oblong.name: shorten_oblong}
-    ...     return (tokens, grammar_rules_dict)
-    >>> tokens, grammar_rules_dict = (
-    ...     make_parts_for_look_up_derivation_rule())
-    >>> new_derivation_rule = derivation.Derivation._look_up_derivation_rule(
-    ...     tokens, grammar_rules_dict)
-    >>> print(new_derivation_rule.__repr__())
-    (shorten-oblong, (shorten-oblong_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]), (shorten-oblong_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (4.0, 0.0, 0.0), (4.0, 0.0, 2.0), (4.0, 4.0, 0.0), (4.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, 'a')]))
+    (labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)])
+    (labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)])
 
 #?? _get_sorted_drv_text_lines
     ??? (   initial_shape_text_lines,

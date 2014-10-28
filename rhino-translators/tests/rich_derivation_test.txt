@@ -404,12 +404,12 @@
     ...     rich_derivation.RichDerivation.new_from_drv_text_lines([23, 37]))
     The argument must be a non-empty list of strings
 
-    >>> def make_sierpinski_arguments():        ##  here 2014-10-28
+    >>> def make_sierpinski_arguments():        ##  fix Derivation first
     ...     sierpinski_grammar = grammar.Grammar(
     ...         sierpinski_grammar_initial_shapes, sierpinski_grammar_rules)
     ...     sierpinski_derivation = derivation.Derivation(
     ...         sierpinski_derivation_initial_shape,
-    ...         sierpinski_derivation_shapes, 
+    ...         sierpinski_derivation_shapes,
     ...         sierpinski_derivation_rules)
     ...     return (sierpinski_grammar, sierpinski_derivation)
     >>> (sierpinski_grammar, sierpinski_derivation) = (

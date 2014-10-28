@@ -11,8 +11,8 @@ class RichDerivation(object):
         grammar_in,
         derivation_in
     ):
-        self.grammar = '<grammar>'
-        self.derivation = '<derivation>'
+        self.grammar = 'grammar_in'
+        self.derivation = 'derivation_in'
         
     @classmethod
     def new_from_drv_text_lines(cls, drv_text_lines):
@@ -240,7 +240,12 @@ class RichDerivation(object):
         """Returns a string in the drv format
             str
         """
+        header = (
+            '# derivation file version 1.00' + 
+            '                           ' + 
+            '--chen liang 2007/08/06')
         strings = [
+            header,
             self.grammar.__str__(),
             self.derivation.__str__()]
         string = '\n'.join(strings)

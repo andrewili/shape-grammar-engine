@@ -4,35 +4,32 @@ import rule
 import shape
 
 class Derivation(object):
-    def __init__(self, initial_shape, rules, next_shapes):
+    def __init__(self, shapes, rules):
                                                 ##  test for exceptions
         """Receives:
-            Shape
-            [Rule, ...]
             [Shape, ...]
+            [Rule, ...]
         """
         try:
             if not (
-                type(initial_shape) == shape.Shape and
-                type(rules) == list and
-                type(next_shapes) == list
+                type(shapes) == list and
+                type(rules) == list
             ):
                 raise TypeError
+            for item in shapes:
+                if not type(item) == shape.Shape:
+                    raise TypeError
             for item in rules:
                 if not type(item) == rule.Rule:
                     raise TypeError
-            for item in next_shapes:
-                if not type(item) == shape.Shape:
-                    raise TypeError
         except TypeError:
-            message = '%s%s' % (
-                "The arguments must be a shape, ", 
-                "a list of rules, and a list of shapes")
+            message = '%s %s' % (
+                "The arguments must be", 
+                "a list of shapes and a list of rules")
             print(message)
         else:
-            self.initial_shape = initial_shape
             self.rules = rules
-            self.next_shapes = next_shapes
+            self.shapes = shapes
 
     @classmethod
     def new_from_drv_text_lines(cls, drv_text_lines):
@@ -44,7 +41,7 @@ class Derivation(object):
         grammar_shapes_dict = {}
         grammar_rules_dict = {}
         derivation_rules = []
-        next_shapes = []                        ##  rename derivation_shapes?
+        next_shapes = []
         shape_text_lines = []
         for text_line in drv_text_lines:
             tokens = text_line.split()
@@ -164,19 +161,6 @@ class Derivation(object):
             shape.Shape.new_from_is_text_lines(shape_text_lines))
         next_shapes.append(next_shape)
 
-    # @classmethod
-    # def _look_up_derivation_rule(cls, tokens, grammar_rules_dict):
-    #     """Receives a list of one token (the name of a derivation rule) and a 
-    #     dictionary of name-rule entries:
-    #         [str]
-    #         {str: Rule, ...}
-    #     Returns the named rule:
-    #         Rule
-    #     """
-    #     derivation_rule_name = tokens[0]
-    #     derivation_rule = (grammar_rules_dict[derivation_rule_name])
-    #     return derivation_rule
-
     def get_final_shape(self):
         """Returns the final shape in the derivation:
             Shape
@@ -188,20 +172,7 @@ class Derivation(object):
         """Returns a string in the drv format:
             str
         """
-        drv_header = (
-            '# derivation file version 1.00' + 
-            '                           ' + 
-            '--chen liang 2007/08/06')
-        blank_line = ''
-        grammar_string = self._make_grammar_string()
-        deriv_record_string = self._make_deriv_record_string()
-        drv_string_parts = [
-            drv_header,
-            blank_line,
-            grammar_string,
-            deriv_record_string
-        ]
-        drv_string = '\n'.join(drv_string_parts)
+        drv_string = '<derivation string>'
         return drv_string
 
     def _make_grammar_string(self):             ###
