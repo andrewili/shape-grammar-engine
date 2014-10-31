@@ -6,6 +6,7 @@ import shape
 class Derivation(object):
     def __init__(self, shapes, rules):
                                                 ##  test for exceptions
+                                                ##  len(shapes) = len(rules) + 1
         """Receives:
             [Shape, ...]
             [Rule, ...]
@@ -13,7 +14,8 @@ class Derivation(object):
         try:
             if not (
                 type(shapes) == list and
-                type(rules) == list
+                type(rules) == list and
+                len(shapes) == len(rules) + 1
             ):
                 raise TypeError
             for item in shapes:
@@ -23,9 +25,10 @@ class Derivation(object):
                 if not type(item) == rule.Rule:
                     raise TypeError
         except TypeError:
-            message = '%s %s' % (
-                "The arguments must be", 
-                "a list of shapes and a list of rules")
+            message = '%s %s %s' % (
+                "The arguments must be",
+                "a list of shapes (length = n + 1) and",
+                "a list of rules (length = n)")
             print(message)
         else:
             self.rules = rules
@@ -168,14 +171,44 @@ class Derivation(object):
         final_shape = self.next_shapes[-1]
         return final_shape
 
-    def __str__(self):                          ###
+    def __str__(self):                          ##  to do
         """Returns a string in the drv format:
             str
         """
-        drv_string = '<derivation string>'
-        return drv_string
+        header = '# derivation record'
+        item_strings = [header]
+        interleaved_shapes_and_rules = (
+            self._get_interleaved_shapes_and_rules())
+        for item in interleaved_shapes_and_rules:
+            item_string = self._get_item_string(item)
+            item_strings.append(item_string)
+        derivation_string = '\n'.join(item_strings)
+        return derivation_string
 
-    def _make_grammar_string(self):             ###
+    def _get_interleaved_shapes_and_rules(self):
+        """Returns a list of shapes alternating with rules:
+            [Shape, Rule, ...]
+        """
+        interleaved_items = []
+        i = 0
+        for i in range(len(self.rules)):
+            interleaved_items.append(self.shapes[i])
+            interleaved_items.append(self.rules[i])
+            i = i + 1
+        interleaved_items.append(self.shapes[i])
+        return interleaved_items
+
+    def _get_item_string(self, item):
+        if type(item) == shape.Shape:
+            item_string = str(item)
+        elif type(item) == rule.Rule:
+            rule_name_string_short = item.make_rule_name_string_short()
+            item_string = rule_name_string_short
+        else:
+            pass
+        return item_string
+
+    def _make_grammar_string(self):             ##  to do
         """Returns a (formatted) string containing the grammar part of the 
         drv file:
             <shape: initial or rule>

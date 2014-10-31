@@ -113,6 +113,13 @@ class Rule(object):
             'rule    %s    %s_L -> %s_R' % (self.name, self.name, self.name))
         return rule_name_string
 
+    def make_rule_name_string_short(self):
+        """Returns the short rule name string:
+            rule    <rule name>
+        """
+        string = 'rule    %s' % self.name
+        return string
+
     ### to do
     def __repr__(self):
         """Returns an (unformatted) string in the form:
