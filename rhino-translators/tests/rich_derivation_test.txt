@@ -1,13 +1,128 @@
 #   rich_derivation_test.txt
 
-    >>> import derivation
+    ??? import derivation
     >>> import grammar
     >>> import rich_derivation
     >>> import rule
     >>> import shape
 
+### set-up
+    >>> def make_obshort_rich_derivation_parts():
+    ...     def make_erase_lpoint_L():
+    ...         name = 'erase-lpoint_L'
+    ...         line_specs = []
+    ...         lpoint_specs = [((0, 0, 0), 'a')]
+    ...         erase_lpoint_L = shape.Shape(name, line_specs, lpoint_specs)
+    ...         return erase_lpoint_L
+    ...     erase_lpoint_L = make_erase_lpoint_L()
+    ...     def make_erase_lpoint_R():
+    ...         erase_lpoint_R = (shape.Shape('erase-lpoint_R', [], []))
+    ...         return erase_lpoint_R
+    ...     erase_lpoint_R = make_erase_lpoint_R()
+    ...     def make_labeled_oblong():
+    ...         name = 'labeled-oblong'
+    ...         line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (8, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (8, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (8, 4, 0)),
+    ...             ((0, 4, 2), (8, 4, 2)),
+    ...             ((8, 0, 0), (8, 0, 2)),
+    ...             ((8, 0, 0), (8, 4, 0)),
+    ...             ((8, 0, 2), (8, 4, 2)),
+    ...             ((8, 4, 0), (8, 4, 2))]
+    ...         lpoint_specs = [((0, 2, 1), 'a')]
+    ...         labeled_oblong = shape.Shape(name, line_specs, lpoint_specs)
+    ...         return labeled_oblong
+    ...     labeled_oblong = make_labeled_oblong()
+    ...     def make_shorten_oblong_L():
+    ...         name = 'shorten-oblong_L'
+    ...         line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (8, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (8, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (8, 4, 0)),
+    ...             ((0, 4, 2), (8, 4, 2)),
+    ...             ((8, 0, 0), (8, 0, 2)),
+    ...             ((8, 0, 0), (8, 4, 0)),
+    ...             ((8, 0, 2), (8, 4, 2)),
+    ...             ((8, 4, 0), (8, 4, 2))]
+    ...         lpoint_specs = [((0, 2, 1), 'a')]
+    ...         shorten_oblong_L = shape.Shape(name, line_specs, lpoint_specs)
+    ...         return shorten_oblong_L
+    ...     shorten_oblong_L = make_shorten_oblong_L()
+    ...     def make_shorten_oblong_R():
+    ...         name = 'shorten-oblong_R'
+    ...         line_specs = [
+    ...             ((0, 0, 0), (0, 0, 2)),
+    ...             ((0, 0, 0), (0, 4, 0)),
+    ...             ((0, 0, 0), (4, 0, 0)),
+    ...             ((0, 0, 2), (0, 4, 2)),
+    ...             ((0, 0, 2), (4, 0, 2)),
+    ...             ((0, 4, 0), (0, 4, 2)),
+    ...             ((0, 4, 0), (4, 4, 0)),
+    ...             ((0, 4, 2), (4, 4, 2)),
+    ...             ((4, 0, 0), (4, 0, 2)),
+    ...             ((4, 0, 0), (4, 4, 0)),
+    ...             ((4, 0, 2), (4, 4, 2)),
+    ...             ((4, 4, 0), (4, 4, 2))]
+    ...         lpoint_specs = [((0, 2, 1), 'a')]
+    ...         shorten_oblong_R = shape.Shape(name, line_specs, lpoint_specs)
+    ...         return shorten_oblong_R
+    ...     shorten_oblong_R = make_shorten_oblong_R()
+    ...     def make_obshort_grammar_shapes():
+    ...         grammar_shapes = [
+    ...             erase_lpoint_L, 
+    ...             erase_lpoint_R, 
+    ...             labeled_oblong,
+    ...             shorten_oblong_L,
+    ...             shorten_oblong_R]
+    ...         return grammar_shapes
+    ...     def make_obshort_grammar_rules():
+    ...         erase_lpoint = rule.Rule(
+    ...             'erase-lpoint', erase_lpoint_L, erase_lpoint_R)
+    ...         shorten_oblong = rule.Rule(
+    ...             'shorten-oblong', shorten_oblong_L, shorten_oblong_R)
+    ...         grammar_rules = [erase_lpoint, shorten_oblong]
+    ...         return grammar_rules
+    ...     obshort_grammar_shapes = make_obshort_grammar_shapes()
+    ...     obshort_grammar_rules = make_obshort_grammar_rules()
+    ...     def make_obshort_grammar():
+    ...         obshort_grammar = grammar.Grammar(
+    ...             obshort_grammar_shapes,
+    ...             obshort_grammar_rules)
+    ...         return obshort_grammar
+    ...     obshort_grammar = make_obshort_grammar()
+    ...     def make_obshort_derivation_shapes():   ##  I am here 2014-11-01
+    ...         return derivation_shapes
+    ...     obshort_derivation_shapes = make_obshort_derivation_shapes()
+    ...     def make_obshort_derivation_rules():
+    ...         return derivation_rules
+    ...     obshort_derivation_rules = make_obshort_derivation_rules()
+    ...     return (
+    ...         obshort_grammar,
+    ...         obshort_derivation_shapes,
+    ...         obshort_derivation_rules)
+    >>> (   obshort_grammar,
+    ...     obshort_derivation_shapes,
+    ...     obshort_derivation_rules
+    ... ) = make_obshort_rich_derivation_parts()
 
 ### __init__
+    >>> obshort_rich_derivation = rich_derivation.RichDerivation(
+    ...     obshort_grammar,
+    ...     obshort_derivation_shapes,
+    ...     obshort_derivation_rules)
+
+### __str__
+    >>> print(obshort_rich_derivation)
+    <rich derivation>
 
 ### new_from_drv_text_lines
 ### _separate_drv_text_lines
@@ -412,18 +527,19 @@
     ...         sierpinski_derivation_shapes,
     ...         sierpinski_derivation_rules)
     ...     return (sierpinski_grammar, sierpinski_derivation)
-    >>> (sierpinski_grammar, sierpinski_derivation) = (
+
+    ??? (sierpinski_grammar, sierpinski_derivation) = (
     ...     make_sierpinski_arguments())
-    >>> rich_derivation_from_non_grammar = (
+    ??? rich_derivation_from_non_grammar = (
     ...     rich_derivation.RichDerivation(37, sierpinski_derivation))
     The arguments must be a grammar and a derivation
-    >>> rich_derivation_from_non_derivation = (
+    ??? rich_derivation_from_non_derivation = (
     ...     rich_derivation.RichDerivation(sierpinski_grammar, []))
     The arguments must be a grammar and a derivation
-    >>> sierpinski_rich_derivation = (
+    ??? sierpinski_rich_derivation = (
     ...     rich_derivation.RichDerivation(
     ...         sierpinski_grammar, sierpinski_derivation))
-    >>> print(sierpinski_rich_derivation)
+    ??? print(sierpinski_rich_derivation)
     <sierpinski_rich_derivation>
 
     ??? print(sierpinski_rich_derivation)

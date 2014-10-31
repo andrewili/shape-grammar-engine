@@ -256,9 +256,9 @@ class Derivation(object):
 
     def __repr__(self):
         """Returns an (unformatted) string in the form:
-            (   <initial shape>,
-                <rules>,
-                <next shapes>
+            (   <shape>,
+                <rule>,
+                ...
             )
         """
         rules_repr = self._make_rules_repr()

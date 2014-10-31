@@ -6,13 +6,16 @@ import rule
 import shape
 
 class RichDerivation(object):
-    def __init__(
-        self,
-        grammar_in,
-        derivation_in
-    ):
-        self.grammar = 'grammar_in'
-        self.derivation = 'derivation_in'
+    def __init__(self, grammar_in, derivation_shapes_in, derivation_rules_in):
+                                                ##  I am here 2014-10-31
+        """Receives:
+            Grammar
+            [Shape, ...]
+            [Rule, ...]
+        """
+        self.grammar = grammar_in
+        self.derivation_shapes = derivation_shapes_in
+        self.derivation_rules = derivation_rules_in
         
     @classmethod
     def new_from_drv_text_lines(cls, drv_text_lines):
@@ -244,11 +247,12 @@ class RichDerivation(object):
             '# derivation file version 1.00' + 
             '                           ' + 
             '--chen liang 2007/08/06')
-        strings = [
-            header,
-            self.grammar.__str__(),
-            self.derivation.__str__()]
-        string = '\n'.join(strings)
+        # strings = [
+        #     header,
+        #     self.grammar.__str__(),
+        #     self.derivation.__str__()]
+        # string = '\n'.join(strings)
+        string = '<rich derivation>'
         return string
 
     def __repr__(self):

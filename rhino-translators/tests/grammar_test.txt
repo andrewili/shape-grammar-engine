@@ -292,22 +292,22 @@
     ([(erase-lpoint_L, [(0.0, 2.0, 1.0)], [], [(0, a)]), (erase-lpoint_R, [], [], []), (labeled-oblong, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (shorten-oblong_L, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (8.0, 0.0, 0.0), (8.0, 0.0, 2.0), (8.0, 4.0, 0.0), (8.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)]), (shorten-oblong_R, [(0.0, 0.0, 0.0), (0.0, 0.0, 2.0), (0.0, 2.0, 1.0), (0.0, 4.0, 0.0), (0.0, 4.0, 2.0), (4.0, 0.0, 0.0), (4.0, 0.0, 2.0), (4.0, 4.0, 0.0), (4.0, 4.0, 2.0)], [(0, 1), (0, 3), (0, 5), (1, 4), (1, 6), (3, 4), (3, 7), (4, 8), (5, 6), (5, 7), (6, 8), (7, 8)], [(2, a)])], [labeled-oblong], [(erase-lpoint, erase-lpoint_L, erase-lpoint_R), (shorten-oblong, shorten-oblong_L, shorten-oblong_R)])
 
 ### _extract_grammar_parts
-    >>> (sierpinski_initial_shapes, sierpinski_rules) = (
+    >>> (obshort_initial_shapes, obshort_rules) = (
     ...     grammar.Grammar._extract_grammar_parts(
     ...         labeled_obshort_drv_text_lines))
-    >>> type(sierpinski_initial_shapes) == list
+    >>> type(obshort_initial_shapes) == list
     True
-    >>> for item in sierpinski_initial_shapes:
+    >>> for item in obshort_initial_shapes:
     ...     type(item) == shape.Shape
     True
-    >>> type(sierpinski_rules) == list
+    >>> type(obshort_rules) == list
     True
-    >>> for item in sierpinski_rules:
+    >>> for item in obshort_rules:
     ...     type(item) == rule.Rule
     True
     True
 
-    >>> for shape_i in sierpinski_initial_shapes:
+    >>> for shape_i in obshort_initial_shapes:
     ...     print(shape_i)
     shape    labeled-oblong
         name
@@ -335,7 +335,7 @@
         line 11 7 8
         point 2 a
 
-    >>> for rule_i in sierpinski_rules:
+    >>> for rule_i in obshort_rules:
     ...     print(rule_i)
     shape    erase-lpoint_L
         name    erase-lpoint_L

@@ -215,3 +215,9 @@ Log
     >   __repr__ strings. Revise to make them runnable by eval. In unit tests, 
         try checking that eval(repr(foo)) == foo. 
         
+#   2014-10-31
+    >   Derivation. It has meaning only in the presence of a grammar object. 
+        So why exactly should it exist as an independent object? Or can its 
+        rule shape attributes point to a grammar object? Or, one of its 
+        attributes should be a grammar object? That would make sense. Then, 
+        such a derivation object sounds like a rich derivation object! 
