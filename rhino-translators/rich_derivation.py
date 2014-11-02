@@ -7,7 +7,6 @@ import shape
 
 class RichDerivation(object):
     def __init__(self, grammar_in, derivation_shapes_in, derivation_rules_in):
-                                                ##  I am here 2014-10-31
         """Receives:
             Grammar
             [Shape, ...]
@@ -247,19 +246,69 @@ class RichDerivation(object):
             '# derivation file version 1.00' + 
             '                           ' + 
             '--chen liang 2007/08/06')
-        # strings = [
-        #     header,
-        #     self.grammar.__str__(),
-        #     self.derivation.__str__()]
-        # string = '\n'.join(strings)
-        string = '<rich derivation>'
+        grammar_text_lines_string = str(self.grammar)
+        derivation_marker = '# derivation record'
+        derivation_text_lines_string = (
+            self._make_derivation_text_lines_string())
+        strings = [
+            header,
+            grammar_text_lines_string,
+            derivation_marker,
+            derivation_text_lines_string]
+        string = '\n'.join(strings)
+        return string
+
+    def _make_derivation_text_lines_string(self):
+        """Returns <
+            shape_text_lines_string\n
+            rule_text_lines_string\n
+            ...
+        >:
+            str
+        """
+        interleaved_substrings = []
+        i = 0
+        for i in range(len(self.derivation_rules)):
+            interleaved_substrings.append(str(self.derivation_shapes[i]))
+            interleaved_substrings.append(
+                self.derivation_rules[i].make_rule_name_string_short())
+        i = i + 1
+        interleaved_substrings.append(str(self.derivation_shapes[i]))
+        string = '\n'.join(interleaved_substrings)
         return string
 
     def __repr__(self):
-        """Returns a list of strings
+        """Returns <
+            (   grammar_drv_string,
+                derivation_shapes_string,
+                derivation_rule_names_string
+            )
+        >:
+            str
         """
-        string = '<__repr__>'
-        return string
+        grammar_drv_string = self.grammar.__repr__()
+        derivation_shapes_string = self._make_derivation_shapes_string()
+        derivation_rule_names_string = (
+            self._make_derivation_rule_names_string())
+        substrings = [
+            grammar_drv_string,
+            derivation_shapes_string,
+            derivation_rule_names_string]
+        string = ', '.join(substrings)
+        return '(%s)' % string
+
+    def _make_derivation_shapes_string(self):
+        """Returns the combined drv strings of the derivation shapes:
+            str
+        """
+        substrings = [shape.__repr__() for shape in self.derivation_shapes]
+        string = ', '.join(substrings)
+        return '[%s]' % string
+
+    def _make_derivation_rule_names_string(self):
+        substrings = [rule.name for rule in self.derivation_rules]
+        string = ', '.join(substrings)
+        return '[%s]' % string
 
 if __name__ == '__main__':
     import doctest
