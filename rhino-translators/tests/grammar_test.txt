@@ -4,6 +4,7 @@
     >>> import rule
     >>> import shape
 
+### set-up: labeled_obshort_drv_text_lines
     >>> labeled_obshort_drv_text_lines = [
     ...     '# derivation file version 1.00                           --chen liang 2007/08/06',
     ...     '<BLANKLINE>',
@@ -397,4 +398,3 @@
         line 11 7 8
         point 2 a
     rule    shorten-oblong    shorten-oblong_L -> shorten-oblong_R
-    

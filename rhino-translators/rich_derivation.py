@@ -137,64 +137,6 @@ class RichDerivation(object):
             derivation_shapes,
             derivation_rules)
 
-    # @classmethod
-    # def _separate_drv_text_lines(cls, drv_text_lines):
-    #     """Receives a list of drv text lines:
-    #         [str, ...]
-    #     Returns a list of grammar drv text lines, a list of derivation shape 
-    #     drv text lines, and a list of derivation rule text lines:
-    #         [str, ...]
-    #         [str, ...]
-    #         [str, ...]
-    #     """
-    #     grammar_drv_text_lines = []
-    #     derivation_drv_text_lines = []
-    #     subfile = 'grammar'
-    #     for text_line in drv_text_lines:
-    #         if 'derivation record' in text_line:
-    #             subfile = 'derivation'
-    #         if subfile == 'grammar':
-    #             grammar_drv_text_lines.append(text_line)
-    #         elif subfile == 'derivation':
-    #             derivation_drv_text_lines.append(text_line)
-    #         else:
-    #             pass
-    #     (   derivation_shapes_drv_text_lines,
-    #         derivation_rules_drv_text_lines
-    #     ) = cls._separate_derivation_drv_text_lines(
-    #         derivation_drv_text_lines)
-    #     return (
-    #         grammar_drv_text_lines,
-    #         derivation_shapes_drv_text_lines,
-    #         derivation_rules_drv_text_lines)
-
-    # @classmethod
-    # def _separate_derivation_drv_text_lines(cls, derivation_drv_text_lines):
-    #     """Receives drv text lines of derivation shapes and derivation rules:
-    #         [str, ...]
-    #     Returns a list of drv text lines of derivation shapes and a list of 
-    #     drv text lines of derivation rules:
-    #         [str, ...]
-    #         [str, ...]
-    #     """
-    #     return (
-    #         derivation_shapes_drv_text_lines, 
-    #         derivation_rules_drv_text_lines)
-
-    # @classmethod
-    # def _get_derivation_shapes_from_drv_text_lines(cls, drv_text_lines):
-    #     """Returns:
-    #         [Shape, ...]
-    #     """
-    #     return derivation_shapes
-
-    # @classmethod
-    # def _get_derivation_rules_from_drv_text_lines(cls, drv_text_lines):
-    #     """Returns: 
-    #         [Rule, ...]
-    #     """
-    #     return derivation_rules
-
     @classmethod
     def _shape_pending(cls, text_lines):
         value = True
@@ -253,19 +195,6 @@ class RichDerivation(object):
         next_shape = (
             shape.Shape.new_from_is_text_lines(shape_text_lines))
         next_shapes.append(next_shape)
-
-    @classmethod                                ##  Seems to be unused
-    def _look_up_derivation_rule(cls, tokens, grammar_rules_dict):
-        """Receives a list of one token (the name of a derivation rule) and a 
-        dictionary of name-rule entries:
-            [str]
-            {str: Rule, ...}
-        Returns the named rule:
-            Rule
-        """
-        derivation_rule_name = tokens[0]
-        derivation_rule = (grammar_rules_dict[derivation_rule_name])
-        return derivation_rule
 
     ###
     def __str__(self):
