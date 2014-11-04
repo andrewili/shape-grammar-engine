@@ -30,182 +30,170 @@ class RichDerivation(object):
             message = 'The argument must be a non-empty list of strings'
             print(message)
         else:
-            (   grammar_drv_text_lines,
-                derivation_shapes_drv_text_lines,
-                derivation_rules_drv_text_lines
-            ) = (cls._separate_drv_text_lines(drv_text_lines))
-            new_grammar = grammar.Grammar.new_from_drv_text_lines(
-                grammar_drv_text_lines)
-            new_derivation_shapes = (
-                cls._get_derivation_shapes_from_drv_text_lines(
-                    derivation_shapes_drv_text_lines))
-            new_derivation_rules = (
-                cls._get_derivation_rules_from_drv_text_lines(
-                    derivation_rules_drv_text_lines))
+            (   grammar_in,
+                derivation_shapes_in,
+                derivation_rules_in
+            ) = (cls._get_rich_derivation_parts(drv_text_lines))
             new_rich_derivation = RichDerivation(
-                new_grammar, new_derivation_shapes, new_derivation_rules)
+                grammar_in, derivation_shapes_in, derivation_rules_in)
             return new_rich_derivation
 
     @classmethod
-    def _separate_drv_text_lines(cls, drv_text_lines):
+    def _get_rich_derivation_parts(cls, drv_text_lines):
         """Receives a list of drv text lines:
             [str, ...]
-        Returns a list of grammar drv text lines, a list of derivation shape 
-        drv text lines, and a list of derivation rule text lines:
-            [str, ...]
-            [str, ...]
-            [str, ...]
-        """
-        grammar_drv_text_lines = []
-        derivation_drv_text_lines = []
-        subfile = 'grammar'
-        for text_line in drv_text_lines:
-            if 'derivation record' in text_line:
-                subfile = 'derivation'
-            if subfile == 'grammar':
-                grammar_drv_text_lines.append(text_line)
-            elif subfile == 'derivation':
-                derivation_drv_text_lines.append(text_line)
-            else:
-                pass
-        (   derivation_shapes_drv_text_lines,
-            derivation_rules_drv_text_lines
-        ) = cls._separate_derivation_drv_text_lines(
-            derivation_drv_text_lines)
-        return (
-            grammar_drv_text_lines,
-            derivation_shapes_drv_text_lines,
-            derivation_rules_drv_text_lines)
-
-    @classmethod
-    def _separate_derivation_drv_text_lines(cls, derivation_drv_text_lines):
-        """Receives drv text lines of derivation shapes and derivation rules:
-            [str, ...]
-        Returns a list of drv text lines of derivation shapes and a list of 
-        drv text lines of derivation rules:
-            [str, ...]
-            [str, ...]
-        """
-        return (
-            derivation_shapes_drv_text_lines, 
-            derivation_rules_drv_text_lines)
-
-    @classmethod
-    def _get_derivation_shapes_from_drv_text_lines(cls, drv_text_lines):
-        """Returns:
+        Returns a grammar, a list of derivation shapes, and a list of
+        derivation rules:
+            Grammar
             [Shape, ...]
-        """
-        return derivation_shapes
-
-    @classmethod
-    def _get_derivation_rules_from_drv_text_lines(cls, drv_text_lines):
-        """Returns: 
             [Rule, ...]
         """
-        return derivation_rules
+        grammar_shapes_dict = {}
+        grammar_rules_dict = {}
+        grammar_initial_shapes = []
+        grammar_rules = []
+        derivation_rules = []
+        derivation_shapes = []
+        shape_text_lines = []
+        is_first_derivation_shape = True
+        for text_line in drv_text_lines:
+            tokens = text_line.split()
+            if tokens == []:
+                pass
+            else:
+                first_token = tokens[0]
+                if first_token == '#':
+                    if tokens[2] == 'file':
+                        subfile = 'grammar'
+                    elif tokens[2] == 'record':
+                        subfile = 'derivation'
+                    else:
+                        pass
+                elif (
+                    first_token == 'shape' and
+                    subfile == 'grammar'        ##  grammar record
+                ):
+                    if cls._shape_pending(shape_text_lines):
+                        cls._wrap_up_pending_grammar_shape(
+                            shape_text_lines, grammar_shapes_dict)
+                    shape_text_lines = cls._reset_shape_text_lines(
+                        text_line, shape_text_lines)
+                elif first_token in ['name', 'coords', 'line', 'point']:
+                    shape_text_lines.append(text_line)
+                elif first_token == 'initial':  ##  if none?
+                    if cls._shape_pending(shape_text_lines):
+                        cls._wrap_up_pending_grammar_shape(
+                            shape_text_lines, grammar_shapes_dict)
+                        shape_text_lines = []   ##  new
+                    initial_shape_name = tokens[1]
+                    initial_shape = grammar_shapes_dict[initial_shape_name]
+                    grammar_initial_shapes.append(initial_shape)
+                elif (
+                    first_token == 'rule' and
+                    subfile == 'grammar'
+                ):
+                    grammar_rule_name, left_shape_name, right_shape_name = (
+                        tokens[1], tokens[2], tokens[4])
+                    left_shape = grammar_shapes_dict[left_shape_name]
+                    right_shape = grammar_shapes_dict[right_shape_name]
+                    grammar_rule = (
+                        rule.Rule(grammar_rule_name, left_shape, right_shape))
+                    grammar_rules_dict[grammar_rule_name] = grammar_rule
+                    grammar_rules.append(grammar_rule)
+                elif (
+                    first_token == 'shape' and
+                    subfile == 'derivation'
+                ):
+                    if is_first_derivation_shape:
+                        shape_text_lines = cls._reset_shape_text_lines(
+                            text_line, shape_text_lines)
+                        is_first_derivation_shape = False
+                    else:
+                        if cls._shape_pending(shape_text_lines):
+                            cls._wrap_up_pending_derivation_shape(
+                                shape_text_lines, derivation_shapes)
+                    shape_text_lines = cls._reset_shape_text_lines(
+                        text_line, shape_text_lines)
+                elif (
+                    first_token == 'rule' and
+                    subfile == 'derivation'
+                ):
+                    if cls._rule_is_unidentified(tokens):
+                        pass
+                    elif cls._rule_is_unknown(tokens, grammar_rules_dict):
+                        pass
+                    else:
+                        derivation_rule_name = tokens[1]
+                        derivation_rule = (
+                            grammar_rules_dict[derivation_rule_name])
+                        derivation_rules.append(derivation_rule)
+                ##  other case?
+        if not shape_text_lines == []:
+            cls._wrap_up_pending_derivation_shape(
+                shape_text_lines, derivation_shapes)
+        grammar_out = grammar.Grammar(grammar_initial_shapes, grammar_rules)
+        return (
+            grammar_out,
+            derivation_shapes,
+            derivation_rules)
 
-    # @classmethod                                ##  Seems unnecessary
-    # def _get_rich_derivation_parts(cls, drv_text_lines):
+    # @classmethod
+    # def _separate_drv_text_lines(cls, drv_text_lines):
     #     """Receives a list of drv text lines:
     #         [str, ...]
-    #     Returns 1) a name-Shape dictionary of the grammar's shapes, 2) a list 
-    #     of the grammar's initial shapes, 3) a list of the grammar's rules, 
-    #     4) a list of the derivation's shapes, and 5) a list (of the names) of 
-    #     the derivation's rules:
-    #         (   [Shape, ...],
-    #             [Rule, ...],
-    #             [Shape, ...],
-    #             [Rule, ...]
-    #         )
+    #     Returns a list of grammar drv text lines, a list of derivation shape 
+    #     drv text lines, and a list of derivation rule text lines:
+    #         [str, ...]
+    #         [str, ...]
+    #         [str, ...]
     #     """
-    #     grammar_shapes_dict = {}
-    #     grammar_rules_dict = {}
-    #     grammar_initial_shapes = []
-    #     grammar_rules = []
-    #     derivation_rules = []
-    #     derivation_shapes = []
-    #     shape_text_lines = []
-    #     is_first_derivation_shape = True
+    #     grammar_drv_text_lines = []
+    #     derivation_drv_text_lines = []
+    #     subfile = 'grammar'
     #     for text_line in drv_text_lines:
-    #         tokens = text_line.split()
-    #         if tokens == []:
-    #             pass
+    #         if 'derivation record' in text_line:
+    #             subfile = 'derivation'
+    #         if subfile == 'grammar':
+    #             grammar_drv_text_lines.append(text_line)
+    #         elif subfile == 'derivation':
+    #             derivation_drv_text_lines.append(text_line)
     #         else:
-    #             first_token = tokens[0]
-    #             if first_token == '#':
-    #                 if tokens[2] == 'file':
-    #                     subfile = 'grammar'
-    #                 elif tokens[2] == 'record':
-    #                     subfile = 'derivation'
-    #                 else:
-    #                     pass
-    #             elif (
-    #                 first_token == 'shape' and
-    #                 subfile == 'grammar'        ##  grammar record
-    #             ):
-    #                 if cls._shape_pending(shape_text_lines):
-    #                     cls._wrap_up_pending_grammar_shape(
-    #                         shape_text_lines, grammar_shapes_dict)
-    #                 shape_text_lines = cls._reset_shape_text_lines(
-    #                     text_line, shape_text_lines)
-    #             elif first_token in ['name', 'coords', 'line', 'point']:
-    #                 shape_text_lines.append(text_line)
-    #             elif first_token == 'initial':  ##  if none?
-    #                 if cls._shape_pending(shape_text_lines):
-    #                     cls._wrap_up_pending_grammar_shape(
-    #                         shape_text_lines, grammar_shapes_dict)
-    #                     shape_text_lines = []   ##  new
-    #                 initial_shape_name = tokens[1]
-    #                 initial_shape = grammar_shapes_dict[initial_shape_name]
-    #                 grammar_initial_shapes.append(initial_shape)
-    #             elif (
-    #                 first_token == 'rule' and
-    #                 subfile == 'grammar'
-    #             ):
-    #                 grammar_rule_name, left_shape_name, right_shape_name = (
-    #                     tokens[1], tokens[2], tokens[4])
-    #                 left_shape = grammar_shapes_dict[left_shape_name]
-    #                 right_shape = grammar_shapes_dict[right_shape_name]
-    #                 grammar_rule = (
-    #                     rule.Rule(grammar_rule_name, left_shape, right_shape))
-    #                 grammar_rules_dict[grammar_rule_name] = grammar_rule
-    #                 grammar_rules.append(grammar_rule)
-    #             elif (
-    #                 first_token == 'shape' and
-    #                 subfile == 'derivation'
-    #             ):
-    #                 if is_first_derivation_shape:
-    #                     shape_text_lines = cls._reset_shape_text_lines(
-    #                         text_line, shape_text_lines)
-    #                     is_first_derivation_shape = False
-    #                 else:
-    #                     if cls._shape_pending(shape_text_lines):
-    #                         cls._wrap_up_pending_derivation_shape(
-    #                             shape_text_lines, derivation_shapes)
-    #                 shape_text_lines = cls._reset_shape_text_lines(
-    #                     text_line, shape_text_lines)
-    #             elif (
-    #                 first_token == 'rule' and
-    #                 subfile == 'derivation'
-    #             ):
-    #                 if cls._rule_is_unidentified(tokens):
-    #                     pass
-    #                 elif cls._rule_is_unknown(tokens, grammar_rules_dict):
-    #                     pass
-    #                 else:
-    #                     derivation_rule_name = tokens[1]
-    #                     derivation_rule = (
-    #                         grammar_rules_dict[derivation_rule_name])
-    #                     derivation_rules.append(derivation_rule)
-    #             ##  other case?
-    #     if not shape_text_lines == []:
-    #         cls._wrap_up_pending_derivation_shape(
-    #             shape_text_lines, derivation_shapes)
+    #             pass
+    #     (   derivation_shapes_drv_text_lines,
+    #         derivation_rules_drv_text_lines
+    #     ) = cls._separate_derivation_drv_text_lines(
+    #         derivation_drv_text_lines)
     #     return (
-    #         grammar_initial_shapes,
-    #         grammar_rules,
-    #         derivation_shapes,
-    #         derivation_rules)
+    #         grammar_drv_text_lines,
+    #         derivation_shapes_drv_text_lines,
+    #         derivation_rules_drv_text_lines)
+
+    # @classmethod
+    # def _separate_derivation_drv_text_lines(cls, derivation_drv_text_lines):
+    #     """Receives drv text lines of derivation shapes and derivation rules:
+    #         [str, ...]
+    #     Returns a list of drv text lines of derivation shapes and a list of 
+    #     drv text lines of derivation rules:
+    #         [str, ...]
+    #         [str, ...]
+    #     """
+    #     return (
+    #         derivation_shapes_drv_text_lines, 
+    #         derivation_rules_drv_text_lines)
+
+    # @classmethod
+    # def _get_derivation_shapes_from_drv_text_lines(cls, drv_text_lines):
+    #     """Returns:
+    #         [Shape, ...]
+    #     """
+    #     return derivation_shapes
+
+    # @classmethod
+    # def _get_derivation_rules_from_drv_text_lines(cls, drv_text_lines):
+    #     """Returns: 
+    #         [Rule, ...]
+    #     """
+    #     return derivation_rules
 
     @classmethod
     def _shape_pending(cls, text_lines):
@@ -322,7 +310,7 @@ class RichDerivation(object):
     def __repr__(self):
         """Returns <
             (   grammar_drv_string,
-                derivation_shapes_string,
+                derivation_shapes_string,       ##  interleave shapes and rules?
                 derivation_rule_names_string
             )
         >:

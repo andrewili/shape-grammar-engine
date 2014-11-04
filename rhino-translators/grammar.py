@@ -206,8 +206,9 @@ class Grammar(object):
                 rule_i.left_shape.name,
                 rule_i.right_shape.name)
             rule_name_triples.append(rule_name_triple_i)
+        sorted_shapes = sorted(shapes, key=lambda shape_i: shape_i.name)
         return (
-            sorted(shapes),
+            sorted_shapes,
             initial_shape_names,
             rule_name_triples)
 
