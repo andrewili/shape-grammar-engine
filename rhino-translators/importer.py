@@ -28,7 +28,7 @@ class Importer(object):
             0]
 
     ###
-    def import_derivation(self):
+    def import_derivation(self):                ##  check call to Derivation
         """Prompts for a drv file. Draws the derivation. 
         ##  Draws the grammar?
         """
@@ -37,7 +37,7 @@ class Importer(object):
             derivation.Derivation.new_from_drv_text_lines(drv_text_lines))
         self._draw_derivation(derivation_in)
 
-    def _draw_derivation(self, derivation_in):
+    def _draw_derivation(self, derivation_in):  ##  _draw_simple_derivation
         """Receives: 
             Derivation
         Lays out and draws the derivation. For now, left to right in the upper 
@@ -99,7 +99,7 @@ class Importer(object):
             rule_location = self._add_vectors(
                 origin,
                 self._multiply_vector_scalar(offset_increment, i))
-            self.2_draw_rule(rule_i, rule_location)
+            self._draw_rule(rule_i, rule_location)
             i = i + 1
 
     def _multiply_vectors(self, v1, v2):        ##  right name?
