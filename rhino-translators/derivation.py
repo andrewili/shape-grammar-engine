@@ -1,6 +1,5 @@
 #   derivation.py (formerly rich_derivation.py)
 
-# import derivation
 import grammar
 import rule
 import shape
@@ -17,7 +16,6 @@ class Derivation(object):
         self.derivation_rules = derivation_rules_in
         
     @classmethod                                ##  I am here 2014-11-02
-                                                ##  check call from Importer
     def new_from_drv_text_lines(cls, drv_text_lines):
         try:
             if not type(drv_text_lines) == list:

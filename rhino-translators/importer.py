@@ -1,6 +1,8 @@
 #   importer.py
 
 import derivation
+import grammar
+# import numpy                                  ##  consider
 import rhinoscriptsyntax as rs
 import rule
 import shape
@@ -28,9 +30,8 @@ class Importer(object):
             0]
 
     ###
-    def import_derivation(self):                ##  check call to Derivation
+    def import_derivation(self):                ##  Draws the grammar?
         """Prompts for a drv file. Draws the derivation. 
-        ##  Draws the grammar?
         """
         drv_text_lines = self._get_text_lines_from_drv_file()
         derivation_in = (
@@ -43,21 +44,29 @@ class Importer(object):
         Lays out and draws the derivation. For now, left to right in the upper 
         right quadrant.
         """
+        origin = [0, 0, 0]                      ##  redundant
         double_arrow_width = 10
         shape_width = 32
         double_arrow_and_shape_width = double_arrow_width + shape_width
         offset_increment = [double_arrow_and_shape_width, 0, 0]
+                                                ##  generalize for y-dim
         i = 0
-        for shape in derivation_in.next_shapes:
-            offset = self._calculate_offset(offset_increment, i)
-            if i == 0:
-                self._draw_shape(shape, offset)
-            else:
-                self._draw_shape(shape, offset) ##  double arrow disabled
-                # self._draw_derivation_arrow_and_shape(
-                #     shape, offset, double_arrow_width)
-                print('shape %i: %s' % (i, shape.name))
-            i = i + 1
+
+        # for shape in derivation_in.next_shapes:
+        #     offset = self._calculate_offset(offset_increment, i)
+        #     if i == 0:
+        #         self._draw_shape(shape, offset)
+        #     else:
+        #         self._draw_shape(shape, offset) ##  double arrow disabled
+        #         # self._draw_derivation_arrow_and_shape(
+        #         #     shape, offset, double_arrow_width)
+        #         print('shape %i: %s' % (i, shape.name))
+        #     i = i + 1
+
+        for shape_i in derivation_in.derivation_shapes:
+            position = self._get_item_position(origin, offset_increment, i)
+            self._draw_shape(shape_i, position)
+            i += 1
 
     def _calculate_offset(self, offset_increment, i):
         """Receives an offset increment and an index:
@@ -75,8 +84,6 @@ class Importer(object):
         """
         drv_text_lines = self._get_text_lines_from_drv_file()
         grammar_in = grammar.Grammar.new_from_drv_text_lines(drv_text_lines)
-        # derivation_in = (
-        #     derivation.Derivation.new_from_drv_text_lines(drv_text_lines))
         self._draw_grammar(grammar_in)
 
     def _draw_grammar(self, grammar_in):
@@ -89,18 +96,40 @@ class Importer(object):
         offset_increment = self._multiply_vectors(
             self.padded_rule_size, offset_direction)
         i = 1
-        initial_shapes_location = self._add_vectors(
-            origin, 
-            self._multiply_vector_scalar(offset_increment, i))
-        self._draw_shape(grammar_in.initial_shape, initial_shapes_location)
-        i = i + 1
+                                                ##  Multiple initial shapes
+        for shape_i in grammar_in.initial_shapes:
+            position = self._get_item_position(origin, offset_increment, i)
+            self._draw_shape(shape_i, position)
+            i += 1
         for rule_i in grammar_in.rules:
-            offset_multiplier = self._calculate_offset(offset_direction, i)
-            rule_location = self._add_vectors(
-                origin,
-                self._multiply_vector_scalar(offset_increment, i))
-            self._draw_rule(rule_i, rule_location)
-            i = i + 1
+            position = self._get_item_position(origin, offset_increment, i)
+            self._draw_rule(rule_i, position)
+            i += 1
+
+        # initial_shapes_location = self._add_vectors(
+        #     origin, 
+        #     self._multiply_vector_scalar(offset_increment, i))
+        # self._draw_shape(grammar_in.initial_shape, initial_shapes_location)
+        # i = i + 1
+        # for rule_i in grammar_in.rules:
+        #     offset_multiplier = self._calculate_offset(offset_direction, i)
+        #     rule_location = self._add_vectors(
+        #         origin,
+        #         self._multiply_vector_scalar(offset_increment, i))
+        #     self._draw_rule(rule_i, rule_location)
+        #     i = i + 1
+
+    def _get_item_position(self, origin, offset_increment, i):
+        """Receives origin, offset increment, and index:
+            [num, num, num]
+            [num, num, num]
+            int
+        Returns the position of the item:
+            [num, num, num]
+        """
+        net_offset = self._multiply_vector_scalar(offset_increment, i)
+        position = self._add_vectors(origin, net_offset)
+        return position
 
     def _multiply_vectors(self, v1, v2):        ##  right name?
         """Receives two vectors:
@@ -130,6 +159,15 @@ class Importer(object):
             vector_out.append(coord_out)
         return vector_out
 
+    def _get_initial_shape_location(self, i):
+        """Receives:
+            int
+        Returns the origin of the initial shape:
+            [num, num, num]
+        """
+
+        return [x, y, z]
+
     def _draw_rule(self, rule_in, location_rule=[0, 0, 0]):
         """Receives a rule and a location:
             Rule
@@ -138,9 +176,9 @@ class Importer(object):
         """
         location_name, location_left, location_arrow, location_right = (
             self._calculate_rule_part_locations(location_rule))
-        self._write_shape_name(rule_in.name, location_name)
+        self._write_shape_name(rule_in.name, location_name)     ##
         self._draw_shape(rule_in.left_shape, location_left)
-        self._draw_rule_arrow(location_arrow)
+        self._draw_rule_arrow(location_arrow)                   ##
         self._draw_shape(rule_in.right_shape, location_right)
 
     def _calculate_rule_part_locations(self, location_rule):
@@ -288,7 +326,7 @@ class Importer(object):
         """
         self._draw_derivation_arrow(offset)
         shape_offset = [offset[0] + double_arrow_width, offset[1], offset[2]]
-        self._draw_shape(shape, shape_offset)
+        self._draw_shape(shape, shape_offset)   ##
 
     def _draw_derivation_arrow(self, offset):
         """Receives an offset:
