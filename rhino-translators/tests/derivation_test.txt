@@ -32,7 +32,7 @@
     ...             ((8, 0, 2), (8, 4, 2)),
     ...             ((8, 4, 0), (8, 4, 2))]
     ...         lpoint_specs = [((0, 2, 1), 'a')]
-    ...         labeled_oblong = shape.Shape(name, line_specs, lpoint_specs)
+    #...         labeled_oblong = shape.Shape(name, line_specs, lpoint_specs)
     ...         return labeled_oblong
     ...     def make_shorten_oblong_L():
     ...         name = 'shorten-oblong_L'

@@ -6,6 +6,7 @@ import grammar
 import rhinoscriptsyntax as rs
 import rule
 import shape
+import text_test
 
 class Importer(object):
     def __init__(self):
@@ -389,3 +390,4 @@ class Importer(object):
 
     def _offset_coord(self, coord, offset):
         return coord + offset
+
