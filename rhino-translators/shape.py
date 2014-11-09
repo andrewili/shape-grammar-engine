@@ -512,18 +512,18 @@ class Shape(object):
         return(specs)
 
     ###
-    def get_rhino_dots(self):
+    def get_rhino_lpoints(self):
         """Returns a list of pairs in Rhino format:
             [(str, [num, num, num]), ...]
         """
-        dots = []
+        lpoints = []
         for codex_label in self.ordered_codex_label_list:
             codex, label = codex_label
             coord = self.ordered_coord_list[codex]
             rhino_point = list(coord)
-            dot = label, rhino_point
-            dots.append(dot)
-        return dots
+            lpoint = label, rhino_point
+            lpoints.append(lpoint)
+        return lpoints
 
     ###
     def __str__(self):

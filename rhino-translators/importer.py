@@ -353,15 +353,14 @@ class Importer(object):
             [num, num, num]
         Draws the shape in Rhino at the location.
         """
-        # self._draw_shape_ground(location)
         rhino_lines = shape.get_line_specs_as_lists()
         for rhino_line in rhino_lines:
             rhino_p1, rhino_p2 = rhino_line
             self._draw_line(rhino_p1, rhino_p2, location)
-        rhino_dots = shape.get_rhino_dots()
-        for rhino_dot in rhino_dots:
-            label, rhino_point = rhino_dot
-            self._draw_rhino_dot(label, rhino_point, location)
+        rhino_lpoints = shape.get_rhino_lpoints()
+        for rhino_lpoint in rhino_lpoints:
+            label, rhino_point = rhino_lpoint
+            self._draw_rhino_lpoint(label, rhino_point, location)
 
     def _draw_shape_ground(self, location=[0, 0, 0]):
         """Receives a location:
@@ -384,9 +383,10 @@ class Importer(object):
         p2a = map(self._offset_coord, p2, offset)
         rs.AddLine(p1a, p2a)
 
-    def _draw_rhino_dot(self, label, rhino_point, offset):
+    def _draw_rhino_lpoint(self, label, rhino_point, offset):
         offset_rhino_point = map(self._offset_coord, rhino_point, offset)
-        rs.AddTextDot(label, offset_rhino_point)
+        # rs.AddTextDot(label, offset_rhino_point)
+        rs.AddText(label, offset_rhino_point)
 
     def _offset_coord(self, coord, offset):
         return coord + offset

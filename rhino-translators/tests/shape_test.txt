@@ -631,11 +631,11 @@
     >>> drone_lpoint_specs
     [((0, 0, 0), 'p00'), ((1, 1, 0), 'p11')]
 
-### get_rhino_dots
-    >>> drone_dots = drone_shape.get_rhino_dots()
-    >>> print(drone_dots)
+### get_rhino_lpoints
+    >>> drone_lpoints = drone_shape.get_rhino_lpoints()
+    >>> print(drone_lpoints)
     [('p00', [0, 0, 0]), ('p11', [1, 1, 0])]
 
-    >>> empty_dots = empty_shape.get_rhino_dots()
-    >>> print(empty_dots)
+    >>> empty_lpoints = empty_shape.get_rhino_lpoints()
+    >>> print(empty_lpoints)
     []
