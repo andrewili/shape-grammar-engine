@@ -1,0 +1,39 @@
+shape    conway-ltri-div-5_L
+    name    conway-ltri-1
+    coords 0 3.000000 3.000000 0.000000
+    coords 1 3.000000 15.000000 0.000000
+    coords 2 11.000000 7.000000 0.000000
+    coords 3 27.000000 3.000000 0.000000
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 3
+    point 2 a
+shape    conway-ltri-div-5_R
+    name    conway-ltri-div-5
+    coords 0 3.000000 3.000000 0.000000
+    coords 1 3.000000 15.000000 0.000000
+    coords 2 4.600000 10.200000 0.000000
+    coords 3 5.400000 7.800000 0.000000
+    coords 4 7.800000 4.600000 0.000000
+    coords 5 7.800000 12.600000 0.000000
+    coords 6 9.400000 7.800000 0.000000
+    coords 7 13.400000 7.800000 0.000000
+    coords 8 15.000000 3.000000 0.000000
+    coords 9 17.400000 7.800000 0.000000
+    coords 10 19.800000 4.600000 0.000000
+    coords 11 27.000000 3.000000 0.000000
+
+    line 0 0 1
+    line 1 0 11
+    line 2 1 11
+    line 3 5 0
+    line 4 5 8
+    line 5 8 3
+    line 6 9 8
+    point 2 a
+    point 4 a
+    point 6 a
+    point 7 a
+    point 10 a
+rule    conway-ltri-div-5    conway-ltri-div-5_L -> conway-ltri-div-5_R

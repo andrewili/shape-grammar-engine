@@ -1,4 +1,4 @@
-shape    ltri
+shape    koch-ltri
     name
     coords 0 4.000000 5.000000 0.000000
     coords 1 6.651924 15.593267 0.000000

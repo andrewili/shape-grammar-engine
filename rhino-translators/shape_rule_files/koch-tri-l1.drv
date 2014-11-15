@@ -1,0 +1,742 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    del-lpoint_L
+    name 
+    coords 0 7 9 0
+
+    point 0 a
+shape    del-lpoint_R
+    name 
+
+shape    koch-div-lline_L
+    name 
+    coords 0 4 10 0
+    coords 1 14.5 13 0
+    coords 2 25 10 0
+
+    line 0 0 2
+    point 1 a
+shape    koch-div-lline_R
+    name 
+    coords 0 4 10 0
+    coords 1 8 11 0
+    coords 2 11 10 0
+    coords 3 11.883975 13.531089 0
+    coords 4 14.5 16.062178 0
+    coords 5 17.116025 13.531089 0
+    coords 6 18 10 0
+    coords 7 18 10 0
+    coords 8 21.5 11 0
+    coords 9 25 10 0
+
+    line 0 0 2
+    line 1 2 4
+    line 2 4 6
+    line 3 9 7
+    point 1 a
+    point 3 a
+    point 5 a
+    point 8 a
+shape    koch-ltri
+    name 
+    coords 0 4 5 0
+    coords 1 6.651924 15.593267 0
+    coords 2 14.5 23.186533 0
+    coords 3 14.5 23.186533 0
+    coords 4 14.5 2 0
+    coords 5 22.348076 15.593267 0
+    coords 6 25 5 0
+
+    line 0 0 2
+    line 1 0 6
+    line 2 3 6
+    point 1 a
+    point 4 a
+    point 5 a
+initial    koch-ltri
+rule    del-lpoint    del-lpoint_L -> del-lpoint_R
+rule    koch-div-lline    koch-div-lline_L -> koch-div-lline_R
+# derivation record
+shape    koch-ltri
+    name 
+    coords 0 4 5 0
+    coords 1 6.651924 15.593267 0
+    coords 2 14.5 23.186533 0
+    coords 3 14.5 23.186533 0
+    coords 4 14.5 2 0
+    coords 5 22.348076 15.593267 0
+    coords 6 25 5 0
+
+    line 0 0 2
+    line 1 0 6
+    line 2 3 6
+    point 1 a
+    point 4 a
+    point 5 a
+rule    koch-div-lline
+shape    koch-ltri_koch-div-lline_1
+    name 
+    coords 0 4 5 0
+    coords 1 6.651924 15.593267 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 2 14.5 23.186533 0
+    coords 3 14.5 23.186533 0
+    coords 5 22.348076 15.593267 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 0 0 2
+    line 2 3 6
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    point 1 a
+    point 10 a
+    point 5 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    koch-div-lline
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 5 22.348076 15.593267 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 2 3 6
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 10 a
+    point 14 a
+    point 15 a
+    point 16 a
+    point 17 a
+    point 5 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    koch-div-lline
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 10 a
+    point 14 a
+    point 15 a
+    point 16 a
+    point 17 a
+    point 21 a
+    point 22 a
+    point 23 a
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 14 a
+    point 15 a
+    point 16 a
+    point 17 a
+    point 21 a
+    point 22 a
+    point 23 a
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 15 a
+    point 16 a
+    point 17 a
+    point 21 a
+    point 22 a
+    point 23 a
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 16 a
+    point 17 a
+    point 21 a
+    point 22 a
+    point 23 a
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 17 a
+    point 21 a
+    point 22 a
+    point 23 a
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 21 a
+    point 22 a
+    point 23 a
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 22 a
+    point 23 a
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 23 a
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 24 a
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 7 a
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 8 a
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20
+    point 9 a
+rule    del-lpoint
+shape    koch-ltri_koch-div-lline_1_koch-div-lline_2_koch-div-lline_13_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1_del-lpoint_1
+    name 
+    coords 0 4 5 0
+    coords 10 17.116025 1.468911 0
+    coords 11 11 5 0
+    coords 12 14.5 -1.062178 0
+    coords 13 18 5 0
+    coords 14 4.88397466666667 8.53108966666666 0
+    coords 15 11.6339746666667 20.2224316666667 0
+    coords 16 7.49999997174533 18.1243554226333 0
+    coords 17 4.88397497174533 13.5932675773667 0
+    coords 18 11 17.1243556666667 0
+    coords 19 4.000000276824 17.124356 0
+    coords 20 7.5 11.0621783333333 0
+    coords 21 24.1160253333333 8.53108966666666 0
+    coords 22 17.3660253333333 20.2224316666667 0
+    coords 23 21.5000000282547 18.1243554226333 0
+    coords 24 24.1160250282547 13.5932675773667 0
+    coords 25 18 17.1243556666667 0
+    coords 26 24.999999723176 17.124356 0
+    coords 27 21.5 11.0621783333333 0
+    coords 3 14.5 23.186533 0
+    coords 6 25 5 0
+    coords 7 21.5 4 0
+    coords 8 8 4 0
+    coords 9 11.883975 1.468911 0
+
+    line 10 19 20
+    line 11 25 26
+    line 12 3 25
+    line 13 6 27
+    line 14 26 27
+    line 3 11 12
+    line 4 0 11
+    line 5 6 13
+    line 6 12 13
+    line 7 18 19
+    line 8 3 18
+    line 9 0 20

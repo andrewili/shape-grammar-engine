@@ -1,0 +1,30 @@
+shape    koch-div-lline_L
+    name    koch-lline
+    coords 0 4.000000 10.000000 0.000000
+    coords 1 14.500000 13.000000 0.000000
+    coords 2 25.000000 10.000000 0.000000
+
+    line 0 0 2
+    point 1 a
+shape    koch-div-lline_R
+    name    koch-div-lline
+    coords 0 4.000000 10.000000 0.000000
+    coords 1 8.000000 11.000000 0.000000
+    coords 2 11.000000 10.000000 0.000000
+    coords 3 11.883975 13.531089 0.000000
+    coords 4 14.500000 16.062178 0.000000
+    coords 5 17.116025 13.531089 0.000000
+    coords 6 18.000000 10.000000 0.000000
+    coords 7 18.000000 10.000000 0.000000
+    coords 8 21.500000 11.000000 0.000000
+    coords 9 25.000000 10.000000 0.000000
+
+    line 0 0 2
+    line 1 2 4
+    line 2 4 6
+    line 3 9 7
+    point 1 a
+    point 3 a
+    point 5 a
+    point 8 a
+rule    koch-div-lline    koch-div-lline_L -> koch-div-lline_R
