@@ -4,6 +4,8 @@ import rhinoscriptsyntax as rs
 import rule
 import shape
 
+##  Implement abort method 
+
 class Exporter(object):
     def __init__(self):
         pass
@@ -18,8 +20,11 @@ class Exporter(object):
         the_rule = self._get_rule(left_shape, right_shape)
         self._write_rule_file(the_rule)
 
+    def export_gif(self):                       ##  To do
+        pass
+
     ###
-    def _get_shape(self, side):
+    def _get_shape(self, side):                 ##  Text objects for labels?
         """Receives 'initial', 'left', or 'right':
             str
         Prompts for elements (lines and textdots) and a name. Returns the new 

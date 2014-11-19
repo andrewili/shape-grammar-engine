@@ -8,6 +8,9 @@ import rule
 import shape
 import text_test
 
+##  Labels. Use text objects? 
+##  Implement abort method
+
 class Importer(object):
     def __init__(self):
         self.shape_size = [32, 32, 0]
@@ -382,6 +385,9 @@ class Importer(object):
         p1a = map(self._offset_coord, p1, offset)
         p2a = map(self._offset_coord, p2, offset)
         rs.AddLine(p1a, p2a)
+
+    def _draw_lpoint(self):                     ##  draw point
+        pass
 
     def _draw_rhino_lpoint(self, label, rhino_point, offset):
         offset_rhino_point = map(self._offset_coord, rhino_point, offset)
