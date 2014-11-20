@@ -20,11 +20,11 @@ class Exporter(object):
         the_rule = self._get_rule(left_shape, right_shape)
         self._write_rule_file(the_rule)
 
-    def export_gif(self):                       ##  To do
+    def export_gif(self):                       ##  Prepare for animation
         pass
 
     ###
-    def _get_shape(self, side):                 ##  Text objects for labels?
+    def _get_shape(self, side):                 ##  prints items out of order
         """Receives 'initial', 'left', or 'right':
             str
         Prompts for elements (lines and textdots) and a name. Returns the new 
@@ -32,26 +32,24 @@ class Exporter(object):
             Shape
         """
         prompt_for_elements = (
-            'Select the lines and textdots in the %s shape' % side)
+            'Select the lines and labeled points in the %s shape' % side
+        )
         guids = rs.GetObjects(
             prompt_for_elements,
-            rs.filter.curve + rs.filter.textdot)
+        )
         if side == 'initial':
             while guids == None:
                 prompt_for_elements = (
                     'The initial shape may not be empty. ' +
-                    'Select the lines and textdots in the initial shape')
-                guids = rs.GetObjects(
-                    prompt_for_elements,
-                    rs.filter.curve + rs.filter.textdot)
+                    'Select the lines and labeled points in the initial shape'
+                )
+                guids = rs.GetObjects(prompt_for_elements)
         elif side == 'left':
             while guids == None:
                 prompt_for_elements = (
                     'The left shape may not be empty. ' +
-                    'Select the lines and textdots in the left shape')
-                guids = rs.GetObjects(
-                    prompt_for_elements,
-                    rs.filter.curve + rs.filter.textdot)
+                    'Select the lines and labeled points in the left shape')
+                guids = rs.GetObjects(prompt_for_elements)
         elif side == 'right':
             if guids == None:
                 guids = []
@@ -86,7 +84,7 @@ class Exporter(object):
         return value
 
     def _get_line_specs_and_lpoint_specs(self, guids):
-        """Receives a list of line or textdot guids:
+        """Receives a list of guids:
             [guid, ...]
         Returns a list of coord-coord pairs and a list of coord-label pairs:
             (   [((num, num, num), (num, num, num)), ...],
@@ -95,13 +93,19 @@ class Exporter(object):
         """
         line_specs = []
         lpoint_specs = []
-        line_type = 4
+        line_type = 4                           ##  limit to straight lines
+        annotation_type = 512
         textdot_type = 8192
         for guid in guids:
             guid_type = rs.ObjectType(guid)
             if guid_type == line_type:
                 line_spec = self._get_line_spec(guid)
                 line_specs.append(line_spec)
+            elif guid_type == annotation_type:
+                coord = rs.TextObjectPoint(guid)
+                label = rs.TextObjectText(guid)
+                lpoint_spec = (coord, label)
+                lpoint_specs.append(lpoint_spec)
             elif guid_type == textdot_type:
                 coord, label = self._get_lpoint_spec(guid)
                 lpoint_spec = (coord, label)

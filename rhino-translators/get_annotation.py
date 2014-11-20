@@ -3,10 +3,11 @@
 import rhinoscriptsyntax as rs
 
 def get_annotation():
-    prompt_for_annotation = 'Select text'
+    prompt_for_annotation = 'Select objects'
     guids = rs.GetObjects(prompt_for_annotation)
     print('number of objects: %i' % len(guids))
     for guid in guids:
+        print('object type: %i' % rs.ObjectType(guid))
         if rs.IsText(guid):
             print('text: %s' % rs.TextObjectText(guid))
         elif rs.IsTextDot(guid):
