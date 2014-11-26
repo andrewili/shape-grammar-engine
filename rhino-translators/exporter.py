@@ -4,7 +4,7 @@ import rhinoscriptsyntax as rs
 import rule
 import shape
 
-##  Implement abort method 
+##  To do: implement abort method 
 
 class Exporter(object):
     def __init__(self):
@@ -24,7 +24,7 @@ class Exporter(object):
         pass
 
     ###
-    def _get_shape(self, side):                 ##  prints items out of order
+    def _get_shape(self, side):
         """Receives 'initial', 'left', or 'right':
             str
         Prompts for elements (lines and textdots) and a name. Returns the new 
@@ -36,6 +36,7 @@ class Exporter(object):
         )
         guids = rs.GetObjects(
             prompt_for_elements,
+            rs.filter.curve + rs.filter.annotation + rs.filter.textdot
         )
         if side == 'initial':
             while guids == None:
@@ -102,7 +103,9 @@ class Exporter(object):
                 line_spec = self._get_line_spec(guid)
                 line_specs.append(line_spec)
             elif guid_type == annotation_type:
-                coord = rs.TextObjectPoint(guid)
+                point = rs.TextObjectPoint(guid)
+                x, y, z = point[0], point[1], point[2]
+                coord = (x, y, z)
                 label = rs.TextObjectText(guid)
                 lpoint_spec = (coord, label)
                 lpoint_specs.append(lpoint_spec)

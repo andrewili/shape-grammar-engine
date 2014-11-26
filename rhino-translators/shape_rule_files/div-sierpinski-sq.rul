@@ -1,0 +1,33 @@
+shape    div-sierpinski-sq_L
+    name    sierpinski-sq
+    coords 0 4.000000 4.000000 0.000000
+    coords 1 0.000000 0.000000 0.000000
+    coords 2 0.000000 30.000000 0.000000
+    coords 3 30.000000 0.000000 0.000000
+
+    line 0 1 3
+    line 1 2 1
+    line 2 2 3
+    point 0 a
+shape    div-sierpinski-sq_R
+    name    sierpinski-sq-4
+    coords 0 2.000000 2.000000 0.000000
+    coords 1 2.000000 17.000000 0.000000
+    coords 2 17.000000 2.000000 0.000000
+    coords 3 0.000000 0.000000 0.000000
+    coords 4 0.000000 15.000000 0.000000
+    coords 5 0.000000 30.000000 0.000000
+    coords 6 15.000000 0.000000 0.000000
+    coords 7 15.000000 15.000000 0.000000
+    coords 8 30.000000 0.000000 0.000000
+
+    line 0 3 8
+    line 1 4 6
+    line 2 4 7
+    line 3 5 3
+    line 4 5 8
+    line 5 7 6
+    point 0 a
+    point 1 a
+    point 2 a
+rule    div-sierpinski-sq    div-sierpinski-sq_L -> div-sierpinski-sq_R

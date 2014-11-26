@@ -1,6 +1,7 @@
 #	shape.py
 
-class Shape(object):
+class Shape(object):                            ##  reduce on instantiation
+                                                ##  list line end points in order
     def __init__(self, name, line_specs, lpoint_specs):
         """Receives a name; list of line specs; and a list of labeled point
         specs:
@@ -65,7 +66,7 @@ class Shape(object):
             ordered_codex_codex_list,
             ordered_codex_label_list)
 
-    def _make_ordered_coord_list(self, line_specs, lpoint_specs):
+    def _make_ordered_coord_list(self, line_specs, lpoint_specs):   ##  use set
         """Receives a list of line specs and a list of labeled point specs:
             [((num, num, num), (num, num, num)), ...]
             [((num, num, num), str), ...]
@@ -73,7 +74,7 @@ class Shape(object):
             [(num, num, num), ...]
         """
         coords = []
-        unique_coords = []
+        unique_coords = []                      ##  use set
         for line_spec in line_specs:
             for coord in line_spec:
                 coords.append(coord)

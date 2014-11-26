@@ -1,0 +1,23 @@
+shape    l-r_L
+    name    l
+    coords 0 0.000000 0.000000 0.000000
+    coords 1 0.000000 30.000000 0.000000
+    coords 2 5.000000 10.000000 0.000000
+    coords 3 30.000000 0.000000 0.000000
+
+    line 0 0 3
+    line 1 1 0
+    line 2 1 3
+    point 2 dot
+shape    l-r_R
+    name    r
+    coords 0 5.000000 5.000000 0.000000
+    coords 1 0.000000 0.000000 0.000000
+    coords 2 0.000000 30.000000 0.000000
+    coords 3 30.000000 0.000000 0.000000
+
+    line 0 1 3
+    line 1 2 1
+    line 2 2 3
+    point 0 text
+rule    l-r    l-r_L -> l-r_R
