@@ -1,167 +1,232 @@
 # shape data version 6.00
 unit  mm  # mm - millimetre, cm - centimetre, m - metre
-shape    conway-ltri-div-5_L
+shape    mult-sierp-sq_L
     name 
-    coords 0 3 3 0
-    coords 1 3 15 0
-    coords 2 11 7 0
-    coords 3 27 3 0
+    coords 0 11 11 0
+    coords 1 11 20 0
+    coords 2 15.5 15.5 0
+    coords 3 20 11 0
+    coords 4 20 20 0
 
     line 0 0 1
     line 1 0 3
-    line 2 1 3
+    line 2 1 4
+    line 3 4 3
     point 2 a
-shape    conway-ltri-div-5_R
+shape    mult-sierp-sq_R
     name 
-    coords 0 3 3 0
-    coords 1 3 15 0
-    coords 10 19.8 4.6 0
-    coords 11 27 3 0
-    coords 2 4.6 10.2 0
-    coords 3 5.4 7.8 0
-    coords 4 7.8 4.6 0
-    coords 5 7.8 12.6 0
-    coords 6 9.4 7.8 0
-    coords 7 13.4 7.8 0
-    coords 8 15 3 0
-    coords 9 17.4 7.8 0
+    coords 0 5 5 0
+    coords 1 5 8 0
+    coords 10 8 8 0
+    coords 11 8 14 0
+    coords 12 8 17 0
+    coords 13 8 23 0
+    coords 14 8 26 0
+    coords 15 11 11 0
+    coords 16 11 20 0
+    coords 17 14 5 0
+    coords 18 14 8 0
+    coords 19 14 23 0
+    coords 2 5 14 0
+    coords 20 14 26 0
+    coords 21 15.5 6.5 0
+    coords 22 15.5 24.5 0
+    coords 23 17 5 0
+    coords 24 17 8 0
+    coords 25 17 23 0
+    coords 26 17 26 0
+    coords 27 20 11 0
+    coords 28 20 20 0
+    coords 29 23 5 0
+    coords 3 5 17 0
+    coords 30 23 8 0
+    coords 31 23 14 0
+    coords 32 23 17 0
+    coords 33 23 23 0
+    coords 34 23 26 0
+    coords 35 24.5 6.5 0
+    coords 36 24.5 15.5 0
+    coords 37 24.5 24.5 0
+    coords 38 26 5 0
+    coords 39 26 8 0
+    coords 4 5 23 0
+    coords 40 26 14 0
+    coords 41 26 17 0
+    coords 42 26 23 0
+    coords 43 26 26 0
+    coords 5 5 26 0
+    coords 6 6.5 6.5 0
+    coords 7 6.5 15.5 0
+    coords 8 6.5 24.5 0
+    coords 9 8 5 0
 
     line 0 0 1
-    line 1 0 11
-    line 2 1 11
-    line 3 5 0
-    line 4 5 8
-    line 5 8 3
-    line 6 9 8
-    point 10 a
-    point 2 a
-    point 4 a
+    line 1 0 9
+    line 10 11 12
+    line 11 13 14
+    line 12 15 16
+    line 13 15 27
+    line 14 16 28
+    line 15 17 18
+    line 16 17 23
+    line 17 18 24
+    line 18 19 20
+    line 19 19 25
+    line 2 1 10
+    line 20 20 26
+    line 21 23 24
+    line 22 25 26
+    line 23 28 27
+    line 24 29 30
+    line 25 29 38
+    line 26 30 39
+    line 27 31 32
+    line 28 31 40
+    line 29 32 41
+    line 3 2 3
+    line 30 33 34
+    line 31 33 42
+    line 32 34 43
+    line 33 38 39
+    line 34 40 41
+    line 35 42 43
+    line 4 2 11
+    line 5 3 12
+    line 6 4 5
+    line 7 4 13
+    line 8 5 14
+    line 9 9 10
+    point 21 a
+    point 22 a
+    point 35 a
+    point 36 a
+    point 37 a
     point 6 a
-    point 7 a
-shape    conway-ltri-mult-5_L
-    name 
-    coords 0 5.4 7.8 0
-    coords 1 7.8 12.6 0
-    coords 2 9.4 7.8 0
-    coords 3 15 3 0
-
-    line 0 1 0
-    line 1 1 3
-    line 2 3 0
-    point 2 a
-shape    conway-ltri-mult-5_R
-    name 
-    coords 0 3 3 0
-    coords 1 3 15 0
-    coords 10 19.8 4.6 0
-    coords 11 27 3 0
-    coords 2 4.6 10.2 0
-    coords 3 5.4 7.8 0
-    coords 4 7.8 4.6 0
-    coords 5 7.8 12.6 0
-    coords 6 9.4 7.8 0
-    coords 7 13.4 7.8 0
-    coords 8 15 3 0
-    coords 9 17.4 7.8 0
-
-    line 0 0 1
-    line 1 0 11
-    line 2 1 11
-    line 3 5 0
-    line 4 5 8
-    line 5 8 3
-    line 6 9 8
-    point 10 a
-    point 2 a
-    point 4 a
-    point 6 a
-    point 7 a
-shape    del-lpoint_L
-    name 
-    coords 0 7 9 0
-
-    point 0 a
-shape    del-lpoint_R
-    name 
-
-shape    ltri-1
-    name 
-    coords 0 3 3 0
-    coords 1 3 15 0
-    coords 2 11 7 0
-    coords 3 27 3 0
-
-    line 0 0 1
-    line 1 0 3
-    line 2 1 3
-    point 2 a
-shape    tri-div-5-stop_L
-    name 
-    coords 0 3 3 0
-    coords 1 3 15 0
-    coords 2 11 7 0
-    coords 3 27 3 0
-
-    line 0 0 1
-    line 1 0 3
-    line 2 1 3
-    point 2 a
-shape    tri-div-5-stop_R
-    name 
-    coords 0 15 3 0
-    coords 1 5.4 7.8 0
-    coords 2 7.8 12.6 0
-    coords 3 3 3 0
-    coords 4 3 15 0
-    coords 5 27 3 0
-    coords 6 17.4 7.8 0
-
-    line 10 3 4
-    line 11 4 5
-    line 12 6 0
-    line 13 3 5
-    line 14 2 0
-    line 8 0 1
-    line 9 2 3
-shape    tri-div-fractal_L
-    name 
-    coords 0 3 3 0
-    coords 1 3 15 0
-    coords 2 11 7 0
-    coords 3 27 3 0
-
-    line 0 0 1
-    line 1 0 3
-    line 2 1 3
-    point 2 a
-shape    tri-div-fractal_R
-    name 
-    coords 0 15 3 0
-    coords 1 5.4 7.8 0
-    coords 10 13.4 7.8 0
-    coords 2 7.8 12.6 0
-    coords 3 3 3 0
-    coords 4 3 15 0
-    coords 5 27 3 0
-    coords 6 17.4 7.8 0
-    coords 7 19.8 4.6 0
-    coords 8 4.6 10.2 0
-    coords 9 7.8 4.6 0
-
-    line 1 0 1
-    line 2 2 3
-    line 3 3 4
-    line 4 4 5
-    line 5 6 0
-    line 6 3 5
-    line 7 2 0
     point 7 a
     point 8 a
-    point 9 a
-    point 10 a
-initial    ltri-1
-rule    del-lpoint    del-lpoint_L -> del-lpoint_R
-rule    ltri-div-5    conway-ltri-div-5_L -> conway-ltri-div-5_R
-rule    ltri-mult-5    conway-ltri-mult-5_L -> conway-ltri-mult-5_R
-rule    tri-div-5-stop    tri-div-5-stop_L -> tri-div-5-stop_R
-rule    tri-div-fractal    tri-div-fractal_L -> tri-div-fractal_R
+shape    sierp-sq
+    name 
+    coords 0 3 3 0
+    coords 1 3 27 0
+    coords 2 15 15 0
+    coords 3 27 3 0
+    coords 4 27 27 0
+
+    line 0 0 3
+    line 1 1 0
+    line 2 1 4
+    line 3 4 3
+    point 2 a
+shape    sierpinski-square
+    name 
+    coords 0 2 2 0
+    coords 1 2 29 0
+    coords 2 11 11 0
+    coords 3 11 20 0
+    coords 4 15.5 15.5 0
+    coords 5 20 11 0
+    coords 6 20 20 0
+    coords 7 29 2 0
+    coords 8 29 29 0
+
+    line 0 0 1
+    line 1 0 7
+    line 2 1 8
+    line 3 2 3
+    line 4 2 5
+    line 5 3 6
+    line 6 6 5
+    line 7 8 7
+    point 4 a
+shape    sub-sierp-sq-end_L
+    name 
+    coords 0 11 11 0
+    coords 1 11 20 0
+    coords 2 15.5 15.5 0
+    coords 3 20 11 0
+    coords 4 20 20 0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 4 3
+    point 2 a
+shape    sub-sierp-sq-end_R
+    name 
+    coords 0 5 5 0
+    coords 1 5 8 0
+    coords 10 8 23 0
+    coords 11 8 26 0
+    coords 12 11 11 0
+    coords 13 11 20 0
+    coords 14 14 5 0
+    coords 15 14 8 0
+    coords 16 14 23 0
+    coords 17 14 26 0
+    coords 18 17 5 0
+    coords 19 17 8 0
+    coords 2 5 14 0
+    coords 20 17 23 0
+    coords 21 17 26 0
+    coords 22 20 11 0
+    coords 23 20 20 0
+    coords 24 23 5 0
+    coords 25 23 8 0
+    coords 26 23 14 0
+    coords 27 23 17 0
+    coords 28 23 23 0
+    coords 29 23 26 0
+    coords 3 5 17 0
+    coords 30 26 5 0
+    coords 31 26 8 0
+    coords 32 26 14 0
+    coords 33 26 17 0
+    coords 34 26 23 0
+    coords 35 26 26 0
+    coords 4 5 23 0
+    coords 5 5 26 0
+    coords 6 8 5 0
+    coords 7 8 8 0
+    coords 8 8 14 0
+    coords 9 8 17 0
+
+    line 0 0 1
+    line 1 0 6
+    line 10 8 9
+    line 11 10 11
+    line 12 12 13
+    line 13 12 22
+    line 14 13 23
+    line 15 14 15
+    line 16 14 18
+    line 17 15 19
+    line 18 16 17
+    line 19 16 20
+    line 2 1 7
+    line 20 17 21
+    line 21 18 19
+    line 22 20 21
+    line 23 23 22
+    line 24 24 25
+    line 25 24 30
+    line 26 25 31
+    line 27 26 27
+    line 28 26 32
+    line 29 27 33
+    line 3 2 3
+    line 30 28 29
+    line 31 28 34
+    line 32 29 35
+    line 33 30 31
+    line 34 32 33
+    line 35 34 35
+    line 4 2 8
+    line 5 3 9
+    line 6 4 5
+    line 7 4 10
+    line 8 5 11
+    line 9 6 7
+initial    sierp-sq
+initial    sierpinski-square
+rule    mult-sierp-sq    mult-sierp-sq_L -> mult-sierp-sq_R
+rule    sub-sierp-sq-end    sub-sierp-sq-end_L -> sub-sierp-sq-end_R

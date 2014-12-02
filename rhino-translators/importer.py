@@ -6,7 +6,7 @@ import grammar
 import rhinoscriptsyntax as rs
 import rule
 import shape
-import text_test
+# import text_test
 
 ##  Labels. Use text objects? 
 ##  Implement abort method

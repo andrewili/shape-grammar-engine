@@ -24,7 +24,7 @@ class Exporter(object):
         pass
 
     ###
-    def _get_shape(self, side):
+    def _get_shape(self, side):                 ##  Should produce maximal shape
         """Receives 'initial', 'left', or 'right':
             str
         Prompts for elements (lines and textdots) and a name. Returns the new 

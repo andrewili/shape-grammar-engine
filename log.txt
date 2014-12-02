@@ -221,3 +221,8 @@ Log
         rule shape attributes point to a grammar object? Or, one of its 
         attributes should be a grammar object? That would make sense. Then, 
         such a derivation object sounds like a rich derivation object! 
+
+#   2014-12-02
+    >   Be careful of the names shape and labeled shape. I've been using the
+        first in the model code and the second in the Rhino code.
+        

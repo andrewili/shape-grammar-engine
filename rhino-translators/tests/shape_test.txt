@@ -98,7 +98,7 @@
     >>> dup_lpoint_specs = [((0, 0, 0), 'x'), ((0, 0, 0), 'x')]
     >>> shape_dup_lpoints = shape.Shape(name, dup_line_specs, dup_lpoint_specs)
     >>> print(repr(shape_dup_lpoints))
-    (Kilroy, [(0, 0, 0), (0, 1, 0)], [(0, 1)], [(0, 'x')]
+    (Kilroy, [(0, 0, 0), (0, 1, 0)], [(0, 1)], [(0, x)]
 
 ### _is_well_formed
     >>> name_empty = ''

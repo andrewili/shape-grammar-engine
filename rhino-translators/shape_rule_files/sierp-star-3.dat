@@ -1,0 +1,61 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    do-sierp-star_L
+    name 
+    coords 0 2 2 0
+    coords 1 20 29 0
+    coords 2 29 2 0
+
+    line 0 0 2
+    point 1 a
+shape    do-sierp-star_R
+    name 
+    coords 0 2 2 0
+    coords 1 2 20 0
+    coords 10 23 2 0
+    coords 11 29 2 0
+    coords 12 29 11 0
+    coords 13 29 23 0
+    coords 2 2 8 0
+    coords 3 8 29 0
+    coords 4 11 2 0
+    coords 5 11 11 0
+    coords 6 11 20 0
+    coords 7 20 11 0
+    coords 8 20 20 0
+    coords 9 20 29 0
+
+    line 0 0 11
+    line 1 1 5
+    line 2 1 8
+    line 3 4 7
+    line 4 5 12
+    line 5 6 4
+    line 6 6 9
+    line 7 8 12
+    line 8 9 7
+    point 10 a
+    point 13 a
+    point 2 a
+    point 3 a
+shape    sierp-star-0
+    name 
+    coords 0 2 2 0
+    coords 1 2 20 0.5
+    coords 2 2 29 0
+    coords 3 11 2 0.5
+    coords 4 20 29 0
+    coords 5 29 2 0
+    coords 6 29 11 0.5
+    coords 7 29 29 0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 2 7
+    line 3 7 5
+    point 1 a
+    point 3 a
+    point 4 a
+    point 6 a
+initial    sierp-star-0
+rule    do-sierp-star    do-sierp-star_L -> do-sierp-star_R

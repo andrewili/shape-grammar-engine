@@ -1,0 +1,39 @@
+shape    do-sierp-star_L
+    name    sierp-star-0
+    coords 0 2.000000 2.000000 0.000000
+    coords 1 20.000000 29.000000 0.000000
+    coords 2 29.000000 2.000000 0.000000
+
+    line 0 0 2
+    point 1 a
+shape    do-sierp-star_R
+    name    sierp-star-4
+    coords 0 2.000000 2.000000 0.000000
+    coords 1 2.000000 20.000000 0.000000
+    coords 2 2.000000 8.000000 0.000000
+    coords 3 8.000000 29.000000 0.000000
+    coords 4 11.000000 2.000000 0.000000
+    coords 5 11.000000 11.000000 0.000000
+    coords 6 11.000000 20.000000 0.000000
+    coords 7 20.000000 11.000000 0.000000
+    coords 8 20.000000 20.000000 0.000000
+    coords 9 20.000000 29.000000 0.000000
+    coords 10 23.000000 2.000000 0.000000
+    coords 11 29.000000 2.000000 0.000000
+    coords 12 29.000000 11.000000 0.000000
+    coords 13 29.000000 23.000000 0.000000
+
+    line 0 0 11
+    line 1 1 5
+    line 2 1 8
+    line 3 4 7
+    line 4 5 12
+    line 5 6 4
+    line 6 6 9
+    line 7 8 12
+    line 8 9 7
+    point 2 a
+    point 3 a
+    point 10 a
+    point 13 a
+rule    do-sierp-star    do-sierp-star_L -> do-sierp-star_R
