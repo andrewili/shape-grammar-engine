@@ -4,12 +4,13 @@ import colineation
 import copy
 import line
 
-class LinePartition(object):
+class LinePartition(object):                ##  rename MaximalColineations?
     
     ### construct
     def __init__(self, lines):
-        """Receives a list of collinear lines:
+        """Receives a list of colinear lines:
             [Line, ...], n >= 0
+        Consists of a dictionary of carrier : maximal colineation entries
         """
         method_name = '__init__()'
         try:
