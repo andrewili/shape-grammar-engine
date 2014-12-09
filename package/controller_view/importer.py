@@ -1,11 +1,11 @@
 #   importer.py
 
-from . import derivation
-from . import grammar
+import derivation
+import grammar
 # import numpy                                  ##  consider
-##### import rhinoscriptsyntax as rs
-from . import rule
-from . import shape
+import rhinoscriptsyntax as rs
+import rule
+import shape
 # import text_test
 
 ##  Labels. Use text objects? 

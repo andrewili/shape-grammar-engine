@@ -1,8 +1,8 @@
 #   derivation.py (formerly rich_derivation.py)
 
-import grammar
-import rule
-import shape
+from . import grammar
+from . import rule
+from . import shape
 
 class Derivation(object):
     def __init__(self, grammar_in, derivation_shapes_in, derivation_rules_in):
