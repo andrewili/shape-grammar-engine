@@ -195,7 +195,8 @@ Log
 
 #   2014-09-16
     >   In the drv file, the name of the rule in the derivation sometimes 
-        doesn't appear. It seems to happen when the rule application is deterministic, i.e., when there was only the one rule that could be 
+        doesn't appear. It seems to happen when the rule application is 
+        deterministic, i.e., when there was only the one rule that could be 
         applied. E.g., parallel-lines-2014-08-27.drv
     >   In the drv file, a next shape is sometimes repeated. Don't see a 
         reason. 
@@ -225,4 +226,16 @@ Log
 #   2014-12-02
     >   Be careful of the names shape and labeled shape. I've been using the
         first in the model code and the second in the Rhino code.
+        
+#   2014-12-10
+    >   Things to do next.
+        1.  Refactor export_shape by instantiating an sg.Shape. This would
+            allow for producing a maximal shape. But it would mean that Shape
+            would have to be updated to 3D. 
+        2.  Implement direct export: if user draws rules and shapes in defined
+            areas, he can export them without selecting. 
+
+#   2014-12-11
+    >   Remember the Java MVC examples. The view has a copy of the model, and
+        the controller has a copy of the model and the view. 
         
