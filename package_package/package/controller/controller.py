@@ -1,13 +1,15 @@
 # from package.view import view
-from package.model import model
+# from package.model import model
+from package.model import grammar
 
 class Controller(object):
     def __init__(self):
-        self.m = model.Model()
+        pass
 
     ### grammar
     def new_grammar(self):
-        self.m.new_grammar()
+        self.grammar = grammar.Grammar()
+        self.grammar.new()
 
     # def _set_up(self):
     #     self._set_layers()
