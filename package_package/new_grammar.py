@@ -1,4 +1,3 @@
-from package.controller import controller
+from package.controller import controller as c
 
-c = controller.Controller()
-c.new_grammar()
+c.Controller.new_grammar()
