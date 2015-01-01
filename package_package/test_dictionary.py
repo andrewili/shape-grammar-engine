@@ -122,7 +122,6 @@ def test_delete_entry():
     if bad_key_entry_was_deleted:
         print("test_delete_entry: bad key entry was deleted")
 
-
 ### Dictionary utilities tests
 test_purge_dicts()
 test_get_dict_names()

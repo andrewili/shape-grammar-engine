@@ -124,7 +124,7 @@ class Dictionary(object):
         else:
             rs.DeleteDocumentData(dict_name, key)
             keys = cls.get_keys(dict_name)
-            key_exists = key in keys
+            key_exists = key in keys            ##  keys = None
             if key_exists:
                 entry_was_deleted = False
             else:

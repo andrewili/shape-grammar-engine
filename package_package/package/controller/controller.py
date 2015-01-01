@@ -1,8 +1,5 @@
 from package.model import grammar as g
 
-# from package.view import view
-# from package.model import model
-
 class Controller(object):
     def __init__(self):
         pass
