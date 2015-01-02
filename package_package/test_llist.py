@@ -8,11 +8,16 @@ entry_1 = 'montreal'
 entry_2 = 'tokyo'
 dummy_entry_value = ll.Llist._get_dummy_entry_value()
 
-def test_add_entry():
+def _initialize_test():
+    rs.DeleteDocumentData()
+    rs.SetDocumentData(list_name, entry_1, dummy_entry_value)
+    rs.SetDocumentData(list_name, entry_2, dummy_entry_value)
+
+def test_set_entry():
     def try_bad_type_list_name():
         _initialize_test()
         non_list_name = 37
-        actual_value = ll.Llist.add_entry(non_list_name, entry_1)
+        actual_value = ll.Llist.set_entry(non_list_name, entry_1)
         expected_value = None
         if not actual_value == expected_value:
             print("%s %s" % (
@@ -22,7 +27,7 @@ def test_add_entry():
     def try_bad_type_entry():
         _initialize_test()
         bad_type_entry = 29
-        actual_value = ll.Llist.add_entry(list_name, bad_type_entry)
+        actual_value = ll.Llist.set_entry(list_name, bad_type_entry)
         expected_value = None
         if not actual_value == expected_value:
             print("%s %s" % (
@@ -34,7 +39,7 @@ def test_add_entry():
         bad_value_entry = entry_1
         entry_value_1 = l.Layer._get_dict_name()
         rs.SetDocumentData(list_name, entry_1, entry_value_1)
-        actual_value = ll.Llist.add_entry(list_name, bad_value_entry)
+        actual_value = ll.Llist.set_entry(list_name, bad_value_entry)
         expected_value = None
         if not actual_value == expected_value:
             print("%s %s" % (
@@ -45,7 +50,7 @@ def test_add_entry():
         _initialize_test()
         good_arg_list_name = 'countries'
         good_arg_entry = 'canada'
-        actual_value = ll.Llist.add_entry(good_arg_list_name, good_arg_entry)
+        actual_value = ll.Llist.set_entry(good_arg_list_name, good_arg_entry)
         expected_value = good_arg_entry
         if not actual_value == expected_value:
             print("%s %s" % (
@@ -150,7 +155,7 @@ def test_contains_entry():
     try_good_args_false_entry()
     try_good_args_true_entry()
 
-def test_delete_entry():                        ##  fix try_good_args()
+def test_delete_entry():
     def try_bad_type_list_name():
         _initialize_test()
         bad_type_list_name = 37
@@ -187,8 +192,7 @@ def test_delete_entry():                        ##  fix try_good_args()
             print("delete_entry: bad_value_entry: expected %s; got %s" % (
                 expected_value, actual_value))
 
-
-    def try_good_args():                        ##  fix me!
+    def try_good_args():
         _initialize_test()
         actual_value = ll.Llist.delete_entry(list_name, entry_1)
         expected_value = True
@@ -196,23 +200,17 @@ def test_delete_entry():                        ##  fix try_good_args()
             print("delete_entry: good_args: expected %s; got %s" % (
                 expected_value, actual_value))
 
-    # try_bad_type_list_name()
-    # try_bad_type_entry()
-    # try_bad_value_list_name()
-    # try_bad_value_entry()
+    try_bad_type_list_name()
+    try_bad_type_entry()
+    try_bad_value_list_name()
+    try_bad_value_entry()
     try_good_args()
 
-def _initialize_test():
-    rs.DeleteDocumentData()
-    rs.SetDocumentData(list_name, entry_1, dummy_entry_value)
-    rs.SetDocumentData(list_name, entry_2, dummy_entry_value)
-
-
 ### test private methods
-# test_contains_entry()
+test_contains_entry()
 
 ### test public methods
-# test_add_entry()
-# test_get_entries()
+test_set_entry()
+test_get_entries()
 test_delete_entry()
 

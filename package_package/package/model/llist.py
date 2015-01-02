@@ -6,7 +6,7 @@ class Llist(object):
         pass
 
     @classmethod
-    def add_entry(cls, list_name, entry):
+    def set_entry(cls, list_name, entry):
         """Receives:
             list_name       str
             entry           str
@@ -68,7 +68,7 @@ class Llist(object):
         return return_value
 
     @classmethod
-    def delete_entry(cls, list_name, entry):    ##  finish tests
+    def delete_entry(cls, list_name, entry):
         """Receives:
             list_name       str
             entry           str
@@ -76,16 +76,16 @@ class Llist(object):
             boolean         True, if successful; False otherwise
         """
         try:
+            list_names = rs.GetDocumentData()
+            entries = rs.GetDocumentData(list_name)
             if not (
                 type(list_name) == str and
                 type(entry) == str
             ):
                 raise TypeError
-            list_names = rs.GetDocumentData()
-            if not list_name in list_names:
+            elif not list_name in list_names:
                 raise ValueError
-            entries = rs.GetDocumentData(list_names)
-            if not entry in entries:
+            elif not entry in entries:
                 raise ValueError
         except TypeError:
             message = "Both arguments must be strings"
@@ -96,8 +96,12 @@ class Llist(object):
             print(message)
             return_value = False
         else:
-            return_value = rs.DeleteDocumentData(list_name, entry)
-            # return_value = 'junk'
+            rs.DeleteDocumentData(list_name, entry)
+            entries = rs.GetDocumentData(list_name)
+            if entry in entries:
+                return_value = False
+            else:
+                return_value = True
         return return_value
 
     ##  private methods
