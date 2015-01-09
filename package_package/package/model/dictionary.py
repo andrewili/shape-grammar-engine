@@ -1,6 +1,8 @@
 import rhinoscriptsyntax as rs
 
 class Dictionary(object):
+    class_name = 'Dictionary'
+
     def __init__(self):
         pass
 
@@ -22,7 +24,7 @@ class Dictionary(object):
             ):
                 raise TypeError
         except TypeError:
-            message = "All arguments must be strings"
+            message = "%s: All arguments must be strings" % cls.class_name
             print(message)
             return_value = None
         else:
@@ -32,7 +34,8 @@ class Dictionary(object):
                 return_value = None
             else:
                 return_value = actual_value
-        return return_value
+        finally:
+            return return_value
 
     @classmethod
     def get_value(cls, dict_name, key):
@@ -57,11 +60,11 @@ class Dictionary(object):
             ):
                 raise ValueError
         except TypeError:
-            message = "Both arguments must be strings"
+            message = "%s: Both arguments must be strings" % cls.class_name
             print(message)
             return_value = None
         except ValueError:
-            message = "Both arguments must exist"
+            message = "%s: Both arguments must exist" % cls.class_name
             print(message)
             return_value = None
         else:
@@ -94,11 +97,11 @@ class Dictionary(object):
             ):
                 raise ValueError
         except TypeError:
-            message = "Both arguments must be strings"
+            message = "%s: Both arguments must be strings" % cls.class_name
             print(message)
             return_value = False
         except ValueError:
-            message = "Both arguments must exist"
+            message = "%s: Both arguments must exist" % cls.class_name
             print(message)
             return_value = False
         else:

@@ -176,18 +176,6 @@ test_delete_entry()
 # def purge_dicts():
     # rs.DeleteDocumentData()
 
-# def set_test_value():
-    # dict_name, key, value = 'dict name', 'key', 'value'
-    # value_was_set = d.Dictionary.set_value(
-    #     dict_name, key, value)
-    # return value_was_set
-
-# def set_test_values():
-    # rs.SetDocumentData('dict1', 'key1a', 'value1a')
-    # rs.SetDocumentData('dict1', 'key1b', 'value1b')
-    # rs.SetDocumentData('dict2', 'key2a', 'value2a')
-    # rs.SetDocumentData('dict2', 'key2b', 'value2b')
-
 ### Dictionary utilities
 # def test_get_dict_names():
     # def try_0_dicts():
@@ -243,45 +231,6 @@ test_delete_entry()
     # dict_names = rs.GetDocumentData()
     # if not dict_names == []:
     #     print("dict_names: expected []; got %s" % dict_names)
-
-# def test_get_value():
-    # dict_name, key, value = 'dict1', 'key1', 'value1'
-    # def set_value():
-    #     d.Dictionary.set_value(dict_name, key, value)
-    # def try_good_value():
-    #     value_gotten = d.Dictionary.get_value(dict_name, key)
-    #     if not value_gotten == 'value1':
-    #         print("value: expected '%s'; got '%s'" % (value, value_gotten))
-    # def try_non_existent_dict_name():
-    #     non_dict_name = 'non_dict'
-    #     value_from_non_dict_name = d.Dictionary.get_value(
-    #         non_dict_name, key)
-    #     if not value_from_non_dict_name == None:
-    #         print("Non dict name: expected None; got %s" % (
-    #             value_from_non_dict_name))
-    # def try_non_existent_key():
-    #     non_key = 'non_key'
-    #     value_from_non_key = d.Dictionary.get_value(dict_name, non_key)
-    #     if not value_from_non_key == None:
-    #         print("Non key: expected None; got %s" % value_from_non_key)
-    # purge_dicts()
-    # set_value()
-    # try_good_value()
-    # try_non_existent_dict_name()
-    # try_non_existent_key()
-
-# def test_delete_entry():
-    # purge_dicts()
-    # set_test_values()
-    # good_entry_was_deleted = d.Dictionary.delete_entry('dict1', 'key1a')
-    # if not good_entry_was_deleted:
-    #     print("good_entry_was_deleted: '%s'" % good_entry_was_deleted)
-    # bad_dict_entry_was_deleted = d.Dictionary.delete_entry('dict0', 'key1a')
-    # if bad_dict_entry_was_deleted:
-    #     print("bad_dict_entry_was_deleted: '%s'" % bad_dict_entry_was_deleted)
-    # bad_key_entry_was_deleted = d.Dictionary.delete_entry('dict1', 'key1c')
-    # if bad_key_entry_was_deleted:
-    #     print("test_delete_entry: bad key entry was deleted")
 
 ### test private methods
 

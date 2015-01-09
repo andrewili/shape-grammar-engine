@@ -1,28 +1,27 @@
-from package.model import block as b
+# from package.model import block as b
 from package.model import frame as f
 from package.model import layer as l
 import rhinoscriptsyntax as rs
-
 
 class FrameBlock(object):
     def __init__(self):
         pass
 
     @classmethod
-    def new(cls):                               ##  called by Grammar._clear_settings()
+    def new(cls):                               ##  called by 
+                                                ##  Grammar._clear_settings()
         """Creates a frame layer, draws a shape frame there, and converts the
         shape frame to a block. Returns:
             str             the name of the block, if successful
         """
-        layer_name_in = 'frames'
-        layer_color_name = 'dark gray'
-        layer_name_out = l.Layer.new(layer_name_in, layer_color_name)
-        # frame = f.Frame.new(layer_name)
-        # origin = [0, 0, 0]
-        # new_block_name = b.Block.new(frame, origin, 'frame')
-        # if new_block_name:
-        #     print('Added frame block')
-        # return new_block_name
+        layer_name = 'frames'
+        color_name = 'dark gray'
+        l.Layer.new(layer_name, color_name)
+        frame_guids = f.Frame.new(layer_name)
+        base_point = [0, 0, 0]
+        block_name = 'frame block'
+        actual_block_name = rs.AddBlock(frame_guids, base_point, block_name)
+        return actual_block_name
 
     # @classmethod
     # def _draw_frame(cls, layer_name):

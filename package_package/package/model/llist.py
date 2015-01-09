@@ -2,6 +2,9 @@ from package.model import layer as l
 import rhinoscriptsyntax as rs
 
 class Llist(object):
+    dummy_entry_value = 'nil'
+    class_name = 'Llist'
+
     def __init__(self):
         pass
 
@@ -24,21 +27,23 @@ class Llist(object):
             if entry in entries:
                 raise ValueError
         except TypeError:
-            message = "Both arguments must be strings"
+            message = "%s: Both arguments must be strings" % cls.class_name
             print(message)
             return_value = None
         except ValueError:
-            message = "The entry '%s' already exists" % entry
+            message = "%s: The entry '%s' already exists" % (
+                cls.class_name, entry)
             print(message)
             return_value = None
         else:
-            dummy_entry_value = cls._get_dummy_entry_value()
+            dummy_entry_value = cls.dummy_entry_value
             rs.SetDocumentData(list_name, entry, dummy_entry_value)
             entries = rs.GetDocumentData(list_name)
             if entry in entries:
                 return_value = entry
             else:
                 return_value = None
+        finally:
             return return_value
 
     @classmethod
@@ -56,15 +61,16 @@ class Llist(object):
             if not list_name in list_names:
                 raise ValueError
         except TypeError:
-            message = "The list name must be a string"
+            message = "%s: The list name must be a string" % cls.class_name
             print(message)
             return_value = None
         except ValueError:
-            message = "The list '%s' does not exist" % list_name
+            message = "%s: The list name '%s' does not exist" % (
+                cls.class_name, list_name)
             print(message)
             return_value = None
         else:
-            return_value = rs.GetDocumentData(list_name)
+            return_value = sorted(rs.GetDocumentData(list_name))
         return return_value
 
     @classmethod
@@ -88,11 +94,11 @@ class Llist(object):
             elif not entry in entries:
                 raise ValueError
         except TypeError:
-            message = "Both arguments must be strings"
+            message = "%s: Both arguments must be strings" % cls.class_name
             print(message)
             return_value = False
         except ValueError:
-            message = "Both arguments must exist"
+            message = "%s: Both arguments must exist" % cls.class_name
             print(message)
             return_value = False
         else:
@@ -106,13 +112,6 @@ class Llist(object):
 
     ##  private methods
     @classmethod
-    def _get_dummy_entry_value(cls):
-        """Returns a dummy value for Rhino's user data entry:
-            str             'nil'
-        """
-        return 'nil'
-
-    @classmethod
     def _contains_entry(cls, list_name, entry):
         """Receives:
             list_name       str
@@ -121,7 +120,7 @@ class Llist(object):
             boolean         True, if the list contains the entry; False 
                             otherwise
         """
-        try:
+        try:                                    ##  check for number of args!
             if not (
                 type(list_name) == str and
                 type(entry) == str
@@ -131,11 +130,12 @@ class Llist(object):
             if not list_name in list_names:
                 raise ValueError
         except TypeError:
-            message = "Both arguments must be strings"
+            message = "%s: Both arguments must be strings" % cls.class_name
             print(message)
             return_value = False
         except ValueError:
-            message = "There is no list named '%s'" % list_name
+            message = "%s: There is no list named '%s'" % (
+                cls.class_name, list_name)
             print(message)
             return_value = False
         else:

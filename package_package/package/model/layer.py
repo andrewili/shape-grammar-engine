@@ -4,56 +4,71 @@ from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
 class Layer(object):
+    layer_dict_name = 'user layer names'
+    layer_value = 'nil'
+    class_name = 'Layer'
+
     def __init__(self):
         pass
 
 ##  make dict listing methods?
 
     @classmethod                                ##  called by FrameBlock.new()
-    def new(cls, layer_name_in, color_name='black'):
+    def new(cls, layer_name, color_name='black'):
         """Receives:
-            layer_name_in   str
-            color_name      str. Optional
-        Checks whether the name is already in use. If not, adds a new layer. 
-        Returns:
+            layer_name      str
+            color_name      str
+        Adds a new layer and enters the name in the user layer name list, if 
+        the name is available. Returns:
             str             the name of the layer, if successful
             None            otherwise
         """
-        if cls._name_is_in_use(layer_name_in):
-            print("The name '%s' is already in use" % layer_name_in)
+        try:
+            if not (
+                type(layer_name) == str and
+                type(color_name) == str
+            ):
+                raise TypeError
+            elif cls._layer_name_is_in_use(layer_name):
+                raise ValueError
+        except TypeError:
+            message = "%s: Both arguments must be strings" % cls.class_name
+            print(message)
+            return_value = None
+        except ValueError:
+            message = "%s: The layer name '%s' is in use" % (
+                cls.class_name, layer_name)
+            print(message)
             return_value = None
         else:
-            return_value = cls._add_layer(layer_name_in, color_name)
-                                                ##  You are here
-        return return_value
+            rs.AddLayer(layer_name, color_name)
+            layer_value = cls.layer_value
+            layer_dict_name = cls.layer_dict_name
+            d.Dictionary.set_value(layer_dict_name, layer_name, layer_value)
+            user_layer_names = rs.GetDocumentData(layer_dict_name)
+            system_layer_names = rs.LayerNames()
+            if (
+                layer_name in user_layer_names and
+                layer_name in system_layer_names
+            ):
+                return_value = layer_name
+            else:
+                return_value = None
+        finally:
+            return return_value
 
     @classmethod
-    def _name_is_in_use(cls, layer_name):
+    def _layer_name_is_in_use(cls, layer_name):
         """Receives:
             layer_name      str
         Returns:
-            boolean         True if layer_name is in the user layer name
-                            dictionary; False otherwise
+            boolean         True if layer_name is being used in the Rhino user
+                            data structure (i.e., including Dictionary 
+                            entries); False otherwise
         """
-        dict_name = cls._get_dict_name()
-        layer_names = d.Dictionary.get_keys(dict_name)
-        name_is_in_use = (layer_name in layer_names)
-        return name_is_in_use
-
-    @classmethod
-    def _get_dict_name(cls):
-        """Returns:
-            str             the name of the layer name dictionary
-        """
-        return "user layer names"
-
-    @classmethod
-    def _get_layer_value(cls):
-        """Returns:
-            str             the dummy value used in the layer name dictionary
-                            cannot be ''
-        """
-        return "nil"
+        layer_dict_name = cls.layer_dict_name
+        return_value = ll.Llist._contains_entry(layer_dict_name, layer_name)
+        return return_value
 
     @classmethod
     def _add_layer(cls, layer_name_in, color_name):
@@ -71,24 +86,6 @@ class Layer(object):
             return_value = None
         else:
             cls._enter_in_layer_name_dict(layer_name_in)
-        return return_value
-
-    @classmethod                                ##  to be removed
-    def _enter_in_layer_name_dict(cls, layer_name):
-        """Receives:
-            layer_name      str
-        Enters the layer name and the dummy value. Returns:
-            str             the layer name, if successful
-            None            otherwise
-        """
-        layer_dict_name = cls._get_dict_name()
-        layer_value_in = cls._get_layer_value()
-        layer_value_out = d.Dictionary.set_value(
-            layer_dict_name, layer_name, layer_value_in)
-        if not layer_value_out == layer_value_in:
-            return_value = None
-        else:
-            return_value = layer_name
         return return_value
 
     @classmethod
