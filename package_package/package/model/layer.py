@@ -4,9 +4,9 @@ from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
 class Layer(object):
+    class_name = 'Layer'
     layer_dict_name = 'user layer names'
     layer_value = 'nil'
-    class_name = 'Layer'
 
     def __init__(self):
         pass
@@ -108,6 +108,32 @@ class Layer(object):
         else:
             color = Color.Black
         return color
+
+    @classmethod
+    def delete(cls, layer_name):                ##  You are here
+        """Receives:
+            layer_name      str
+        Deletes the layer and removes its name from the layer name list.
+        Returns:
+            boolean         True if successful; False otherwise
+        """
+        try:
+            if not type(layer_name) == str:
+                raise TypeError
+            if not cls._layer_name_is_in_use(layer_name):
+                raise ValueError
+        except TypeError:
+            message = "The argument must be a string"
+            print("%s: %s" % (cls.class_name, message))
+            return_value = None
+        except ValueError:
+            message = "The layer name '%s' does not exist" % layer_name
+            print("%s: %s" % (cls.class_name, message))
+            return_value = None
+        else:
+            return_value = rs.DeleteLayer(layer_name)
+        finally:
+            return return_value
 
     # @classmethod
     # def set(cls, layer_name):

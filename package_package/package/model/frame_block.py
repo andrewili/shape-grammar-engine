@@ -4,6 +4,9 @@ from package.model import layer as l
 import rhinoscriptsyntax as rs
 
 class FrameBlock(object):
+    layer_name = 'frames'
+    color_name = 'dark gray'
+
     def __init__(self):
         pass
 
@@ -14,25 +17,20 @@ class FrameBlock(object):
         shape frame to a block. Returns:
             str             the name of the block, if successful
         """
-        layer_name = 'frames'
-        color_name = 'dark gray'
-        l.Layer.new(layer_name, color_name)
-        frame_guids = f.Frame.new(layer_name)
+        l.Layer.new(cls.layer_name, cls.color_name)
+        frame_guids = f.Frame.new(cls.layer_name)
         base_point = [0, 0, 0]
         block_name = 'frame block'
         actual_block_name = rs.AddBlock(frame_guids, base_point, block_name)
         return actual_block_name
 
-    # @classmethod
-    # def _draw_frame(cls, layer_name):
-    #     """Receives a layer name:
-    #         str
-    #     Draws a frame on the named layer. Returns the lines:
-    #         [guid, ...]
-    #     """
-    #     guids = []
-    #     print('Pretended to draw a frame')
-    #     return guids
+    @classmethod
+    def delete(cls):
+        """Deletes the frame block and its layer. Returns:
+            boolean         True if successful; False otherwise
+        """
+        rs.DeleteBlock(cls.layer_name)
+        l.Layer.delete(cls.layer_name)          ##  You are here
 
     # @classmethod
     # def delete(cls):
@@ -55,3 +53,15 @@ class FrameBlock(object):
     #             message = "Didn't delete frame block"
     #     print(message)
     #     return block_was_deleted
+
+    # @classmethod
+    # def _draw_frame(cls, layer_name):
+    #     """Receives a layer name:
+    #         str
+    #     Draws a frame on the named layer. Returns the lines:
+    #         [guid, ...]
+    #     """
+    #     guids = []
+    #     print('Pretended to draw a frame')
+    #     return guids
+

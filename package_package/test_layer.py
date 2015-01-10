@@ -57,7 +57,7 @@ def test_new():
     try_bad_value_layer_name()
     try_good_args()
 
-def test_layer_name_is_in_use():
+def test__layer_name_is_in_use():
     def try_bad_type_layer_name():
         _initialize_test()
         bad_type_layer_name = 37
@@ -93,14 +93,46 @@ def test_layer_name_is_in_use():
     try_good_arg_false()
     try_good_arg_true()
 
+def test_delete():
+    def try_bad_type_layer_name():
+        _initialize_test()
+        bad_type_layer_name = 37
+        actual_value = l.Layer.delete(bad_type_layer_name)
+        expected_value = None
+        if not actual_value == expected_value:
+            print("delete: bad_type_layer_name: expected '%s'; got '%s'" % (
+                expected_value, actual_value))
+
+    def try_bad_value_layer_name():
+        _initialize_test()
+        bad_value_layer_name = 'kilroy'
+        actual_value = l.Layer.delete(bad_value_layer_name)
+        expected_value = None
+        if not actual_value == expected_value:
+            print("delete: bad_value_layer_name: expected '%s'; got '%s'" % (
+                expected_value, actual_value))
+
+    def try_good_arg():
+        good_arg = layer_name
+        actual_value = l.Layer.delete(layer_name)
+        expected_value = True
+        if not actual_value == expected_value:
+            print("delete: good_arg: expected '%s'; got '%s'" % (
+                expected_value, actual_value))
+
+    try_bad_type_layer_name()
+    try_bad_value_layer_name()
+    try_good_arg()
+
 ### test private methods
-test_layer_name_is_in_use()
+test__layer_name_is_in_use()
 # test_get_dict_name()
 # test_add_layer()
 # test_record_layer_name()
 
 ### test public methods
-# test_new()
+test_new()
+test_delete()
 
 # def test_get_dict_name():
     # actual_dict_name = l.Layer._get_dict_name()

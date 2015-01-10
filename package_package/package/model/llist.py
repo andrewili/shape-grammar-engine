@@ -2,8 +2,8 @@ from package.model import layer as l
 import rhinoscriptsyntax as rs
 
 class Llist(object):
-    dummy_entry_value = 'nil'
     class_name = 'Llist'
+    dummy_entry_value = 'nil'
 
     def __init__(self):
         pass
