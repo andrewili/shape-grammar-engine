@@ -4,8 +4,10 @@ from package.model import layer as l
 import rhinoscriptsyntax as rs
 
 class FrameBlock(object):
-    layer_name = 'frames'
+    base_point = [0, 0, 0]
+    block_name = 'frame block'
     color_name = 'dark gray'
+    layer_name = 'frames'
 
     def __init__(self):
         pass
@@ -16,21 +18,52 @@ class FrameBlock(object):
         """Creates a frame layer, draws a shape frame there, and converts the
         shape frame to a block. Returns:
             str             the name of the block, if successful
+            None            otherwise
         """
-        l.Layer.new(cls.layer_name, cls.color_name)
-        frame_guids = f.Frame.new(cls.layer_name)
-        base_point = [0, 0, 0]
-        block_name = 'frame block'
-        actual_block_name = rs.AddBlock(frame_guids, base_point, block_name)
-        return actual_block_name
+        if cls._frame_block_exists():
+            return_value = None
+        else:
+            l.Layer.new(cls.layer_name, cls.color_name)
+            rs.CurrentLayer('frames')
+            frame_guids = f.Frame.new()
+            actual_block_name = rs.AddBlock(
+                frame_guids, cls.base_point, cls.block_name)
+            rs.CurrentLayer('Default')
+            layer_names = rs.LayerNames()
+            if (
+                cls.layer_name in layer_names and
+                actual_block_name == cls.block_name
+            ):
+                return_value = actual_block_name
+            else:
+                return_value = None
+        return return_value
 
     @classmethod
-    def delete(cls):
+    def delete(cls):                            ##  Came from 
+                                                ##  Grammar._clear_settings()
         """Deletes the frame block and its layer. Returns:
             boolean         True if successful; False otherwise
         """
-        rs.DeleteBlock(cls.layer_name)
-        l.Layer.delete(cls.layer_name)          ##  You are here
+        if not cls._frame_block_exists():
+            return_value = False
+        else:
+            block_was_deleted = rs.DeleteBlock(cls.block_name)
+            layer_was_deleted = l.Layer.delete(cls.layer_name)
+            if (
+                block_was_deleted and
+                layer_was_deleted
+            ):
+                return_value = True
+            else:
+                return_value = False
+        return return_value
+
+    @classmethod
+    def _frame_block_exists(cls):
+        block_names = rs.BlockNames()
+        return_value = cls.block_name in block_names
+        return return_value
 
     # @classmethod
     # def delete(cls):
