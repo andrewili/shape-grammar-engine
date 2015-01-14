@@ -49,10 +49,13 @@ class FrameBlock(object):
             return_value = False
         else:
             block_was_deleted = rs.DeleteBlock(cls.block_name)
-            layer_was_deleted = l.Layer.delete(cls.layer_name)
+            actual_value = l.Layer.delete(cls.layer_name)       ##  Went to fix
+            expected_value = cls.layer_name
+            print("block_was_deleted: %s" % block_was_deleted)
+            print("actual_value: %s" % actual_value)
             if (
                 block_was_deleted and
-                layer_was_deleted
+                actual_value == expected_value
             ):
                 return_value = True
             else:

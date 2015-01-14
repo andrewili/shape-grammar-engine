@@ -6,7 +6,7 @@ import rhinoscriptsyntax as rs
 class Layer(object):
     class_name = 'Layer'
     layer_dict_name = 'user layer names'
-    layer_value = 'nil'
+    layer_value = 'dummy value'                 ##  this is confusing
 
     def __init__(self):
         pass
@@ -58,7 +58,7 @@ class Layer(object):
             return return_value
 
     @classmethod
-    def _layer_name_is_in_use(cls, layer_name):
+    def _layer_name_is_in_use(cls, layer_name): ##  broken
         """Receives:
             layer_name      str
         Returns:
@@ -68,6 +68,7 @@ class Layer(object):
         """
         layer_dict_name = cls.layer_dict_name
         return_value = ll.Llist._contains_entry(layer_dict_name, layer_name)
+                                                ##  returns False
         return return_value
 
     @classmethod
@@ -115,12 +116,12 @@ class Layer(object):
             layer_name      str
         Deletes the layer and removes its name from the layer name list.
         Returns:
-            boolean         True if successful; False otherwise
+            boolean         True if successful; False otherwise ##  Do this!
         """
         try:
             if not type(layer_name) == str:
                 raise TypeError
-            if not cls._layer_name_is_in_use(layer_name):
+            if not cls._layer_name_is_in_use(layer_name):   ##  Moved on
                 raise ValueError
         except TypeError:
             message = "The argument must be a string"

@@ -3,7 +3,7 @@ import rhinoscriptsyntax as rs
 
 class Llist(object):
     class_name = 'Llist'
-    dummy_entry_value = 'nil'
+    dummy_value = 'dummy value'
 
     def __init__(self):
         pass
@@ -36,8 +36,8 @@ class Llist(object):
             print(message)
             return_value = None
         else:
-            dummy_entry_value = cls.dummy_entry_value
-            rs.SetDocumentData(list_name, entry, dummy_entry_value)
+            dummy_value = cls.dummy_value
+            rs.SetDocumentData(list_name, entry, dummy_value)
             entries = rs.GetDocumentData(list_name)
             if entry in entries:
                 return_value = entry
@@ -120,7 +120,7 @@ class Llist(object):
             boolean         True, if the list contains the entry; False 
                             otherwise
         """
-        try:                                    ##  check for number of args!
+        try:
             if not (
                 type(list_name) == str and
                 type(entry) == str
@@ -141,5 +141,6 @@ class Llist(object):
         else:
             entries = rs.GetDocumentData(list_name)
             return_value = (entry in entries)
+            # print("%s: return_value: %s" % (cls.class_name, return_value))
         return return_value
 

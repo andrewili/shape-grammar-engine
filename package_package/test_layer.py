@@ -8,7 +8,17 @@ layer_value = l.Layer.layer_value
 good_layer_name = 'good layer'
 # color_name
 
-def _initialize_test():
+def _clear_all():
+    layer_names = rs.LayerNames()
+    for name in layer_names:
+        rs.DeleteLayer(name)
+    rs.DeleteDocumentData()
+
+def _set_test_layer():
+    rs.AddLayer(layer_name)
+    rs.SetDocumentData(layer_dict_name, layer_name, layer_value)
+
+def _initialize_test():                         ##  revise as _clear_all
     layer_names = rs.LayerNames(True)
     for layer_name in layer_names:
         rs.DeleteLayer(layer_name)
@@ -79,8 +89,9 @@ def test__layer_name_is_in_use():
                 "_layer_name_is_in_use: good_arg_false:",
                 "expected '%s'; got '%s'" % (expected_value, actual_value)))
 
-    def try_good_arg_true():
-        _initialize_test()
+    def try_good_arg_true():                    ##  I am here
+        _clear_all()
+        _set_test_layer()
         good_arg_true = layer_name
         actual_value = l.Layer._layer_name_is_in_use(good_arg_true)
         expected_value = True
@@ -124,15 +135,10 @@ def test_delete():
     try_bad_value_layer_name()
     try_good_arg()
 
-### test private methods
 test__layer_name_is_in_use()
-# test_get_dict_name()
-# test_add_layer()
-# test_record_layer_name()
-
-### test public methods
 test_new()
 test_delete()
+
 
 # def test_get_dict_name():
     # actual_dict_name = l.Layer._get_dict_name()
