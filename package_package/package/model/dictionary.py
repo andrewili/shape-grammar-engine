@@ -1,8 +1,6 @@
 import rhinoscriptsyntax as rs
 
 class Dictionary(object):
-    class_name = 'Dictionary'
-
     def __init__(self):
         pass
 
@@ -16,6 +14,7 @@ class Dictionary(object):
             str             the value set, if successful
             None            otherwise
         """
+        method_name = 'set_value'
         try:
             if not (
                 type(dict_name) == str and
@@ -24,7 +23,8 @@ class Dictionary(object):
             ):
                 raise TypeError
         except TypeError:
-            message = "%s: All arguments must be strings" % cls.class_name
+            message = "%s.%s: All arguments must be strings" % (
+                cls.__name__, method_name)
             print(message)
             return_value = None
         else:
@@ -46,6 +46,7 @@ class Dictionary(object):
             str             the value, if successful
             None            otherwise
         """
+        method_name = 'get_value'
         try:
             dict_names = rs.GetDocumentData()
             keys = rs.GetDocumentData(dict_name)
@@ -60,11 +61,13 @@ class Dictionary(object):
             ):
                 raise ValueError
         except TypeError:
-            message = "%s: Both arguments must be strings" % cls.class_name
+            message = "%s.%s: Both arguments must be strings" % (
+                cls.__name__, method_name)
             print(message)
             return_value = None
         except ValueError:
-            message = "%s: Both arguments must exist" % cls.class_name
+            message = "%s.%s: Both arguments must exist" % (
+                cls.__name__, method_name)
             print(message)
             return_value = None
         else:
@@ -83,6 +86,7 @@ class Dictionary(object):
         Deletes the entry. Returns:
             boolean         True if successful; False otherwise
         """
+        method_name = 'delete_entry'
         try:
             dict_names = rs.GetDocumentData()
             keys = rs.GetDocumentData(dict_name)
@@ -97,11 +101,13 @@ class Dictionary(object):
             ):
                 raise ValueError
         except TypeError:
-            message = "%s: Both arguments must be strings" % cls.class_name
+            message = "%s.%s: Both arguments must be strings" % (
+                cls.__name__, method_name)
             print(message)
             return_value = False
         except ValueError:
-            message = "%s: Both arguments must exist" % cls.class_name
+            message = "%s.%s: Both arguments must exist" % (
+                cls.__name__, method_name)
             print(message)
             return_value = False
         else:
@@ -112,6 +118,29 @@ class Dictionary(object):
             else:
                 return_value = True
         return return_value
+
+    @classmethod
+    def dictionary_exists(cls, dict_name):
+        """Receives:
+            dict_name       str
+        Returns:
+            boolean         True, if the dictionary exists;
+                            False otherwise
+        """
+        method_name = 'dictionary_exists'
+        try:
+            if not type(dict_name) == str:
+                raise TypeError
+        except TypeError:
+            message = "%s.%s: The argument must be a string" % (
+                cls.__name__, method_name)
+            print(message)
+            return_value = None
+        else:
+            dict_names = rs.GetDocumentData()
+            return_value = (dict_name in dict_names)
+        finally:
+            return return_value
 
     ### utilities
     # @classmethod

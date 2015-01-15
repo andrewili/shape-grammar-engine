@@ -19,6 +19,73 @@ def _print_error_message(method_name, try_name, expected_value, actual_value):
             method_name, try_name, expected_value, actual_value))
         print(message)
 
+def test__contains_entry():
+    method_name = '_contains_entry'
+
+    def try_bad_type_list_name():
+        try_name = 'bad_type_list_name'
+        _clear_all()
+        _set_entries()
+        bad_type_list_name = 37
+        good_entry = entry_1
+        actual_value = ll.Llist._contains_entry(
+            bad_type_list_name, good_entry)
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_bad_type_entry():
+        try_name = 'bad_type_entry'
+        _clear_all()
+        _set_entries()
+        bad_type_entry = 29
+        actual_value = ll.Llist._contains_entry(list_name, bad_type_entry)
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_bad_value_list_name():
+        try_name = 'bad_value_list_name'
+        _clear_all()
+        _set_entries()
+        bad_value_list_name = 'molecules'
+        actual_value = ll.Llist._contains_entry(bad_value_list_name, entry_1)
+        expected_value = False
+        if not expected_value == actual_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_args_false_entry():
+        try_name = 'try_good_args_false_entry'
+        _clear_all()
+        _set_entries()
+        false_entry = 'non-existent entry'
+        actual_value = ll.Llist._contains_entry(list_name, false_entry)
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_args_true_entry():
+        try_name = 'try_good_args_true_entry'
+        _clear_all()
+        _set_entries()
+        dict_name = list_name
+        dict_entry = entry_1
+        actual_value = ll.Llist._contains_entry(dict_name, dict_entry)
+        expected_value = True
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_bad_type_list_name()
+    try_bad_type_entry()
+    try_bad_value_list_name()
+    try_good_args_false_entry()
+    try_good_args_true_entry()
+
 def test_set_entry():
     method_name = 'set_entry'
 
@@ -111,73 +178,6 @@ def test_get_entries():
     try_bad_value_list_name()
     try_good_arg()
 
-def test__contains_entry():
-    method_name = '_contains_entry'
-
-    def try_bad_type_list_name():
-        try_name = 'bad_type_list_name'
-        _clear_all()
-        _set_entries()
-        bad_type_list_name = 37
-        good_entry = entry_1
-        actual_value = ll.Llist._contains_entry(
-            bad_type_list_name, good_entry)
-        expected_value = False
-        if not actual_value == expected_value:
-            _print_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_type_entry():
-        try_name = 'bad_type_entry'
-        _clear_all()
-        _set_entries()
-        bad_type_entry = 29
-        actual_value = ll.Llist._contains_entry(list_name, bad_type_entry)
-        expected_value = False
-        if not actual_value == expected_value:
-            _print_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_value_list_name():
-        try_name = 'bad_value_list_name'
-        _clear_all()
-        _set_entries()
-        bad_value_list_name = 'molecules'
-        actual_value = ll.Llist._contains_entry(bad_value_list_name, entry_1)
-        expected_value = False
-        if not expected_value == actual_value:
-            _print_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_args_false_entry():
-        try_name = 'try_good_args_false_entry'
-        _clear_all()
-        _set_entries()
-        false_entry = 'non-existent entry'
-        actual_value = ll.Llist._contains_entry(list_name, false_entry)
-        expected_value = False
-        if not actual_value == expected_value:
-            _print_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_args_true_entry():
-        try_name = 'try_good_args_true_entry'
-        _clear_all()
-        _set_entries()
-        dict_name = list_name
-        dict_entry = entry_1
-        actual_value = ll.Llist._contains_entry(dict_name, dict_entry)
-        expected_value = True
-        if not actual_value == expected_value:
-            _print_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    try_bad_type_list_name()
-    try_bad_type_entry()
-    try_bad_value_list_name()
-    try_good_args_false_entry()
-    try_good_args_true_entry()
-
 def test_delete_entry():
     method_name = 'delete_entry'
 
@@ -241,7 +241,11 @@ def test_delete_entry():
     try_bad_value_entry()
     try_good_args()
 
+def test_entry_exists():                        ##  finish me
+    pass
+
 test__contains_entry()
 test_set_entry()
 test_get_entries()
 test_delete_entry()
+# test_entry_exists()

@@ -1,8 +1,6 @@
-from package.model import layer as l
 import rhinoscriptsyntax as rs
 
 class Llist(object):
-    class_name = 'Llist'
     dummy_value = 'dummy value'
 
     def __init__(self):
@@ -17,6 +15,7 @@ class Llist(object):
             str             the entry, if successful
             None            otherwise
         """
+        method_name = 'set_entry'
         try:
             if not (
                 type(list_name) == str and
@@ -27,12 +26,13 @@ class Llist(object):
             if entry in entries:
                 raise ValueError
         except TypeError:
-            message = "%s: Both arguments must be strings" % cls.class_name
+            message = "%s.%s: Both arguments must be strings" % (
+                cls.__name__, method_name)
             print(message)
             return_value = None
         except ValueError:
-            message = "%s: The entry '%s' already exists" % (
-                cls.class_name, entry)
+            message = "%s.%s: The entry '%s' already exists" % (
+                cls.__name__, method_name, entry)
             print(message)
             return_value = None
         else:
@@ -54,6 +54,7 @@ class Llist(object):
             [str, ...]      a sorted list of entries, if successful
             None            otherwise
         """
+        method_name = 'get_entries'
         try:
             if not type(list_name) == str:
                 raise TypeError
@@ -61,12 +62,13 @@ class Llist(object):
             if not list_name in list_names:
                 raise ValueError
         except TypeError:
-            message = "%s: The list name must be a string" % cls.class_name
+            message = "%s.%s: The list name must be a string" % (
+                cls.__name__, method_name)
             print(message)
             return_value = None
         except ValueError:
-            message = "%s: The list name '%s' does not exist" % (
-                cls.class_name, list_name)
+            message = "%s.%s: The list name '%s' does not exist" % (
+                cls.__name__, method_name, list_name)
             print(message)
             return_value = None
         else:
@@ -79,8 +81,10 @@ class Llist(object):
             list_name       str
             entry           str
         Removes the entry from the list. Returns:
-            boolean         True, if successful; False otherwise
+            boolean         True, if successful;
+                            False otherwise
         """
+        method_name = 'delete_entry'
         try:
             list_names = rs.GetDocumentData()
             entries = rs.GetDocumentData(list_name)
@@ -94,11 +98,13 @@ class Llist(object):
             elif not entry in entries:
                 raise ValueError
         except TypeError:
-            message = "%s: Both arguments must be strings" % cls.class_name
+            message = "%s.%s: Both arguments must be strings" % (
+                cls.__name__, method_name)
             print(message)
             return_value = False
         except ValueError:
-            message = "%s: Both arguments must exist" % cls.class_name
+            message = "%s.%s: Both arguments must exist" % (
+                cls.__name__, method_name)
             print(message)
             return_value = False
         else:
@@ -117,9 +123,10 @@ class Llist(object):
             list_name       str
             entry           str
         Returns:
-            boolean         True, if the list contains the entry; False 
-                            otherwise
+            boolean         True, if the list contains the entry;
+                            False otherwise
         """
+        method_name = '_contains_entry'
         try:
             if not (
                 type(list_name) == str and
@@ -130,17 +137,16 @@ class Llist(object):
             if not list_name in list_names:
                 raise ValueError
         except TypeError:
-            message = "%s: Both arguments must be strings" % cls.class_name
+            message = "%s.%s: Both arguments must be strings" % (
+                cls.__name__, method_name)
             print(message)
             return_value = False
         except ValueError:
-            message = "%s: There is no list named '%s'" % (
-                cls.class_name, list_name)
+            message = "%s.%s: There is no list named '%s'" % (
+                cls.__name__, method_name, list_name)
             print(message)
             return_value = False
         else:
             entries = rs.GetDocumentData(list_name)
             return_value = (entry in entries)
-            # print("%s: return_value: %s" % (cls.class_name, return_value))
         return return_value
-
