@@ -15,7 +15,7 @@ def _set_entries():
     rs.SetDocumentData(list_name, entry_2, dummy_value)
     
 def _print_error_message(method_name, try_name, expected_value, actual_value):
-        message = ("%s: %s: expected '%s'; got '%s'" % (
+        message = ("%s: %s:\n    expected '%s'; got '%s'" % (
             method_name, try_name, expected_value, actual_value))
         print(message)
 
@@ -248,4 +248,4 @@ test__contains_entry()
 test_set_entry()
 test_get_entries()
 test_delete_entry()
-# test_entry_exists()
+test_entry_exists()

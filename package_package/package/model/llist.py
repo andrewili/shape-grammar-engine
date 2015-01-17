@@ -149,4 +149,5 @@ class Llist(object):
         else:
             entries = rs.GetDocumentData(list_name)
             return_value = (entry in entries)
-        return return_value
+        finally:
+            return return_value

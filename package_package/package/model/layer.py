@@ -4,53 +4,47 @@ from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
 class Layer(object):
-    class_name = 'Layer'
     layer_dict_name = 'user layer names'
-    layer_value = 'dummy value'                 ##  this is confusing
 
     def __init__(self):
         pass
-
-##  make dict listing methods?
 
     @classmethod                                ##  called by FrameBlock.new()
     def new(cls, layer_name, color_name='black'):
         """Receives:
             layer_name      str
-            color_name      str
+            color_name      str: {'black', 'dark gray'}
         Adds a new layer and enters the name in the user layer name list, if 
         the name is available. Returns:
             str             the name of the layer, if successful
             None            otherwise
         """
+        method_name = 'new'
         try:
             if not (
                 type(layer_name) == str and
                 type(color_name) == str
             ):
                 raise TypeError
-            elif cls._layer_name_is_in_use(layer_name):
+            elif not (
+                not cls._layer_name_is_in_use(layer_name) and
+                cls._color_name_is_allowed(color_name)
+            ):
                 raise ValueError
         except TypeError:
-            message = "%s: Both arguments must be strings" % cls.class_name
+            message = "%s.%s: Both arguments must be strings" % (
+                cls.__name__, method_name)
             print(message)
             return_value = None
         except ValueError:
-            message = "%s: The layer name '%s' is in use" % (
-                cls.class_name, layer_name)
+            message = "%s.%s: The layer name '%s' is in use" % (
+                cls.__name__, method_name, layer_name)
             print(message)
             return_value = None
         else:
             rs.AddLayer(layer_name, color_name)
-            layer_value = cls.layer_value
-            layer_dict_name = cls.layer_dict_name
-            d.Dictionary.set_value(layer_dict_name, layer_name, layer_value)
-            user_layer_names = rs.GetDocumentData(layer_dict_name)
-            system_layer_names = rs.LayerNames()
-            if (
-                layer_name in user_layer_names and
-                layer_name in system_layer_names
-            ):
+            cls._add_layer_name(layer_name)
+            if cls._layer_name_is_in_use(layer_name):
                 return_value = layer_name
             else:
                 return_value = None
@@ -58,7 +52,7 @@ class Layer(object):
             return return_value
 
     @classmethod
-    def _layer_name_is_in_use(cls, layer_name): ##  broken
+    def _layer_name_is_in_use(cls, layer_name):
         """Receives:
             layer_name      str
         Returns:
@@ -66,36 +60,61 @@ class Layer(object):
                             data structure (i.e., including Dictionary 
                             entries); False otherwise
         """
-        layer_dict_name = cls.layer_dict_name
-        return_value = ll.Llist._contains_entry(layer_dict_name, layer_name)
-                                                ##  returns False
-        return return_value
-
-    @classmethod
-    def _add_layer(cls, layer_name_in, color_name):
-        """Receives:
-            layer_name_in   str, not in layer name dictionary
-            color_name      str: {'dark gray'}
-        Adds a layer. Adds its name to the layer name dictionary.
-        Returns:
-            str             layer name, if successful
-            None            otherwise
-        """
-        color = cls._get_color(color_name)
-        return_value = rs.AddLayer(layer_name_in, color)
-        if not return_value == layer_name_in:
-            return_value = None
+        method_name = '_layer_name_is_in_use'
+        try:
+            if not type(layer_name) == str:
+                raise TypeError
+        except TypeError:
+            message = "%s.%s: The argument must be a string" % (
+                cls.__name__, method_name)
+            print(message)
+            return_value = False
         else:
-            cls._enter_in_layer_name_dict(layer_name_in)
+            return_value = ll.Llist._contains_entry(
+                cls.layer_dict_name, layer_name)
+        finally:
+            return return_value
+
+    @classmethod
+    def _color_name_is_allowed(cls, color_name):
+        """Receives:
+            color_name      str
+        Returns:
+            boolean         True, if the color name is allowed;
+                            False otherwise
+        """
+        allowed_colors = ['black', 'dark gray']
+        return_value = (color_name in allowed_colors)
         return return_value
 
     @classmethod
-    def _record_layer_name(cls, layer_name):
+    def _add_layer_name(cls, layer_name):
         """Receives:
             layer_name      str
-        Enters the name in the user layer name dict
+        Enters the name in the user layer name dict. Returns:
+            str             the layer name, if successful
+            None            otherwise
         """
-        ll.Llist.record_layer_name(layer_name)
+        method_name = '_add_layer_name'
+        try:
+            if not type(layer_name) == str:
+                raise TypeError
+            elif cls._layer_name_is_in_use(layer_name):
+                raise ValueError
+        except TypeError:
+            message = "%s.%s: The argument must be a string" % (
+                cls.__name__, method_name)
+            print(message)
+            return_value = None
+        except ValueError:
+            message = "%s.%s: The name '%s' is in use" % (
+                cls.__name__, method_name, layer_name)
+            print(message)
+            return_value = None
+        else:
+            return_value = ll.Llist.set_entry(cls.layer_dict_name, layer_name)
+        finally:
+            return return_value
 
     @classmethod
     def _get_color(cls, color_name):
@@ -118,6 +137,7 @@ class Layer(object):
         Returns:
             boolean         True if successful; False otherwise ##  Do this!
         """
+        method_name = 'delete'
         try:
             if not type(layer_name) == str:
                 raise TypeError
@@ -125,14 +145,48 @@ class Layer(object):
                 raise ValueError
         except TypeError:
             message = "The argument must be a string"
-            print("%s: %s" % (cls.class_name, message))
+            print("%s.%s: %s" % (cls.__name__, method_name, message))
             return_value = None
         except ValueError:
             message = "The layer name '%s' does not exist" % layer_name
-            print("%s: %s" % (cls.class_name, message))
+            print("%s.%s: %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
-            return_value = rs.DeleteLayer(layer_name)
+            layer_name_was_deleted = cls._delete_layer_name(layer_name)
+            layer_was_deleted = rs.DeleteLayer(layer_name)
+            return_value = (
+                layer_name_was_deleted and
+                layer_was_deleted
+            )
+        finally:
+            return return_value
+
+    @classmethod
+    def _delete_layer_name(cls, layer_name):
+        """Receives:
+            layer_name      str
+        Deletes the name from the layer name list, if present. Returns:
+            boolean         True, if successful; False otherwise
+        """
+        method_name = '_delete_layer_name'
+        try:
+            if not type(layer_name) == str:
+                raise TypeError
+            if not cls._layer_name_is_in_use(layer_name):
+                raise ValueError
+        except TypeError:
+            message = "%s.%s: The argument must be a string" % (
+                cls.__name__, method_name)
+            print(message)
+            return_value = False
+        except ValueError:
+            message = "%s.%s: The name '%s' does not exist" % (
+                cls.__name__, method_name, layer_name)
+            print(message)
+            return_value = False
+        else:
+            return_value = ll.Llist.delete_entry(
+                cls.layer_dict_name, layer_name)
         finally:
             return return_value
 

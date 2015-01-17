@@ -22,7 +22,7 @@ def _set_entries():
     rs.SetDocumentData(dict_name_2, key_2b, value_2b)
 
 def _print_error_message(method_name, try_name, expected_value, actual_value):
-    message = "%s: %s: expected '%s'; got '%s'" % (
+    message = "%s: %s:\n    expected '%s'; got '%s'" % (
         method_name, try_name, expected_value, actual_value)
     print(message)
 
