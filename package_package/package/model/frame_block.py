@@ -1,4 +1,3 @@
-# from package.model import block as b
 from package.model import frame as f
 from package.model import layer as l
 import rhinoscriptsyntax as rs
@@ -24,7 +23,7 @@ class FrameBlock(object):
             return_value = None
         else:
             l.Layer.new(cls.layer_name, cls.color_name)
-            rs.CurrentLayer('frames')
+            rs.CurrentLayer(cls.layer_name)
             frame_guids = f.Frame.new()
             actual_block_name = rs.AddBlock(
                 frame_guids, cls.base_point, cls.block_name)
@@ -45,14 +44,17 @@ class FrameBlock(object):
         """Deletes the frame block and its layer. Returns:
             boolean         True if successful; False otherwise
         """
-        if not cls._frame_block_exists():
+        if not (
+            cls._frame_block_exists() and
+            l.Layer.layer_name_is_in_use(cls.layer_name)
+        ):
             return_value = False
         else:
             block_was_deleted = rs.DeleteBlock(cls.block_name)
-            actual_value = l.Layer.delete(cls.layer_name)       ##  Went to fix
-            expected_value = cls.layer_name
-            print("block_was_deleted: %s" % block_was_deleted)
-            print("actual_value: %s" % actual_value)
+            guids = rs.ObjectsByLayer(cls.layer_name)
+            rs.DeleteObjects(guids)
+            actual_value = l.Layer.delete(cls.layer_name)
+            expected_value = True
             if (
                 block_was_deleted and
                 actual_value == expected_value
@@ -67,37 +69,3 @@ class FrameBlock(object):
         block_names = rs.BlockNames()
         return_value = cls.block_name in block_names
         return return_value
-
-    # @classmethod
-    # def delete(cls):
-    #     """Deletes the frame block and its layer. Returns the success value:
-    #         boolean
-    #     """
-    #     block_was_deleted = False
-    #     no_such_block = False
-    #     block_name = 'Frame'
-    #     block_names = b.Block.get_names()
-    #     if not block_name in block_names:
-    #         no_such_block = True
-    #     if no_such_block == True:
-    #         message = 'No frame block to delete'
-    #     else:
-    #         block_was_deleted = b.Block.delete(block_name)
-    #         if block_was_deleted:
-    #             message = 'Deleted frame block'
-    #         else:
-    #             message = "Didn't delete frame block"
-    #     print(message)
-    #     return block_was_deleted
-
-    # @classmethod
-    # def _draw_frame(cls, layer_name):
-    #     """Receives a layer name:
-    #         str
-    #     Draws a frame on the named layer. Returns the lines:
-    #         [guid, ...]
-    #     """
-    #     guids = []
-    #     print('Pretended to draw a frame')
-    #     return guids
-

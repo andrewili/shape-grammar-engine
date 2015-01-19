@@ -1,5 +1,4 @@
 from System.Drawing import Color
-from package.model import dictionary as d
 from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
@@ -27,7 +26,7 @@ class Layer(object):
             ):
                 raise TypeError
             elif not (
-                not cls._layer_name_is_in_use(layer_name) and
+                not cls.layer_name_is_in_use(layer_name) and
                 cls._color_name_is_allowed(color_name)
             ):
                 raise ValueError
@@ -44,7 +43,7 @@ class Layer(object):
         else:
             rs.AddLayer(layer_name, color_name)
             cls._add_layer_name(layer_name)
-            if cls._layer_name_is_in_use(layer_name):
+            if cls.layer_name_is_in_use(layer_name):
                 return_value = layer_name
             else:
                 return_value = None
@@ -52,7 +51,7 @@ class Layer(object):
             return return_value
 
     @classmethod
-    def _layer_name_is_in_use(cls, layer_name):
+    def layer_name_is_in_use(cls, layer_name):
         """Receives:
             layer_name      str
         Returns:
@@ -60,7 +59,7 @@ class Layer(object):
                             data structure (i.e., including Dictionary 
                             entries); False otherwise
         """
-        method_name = '_layer_name_is_in_use'
+        method_name = 'layer_name_is_in_use'
         try:
             if not type(layer_name) == str:
                 raise TypeError
@@ -99,7 +98,7 @@ class Layer(object):
         try:
             if not type(layer_name) == str:
                 raise TypeError
-            elif cls._layer_name_is_in_use(layer_name):
+            elif cls.layer_name_is_in_use(layer_name):
                 raise ValueError
         except TypeError:
             message = "%s.%s: The argument must be a string" % (
@@ -130,34 +129,33 @@ class Layer(object):
         return color
 
     @classmethod
-    def delete(cls, layer_name):                ##  You are here
+    def delete(cls, layer_name):
         """Receives:
             layer_name      str
         Deletes the layer and removes its name from the layer name list.
         Returns:
-            boolean         True if successful; False otherwise ##  Do this!
+            boolean         True if successful; False otherwise
         """
         method_name = 'delete'
         try:
             if not type(layer_name) == str:
                 raise TypeError
-            if not cls._layer_name_is_in_use(layer_name):   ##  Moved on
+            if not cls.layer_name_is_in_use(layer_name):
                 raise ValueError
         except TypeError:
             message = "The argument must be a string"
             print("%s.%s: %s" % (cls.__name__, method_name, message))
-            return_value = None
+            return_value = False
         except ValueError:
             message = "The layer name '%s' does not exist" % layer_name
             print("%s.%s: %s" % (cls.__name__, method_name, message))
-            return_value = None
+            return_value = False
         else:
             layer_name_was_deleted = cls._delete_layer_name(layer_name)
             layer_was_deleted = rs.DeleteLayer(layer_name)
             return_value = (
                 layer_name_was_deleted and
-                layer_was_deleted
-            )
+                layer_was_deleted)
         finally:
             return return_value
 
@@ -172,7 +170,7 @@ class Layer(object):
         try:
             if not type(layer_name) == str:
                 raise TypeError
-            if not cls._layer_name_is_in_use(layer_name):
+            if not cls.layer_name_is_in_use(layer_name):
                 raise ValueError
         except TypeError:
             message = "%s.%s: The argument must be a string" % (
@@ -189,62 +187,3 @@ class Layer(object):
                 cls.layer_dict_name, layer_name)
         finally:
             return return_value
-
-    # @classmethod
-    # def set(cls, layer_name):
-        # """Receives a layer name:
-        #     str
-        # Sets the current layer to the named layer. Returns the name of the new
-        # current layer:
-        #     str
-        # """
-        # rs.CurrentLayer(layer_name)
-        # current_layer_name = rs.CurrentLayer()
-        # # print('Current layer: %s' % current_layer_name)
-        # return current_layer_name
-
-    # @classmethod
-    # def set_to_default(cls):
-        # cls.set('Default')
-
-    # @classmethod
-    # def purge(cls, layer_name):
-        # """Receives a layer name:
-        #     str
-        # Deletes both the layer and its contents. Returns the success value:
-        #     boolean
-        # """
-        # user_layer_names = cls.get_user_layer_names()
-        # if layer_name not in user_layer_names:
-        #     message = 'The layer "%s" does not exist' % layer_name
-        # layer_was_purged = rs.PurgeLayer(layer_name)
-        # if layer_was_purged:
-        #     d.Dictionary.delete_entry('user layer names', layer_name)
-        #     message = 'Deleted layer: %s' % layer_name
-        # else:
-        #     message = 'Failed to delete layer "%s"' % layer_name
-        # print(message)
-        # return layer_was_purged
-
-    # @classmethod
-    # def purge_all(cls):
-        # """Purges all grammar-defined layers and their contents. Returns the 
-        # number of layers purged:
-        #     int
-        # """
-        # n_layers_purged = 0
-        # user_layer_names = cls.get_user_layer_names()
-        # for name in user_layer_names:
-        #     name_was_purged = cls.purge(name)
-        #     if name_was_purged:
-        #         n_layers_purged += 1
-        # return n_layers_purged
-
-    # @classmethod
-    # def get_user_layer_names(cls):
-        # """Returns all user layer names, sorted:
-        #     [str, ...]
-        # """
-        # names = d.Dictionary.get_keys('user layer names')
-        # return names
-

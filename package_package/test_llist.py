@@ -1,4 +1,3 @@
-from package.model import dictionary as d
 from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
@@ -241,11 +240,7 @@ def test_delete_entry():
     try_bad_value_entry()
     try_good_args()
 
-def test_entry_exists():                        ##  finish me
-    pass
-
 test__contains_entry()
 test_set_entry()
 test_get_entries()
 test_delete_entry()
-test_entry_exists()

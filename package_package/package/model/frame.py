@@ -1,4 +1,3 @@
-# from package.model import layer as l
 import rhinoscriptsyntax as rs
 
 class Frame(object):

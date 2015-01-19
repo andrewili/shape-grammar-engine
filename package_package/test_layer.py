@@ -1,4 +1,3 @@
-from package.model import dictionary as d
 from package.model import layer as l
 from package.model import llist as ll
 import rhinoscriptsyntax as rs
@@ -24,15 +23,15 @@ def _print_error_message(
         method_name, try_name, expected_value, actual_value)
     print(message)
 
-def test__layer_name_is_in_use():
-    method_name = '_layer_name_is_in_use'
+def test_layer_name_is_in_use():
+    method_name = 'layer_name_is_in_use'
 
     def try_bad_type_layer_name():
         try_name = 'bad_type_layer_name'
         _clear_all()
         _set_test_layer()
         bad_type_layer_name = 37
-        actual_value = l.Layer._layer_name_is_in_use(bad_type_layer_name)
+        actual_value = l.Layer.layer_name_is_in_use(bad_type_layer_name)
         expected_value = False
         if not actual_value == expected_value:
             _print_error_message(
@@ -43,7 +42,7 @@ def test__layer_name_is_in_use():
         _clear_all()
         _set_test_layer()
         good_arg_false = 'kilroy'
-        actual_value = l.Layer._layer_name_is_in_use(good_arg_false)
+        actual_value = l.Layer.layer_name_is_in_use(good_arg_false)
         expected_value = False
         if not actual_value == expected_value:
             _print_error_message(
@@ -54,7 +53,7 @@ def test__layer_name_is_in_use():
         _clear_all()
         _set_test_layer()
         good_arg_true = layer_name
-        actual_value = l.Layer._layer_name_is_in_use(good_arg_true)
+        actual_value = l.Layer.layer_name_is_in_use(good_arg_true)
         expected_value = True
         if not actual_value == expected_value:
             _print_error_message(
@@ -136,7 +135,7 @@ def test_delete():
         _set_test_layer()
         bad_type_layer_name = 37
         actual_value = l.Layer.delete(bad_type_layer_name)
-        expected_value = None
+        expected_value = False
         if not actual_value == expected_value:
             _print_error_message(
                 method_name, try_name, expected_value, actual_value)
@@ -147,7 +146,7 @@ def test_delete():
         _set_test_layer()
         bad_value_layer_name = 'kilroy'
         actual_value = l.Layer.delete(bad_value_layer_name)
-        expected_value = None
+        expected_value = False
         if not actual_value == expected_value:
             _print_error_message(
                 method_name, try_name, expected_value, actual_value)
@@ -247,18 +246,8 @@ def test__delete_layer_name():
     try_bad_value_layer_name()
     try_good_arg()
 
-test__layer_name_is_in_use()
+test_layer_name_is_in_use()
 test_new()
 test_delete()
 test__add_layer_name()
 test__delete_layer_name()
-
-# def test_get_dict_name():
-    # actual_dict_name = l.Layer._get_dict_name()
-    # expected_dict_name = 'user layer names'
-    # if not actual_dict_name == expected_dict_name:
-    #     print("%s %s" % (
-    #         "actual_dict_name: expected '%s';" % expected_dict_name,
-    #         "got %s" % actual_dict_name))
-
-

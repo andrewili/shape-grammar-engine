@@ -24,12 +24,20 @@ def _clear_layers():
 def _clear_dictionaries():
     rs.DeleteDocumentData()
 
+def _print_error_message(method_name, try_name, expected_value, actual_value):
+    message = "%s: %s: expected '%s'; got '%s'" % (
+        method_name, try_name, expected_value, actual_value)
+    print(message)
+
 def test_new():
+    method_name = 'new'
+    try_name = 'nil'
     _clear_all()
     guids = f.Frame.new()
     actual_value = len(guids)
     expected_value = len(f.Frame.point_pairs)
     if not actual_value == expected_value:
-        print("new: expected %i; got %i" % (expected_value, actual_value))
+        _print_error_message(
+            method_name, try_name, expected_value, actual_value)
 
 test_new()
