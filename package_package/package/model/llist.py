@@ -118,7 +118,7 @@ class Llist(object):
 
     ##  private methods
     @classmethod
-    def _contains_entry(cls, list_name, entry):
+    def contains_entry(cls, list_name, entry):
         """Receives:
             list_name       str
             entry           str
@@ -126,7 +126,7 @@ class Llist(object):
             boolean         True, if the list contains the entry;
                             False otherwise
         """
-        method_name = '_contains_entry'
+        method_name = 'contains_entry'
         try:
             if not (
                 type(list_name) == str and

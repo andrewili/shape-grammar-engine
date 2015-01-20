@@ -18,8 +18,8 @@ def _print_error_message(method_name, try_name, expected_value, actual_value):
             method_name, try_name, expected_value, actual_value))
         print(message)
 
-def test__contains_entry():
-    method_name = '_contains_entry'
+def testcontains_entry():
+    method_name = 'contains_entry'
 
     def try_bad_type_list_name():
         try_name = 'bad_type_list_name'
@@ -27,7 +27,7 @@ def test__contains_entry():
         _set_entries()
         bad_type_list_name = 37
         good_entry = entry_1
-        actual_value = ll.Llist._contains_entry(
+        actual_value = ll.Llist.contains_entry(
             bad_type_list_name, good_entry)
         expected_value = False
         if not actual_value == expected_value:
@@ -39,7 +39,7 @@ def test__contains_entry():
         _clear_all()
         _set_entries()
         bad_type_entry = 29
-        actual_value = ll.Llist._contains_entry(list_name, bad_type_entry)
+        actual_value = ll.Llist.contains_entry(list_name, bad_type_entry)
         expected_value = False
         if not actual_value == expected_value:
             _print_error_message(
@@ -50,7 +50,7 @@ def test__contains_entry():
         _clear_all()
         _set_entries()
         bad_value_list_name = 'molecules'
-        actual_value = ll.Llist._contains_entry(bad_value_list_name, entry_1)
+        actual_value = ll.Llist.contains_entry(bad_value_list_name, entry_1)
         expected_value = False
         if not expected_value == actual_value:
             _print_error_message(
@@ -61,7 +61,7 @@ def test__contains_entry():
         _clear_all()
         _set_entries()
         false_entry = 'non-existent entry'
-        actual_value = ll.Llist._contains_entry(list_name, false_entry)
+        actual_value = ll.Llist.contains_entry(list_name, false_entry)
         expected_value = False
         if not actual_value == expected_value:
             _print_error_message(
@@ -73,7 +73,7 @@ def test__contains_entry():
         _set_entries()
         dict_name = list_name
         dict_entry = entry_1
-        actual_value = ll.Llist._contains_entry(dict_name, dict_entry)
+        actual_value = ll.Llist.contains_entry(dict_name, dict_entry)
         expected_value = True
         if not actual_value == expected_value:
             _print_error_message(
@@ -240,7 +240,7 @@ def test_delete_entry():
     try_bad_value_entry()
     try_good_args()
 
-test__contains_entry()
+testcontains_entry()
 test_set_entry()
 test_get_entries()
 test_delete_entry()

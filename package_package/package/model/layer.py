@@ -69,9 +69,17 @@ class Layer(object):
             print(message)
             return_value = False
         else:
-            list_exists = cls._layer_name_list_name_exists()
-            list_contains_name = cls._layer_name_list_contains_name(
-                layer_name)
+            # if not cls._layer_name_list_name_exists():
+            #     return_value = False
+            # else:
+            #     return_value = cls._layer_name_list_contains_name(layer_name)
+
+            # list_exists = cls._layer_name_list_name_exists()
+            # list_contains_name = cls._layer_name_list_contains_name(
+            #     layer_name)
+            # return_value = (
+            #     list_exists and
+            #     list_contains_name)
             return_value = (
                 cls._layer_name_list_name_exists() and
                 cls._layer_name_list_contains_name(layer_name))
@@ -106,8 +114,9 @@ class Layer(object):
             print(message)
             return_value = False
         else:
-            return_value = ll.Llist._contains_entry(
-                cls.layer_name_list_name, layer_name)
+            return_value = (
+                cls._layer_name_list_name_exists() and
+                ll.Llist.contains_entry(cls.layer_name_list_name, layer_name))
         finally:
             return return_value
 
@@ -148,7 +157,8 @@ class Layer(object):
             print(message)
             return_value = None
         else:
-            return_value = ll.Llist.set_entry(cls.layer_name_list_name, layer_name)
+            return_value = ll.Llist.set_entry(
+                cls.layer_name_list_name, layer_name)
         finally:
             return return_value
 

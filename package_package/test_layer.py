@@ -101,6 +101,15 @@ def test__layer_name_list_contains_name():
             _print_error_message(
                 method_name, try_name, expected_value, actual_value)
 
+    def try_good_arg_nonexistent_list_name():
+        try_name = 'good_arg_nonexistent_list_name'
+        _clear_all()
+        actual_value = l.Layer._layer_name_list_contains_name(layer_name)
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
     def try_good_arg_false():
         try_name = 'good_arg_false'
         _clear_all()
@@ -125,6 +134,7 @@ def test__layer_name_list_contains_name():
                 method_name, try_name, expected_value, actual_value)
 
     try_bad_type_layer_name()
+    try_good_arg_nonexistent_list_name()
     try_good_arg_false()
     try_good_arg_true()
 
