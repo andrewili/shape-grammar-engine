@@ -3,12 +3,12 @@ from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
 class Layer(object):
-    layer_dict_name = 'user layer names'
+    layer_name_list_name = 'user layer names'
 
     def __init__(self):
         pass
 
-    @classmethod                                ##  called by FrameBlock.new()
+    @classmethod
     def new(cls, layer_name, color_name='black'):
         """Receives:
             layer_name      str
@@ -69,8 +69,45 @@ class Layer(object):
             print(message)
             return_value = False
         else:
+            list_exists = cls._layer_name_list_name_exists()
+            list_contains_name = cls._layer_name_list_contains_name(
+                layer_name)
+            return_value = (
+                cls._layer_name_list_name_exists() and
+                cls._layer_name_list_contains_name(layer_name))
+        finally:
+            return return_value
+
+    @classmethod
+    def _layer_name_list_name_exists(cls):
+        """Returns:
+            boolean     True, if the user layer name list name exists;
+                        False otherwise
+        """
+        list_names = rs.GetDocumentData()
+        return_value = (cls.layer_name_list_name in list_names)
+        return return_value
+
+    @classmethod
+    def _layer_name_list_contains_name(cls, layer_name):
+        """Receives:
+            layer_name  str
+        Returns:
+            boolean     True, if the user layer name list contains
+                        layer_name
+        """
+        method_name = '_layer_name_list_contains_name'
+        try:
+            if not type(layer_name) == str:
+                raise TypeError
+        except TypeError:
+            message = "%s.%s: The argument must be a string" % (
+                cls.__name__, method_name)
+            print(message)
+            return_value = False
+        else:
             return_value = ll.Llist._contains_entry(
-                cls.layer_dict_name, layer_name)
+                cls.layer_name_list_name, layer_name)
         finally:
             return return_value
 
@@ -111,7 +148,7 @@ class Layer(object):
             print(message)
             return_value = None
         else:
-            return_value = ll.Llist.set_entry(cls.layer_dict_name, layer_name)
+            return_value = ll.Llist.set_entry(cls.layer_name_list_name, layer_name)
         finally:
             return return_value
 
@@ -184,6 +221,6 @@ class Layer(object):
             return_value = False
         else:
             return_value = ll.Llist.delete_entry(
-                cls.layer_dict_name, layer_name)
+                cls.layer_name_list_name, layer_name)
         finally:
             return return_value

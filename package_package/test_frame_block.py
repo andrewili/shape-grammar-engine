@@ -37,7 +37,7 @@ def _add_layer():
 
 def _record_layer():
     rs.SetDocumentData(
-        l.Layer.layer_dict_name, 
+        l.Layer.layer_name_list_name, 
         fb.FrameBlock.layer_name, 
         ll.Llist.dummy_value)
 

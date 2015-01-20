@@ -13,10 +13,10 @@ class Grammar(object):
     ### new
     @classmethod
     def new(cls):
-        cls._clear_objects()                    ##  done
-        cls._clear_settings()                   ##  You are here
-        # cls._set_settings()
-        # cls._add_first_initial_shape()
+        cls._clear_objects()
+        cls._clear_settings()
+        cls._set_settings()
+        # cls._add_first_initial_shape_frame()    ##  you are here
         # cls._add_first_rule()
         
     #
@@ -30,7 +30,7 @@ class Grammar(object):
         return n_objects
 
     #
-    @classmethod                                ##  You are here
+    @classmethod
     def _clear_settings(cls):
         fb.FrameBlock.delete()
         # l.Layer.purge_all()
@@ -44,9 +44,10 @@ class Grammar(object):
         # c.Counter.initialize_all()
         # l.Layer.set_to_default()
 
-    # ##
-    # def _add_first_initial_shape_frame(self):
-        # print('Pretending to add the first initial shape frame')
+    #
+    @classmethod
+    def _add_first_initial_shape_frame(self):
+        print('Pretending to add the first initial shape frame')
 
     # ##
     # def _add_first_rule_frame(self):

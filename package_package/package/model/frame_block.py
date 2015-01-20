@@ -12,8 +12,7 @@ class FrameBlock(object):
         pass
 
     @classmethod
-    def new(cls):                               ##  called by 
-                                                ##  Grammar._clear_settings()
+    def new(cls):
         """Creates a frame layer, draws a shape frame there, and converts the
         shape frame to a block. Returns:
             str             the name of the block, if successful
@@ -26,7 +25,7 @@ class FrameBlock(object):
             rs.CurrentLayer(cls.layer_name)
             frame_guids = f.Frame.new()
             actual_block_name = rs.AddBlock(
-                frame_guids, cls.base_point, cls.block_name)
+                frame_guids, cls.base_point, cls.block_name, True)
             rs.CurrentLayer('Default')
             layer_names = rs.LayerNames()
             if (
@@ -39,8 +38,7 @@ class FrameBlock(object):
         return return_value
 
     @classmethod
-    def delete(cls):                            ##  Came from 
-                                                ##  Grammar._clear_settings()
+    def delete(cls):
         """Deletes the frame block and its layer. Returns:
             boolean         True if successful; False otherwise
         """

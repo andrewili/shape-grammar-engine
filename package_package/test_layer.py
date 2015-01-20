@@ -2,7 +2,7 @@ from package.model import layer as l
 from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
-layer_dict_name = l.Layer.layer_dict_name
+layer_name_list_name = l.Layer.layer_name_list_name
 layer_name = 'layer'
 dummy_value = ll.Llist.dummy_value
 good_layer_name = 'good layer'
@@ -15,7 +15,7 @@ def _clear_all():
 
 def _set_test_layer():
     rs.AddLayer(layer_name)
-    rs.SetDocumentData(layer_dict_name, layer_name, dummy_value)
+    rs.SetDocumentData(layer_name_list_name, layer_name, dummy_value)
 
 def _print_error_message(
         method_name, try_name, expected_value, actual_value):
@@ -38,11 +38,11 @@ def test_layer_name_is_in_use():
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_arg_false():
-        try_name = 'good_arg_false'
+        try_name = 'layer_name_false'
         _clear_all()
         _set_test_layer()
-        good_arg_false = 'kilroy'
-        actual_value = l.Layer.layer_name_is_in_use(good_arg_false)
+        false_layer_name = 'nonexistent layer'
+        actual_value = l.Layer.layer_name_is_in_use(false_layer_name)
         expected_value = False
         if not actual_value == expected_value:
             _print_error_message(
@@ -54,6 +54,71 @@ def test_layer_name_is_in_use():
         _set_test_layer()
         good_arg_true = layer_name
         actual_value = l.Layer.layer_name_is_in_use(good_arg_true)
+        expected_value = True
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_bad_type_layer_name()
+    try_good_arg_false()
+    try_good_arg_true()
+
+def test__layer_name_list_exists():
+    method_name = '_layer_name_list_name_exists'
+
+    def try_good_state_false():
+        try_name = 'try_good_state_false'
+        _clear_all()
+        actual_value = l.Layer._layer_name_list_name_exists()
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_true():
+        try_name = 'good_state_true'
+        _clear_all()
+        _set_test_layer()
+        actual_value = l.Layer._layer_name_list_name_exists()
+        expected_value = True
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_good_state_false()
+    try_good_state_true()
+
+def test__layer_name_list_contains_name():
+    method_name = '_layer_name_list_contains_name'
+    def try_bad_type_layer_name():
+        try_name = 'bad_type_layer_name'
+        _clear_all()
+        bad_type_layer_name = 37
+        actual_value = l.Layer._layer_name_list_contains_name(
+            bad_type_layer_name)
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_arg_false():
+        try_name = 'good_arg_false'
+        _clear_all()
+        _set_test_layer()
+        false_layer_name = 'kilroy'
+        actual_value = l.Layer._layer_name_list_contains_name(
+            false_layer_name)
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_arg_true():
+        try_name = 'good_arg_true'
+        _clear_all()
+        _set_test_layer()
+        true_layer_name = layer_name
+        actual_value = l.Layer._layer_name_list_contains_name(true_layer_name)
         expected_value = True
         if not actual_value == expected_value:
             _print_error_message(
@@ -247,6 +312,8 @@ def test__delete_layer_name():
     try_good_arg()
 
 test_layer_name_is_in_use()
+test__layer_name_list_exists()
+test__layer_name_list_contains_name()
 test_new()
 test_delete()
 test__add_layer_name()
