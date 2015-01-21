@@ -67,3 +67,12 @@ class FrameBlock(object):
         block_names = rs.BlockNames()
         return_value = cls.block_name in block_names
         return return_value
+
+
+    @classmethod
+    def insert(cls, point):
+        """Receives:
+            point           [num, num, num]
+        Inserts a frame block
+        """
+        rs.InsertBlock(cls.block_name, point)

@@ -16,7 +16,7 @@ class Grammar(object):
         cls._clear_objects()
         cls._clear_settings()
         cls._set_settings()
-        # cls._add_first_initial_shape_frame()    ##  you are here
+        cls._add_first_initial_shape_frame()
         # cls._add_first_rule()
         
     #
@@ -47,7 +47,9 @@ class Grammar(object):
     #
     @classmethod
     def _add_first_initial_shape_frame(self):
-        print('Pretending to add the first initial shape frame')
+        rs.CurrentLayer('Default')
+        origin = [0, 0, 0]
+        fb.FrameBlock.insert(origin)
 
     # ##
     # def _add_first_rule_frame(self):

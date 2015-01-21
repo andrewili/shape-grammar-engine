@@ -3,6 +3,7 @@ from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
 class Layer(object):
+    color_names = ['black', 'dark gray']
     layer_name_list_name = 'user layer names'
 
     def __init__(self):
@@ -27,7 +28,7 @@ class Layer(object):
                 raise TypeError
             elif not (
                 not cls.layer_name_is_in_use(layer_name) and
-                cls._color_name_is_allowed(color_name)
+                cls._color_name_is_known(color_name)
             ):
                 raise ValueError
         except TypeError:
@@ -41,7 +42,8 @@ class Layer(object):
             print(message)
             return_value = None
         else:
-            rs.AddLayer(layer_name, color_name)
+            color = cls._get_color(color_name)
+            rs.AddLayer(layer_name, color)
             cls._add_layer_name(layer_name)
             if cls.layer_name_is_in_use(layer_name):
                 return_value = layer_name
@@ -69,17 +71,6 @@ class Layer(object):
             print(message)
             return_value = False
         else:
-            # if not cls._layer_name_list_name_exists():
-            #     return_value = False
-            # else:
-            #     return_value = cls._layer_name_list_contains_name(layer_name)
-
-            # list_exists = cls._layer_name_list_name_exists()
-            # list_contains_name = cls._layer_name_list_contains_name(
-            #     layer_name)
-            # return_value = (
-            #     list_exists and
-            #     list_contains_name)
             return_value = (
                 cls._layer_name_list_name_exists() and
                 cls._layer_name_list_contains_name(layer_name))
@@ -121,16 +112,26 @@ class Layer(object):
             return return_value
 
     @classmethod
-    def _color_name_is_allowed(cls, color_name):
+    def _color_name_is_known(cls, color_name):  ##  you are here
         """Receives:
             color_name      str
         Returns:
-            boolean         True, if the color name is allowed;
+            boolean         True, if the color name is known;
                             False otherwise
         """
-        allowed_colors = ['black', 'dark gray']
-        return_value = (color_name in allowed_colors)
-        return return_value
+        method_name = '_color_name_is_known'
+        try:
+            if not type(color_name) == str:
+                raise TypeError
+        except TypeError:
+            message = "%s.%s: The argument must be a string" % (
+                cls.__name__, method_name)
+            print(message)
+            return_value = False
+        else:
+            return_value = (color_name in cls.color_names)
+        finally:
+            return return_value
 
     @classmethod
     def _add_layer_name(cls, layer_name):
@@ -165,7 +166,7 @@ class Layer(object):
     @classmethod
     def _get_color(cls, color_name):
         """Receives:
-            str             color name: {'dark gray'}
+            color_name      str: {'dark gray'}
         Returns:
             color           from Color module
         """

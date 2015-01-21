@@ -63,6 +63,43 @@ def test_layer_name_is_in_use():
     try_good_arg_false()
     try_good_arg_true()
 
+def test__color_name_is_known():
+    method_name = '_color_name_is_known'
+
+    def try_bad_type_color_name():
+        try_name = 'bad_type_color_name'
+        _clear_all()
+        bad_type_color_name = 37
+        actual_value = l.Layer._color_name_is_known(bad_type_color_name)
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_arg_false():
+        try_name = 'good_arg_false'
+        _clear_all()
+        good_arg_false = 'chartreuse'
+        actual_value = l.Layer._color_name_is_known(good_arg_false)
+        expected_value = False
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_arg_true():
+        try_name = 'good_arg_true'
+        _clear_all()
+        good_arg_true = 'dark gray'
+        actual_value = l.Layer._color_name_is_known(good_arg_true)
+        expected_value = True
+        if not actual_value == expected_value:
+            _print_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_bad_type_color_name()
+    try_good_arg_false()
+    try_good_arg_true()
+
 def test__layer_name_list_exists():
     method_name = '_layer_name_list_name_exists'
 
@@ -185,11 +222,12 @@ def test_new():
             _print_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_good_arg():
-        try_name = 'good_arg'
+    def try_good_args():
+        try_name = 'good_args'
         _clear_all()
         _set_test_layer()
-        actual_value = l.Layer.new(good_layer_name)
+        good_color_name = 'dark gray'
+        actual_value = l.Layer.new(good_layer_name, good_color_name)
         expected_value = good_layer_name
         if not actual_value == expected_value:
             _print_error_message(
@@ -199,7 +237,7 @@ def test_new():
     try_bad_type_color_name()
     try_bad_value_layer_name()
     try_bad_value_color_name()
-    try_good_arg()
+    try_good_args()
 
 def test_delete():
     method_name = 'delete'
@@ -322,6 +360,7 @@ def test__delete_layer_name():
     try_good_arg()
 
 test_layer_name_is_in_use()
+test__color_name_is_known()
 test__layer_name_list_exists()
 test__layer_name_list_contains_name()
 test_new()
