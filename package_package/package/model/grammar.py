@@ -1,10 +1,11 @@
 from package.model import frame_block as fb
+from package.model import layer as l
+from package.model import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
 
 # from System.Drawing import Color
 # from package.model import counter as c
 # from package.model import dictionary as d
-# from package.model import layer as l
 
 class Grammar(object):
     def __init__(self):
@@ -16,10 +17,9 @@ class Grammar(object):
         cls._clear_objects()
         cls._clear_settings()
         cls._set_settings()
-        cls._add_first_initial_shape_frame()
-        # cls._add_first_rule()
+        # cls._add_first_initial_shape_frame()
+        # cls._add_first_rule_frame()
         
-    #
     @classmethod
     def _clear_objects(cls):
         """Deletes all drawn objects. Returns:
@@ -29,29 +29,40 @@ class Grammar(object):
         n_objects = rs.DeleteObjects(objects)
         return n_objects
 
-    #
     @classmethod
     def _clear_settings(cls):
         fb.FrameBlock.delete()
-        # l.Layer.purge_all()
-        # c.Counter.purge_all()
+        rfb.RuleFrameBlock.delete()             ##  working here
+        cls._clear_layers()
 
-    #
+    @classmethod
+    def _clear_layers(cls):
+        layer_names = rs.LayerNames()
+        for layer_name in layer_names:
+            rs.DeleteLayer(layer_name)
+
     @classmethod
     def _set_settings(cls):
-        fb.FrameBlock.new()
+        cls._add_frames_layer()
+        # ShapeFrameBlock.new()
+        rfb.RuleFrameBlock.new()                ##  gone to RFB.new
+        # # fb.FrameBlock.new()
 
-        # c.Counter.initialize_all()
-        # l.Layer.set_to_default()
+    @classmethod
+    def _add_frames_layer(cls):
+        layer_name = fb.FrameBlock.layer_name
+        color_name = fb.FrameBlock.color_name
+        l.Layer.new(layer_name, color_name)
 
-    #
     @classmethod
     def _add_first_initial_shape_frame(self):
         rs.CurrentLayer('Default')
         origin = [0, 0, 0]
         fb.FrameBlock.insert(origin)
 
-    # ##
-    # def _add_first_rule_frame(self):
-        # print('Pretending to add the first rule frame')
+    @classmethod
+    def _add_first_rule_frame(self):
+        print('Trying to add the first rule frame')
+        # first_rule_frame_position = [0, -40, 0]
+        # rf.RuleFrame.insert(first_rule_frame_position)  ##  gone drilling
 
