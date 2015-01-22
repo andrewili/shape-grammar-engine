@@ -2,9 +2,8 @@ from package.model import frame_block as fb
 from package.model import layer as l
 from package.model import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
-
-# from System.Drawing import Color
 # from package.model import counter as c
+# from System.Drawing import Color
 # from package.model import dictionary as d
 
 class Grammar(object):
@@ -31,9 +30,17 @@ class Grammar(object):
 
     @classmethod
     def _clear_settings(cls):
-        fb.FrameBlock.delete()
-        rfb.RuleFrameBlock.delete()             ##  working here
+        cls._clear_blocks()
+        # fb.FrameBlock.delete()
+        # rfb.RuleFrameBlock.delete()             ##  working here
         cls._clear_layers()
+        rs.DeleteDocumentData()
+
+    @classmethod
+    def _clear_blocks(cls):
+        block_names = rs.BlockNames()
+        for name in block_names:
+            rs.DeleteBlock(name)
 
     @classmethod
     def _clear_layers(cls):
@@ -45,7 +52,7 @@ class Grammar(object):
     def _set_settings(cls):
         cls._add_frames_layer()
         # ShapeFrameBlock.new()
-        rfb.RuleFrameBlock.new()                ##  gone to RFB.new
+        rfb.RuleFrameBlock.new()                ##  then work here
         # # fb.FrameBlock.new()
 
     @classmethod
@@ -64,5 +71,5 @@ class Grammar(object):
     def _add_first_rule_frame(self):
         print('Trying to add the first rule frame')
         # first_rule_frame_position = [0, -40, 0]
-        # rf.RuleFrame.insert(first_rule_frame_position)  ##  gone drilling
+        # rf.RuleFrame.insert(first_rule_frame_position)
 

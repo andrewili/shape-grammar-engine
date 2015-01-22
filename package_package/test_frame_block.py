@@ -4,6 +4,8 @@ from package.model import layer as l
 from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
+origin = [0, 0, 0]
+
 def _clear_all():
     _clear_objects()
     _clear_blocks()
@@ -22,7 +24,8 @@ def _clear_blocks():
 def _clear_layers():
     layer_names = rs.LayerNames()
     for layer_name in layer_names:
-        rs.DeleteLayer(layer_name)
+        if not layer_name == 'Default':
+            rs.DeleteLayer(layer_name)
 
 def _clear_dictionaries():
     rs.DeleteDocumentData()
@@ -43,11 +46,11 @@ def _record_layer():
 
 def _add_block():
     rs.CurrentLayer(fb.FrameBlock.layer_name)
-    frame_guids = f.Frame.new()
+    frame_guids = f.Frame.new(origin)
     base_point = fb.FrameBlock.base_point
     block_name = fb.FrameBlock.block_name
     rs.AddBlock(frame_guids, base_point, block_name)
-    rs.CurrentLayer('Default')
+    rs.CurrentLayer('Default')                  ##  got deleted
 
 def _print_error_message(method_name, try_name, expected_value, actual_value):
     message = "%s: %s:\n    expected '%s'; got '%s'" % (
@@ -95,7 +98,7 @@ def test_delete():
     def try_bad_state_no_layer():
         try_name = 'bad_state_no_layer'
         _clear_all()
-        frame_guids = f.Frame.new()
+        frame_guids = f.Frame.new(origin)
         base_point = fb.FrameBlock.base_point
         block_name = fb.FrameBlock.block_name
         rs.AddBlock(frame_guids, base_point, block_name)

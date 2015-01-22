@@ -10,69 +10,69 @@ class Controller(object):
         g.Grammar.new()
 
 
-    # # def _set_up(self):
-    # #     self._set_layers()
-    # #     self._add_blocks()
-    # #     self._reset_counters()
+    # def _set_up(self):
+        # self._set_layers()
+        # self._add_blocks()
+        # self._reset_counters()
 
     # def _set_layers(self):
-    #     self.v.set_current_layer('Default')
-    #     self.v.add_layer('frames', 'dark gray')
+        # self.v.set_current_layer('Default')
+        # self.v.add_layer('frames', 'dark gray')
 
     # def _add_blocks(self):
-    #     self._add_frame_block()
+        # self._add_frame_block()
 
     # def _add_frame_block(self):                 ##  should this info be in view?
     #                                             ##  combine with add_layer?
-    #     position = [0, 0, 0]
-    #     [x0, y0, z0] = position
-    #     side = 32
-    #     dx, dy, dz = side, side, side
-    #     x1, y1, z1 = x0 + dx, y0 + dy, z0 + dz
+        # position = [0, 0, 0]
+        # [x0, y0, z0] = position
+        # side = 32
+        # dx, dy, dz = side, side, side
+        # x1, y1, z1 = x0 + dx, y0 + dy, z0 + dz
 
-    #     p0 = [x0, y0, z0]
-    #     p1 = [x0, y0, z1]
-    #     p2 = [x0, y1, z0]
-    #     p3 = [x0, y1, z1]
-    #     p4 = [x1, y0, z0]
-    #     p5 = [x1, y0, z1]
-    #     p6 = [x1, y1, z0]
-    #     p7 = [x1, y1, z1]
+        # p0 = [x0, y0, z0]
+        # p1 = [x0, y0, z1]
+        # p2 = [x0, y1, z0]
+        # p3 = [x0, y1, z1]
+        # p4 = [x1, y0, z0]
+        # p5 = [x1, y0, z1]
+        # p6 = [x1, y1, z0]
+        # p7 = [x1, y1, z1]
 
-    #     point_pairs = [
-    #         (p0, p1), (p0, p2), (p0, p4), (p1, p3), (p1, p5), (p2, p3), 
-    #         (p2, p6), (p3, p7), (p4, p5), (p4, p6), (p5, p7), (p6, p7)]
-    #     lpoints = []
-    #     layer_name = 'frames'
-    #     block_name = 'frame'
-    #     block_name = self.v.add_block(
-    #         point_pairs, lpoints, layer_name, position, block_name)
+        # point_pairs = [
+        #     (p0, p1), (p0, p2), (p0, p4), (p1, p3), (p1, p5), (p2, p3), 
+        #     (p2, p6), (p3, p7), (p4, p5), (p4, p6), (p5, p7), (p6, p7)]
+        # lpoints = []
+        # layer_name = 'frames'
+        # block_name = 'frame'
+        # block_name = self.v.add_block(
+        #     point_pairs, lpoints, layer_name, position, block_name)
 
     # def _reset_counters(self):
-    #     n_shapes = self.v.reset_counter('initial shape counter')
-    #     n_rules = self.v.reset_counter('rule counter')
+        # n_shapes = self.v.reset_counter('initial shape counter')
+        # n_rules = self.v.reset_counter('rule counter')
 
     # def _add_first_initial_shape_frame(self):   ##  specify layout
-    #     position = [0, -50, 0]
-    #     i = self.v.increment_counter('initial shape counter')
-    #     layer_name = 'Shape %i' % i
-    #     self.v.add_layer(layer_name)
-    #     self.v.add_initial_shape_frame(position, layer_name)
+        # position = [0, -50, 0]
+        # i = self.v.increment_counter('initial shape counter')
+        # layer_name = 'Shape %i' % i
+        # self.v.add_layer(layer_name)
+        # self.v.add_initial_shape_frame(position, layer_name)
 
     # def _add_first_rule_frame(self):
-    #     # position = [50, -50, 0]
-    #     # i = self.v.increment_counter('rule counter')
-    #     # layer_name = 'Rule %i' % i
-    #     pass        
+        # # position = [50, -50, 0]
+        # # i = self.v.increment_counter('rule counter')
+        # # layer_name = 'Rule %i' % i
+        # pass        
 
     # def open_grammar(self):
-    #     pass
+        # pass
 
     # def save_grammar(self):
-    #     pass
+        # pass
 
     # def export_grammar(self):
-    #     pass
+        # pass
 
     ### initial shape
     def new_initial_shape(self, position, layer_name='Default'):
@@ -82,10 +82,10 @@ class Controller(object):
         self.v.add_initial_shape_frame_at_prompt(layer_name)
 
     # def import_initial_shape(self):
-    #     pass
+        # pass
 
     # def export_initial_shape(self):
-    #     pass
+        # pass
 
     ### rule
     def new_rule(self):

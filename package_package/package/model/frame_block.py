@@ -23,7 +23,8 @@ class FrameBlock(object):
         else:
             l.Layer.new(cls.layer_name, cls.color_name)
             rs.CurrentLayer(cls.layer_name)
-            frame_guids = f.Frame.new()
+            frame_guids = f.Frame.new(cls.base_point)
+            # frame_guids = f.Frame.new()
             actual_block_name = rs.AddBlock(
                 frame_guids, cls.base_point, cls.block_name, True)
             rs.CurrentLayer('Default')
@@ -38,7 +39,7 @@ class FrameBlock(object):
         return return_value
 
     @classmethod
-    def delete(cls):
+    def delete(cls):                            ##  not needed?
         """Deletes the frame block and its layer. Returns:
             boolean         True if successful; False otherwise
         """

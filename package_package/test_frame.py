@@ -33,9 +33,10 @@ def test_new():
     method_name = 'new'
     try_name = 'nil'
     _clear_all()
-    guids = f.Frame.new()
-    actual_value = len(guids)
-    expected_value = len(f.Frame.point_pairs)
+    position = [0, 0, 0]
+    guids = f.Frame.new(position)
+    actual_value = type(guids)
+    expected_value = list
     if not actual_value == expected_value:
         _print_error_message(
             method_name, try_name, expected_value, actual_value)

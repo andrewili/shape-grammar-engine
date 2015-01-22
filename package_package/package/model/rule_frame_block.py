@@ -11,7 +11,8 @@ class RuleFrameBlock(b.Block):                  ##  based on Block
         pass
 
     @classmethod
-    def new(cls):
+    def new(cls):                               ##  Came from 
+                                                ##  Grammar._set_settings
         """Draws a rule frame block on the frames layer and converts it to a
         block. Returns:
             str             the name of the block, if successful
@@ -22,12 +23,23 @@ class RuleFrameBlock(b.Block):                  ##  based on Block
         if not frames_layer_exists:
             return_value = None
         else:
-            rs.CurrentLayer(fb.FrameBlock.layer_name)
-            frame_guids = f.Frame.new()
+            rs.CurrentLayer(b.Block.layer_name)
+            size = [32, 32, 32]
+            gap = 16
+            x0, y0, z0 = [0, 0, 0]
+            offset = [size[0] + gap, 0, 0]
+            left_frame_position = [x0, y0, z0]
+            right_frame_position = rs.PointAdd(left_frame_position, offset)
+            left_frame_guids = f.Frame.new(left_frame_position)
+            right_frame_guids = f.Frame.new(right_frame_position)
+            frame_guids = left_frame_guids
+            frame_guids.append(right_frame_guids)
+            # create block: Block.new()
             base_point = [0, 0, 0]
             delete_input = True
-            return_value = rs.AddBlock(
+            return_value = b.Block.new(         ##  gone drilling
                 frame_guids, base_point, cls.block_name, delete_input)
+            # set layer
             rs.CurrentLayer('Default')
         return return_value
 
