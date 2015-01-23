@@ -4,7 +4,7 @@ from package.model import frame_block as fb
 from package.model import layer as l
 import rhinoscriptsyntax as rs
 
-class RuleFrameBlock(b.Block):                  ##  based on Block
+class RuleFrameBlock(b.Block):                  ##  child class of Block
     block_name = 'rule frame block'
 
     def __init__(self):
@@ -12,7 +12,7 @@ class RuleFrameBlock(b.Block):                  ##  based on Block
 
     @classmethod
     def new(cls):                               ##  Came from 
-                                                ##  Grammar._set_settings
+                                                ##  Grammar._set_up
         """Draws a rule frame block on the frames layer and converts it to a
         block. Returns:
             str             the name of the block, if successful

@@ -13,12 +13,18 @@ class Grammar(object):
     ### new
     @classmethod
     def new(cls):
-        cls._clear_objects()
-        cls._clear_settings()
-        cls._set_settings()
+        cls.clear_all()
+        # cls._set_up()
         # cls._add_first_initial_shape_frame()
         # cls._add_first_rule_frame()
         
+    @classmethod
+    def clear_all(cls):
+        cls._clear_objects()
+        cls._clear_blocks()
+        cls._clear_layers()
+        cls._clear_data()
+
     @classmethod
     def _clear_objects(cls):
         """Deletes all drawn objects. Returns:
@@ -29,14 +35,6 @@ class Grammar(object):
         return n_objects
 
     @classmethod
-    def _clear_settings(cls):
-        cls._clear_blocks()
-        # fb.FrameBlock.delete()
-        # rfb.RuleFrameBlock.delete()             ##  working here
-        cls._clear_layers()
-        rs.DeleteDocumentData()
-
-    @classmethod
     def _clear_blocks(cls):
         block_names = rs.BlockNames()
         for name in block_names:
@@ -44,12 +42,23 @@ class Grammar(object):
 
     @classmethod
     def _clear_layers(cls):
+        """Deletes all layers. Leaves Default layer
+        """
+        default_name = 'Default'
         layer_names = rs.LayerNames()
+        if not default_name in layer_names:
+            rs.AddLayer(default_name)
+        rs.CurrentLayer(default_name)
         for layer_name in layer_names:
-            rs.DeleteLayer(layer_name)
+            if not layer_name == default_name:
+                rs.DeleteLayer(layer_name)
 
     @classmethod
-    def _set_settings(cls):
+    def _clear_data(cls):
+        rs.DeleteDocumentData()
+
+    @classmethod
+    def _set_up(cls):
         cls._add_frames_layer()
         # ShapeFrameBlock.new()
         rfb.RuleFrameBlock.new()                ##  then work here
@@ -62,14 +71,22 @@ class Grammar(object):
         l.Layer.new(layer_name, color_name)
 
     @classmethod
-    def _add_first_initial_shape_frame(self):
+    def _add_first_initial_shape_frame(cls):
         rs.CurrentLayer('Default')
         origin = [0, 0, 0]
         fb.FrameBlock.insert(origin)
 
     @classmethod
-    def _add_first_rule_frame(self):
+    def _add_first_rule_frame(cls):
         print('Trying to add the first rule frame')
         # first_rule_frame_position = [0, -40, 0]
         # rf.RuleFrame.insert(first_rule_frame_position)
+
+    @classmethod
+    def print_test_error_message(
+        cls, method_name, try_name, expected_value, actual_value
+    ):
+        message = "%s: %s:\n    expected '%s'; got '%s'" % (
+            method_name, try_name, expected_value, actual_value)
+        print(message)
 
