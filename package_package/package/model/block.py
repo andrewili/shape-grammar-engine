@@ -2,8 +2,9 @@ import rhinoscriptsyntax as rs
 
 class Block(object):                            ##  parent class of RuleFrameBlock
     layer_name = 'frames'
+    color_name = 'dark gray'
 
-    def __init__(self):                         ##  change to FrameBlock later?
+    def __init__(self):                         ##  rename as FrameBlock later?
         pass
 
     @classmethod
@@ -36,11 +37,8 @@ class Block(object):                            ##  parent class of RuleFrameBlo
             print(message)
             return_value = None
         else:
-            print("kilroy was here")
-            # return_value = 'moxie'
-            return_value = rs.AddBlock(         ##  trouble here
+            return_value = rs.AddBlock(
                 frame_guids, base_point, block_name, delete_input)
-            print("return_value: %s" % return_value)
         finally:
             return return_value
 

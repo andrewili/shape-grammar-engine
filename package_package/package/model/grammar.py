@@ -14,7 +14,7 @@ class Grammar(object):
     @classmethod
     def new(cls):
         cls.clear_all()
-        # cls._set_up()
+        cls._set_up()
         # cls._add_first_initial_shape_frame()
         # cls._add_first_rule_frame()
         
@@ -59,16 +59,9 @@ class Grammar(object):
 
     @classmethod
     def _set_up(cls):
-        cls._add_frames_layer()
         # ShapeFrameBlock.new()
         rfb.RuleFrameBlock.new()                ##  then work here
         # # fb.FrameBlock.new()
-
-    @classmethod
-    def _add_frames_layer(cls):
-        layer_name = fb.FrameBlock.layer_name
-        color_name = fb.FrameBlock.color_name
-        l.Layer.new(layer_name, color_name)
 
     @classmethod
     def _add_first_initial_shape_frame(cls):

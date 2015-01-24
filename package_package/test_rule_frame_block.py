@@ -18,16 +18,16 @@ def _add_frames_layer():
 def test_new():
     method_name = 'new'
 
-    def try_bad_state_no_layer():
+    def try_good_state_layer_does_not_exist():
         try_name = 'bad_state_no_layer'
         g.Grammar.clear_all()
         actual_value = rfb.RuleFrameBlock.new()
-        expected_value = None
+        expected_value = rfb.RuleFrameBlock.block_name
         if not actual_value == expected_value:
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_good_state():
+    def try_good_state_layer_exists():
         try_name = 'good_state'
         g.Grammar.clear_all()
         _add_frames_layer()
@@ -37,7 +37,7 @@ def test_new():
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    try_bad_state_no_layer()
-    try_good_state()
+    try_good_state_layer_does_not_exist()
+    try_good_state_layer_exists()
 
 test_new()
