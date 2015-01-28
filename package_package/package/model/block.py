@@ -1,3 +1,4 @@
+from package.model import layer as l
 import rhinoscriptsyntax as rs
 
 class Block(object):                            ##  parent class of RuleFrameBlock
@@ -39,6 +40,52 @@ class Block(object):                            ##  parent class of RuleFrameBlo
         else:
             return_value = rs.AddBlock(
                 frame_guids, base_point, block_name, delete_input)
+        finally:
+            return return_value
+
+    @classmethod
+    def insert(cls, frame_block_name, position):
+        """Receives:
+            position        [num, num, 0]
+            frame_block_name
+                            str
+        Inserts a block. Returns:
+            str             name of the block, if successful
+            None            otherwise
+
+        """
+        method_name = 'insert'
+        try:
+            if not (
+                type(frame_block_name) == str and
+                type(position) == list
+            ):
+                raise TypeError
+            if not (
+                rs.IsBlock(frame_block_name) and
+                position[2] == 0
+            ):
+                raise ValueError
+        except TypeError:
+            message = "%s.%s: %s" % (
+                cls.__name__,
+                method_name,
+                "The arguments must be a string and a list")
+            print(message)
+            return_value = None
+        except ValueError:
+            message = "%s.%s: %s" % (
+                cls.__name__,
+                method_name,
+                "The arguments must be a block name and [num, num, 0]")
+            print(message)
+            return_value = None
+        else:
+            guid = rs.InsertBlock(frame_block_name, position)
+            if guid:
+                return_value = frame_block_name
+            else:
+                return_value = None
         finally:
             return return_value
 

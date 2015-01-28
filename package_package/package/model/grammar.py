@@ -70,10 +70,12 @@ class Grammar(object):
         fb.FrameBlock.insert(origin)
 
     @classmethod
-    def _add_first_rule_frame(cls):
-        print('Trying to add the first rule frame')
-        # first_rule_frame_position = [0, -40, 0]
-        # rf.RuleFrame.insert(first_rule_frame_position)
+    def _add_first_rule_frame(cls):             ##  first do generic 
+                                                ##  add_rule_frame
+        # print('Trying to add the first rule frame')
+        first_rule_frame_position = [0, -40, 0]
+        first_rule_name = 'kilroy'
+        rfb.RuleFrameBlock.insert(first_rule_frame_position, first_rule_name)
 
     @classmethod
     def print_test_error_message(
