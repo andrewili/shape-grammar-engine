@@ -72,10 +72,59 @@ class Grammar(object):
     @classmethod
     def _add_first_rule_frame(cls):             ##  first do generic 
                                                 ##  add_rule_frame
-        # print('Trying to add the first rule frame')
         first_rule_frame_position = [0, -40, 0]
         first_rule_name = 'kilroy'
         rfb.RuleFrameBlock.insert(first_rule_frame_position, first_rule_name)
+
+    @classmethod
+    def add_initial_shape(cls):                 ##  you are here 01-28 17:07
+        """Prompts the user for a name for the shape. Creates a new grammar 
+        layer with that name, and inserts an initial shape frame block. 
+        Returns:
+            str             the user-assigned shape name, if successful
+            None            otherwise
+        """
+        method_name = 'add_initial_shape'
+        message = "%s %s" % (
+            "Name of the initial shape.",
+            "It must be unique and contain no spaces or '#' characters)")
+        user_assigned_name = rs.GetString(message)
+        while not (
+            cls._name_is_well_formed(user_assigned_name) and
+            cls._name_is_unused(user_assigned_name)
+        ):
+            user_assigned_name = rs.GetString(message)
+        return_value = user_assigned_name
+        # return_value = cls._add_named_initial_shape(user_assigned_name)
+        return return_value
+
+    @classmethod
+    def _name_is_unused(cls, user_assigned_name):
+        """Receives:
+            user_assigned_name
+                            str
+        Returns:
+            boolean         True or False
+        """
+        return_value = not(l.Layer.layer_name_is_in_use(user_assigned_name))
+        return return_value
+
+    @classmethod
+    def _name_is_well_formed(cls, user_assigned_name):
+        """Receives:
+            user_assigned_name
+                            str
+        Returns:
+            boolean         True or False
+        """
+        prohibited_characters = [' ', '#']
+        for character in prohibited_characters:
+            if character in user_assigned_name:
+                return_value = False
+                break
+            else:
+                return_value = True
+        return return_value
 
     @classmethod
     def print_test_error_message(

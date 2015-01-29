@@ -55,7 +55,7 @@ class RuleFrameBlock(b.Block):                  ##  child class of Block
             frame_guids, base_point, cls.block_name, delete_input)
         return return_value
 
-    @classmethod                                ##  you are here 01-24 11:20
+    @classmethod
     def insert(cls, position, user_assigned_name):
         """Receives:
             position        [num, num, num]
@@ -87,7 +87,7 @@ class RuleFrameBlock(b.Block):                  ##  child class of Block
                 cls.__name__, method_name)
             print(message)
             return_value = None
-        else:                                   ##  01-27 09:50
+        else:
             return_value = None
             actual_layer_name = l.Layer.new(
                 user_assigned_name, cls.color_name)
