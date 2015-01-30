@@ -16,7 +16,7 @@ class RuleFrameBlock(b.Block):                  ##  child class of Block
         pass
 
     @classmethod
-    def new(cls):
+    def new(cls):                               ##  i.e., new block definition
         """Draws a rule frame block on the frames layer and converts it to a
         block. Returns:
             str             the name of the block, if successful
@@ -57,6 +57,7 @@ class RuleFrameBlock(b.Block):                  ##  child class of Block
 
     @classmethod
     def insert(cls, position, user_assigned_name):
+                                                ##  inherited method from Block?
         """Receives:
             position        [num, num, num]
             user_assigned_name

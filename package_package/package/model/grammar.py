@@ -59,10 +59,11 @@ class Grammar(object):
 
     @classmethod
     def _set_up(cls):
-        # ShapeFrameBlock.new()
+        # isfb.InitialShapeFrameBlock.new()
         rfb.RuleFrameBlock.new()                ##  then work here
         # # fb.FrameBlock.new()
 
+    ### initial shape methods
     @classmethod
     def _add_first_initial_shape_frame(cls):
         rs.CurrentLayer('Default')
@@ -70,24 +71,17 @@ class Grammar(object):
         fb.FrameBlock.insert(origin)
 
     @classmethod
-    def _add_first_rule_frame(cls):             ##  first do generic 
-                                                ##  add_rule_frame
-        first_rule_frame_position = [0, -40, 0]
-        first_rule_name = 'kilroy'
-        rfb.RuleFrameBlock.insert(first_rule_frame_position, first_rule_name)
-
-    @classmethod
-    def add_initial_shape(cls):                 ##  you are here 01-28 17:07
+    def add_unnamed_initial_shape_frame(cls):   ##  you are here 01-28 17:07
         """Prompts the user for a name for the shape. Creates a new grammar 
         layer with that name, and inserts an initial shape frame block. 
         Returns:
             str             the user-assigned shape name, if successful
             None            otherwise
         """
-        method_name = 'add_initial_shape'
+        method_name = 'add_unnamed_initial_shape_frame'
         message = "%s %s" % (
-            "Name of the initial shape.",
-            "It must be unique and contain no spaces or '#' characters)")
+            "The name of the initial shape",
+            "must be unique and contain no spaces or '#' characters)")
         user_assigned_name = rs.GetString(message)
         while not (
             cls._name_is_well_formed(user_assigned_name) and
@@ -95,7 +89,7 @@ class Grammar(object):
         ):
             user_assigned_name = rs.GetString(message)
         return_value = user_assigned_name
-        # return_value = cls._add_named_initial_shape(user_assigned_name)
+        # return_value = cls._add_named_initial_shape_frame(user_assigned_name)
         return return_value
 
     @classmethod
@@ -126,6 +120,73 @@ class Grammar(object):
                 return_value = True
         return return_value
 
+    @classmethod                                ##  you are here 01-29 15:45
+    def _add_named_initial_shape_frame(cls, user_assigned_name):
+        """Receives:
+            user_assigned_name
+                            str
+        Creates a new grammar layer with that name, and inserts an initial
+        shape frame block. Returns:
+            str             name of the new initial shape, if successful
+            None            otherwise
+        """
+        method_name = '_add_named_initial_shape_frame'
+        try:
+            if not type(user_assigned_name) == str:
+                raise TypeError
+            if not (
+                cls._name_is_unused(user_assigned_name) and
+                cls._name_is_well_formed(user_assigned_name)
+            ):
+                raise ValueError
+        except TypeError:
+            message = "%s.%s: %s" % (
+                cls.__name__,
+                method_name,
+                "The name must be a string")
+            print(message)
+            return_value = None
+        except ValueError:
+            message = "%s.%s: %s" % (
+                cls.__name__,
+                method_name,
+                "%s %s" % (
+                "The name must be unique",
+                "and not contain spaces or '#' characters"))
+            print(message)
+            return_value = None
+        else:                                   ##  here, to be precise 01-29
+            make_new_layer(user_assigned_name)  ##
+            insert_initial_shape_frame()        ##
+            ####
+            isfb.InitialShapeFrameBlock.insert(user_assigned_name)
+            ####
+            return_value = 'kilroy'
+        finally:
+            return return_value
+
+    ### rule methods
+    @classmethod
+    def _add_first_rule_frame(cls):             ##  first do generic 
+                                                ##  add_rule_frame
+        first_rule_frame_position = [0, -40, 0]
+        first_rule_name = 'kilroy'
+        rfb.RuleFrameBlock.insert(first_rule_frame_position, first_rule_name)
+
+    @classmethod
+    def _add_unnamed_rule_frame(cls):
+        pass
+        # user_assigned_name = get_name_from_user()
+        # cls._add_named_rule_frame(user_assigned_name)
+
+    @classmethod
+    def _add_named_rule_frame(cls, user_assigned_name):
+        pass
+        ####
+        # rfb.RuleFrameBlock.insert(user_assigned_name)
+        ####
+
+    ### utility methods
     @classmethod
     def print_test_error_message(
         cls, method_name, try_name, expected_value, actual_value

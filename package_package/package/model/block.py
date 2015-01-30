@@ -2,10 +2,11 @@ from package.model import layer as l
 import rhinoscriptsyntax as rs
 
 class Block(object):                            ##  parent class of RuleFrameBlock
+                                                ##  rename as FrameBlock later?
     layer_name = 'frames'
     color_name = 'dark gray'
 
-    def __init__(self):                         ##  rename as FrameBlock later?
+    def __init__(self):
         pass
 
     @classmethod
