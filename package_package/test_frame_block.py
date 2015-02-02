@@ -6,6 +6,9 @@ from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
 origin = [0, 0, 0]
+bad_type_point = 37
+bad_value_point = [0, 0, 5]
+point = [0, 0, 0]
 
 def _set_frame_block():
     _add_layer()
@@ -94,5 +97,36 @@ def test_delete():
     try_bad_state_no_layer()
     try_good_state()
 
+def test_insert():
+    method_name = 'insert'
+
+    def try_bad_type_point():
+        try_name = 'bad_type_point'
+        g.Grammar.clear_all()
+        fb.FrameBlock.new()
+        rs.CurrentLayer('Default')
+        actual_value = fb.FrameBlock.insert(bad_type_point)
+        expected_value = None
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    # bad_value_point()
+
+    def try_good_args():
+        try_name = 'good_args'
+        g.Grammar.clear_all()
+        fb.FrameBlock.new()
+        rs.CurrentLayer('Default')
+        actual_value = fb.FrameBlock.insert(point)
+        expected_value = 'guid'
+        if not actual_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_bad_type_point()
+    try_good_args()
+
 test_new()
 test_delete()
+test_insert()

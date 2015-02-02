@@ -41,7 +41,7 @@ class Grammar(object):
             rs.DeleteBlock(name)
 
     @classmethod
-    def _clear_layers(cls):
+    def _clear_layers(cls):                     ##  clear only user layers
         """Deletes all layers. Leaves Default layer
         """
         default_name = 'Default'
@@ -93,27 +93,25 @@ class Grammar(object):
         return return_value
 
     @classmethod
-    def _name_is_unused(cls, user_assigned_name):
+    def _name_is_unused(cls, shape_name):
         """Receives:
-            user_assigned_name
-                            str
+            shape_name      str
         Returns:
             boolean         True or False
         """
-        return_value = not(l.Layer.layer_name_is_in_use(user_assigned_name))
+        return_value = not(l.Layer.layer_name_is_in_use(shape_name))
         return return_value
 
     @classmethod
-    def _name_is_well_formed(cls, user_assigned_name):
+    def _name_is_well_formed(cls, shape_name):
         """Receives:
-            user_assigned_name
-                            str
+            shape_name      str
         Returns:
             boolean         True or False
         """
         prohibited_characters = [' ', '#']
         for character in prohibited_characters:
-            if character in user_assigned_name:
+            if character in shape_name:
                 return_value = False
                 break
             else:
@@ -121,22 +119,24 @@ class Grammar(object):
         return return_value
 
     @classmethod                                ##  you are here 01-29 15:45
-    def _add_named_initial_shape_frame(cls, user_assigned_name):
+    def _add_named_initial_shape_frame(cls, shape_name):
+                                                ##  add_named_initial_shape_frame
+                                                ##  add_named_initial_shape_layer
+                                                ##  add_named_initial_shape
         """Receives:
-            user_assigned_name
-                            str
-        Creates a new grammar layer with that name, and inserts an initial
-        shape frame block. Returns:
+            shape_name      str
+        Creates a shape-layer named <shape_name>, prompts for a point, and 
+        inserts an initial shape frame block. Returns:
             str             name of the new initial shape, if successful
             None            otherwise
         """
         method_name = '_add_named_initial_shape_frame'
         try:
-            if not type(user_assigned_name) == str:
+            if not type(shape_name) == str:
                 raise TypeError
             if not (
-                cls._name_is_unused(user_assigned_name) and
-                cls._name_is_well_formed(user_assigned_name)
+                cls._name_is_unused(shape_name) and
+                cls._name_is_well_formed(shape_name)
             ):
                 raise ValueError
         except TypeError:
@@ -156,12 +156,15 @@ class Grammar(object):
             print(message)
             return_value = None
         else:                                   ##  here, to be precise 01-29
-            make_new_layer(user_assigned_name)  ##
-            insert_initial_shape_frame()        ##
-            ####
-            isfb.InitialShapeFrameBlock.insert(user_assigned_name)
-            ####
-            return_value = 'kilroy'
+            print("Pretending to run Grammar._add_named_initial_shape_frame")
+            l.Layer.new(shape_name)
+            result = fb.FrameBlock.insert(position)
+                                                ##  you are here 01-31
+                                                ##  to FrameBlock.insert
+            if result:
+                return_value = shape_name
+            else:
+                return_value = None
         finally:
             return return_value
 
@@ -180,11 +183,18 @@ class Grammar(object):
         # cls._add_named_rule_frame(user_assigned_name)
 
     @classmethod
-    def _add_named_rule_frame(cls, user_assigned_name):
-        pass
-        ####
-        # rfb.RuleFrameBlock.insert(user_assigned_name)
-        ####
+    def _add_named_rule_frame(cls, rule_name):  ##  add_named_rule_layer_pair
+        """Receives:
+            rule_name       str
+        Creates 2 shape-layers, named <rule_name>-l and <rule_name>-r, prompts
+        for a point, and inserts a shape frame block on each shape layer. 
+        Returns:
+            str             the rule name, if successful
+            None            otherwise
+        """
+        print("Pretending to run Grammar._add_named_rule_frame")
+        sl.ShapeLayer.new(left_shape_name, left_position)
+        sl.ShapeLayer.new(right_shape_name, right_position)
 
     ### utility methods
     @classmethod

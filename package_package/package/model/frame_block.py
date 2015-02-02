@@ -71,9 +71,24 @@ class FrameBlock(object):
 
 
     @classmethod
-    def insert(cls, point):
+    def insert(cls, position):                  ##  you are here 02-02 09:53
         """Receives:
-            point           [num, num, num]
-        Inserts a frame block
+            position        [num, num, num]
+        Inserts a frame block. Returns:
+            guid            the guid of the new block instance, if successful
+            None            otherwise
         """
-        rs.InsertBlock(cls.block_name, point)
+        method_name = 'insert'
+        try:
+            if not type(position) == list:
+                raise TypeError
+        except TypeError:
+            message = "%s.%s: The argument must be a point" % (
+                cls.__name__, method_name)
+            print(message)
+            return_value = None
+        else:
+            return_value = rs.InsertBlock(cls.block_name, position)
+                                                ##  bombs
+        finally:
+            return return_value
