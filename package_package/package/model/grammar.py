@@ -158,8 +158,11 @@ class Grammar(object):
         else:                                   ##  here, to be precise 01-29
             print("Pretending to run Grammar._add_named_initial_shape_frame")
             l.Layer.new(shape_name)
+            message = "Click on the base point in the xy plane"
+            position = rs.GetPoint(message)
+            print("type(position): %s" % type(position))
             result = fb.FrameBlock.insert(position)
-                                                ##  you are here 01-31
+                                                ##  you are here 02-03
                                                 ##  to FrameBlock.insert
             if result:
                 return_value = shape_name

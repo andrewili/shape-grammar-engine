@@ -100,31 +100,30 @@ def test_delete():
 def test_insert():
     method_name = 'insert'
 
-    def try_bad_type_point():
-        try_name = 'bad_type_point'
+    def try_bad_value_point():
+        try_name = 'bad_value_point'
         g.Grammar.clear_all()
         fb.FrameBlock.new()
         rs.CurrentLayer('Default')
-        actual_value = fb.FrameBlock.insert(bad_type_point)
+        actual_value = fb.FrameBlock.insert(bad_value_point)
         expected_value = None
         if not actual_value == expected_value:
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
-
-    # bad_value_point()
 
     def try_good_args():
         try_name = 'good_args'
         g.Grammar.clear_all()
         fb.FrameBlock.new()
         rs.CurrentLayer('Default')
-        actual_value = fb.FrameBlock.insert(point)
+        position = rs.GetPoint("Click somewhere")
+        actual_value = fb.FrameBlock.insert(position)
         expected_value = 'guid'
         if not actual_value:
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    try_bad_type_point()
+    try_bad_value_point()
     try_good_args()
 
 test_new()

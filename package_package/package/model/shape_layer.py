@@ -41,7 +41,7 @@ class ShapeLayer(object):                       ##  difference from Layer?
                 method_name,
                 "%s %s" % (
                     "The shape name must be available",
-                    "and the position must be on the x-y plane"))
+                    "and the position must be on the xy plane"))
             print(message)
             return_value = None
         else:

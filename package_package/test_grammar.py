@@ -6,7 +6,7 @@ position = [0, 0, 0]
 existing_name = 'existing name'
 bad_type_name = 37
 bad_value_name = existing_name
-new_name = 'new name'
+new_shape_name = 'new_shape'
 
 def test_add_initial_shape():
     method_name = 'add_unnamed_initial_shape_frame'
@@ -22,7 +22,7 @@ def test_add_initial_shape():
 
     try_good_state()
 
-def test__add_named_initial_shape():
+def test__add_named_initial_shape_frame():
     method_name = '_add_named_initial_shape_frame'
 
     def try_bad_type():
@@ -39,7 +39,8 @@ def test__add_named_initial_shape():
         g.Grammar.clear_all()
         rfb.RuleFrameBlock.new()
         rfb.RuleFrameBlock.insert(position, existing_name)
-        actual_value = g.Grammar._add_named_initial_shape_frame(bad_value_name)
+        actual_value = g.Grammar._add_named_initial_shape_frame(
+            bad_value_name)
         expected_value = None
         if not actual_value == expected_value:
             g.Grammar.print_test_error_message(
@@ -49,9 +50,10 @@ def test__add_named_initial_shape():
         try_name = 'good_args'
         g.Grammar.clear_all()
         rfb.RuleFrameBlock.new()
-        rfb.RuleFrameBlock.insert(position, existing_name)
-        actual_value = g.Grammar._add_named_initial_shape_frame(new_name)
-        expected_value = new_name
+        # rfb.RuleFrameBlock.insert(position, existing_name)
+        actual_value = g.Grammar._add_named_initial_shape_frame(
+            new_shape_name)
+        expected_value = new_shape_name
         # if actual_value == expected_value:
         if not actual_value == expected_value:
             g.Grammar.print_test_error_message(
@@ -62,4 +64,4 @@ def test__add_named_initial_shape():
     try_good_args()
 
 # test_add_initial_shape()                      ##  pending _add_named_i_shape
-test__add_named_initial_shape()
+test__add_named_initial_shape_frame()

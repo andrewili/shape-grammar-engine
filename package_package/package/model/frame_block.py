@@ -71,24 +71,30 @@ class FrameBlock(object):
 
 
     @classmethod
-    def insert(cls, position):                  ##  you are here 02-02 09:53
+    def insert(cls, position):
         """Receives:
-            position        [num, num, num]
+            position        point from user input (i.e., type guaranteed) or
+                            list from Grammar (type not guaranteed)
         Inserts a frame block. Returns:
             guid            the guid of the new block instance, if successful
             None            otherwise
         """
         method_name = 'insert'
         try:
-            if not type(position) == list:
-                raise TypeError
+            if not position[2] == 0:
+                raise ValueError
         except TypeError:
             message = "%s.%s: The argument must be a point" % (
                 cls.__name__, method_name)
             print(message)
             return_value = None
+        except ValueError:
+            message = "%s.%s: The point must lie on the xy plane" % (
+                cls.__name__, method_name)
+            print(message)
+            return_value = None
         else:
             return_value = rs.InsertBlock(cls.block_name, position)
-                                                ##  bombs
         finally:
             return return_value
+
