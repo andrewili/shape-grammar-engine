@@ -151,19 +151,15 @@ class Grammar(object):
                 cls.__name__,
                 method_name,
                 "%s %s" % (
-                "The name must be unique",
-                "and not contain spaces or '#' characters"))
+                "The name must be unused",
+                "and may not contain spaces or '#' characters"))
             print(message)
             return_value = None
-        else:                                   ##  here, to be precise 01-29
-            print("Pretending to run Grammar._add_named_initial_shape_frame")
+        else:
             l.Layer.new(shape_name)
             message = "Click on the base point in the xy plane"
             position = rs.GetPoint(message)
-            print("type(position): %s" % type(position))
             result = fb.FrameBlock.insert(position)
-                                                ##  you are here 02-03
-                                                ##  to FrameBlock.insert
             if result:
                 return_value = shape_name
             else:
