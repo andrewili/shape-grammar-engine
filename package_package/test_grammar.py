@@ -4,25 +4,26 @@ from package.model import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
 
 position = [0, 0, 0]
-existing_shape_name = 'existing shape'
+existing_shape_name = 'shape0'
 bad_type_name = 37
 bad_value_name = existing_shape_name
 new_shape_name = 'new_shape'
 
-def test_add_initial_shape():
+def test_add_unnamed_initial_shape_frame():
     method_name = 'add_unnamed_initial_shape_frame'
 
-    # def try_good_state():
-    #     try_name = 'good_state'
-    #     g.Grammar.clear_all()
-    #                                             # fb.FrameBlock
-    #     rfb.RuleFrameBlock.new()                ##  outside methods
-    #     rfb.RuleFrameBlock.insert(position, existing_shape_name)
-    #     actual_value = g.Grammar.add_unnamed_initial_shape_frame()
-    #     print("%s: %s: actual_value: %s" % (
-    #         method_name, try_name, actual_value))
+    def try_bad_state():
+        pass
 
-    # try_good_state()
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        fb.FrameBlock.new()
+        g.Grammar._add_named_initial_shape_frame(existing_shape_name)
+        g.Grammar.add_unnamed_initial_shape_frame()
+
+    try_bad_state()
+    try_good_state()
 
 def test__add_named_initial_shape_frame():
     method_name = '_add_named_initial_shape_frame'
@@ -62,5 +63,5 @@ def test__add_named_initial_shape_frame():
     try_bad_value()
     try_good_args()
 
-# test_add_initial_shape()                      ##  pending _add_named_i_shape
-test__add_named_initial_shape_frame()
+test_add_unnamed_initial_shape_frame()
+# test__add_named_initial_shape_frame()
