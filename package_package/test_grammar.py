@@ -3,17 +3,46 @@ from package.model import grammar as g
 from package.model import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
 
-position = [0, 0, 0]
+position = [5, 5, 0]
 existing_shape_name = 'shape0'
 bad_type_name = 37
 bad_value_name = existing_shape_name
+bad_value_position = [5, 5, 5]
 new_shape_name = 'new_shape'
+
+def test__add_named_positioned_shape_frame():
+    """Arguments are tested by the calling methods; no need to test here
+    """
+    method_name = '_add_named_positioned_shape_frame'
+
+    def try_good_args():
+        try_name = 'good_args'
+        g.Grammar.clear_all()
+        fb.FrameBlock.new()
+        actual_value = g.Grammar._add_named_positioned_shape_frame(
+            new_shape_name, position)
+        expected_value = new_shape_name
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+        
+    try_good_args()
+
+def test__add_first_initial_shape_frame():
+    method_name = '_add_first_initial_shape_frame'
+
+    def try_good_state():
+        g.Grammar.clear_all()
+        actual_value = g.Grammar._add_first_initial_shape_frame()
+        expected_value = g.Grammar.first_initial_shape_name
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, actual_value, expected_value)
+
+    try_good_state()
 
 def test_add_unnamed_initial_shape_frame():
     method_name = 'add_unnamed_initial_shape_frame'
-
-    def try_bad_state():
-        pass
 
     def try_good_state():
         try_name = 'good_state'
@@ -22,7 +51,6 @@ def test_add_unnamed_initial_shape_frame():
         g.Grammar._add_named_initial_shape_frame(existing_shape_name)
         g.Grammar.add_unnamed_initial_shape_frame()
 
-    try_bad_state()
     try_good_state()
 
 def test__add_named_initial_shape_frame():
@@ -63,5 +91,7 @@ def test__add_named_initial_shape_frame():
     try_bad_value()
     try_good_args()
 
-test_add_unnamed_initial_shape_frame()
+test__add_named_positioned_shape_frame()
+# test__add_first_initial_shape_frame()
+# test_add_unnamed_initial_shape_frame()
 # test__add_named_initial_shape_frame()

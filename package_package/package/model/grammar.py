@@ -1,12 +1,13 @@
 from package.model import frame_block as fb
 from package.model import layer as l
+from package.model import shape_layer as sl
 from package.model import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
-# from package.model import counter as c
-# from System.Drawing import Color
-# from package.model import dictionary as d
 
 class Grammar(object):
+    first_initial_shape_name = 'initial_shape_1'
+    first_initial_shape_frame_position = [0, 0, 0]
+
     def __init__(self):
         pass
 
@@ -64,13 +65,17 @@ class Grammar(object):
         # # fb.FrameBlock.new()
 
     ### initial shape methods
-    @classmethod
+    @classmethod                                ##  you are here 02-05 09:43
     def _add_first_initial_shape_frame(cls):
-        rs.CurrentLayer('Default')
-        origin = [0, 0, 0]
-        fb.FrameBlock.insert(origin)
+        """Adds a new layer. Inserts a shape frame block. Can be executed only 
+        once. Returns:
+            str                 cls.first_initial_shape_name
+        """
+        cls._add_named_positioned_shape_frame(
+            cls.first_initial_shape_name,
+            cls.first_initial_shape_frame_position)
 
-    @classmethod
+    @classmethod                                ##  refactor for new method
     def add_unnamed_initial_shape_frame(cls):   ##  you are here 01-28 17:07
         """Prompts the user for a name for the shape. Creates a new grammar 
         layer with that name, and inserts an initial shape frame block. 
@@ -94,7 +99,7 @@ class Grammar(object):
         return_value = cls._add_named_initial_shape_frame(shape_name)
         return return_value
 
-    @classmethod
+    @classmethod                                ##  refactor with new method
     def _add_named_initial_shape_frame(cls, shape_name):
                                                 ##  add_named_initial_shape_frame
                                                 ##  add_named_initial_shape_layer
@@ -142,6 +147,20 @@ class Grammar(object):
                 return_value = None
         finally:
             return return_value
+
+    @classmethod                                ##   you are here 02-05 10:24
+    def _add_named_positioned_shape_frame(cls, name, position):
+        """Receives:
+            name            str
+            position        Point3d or [num, num, num]
+        Both arguments are tested by calling method. Adds a layer. Inserts a 
+        shape frame on that layer. Returns:
+            str             the name of the shape, if successful
+            None            otherwise
+        """
+        method_name = '_add_named_positioned_shape_frame'
+        return_value = sl.ShapeLayer.new(name, position)
+        return return_value
 
     @classmethod
     def _name_is_unused(cls, shape_name):
