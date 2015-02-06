@@ -11,7 +11,7 @@ def _set_entries():
     rs.SetDocumentData(list_name, entry_1, dummy_value)
     rs.SetDocumentData(list_name, entry_2, dummy_value)
     
-def testcontains_entry():
+def test_contains_entry():
     method_name = 'contains_entry'
 
     def try_bad_type_list_name():
@@ -233,7 +233,7 @@ def test_delete_entry():
     try_bad_value_entry()
     try_good_args()
 
-testcontains_entry()
+test_contains_entry()
 test_set_entry()
 test_get_entries()
 test_delete_entry()

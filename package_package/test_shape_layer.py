@@ -22,16 +22,6 @@ def test_new():
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_bad_type_position():
-        try_name = 'bad_type_position'
-        g.Grammar.clear_all()
-        actual_value = sl.ShapeLayer.new(
-            existing_shape_name, bad_type_position)
-        expected_value = None
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
     def try_bad_value_shape_name():
         try_name = 'bad_value_shape_name'
         g.Grammar.clear_all()
@@ -63,7 +53,7 @@ def test_new():
                 method_name, try_name, expected_value, actual_value)
 
     try_bad_type_shape_name()
-    try_bad_type_position()
+    # try_bad_type_position()                   ##  can't test for Point3D
     try_bad_value_shape_name()
     try_bad_value_position()
     try_good_args()

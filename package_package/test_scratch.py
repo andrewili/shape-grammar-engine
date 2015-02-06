@@ -1,5 +1,7 @@
+from package.model import grammar as g
 import rhinoscriptsyntax as rs
 
+g.Grammar.clear_all()
 point = rs.GetPoint("Click somewhere")
 print("point: %s" % point)
 print("len(point): %i" % len(point))
@@ -12,5 +14,6 @@ print("type(point): %s" % type(point))
 print("type(point) == Point3d: %s" % (type(point) == 'Point3d'))
 print("type(point) == rs.Geometry.Point3d: %s" % (
     type(point) == 'rs.Geometry.Point3d'))
-print("type(point) == rs.Geometry.Point3d: %s" % (
-    type(point) == rs.Geometry.Point3d))
+# print("type(point) == rs.Geometry.Point3d: %s" % (
+#     type(point) == rs.Geometry.Point3d))
+print("point[2]: %s" % point[2])

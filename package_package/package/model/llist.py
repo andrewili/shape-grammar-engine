@@ -116,7 +116,6 @@ class Llist(object):
                 return_value = True
         return return_value
 
-    ##  private methods
     @classmethod
     def contains_entry(cls, list_name, entry):
         """Receives:

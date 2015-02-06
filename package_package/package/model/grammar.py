@@ -1,12 +1,13 @@
 from package.model import frame_block as fb
 from package.model import layer as l
+from package.model import llist as ll
 from package.model import shape_layer as sl
 from package.model import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
 
 class Grammar(object):
     first_initial_shape_name = 'initial_shape_1'
-    first_initial_shape_frame_position = [0, 0, 0]
+    first_initial_shape_frame_position = [0, -40, 0]
 
     def __init__(self):
         pass
@@ -60,20 +61,35 @@ class Grammar(object):
 
     @classmethod
     def _set_up(cls):
+        fb.FrameBlock.new()
         # isfb.InitialShapeFrameBlock.new()
-        rfb.RuleFrameBlock.new()                ##  then work here
-        # # fb.FrameBlock.new()
+        # rfb.RuleFrameBlock.new()                ##  then work here
 
     ### initial shape methods
     @classmethod                                ##  you are here 02-05 09:43
     def _add_first_initial_shape_frame(cls):
         """Adds a new layer. Inserts a shape frame block. Can be executed only 
         once. Returns:
-            str                 cls.first_initial_shape_name
+            str                 cls.first_initial_shape_name, if successful
+            None                otherwise
         """
-        cls._add_named_positioned_shape_frame(
+        return_value = cls._add_named_positioned_shape_frame(
             cls.first_initial_shape_name,
             cls.first_initial_shape_frame_position)
+        return return_value
+
+    @classmethod                                ##  you are here 02-05 16:18
+    def _add_subsequent_initial_shape_frame(cls):
+        """Prompts the user for a name and a position. Adds a layer and 
+        inserts a shape frame block. Returns:
+            str             the name of the new shape, if successful
+            None            otherwise
+        """
+        name = cls._get_shape_name_from_user()
+        position = cls._get_frame_position_from_user()
+        return_value = cls._add_named_positioned_shape_frame(
+            name, position)
+        return return_value
 
     @classmethod                                ##  refactor for new method
     def add_unnamed_initial_shape_frame(cls):   ##  you are here 01-28 17:07
@@ -92,8 +108,8 @@ class Grammar(object):
             "That name either is in use or contains spaces or '#' characters.",
             "Please try again")
         while not (
-            cls._name_is_unused(shape_name) and
-            cls._name_is_well_formed(shape_name)
+            cls._shape_name_is_available(shape_name) and
+            cls._shape_name_is_well_formed(shape_name)
         ):
             shape_name = rs.GetString(message2)
         return_value = cls._add_named_initial_shape_frame(shape_name)
@@ -116,8 +132,8 @@ class Grammar(object):
             if not type(shape_name) == str:
                 raise TypeError
             if not (
-                cls._name_is_unused(shape_name) and
-                cls._name_is_well_formed(shape_name)
+                cls._shape_name_is_available(shape_name) and
+                cls._shape_name_is_well_formed(shape_name)
             ):
                 raise ValueError
         except TypeError:
@@ -148,7 +164,7 @@ class Grammar(object):
         finally:
             return return_value
 
-    @classmethod                                ##   you are here 02-05 10:24
+    @classmethod
     def _add_named_positioned_shape_frame(cls, name, position):
         """Receives:
             name            str
@@ -160,32 +176,6 @@ class Grammar(object):
         """
         method_name = '_add_named_positioned_shape_frame'
         return_value = sl.ShapeLayer.new(name, position)
-        return return_value
-
-    @classmethod
-    def _name_is_unused(cls, shape_name):
-        """Receives:
-            shape_name      str
-        Returns:
-            boolean         True or False
-        """
-        return_value = not(l.Layer.layer_name_is_in_use(shape_name))
-        return return_value
-
-    @classmethod
-    def _name_is_well_formed(cls, shape_name):
-        """Receives:
-            shape_name      str
-        Returns:
-            boolean         True or False
-        """
-        prohibited_characters = [' ', '#']
-        for character in prohibited_characters:
-            if character in shape_name:
-                return_value = False
-                break
-            else:
-                return_value = True
         return return_value
 
     ### rule methods
@@ -215,6 +205,68 @@ class Grammar(object):
         print("Pretending to run Grammar._add_named_rule_frame")
         sl.ShapeLayer.new(left_shape_name, left_position)
         sl.ShapeLayer.new(right_shape_name, right_position)
+
+    ### lower-level methods
+    @classmethod
+    def _get_shape_name_from_user(cls):
+        """Prompts the user for an unused and well-formed shape name. Returns:
+            str             the shape name
+        """
+        message1 = "%s %s" % (
+            "Enter the shape name.",
+            "It must be unused and contain no spaces or '#' characters")
+        message2 = "%s %s %s" % (
+            "That name either is already used",
+            "or contains spaces or '#' characters.",
+            "Please try again")
+        shape_name = rs.GetString(message1)
+        while not (
+            cls._shape_name_is_available(shape_name) and
+            cls._shape_name_is_well_formed(shape_name)
+        ):
+            shape_name = rs.GetString(message2)
+        return shape_name
+
+    @classmethod                                ##  rethink use of 
+    def _shape_name_is_available(cls, shape_name): ##  Layer method
+        """Receives:
+            shape_name      str
+        Returns:
+            boolean         True, if the shape name is available to the user;
+                            False, otherwise
+        """
+        return_value = ll.Llist.contains_entry(shape_names, shape_name)
+        # return_value = not(l.Layer.layer_name_is_in_use(shape_name))
+        return return_value
+
+    @classmethod
+    def _shape_name_is_well_formed(cls, shape_name):
+        """Receives:
+            shape_name
+        Converts shape_name to a string, if it is not one. Returns:
+            boolean         True, if the name is well formed; False otherwise
+        """
+        shape_name = str(shape_name)
+        prohibited_characters = [' ', '#']
+        for character in prohibited_characters:
+            if character in shape_name:
+                return_value = False
+                break
+            else:
+                return_value = True
+        return return_value
+
+    @classmethod
+    def _get_frame_position_from_user(cls):
+        """Prompts the user for a point in the xy plane. Returns:
+            Point3d         the point
+        """
+        message1 = "Pick a point in the xy plane"
+        message2 = "The point must be in the xy plane. Try again"
+        point = rs.GetPoint(message1)
+        while not point[2] == 0:
+            point = rs.GetPoint(message2)
+        return point
 
     ### utility methods
     @classmethod

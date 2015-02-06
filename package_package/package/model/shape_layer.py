@@ -6,22 +6,19 @@ class ShapeLayer(object):                       ##  difference from Layer?
     def __init__(self):
         pass
 
-    @classmethod
-    def new(cls, shape_name, position):
+    @classmethod                                ##  you are here 02-05 16:38
+    def new(cls, shape_name, position):         ##  remove type test for point
         """Receives:
             shape_name      str
             position        [num, num, num]
         Used for initial shapes, left rule shapes, and right rule shapes.
-        Creates a new shape-layer. Inserts a shape frame. Returns:
+        Creates a new layer with a shape frame. Returns:
             str             shape_name, if successful
             None            otherwise
         """
         method_name = 'new'
         try:
-            if not (
-                type(shape_name) == str and
-                type(position) == list
-            ):
+            if not type(shape_name) == str:
                 raise TypeError
             if not (
                 not l.Layer.layer_name_is_in_use(shape_name) and

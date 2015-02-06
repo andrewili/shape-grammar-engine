@@ -13,8 +13,7 @@ class FrameBlock(object):
 
     @classmethod
     def new(cls):
-        """Creates a frame layer, draws a shape frame there, and converts the
-        shape frame to a block. Returns:
+        """Creates a frame block definition on a frame block layer. Returns:
             str             the name of the block, if successful
             None            otherwise
         """
