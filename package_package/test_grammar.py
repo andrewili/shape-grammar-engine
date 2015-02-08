@@ -14,6 +14,9 @@ good_arg_false_space = 'kil roy'
 good_arg_true_int = 37
 good_arg_true_string = 'kilroy'
 
+def test__shape_name_is_available():
+    pass
+
 def test__shape_name_is_well_formed():
     method_name = '_shape_name_is_well_formed'
 
@@ -82,36 +85,36 @@ def test__add_named_positioned_shape_frame():
         
     try_good_args()
 
-def test__add_first_initial_shape_frame():
-    method_name = '_add_first_initial_shape_frame'
+# def test__add_first_initial_shape_frame():
+#     method_name = '_add_first_initial_shape_frame'
 
-    def try_good_state():
-        try_name = 'good_state'
-        g.Grammar.clear_all()
-        fb.FrameBlock.new()
-        actual_value = g.Grammar._add_first_initial_shape_frame()
-        expected_value = g.Grammar.first_initial_shape_name
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, actual_value, expected_value)
+#     def try_good_state():
+#         try_name = 'good_state'
+#         g.Grammar.clear_all()
+#         fb.FrameBlock.new()
+#         actual_value = g.Grammar._add_first_initial_shape_frame()
+#         expected_value = g.Grammar.first_initial_shape_name
+#         if not actual_value == expected_value:
+#             g.Grammar.print_test_error_message(
+#                 method_name, try_name, actual_value, expected_value)
 
-    try_good_state()
+#     try_good_state()
 
-def test__add_subsequent_initial_shape_frame():
-    method_name = '_add_subsequent_initial_shape_frame'
+# def test__add_subsequent_initial_shape_frame():
+#     method_name = '_add_subsequent_initial_shape_frame'
 
-    def try_good_state():
-        try_name = 'good_state'
-        g.Grammar.clear_all()
-        fb.FrameBlock.new()
-        actual_value = g.Grammar._add_subsequent_initial_shape_frame()
-                                                ##  use 'new_shape'
-        expected_value = new_shape_name
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
+#     def try_good_state():
+#         try_name = 'good_state'
+#         g.Grammar.clear_all()
+#         fb.FrameBlock.new()
+#         actual_value = g.Grammar._add_subsequent_initial_shape_frame()
+#                                                 ##  use 'new_shape'
+#         expected_value = new_shape_name
+#         if not actual_value == expected_value:
+#             g.Grammar.print_test_error_message(
+#                 method_name, try_name, expected_value, actual_value)
 
-    try_good_state()
+#     try_good_state()
 
 def test_add_unnamed_initial_shape_frame():
     method_name = 'add_unnamed_initial_shape_frame'
@@ -165,6 +168,7 @@ def test__add_named_initial_shape_frame():
     try_good_args()
 
 ### utility methods
+test__shape_name_is_available()
 test__shape_name_is_well_formed()
 
 ### class methods

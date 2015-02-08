@@ -121,9 +121,8 @@ class Llist(object):
         """Receives:
             list_name       str
             entry           str
-        Returns:
-            boolean         True, if the list contains the entry;
-                            False otherwise
+        Determines whether the named list contains the entry. Returns:
+            boolean         True or False
         """
         method_name = 'contains_entry'
         try:
@@ -132,17 +131,9 @@ class Llist(object):
                 type(entry) == str
             ):
                 raise TypeError
-            list_names = rs.GetDocumentData()
-            if not list_name in list_names:
-                raise ValueError
         except TypeError:
             message = "%s.%s: Both arguments must be strings" % (
                 cls.__name__, method_name)
-            print(message)
-            return_value = False
-        except ValueError:
-            message = "%s.%s: There is no list named '%s'" % (
-                cls.__name__, method_name, list_name)
             print(message)
             return_value = False
         else:
@@ -150,3 +141,15 @@ class Llist(object):
             return_value = (entry in entries)
         finally:
             return return_value
+
+
+    @classmethod
+    def list_name_exists(cls, list_name):
+        """Receives:
+            list_name       str
+        Determines whether the list name exists. Returns:
+            boolean         True or False
+        """
+        list_names = rs.GetDocumentData()
+        return_value = list_name in list_names
+        return return_value

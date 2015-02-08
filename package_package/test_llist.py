@@ -92,17 +92,6 @@ def test_set_entry():
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_bad_type_entry():
-        try_name = 'bad_type_entry'
-        g.Grammar.clear_all()
-        _set_entries()
-        bad_type_entry = 29
-        actual_value = ll.Llist.set_entry(list_name, bad_type_entry)
-        expected_value = None
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
     def try_bad_value_entry():
         try_name = 'bad_value_entry'
         g.Grammar.clear_all()
@@ -127,7 +116,6 @@ def test_set_entry():
                 method_name, try_name, expected_value, actual_value)
 
     try_bad_type_list_name()
-    try_bad_type_entry()
     try_bad_value_entry()
     try_good_args()
 
@@ -233,7 +221,33 @@ def test_delete_entry():
     try_bad_value_entry()
     try_good_args()
 
+def test_list_name_exists():
+    method_name = 'list_name_exists'
+
+    def try_good_state_false():
+        try_name = 'good_state_false'
+        g.Grammar.clear_all()
+        actual_value = ll.Llist.list_name_exists(list_name)
+        expected_value = False
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_true():
+        try_name = 'good_state_true'
+        g.Grammar.clear_all()
+        rs.SetDocumentData(list_name, entry_1, dummy_value)
+        actual_value = ll.Llist.list_name_exists(list_name)
+        expected_value = True
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_good_state_false()
+    try_good_state_true()
+
 test_contains_entry()
 test_set_entry()
 test_get_entries()
 test_delete_entry()
+test_list_name_exists()
