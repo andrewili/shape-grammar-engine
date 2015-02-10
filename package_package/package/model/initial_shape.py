@@ -11,7 +11,7 @@ class InitialShape(object):
         pass
 
     @classmethod
-    def add_first(cls):
+    def add_first(cls):                         ##  revisit after Rule
         """Adds a pre-named new shape layer. Inserts a shape frame block at a 
         predetermined position. Should be executed only once. Returns:
             str             cls.first_initial_shape_name, if successful
@@ -39,7 +39,7 @@ class InitialShape(object):
 
     @classmethod
     def add_subsequent(cls):
-        """Prompts the user for a name and a position. Adds a new  shape 
+        """Prompts the user for a name and a position. Adds a new shape 
         layer. Inserts a shape frame block. Returns:
             str             the name of the new shape layer, if successful
             None            otherwise

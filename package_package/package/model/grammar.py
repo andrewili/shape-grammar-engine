@@ -8,6 +8,7 @@ import rhinoscriptsyntax as rs
 
 class Grammar(object):
     initial_shape_name_list_name = 'initial_shape_names'
+    rule_name_list_name = 'rule_names'
 
     def __init__(self):
         pass
@@ -83,13 +84,19 @@ class Grammar(object):
             return_value = recorded_initial_shape
         return return_value
 
-    @classmethod
+    @classmethod                                ##  you are here 02-09 11:31
     def _add_first_rule(cls):
         """Adds the first rule layer and records it in the rule list. Returns:
             str             the name of the first rule, if successful
             None            otherwise
         """
-        return_value = 'dummy return value'
+        return_value = None
+        added_first_rule = r.Rule.add_first()
+        recorded_rule = cls._record_rule(r.Rule.first_rule_name)
+        if (added_first_rule and
+            recorded_rule
+        ):
+            return_value = recorded_rule
         return return_value
 
     @classmethod
