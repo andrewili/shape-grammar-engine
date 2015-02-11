@@ -6,6 +6,7 @@ class InitialShape(object):
     first_initial_shape_name = 'initial_shape_1'
     first_initial_shape_frame_position = [0, -40, 0]
                                                 ##  make this parametric
+    initial_shape_name_list_name = 'initial shape names'
 
     def __init__(self):
         pass
