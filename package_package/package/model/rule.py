@@ -1,10 +1,13 @@
+from package.model import component_name as cn
 from package.model import dictionary as d
 from package.model import frame as f
+from package.model import insertion_point as ip
 from package.model import llist as ll
 from package.model import shape_layer as sl
 import rhinoscriptsyntax as rs
 
 class Rule(object):
+    component_type = 'rule'
     first_rule_name = 'rule_1'
     first_rule_position = [0, -40, 0]
     right_shape_offset_x_factor = 1.5           ##  centralize presentation info?
@@ -21,71 +24,29 @@ class Rule(object):
             str             cls.first_rule_name, if successful
             None            otherwise
         """
-        if not cls._rule_name_is_available(cls.first_rule_name):
+        if cn.ComponentName._component_name_is_listed(
+            cls.component_type, cls.first_rule_name):
             return_value = None
         else:
-            rule_made = cls._new(cls.first_rule_name, cls.first_rule_position)
-            if rule_made:
+            rule_added = cls._new(
+                cls.first_rule_name, cls.first_rule_position)
+            if rule_added:
                 return_value = cls.first_rule_name
             else:
                 return_value = None
         return return_value
 
-    @classmethod                                ##  02-11 04:07
-    def add_subsequent(cls):                    ##  Name class?
+    @classmethod
+    def add_subsequent(cls):
         """Prompts the user for a name and a position. Adds a new shape 
         layer pair. Inserts a shape frame block on each layer. Returns:
             str             the name of the new rule, if successful
             None            otherwise
         """
-        name_message_1 = "%s %s %s" % (
-            "Enter the rule name.",
-            "It must be unique and",
-            "contain no spaces or '#' characters")
-        name_message_2 = "%s %s %s" % (
-            "That name either is already used",
-            "or contains spaces or '#' characters.",
-            "Please try again")
-        rule_name = rs.GetString(name_message_1)
-        while not (
-            cls._rule_name_is_available(rule_name) and
-            cls._rule_name_is_well_formed(rule_name)
-        ):
-            rule_name = rs.GetString(name_message_2)
-        point_message_1 = "Pick a point in the xy plane"
-        point_message_2 = "%s %s" % (
-            "The point must be in the xy plane.",
-            "Please try again")
-        point = rs.GetPoint(point_message_1)
-        while not point[2] == 0:
-            point = rs.GetPoint(point_message_2)
+        rule_name = cn.ComponentName.get_component_name_from_user(
+            cls.component_type)
+        point = ip.InsertionPoint.get_insertion_point_from_user()
         return_value = cls._new(rule_name, point)
-        return return_value
-
-    @classmethod
-    def _rule_name_is_available(cls, rule_name):
-        """Receives:
-            rule_name       str
-        Returns:
-            boolean         True or False
-        """
-        return_value = not(ll.Llist.contains_entry(
-            cls.rule_name_list_name, rule_name))
-        return return_value
-
-    @classmethod
-    def _rule_name_is_well_formed(cls, rule_name):
-        """Receives:
-            rule_name       str
-        Determines whether the rule name is well formed. Returns:
-            boolean         True or False
-        """
-        prohibited_characters = [' ', '#']
-        return_value = True
-        for character in prohibited_characters:
-            if character in rule_name:
-                return_value = False
-                break
         return return_value
 
     @classmethod

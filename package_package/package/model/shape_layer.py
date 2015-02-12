@@ -4,6 +4,7 @@ from package.model import llist as ll
 import rhinoscriptsyntax as rs
 
 class ShapeLayer(object):
+    component_type = 'shape'
     shape_layer_list_name = 'shape layer names'
 
     def __init__(self):

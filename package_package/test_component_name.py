@@ -6,7 +6,9 @@ import rhinoscriptsyntax as rs
 
 component_type = 'rule'
 name = 'test_name'
-rule_name = 'rule1'
+rule_name = 'rule'
+shape_name = 'shape'
+initial_shape_name = 'initial_shape'
 bad_value_component_type = 'bad_value_component_type'
 bad_value_component_name = 'bad_value_component_name'
 ill_formed_component_name = 'kil#roy'
@@ -75,18 +77,8 @@ def test__component_name_is_well_formed():
     try_false()
     try_good()
 
-def test_get_component_name_from_user():        ##  02-11 07:27
+def test_get_component_name_from_user():
     method_name = 'get_component_name_from_user'
-
-    def try_bad_value_component_type():
-        try_name = 'bad_value_component_name'
-        g.Grammar.clear_all()
-        actual_value = cn.ComponentName.get_component_name_from_user(
-            bad_value_component_type)
-        expected_value = None
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
 
     def try_good_arg():
         try_name = 'good_arg'
@@ -98,9 +90,53 @@ def test_get_component_name_from_user():        ##  02-11 07:27
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    try_bad_value_component_type()
     try_good_arg()
 
-# test__component_name_is_well_formed()
-# test__component_name_is_listed()
+def test_get_shape_name_from_user():
+    method_name = 'get_shape_name_from_user'
+
+    def try_good_arg():
+        try_name = 'good_arg'
+        g.Grammar.clear_all()
+        actual_value = cn.ComponentName.get_shape_name_from_user()
+        expected_value = shape_name
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_good_arg()
+
+def test_get_rule_name_from_user():
+    method_name = 'get_rule_name_from_user'
+
+    def try_good_arg():
+        try_name = 'good_arg'
+        g.Grammar.clear_all()
+        actual_value = cn.ComponentName.get_rule_name_from_user()
+        expected_value = rule_name
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_good_arg()
+
+def test_get_initial_shape_name_from_user():
+    method_name = 'get_initial_shape_name_from_user'
+    def try_good_arg():
+        try_name = 'good_arg'
+        g.Grammar.clear_all()
+        actual_value = cn.ComponentName.get_initial_shape_name_from_user()
+        expected_value = initial_shape_name
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_good_arg()
+
+test__component_name_is_well_formed()
+test__component_name_is_listed()
 test_get_component_name_from_user()
+test_get_shape_name_from_user()
+test_get_rule_name_from_user()
+test_get_initial_shape_name_from_user()
+

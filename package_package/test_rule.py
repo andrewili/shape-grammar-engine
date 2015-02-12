@@ -99,46 +99,6 @@ def test__new():
 
     try_good_args()
 
-def test__rule_name_is_available():
-    method_name = '_rule_name_is_available'
-
-    def try_false():
-        try_name = 'false'
-        g.Grammar.clear_all()
-        ll.Llist.set_entry(r.Rule.rule_name_list_name, r.Rule.first_rule_name)
-        actual_value = r.Rule._rule_name_is_available(r.Rule.first_rule_name)
-        expected_value = False
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_true():
-        try_name = 'true'
-        g.Grammar.clear_all()
-        actual_value = r.Rule._rule_name_is_available(r.Rule.first_rule_name)
-        expected_value = True
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    try_false()
-    try_true()
-
-def test_add_subsequent():
-    method_name = 'add_subsequent'
-    
-    def try_good_state():
-        try_name = 'good_state'
-        g.Grammar.clear_all()
-        fb.FrameBlock.new()
-        actual_value = r.Rule.add_subsequent()
-        expected_value = rule_name
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    try_good_state()
-    
 def test_add_first():
     method_name = 'add_first'
 
@@ -166,10 +126,25 @@ def test_add_first():
     try_bad_state()
     try_good_state()
 
+def test_add_subsequent():
+    method_name = 'add_subsequent'
+    
+    def try_good_state_with_first_rule():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        fb.FrameBlock.new()
+        r.Rule.add_first()
+        actual_value = r.Rule.add_subsequent()
+        expected_value = rule_name
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_good_state_with_first_rule()
+    
 test__record_rule()
 test__get_right_shape_position()
 test__get_shape_name_from_rule_name()
 test__new()
-test__rule_name_is_available()
-test_add_subsequent()
 test_add_first()
+test_add_subsequent()

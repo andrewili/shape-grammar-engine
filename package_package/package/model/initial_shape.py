@@ -3,6 +3,7 @@ import rhinoscriptsyntax as rs
 from package.model import shape_layer as sl
 
 class InitialShape(object):
+    component_type = 'initial shape'
     first_initial_shape_name = 'initial_shape_1'
     first_initial_shape_frame_position = [0, -40, 0]
                                                 ##  make this parametric
@@ -12,7 +13,7 @@ class InitialShape(object):
         pass
 
     @classmethod
-    def add_first(cls):                         ##  revisit after Rule
+    def add_first(cls):                         ##  02-12 10:18
         """Adds a pre-named new shape layer. Inserts a shape frame block at a 
         predetermined position. Should be executed only once. Returns:
             str             cls.first_initial_shape_name, if successful
