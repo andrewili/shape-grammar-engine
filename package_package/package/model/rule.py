@@ -2,14 +2,14 @@ from package.model import component_name as cn
 from package.model import dictionary as d
 from package.model import frame as f
 from package.model import insertion_point as ip
-from package.model import llist as ll
+# from package.model import llist as ll
 from package.model import shape_layer as sl
 import rhinoscriptsyntax as rs
 
 class Rule(object):
     component_type = 'rule'
     first_rule_name = 'rule_1'
-    first_rule_position = [60, -40, 0]
+    first_rule_position = [0, -100, 0]
     right_shape_offset_x_factor = 1.5           ##  centralize presentation info?
     rule_name_list_name = 'rule names'
 

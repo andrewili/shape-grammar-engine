@@ -1,6 +1,6 @@
 from package.model import frame as f
-from package.model import grammar as g
 from package.model import frame_block as fb
+from package.model import grammar as g
 from package.model import layer as l
 from package.model import llist as ll
 import rhinoscriptsyntax as rs

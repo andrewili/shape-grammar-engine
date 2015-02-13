@@ -1,7 +1,7 @@
 from package.model import component_name as cn
 from package.model import insertion_point as ip
 from package.model import llist as ll
-import rhinoscriptsyntax as rs
+# import rhinoscriptsyntax as rs
 from package.model import shape_layer as sl
 
 class InitialShape(object):

@@ -2,7 +2,7 @@ from package.model import component_name as cn
 from package.model import grammar as g
 from package.model import llist as ll
 from package.model import rule as r
-import rhinoscriptsyntax as rs
+# import rhinoscriptsyntax as rs
 
 component_type = 'rule'
 name = 'test_name'
