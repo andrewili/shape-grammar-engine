@@ -92,7 +92,7 @@ class Grammar(object):
         """
         return_value = None
         added_first_rule = r.Rule.add_first()
-        recorded_rule = cls._record_rule(r.Rule.first_rule_name)
+        recorded_rule = cls._record(r.Rule.first_rule_name)
         if (added_first_rule and
             recorded_rule
         ):

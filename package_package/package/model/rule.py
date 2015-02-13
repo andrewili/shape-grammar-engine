@@ -9,7 +9,7 @@ import rhinoscriptsyntax as rs
 class Rule(object):
     component_type = 'rule'
     first_rule_name = 'rule_1'
-    first_rule_position = [0, -40, 0]
+    first_rule_position = [60, -40, 0]
     right_shape_offset_x_factor = 1.5           ##  centralize presentation info?
     rule_name_list_name = 'rule names'
 
@@ -73,7 +73,7 @@ class Rule(object):
             left_shape_name, left_shape_position)
         right_shape = sl.ShapeLayer.new(
             right_shape_name, right_shape_position)
-        recorded_rule = cls._record_rule(
+        recorded_rule = cls._record(
             rule_name, left_shape_name, right_shape_name)
         if (left_shape and
             right_shape and
@@ -136,7 +136,7 @@ class Rule(object):
         return right_shape_position
 
     @classmethod
-    def _record_rule(cls, rule_name, left_shape_name, right_shape_name):
+    def _record(cls, rule_name, left_shape_name, right_shape_name):
         """Receives:
             rule_name       str
             left_shape_name str
@@ -147,7 +147,7 @@ class Rule(object):
             str             the rule name, if successful
             None            otherwise
         """
-        method_name = '_record_rule'
+        method_name = '_record'
         try:
             if not (
                 type(rule_name) == str and

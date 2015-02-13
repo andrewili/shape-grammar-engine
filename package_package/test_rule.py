@@ -7,18 +7,18 @@ import rhinoscriptsyntax as rs
 bad_type_rule_name = 37
 bad_type_side = 37
 bad_value_side = 'middle'
-rule_name = 'rule_i'
+rule_name = 'subsequent_rule'
 position = [0, 0, 0]
 left_shape_name = "%s_L" % rule_name
 right_shape_name = "%s_R" % rule_name
 left_shape_position = [0, 0, 0]
 
-def test__record_rule():
-    method_name = '_record_rule'
+def test__record():
+    method_name = '_record'
 
     def try_bad_type():
         try_name = 'bad_type'
-        actual_value = r.Rule._record_rule(
+        actual_value = r.Rule._record(
             bad_type_rule_name, left_shape_name, right_shape_name)
         expected_value = None
         if not actual_value == expected_value:
@@ -27,7 +27,7 @@ def test__record_rule():
 
     def try_good_args():
         try_name = 'good_args'
-        actual_value = r.Rule._record_rule(
+        actual_value = r.Rule._record(
             rule_name, left_shape_name, right_shape_name)
         expected_value = "%s %s" % (left_shape_name, right_shape_name)
         if not actual_value == expected_value:
@@ -142,7 +142,7 @@ def test_add_subsequent():
 
     try_good_state_with_first_rule()
     
-test__record_rule()
+test__record()
 test__get_right_shape_position()
 test__get_shape_name_from_rule_name()
 test__new()

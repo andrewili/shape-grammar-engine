@@ -1,3 +1,5 @@
+from package.model import component_name as cn
+from package.model import insertion_point as ip
 from package.model import llist as ll
 import rhinoscriptsyntax as rs
 from package.model import shape_layer as sl
@@ -13,31 +15,22 @@ class InitialShape(object):
         pass
 
     @classmethod
-    def add_first(cls):                         ##  02-12 10:18
+    def add_first(cls):
         """Adds a pre-named new shape layer. Inserts a shape frame block at a 
         predetermined position. Should be executed only once. Returns:
             str             cls.first_initial_shape_name, if successful
             None            otherwise
         """
-        if not(sl.ShapeLayer._shape_name_is_available(
-            cls.first_initial_shape_name
-        )):
+        if cn.ComponentName._component_name_is_listed(
+            cls.component_type, cls.first_initial_shape_name
+        ):
             return_value = None
         else:
             return_value = sl.ShapeLayer.new(
                 cls.first_initial_shape_name,
                 cls.first_initial_shape_frame_position)
+            cls._record(cls.first_initial_shape_name)
             return return_value
-
-    @classmethod
-    def _first_initial_shape_name_exists(cls):
-        """Determines whether the first_initial_shape_name already exists.
-        Returns:
-            boolean         True or False
-        """
-        return_value = sl.ShapeLayer.shape_name_is_listed(
-            cls.first_initial_shape_name)
-        return return_value
 
     @classmethod
     def add_subsequent(cls):
@@ -46,7 +39,34 @@ class InitialShape(object):
             str             the name of the new shape layer, if successful
             None            otherwise
         """
-        name = sl.ShapeLayer.get_shape_name_from_user()
-        position = sl.ShapeLayer.get_frame_position_from_user()
-        return_value = sl.ShapeLayer.new(name, position)
+        initial_shape_name = (
+            cn.ComponentName.get_initial_shape_name_from_user())
+        position = ip.InsertionPoint.get_insertion_point_from_user()
+        return_value = sl.ShapeLayer.new(initial_shape_name, position)
+        cls._record(initial_shape_name)
         return return_value
+
+    @classmethod
+    def _record(cls, initial_shape_name):
+        """Receives:
+            initial_shape_name       
+                            str
+        Records the initial shape name in the initial shape name list. 
+        Returns:
+            str             the initial shape name, if successful
+            None            otherwise
+        """
+        method_name = '_record'
+        try:
+            if not (type(initial_shape_name) == str):
+                raise TypeError
+        except TypeError:
+            message = "The argument must be a string"
+            print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            return_value = ll.Llist.set_entry(
+                cls.initial_shape_name_list_name, initial_shape_name)
+        finally:
+            return return_value
+
