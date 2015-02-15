@@ -53,14 +53,14 @@ class Grammar(object):
     def _clear_data(cls):
         rs.DeleteDocumentData()
 
-    @classmethod                                ##  02-08 18:18
+    @classmethod
     def _set_up(cls):
         fb.FrameBlock.new()
         rfb.RuleFrameBlock.new()                ##  then work here
         cls._add_first_initial_shape()
         cls._add_first_rule()
 
-    @classmethod                                ##  02-13 09:24
+    @classmethod
     def _add_first_initial_shape(cls):
         """Adds the first initial shape layer. Returns:
             str             the name of the first initial shape, if successful
@@ -69,7 +69,7 @@ class Grammar(object):
         return_value = ish.InitialShape.add_first()
         return return_value
 
-    @classmethod                                ##  02-09 11:31
+    @classmethod
     def _add_first_rule(cls):
         """Adds the first rule layer. Returns:
             str             the name of the first rule, if successful
@@ -77,6 +77,19 @@ class Grammar(object):
         """
         return_value = r.Rule.add_first()
         return return_value
+
+    ### continuing methods
+    @classmethod
+    def export_grammar(cls):                    ##  02-14 18:16
+        pass
+
+    @classmethod
+    def export_initial_shape(cls):
+        pass
+
+    @classmethod
+    def export_rule(cls):
+        pass
 
     ### utility methods
     @classmethod

@@ -1,21 +1,7 @@
 from package.model import frame_block as fb
 from package.model import grammar as g
 from package.model import initial_shape as ish
-# from package.model import llist as ll
 from package.model import rule as r
-# import rhinoscriptsyntax as rs
-
-position = [5, 5, 0]                            ##  check that all are used
-existing_shape_name = 'existing_shape'
-new_shape_name = 'new_shape'
-bad_type_shape_name = 37
-bad_value_name = existing_shape_name
-good_arg_false_hash = 'kil#roy'
-good_arg_false_space = 'kil roy'
-good_arg_true_int = 37
-good_arg_true_string = 'kilroy'
-initial_shape_name = 'initial_shape'
-first_initial_shape_name = ish.InitialShape.first_initial_shape_name
 
 def test__add_first_initial_shape():
     method_name = '_add_first_initial_shape'
@@ -53,6 +39,6 @@ def test_new():
     g.Grammar.new()
 
 test__add_first_initial_shape()
-test__add_first_rule()
+# test__add_first_rule()
 test_new()
 

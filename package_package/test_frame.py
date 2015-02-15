@@ -2,11 +2,6 @@ from package.model import frame as f
 from package.model import grammar as g
 import rhinoscriptsyntax as rs
 
-# def _print_error_message(method_name, try_name, expected_value, actual_value):
-#     message = "%s: %s: expected '%s'; got '%s'" % (
-#         method_name, try_name, expected_value, actual_value)
-#     print(message)
-
 def test_new():
     method_name = 'new'
     try_name = 'nil'

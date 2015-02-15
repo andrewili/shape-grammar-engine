@@ -1,3 +1,3 @@
-from package.controller import controller as c
+from package.model import grammar as g
 
-c.Controller.new_grammar()
+g.Grammar.new()

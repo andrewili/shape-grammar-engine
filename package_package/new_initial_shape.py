@@ -1,6 +1,3 @@
-#   new_initial_shape.py
+from package.model import initial_shape as ish
 
-from package.controller import controller
-
-c = controller.Controller()
-c.new_initial_shape([0, 0, 0])
+ish.InitialShape.add_subsequent()

@@ -1,6 +1,3 @@
-#   new_rule.py
+from package.model import rule as r
 
-from package.controller import controller
-
-c = controller.Controller()
-c.new_rule()
+r.Rule.add_subsequent()
