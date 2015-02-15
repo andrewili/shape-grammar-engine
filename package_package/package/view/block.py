@@ -1,4 +1,4 @@
-from package.model import layer as l
+from package.view import layer as l
 import rhinoscriptsyntax as rs
 
 class Block(object):                            ##  parent class of RuleFrameBlock

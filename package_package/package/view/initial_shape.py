@@ -1,8 +1,7 @@
-from package.model import component_name as cn
-from package.model import insertion_point as ip
-from package.model import llist as ll
-# import rhinoscriptsyntax as rs
-from package.model import shape_layer as sl
+from package.view import component_name as cn
+from package.view import insertion_point as ip
+from package.view import llist as ll
+from package.view import shape_layer as sl
 
 class InitialShape(object):
     component_type = 'initial shape'

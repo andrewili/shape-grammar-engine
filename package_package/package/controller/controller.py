@@ -1,4 +1,4 @@
-from package.model import grammar as g
+from package.view import grammar as g
 
 class Controller(object):
     def __init__(self):

@@ -1,7 +1,7 @@
-from package.model import frame_block as fb
-from package.model import grammar as g
-from package.model import initial_shape as ish
-from package.model import rule as r
+from package.view import frame_block as fb
+from package.view import grammar as g
+from package.view import initial_shape as ish
+from package.view import rule as r
 
 def test__add_first_initial_shape():
     method_name = '_add_first_initial_shape'

@@ -1,8 +1,6 @@
-from package.model import frame_block as fb
-from package.model import grammar as g
-from package.model import initial_shape as ish
-# from package.model import shape_layer as sl
-# import rhinoscriptsyntax as rs
+from package.view import frame_block as fb
+from package.view import grammar as g
+from package.view import initial_shape as ish
 
 existing_name = 'existing_shape'
 name = 'initial_shape'

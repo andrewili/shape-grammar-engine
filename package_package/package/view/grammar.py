@@ -1,7 +1,7 @@
-from package.model import frame_block as fb
-from package.model import initial_shape as ish
-from package.model import rule as r
-from package.model import rule_frame_block as rfb
+from package.view import frame_block as fb
+from package.view import initial_shape as ish
+from package.view import rule as r
+from package.view import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
 
 class Grammar(object):

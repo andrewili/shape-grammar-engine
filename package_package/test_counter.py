@@ -1,5 +1,5 @@
-from package.model import counter as c
-from package.model import dictionary as d
+from package.view import counter as c
+from package.view import dictionary as d
 import rhinoscriptsyntax as rs
 
 ### Counter methods

@@ -1,4 +1,4 @@
-from package.model import dictionary as d
+from package.view import dictionary as d
 import rhinoscriptsyntax as rs
 
 class Counter(object):

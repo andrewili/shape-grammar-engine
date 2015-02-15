@@ -1,7 +1,7 @@
-from package.model import frame_block as fb
-from package.model import grammar as g
-from package.model import llist as ll
-from package.model import shape_layer as sl
+from package.view import frame_block as fb
+from package.view import grammar as g
+from package.view import llist as ll
+from package.view import shape_layer as sl
 
 existing_shape_name = 'existing_shape'
 new_shape_name = 'new_shape'
@@ -22,7 +22,7 @@ def test_get_is_text():
         pass
 
     def try_good_state_maximal():               ##  02-14 18:37 1
-        
+        pass
 
     try_good_state_empty()
     try_good_state_non_maximal()

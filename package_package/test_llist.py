@@ -1,5 +1,5 @@
-from package.model import grammar as g
-from package.model import llist as ll
+from package.view import grammar as g
+from package.view import llist as ll
 import rhinoscriptsyntax as rs
 
 list_name = 'cities'

@@ -1,9 +1,9 @@
 from System.Drawing import Color
-from package.model import frame_block as fb
-from package.model import grammar as g
-from package.model import layer as l
-from package.model import llist as ll
-from package.model import rule_frame_block as rfb
+from package.view import frame_block as fb
+from package.view import grammar as g
+from package.view import layer as l
+from package.view import llist as ll
+from package.view import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
 
 position = [0, 0, 0]

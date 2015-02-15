@@ -1,7 +1,6 @@
-from package.model import frame_block as fb
-from package.model import grammar as g
-# from package.model import llist as ll
-from package.model import rule as r
+from package.view import frame_block as fb
+from package.view import grammar as g
+from package.view import rule as r
 import rhinoscriptsyntax as rs
 
 bad_type_rule_name = 37

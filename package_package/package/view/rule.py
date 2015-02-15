@@ -1,9 +1,8 @@
-from package.model import component_name as cn
-from package.model import dictionary as d
-from package.model import frame as f
-from package.model import insertion_point as ip
-# from package.model import llist as ll
-from package.model import shape_layer as sl
+from package.view import component_name as cn
+from package.view import dictionary as d
+from package.view import frame as f
+from package.view import insertion_point as ip
+from package.view import shape_layer as sl
 import rhinoscriptsyntax as rs
 
 class Rule(object):

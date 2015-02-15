@@ -1,5 +1,5 @@
-from package.model import dictionary as d
-from package.model import grammar as g
+from package.view import dictionary as d
+from package.view import grammar as g
 import rhinoscriptsyntax as rs
 
 dict_name_1 = 'dict_name_1'

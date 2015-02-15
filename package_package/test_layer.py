@@ -1,6 +1,6 @@
-from package.model import grammar as g
-from package.model import layer as l
-from package.model import llist as ll
+from package.view import grammar as g
+from package.view import layer as l
+from package.view import llist as ll
 import rhinoscriptsyntax as rs
 
 layer_name_list_name = l.Layer.layer_name_list_name

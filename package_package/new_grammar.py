@@ -1,3 +1,3 @@
-from package.model import grammar as g
+from package.view import grammar as g
 
 g.Grammar.new()

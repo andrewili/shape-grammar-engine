@@ -1,4 +1,4 @@
-from package.model import dictionary as d
+from package.view import dictionary as d
 
 d.Dictionary.delete_entry('new dict', 'key')
 

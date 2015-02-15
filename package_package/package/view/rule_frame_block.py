@@ -1,7 +1,7 @@
-from package.model import block as b
-from package.model import frame as f
-from package.model import frame_block as fb
-from package.model import layer as l
+from package.view import block as b
+from package.view import frame as f
+from package.view import frame_block as fb
+from package.view import layer as l
 import rhinoscriptsyntax as rs
 
 class RuleFrameBlock(b.Block):                  ##  child class of Block

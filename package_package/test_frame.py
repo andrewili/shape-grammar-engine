@@ -1,5 +1,5 @@
-from package.model import frame as f
-from package.model import grammar as g
+from package.view import frame as f
+from package.view import grammar as g
 import rhinoscriptsyntax as rs
 
 def test_new():

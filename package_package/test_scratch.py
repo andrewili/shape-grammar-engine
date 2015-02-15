@@ -1,4 +1,4 @@
-from package.model import grammar as g
+from package.view import grammar as g
 import rhinoscriptsyntax as rs
 
 g.Grammar.clear_all()

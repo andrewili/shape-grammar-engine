@@ -1,5 +1,5 @@
-from package.model import grammar as g
-from package.model import insertion_point as ip
+from package.view import grammar as g
+from package.view import insertion_point as ip
 import rhinoscriptsyntax as rs
 
 def test_get_insertion_point_from_user():

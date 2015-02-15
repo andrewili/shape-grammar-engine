@@ -1,6 +1,6 @@
-from package.model import frame_block as fb
-from package.model import layer as l
-from package.model import llist as ll
+from package.view import frame_block as fb
+from package.view import layer as l
+from package.view import llist as ll
 import rhinoscriptsyntax as rs
 
 class ShapeLayer(object):

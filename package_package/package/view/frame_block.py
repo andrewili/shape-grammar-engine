@@ -1,5 +1,5 @@
-from package.model import frame as f
-from package.model import layer as l
+from package.view import frame as f
+from package.view import layer as l
 import rhinoscriptsyntax as rs
 
 class FrameBlock(object):
