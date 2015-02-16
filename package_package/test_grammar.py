@@ -39,6 +39,6 @@ def test_new():
     g.Grammar.new()
 
 test__add_first_initial_shape()
-# test__add_first_rule()
+test__add_first_rule()
 test_new()
 

@@ -1,0 +1,403 @@
+#   lpoint_partition_test.txt
+
+    >>> import labeled_point
+    >>> import line
+    >>> import lpoint_partition
+
+    >>> lp_partition_drone = lpoint_partition.LPointPartition([])
+
+### construct, represent
+#   __init__(), __str__(), listing()
+
+    >>> non_list = (1, 2, 3)
+    >>> non_list_lpp = lpoint_partition.LPointPartition(non_list)
+    LPointPartition.__init__(): The argument must be a list of labeled points
+    >>> def non_lpoints_for_init_test():
+    ...     line_01 = line.Line.from_short_spec(0, 1)
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    ...     non_lpoints = [lpoint_00a, line_01]
+    ...     return non_lpoints
+    >>> non_lpoints = non_lpoints_for_init_test()
+    >>> non_lpoint_lpp = lpoint_partition.LPointPartition(non_lpoints)
+    LPointPartition.__init__(): The argument must be a list of labeled points
+
+    >>> empty_lpp_1 = lpoint_partition.LPointPartition.new_empty()
+    >>> print empty_lpp_1
+    []
+    >>> print empty_lpp_1.listing()
+    <no labeled points>
+    >>> empty_lpp_1.is_empty()
+    True
+
+    >>> def lpoints_for_init_test():
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
+    ...     lpoints = [lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     return lpoints
+    >>> lpoints = lpoints_for_init_test()
+    >>> lpp = lpoint_partition.LPointPartition(lpoints)
+    
+    >>> print lpp
+    [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
+
+    >>> print lpp.listing()
+    a:
+        (0, 0)
+        (1, 1)
+    b:
+        (2, 2)
+        (3, 3)
+    >>> print lpp.listing(1)
+    a:
+        (0.0, 0.0)
+        (1.0, 1.0)
+    b:
+        (2.0, 2.0)
+        (3.0, 3.0)
+
+    ??? print lpp.listing(1.1)
+    Point.listing(): The argument must be an integer
+    ??? print lpp.listing(-2.2)
+    Point.listing(): The argument must be an integer
+    ??? print lpp.listing(-2)
+    Point.listing(): The argument must be non-negative
+
+#   _make_dictionary(lpoints)
+
+    >>> def make_lpoints_for_make_dictionary_test():
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
+    ...     lpoints_1 = [lpoint_00a]
+    ...     lpoints_2 = [lpoint_11a, lpoint_00a]
+    ...     lpoints_3 = [lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     return [lpoints_1, lpoints_2, lpoints_3]
+    >>> lpoints_1, lpoints_2, lpoints_3 = make_lpoints_for_make_dictionary_test()
+
+    >>> dict_0 = lp_partition_drone._make_dictionary([])
+    >>> for label in dict_0:
+    ...     print '%s: %s' % (label, dict_0[label])
+    >>> dict_1 = lp_partition_drone._make_dictionary(lpoints_1)
+    >>> for label in dict_1:
+    ...     print '%s: %s' % (label, dict_1[label])
+    a: [(0, 0)]
+    >>> dict_2 = lp_partition_drone._make_dictionary(lpoints_2)
+    >>> for label in dict_2:
+    ...     print '%s: %s' % (label, dict_2[label])
+    a: [(0, 0), (1, 1)]
+    >>> dict_3 = lp_partition_drone._make_dictionary(lpoints_3)
+    >>> for label in dict_3:
+    ...     print '%s: %s' % (label, dict_3[label])
+    a: [(0, 0), (1, 1)]
+    b: [(2, 2)]
+
+#   from_specs()
+
+    >>> non_list = {}
+    >>> lpp_from_non_list = lpoint_partition.LPointPartition.from_specs(non_list)
+    LPointPartition.from_specs(): Must be a list of labeled point specs
+
+    >>> lp_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
+    >>> lpp_from_specs = lpoint_partition.LPointPartition.from_specs(lp_specs)
+    >>> print lpp_from_specs
+    [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
+
+### get
+#   specs()
+
+    >>> def make_lpps_for_specs():
+    ...     lpp_0 = lpoint_partition.LPointPartition.new_empty()
+    ...     specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'b')]
+    ...     lpp_1 = lpoint_partition.LPointPartition.from_specs(specs)
+    ...     return [lpp_0, lpp_1]
+    >>> lpp_0, lpp_1 = make_lpps_for_specs()
+    >>> print lpp_0.specs()
+    []
+    >>> print lpp_1.specs()
+    [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'b')]
+
+### compare
+#   __eq__(), __ne__()
+
+    >>> test_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
+    >>> equal_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
+    >>> unequal_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
+    >>> lpp_test = lpoint_partition.LPointPartition.from_specs(test_specs)
+    >>> lpp_equal = lpoint_partition.LPointPartition.from_specs(equal_specs)
+    >>> lpp_unequal = lpoint_partition.LPointPartition.from_specs(unequal_specs)
+    >>> lpp_empty = lpoint_partition.LPointPartition.new_empty()
+
+    >>> lpp_test == lpp_equal
+    True
+    >>> lpp_test == lpp_unequal
+    False
+    >>> lpp_test == lpp_empty
+    False
+
+    >>> lpp_test != lpp_equal
+    False
+    >>> lpp_test != lpp_unequal
+    True
+    >>> lpp_test != lpp_empty
+    True
+    
+#   is_a_sub_lpoint_partition_of(other_partition)
+
+    >>> lpp_empty = lpoint_partition.LPointPartition([])
+    >>> lpp_empty_b = lpoint_partition.LPointPartition([])
+    >>> lpp_bigger = lpoint_partition.LPointPartition.from_specs([(4, 4, 'c'), (3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
+    >>> lpp_smaller = lpoint_partition.LPointPartition.from_specs([(2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
+
+    >>> lpp_empty.is_a_sub_lpoint_partition_of(lpp_empty_b)
+    True
+    >>> lpp_empty.is_a_sub_lpoint_partition_of(lpp_test)
+    True
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_bigger)
+    True
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_smaller)
+    False
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_empty)
+    False
+
+#   _colabelings_are_sub_colabelings_in(other_lp_partition)
+
+    >>> def make_lpoint_partitions():
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
+    ...     lpoint_33c = labeled_point.LabeledPoint(3, 3, 'c')
+    ...     lpoint_44c = labeled_point.LabeledPoint(4, 4, 'c')
+    ...     lpoints_bigger = [lpoint_44c, lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     lpoints_smaller = [lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     lpoints_different = [lpoint_33c, lpoint_22b, lpoint_11a, lpoint_00a]
+    ...     lpp_bigger = lpoint_partition.LPointPartition(lpoints_bigger)
+    ...     lpp_smaller = lpoint_partition.LPointPartition(lpoints_smaller)
+    ...     lpp_different = lpoint_partition.LPointPartition(lpoints_different)
+    ...     return (lpp_bigger, lpp_smaller, lpp_different)
+    >>> lpp_bigger, lpp_smaller, lpp_different = make_lpoint_partitions()
+
+    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_bigger)
+    True
+    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_smaller)
+    False
+    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_different)
+    False
+
+### operate
+#   __add__(other)
+    
+    >>> def make_lpps_for_add_test():
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
+    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
+    ...     lpoint_44c = labeled_point.LabeledPoint(4, 4, 'c')
+    ...     lpp_0a = lpoint_partition.LPointPartition([])
+    ...     lpp_0b = lpoint_partition.LPointPartition([])
+    ...     lpp_1 = lpoint_partition.LPointPartition([lpoint_22b, lpoint_11a])
+    ...     lpp_2 = lpoint_partition.LPointPartition([lpoint_44c, lpoint_33b, lpoint_11a])
+    ...     return (lpp_0a, lpp_0b, lpp_1, lpp_2)
+    >>> lpp_0a, lpp_0b, lpp_1, lpp_2 = make_lpps_for_add_test()
+
+    >>> new_lpp_00 = lpp_0a + lpp_0b
+    >>> print new_lpp_00.listing()
+    <no labeled points>
+    
+    >>> new_lpp_01 = lpp_0a + lpp_1
+    >>> print new_lpp_01.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+    
+    >>> new_lpp_20 = lpp_2 + lpp_0a
+    >>> print new_lpp_20.listing()
+    a:
+        (1, 1)
+    b:
+        (3, 3)
+    c:
+        (4, 4)
+    
+    >>> new_lpp_12 = lpp_1 + lpp_2
+    >>> print new_lpp_12.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+        (3, 3)
+    c:
+        (4, 4)
+
+#   __sub__(other)
+    >>> def make_lpps_for_sub_test():
+    ...     lpp_01 = lpoint_partition.LPointPartition.new_empty()
+    ...     lpp_02 = lpoint_partition.LPointPartition.new_empty()
+    ...     specs_1 = [(1, 1, 'a'), (3, 3, 'a'), (2, 2, 'b'), (5, 5, 'd')]
+    ...     specs_2 = [(1, 1, 'a'), (2, 2, 'b'), (4, 4, 'b'), (6, 6, 'e')]
+    ...     lpp_11 = lpoint_partition.LPointPartition.from_specs(specs_1)
+    ...     lpp_12 = lpoint_partition.LPointPartition.from_specs(specs_2)
+    ...     return [lpp_01, lpp_02, lpp_11, lpp_12]
+
+    >>> lpp_01, lpp_02, lpp_11, lpp_12 = make_lpps_for_sub_test()
+    >>> print lpp_11.listing()
+    a:
+        (1, 1)
+        (3, 3)
+    b:
+        (2, 2)
+    d:
+        (5, 5)
+    >>> print lpp_12.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+        (4, 4)
+    e:
+        (6, 6)
+
+    >>> diff_0102 = lpp_01 - lpp_02
+    >>> print diff_0102.listing()
+    <no labeled points>
+
+    >>> diff_0201 = lpp_02 - lpp_01
+    >>> print diff_0201.listing()
+    <no labeled points>
+
+    >>> diff_0111 = lpp_01 - lpp_11
+    >>> print diff_0111.listing()
+    <no labeled points>
+    >>> print lpp_11.listing()
+    a:
+        (1, 1)
+        (3, 3)
+    b:
+        (2, 2)
+    d:
+        (5, 5)
+    >>> print lpp_12.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+        (4, 4)
+    e:
+        (6, 6)
+
+    >>> diff_0112 = lpp_01 - lpp_12
+    >>> print diff_0112.listing()
+    <no labeled points>
+    >>> print lpp_11.listing()
+    a:
+        (1, 1)
+        (3, 3)
+    b:
+        (2, 2)
+    d:
+        (5, 5)
+    >>> print lpp_12.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+        (4, 4)
+    e:
+        (6, 6)
+
+    >>> diff_1101 = lpp_11 - lpp_01
+    >>> print diff_1101.listing()
+    a:
+        (1, 1)
+        (3, 3)
+    b:
+        (2, 2)
+    d:
+        (5, 5)
+
+    >>> diff_1111 = lpp_11 - lpp_11
+    >>> print diff_1111.listing()
+    <no labeled points>
+    >>> print lpp_11.listing()
+    a:
+        (1, 1)
+        (3, 3)
+    b:
+        (2, 2)
+    d:
+        (5, 5)
+    >>> print lpp_12.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+        (4, 4)
+    e:
+        (6, 6)
+
+    >>> diff_1112 = lpp_11 - lpp_12
+    >>> diff_1112.__class__
+    <class 'lpoint_partition.LPointPartition'>
+    >>> print diff_1112.listing()
+    a:
+        (3, 3)
+    d:
+        (5, 5)
+    >>> print lpp_11.listing()
+    a:
+        (1, 1)
+        (3, 3)
+    b:
+        (2, 2)
+    d:
+        (5, 5)
+    >>> print lpp_12.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+        (4, 4)
+    e:
+        (6, 6)
+
+    >>> diff_1201 = lpp_12 - lpp_01
+    >>> print diff_1201.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+        (4, 4)
+    e:
+        (6, 6)
+
+    >>> diff_1211 = lpp_12 - lpp_11
+    >>> print diff_1211.listing()
+    b:
+        (4, 4)
+    e:
+        (6, 6)
+    >>> print lpp_11.listing()
+    a:
+        (1, 1)
+        (3, 3)
+    b:
+        (2, 2)
+    d:
+        (5, 5)
+    >>> print lpp_12.listing()
+    a:
+        (1, 1)
+    b:
+        (2, 2)
+        (4, 4)
+    e:
+        (6, 6)
+
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> lpoint_partition.LPointPartition._print_error_message(test_method_name, test_message)
+    LPointPartition.test_method(): This is a test

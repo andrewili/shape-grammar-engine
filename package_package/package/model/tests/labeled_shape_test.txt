@@ -1,0 +1,533 @@
+#   labeled_shape_test.txt
+
+    >>> import labeled_point
+    >>> import labeled_shape
+    >>> import line
+    >>> import line_partition
+    >>> import lpoint_partition
+    >>> import shape
+
+### construct, represent
+#   __init__(), new_empty(), __str__(), listing()
+
+    >>> def make_non_empty_shape():
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     new_shape = shape.Shape.from_lines([line_0010, line_0001])
+    ...     return new_shape
+    >>> def make_non_empty_lpoint_partition():
+    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
+    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
+    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
+    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
+    ...     new_lpoint_part = lpoint_partition.LPointPartition([lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a])
+    ...     return new_lpoint_part
+    >>> def make_lshape_components():
+    ...     empty_line_partition = line_partition.LinePartition([])
+    ...     empty_shape = shape.Shape(empty_line_partition)
+    ...     empty_lpoint_partition = lpoint_partition.LPointPartition([])
+    ...     non_empty_shape = make_non_empty_shape()
+    ...     non_empty_lpoint_partition = make_non_empty_lpoint_partition()
+    ...     return [empty_line_partition, empty_shape, empty_lpoint_partition, non_empty_shape, non_empty_lpoint_partition]
+    >>> empty_line_partition, empty_shape, empty_lpoint_partition, non_empty_shape, non_empty_lpoint_partition = make_lshape_components()
+
+    >>> lshape_non_shape = labeled_shape.LabeledShape('x', empty_lpoint_partition)
+    LabeledShape.__init__(): The arguments must be a shape and a labeled point partition
+    >>> lshape_non_shape = labeled_shape.LabeledShape(empty_shape, 'x')
+    LabeledShape.__init__(): The arguments must be a shape and a labeled point partition
+    >>> def make_lshapes_for_init():
+    ...     lshape_empty = labeled_shape.LabeledShape(empty_shape, empty_lpoint_partition)
+    ...     lshape_shape = labeled_shape.LabeledShape(non_empty_shape, empty_lpoint_partition)
+    ...     lshape_lpoints = labeled_shape.LabeledShape(empty_shape, non_empty_lpoint_partition)
+    ...     lshape_lines_lpoints = labeled_shape.LabeledShape(non_empty_shape, non_empty_lpoint_partition)
+    ...     return [lshape_empty, lshape_shape, lshape_lpoints, lshape_lines_lpoints]
+    >>> lshape_empty, lshape_shape, lshape_lpoints, lshape_lines_lpoints = make_lshapes_for_init()
+
+    >>> lshape_empty.is_empty()
+    True
+    >>> print lshape_empty
+    ([], [])
+    >>> print lshape_empty.listing()
+    <empty labeled shape>
+
+    >>> lshape_shape.is_empty()
+    False
+    >>> print lshape_shape
+    ([(0, 0, 0, 1), (0, 0, 1, 0)], [])
+    >>> print lshape_shape.listing(1)
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 1.0)
+    (90.0, 0.0):
+        (0.0, 0.0, 1.0, 0.0)
+    <no labeled points>
+
+    >>> lshape_lpoints.is_empty()
+    False
+    >>> print lshape_lpoints
+    ([], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
+
+    >>> print lshape_lpoints.listing()
+    <empty shape>
+    a:
+        (0, 0)
+        (1, 1)
+    b:
+        (2, 2)
+        (3, 3)
+
+    >>> lshape_lines_lpoints.is_empty()
+    False
+    >>> print lshape_lines_lpoints
+    ([(0, 0, 0, 1), (0, 0, 1, 0)], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
+
+    >>> print lshape_lines_lpoints.listing()
+    (0, 0):
+        (0, 0, 0, 1)
+    (90, 0):
+        (0, 0, 1, 0)
+    a:
+        (0, 0)
+        (1, 1)
+    b:
+        (2, 2)
+        (3, 3)
+
+    >>> empty_lshape = labeled_shape.LabeledShape.new_empty()
+    >>> empty_lshape.is_empty()
+    True
+    >>> print empty_lshape
+    ([], [])
+
+### compare
+#   __eq__(other), __ne__(other)
+
+    >>> def make_lshape_test():
+    ...     line_specs = [(0, 0, 1, 0), (0, 0, 1, 1), (0, 0, 0, 1)]
+    ...     new_shape = shape.Shape.from_specs(line_specs)
+    ...     lpoint_specs = [(2, 0, 'e'), (0, 2, 'n'), (2, 2, 'ne')]
+    ...     new_lpoint_part = lpoint_partition.LPointPartition.from_specs(lpoint_specs)
+    ...     return labeled_shape.LabeledShape(new_shape, new_lpoint_part)
+    >>> equal_line_specs = [(0, 0, 1, 0), (0, 0, 1, 1), (0, 0, 0, 1)]
+    >>> equal_lpoint_specs = [(2, 0,'e'), (0, 2, 'n'), (2, 2, 'ne')]
+    >>> equal_lpoint_part = lpoint_partition.LPointPartition.from_specs(equal_lpoint_specs)
+    >>> equal_shape = shape.Shape.from_specs(equal_line_specs)
+    >>> unequal_line_specs = [(0, 0, 0, 2), (0, 0, 1, 1), (0, 0, 1, 0)]
+    >>> unequal_lpoint_specs = [(0, 2, 'n'), (0, -2, 's')]
+    >>> unequal_lpoint_part = lpoint_partition.LPointPartition.from_specs(unequal_lpoint_specs)
+    >>> unequal_shape = shape.Shape.from_specs(unequal_line_specs)
+
+    >>> lshape_test = make_lshape_test()
+    >>> print lshape_test
+    ([(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)], [(0, 2, n), (2, 0, e), (2, 2, ne)])
+
+    >>> lshape_empty = labeled_shape.LabeledShape.new_empty()
+    >>> print lshape_empty
+    ([], [])
+
+    >>> lshape_no_shape = labeled_shape.LabeledShape(empty_shape, equal_lpoint_part)
+    >>> print lshape_no_shape
+    ([], [(0, 2, n), (2, 0, e), (2, 2, ne)])
+
+    >>> lshape_no_lpoints = labeled_shape.LabeledShape(equal_shape, empty_lpoint_partition)
+    >>> print lshape_no_lpoints
+    ([(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)], [])
+
+    >>> lshape_unequal_shape = labeled_shape.LabeledShape(unequal_shape, equal_lpoint_part)
+    >>> print lshape_unequal_shape
+    ([(0, 0, 0, 2), (0, 0, 1, 0), (0, 0, 1, 1)], [(0, 2, n), (2, 0, e), (2, 2, ne)])
+
+    >>> lshape_unequal_lpoints = labeled_shape.LabeledShape(equal_shape, unequal_lpoint_part)
+    >>> print lshape_unequal_lpoints
+    ([(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)], [(0, -2, s), (0, 2, n)])
+
+    >>> lshape_equal = labeled_shape.LabeledShape(equal_shape, equal_lpoint_part)
+    >>> print lshape_equal
+    ([(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)], [(0, 2, n), (2, 0, e), (2, 2, ne)])
+    
+    >>> lshape_test == lshape_empty
+    False
+    >>> lshape_test == lshape_no_shape
+    False
+    >>> lshape_test == lshape_no_lpoints
+    False
+    >>> lshape_test == lshape_unequal_shape
+    False
+    >>> lshape_test == lshape_unequal_lpoints
+    False
+    >>> lshape_test == lshape_equal
+    True
+    
+    >>> lshape_test != lshape_empty
+    True
+    >>> lshape_test != lshape_no_shape
+    True
+    >>> lshape_test != lshape_no_lpoints
+    True
+    >>> lshape_test != lshape_unequal_shape
+    True
+    >>> lshape_test != lshape_unequal_lpoints
+    True
+    >>> lshape_test != lshape_equal
+    False
+
+#   is_a_sub_labeled_shape_of(other)
+
+    >>> def make_lshapes_for_sub_lshape():
+    ...     shape_0 = shape.Shape.new_empty()
+    ...     shape_1 = shape.Shape.from_specs([(0, 0, 0, 1)])
+    ...     shape_2 = shape.Shape.from_specs([(0, 0, 0, 1), (0 ,0, 1, 0)])
+    ...     lppart_0 = lpoint_partition.LPointPartition.new_empty()
+    ...     lppart_1 = lpoint_partition.LPointPartition.from_specs([(1, 1, 'a')])
+    ...     lppart_2 = lpoint_partition.LPointPartition.from_specs([(1, 1, 'a'), (2, 2, 'a')])
+    ...     lshape_0 = labeled_shape.LabeledShape(shape_0, lppart_0)
+    ...     lshape_1 = labeled_shape.LabeledShape(shape_1, lppart_1)
+    ...     lshape_2 = labeled_shape.LabeledShape(shape_2, lppart_2)
+    ...     return [lshape_0, lshape_1, lshape_2]
+    >>> lshape_0, lshape_1, lshape_2 = make_lshapes_for_sub_lshape()
+
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_0)
+    True
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_1)
+    True
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_2)
+    True
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_0)
+    False
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_1)
+    True
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_2)
+    True
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_0)
+    False
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_1)
+    False
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_2)
+    True
+
+### operate
+#   __add__(other)
+    
+    _|   |_       ___       _|___|_
+                 |   |       |   |
+       X     +   | X |   =   | X |
+    _     _      |___|      _|___|_
+     |   |                   |   |
+    
+    >>> def make_ells_for_add_test():
+    ...     line0414 = line.Line.from_spec(0, 4, 1, 4)
+    ...     line0111 = line.Line.from_spec(0, 1, 1, 1)
+    ...     line1011 = line.Line.from_spec(1, 0, 1, 1)
+    ...     line1415 = line.Line.from_spec(1, 4, 1, 5)
+    ...     line4041 = line.Line.from_spec(4, 0, 4, 1)
+    ...     line4151 = line.Line.from_spec(4, 1, 5, 1)
+    ...     line4445 = line.Line.from_spec(4, 4, 4, 5)
+    ...     line4454 = line.Line.from_spec(4, 4, 5, 4)
+    ...     lines = [line1011, line1415, line4041, line4445, line0111, line4151, line0414, line4454]
+    ...     return shape.Shape.from_lines(lines)
+    >>> def make_labeled_ells_for_add_test():
+    ...     ells = make_ells_for_add_test()
+    ...     lpoint = labeled_point.LabeledPoint(3, 3, 'X')
+    ...     new_lpoint_part = lpoint_partition.LPointPartition([lpoint])
+    ...     return labeled_shape.LabeledShape(ells, new_lpoint_part)
+    >>> def make_square_for_add_test():
+    ...     line1114 = line.Line.from_spec(1, 1, 1, 4)
+    ...     line1141 = line.Line.from_spec(1, 1, 4, 1)
+    ...     line1444 = line.Line.from_spec(1, 4, 4, 4)
+    ...     line4144 = line.Line.from_spec(4, 1, 4, 4)
+    ...     lines = [line1114, line1141, line1444, line4144]
+    ...     return shape.Shape.from_lines(lines)
+    >>> def make_labeled_square_for_add_test():
+    ...     square = make_square_for_add_test()
+    ...     lpoint = labeled_point.LabeledPoint(3, 3, 'X')
+    ...     new_lpoint_part = lpoint_partition.LPointPartition([lpoint])
+    ...     return labeled_shape.LabeledShape(square, new_lpoint_part)
+    >>> labeled_ells = make_labeled_ells_for_add_test()
+    >>> labeled_square = make_labeled_square_for_add_test()
+    >>> hash = labeled_ells + labeled_square
+    
+    >>> print hash.listing()
+    (0, 1):
+        (1, 0, 1, 5)
+    (0, 4):
+        (4, 0, 4, 5)
+    (90, 1):
+        (0, 1, 5, 1)
+    (90, 4):
+        (0, 4, 5, 4)
+    X:
+        (3, 3)
+
+#   __sub__(other)
+
+     ___      _|___|_     _|   |_
+    |   |      |   |
+    | a |  -  a| a |   =  a
+    |___|     _|___|_     _     _
+               |   |       |   |
+
+    >>> def make_lshapes_for_sub():    
+    ...     med_shape = shape.Shape.from_specs([(40, 40, 40, 60), (40, 40, 60, 40), (40, 60, 60, 60), (60, 40, 60, 60)])
+    ...     med_lpoint_part = lpoint_partition.LPointPartition.from_specs([(50, 50, 'a')])
+    ...     med_lshape = labeled_shape.LabeledShape(med_shape, med_lpoint_part)
+    ...     big_shape = shape.Shape.from_specs([(20, 40, 80, 40), (20, 60, 80, 60), (40, 20, 40, 80), (60, 20, 60, 80)])
+    ...     big_lpoint_part = lpoint_partition.LPointPartition.from_specs([(30, 50, 'a'), (50, 50, 'a')])
+    ...     big_lshape = labeled_shape.LabeledShape(big_shape, big_lpoint_part)
+    ...     return [med_lshape, big_lshape]
+    >>> med_lshape, big_lshape = make_lshapes_for_sub()
+    
+    >>> diff_med_big = med_lshape - big_lshape
+    >>> print diff_med_big.listing()
+    <empty labeled shape>
+    >>> print med_lshape.listing()
+    (0, 40):
+        (40, 40, 40, 60)
+    (0, 60):
+        (60, 40, 60, 60)
+    (90, 40):
+        (40, 40, 60, 40)
+    (90, 60):
+        (40, 60, 60, 60)
+    a:
+        (50, 50)
+
+    >>> diff_big_med = big_lshape - med_lshape
+    >>> print med_lshape.listing()
+    (0, 40):
+        (40, 40, 40, 60)
+    (0, 60):
+        (60, 40, 60, 60)
+    (90, 40):
+        (40, 40, 60, 40)
+    (90, 60):
+        (40, 60, 60, 60)
+    a:
+        (50, 50)
+    >>> print diff_big_med.listing()
+    (0, 40):
+        (40, 20, 40, 40)
+        (40, 60, 40, 80)
+    (0, 60):
+        (60, 20, 60, 40)
+        (60, 60, 60, 80)
+    (90, 40):
+        (20, 40, 40, 40)
+        (60, 40, 80, 40)
+    (90, 60):
+        (20, 60, 40, 60)
+        (60, 60, 80, 60)
+    a:
+        (30, 50)
+
+    >>> diff_med_med = med_lshape - med_lshape
+    >>> print diff_med_med.listing()
+    <empty labeled shape>
+    >>> print med_lshape.listing()
+    (0, 40):
+        (40, 40, 40, 60)
+    (0, 60):
+        (60, 40, 60, 60)
+    (90, 40):
+        (40, 40, 60, 40)
+    (90, 60):
+        (40, 60, 60, 60)
+    a:
+        (50, 50)
+
+    >>> diff_med_empty = med_lshape - empty_lshape
+    >>> print diff_med_empty.listing()
+    (0, 40):
+        (40, 40, 40, 60)
+    (0, 60):
+        (60, 40, 60, 60)
+    (90, 40):
+        (40, 40, 60, 40)
+    (90, 60):
+        (40, 60, 60, 60)
+    a:
+        (50, 50)
+    >>> print med_lshape.listing()
+    (0, 40):
+        (40, 40, 40, 60)
+    (0, 60):
+        (60, 40, 60, 60)
+    (90, 40):
+        (40, 40, 60, 40)
+    (90, 60):
+        (40, 60, 60, 60)
+    a:
+        (50, 50)
+
+    >>> diff_empty_med = empty_lshape - med_lshape
+    >>> print diff_empty_med.listing()
+    <empty labeled shape>
+    >>> print med_lshape.listing()
+    (0, 40):
+        (40, 40, 40, 60)
+    (0, 60):
+        (60, 40, 60, 60)
+    (90, 40):
+        (40, 40, 60, 40)
+    (90, 60):
+        (40, 60, 60, 60)
+    a:
+        (50, 50)
+
+#   __and__(other)                                          #   no test
+
+#   make_lshape_from()                                      #   no test, controller
+
+make_lshape_from(lines, lpoints)                                # 1.2
+
+    ??? def make_lines_for_lshape():
+    ...     line_1 = make_line_from_spec(0, 0, 0, 1)
+    ...     line_2 = make_line_from_spec(0, 0, 1, 0)
+    ...     return [line_1, line_2]
+    ??? lines = make_lines_for_lshape()
+    ??? def make_lpoints_for_lshape():
+    ...     lpoint = make_lpoint_from_spec(1, 1, 'a')
+    ...     return [lpoint]
+    ??? lpoints = make_lpoints_for_lshape()
+    
+    ??? lshape = empty_lshape.make_lshape_from(lines, lpoints)
+    
+    ??? print lshape.listing()
+    (0, 0):
+        (0, 0, 0, 1)
+    (90, 0):
+        (0, 0, 1, 0)
+    a:
+        (1, 1)
+
+get_lpoint_partition_from(lpoints)                              # 1.2.1
+    
+    ??? def make_lpoints_for_lpoint_partition():
+    ...     p1 = make_lpoint_from_spec(1, 0, 'a')
+    ...     p2 = make_lpoint_from_spec(1, 1, 'a')
+    ...     p3 = make_lpoint_from_spec(2, 0, 'b')
+    ...     p4 = make_lpoint_from_spec(2, 1, 'b')
+    ...     return [p1, p2, p3, p4]
+    ??? lpoints = make_lpoints_for_lpoint_partition()
+    
+    ??? partition = empty_lshape.get_lpoint_partition_from(lpoints)
+
+    ??? print empty_lshape.get_lpoint_partition_listing(partition)
+    a:
+        (1, 0)
+        (1, 1)
+    b:
+        (2, 0)
+        (2, 1)
+
+### export
+#   get_element_specs()                                         # 2.1
+    >>> def make_lshape_el_specs():
+    ...     new_line_specs = [(0, 0, 0, 1), (0, 0, 1, 1), (2, 2, 3, 3), (0, 0, 1, 0)]
+    ...     new_shape = shape.Shape.from_specs(new_line_specs)
+    ...     new_lpoint_part_specs = [(0, 1, '0'), (1, 1, '45'), (1, 0, '90')]
+    ...     new_lpoint_part = lpoint_partition.LPointPartition.from_specs(new_lpoint_part_specs)
+    ...     new_lshape = labeled_shape.LabeledShape(new_shape, new_lpoint_part)
+    ...     return new_lshape
+    >>> lshape_el_specs = make_lshape_el_specs()
+    >>> print lshape_el_specs.get_element_specs()
+    ([(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)], [(0, 1, '0'), (1, 0, '90'), (1, 1, '45')])
+
+#   get_line_specs()                                            # 2.1.1
+    
+    ??? def make_shape_for_line_specs():
+    ...     line_n = make_line_from_spec(0, 0, 0, 1)
+    ...     line_ne = make_line_from_spec(0, 0, 1, 1)
+    ...     line_e = make_line_from_spec(0, 0, 1, 0)
+    ...     lines = [line_n, line_ne, line_e]
+    ...     return shape.Shape.from_lines(lines)
+    ??? def make_lshape_for_line_specs():
+    ...     new_shape = make_shape_for_line_specs()
+    ...     lpoint_part = {'a': set([(1, 1)]), 'b': set([(1, 1), (2, 2)]), 'c': set([(3, 3)])}
+    ...     return labeled_shape.LabeledShape(new_shape, lpoint_part)
+    
+    ??? lshape = make_lshape_for_line_specs()
+    ??? lshape.get_line_specs()
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
+
+get_lpoint_specs_from(lpoint_partition)                         # 2.1.2
+    
+    ??? def make_lpoint_partition_for_lpoint_specs():
+    ...     lpoint_part = {'a': set([(10, 10)]), 'b': set([(20, 20), (25, 25)]), 'c': set([(30, 30), (33, 33), (36, 36)])}
+    ...     return lpoint_part
+    
+    ??? lpoint_part = make_lpoint_partition_for_lpoint_specs()
+    ??? empty_lshape.get_lpoint_specs_from(lpoint_part)
+    [(10, 10, 'a'), (20, 20, 'b'), (25, 25, 'b'), (30, 30, 'c'), (33, 33, 'c'), (36, 36, 'c')]
+
+get_colabeled_lpoint_specs_from(colabeled_point_specs, label)   #2.1.2.1
+    
+    ??? def make_colabeled_point_specs():
+    ...     return [(1, 1), (2, 2), (3, 3)]
+    
+    ??? colabeled_point_specs = make_colabeled_point_specs()
+    ??? label = 'a'
+    ??? empty_lshape.get_colabeled_lpoint_specs_from(colabeled_point_specs, label)
+    [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a')]
+
+### construct
+#   make_shape_from(), __init__(), listing()
+    
+    empty shape
+    
+    ??? empty_shape = shape.Shape()
+    ??? print empty_shape.listing()
+    no lines
+    no points
+
+    2 disjoint collinear horizontal lines, 1 vertical line: _ | _
+    
+    ??? h0010 = make_line_from_spec(0, 0, 1, 0)
+    ??? h3040 = make_line_from_spec(3, 0, 4, 0)
+    ??? v2022 = make_line_from_spec(2, 0, 2, 2)
+    ??? line_list = [h0010, h3040, v2022]
+    ??? line_shape = empty_shape.make_shape_from(line_list, [])                 #   controller
+    ??? print line_shape.listing()
+    (0, 2):
+        (2, 0, 2, 2)
+    (90, 0):
+        (0, 0, 1, 0)
+        (3, 0, 4, 0)
+    no points
+
+    2 labels, 4 labeled points
+    
+    ??? p00 = make_lpoint(0, 0, 'a')
+    ??? p01 = make_lpoint(0, 1, 'b')
+    ??? p10 = make_lpoint(1, 0, 'a')
+    ??? p11 = make_lpoint(1, 1, 'b')
+    ??? point_list = [p00, p01, p10, p11]
+    ??? point_shape = empty_shape.make_shape_from([], point_list)
+    ??? print point_shape.listing()
+    no lines
+    a:
+        (0, 0, a)
+        (1, 0, a)
+    b:
+        (0, 1, b)
+        (1, 1, b)
+
+    lines and labeled points from above
+    
+    ??? print empty_shape.make_shape_from(line_list, point_list).listing()
+    (0, 2):
+        (2, 0, 2, 2)
+    (90, 0):
+        (0, 0, 1, 0)
+        (3, 0, 4, 0)
+    a:
+        (0, 0, a)
+        (1, 0, a)
+    b:
+        (0, 1, b)
+        (1, 1, b)
+
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> labeled_shape.LabeledShape._print_error_message(test_method_name, test_message)
+    LabeledShape.test_method(): This is a test

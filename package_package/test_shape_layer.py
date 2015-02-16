@@ -12,8 +12,8 @@ good_arg_false_hash = 'kil#roy'
 good_arg_false_space = 'kil roy'
 good_arg_true_string = 'kilroy'
 
-def test_get_is_text():
-    method_name = 'get_is_text'
+def test_export():
+    method_name = 'export'
 
     def try_good_state_empty():                 ##  02-14 18:37 3
         pass
@@ -63,7 +63,7 @@ def test_new():
 
     try_good_args()
 
-test_get_is_text()
-# test__add_tag()
+test_export()
+# test__add_tag()_repr
 # test_record_name()
 test_new()

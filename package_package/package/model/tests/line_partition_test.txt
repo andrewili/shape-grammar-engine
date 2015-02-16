@@ -1,0 +1,435 @@
+#   partition_test.txt
+    
+    >>> import colineation
+    >>> import copy
+    >>> import line
+    >>> import line_partition
+    >>> import point
+
+    >>> partition_drone = line_partition.LinePartition([])
+
+### construct, represent
+#   __init__(), __str__(), listing()
+
+    >>> def make_mixed_elements_for_mixed_init_test():
+    ...     line_01 = line.Line.from_short_spec(0, 1)
+    ...     line_34 = line.Line.from_short_spec(3, 4)
+    ...     point_22 = point.Point(2, 2)
+    ...     return [line_01, point_22, line_34]
+    >>> mixed_elements = make_mixed_elements_for_mixed_init_test()
+
+    >>> mixed_partition = line_partition.LinePartition(mixed_elements)
+    LinePartition.__init__(): The argument must be a list of lines
+
+    >>> def lines_0_deg_overlapping():
+    ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)
+    ...     line_0103 = line.Line.from_spec(0, 1, 0, 3)
+    ...     return [line_0103, line_0002]
+    >>> def lines_45_deg_disjoint():
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_2233 = line.Line.from_spec(2, 2, 3, 3)
+    ...     return [line_2233, line_0011]
+    >>> def lines_0_45_deg_for_partition():
+    ...     lines_0_deg = lines_0_deg_overlapping()
+    ...     lines_45_deg = lines_45_deg_disjoint()
+    ...     lines_0_45_deg = copy.copy(lines_45_deg)
+    ...     lines_0_45_deg.extend(lines_0_deg)
+    ...     return lines_0_45_deg
+    >>> lines_0_deg = lines_0_deg_overlapping()
+    >>> lines_45_deg = lines_45_deg_disjoint()
+    >>> lines_0_45_deg = lines_0_45_deg_for_partition()
+
+    >>> empty_partition = line_partition.LinePartition.new_empty()
+    >>> print empty_partition
+    []
+    >>> print empty_partition.listing()
+    <empty line partition>
+
+    >>> partition_0 = line_partition.LinePartition(lines_0_deg)
+    >>> print partition_0
+    [(0, 0, 0, 3)]
+    >>> print partition_0.listing()
+    (0, 0):
+        (0, 0, 0, 3)
+
+    >>> partition_45 = line_partition.LinePartition(lines_45_deg)
+    >>> print partition_45
+    [(0, 0, 1, 1), (2, 2, 3, 3)]
+    >>> print partition_45.listing()
+    (45, 0):
+        (0, 0, 1, 1)
+        (2, 2, 3, 3)
+
+    >>> partition_0_45 = line_partition.LinePartition(lines_0_45_deg)
+    >>> print partition_0_45
+    [(0, 0, 0, 3), (0, 0, 1, 1), (2, 2, 3, 3)]
+    >>> print partition_0_45.listing()
+    (0, 0):
+        (0, 0, 0, 3)
+    (45, 0):
+        (0, 0, 1, 1)
+        (2, 2, 3, 3)
+    >>> print partition_0_45.listing(1)
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 3.0)
+    (45.0, 0.0):
+        (0.0, 0.0, 1.0, 1.0)
+        (2.0, 2.0, 3.0, 3.0)
+
+    ??? print partition_0_45.listing(1.1)
+    Point.listing(): The argument must be an integer
+    ??? print partition_0_45.listing(-1.1)
+    Point.listing(): The argument must be an integer
+    ??? print partition_0_45.listing(-1)
+    Point.listing(): The argument must be non-negative
+
+    >>> def make_partition():
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     lines = [line_0010, line_0011, line_0001]
+    ...     partition = line_partition.LinePartition(lines)
+    ...     return partition
+    >>> partition = make_partition()
+
+    >>> print partition
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
+
+#   _are_lines(elements)
+    >>> def elements_for_are_lines_test():
+    ...     line_01 = line.Line.from_short_spec(0, 1)
+    ...     line_34 = line.Line.from_short_spec(3, 4)
+    ...     point_22 = point.Point(2, 2)
+    ...     lines = [line_34, line_01]
+    ...     lines_and_points = [line_34, point_22, line_01]
+    ...     return [lines, lines_and_points]
+    >>> lines, lines_and_points = elements_for_are_lines_test()
+
+    >>> partition_drone._are_lines(lines_and_points)
+    False
+    >>> partition_drone._are_lines(lines)
+    True
+
+#   make_dictionary(lines)
+    >>> def lines_for_make_dictionary_test():
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     lines = [line_0010, line_0011, line_0001]
+    ...     line_dictionary = partition_drone.make_dictionary(lines)
+    ...     return line_dictionary
+    >>> line_dictionary = lines_for_make_dictionary_test()
+
+    >>> for carrier in sorted(line_dictionary):
+    ...     print '%s: %s' % (carrier, line_dictionary[carrier])
+    (0.0, 0): [(0, 0, 0, 1)]
+    (45.0, 0): [(0, 0, 1, 1)]
+    (90.0, 0): [(0, 0, 1, 0)]
+
+#   from_dictionary(dictionary)
+    >>> def make_line_partition_for_dictionary_test():
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     lines = [line_0011, line_0010, line_0001]
+    ...     line_partition_helper = line_partition.LinePartition(lines)
+    ...     new_dictionary = line_partition_helper.dictionary
+    ...     new_line_partition = line_partition.LinePartition.from_dictionary(new_dictionary)
+    ...     return new_line_partition
+    >>> new_line_partition = make_line_partition_for_dictionary_test()
+
+    >>> print new_line_partition
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
+
+### get
+#   specs()
+
+    >>> def make_lparts_for_specs():
+    ...     lpart_0 = line_partition.LinePartition([])
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_2233 = line.Line.from_spec(2, 2, 3, 3)
+    ...     lines = [line_0001, line_0010, line_0011, line_2233]
+    ...     lpart_1 = line_partition.LinePartition(lines)
+    ...     return [lpart_0, lpart_1]
+    >>> lpart_0, lpart_1 = make_lparts_for_specs()
+    >>> print lpart_0.specs()
+    []
+    >>> print lpart_1.specs()
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
+
+
+### relations
+#   __eq__()
+#   __ne__()
+
+    >>> l_vert = line.Line.from_spec(0, 0, 0, 10)
+    >>> l_horiz = line.Line.from_spec(0, 0, 5, 0)
+    >>> l_lines = [l_vert, l_horiz]
+    >>> t_horiz = line.Line.from_spec(0, 10, 10, 10)
+    >>> t_vert = line.Line.from_spec(5, 0, 5, 10)
+    >>> t_lines = [t_horiz, t_vert]
+
+    >>> partition_l_1 = line_partition.LinePartition(l_lines)
+    >>> partition_l_2 = line_partition.LinePartition(l_lines)
+    >>> partition_t = line_partition.LinePartition(t_lines)
+    
+    >>> print partition_l_1
+    [(0, 0, 0, 10), (0, 0, 5, 0)]
+    >>> print partition_l_2
+    [(0, 0, 0, 10), (0, 0, 5, 0)]
+
+    >>> partition_l_1 == partition_l_2
+    True
+    >>> partition_l_1 == partition_t
+    False
+    >>> partition_l_1 != partition_l_2
+    False
+    >>> partition_l_1 != partition_t
+    True
+
+    >>> line_01 = line.Line.from_short_spec(0, 1)
+    >>> non_empty_partition = line_partition.LinePartition([line_01])
+
+    >>> empty_partition.is_empty()
+    True
+    >>> non_empty_partition.is_empty()
+    False
+
+#   colineations_are_subcolineations_in()
+#   is_a_sub_line_partition_of()
+    >>> def make_partitions_for_subcolineations():
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0020 = line.Line.from_spec(0, 0, 2, 0)
+    ...     line_0022 = line.Line.from_spec(0, 0, 2, 2)
+    ...     test_partition_0001_0010 = line_partition.LinePartition([line_0001, line_0010])
+    ...     partition_0002_0022 = line_partition.LinePartition([line_0002, line_0022])
+    ...     partition_0002_0020 = line_partition.LinePartition([line_0002, line_0020])
+    ...     partition_0022_0020 = line_partition.LinePartition([line_0022, line_0020])
+    ...     partition_0002_0022_0020 = line_partition.LinePartition([line_0002, line_0022, line_0020])
+    ...     return [test_partition_0001_0010, partition_0002_0022, partition_0002_0020, partition_0022_0020, partition_0002_0022_0020]
+
+    >>> test_partition_0001_0010, partition_0002_0022, partition_0002_0020, partition_0022_0020, partition_0002_0022_0020 = make_partitions_for_subcolineations()
+    >>> test_partition_0001_0010.colineations_are_subcolineations_in(partition_0002_0022)
+    False
+    >>> test_partition_0001_0010.colineations_are_subcolineations_in(partition_0002_0020)
+    True
+    >>> test_partition_0001_0010.colineations_are_subcolineations_in(partition_0022_0020)
+    False
+    >>> test_partition_0001_0010.is_a_sub_line_partition_of(partition_0002_0022_0020)
+    True
+
+    >>> test_partition_0001_0010.is_a_sub_line_partition_of(partition_0002_0022)
+    False
+    >>> test_partition_0001_0010.is_a_sub_line_partition_of(partition_0002_0020)
+    True
+    >>> test_partition_0001_0010.is_a_sub_line_partition_of(partition_0022_0020)
+    False
+    >>> test_partition_0001_0010.is_a_sub_line_partition_of(partition_0002_0022_0020)
+    True
+
+### add
+#   __add__(other)
+
+    >>> def partitions_for_add_test():
+    ...     empty_partition_1 = line_partition.LinePartition([])
+    ...     empty_partition_2 = line_partition.LinePartition([])
+    ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)
+    ...     line_0020 = line.Line.from_spec(0, 0, 2, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_1122 = line.Line.from_spec(1, 1, 2, 2)
+    ...     full_partition_1 = line_partition.LinePartition([line_0011, line_0002])
+    ...     full_partition_2 = line_partition.LinePartition([line_1122, line_0020])
+    ...     return (empty_partition_1, empty_partition_2, full_partition_1, full_partition_2)
+    >>> empty_partition_1, empty_partition_2, full_partition_1, full_partition_2 = partitions_for_add_test()
+    >>> empty_empty_partition = empty_partition_1 + empty_partition_2
+    >>> full_empty_partition = full_partition_1 + empty_partition_1
+    >>> empty_full_partition = empty_partition_1 + full_partition_1
+    >>> full_full_partition = full_partition_1 + full_partition_2
+
+    >>> print empty_empty_partition
+    []
+    >>> print empty_empty_partition.listing()
+    <empty line partition>
+    >>> print full_empty_partition
+    [(0, 0, 0, 2), (0, 0, 1, 1)]
+    >>> print full_empty_partition.listing()
+    (0, 0):
+        (0, 0, 0, 2)
+    (45, 0):
+        (0, 0, 1, 1)
+    >>> print empty_full_partition
+    [(0, 0, 0, 2), (0, 0, 1, 1)]
+    >>> print empty_full_partition.listing()
+    (0, 0):
+        (0, 0, 0, 2)
+    (45, 0):
+        (0, 0, 1, 1)
+    >>> print full_full_partition
+    [(0, 0, 0, 2), (0, 0, 2, 0), (0, 0, 2, 2)]
+    >>> print full_full_partition.listing()
+    (0, 0):
+        (0, 0, 0, 2)
+    (45, 0):
+        (0, 0, 2, 2)
+    (90, 0):
+        (0, 0, 2, 0)
+
+### subtract
+#   __sub__(other)                                                          #   back to shape.__sub__
+
+    >>> def make_line_parts_for_sub():
+    ...     lpart_01 = line_partition.LinePartition([])
+    ...     lpart_02 = line_partition.LinePartition([])
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0020 = line.Line.from_spec(0, 0, 2, 0)
+    ...     line_0022 = line.Line.from_spec(0, 0, 2, 2)
+    ...     line_1133 = line.Line.from_spec(1, 1, 3, 3)
+    ...     line_3040 = line.Line.from_spec(3, 0, 4, 0)
+    ...     lpart_11 = line_partition.LinePartition([line_0001, line_0022, line_0020])
+    ...     lpart_12 = line_partition.LinePartition([line_0001, line_1133, line_3040])
+    ...     return [lpart_01, lpart_02, lpart_11, lpart_12]
+    >>> lpart_01, lpart_02, lpart_11, lpart_12 = make_line_parts_for_sub()
+
+    >>> print lpart_11
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+
+    >>> diff_0102 = lpart_01 - lpart_02
+    >>> print lpart_11
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+    >>> print diff_0102.listing()
+    <empty line partition>
+
+    >>> diff_0111 = lpart_01 - lpart_11
+    >>> print lpart_11
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+    >>> print diff_0111.listing()
+    <empty line partition>
+
+    >>> diff_0112 = lpart_01 - lpart_12
+    >>> print lpart_11
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+    >>> print diff_0112.listing()
+    <empty line partition>
+
+    >>> diff_1101 = lpart_11 - lpart_01
+    >>> print lpart_11
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+    >>> print diff_1101.listing()
+    (0, 0):
+        (0, 0, 0, 1)
+    (45, 0):
+        (0, 0, 2, 2)
+    (90, 0):
+        (0, 0, 2, 0)
+
+    >>> diff_1111 = lpart_11 - lpart_11
+    >>> print lpart_11
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+    >>> print diff_1111.listing()
+    <empty line partition>
+
+    >>> diff_1112 = lpart_11 - lpart_12
+    >>> print lpart_11
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+    >>> print diff_1112.listing()
+    (45, 0):
+        (0, 0, 1, 1)
+    (90, 0):
+        (0, 0, 2, 0)
+
+    >>> diff_1211 = lpart_12 - lpart_11
+    >>> print lpart_11
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+    >>> print lpart_11.listing()                                                #   lpart_11.listing() has changed
+    (0, 0):
+        (0, 0, 0, 1)
+    (45, 0):
+        (0, 0, 2, 2)
+    (90, 0):
+        (0, 0, 2, 0)
+    >>> print diff_1211.listing()
+    (45, 0):
+        (2, 2, 3, 3)
+    (90, 0):
+        (3, 0, 4, 0)
+
+    >>> diff_1102 = lpart_11 - lpart_02
+    >>> print diff_1102
+    [(0, 0, 0, 1), (0, 0, 2, 0), (0, 0, 2, 2)]
+    
+    >>> diff_1212 = lpart_12 - lpart_12
+    >>> print diff_1212.listing()
+    <empty line partition>
+
+#   reduce()
+    >>> def make_line_parts_for_reduce():
+    ...     colineation_empty = colineation.Colineation.new_empty()
+    ...     line_00_01 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_00_10 = line.Line.from_spec(0, 0, 1, 0)
+    ...     def make_line_part_0():
+    ...         line_part_0 = line_partition.LinePartition.new_empty()
+    ...         line_part_0.dictionary[(0, 0)] = colineation_empty
+    ...         return line_part_0
+    ...     def make_line_part_1():
+    ...         line_part_1 = line_partition.LinePartition([line_00_01])
+    ...         return line_part_1
+    ...     def make_line_part_00():
+    ...         line_part_00 = line_partition.LinePartition.new_empty()
+    ...         line_part_00.dictionary[(0, 0)] = colineation_empty
+    ...         line_part_00.dictionary[(90, 0)] = colineation_empty
+    ...         return line_part_00
+    ...     def make_line_part_01():
+    ...         line_part_01 = line_partition.LinePartition([line_00_10])
+    ...         line_part_01.dictionary[(0, 0)] = colineation_empty
+    ...         return line_part_01
+    ...     def make_line_part_10():
+    ...         line_part_10 = line_partition.LinePartition([line_00_01])
+    ...         line_part_10.dictionary[(90, 0)] = colineation_empty
+    ...         return line_part_10
+    ...     def make_line_part_11():
+    ...         line_part_11 = line_partition.LinePartition([line_00_10, line_00_01])
+    ...         return line_part_11
+    ...     line_part_empty = line_partition.LinePartition.new_empty()
+    ...     line_part_0 = make_line_part_0()
+    ...     line_part_1 = make_line_part_1()
+    ...     line_part_00 = make_line_part_00()
+    ...     line_part_01 = make_line_part_01()
+    ...     line_part_10 = make_line_part_10()
+    ...     line_part_11 = make_line_part_11()
+    ...     return [line_part_empty, line_part_0, line_part_1, line_part_00, line_part_01, line_part_10, line_part_11]
+    >>> line_part_empty, line_part_0, line_part_1, line_part_00, line_part_01, line_part_10, line_part_11 = make_line_parts_for_reduce()
+    >>> def test_reduce(line_part):
+    ...     line_part.reduce()
+    ...     print line_part.listing()
+
+    >>> test_reduce(line_part_empty)
+    <empty line partition>
+    >>> test_reduce(line_part_0)
+    <empty line partition>
+    >>> test_reduce(line_part_1)
+    (0, 0):
+        (0, 0, 0, 1)
+    >>> test_reduce(line_part_00)
+    <empty line partition>
+    >>> test_reduce(line_part_01)
+    (90, 0):
+        (0, 0, 1, 0)
+    >>> test_reduce(line_part_10)
+    (0, 0):
+        (0, 0, 0, 1)
+    >>> test_reduce(line_part_11)
+    (0, 0):
+        (0, 0, 0, 1)
+    (90, 0):
+        (0, 0, 1, 0)
+
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> line_partition.LinePartition._print_error_message(test_method_name, test_message)
+    LinePartition.test_method(): This is a test

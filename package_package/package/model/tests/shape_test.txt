@@ -1,0 +1,334 @@
+#   shape_test.txt
+
+    >>> import colineation
+    >>> import line
+    >>> import line_partition
+    >>> import shape
+
+    >>> def make_lines_from_short_specs(short_specs):
+    ...     new_lines = []
+    ...     for spec in short_specs:
+    ...         xy1, xy2 = (spec)
+    ...         new_line = line.Line.from_spec(xy1, xy1, xy2, xy2)
+    ...         new_lines.append(new_line)
+    ...     return new_lines
+
+    >>> empty_shape = shape.Shape.new_empty()
+
+### construct, represent
+#   __init__(), from_lines(lines), from_specs(), listing(), __str__()
+    
+    >>> non_part = 'x'
+    >>> shape_from_non_part = shape.Shape(non_part)
+    Shape.__init__(): The argument must be a line partition
+
+    empty shape
+    
+    >>> print empty_shape
+    []
+    >>> print empty_shape.line_part
+    []
+    >>> print empty_shape.__str__()
+    []
+    >>> print empty_shape.listing()
+    <empty shape>
+    >>> empty_shape.is_empty()
+    True
+
+    non-empty shape
+    
+    >>> def non_empty_shape_for_init():
+    ...     line_01 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_23 = line.Line.from_spec(2, 2, 3, 3)
+    ...     line_h  = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_v  = line.Line.from_spec(0, 0, 0, 1)
+    ...     lines = [line_01, line_23, line_h, line_v]
+    ...     new_line_partition = line_partition.LinePartition(lines)
+    ...     return shape.Shape(new_line_partition)
+    >>> non_empty_shape = non_empty_shape_for_init()
+
+    >>> print non_empty_shape
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
+    >>> print non_empty_shape.listing(1)
+    (0.0, 0.0):
+        (0.0, 0.0, 0.0, 1.0)
+    (45.0, 0.0):
+        (0.0, 0.0, 1.0, 1.0)
+        (2.0, 2.0, 3.0, 3.0)
+    (90.0, 0.0):
+        (0.0, 0.0, 1.0, 0.0)
+
+    2 disjoint collinear horizontal lines, 1 vertical line: _ | _
+    
+    >>> def shape_for_disjoint_collinear_lines_test():
+    ...     h0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     h3040 = line.Line.from_spec(3, 0, 4, 0)
+    ...     v2022 = line.Line.from_spec(2, 0, 2, 2)
+    ...     lines = [h0010, h3040, v2022]
+    ...     new_line_partition = line_partition.LinePartition(lines)
+    ...     return shape.Shape(new_line_partition)
+    
+    >>> shape_for_disjoint_collinear_lines = shape_for_disjoint_collinear_lines_test()
+    >>> print shape_for_disjoint_collinear_lines
+    [(0, 0, 1, 0), (2, 0, 2, 2), (3, 0, 4, 0)]
+    >>> print shape_for_disjoint_collinear_lines.listing()
+    (0, 2):
+        (2, 0, 2, 2)
+    (90, 0):
+        (0, 0, 1, 0)
+        (3, 0, 4, 0)
+
+    from_lines
+
+    >>> def lines_for_shape_from_lines_test():
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     lines = [line_0010, line_0001]
+    ...     return lines
+    >>> lines = lines_for_shape_from_lines_test()
+
+    >>> shape_from_lines = shape.Shape.from_lines(lines)
+    >>> print shape_from_lines
+    [(0, 0, 0, 1), (0, 0, 1, 0)]
+
+    from_lines
+    
+    >>> spec_n = (0, 0, 0, 1)
+    >>> spec_ne = (0, 0, 1, 1)
+    >>> spec_e = (0, 0, 1, 0)
+    >>> specs = [spec_n, spec_ne, spec_e]
+    
+    >>> shape_from_specs = shape.Shape.from_specs(specs)
+    >>> print shape_from_specs
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
+
+### get
+#   line_specs()
+
+    >>> def make_shapes_for_specs():
+    ...     shape_0 = shape.Shape.new_empty()
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_2233 = line.Line.from_spec(2, 2, 3, 3)
+    ...     lines = [line_0001, line_0010, line_0011, line_2233]
+    ...     shape_1 = shape.Shape.from_lines(lines)
+    ...     return [shape_0, shape_1]
+    >>> shape_0, shape_1 = make_shapes_for_specs()
+    >>> print shape_0.line_specs()
+    []
+    >>> print shape_1.line_specs()
+    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
+
+### relations
+#   __eq__(other), line_parts_are_equal(line_part_1, line_part_2)
+
+    >>> def make_shapes_for_eq():
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011 = line.Line.from_spec(0, 0, 1, 1)
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     lines_3 = [line_0010, line_0011, line_0001]
+    ...     lines_2 = [line_0010, line_0011]
+    ...     lines_0 = []
+    ...     line_0010a = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0011a = line.Line.from_spec(0, 0, 1, 1)
+    ...     lines_test = [line_0010a, line_0011a]
+    ...     line_partition_test = line_partition.LinePartition(lines_test)
+    ...     line_partition_3 = line_partition.LinePartition(lines_3)
+    ...     line_partition_2 = line_partition.LinePartition(lines_2)
+    ...     line_partition_0 = line_partition.LinePartition(lines_0)
+    ...     line_partition_00 = line_partition.LinePartition(lines_0)
+    ...     shape_test = shape.Shape(line_partition_test)
+    ...     shape_0 = shape.Shape(line_partition_0)
+    ...     shape_2 = shape.Shape(line_partition_2)
+    ...     shape_3 = shape.Shape(line_partition_3)
+    ...     shape_00 = shape.Shape(line_partition_00)
+    ...     return (shape_test, shape_0, shape_2, shape_3, shape_00)
+    
+    >>> shape_test, shape_0, shape_2, shape_3, shape_00 = make_shapes_for_eq()
+    >>> shape_test == shape_0
+    False
+    >>> shape_test == shape_2
+    True
+    >>> shape_test == shape_3
+    False
+    >>> shape_0 == shape_00
+    True
+
+#   __ne__(other)
+    >>> def make_shapes_for_ne():
+    ...     base_line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     base_line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     base_shape = shape.Shape.from_lines([base_line_0001, base_line_0010])
+    ...     empty_partition = line_partition.LinePartition([])
+    ...     empty_shape = shape.Shape(empty_partition)
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0020 = line.Line.from_spec(0, 0, 2, 0)
+    ...     shape_0001_0010 = shape.Shape.from_lines([line_0001, line_0010])
+    ...     shape_0001_0020 = shape.Shape.from_lines([line_0001, line_0020])
+    ...     shape_0002_0010 = shape.Shape.from_lines([line_0002, line_0010])
+    ...     return [base_shape, empty_shape, shape_0001_0010, shape_0001_0020, shape_0002_0010]
+    
+    >>> base_shape, empty_shape, shape_0001_0010, shape_0001_0020, shape_0002_0010 = make_shapes_for_ne()
+
+    >>> base_shape != empty_shape
+    True
+    >>> base_shape != shape_0002_0010
+    True
+    >>> base_shape != shape_0001_0020
+    True
+    >>> base_shape != shape_0001_0010
+    False
+
+#   is_a_subshape_of(other)
+    >>> def make_shapes_for_part():
+    ...     line_0001 = line.Line.from_spec(0, 0, 0, 1)
+    ...     line_0002 = line.Line.from_spec(0, 0, 0, 2)
+    ...     line_0003 = line.Line.from_spec(0, 0, 0, 3)
+    ...     line_0010 = line.Line.from_spec(0, 0, 1, 0)
+    ...     line_0020 = line.Line.from_spec(0, 0, 2, 0)
+    ...     line_0030 = line.Line.from_spec(0, 0, 3, 0)
+    ...     base_shape = shape.Shape.from_lines([line_0002, line_0020])
+    ...     empty_shape = shape.Shape.from_lines([])
+    ...     shape_0002_0010 = shape.Shape.from_lines([line_0002, line_0010])
+    ...     shape_0001_0020 = shape.Shape.from_lines([line_0001, line_0020])
+    ...     shape_0002_0020 = shape.Shape.from_lines([line_0002, line_0020])
+    ...     shape_0003_0030 = shape.Shape.from_lines([line_0003, line_0030])
+    ...     return [base_shape, empty_shape, shape_0002_0010, shape_0001_0020, shape_0002_0020, shape_0003_0030]
+
+    >>> base_shape, empty_shape, shape_0002_0010, shape_0001_0020, shape_0002_0020, shape_0003_0030 = make_shapes_for_part()
+    >>> empty_shape.is_a_subshape_of(base_shape)
+    True
+    >>> base_shape.is_a_subshape_of(empty_shape)
+    False
+    >>> base_shape.is_a_subshape_of(shape_0002_0010)
+    False
+    >>> base_shape.is_a_subshape_of(shape_0001_0020)
+    False
+    >>> base_shape.is_a_subshape_of(shape_0002_0020)
+    True
+    >>> base_shape.is_a_subshape_of(shape_0003_0030)
+    True
+
+### add
+#   __add__(other)
+    
+    _|   |_       ___       _|___|_
+                 |   |       |   |
+             +   |   |   =   |   |
+    _     _      |___|      _|___|_
+     |   |                   |   |
+    
+    >>> def make_ells_for_add():
+    ...     line0414 = line.Line.from_spec(0, 4, 1, 4)
+    ...     line0111 = line.Line.from_spec(0, 1, 1, 1)
+    ...     line1011 = line.Line.from_spec(1, 0, 1, 1)
+    ...     line1415 = line.Line.from_spec(1, 4, 1, 5)
+    ...     line4041 = line.Line.from_spec(4, 0, 4, 1)
+    ...     line4151 = line.Line.from_spec(4, 1, 5, 1)
+    ...     line4445 = line.Line.from_spec(4, 4, 4, 5)
+    ...     line4454 = line.Line.from_spec(4, 4, 5, 4)
+    ...     ells_lines = [line1011, line1415, line4041, line4445, line0111, line4151, line0414, line4454]
+    ...     return shape.Shape.from_lines(ells_lines)
+    >>> def make_square_for_add():
+    ...     line1114 = line.Line.from_spec(1, 1, 1, 4)
+    ...     line1141 = line.Line.from_spec(1, 1, 4, 1)
+    ...     line1444 = line.Line.from_spec(1, 4, 4, 4)
+    ...     line4144 = line.Line.from_spec(4, 1, 4, 4)
+    ...     square_lines = [line1114, line1141, line1444, line4144]
+    ...     return shape.Shape.from_lines(square_lines)
+    >>> ells = make_ells_for_add()
+    >>> square = make_square_for_add()
+    
+    >>> hash = ells + square
+    >>> print hash
+    [(0, 1, 5, 1), (0, 4, 5, 4), (1, 0, 1, 5), (4, 0, 4, 5)]
+    >>> print hash.listing()
+    (0, 1):
+        (1, 0, 1, 5)
+    (0, 4):
+        (4, 0, 4, 5)
+    (90, 1):
+        (0, 1, 5, 1)
+    (90, 4):
+        (0, 4, 5, 4)
+
+### subtract
+#   __sub__(other)                                                          #   back to LShape.__sub__
+
+    >>> def make_shapes_for_sub():
+    ...     shape_01 = shape.Shape.new_empty()
+    ...     shape_02 = shape.Shape.new_empty()
+    ...     shape_11 = shape.Shape.from_specs([(2, 2, 7, 7)])
+    ...     shape_12 = shape.Shape.from_specs([(3, 3, 4, 4)])
+    ...     return [shape_01, shape_02, shape_11, shape_12]
+    >>> shape_01, shape_02, shape_11, shape_12 = make_shapes_for_sub()
+
+    >>> print shape_11.listing()
+    (45, 0):
+        (2, 2, 7, 7)
+    >>> print shape_12.listing()
+    (45, 0):
+        (3, 3, 4, 4)
+
+    >>> diff_0102 = shape_01 - shape_02
+    >>> print shape_11.listing()
+    (45, 0):
+        (2, 2, 7, 7)
+    >>> print shape_12.listing()
+    (45, 0):
+        (3, 3, 4, 4)
+    >>>
+    <empty shape>
+
+    >>> diff_0111 = shape_01 - shape_11
+    >>> print shape_11.listing()
+    (45, 0):
+        (2, 2, 7, 7)
+    >>> print shape_12.listing()
+    (45, 0):
+        (3, 3, 4, 4)
+    >>>
+    <empty shape>
+
+    >>> diff_1101 = shape_11 - shape_01
+    >>> print shape_11.listing()
+    (45, 0):
+        (2, 2, 7, 7)
+    >>> print shape_12.listing()
+    (45, 0):
+        (3, 3, 4, 4)
+    >>> print diff_1101.listing()
+    (45, 0):
+        (2, 2, 7, 7)
+
+    >>> diff_1112 = shape_11 - shape_12
+    >>> print shape_11.listing()
+    (45, 0):
+        (2, 2, 7, 7)
+    >>> print shape_12.listing()
+    (45, 0):
+        (3, 3, 4, 4)
+    >>> print diff_1112.listing()
+    (45, 0):
+        (2, 2, 3, 3)
+        (4, 4, 7, 7)
+
+    >>> diff_1211 = shape_12 - shape_11
+    >>> print shape_11.listing()
+    (45, 0):
+        (2, 2, 7, 7)
+    >>> print shape_12.listing()
+    (45, 0):
+        (3, 3, 4, 4)
+    >>>
+    <empty shape>
+
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> shape.Shape._print_error_message(test_method_name, test_message)
+    Shape.test_method(): This is a test

@@ -1,0 +1,145 @@
+    >>> import point
+
+### construct
+#   __init__()
+    ??? point_char = point.Point('a', 2)
+    Point.__init__(): The arguments must both be numbers
+    
+    >>> p23 = point.Point(2, 3)
+    >>> p23.x
+    2
+    >>> p23.y
+    3
+    >>> p23.spec
+    (2, 3)
+
+#   _is_number()
+    >>> p23._is_number('a')
+    False
+    >>> p23._is_number([1])
+    False
+    >>> p23._is_number(1)
+    True
+    >>> p23._is_number(1.1)
+    True
+
+#   from_spec(x, y)
+    >>> p34 = point.Point.from_spec(3, 4)
+    >>> p34.spec
+    (3, 4)
+
+### represent
+#   __str__()
+    >>> print p23
+    (2, 3)
+
+#   listing()
+    >>> print p23.listing()
+    (2, 3)
+    >>> print p23.listing(1)
+    (2.0, 3.0)
+
+    ??? print p23.listing(2.1)
+    Point.listing(): The argument must be an integer
+    ??? print p23.listing(-1.3)
+    Point.listing(): The argument must be an integer
+    ??? print p23.listing(-1)
+    Point.listing(): The argument must be non-negative
+
+#   get_formatted_coord()
+    >>> print p23.get_formatted_coord(25)
+    Point.get_formatted_coord(): The dimension must be a string ('x' or 'y')
+    None
+    >>> print p23.get_formatted_coord('z')
+    Point.get_formatted_coord(): The dimension must be either 'x' or 'y'
+    None
+    >>> print p23.get_formatted_coord('x')
+    2
+    >>> print p23.get_formatted_coord('x', 1)
+    2.0
+    >>> print p23.get_formatted_coord('x', 1.2)
+    2.0
+    >>> print p23.get_formatted_coord('x', -2)
+    2
+    >>> print p23.get_formatted_coord('x', -2.3)
+    2
+    >>> print p23.get_formatted_coord('y')
+    3
+
+### relations
+#   __eq__()
+    >>> point_eq =  point.Point(0, 0)
+    >>> point_eq == point.Point(0, 0)
+    True
+    >>> point_eq == point.Point(0, 1)
+    False
+    >>> point_eq == point.Point(1, 0)
+    False
+
+#   __ge__()
+    >>> point_ge  = point.Point( 0,  0)
+    >>> point_ge >= point.Point(-1,  2)
+    True
+    >>> point_ge >= point.Point( 0, -1)
+    True
+    >>> point_ge >= point.Point( 0,  0)
+    True
+    >>> point_ge >= point.Point( 0,  2)
+    False
+    >>> point_ge >= point.Point( 2,  2)
+    False
+
+#   __gt__()
+    >>> point_gt = point.Point( 0,  0)
+    >>> point_gt > point.Point(-1,  2)
+    True
+    >>> point_gt > point.Point( 0, -1)
+    True
+    >>> point_gt > point.Point( 0,  0)
+    False
+    >>> point_gt > point.Point( 0,  2)
+    False
+    >>> point_gt > point.Point( 0,  0)
+    False
+
+#   __le__()
+    >>> point_le  =  point.Point( 0,  0)
+    >>> point_le <=  point.Point( 1,  2)
+    True
+    >>> point_le <=  point.Point( 0,  1)
+    True
+    >>> point_le <=  point.Point( 0,  0)
+    True
+    >>> point_le <=  point.Point( 0, -2)
+    False
+    >>> point_le <=  point.Point(-2, -2)
+    False
+
+#   __lt__()
+    >>> point_lt = point.Point( 0,  0)
+    >>> point_lt < point.Point( 1, -2)
+    True
+    >>> point_lt < point.Point( 0,  1)
+    True
+    >>> point_lt < point.Point( 0,  0)
+    False
+    >>> point_lt < point.Point( 0, -2)
+    False
+    >>> point_lt < point.Point(-2, -2)
+    False
+
+#   __ne__()
+    >>> point_ne  = point.Point(0, 0)
+    >>> point_ne != point.Point(0, 0)
+    False
+    >>> point_ne != point.Point(0, 1)
+    True
+    >>> point_ne != point.Point(1, 0)
+    True
+
+### other
+#   _print_error_message()
+    >>> test_method_name = 'test_method()'
+    >>> test_message = 'This is a test'
+    >>> point.Point._print_error_message(test_method_name, test_message)
+    Point.test_method(): This is a test

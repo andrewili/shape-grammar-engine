@@ -61,14 +61,13 @@ class ShapeLayer(object):
         return return_value
 
     @classmethod
-    def get_is_text(cls):                       ##  02-14 18:35
-        """Translates the drawn shape into an is-format text string. Returns:
-            str             the is-format text string
+    def export(cls):                            ##  02-14 18:35
+        """Highlights the labeled shape on the current layer. Generates the 
+        shape's repr string (in is-format), records it in the user database, 
+        and writes it to a file named <shape_name>.is. 
         """
-        select_objects_on_layer
-        shape_name = identify_tag
-        lines = identify_lines
-        labels = identify_labels
-        return_value = translate(shape_name, lines, labels)
-        return_value = 'kilroy'
-        return return_value
+        elements_by_coords = cls._get_elements_by_coords()
+        elements = get_elements_from_guids(elements_by_coords)
+        c.Controller.export_labeled_shape(elements, labeled_shape_name)
+
+
