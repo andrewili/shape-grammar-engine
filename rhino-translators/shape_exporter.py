@@ -1,5 +1,3 @@
-#   shape_exporter.py
-
 import rhinoscriptsyntax as rs
 
 class ShapeExporter(object):

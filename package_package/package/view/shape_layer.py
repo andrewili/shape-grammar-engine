@@ -59,15 +59,3 @@ class ShapeLayer(object):
         """
         return_value = rs.AddText(shape_name, tag_position, cls.text_height)
         return return_value
-
-    @classmethod
-    def export(cls):                            ##  02-14 18:35
-        """Highlights the labeled shape on the current layer. Generates the 
-        shape's repr string (in is-format), records it in the user database, 
-        and writes it to a file named <shape_name>.is. 
-        """
-        elements_by_coords = cls._get_elements_by_coords()
-        elements = get_elements_from_guids(elements_by_coords)
-        c.Controller.export_labeled_shape(elements, labeled_shape_name)
-
-

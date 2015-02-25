@@ -1,10 +1,7 @@
-#   labeled_shape.py
-
 import copy
 import line_partition
 import lpoint_partition
 import shape
-
 
 class LabeledShape(object):
     ### construct
@@ -64,19 +61,19 @@ class LabeledShape(object):
         return listing
 
     ### compare
-    def __eq__(self, other):                                #   no test
+    def __eq__(self, other):                    #   no test
         value = (
             self.the_shape == other.the_shape and
             self.lpoint_part == other.lpoint_part)
         return value
 
-    def __ne__(self, other):                                #   no test
+    def __ne__(self, other):                    #   no test
         value = (
             self.the_shape != other.the_shape or
             self.lpoint_part != other.lpoint_part)
         return value
 
-    def is_empty(self):                                     #   no test
+    def is_empty(self):                         #   no test
         value = (
             self.the_shape.is_empty() and
             self.lpoint_part.is_empty())
@@ -113,16 +110,16 @@ class LabeledShape(object):
         new_lshape = LabeledShape(new_shape, new_lpoint_part)
         return new_lshape
 
-    def __and__(self, other):                               #   not called, no test
-                                                            #   Intersection &
-                                                            #   not implemented
+    def __and__(self, other):                   #   not called, no test
+                                                #   Intersection &
+                                                #   not implemented
         new_shape = self.the_shape & other.the_shape
         new_lpoint_part = self.lpoint_part & other.lpoint_part
         return LabeledShape(new_shape, new_lpoint_part)
 
     ### other
     @classmethod
-    def make_lshape_from(cls, lines, lpoints):              #   controller
+    def make_lshape_from(cls, lines, lpoints):  #   controller
         """Receives a list of lines and a list of labeled points:
             [Line, ...]
             [LabeledPoint, ...]
@@ -134,7 +131,7 @@ class LabeledShape(object):
         return LabeledShape(new_shape, new_lpoint_part)
 
     ### export
-    def get_element_specs(self):                    #   controller, translator
+    def get_element_specs(self):                #   controller, translator
         """Returns a 2-tuple of lists of element specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
         """

@@ -1,20 +1,65 @@
 from package.view import grammar as g
+import rhinoscriptsyntax as rs
 
 class Controller(object):
     def __init__(self):
         pass
 
-    @classmethod                                ##  02-16 11:02
-    def export_labeled_shape(cls, elements, labeled_shape_name):
-        """Exports a shape as an is file with the name 
-        <labeled_shape_name>.is. Receives:
-            elements        a list of elements by coordinates
+    @classmethod                                ##  02-17 11:25 3
+    def export_initial_shape(cls, initial_shape_name):
+        """Exports a Rhino shape as an is file with the suggested name 
+        <initial_shape_name>.is. Receives:
+            initial_shape_name
+                            str
         """
-        labeled_shape = LabeledShape.new_from_elements(
-            elements, labeled_shape_name)
-        is_text = labeled_shape.__repr__()
-        cls._write_is_file(is_text)
+        elements = ish.InitialShape.get_elements(initial_shape_name)
+        labeled_shape = LabeledShape.new_from_elements(elements) 
+                                                ##  02-17 11:29 1
+        is_text = repr(labeled_shape)           ##  02-17 11:29 2
+        cls._write_is_file(initial_shape_name, is_text)
 
+    @classmethod
+    def _write_is_file(cls, initial_shape_name, is_text):
+        """Receives:
+            initial_shape_name
+                            str
+            is_text         str. The text representation (in is format) of the 
+                            initial shape
+        Prompts the user for a file name (suggests the initial shape name), 
+        and writes the text to the file named <user_assigned_name>.is. 
+        Returns:
+            str             the file name, if successful
+            None            otherwise
+        """
+        method_name = '_write_is_file'
+        try:
+            if not (
+                type(initial_shape_name) == str and
+                type(is_text) == str
+            ):
+                raise TypeError
+        except TypeError:
+            message = "The arguments must both be strings"
+            print("%s.%s\n    %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            filter = "IS file (*.is)|*.is|All files (*.*)|*.*||"
+            file_name = (
+                rs.SaveFileName(
+                    'Save initial shape as', 
+                    filter, '', initial_shape_name))
+            if not file_name:
+                return
+            file = open(file_name, "w" )
+            file.write(is_text)
+            file.close()
+            return_value = initial_shape_name
+        finally:
+            return return_value
+
+    @classmethod
+    def export_rule(cls, rule_name):
+        pass
 
     ###
     ### old

@@ -165,3 +165,24 @@ class Rule(object):
         finally:
             return return_value
 
+    @classmethod
+    def export(cls):
+        """Constructs the is_string of the rule, and writes it to a file named 
+        <rule_name>.rul
+        """
+        rule_name = cls._get_name()
+        c.Controller.export_rule(rule_name)
+        ##  or
+        # rule_elements = cls._get_rule_elements(selected_item)
+        # c.Controller.export_rule(rule_elements)
+
+    @classmethod
+    def _get_rule_elements(cls):
+        """Prompts the user for a rule (or the selected rule?). Returns:
+            str             the name of the rule
+            (name, lines, labeled_points)
+                            the left labeled shape elements
+            (name, lines, labeled_points)
+                            the right labeled shape elements
+        """
+        pass

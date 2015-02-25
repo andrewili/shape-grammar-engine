@@ -1,9 +1,7 @@
-#   shape.py
-
-import colineation
-import copy
-import line
-import line_partition
+from package.translators import colineation
+from package.translators import copy
+from package.translators import line
+from package.translators import line_partition
 
 class Shape(object):
         ### construct

@@ -1,3 +1,4 @@
+from package.translators import exporter
 from package.view import component_name as cn
 from package.view import insertion_point as ip
 from package.view import llist as ll
@@ -68,4 +69,38 @@ class InitialShape(object):
                 cls.initial_shape_name_list_name, initial_shape_name)
         finally:
             return return_value
+
+    @classmethod                                ##  02-17 11:25 1
+    def export_unspecified(cls):
+        """Prompts the user to select an initial shape tag. Constructs the 
+        is_string of the initial shape, and writes it to a file named 
+        <initial_shape_name>.is. Returns:
+            str             the name of the initial shape, if successful
+            None            otherwise
+        """
+        exp = exporter.Exporter()
+        exp.export_shape()
+
+    @classmethod                                ##  02-17 11:25 2
+    def export_specified(cls, initial_shape_name):
+        """Constructs the is_string of the specified initial shape, and writes 
+        it to a file named <initial_shape_name>.is 
+        """
+        c.Controller.export_initial_shape(initial_shape_name)
+
+    @classmethod
+    def _get_name(cls):
+        pass
+
+    @classmethod                                ##  02-17 11:26
+    def _get_initial_shape_elements(cls, initial_shape_name):
+        """Receives:
+            initial_shape_name
+                            str
+        Returns:
+            str             the name of the shape
+            [line, ...]     a list of lines by coordinates
+            [text_obj, ...] a list of labeled points by coordinates
+        """
+        pass
 
