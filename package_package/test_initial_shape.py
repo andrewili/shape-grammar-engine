@@ -78,63 +78,71 @@ def test__record():
     try_bad_type()
     try_good_state()
 
-def test_export_unspecified():                  ##  02-20 16:39
+def test_export_unspecified():
     method_name = 'export_unspecified'
 
-    def try_labeled_shape_text_dot():           ##  02-24 08:31 1
+    def try_labeled_shape_text_dot():
         try_name = 'labeled_shape_text_dot'
         g.Grammar.clear_all()
         fb.FrameBlock.new()
         _draw_labeled_x_text_dot()
         ish.InitialShape.export_unspecified()
 
-    def try_labeled_shape_text_object():        ##  02-24 08:31 2
+    def try_labeled_shape_text_object():
         try_name = 'labeled_shape_text_object'
         g.Grammar.clear_all()
         fb.FrameBlock.new()
         _draw_labeled_x_text_object()
         ish.InitialShape.export_unspecified()
 
-    def try_labeled_shape_text_dot_and_object():##  02-24 08:31 3
+    def try_labeled_shape_text_dot_and_object():
         try_name = 'labeled_shape_text_dot_and_object'
+        g.Grammar.clear_all()
+        fb.FrameBlock.new()
+        _draw_labeled_x_text_object_text_dot()
+        ish.InitialShape.export_unspecified()
+
+    def _draw_labeled_x_text_dot():
+        _draw_x()
+        _draw_text_dot()
+
+    def _draw_labeled_x_text_object():
+        _draw_x()
+        _draw_text_object()
+
+    def _draw_labeled_x_text_object_text_dot():
+        _draw_x()
+        _draw_text_object()
+        _draw_text_dot()
+
+    def _draw_x():
+        p00 = (0, 0, 0)
+        p02 = (0, 32, 0)
+        p20 = (32, 0, 0)
+        p22 = (32, 32, 0)
+        point_pairs = [(p00, p22), (p02, p20)]
+        for pair in point_pairs:
+            rs.AddLine(pair[0], pair[1])
+            
+    def _draw_text_dot():
+        p11 = (16, 16, 0)
+        lpoints = [('d', p11)]
+        text_height = 2
+        for lpoint in lpoints:
+            label = lpoint[0]
+            point = lpoint[1]
+            rs.AddTextDot(label, point)
+
+    def _draw_text_object():
+        p00 = (0, 0, 0)
+        lpoints = [('o', p00)]
+        text_height = 2
+        for lpoint in lpoints:
+            rs.AddText(lpoint[0], lpoint[1], text_height)
 
     try_labeled_shape_text_dot()
-    # try_labeled_shape_text_object()
-    # try_labeled_shape_text_dot_and_object()
-
-def _draw_labeled_x_text_dot():
-    _draw_labeled_x()
-    _draw_text_dot()    
-
-def _draw_labeled_x_text_object():
-    _draw_labeled_x()
-    _draw_text_object()
-
-def _draw_labeled_x():                          ##  02-20 16:51
-    p00 = (0, 0, 0)
-    p02 = (0, 32, 0)
-    p20 = (32, 0, 0)
-    p22 = (32, 32, 0)
-    point_pairs = [(p00, p22), (p02, p20)]
-    for pair in point_pairs:
-        rs.AddLine(pair[0], pair[1])
-        
-def _draw_text_dot():
-    p11 = (16, 16, 0)
-    lpoints = [('x', p11)]
-    text_height = 2
-    for lpoint in lpoints:
-        label = lpoint[0]
-        point = lpoint[1]
-        rs.AddTextDot(label, point)
-        # lp.LabeledPoint.new(label, point)
-
-def _draw_text_object():
-    p11 = (16, 16, 0)
-    lpoints = [('x', p11)]
-    text_height = 2
-    for lpoint in lpoints:
-        rs.AddText(lpoint[0], lpoint[1], text_height)
+    try_labeled_shape_text_object()
+    try_labeled_shape_text_dot_and_object()
 
 def test_export_specified():
     method_name = 'export_specified'

@@ -17,37 +17,31 @@ class Exporter(object):
         self._write_rule_file(the_rule)
 
     ###
-    def _get_shape(self, side):                 ##  02-25 10:21
+    def _get_shape(self, side):
         """Receives 'initial', 'left', or 'right':
             str
-        Prompts for elements (lines and textdots) and a name. Returns the new 
-        shape:
+        Prompts for elements - lines, labeled points (i.e., text objects and 
+        textdots) - and a name. Returns the new shape:
             Shape
         """
         prompt_for_elements = (
-            'Select the lines and textdots in the %s shape' % side)
-        guids = rs.GetObjects(
-            prompt_for_elements,
-            rs.filter.curve + rs.filter.textdot)
-                                                ##  rs.filter.annotation
+            'Select the lines and labeled points in the %s shape' % side)
+        composite_filter = (
+            rs.filter.curve + rs.filter.annotation + rs.filter.textdot)
+        guids = rs.GetObjects(prompt_for_elements, composite_filter)
         if side == 'initial':
             while guids == None:
-                prompt_for_elements = (
-                    'The initial shape may not be empty. ' +
-                    'Select the lines and textdots in the initial shape')
-                guids = rs.GetObjects(
-                    prompt_for_elements,
-                    rs.filter.curve + rs.filter.textdot)
-                                                ##  rs.filter.annotation
+                prompt_for_elements = "%s %s %s" % (
+                    "The initial shape may not be empty.",
+                    "Select the lines and labeled points",
+                    "in the initial shape")
+                guids = rs.GetObjects(prompt_for_elements, composite_filter)
         elif side == 'left':
             while guids == None:
                 prompt_for_elements = (
                     'The left shape may not be empty. ' +
-                    'Select the lines and textdots in the left shape')
-                guids = rs.GetObjects(
-                    prompt_for_elements,
-                    rs.filter.curve + rs.filter.textdot)
-                                                ##  rs.filter.annotation
+                    'Select the lines and labeled points in the left shape')
+                guids = rs.GetObjects(prompt_for_elements, composite_filter)
         elif side == 'right':
             if guids == None:
                 guids = []
@@ -82,8 +76,7 @@ class Exporter(object):
         return value
 
     def _get_line_specs_and_lpoint_specs(self, guids):
-                                                ##  02-25 10:25
-        """Receives a list of line or textdot guids:
+        """Receives a list of line or text dot guids:
             [guid, ...]
         Returns a list of coord-coord pairs and a list of coord-label pairs:
             (   [((num, num, num), (num, num, num)), ...],
@@ -93,14 +86,18 @@ class Exporter(object):
         line_specs = []
         lpoint_specs = []
         line_type = 4
-        textdot_type = 8192
+        text_object_type = 512
+        text_dot_type = 8192
         for guid in guids:
             guid_type = rs.ObjectType(guid)
             if guid_type == line_type:
                 line_spec = self._get_line_spec(guid)
                 line_specs.append(line_spec)
-            elif guid_type == textdot_type:     ##  or annotation
-                coord, label = self._get_lpoint_spec(guid)
+            elif (
+                guid_type == text_dot_type or
+                guid_type == text_object_type
+            ):
+                coord, label = self._get_lpoint_spec_from_text_item(guid)
                 lpoint_spec = (coord, label)
                 lpoint_specs.append(lpoint_spec)
         return (line_specs, lpoint_specs)
@@ -118,15 +115,42 @@ class Exporter(object):
             coord_pair.append(coord)
         return (coord_pair[0], coord_pair[1])
 
-    def _get_lpoint_spec(self, textdot_guid):   ##  02-25 10:27 or annotation
-        """Receives a textdot guid:
+    def _get_lpoint_spec_from_text_item(self, text_item_guid):
+        """Receives the guid of a text item, i.e., a text dot or a text 
+        object:
             Guid
         Returns a labeled point spec:
             ((num, num, num), label)
         """
-        point = rs.TextDotPoint(textdot_guid)
+        if rs.IsTextDot(text_item_guid):
+            lpoint_spec = self._get_lpoint_spec_from_text_dot(text_item_guid)
+        elif rs.IsText(text_item_guid):
+            lpoint_spec = self._get_lpoint_spec_from_text_object(
+                text_item_guid)
+        else:
+            pass
+        return lpoint_spec
+
+    def _get_lpoint_spec_from_text_dot(self, text_dot_guid):
+        """Receives the guid of a text dot:
+            Guid
+        Returns the labeled point spec of the text dot:
+            ((num, num, num), label)
+        """
+        point = rs.TextDotPoint(text_dot_guid)
         coord = self._point_to_coord(point)
-        label = rs.TextDotText(textdot_guid)
+        label = rs.TextDotText(text_dot_guid)
+        return (coord, label)
+
+    def _get_lpoint_spec_from_text_object(self, text_object_guid):
+        """Receives the guid of a text object:
+            Guid
+        Returns the labeled point spec of the text object:
+            ((num, num, num), label)
+        """
+        point = rs.TextObjectPoint(text_object_guid)
+        coord = self._point_to_coord(point)
+        label = rs.TextObjectText(text_object_guid)
         return (coord, label)
 
     def _point_to_coord(self, point):
