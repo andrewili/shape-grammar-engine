@@ -17,10 +17,8 @@ class ShapeLayer(object):
         """Receives:
             shape_name      str; available name
             position        Point3d or [num, num, num]; in the xy plane
-        Both arguments are validated upstream. Creates a new layer with a 
-        shape frame and a tag. Records the name in the shape layer name list. 
-        Used for initial shapes, left rule shapes, and right rule shapes. 
-        Returns:
+        Both arguments are validated upstream. Draws shape frame and a tag on 
+        a new layer. Records the name in the shape layer name list. Returns:
             str             shape_name, if successful
             None            otherwise
         """

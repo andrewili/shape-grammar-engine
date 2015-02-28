@@ -6,11 +6,55 @@ import rhinoscriptsyntax as rs
 
 existing_name = 'existing_shape'
 name = 'initial_shape'
-position = (0, 0, 0)
+insertion_point = (5, 5, 0)
 bad_type_name = 37
 bad_type_position = 37
 bad_value_name = existing_name
 bad_value_position = (0, 0, 5)
+
+def _insert_labeled_x_text_object():
+    pass
+    # point = get_point()
+    # _draw_x(point)
+    # _draw_text_object(point)
+
+def _draw_labeled_x_text_dot():
+    _draw_x(insertion_point)
+    _draw_text_dot(insertion_point)
+
+def _draw_labeled_x_text_object():
+    _draw_x(insertion_point)
+    _draw_text_object(insertion_point)
+
+def _draw_labeled_x_text_object_text_dot():
+    _draw_x(insertion_point)
+    _draw_text_object(insertion_point)
+    _draw_text_dot(insertion_point)
+
+def _draw_x(insertion_point):
+    p11 = rs.PointAdd(insertion_point, (0, 0, 0))
+    p13 = rs.PointAdd(insertion_point, (0, 32, 0))
+    p31 = rs.PointAdd(insertion_point, (32, 0, 0))
+    p33 = rs.PointAdd(insertion_point, (32, 32, 0))
+    point_pairs = [(p11, p33), (p13, p31)]
+    for pair in point_pairs:
+        rs.AddLine(pair[0], pair[1])
+        
+def _draw_text_dot(insertion_point):
+    p22 = rs.PointAdd(insertion_point, (16, 16, 0))
+    lpoints = [('d', p22)]
+    text_height = 2
+    for lpoint in lpoints:
+        label = lpoint[0]
+        point = lpoint[1]
+        rs.AddTextDot(label, point)
+
+def _draw_text_object(insertion_point):
+    p11 = rs.PointAdd(insertion_point, (0, 0, 0))
+    lpoints = [('o', p11)]
+    text_height = 2
+    for lpoint in lpoints:
+        rs.AddText(lpoint[0], lpoint[1], text_height)
 
 def test_add_first():
     method_name = 'add_first'
@@ -78,81 +122,41 @@ def test__record():
     try_bad_type()
     try_good_state()
 
-def test_export_unspecified():
-    method_name = 'export_unspecified'
+def test_export():                              ##  Doesn't account for location
+    method_name = 'export'
 
     def try_labeled_shape_text_dot():
         try_name = 'labeled_shape_text_dot'
         g.Grammar.clear_all()
         fb.FrameBlock.new()
         _draw_labeled_x_text_dot()
-        ish.InitialShape.export_unspecified()
+        ish.InitialShape.export()
 
     def try_labeled_shape_text_object():
         try_name = 'labeled_shape_text_object'
         g.Grammar.clear_all()
         fb.FrameBlock.new()
         _draw_labeled_x_text_object()
-        ish.InitialShape.export_unspecified()
+        ish.InitialShape.export()
 
     def try_labeled_shape_text_dot_and_object():
         try_name = 'labeled_shape_text_dot_and_object'
         g.Grammar.clear_all()
         fb.FrameBlock.new()
         _draw_labeled_x_text_object_text_dot()
-        ish.InitialShape.export_unspecified()
-
-    def _draw_labeled_x_text_dot():
-        _draw_x()
-        _draw_text_dot()
-
-    def _draw_labeled_x_text_object():
-        _draw_x()
-        _draw_text_object()
-
-    def _draw_labeled_x_text_object_text_dot():
-        _draw_x()
-        _draw_text_object()
-        _draw_text_dot()
-
-    def _draw_x():
-        p00 = (0, 0, 0)
-        p02 = (0, 32, 0)
-        p20 = (32, 0, 0)
-        p22 = (32, 32, 0)
-        point_pairs = [(p00, p22), (p02, p20)]
-        for pair in point_pairs:
-            rs.AddLine(pair[0], pair[1])
-            
-    def _draw_text_dot():
-        p11 = (16, 16, 0)
-        lpoints = [('d', p11)]
-        text_height = 2
-        for lpoint in lpoints:
-            label = lpoint[0]
-            point = lpoint[1]
-            rs.AddTextDot(label, point)
-
-    def _draw_text_object():
-        p00 = (0, 0, 0)
-        lpoints = [('o', p00)]
-        text_height = 2
-        for lpoint in lpoints:
-            rs.AddText(lpoint[0], lpoint[1], text_height)
+        ish.InitialShape.export()
 
     try_labeled_shape_text_dot()
     try_labeled_shape_text_object()
     try_labeled_shape_text_dot_and_object()
 
-def test_export_specified():
-    method_name = 'export_specified'
-    ish.InitialShape.export_specified()
+def test_export2():
+    method_name = 'export2'
+    ish.InitialShape.export2()
 
 # test_add_first()
 # test_add_subsequent()
 # test__record()
 
-test_export_unspecified()
-##  test_export_specified()
-# _draw_initial_shape()
-
+# test_export()
+test_export2()

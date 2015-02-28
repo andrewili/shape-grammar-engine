@@ -12,40 +12,6 @@ good_arg_false_hash = 'kil#roy'
 good_arg_false_space = 'kil roy'
 good_arg_true_string = 'kilroy'
 
-def test_export():
-    method_name = 'export'
-
-    def try_good_state_empty():                 ##  02-14 18:37 3
-        pass
-
-    def try_good_state_non_maximal():           ##  02-14 18:37 2
-        pass
-
-    def try_good_state_maximal():               ##  02-14 18:37 1
-        pass
-
-    try_good_state_empty()
-    try_good_state_non_maximal()
-    try_good_state_maximal()
-
-
-def test__add_tag():
-    method_name = '_add_tag'
-
-    def try_good_state():
-        try_name = 'good_state'
-        g.Grammar.clear_all()
-        actual_value = sl.ShapeLayer._add_tag(new_shape_name, tag_position)
-        expected_value = 'guid'
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    try_good_state()
-
-def test_record_name():
-    pass
-
 def test_new():
     method_name = 'new'
     position = [0, 0, 0]
@@ -63,7 +29,23 @@ def test_new():
 
     try_good_args()
 
-test_export()
-# test__add_tag()_repr
-# test_record_name()
+def test_record_name():
+    pass
+
+def test__add_tag():
+    method_name = '_add_tag'
+
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        actual_value = sl.ShapeLayer._add_tag(new_shape_name, tag_position)
+        expected_value = 'guid'
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_good_state()
+
 test_new()
+# test_record_name()
+# test__add_tag()

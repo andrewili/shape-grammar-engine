@@ -33,7 +33,7 @@ class InitialShape(object):
             return return_value
 
     @classmethod
-    def add_subsequent(cls):
+    def add_subsequent(cls):                    ##  Initial Shape / New
         """Prompts the user for a name and a position. Adds a new shape 
         layer. Inserts a shape frame block. Returns:
             str             the name of the new shape layer, if successful
@@ -70,37 +70,30 @@ class InitialShape(object):
         finally:
             return return_value
 
-    @classmethod                                ##  02-17 11:25 1
-    def export_unspecified(cls):
-        """Prompts the user to select an initial shape tag. Constructs the 
-        is_string of the initial shape, and writes it to a file named 
-        <initial_shape_name>.is. Returns:
+    @classmethod                                ##  02-27 09:27 Account for origin
+    def export(cls):                            ##  Initial shape / Export...
+        """Prompts the user to select an initial shape and its origin. 
+        Constructs the is_string of the initial shape, and writes it to a file 
+        named <initial_shape_name>.is. Returns:
             str             the name of the initial shape, if successful
             None            otherwise
         """
         exp = exporter.Exporter()
         exp.export_shape()
 
-    @classmethod                                ##  02-17 11:25 2
-    def export_specified(cls, initial_shape_name):
-        """Constructs the is_string of the specified initial shape, and writes 
-        it to a file named <initial_shape_name>.is 
+    @classmethod                                ##  02-28 08:02
+    def export2(cls):
+        """Prompts the user to select an initial shape or other item that 
+        specifies an initial shape (e.g., name, frame), if one is not already 
+        selected. Constructs the repr string and writes it to a file named 
+        <initial_shape_name>.is. (Delegated to translator.)
         """
-        c.Controller.export_initial_shape(initial_shape_name)
+        message = "Pretending to export2"
+        print(message)
 
-    @classmethod
-    def _get_name(cls):
-        pass
+        initial_shape = x
+        exp = exporter.Exporter()
+        exp.export_initial_shape(initial_shape)
 
-    @classmethod                                ##  02-17 11:26
-    def _get_initial_shape_elements(cls, initial_shape_name):
-        """Receives:
-            initial_shape_name
-                            str
-        Returns:
-            str             the name of the shape
-            [line, ...]     a list of lines by coordinates
-            [text_obj, ...] a list of labeled points by coordinates
-        """
-        pass
+
 
