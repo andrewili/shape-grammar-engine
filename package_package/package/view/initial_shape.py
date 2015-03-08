@@ -1,4 +1,5 @@
 from package.translators import exporter
+from package.translators import exporter2
 from package.view import component_name as cn
 from package.view import insertion_point as ip
 from package.view import llist as ll
@@ -70,7 +71,7 @@ class InitialShape(object):
         finally:
             return return_value
 
-    @classmethod                                ##  02-27 09:27 Account for origin
+    @classmethod                                ##  02-27 09:27 Include origin
     def export(cls):                            ##  Initial shape / Export...
         """Prompts the user to select an initial shape and its origin. 
         Constructs the is_string of the initial shape, and writes it to a file 
@@ -83,17 +84,11 @@ class InitialShape(object):
 
     @classmethod                                ##  02-28 08:02
     def export2(cls):
-        """Prompts the user to select an initial shape or other item that 
-        specifies an initial shape (e.g., name, frame), if one is not already 
-        selected. Constructs the repr string and writes it to a file named 
-        <initial_shape_name>.is. (Delegated to translator.)
+        """Writes the repr string to a file named <initial_shape_name>.is. 
+        (Delegated to Exporter.)
         """
-        message = "Pretending to export2"
-        print(message)
-
-        initial_shape = x
-        exp = exporter.Exporter()
-        exp.export_initial_shape(initial_shape)
+        exp2 = exporter2.Exporter2()
+        exp2.export_initial_shape()
 
 
 

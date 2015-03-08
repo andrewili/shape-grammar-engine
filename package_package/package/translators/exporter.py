@@ -6,7 +6,9 @@ class Exporter(object):
     def __init__(self):
         pass
 
-    def export_shape(self):
+    def export_shape(self):                     ##  to be superceded by 
+                                                ##  Exporter
+                                                ##  .export_initial_shape
         initial_shape = self._get_shape('initial')
         self._write_shape_file(initial_shape)
 
