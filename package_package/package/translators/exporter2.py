@@ -1,3 +1,4 @@
+from package.view import layer as l
 import rhinoscriptsyntax as rs
 
 class Exporter2(object):
@@ -46,7 +47,7 @@ class Exporter2(object):
         """Returns:
             Rule            the SG object identified by the user
         """
-        rule_name = self._get_rule_name()
+        rule_name = self._get_selected_rule_name()
         labeled_shape_names = (
             self._get_labeled_shape_names_from_rule_name(rule_name))
         left_labeled_shape, right_labeled_shape = (
@@ -55,14 +56,28 @@ class Exporter2(object):
         new_rule = rule.Rule.new(left_labeled_shape, right_labeled_shape)
         return new_rule
 
-    def _get_rule_name(self):                   ##  03-03 08:15
-        """Prompts the user to select a rule tag, if one is not already 
+    def _get_selected_rule_name(self):          ##  03-03 08:15
+        """Prompts the user to select a rule name tag, if one is not already 
         selected. Returns:
             str             the name of a rule
         """
-        rule_tag = rs.GetObject(filter='annotation')
-        rule_name = rs.get_name_from_tag(rule_tag)
+        selected_objects = rs.SelectedObjects()
+        rule_name_tag = self._get_rule_name_tag_from(selected_objects)
+        if not rule_name_tag:
+            message = "Please select the name tag of a rule"
+            annotation_filter = 512
+            rule_name_tag = rs.GetObject(message, annotation_filter)
+        rule_name = rs.TextObjectText(rule_name_tag)
         return rule_name
+
+    def _get_rule_name_tag_from(self, objects): ##  03-13 10:21
+        """Extracts a rule name tag from a list of objects. Receives: 
+            objects         [guid, ...]
+        Returns:
+            guid            the guid of a rule name tag, if any
+            None            otherwise
+        """
+        pass
 
     def _get_labeled_shape_names_from_rule_name(self, rule_name):
         """Gets the labeled shape names associated with the rule name. 
@@ -93,23 +108,48 @@ class Exporter2(object):
         return labeled_shapes
 
     ### Shared methods
-    def _get_labeled_shape_from_labeled_shape_name(
-        self, labeled_shape_name
-    ):
-        """Receives:
+    def _get_labeled_shape_from_labeled_shape_name(self, labeled_shape_name):
+        """Receives:                            ##  03-14 08:10
             labeled_shape_name
-                            str
+                            str; type guaranteed by the calling method
         Returns:
-            LabeledShape    the SG labeled shape identified by the name
+            LabeledShape    the SG labeled shape identified by the name, if
+                            successful
+            None            otherwise
         """
-        labeled_shape_elements = self._get_elements_from_labeled_shape_name(
-            labeled_shape_name)
-        new_labeled_shape = labeled_shape.LabeledShape.new_from_elements(
-            labeled_shape_elements)
-        return new_labeled_shape
+        method_name = '_get_labeled_shape_from_labeled_shape_name'
+        try:
+            if not l.Layer.layer_name_is_in_use(labeled_shape_name):
+                raise ValueError
+        except ValueError:
+            message = "There is no labeled shape with that name"
+            print("%s.%s:\n    %s" % (self.class_name, method_name, message))
+            return_value = None
+        else:
+            labeled_shape_elements = (
+                self._get_elements_from_labeled_shape_name(
+                    labeled_shape_name))        ##  doesn't exist yet
+            new_labeled_shape = labeled_shape.LabeledShape.new_from_elements(
+                labeled_shape_elements)         ##  doesn't exist yet
+            return_value = new_labeled_shape
+        finally:
+            return return_value
 
-    def _write_file(self, file_type, shape_name, string):   
-                                                ##  03-06 10:59
+    def _get_elements_from_labeled_shape_name(self, labeled_shape_name):
+                                                ##  03-20 09:36
+        """Gets the elements of a labeled shape. Receives:
+            labeled_shape_name
+                            str. Value confirmed by the calling method
+        Returns:
+            ([(point3d, point3d), ..], [(point3d, str), ...])
+                            1. A list of line end point pairs
+                            2. A list of point-label pairs
+                            if successful
+            None            otherwise
+        """
+        pass
+
+    def _write_file(self, file_type, shape_name, string):
         """Writes a string to a file with the name shape_name and the 
         appropriate suffix. Receives:
             file_type       str: 'is' | 'rul' | 'dat'
@@ -137,7 +177,7 @@ class Exporter2(object):
             message = "The file type must be 'is', 'rul', or 'dat"
             print("%s.%s:\n    %s" % (self.class_name, method_name, message))
             return_value = None
-        else:                                   ##  03-07 10:14
+        else:
             filter = self._get_filter_from_file_type(file_type)
             file_name = (
                 rs.SaveFileName('Save shape as', filter, '', shape_name))
