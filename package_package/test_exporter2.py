@@ -106,6 +106,7 @@ def test__get_filter_from_file_type():
 
 ### shared methods
 def test__get_labeled_shape_from_labeled_shape_name():
+                                                ##  pending
     method_name = "_get_labeled_shape_from_labeled_shape_name"
 
     def try_bad_value_labeled_shape_name():
@@ -125,10 +126,10 @@ def test__get_labeled_shape_from_labeled_shape_name():
         try_name = "good_arg"
         _set_up_labeled_shapes()
         my_exporter2 = e2.Exporter2()
-        the_labeled_shape_name = rs.GetString("Enter the labeled shape name")
+        labeled_shape_name = rs.GetString("Enter the labeled shape name")
         actual_value = (
             my_exporter2._get_labeled_shape_from_labeled_shape_name(
-                the_labeled_shape_name))
+                labeled_shape_name))
         expected_value = the_labeled_shape
         if not actual_value == expected_value:
             g.Grammar.print_test_error_message(
@@ -137,6 +138,122 @@ def test__get_labeled_shape_from_labeled_shape_name():
     # try_bad_value_labeled_shape_name()
     try_good_arg()
 
+def test__get_elements_from_labeled_shape_name():
+                                                ##  03-21 08:44
+    method_name = '_get_elements_from_labeled_shape_name'
+
+    def try_lines_textdots_annotations_other():
+        try_name = 'lines_textdots_annotations_other'
+        g.Grammar.clear_all()
+        _set_up_labeled_shapes()
+        my_e2 = e2.Exporter2()
+        labeled_shape_name = rs.GetString(
+            "Enter the name of the 3-4-5 triangle")
+        actual_value = my_e2._get_elements_from_labeled_shape_name(
+            labeled_shape_name)
+        expected_value = (
+            [   ((0, 0, 0), (0, 20, 0)),
+                ((0, 0, 0), (15, 0, 0)),
+                ((0, 20, 0), (15, 0, 0))], 
+            [((5, 5, 0), 'p11')])
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_empty():
+        pass
+
+    try_lines_textdots_annotations_other()      ##  under construction
+    # try_empty()                                 ##  pending
+
+def test__sort_guids():
+    method_name = '_sort_guids'
+
+    def try_lines_textdots_annotations_other():
+        try_name = 'lines_textdots_annotations_other'
+        g.Grammar.clear_all()
+        guids = _make_lines_labeled_points_other()
+        my_e2 = e2.Exporter2()
+        lines, lpoints = my_e2._sort_guids(guids)
+        guids_are_lines = _are_lines(lines)
+        guids_are_textdots = _are_textdots(lpoints)
+        actual_value = (guids_are_lines, guids_are_textdots)
+        expected_value = (True, True)
+        if actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_empty():
+        try_name = 'empty'
+        g.Grammar.clear_all()
+        empty_guids = []
+        my_e2 = e2.Exporter2()
+        actual_value = my_e2._sort_guids(empty_guids)
+        expected_value = ([], [])
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    try_lines_textdots_annotations_other()
+    try_empty()
+
+def test__get_line_specs():                     ##  03-28 14:13
+    method_name = '_get_line_specs'
+
+    def try_bad_type_non_list():
+        try_name = "bad_type_non_list"
+        g.Grammar.clear_all()
+        bad_type_non_list = 37
+        my_e2 = e2.Exporter2()
+        actual_value = my_e2._get_line_specs(bad_type_non_list)
+        expected_value = None
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_bad_type_non_lines():
+        try_name = "bad_type_non_lines"
+        g.Grammar.clear_all()
+        bad_type_non_lines = [23, 37]
+        my_e2 = e2.Exporter2()
+        actual_value = my_e2._get_line_specs(bad_type_non_lines)
+        expected_value = None
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_arg_empty():
+        try_name = "good_arg_empty"
+        g.Grammar.clear_all()
+        good_arg_empty = []
+        my_e2 = e2.Exporter2()
+        actual_value = my_e2._get_line_specs(good_arg_empty)
+        expected_value = []
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_arg_lines():
+        try_name = 'good_arg_lines'
+        g.Grammar.clear_all()
+        my_e2 = e2.Exporter2()
+        l1155 = rs.AddLine((1, 1, 0), (5, 5, 0))
+        l1551 = rs.AddLine((1, 5, 0), (5, 1, 0))
+        good_arg_lines = [l1155, l1551]
+        actual_value = my_e2._get_line_specs(good_arg_lines)
+        expected_value = [((1, 1, 0), (5, 5, 0)), ((1, 5, 0), (5, 1, 0))]
+        # if actual_value == expected_value:
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    # try_bad_type_non_list()                     ##  done
+    # try_bad_type_non_lines()                    ##  done
+    # try_good_arg_empty()                        ##  
+    try_good_arg_lines()                        ##  under construction
+
+
+### test methods
 def _set_up_labeled_shapes():
     """Draws two labeled shape and name tags
     """
@@ -223,7 +340,16 @@ def _draw_labeled_point(labeled_point, origin):
     """
     p_local, label = labeled_point
     p_world = _get_point_world_from_local(p_local, origin)
-    rs.AddTextDot(label, p_world)
+    textdot = rs.AddTextDot(label, p_world)
+    return textdot
+    
+def _draw_point(center, radius=0.5):
+    point = rs.AddSphere(center, radius)
+    return point
+
+def _draw_text(label, point, height=2):
+    text = rs.AddText(label, point, height)
+    return text
 
 def _get_point_world_from_local(p_local, origin):
     """Converts a point to world coordinates from local coordinates. Receives:
@@ -235,6 +361,53 @@ def _get_point_world_from_local(p_local, origin):
     p_world = rs.PointAdd(p_local, origin)
     return p_world
 
+def _make_lines_labeled_points_other():
+    lines = _make_lines()
+    lpoints = _make_labeled_points()
+    others = _make_others()
+    lines_lpoints_others = []
+    lines_lpoints_others.extend(lines)
+    lines_lpoints_others.extend(lpoints)
+    lines_lpoints_others.extend(others)
+    return lines_lpoints_others
+
+def _make_lines():
+    p11 = (10, 10, 0)
+    p15 = (10, 50, 0)
+    p51 = (50, 10, 0)
+    p55 = (50, 50, 0)
+    l1155 = rs.AddLine(p11, p55)
+    l1551 = rs.AddLine(p15, p51)
+    return [l1155, l1551]
+    
+def _make_labeled_points():
+    p22 = (20, 20, 0)
+    p44 = (40, 40, 0)
+    td22 = rs.AddTextDot('td22', p22)
+    td44 = rs.AddTextDot('td44', p44)
+    return [td22, td44]
+    
+def _make_others():
+    other1 = rs.AddSphere((10, 10, 0), 1)
+    other2 = rs.AddSphere((50, 50, 0), 1)
+    return [other1, other2]
+        
+def _are_lines(guids):
+    value = True
+    for guid in guids:
+        if not rs.IsLine(guid):
+            value = False
+            break
+    return value
+
+def _are_textdots(guids):
+    value = True
+    for guid in guids:
+        if not rs.IsTextDot(guid):
+            value = False
+            break
+    return value
+
 ### rule methods
 # test_export_rule()
 # test__get_rule()
@@ -244,7 +417,11 @@ def _get_point_world_from_local(p_local, origin):
 # test__get_labeled_shapes_from_labeled_shape_names()
 
 ### shared methods
-test__get_labeled_shape_from_labeled_shape_name() ##  03-19 09:18
+# test__get_labeled_shape_from_labeled_shape_name()
+                                                ##  03-19 09:18 pending
+# test__get_elements_from_labeled_shape_name()    ##  pending
+# test__sort_guids()                              ##  done
+test__get_line_specs()                          ##  under construction
 # test__write_file()                              ##  done
 # test__get_filter_from_file_type()               ##  done
 

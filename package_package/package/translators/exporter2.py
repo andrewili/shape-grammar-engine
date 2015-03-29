@@ -128,9 +128,9 @@ class Exporter2(object):
         else:
             labeled_shape_elements = (
                 self._get_elements_from_labeled_shape_name(
-                    labeled_shape_name))        ##  doesn't exist yet
+                    labeled_shape_name))        ##  to do
             new_labeled_shape = labeled_shape.LabeledShape.new_from_elements(
-                labeled_shape_elements)         ##  doesn't exist yet
+                labeled_shape_elements)         ##  to do
             return_value = new_labeled_shape
         finally:
             return return_value
@@ -141,11 +141,91 @@ class Exporter2(object):
             labeled_shape_name
                             str. Value confirmed by the calling method
         Returns:
-            ([(point3d, point3d), ..], [(point3d, str), ...])
-                            1. A list of line end point pairs
-                            2. A list of point-label pairs
+            ([line_spec, ..], [labeled_point_spec, ...])
+                            1. A list of line specs (point3d, point3d)
+                            2. A list of labeled point specs: (point3d, str)
                             if successful
             None            otherwise
+        """
+        guids = rs.ObjectsByLayer(labeled_shape_name)
+        line_guids, lpoint_guids = self._sort_guids(guids)
+        line_specs = self._get_line_specs(line_guids)
+        lpoint_specs = self._get_lpoint_specs(lpoint_guids)
+        # line_specs = 'line_specs'
+        # lpoint_specs = 'lpoint_specs'
+        return (line_specs, lpoint_specs)
+
+    def _sort_guids(self, guids):
+        """Sorts guids by object type. Receives:
+            guids           [guid, ...], n >= 0
+        Returns:
+            (line_guids, labeled_point_guids)
+                            labeled_point_guids (textdot guids)
+        """
+        print("len(guids): %i" % len(guids))
+        print("guids: %s" % guids)
+        curve_type = 4
+        textdot_type = 8192
+        line_guids = rs.ObjectsByType(curve_type)
+        lpoint_guids = rs.ObjectsByType(textdot_type)
+        return (line_guids, lpoint_guids)
+
+    def _get_line_specs(self, line_guids):      ##  03-26 10:25
+        """Receives:
+            line_guids      [line_guid, ...], n >= 0
+        Returns:
+            [line_spec, ...], ordered
+                            line_spec: ((num, num, num), (num, num, num)),
+                            if successful
+            None            otherwise
+        """
+        method_name = "_get_line_specs"
+        try:
+            if not (
+                type(line_guids) == list and
+                self._are_line_guids(line_guids)
+            ):
+                raise TypeError
+        except TypeError:
+            message = "The argument must be a list of line guids"
+            print("%s.%s:\n    %s" % (self.class_name, method_name, message))
+            return_value = None
+        else:
+            line_specs = []
+            for guid in line_guids:
+                line_spec = self._get_line_spec_from(guid)
+                line_specs.append(line_spec)
+            return_value = sorted(line_specs)   ##  doesn't work
+        finally:
+            return return_value
+
+    def _are_line_guids(self, guids):
+        value = True
+        for guid in guids:
+            if not rs.IsLine(guid):
+                value = False
+                break
+        return value
+
+    def _get_line_spec_from(self, line_guid):   ##  03-29 08:33
+        """Receives:
+            line_guid
+        Returns:
+            (num, num, num) line spec
+        """
+        p1 = rs.CurveStartPoint(line_guid)
+        p2 = rs.CurveEndPoint(line_guid)
+        p1_spec = rs.PointCoordinates(p1)
+        p2_spec = rs.PointCoordinates(p2)
+        return (p1_spec, p2_spec)
+        # return (p1, p2)
+
+    def _get_lpoint_specs(self, lpoint_guids):
+        """Receives:
+            lpoint_guids    [lpoint_guid, ...], n >= 0
+        Returns:
+            [lpoint_spec, ...], ordered
+                            lpoint_spec: ((num, num, num), str)
         """
         pass
 
