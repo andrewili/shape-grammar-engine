@@ -1,24 +1,29 @@
 class Point(object):
 
     ### construct
-    def __init__(self, x, y):
-        """Receives 2 numbers
+    def __init__(self, x, y, z=0):
+        """Receives:
+            x   number
+            y   number
+            z   number
         Immutable
         """
         method_name = '__init__()'
         try:
             if not (
                 self._is_number(x) and
-                self._is_number(y)
+                self._is_number(y) and
+                self._is_number(z)
             ):
                 raise TypeError
         except TypeError:
-            message = 'The arguments must both be numbers'
+            message = 'The arguments must all be numbers'
             self.__class__._print_error_message(method_name, message)
         else:
             self.x = x
             self.y = y
-            self.spec = (x, y)
+            self.z = z
+            self.spec = (x, y, z)
 
     def _is_number(self, item):
         value = (
@@ -27,20 +32,20 @@ class Point(object):
         return value
 
     @classmethod
-    def from_spec(cls, x, y):
-        return Point(x, y)
+    def from_spec(cls, x, y, z=0):
+        return Point(x, y, z)
 
     ### represent
     def __str__(self):
-        string = '(%s, %s)' % (self.x, self.y)
+        string = '(%s, %s, %s)' % (self.x, self.y, self.z)
         return string
 
     def listing(self, decimal_places=0):
-        """Receives an integer
-            decimal_places >= 0
-        Returns a string of the form (x, y), where x and y have the specified
-        number of decimal places
-            String
+        """Receives:
+            decimal_places  int >= 0
+        Returns:
+            string          (x, y), where x and y have the specified number of
+                            decimal places
         """
         method_name = 'listing()'
         try:

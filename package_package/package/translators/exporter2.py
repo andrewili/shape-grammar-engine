@@ -196,6 +196,7 @@ class Exporter2(object):
                 line_spec = self._get_line_spec_from(guid)
                 line_specs.append(line_spec)
             return_value = sorted(line_specs)   ##  doesn't work
+                                                ##  revise Point
         finally:
             return return_value
 
@@ -211,9 +212,10 @@ class Exporter2(object):
         """Receives:
             line_guid
         Returns:
-            (num, num, num) line spec
+            ((num, num, num), (num, num, num))
+                            line spec
         """
-        p1 = rs.CurveStartPoint(line_guid)
+        p1 = rs.CurveStartPoint(line_guid)      ##  convert to SG point
         p2 = rs.CurveEndPoint(line_guid)
         p1_spec = rs.PointCoordinates(p1)
         p2_spec = rs.PointCoordinates(p2)
