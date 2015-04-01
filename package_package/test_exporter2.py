@@ -242,15 +242,14 @@ def test__get_line_specs():                     ##  03-28 14:13
         good_arg_lines = [l1155, l1551]
         actual_value = my_e2._get_line_specs(good_arg_lines)
         expected_value = [((1, 1, 0), (5, 5, 0)), ((1, 5, 0), (5, 1, 0))]
-        # if actual_value == expected_value:
         if not actual_value == expected_value:
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    # try_bad_type_non_list()                     ##  done
-    # try_bad_type_non_lines()                    ##  done
-    # try_good_arg_empty()                        ##  
-    try_good_arg_lines()                        ##  under construction
+    try_bad_type_non_list()                     ##  done
+    try_bad_type_non_lines()                    ##  done
+    try_good_arg_empty()                        ##  done
+    try_good_arg_lines()                        ##  done
 
 
 ### test methods

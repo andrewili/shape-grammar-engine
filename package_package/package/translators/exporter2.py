@@ -1,4 +1,5 @@
 from package.view import layer as l
+from package.model import point
 import rhinoscriptsyntax as rs
 
 class Exporter2(object):
@@ -170,7 +171,7 @@ class Exporter2(object):
         lpoint_guids = rs.ObjectsByType(textdot_type)
         return (line_guids, lpoint_guids)
 
-    def _get_line_specs(self, line_guids):      ##  03-26 10:25
+    def _get_line_specs(self, line_guids):      ##  03-26 10:25 done
         """Receives:
             line_guids      [line_guid, ...], n >= 0
         Returns:
@@ -195,8 +196,7 @@ class Exporter2(object):
             for guid in line_guids:
                 line_spec = self._get_line_spec_from(guid)
                 line_specs.append(line_spec)
-            return_value = sorted(line_specs)   ##  doesn't work
-                                                ##  revise Point
+            return_value = sorted(line_specs)
         finally:
             return return_value
 
@@ -208,19 +208,20 @@ class Exporter2(object):
                 break
         return value
 
-    def _get_line_spec_from(self, line_guid):   ##  03-29 08:33
+    def _get_line_spec_from(self, line_guid):
         """Receives:
             line_guid
         Returns:
             ((num, num, num), (num, num, num))
                             line spec
         """
-        p1 = rs.CurveStartPoint(line_guid)      ##  convert to SG point
-        p2 = rs.CurveEndPoint(line_guid)
-        p1_spec = rs.PointCoordinates(p1)
-        p2_spec = rs.PointCoordinates(p2)
-        return (p1_spec, p2_spec)
-        # return (p1, p2)
+        x1, y1, z1 = rs.CurveStartPoint(line_guid)
+        x2, y2, z2 = rs.CurveEndPoint(line_guid)
+        sg_p1 = point.Point(x1, y1, z1)
+        sg_p2 = point.Point(x2, y2, z2)
+        spec1 = sg_p1.spec
+        spec2 = sg_p2.spec
+        return (spec1, spec2)
 
     def _get_lpoint_specs(self, lpoint_guids):
         """Receives:
