@@ -171,7 +171,7 @@ class Exporter2(object):
         lpoint_guids = rs.ObjectsByType(textdot_type)
         return (line_guids, lpoint_guids)
 
-    def _get_line_specs(self, line_guids):      ##  03-26 10:25 done
+    def _get_line_specs(self, line_guids):
         """Receives:
             line_guids      [line_guid, ...], n >= 0
         Returns:
@@ -193,8 +193,8 @@ class Exporter2(object):
             return_value = None
         else:
             line_specs = []
-            for guid in line_guids:
-                line_spec = self._get_line_spec_from(guid)
+            for line_guid in line_guids:
+                line_spec = self._get_line_spec_from(line_guid)
                 line_specs.append(line_spec)
             return_value = sorted(line_specs)
         finally:
@@ -228,9 +228,51 @@ class Exporter2(object):
             lpoint_guids    [lpoint_guid, ...], n >= 0
         Returns:
             [lpoint_spec, ...], ordered
-                            lpoint_spec: ((num, num, num), str)
+                            lpoint_spec: ((num, num, num), str), if 
+                            successful
+            None            otherwise
         """
-        pass
+        method_name = "_get_lpoint_specs"
+        try:
+            if not (
+                type(lpoint_guids) == list and
+                self._are_lpoint_guids(lpoint_guids)
+            ):
+                raise TypeError
+        except TypeError:
+            message = "The argument must be a list of labeled point guids"
+            print("%s.%s:\n    %s" % (self.class_name, method_name, message))
+            return_value = None
+        else:
+            lpoint_specs = []
+            for lpoint_guid in lpoint_guids:
+                lpoint_spec = self._get_lpoint_spec_from(lpoint_guid)
+                lpoint_specs.append(lpoint_spec)
+            return_value = lpoint_specs
+            # return_value = sorted(lpoint_specs)
+        finally:
+            return return_value
+
+    def _are_lpoint_guids(self, guids):
+        value = True
+        for guid in guids:
+            if not rs.IsTextDot(guid):
+                value = False
+                break
+        return value
+
+    def _get_lpoint_spec_from(self, lpoint_guid):
+                                                ##  04-02 10:05
+                                                ##  pending LabeledPoint
+        """Receives:
+            lpoint_guid     textdot guid
+        Returns:
+            ((num, num, num), str)              ##  Note: SG spec: (x, y, str)
+                            the labeled point spec
+        """
+        p = rs.TextDotPoint(lpoint_guid)
+        label = rs.TextDotText(lpoint_guid)
+        return (p, label)
 
     def _write_file(self, file_type, shape_name, string):
         """Writes a string to a file with the name shape_name and the 

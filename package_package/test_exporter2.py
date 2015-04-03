@@ -197,7 +197,7 @@ def test__sort_guids():
     try_lines_textdots_annotations_other()
     try_empty()
 
-def test__get_line_specs():                     ##  03-28 14:13
+def test__get_line_specs():
     method_name = '_get_line_specs'
 
     def try_bad_type_non_list():
@@ -251,6 +251,50 @@ def test__get_line_specs():                     ##  03-28 14:13
     try_good_arg_empty()                        ##  done
     try_good_arg_lines()                        ##  done
 
+def test__get_lpoint_specs():                   ##  04-02 09:25
+    method_name = '_get_lpoint_specs'
+
+    def try_bad_type_non_list():
+        try_name = 'bad_type_non_list'
+        g.Grammar.clear_all()
+        bad_type_non_list = 37
+        my_e2 = e2.Exporter2()
+        actual_value = my_e2._get_lpoint_specs(bad_type_non_list)
+        expected_value = None
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+
+    def try_bad_type_non_lpoints():
+        try_name = 'bad_type_non_lpoints'
+        g.Grammar.clear_all()
+        bad_type_non_lpoints = [23, 37]
+        my_e2 = e2.Exporter2()
+        actual_value = my_e2._get_lpoint_specs(bad_type_non_lpoints)
+        expected_value = None
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_arg_empty():
+        try_name = 'good_arg_empty'
+        g.Grammar.clear_all()
+        good_arg_empty = []
+        my_e2 = e2.Exporter2()
+        actual_value = my_e2._get_lpoint_specs(good_arg_empty)
+        expected_value = []
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_arg_lpoints():
+        pass
+
+    # try_bad_type_non_list()                     ##  done
+    # try_bad_type_non_lpoints()                  ##  done
+    try_good_arg_empty()
+    # try_good_arg_lpoints()
 
 ### test methods
 def _set_up_labeled_shapes():
@@ -420,7 +464,8 @@ def _are_textdots(guids):
                                                 ##  03-19 09:18 pending
 # test__get_elements_from_labeled_shape_name()    ##  pending
 # test__sort_guids()                              ##  done
-test__get_line_specs()                          ##  under construction
+# test__get_line_specs()                          ##  done
+test__get_lpoint_specs()                        ##  under construction
 # test__write_file()                              ##  done
 # test__get_filter_from_file_type()               ##  done
 

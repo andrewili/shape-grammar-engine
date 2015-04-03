@@ -1,12 +1,63 @@
     >>> import labeled_point
     >>> import line
+    >>> import point
 
 ### construct
-#   __init__(), __str__(), listing()
+#   __init__, __str__, listing
+    >>> bad_type_point = 37
+    >>> good_point = point.Point(3, 4, 5)
+    >>> good_label_empty = ''
+    >>> good_label = 'k'
+
+    ### bad type point
+    >>> label = 'a'
+    >>> lpoint_bad_type_point = labeled_point.LabeledPoint(
+    ...     bad_type_point, label)
+    LabeledPoint.__init__: The arguments must be a Point and a string
+
+    ### bad type label
+    >>> bad_type_label = 37
+    >>> lpoint_bad_type_label = labeled_point.LabeledPoint(
+    ...     good_point, bad_type_label)
+    LabeledPoint.__init__: The arguments must be a Point and a string
+
+    ### good args empty label
+    >>> lpoint_empty_label = labeled_point.LabeledPoint(
+    ...     good_point, good_label_empty)
+    >>> lpoint_empty_label.x
+    3
+    >>> lpoint_empty_label.y
+    4
+    >>> lpoint_empty_label.z
+    5
+    >>> lpoint_empty_label.label
+    ''
+    >>> lpoint_empty_label.spec
+    ((3, 4, 5), '')
+    >>> print(lpoint_empty_label)
+    ((3, 4, 5), '')
+    >>> print(lpoint_empty_label.listing(1))
+    ((3.0, 4.0, 5.0), '')
+
+    ### good args
+    >>> lpoint_good_args = labeled_point.LabeledPoint(good_point, good_label)
+    >>> lpoint_good_args.x
+    3
+    >>> lpoint_good_args.y
+    4
+    >>> lpoint_good_args.z
+    5
+    >>> lpoint_good_args.label
+    'k'
+    >>> lpoint_good_args.spec
+    ((3, 4, 5), 'k')
+    >>> print(lpoint_good_args)
+    ((3, 4, 5), k)
+
     >>> lpoint_non_point = labeled_point.LabeledPoint('a', 2, 'a')
-    Point.__init__(): The arguments must both be numbers
+    Point.__init__: The arguments must both be numbers
     >>> lpoint_non_string = labeled_point.LabeledPoint(1, 2, 3)
-    LabeledPoint.__init__(): The label must be a string
+    LabeledPoint.__init__: The label must be a string
 
     >>> lpoint_empty_label = labeled_point.LabeledPoint(1, 2, '')
     >>> print lpoint_empty_label
@@ -21,7 +72,7 @@
     'a'
     >>> lpoint_init.spec
     (1, 2, 'a')
-    >>> lpoint_init.point.spec
+    ??? lpoint_init.point.spec
     (1, 2)
     >>> print lpoint_init
     (1, 2, a)

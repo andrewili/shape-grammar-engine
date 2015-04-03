@@ -4,31 +4,45 @@ class LabeledPoint(object):
     """Contains a Point and a label
     """
         ### construct
-    def __init__(self, x, y, label):
-        """Receives 2 coordinates and a (possibly empty) label:
-            num, num, String
-        2D implementation. Immutable
+    def __init__(self, point_in, label):        ##  04-03 09:13
+        """Receives a Point and a (possibly empty) label:
+            point_in        Point
+            label           str. May be empty. Assume interpreter restrictions 
+                            are enforced elsewhere
+        Immutable
         """
-        method_name = '__init__()'
+        method_name = '__init__'
         try:
-            if not label.__class__ == str:
+            if not (
+                type(point_in) == point.Point and
+                label.__class__ == str
+            ):
                 raise TypeError
         except TypeError:
-            message = 'The label must be a string'
+            message = 'The arguments must be a Point and a string'
             self.__class__._print_error_message(method_name, message)
         else:
-            self.x = x
-            self.y = y
+            self.point = point_in
             self.label = label
-            self.spec = (x, y, label)
-            self.point = point.Point(x, y)
+            self.x = self.point.x
+            self.y = self.point.y
+            self.z = self.point.z
+            self.spec = (point_in.spec, label)
+
+    # @classmethod
+    # def new_from_parts(cls, x, y, z=0, label):
+    #     pass
 
         ### represent
     def __str__(self):
-        string = '(%s, %s, %s)' % (self.x, self.y, self.label)
+        if self.label == '':
+            label_str = "''"
+        else:
+            label_str = self.label
+        string = "(%s, %s)" % (self.point, label_str)
         return string
 
-    def listing(self, decimal_places=0):
+    def listing(self, decimal_places=0):        ##  04-03 09:55
         point_listing = self.point.listing(decimal_places)
         point_formatted = point_listing[1:-1]
         string = '(%s, %s)' % (point_formatted, self.label)

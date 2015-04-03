@@ -40,7 +40,7 @@ class Point(object):
         string = '(%s, %s, %s)' % (self.x, self.y, self.z)
         return string
 
-    def listing(self, decimal_places=0):
+    def listing(self, decimal_places=0):        ##  04-03 09:47
         """Receives:
             decimal_places  int >= 0
         Returns:
@@ -62,11 +62,12 @@ class Point(object):
         else:
             x_formatted = self.get_formatted_coord('x', decimal_places)
             y_formatted = self.get_formatted_coord('y', decimal_places)
-            string = '(%s, %s)' % (x_formatted, y_formatted)
+            z_formatted = self.get_formatted_coord('z', decimal_places)
+            string = '(%s, %s, %s)' % (x_formatted, y_formatted, z_formatted)
             return string
 
     def get_formatted_coord(self, dimension, decimal_places=0):
-        """Receives the dimension (i.e., x or y) of the coordinate and the 
+        """Receives the dimension (i.e., x, y, or z) of the coordinate and the 
         number of decimal places:
             String
             number
@@ -79,14 +80,15 @@ class Point(object):
                 raise TypeError
             elif not (
                 dimension == 'x' or
-                dimension == 'y'
+                dimension == 'y' or
+                dimension == 'z'
             ):
                 raise ValueError
         except TypeError:
-            message = "The dimension must be a string ('x' or 'y')"
+            message = "The dimension must be a string ('x', 'y', or 'z')"
             self.__class__._print_error_message(method_name, message)
         except ValueError:
-            message = "The dimension must be either 'x' or 'y'"
+            message = "The dimension must be either 'x', 'y', or 'z'"
             self.__class__._print_error_message(method_name, message)
         else:
             if decimal_places < 0:
@@ -98,8 +100,10 @@ class Point(object):
                 coord = self.x
             elif dimension == 'y':
                 coord = self.y
+            elif dimension == 'z':
+                coord = self.z
             else:
-                print '%s %s' % "We shouldn't have gotten here"
+                print '%s %s %s' % "We shouldn't have gotten here"
             formatted_coord = format % coord
             return formatted_coord
 
