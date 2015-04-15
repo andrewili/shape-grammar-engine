@@ -2,6 +2,9 @@ import copy
 import line_partition
 import lpoint_partition
 import shape
+# from package.model import line_partition
+# from package.model import lpoint_partition
+# from package.model import shape
 
 class LabeledShape(object):
     ### construct
@@ -26,6 +29,19 @@ class LabeledShape(object):
         else:
             self.the_shape = shape_in
             self.lpoint_part = lpoint_partition_in
+
+    @classmethod
+    def new_from_specs(cls, line_specs, lpoint_specs):
+        """Receives:
+            line_specs      [line_spec, ...]
+            lpoint_specs    [lpoint_spec, ...]
+        Returns:
+            LabeledShape    the labeled shape specified by the specs
+        """
+        new_shape = shape.Shape.from_specs(line_specs)
+        new_lpoint_partition = None
+        new_labeled_shape = LabeledShape(new_shape, new_lpoint_partition)
+        return new_labeled_shape
 
     @classmethod
     def new_empty(cls):

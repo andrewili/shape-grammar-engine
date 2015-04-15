@@ -106,7 +106,7 @@ def test__get_filter_from_file_type():
 
 ### shared methods
 def test__get_labeled_shape_from_labeled_shape_name():
-                                                ##  pending
+                                                ##  04-14 08:54
     method_name = "_get_labeled_shape_from_labeled_shape_name"
 
     def try_bad_value_labeled_shape_name():
@@ -135,11 +135,10 @@ def test__get_labeled_shape_from_labeled_shape_name():
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
         
-    # try_bad_value_labeled_shape_name()
+    # try_bad_value_labeled_shape_name()          ##  done
     try_good_arg()
 
 def test__get_elements_from_labeled_shape_name():
-                                                ##  03-21 08:44
     method_name = '_get_elements_from_labeled_shape_name'
 
     def try_lines_textdots_annotations_other():
@@ -161,10 +160,24 @@ def test__get_elements_from_labeled_shape_name():
                 method_name, try_name, expected_value, actual_value)
 
     def try_empty():
-        pass
+        try_name = 'empty'
+        g.Grammar.clear_all()
+        _set_up_labeled_shapes()
+        my_e2 = e2.Exporter2()
+        labeled_shape_name = rs.GetString(
+            "Enter the name of the layer to clear")
+        select = True
+        items_to_clear = rs.ObjectsByLayer(labeled_shape_name)
+        rs.DeleteObjects(items_to_clear)
+        actual_value = my_e2._get_elements_from_labeled_shape_name(
+            labeled_shape_name)
+        expected_value = ([], [])
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
-    try_lines_textdots_annotations_other()      ##  under construction
-    # try_empty()                                 ##  pending
+    try_lines_textdots_annotations_other()      ##  done
+    try_empty()                                 ##  done
 
 def test__sort_guids():
     method_name = '_sort_guids'
@@ -179,7 +192,7 @@ def test__sort_guids():
         guids_are_textdots = _are_textdots(lpoints)
         actual_value = (guids_are_lines, guids_are_textdots)
         expected_value = (True, True)
-        if actual_value == expected_value:
+        if not actual_value == expected_value:
             g.Grammar.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
@@ -251,7 +264,7 @@ def test__get_line_specs():
     try_good_arg_empty()                        ##  done
     try_good_arg_lines()                        ##  done
 
-def test__get_lpoint_specs():                   ##  04-02 09:25
+def test__get_lpoint_specs():
     method_name = '_get_lpoint_specs'
 
     def try_bad_type_non_list():
@@ -289,12 +302,21 @@ def test__get_lpoint_specs():                   ##  04-02 09:25
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_arg_lpoints():
-        pass
+        try_name = 'good_arg_lpoints'
+        my_e2 = e2.Exporter2()
+        lpoint_1 = rs.AddTextDot('lp1', [10, 10, 0])
+        lpoint_2 = rs.AddTextDot('lp2', [20, 20, 0])
+        lpoints = [lpoint_2, lpoint_1]
+        actual_value = my_e2._get_lpoint_specs(lpoints)
+        expected_value = [((10, 10, 0), 'lp1'), ((20, 20, 0), 'lp2')]
+        if not actual_value == expected_value:
+            g.Grammar.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
-    # try_bad_type_non_list()                     ##  done
-    # try_bad_type_non_lpoints()                  ##  done
-    try_good_arg_empty()
-    # try_good_arg_lpoints()
+    try_bad_type_non_list()                     ##  done
+    try_bad_type_non_lpoints()                  ##  done
+    try_good_arg_empty()                        ##  done
+    try_good_arg_lpoints()                      ##  done
 
 ### test methods
 def _set_up_labeled_shapes():
@@ -460,12 +482,11 @@ def _are_textdots(guids):
 # test__get_labeled_shapes_from_labeled_shape_names()
 
 ### shared methods
-# test__get_labeled_shape_from_labeled_shape_name()
-                                                ##  03-19 09:18 pending
-# test__get_elements_from_labeled_shape_name()    ##  pending
+test__get_labeled_shape_from_labeled_shape_name()
+# test__get_elements_from_labeled_shape_name()    ##  done
 # test__sort_guids()                              ##  done
 # test__get_line_specs()                          ##  done
-test__get_lpoint_specs()                        ##  under construction
+# test__get_lpoint_specs()                        ##  done
 # test__write_file()                              ##  done
 # test__get_filter_from_file_type()               ##  done
 

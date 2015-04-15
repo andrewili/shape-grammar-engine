@@ -8,7 +8,7 @@ class Point(object):
             z   number
         Immutable
         """
-        method_name = '__init__()'
+        method_name = '__init__'
         try:
             if not (
                 self._is_number(x) and
@@ -40,14 +40,18 @@ class Point(object):
         string = '(%s, %s, %s)' % (self.x, self.y, self.z)
         return string
 
-    def listing(self, decimal_places=0):        ##  04-03 09:47
+    def __repr__(self):
+        string = "(%s, %s, %s)" % (self.x, self.y, self.z)
+        return string
+
+    def listing(self, decimal_places=0):
         """Receives:
             decimal_places  int >= 0
         Returns:
-            string          (x, y), where x and y have the specified number of
-                            decimal places
+            string          (x, y, z), where x, y, and z have the specified 
+                            number of decimal places
         """
-        method_name = 'listing()'
+        method_name = 'listing'
         try:
             if not decimal_places.__class__ == int:
                 raise TypeError
@@ -74,7 +78,7 @@ class Point(object):
         Returns the specified coordinate formatted as specified
             String
         """
-        method_name = 'get_formatted_coord()'
+        method_name = 'get_formatted_coord'
         try:
             if not dimension.__class__ == str:
                 raise TypeError
@@ -128,8 +132,42 @@ class Point(object):
 
     ### other
     @classmethod
+    def is_point_spec(cls, item):
+        """Receives:
+            item
+        Returns:
+            boolean             True, if item is a point spec
+                                False, otherwise
+        """
+        value = (
+            type(item) == tuple and
+            len(item) == 3 and
+            cls._elements_are_numbers(item)
+        )
+        return value
+
+    @classmethod
+    def _elements_are_numbers(cls, elements):
+        """Receives:
+            elements        3-tuple
+        Returns:
+            boolean         True, if each element in elements is a float or 
+                            integer
+                            False, otherwise
+        """
+        value = True
+        for element in elements:
+            if not (
+                type(element) == int or
+                type(element) == float 
+            ):
+                value = False
+                break
+        return value
+
+    @classmethod
     def _print_error_message(cls, method_name, message):
-        print '%s.%s: %s' % (cls.__name__, method_name, message)
+        print '%s.%s:\n    %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest

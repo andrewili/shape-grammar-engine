@@ -1,4 +1,5 @@
 from package.view import layer as l
+from package.model import labeled_shape as ls
 from package.model import point
 import rhinoscriptsyntax as rs
 
@@ -110,7 +111,8 @@ class Exporter2(object):
 
     ### Shared methods
     def _get_labeled_shape_from_labeled_shape_name(self, labeled_shape_name):
-        """Receives:                            ##  03-14 08:10
+                                                ##  03-14 08:10
+        """Receives:
             labeled_shape_name
                             str; type guaranteed by the calling method
         Returns:
@@ -127,18 +129,17 @@ class Exporter2(object):
             print("%s.%s:\n    %s" % (self.class_name, method_name, message))
             return_value = None
         else:
-            labeled_shape_elements = (
-                self._get_elements_from_labeled_shape_name(
-                    labeled_shape_name))        ##  to do
-            new_labeled_shape = labeled_shape.LabeledShape.new_from_elements(
-                labeled_shape_elements)         ##  to do
+            line_specs, lpoint_specs = (
+                self._get_specs_from_labeled_shape_name(
+                    labeled_shape_name))
+            new_labeled_shape = ls.LabeledShape.new_from_specs(
+                line_specs, lpoint_specs)            ##  trouble here
             return_value = new_labeled_shape
         finally:
             return return_value
 
-    def _get_elements_from_labeled_shape_name(self, labeled_shape_name):
-                                                ##  03-20 09:36
-        """Gets the elements of a labeled shape. Receives:
+    def _get_specs_from_labeled_shape_name(self, labeled_shape_name):
+        """Gets the specs of a labeled shape. Receives:
             labeled_shape_name
                             str. Value confirmed by the calling method
         Returns:
@@ -148,12 +149,11 @@ class Exporter2(object):
                             if successful
             None            otherwise
         """
+        selected = True
         guids = rs.ObjectsByLayer(labeled_shape_name)
         line_guids, lpoint_guids = self._sort_guids(guids)
         line_specs = self._get_line_specs(line_guids)
         lpoint_specs = self._get_lpoint_specs(lpoint_guids)
-        # line_specs = 'line_specs'
-        # lpoint_specs = 'lpoint_specs'
         return (line_specs, lpoint_specs)
 
     def _sort_guids(self, guids):
@@ -163,13 +163,35 @@ class Exporter2(object):
             (line_guids, labeled_point_guids)
                             labeled_point_guids (textdot guids)
         """
-        print("len(guids): %i" % len(guids))
-        print("guids: %s" % guids)
         curve_type = 4
         textdot_type = 8192
-        line_guids = rs.ObjectsByType(curve_type)
-        lpoint_guids = rs.ObjectsByType(textdot_type)
+        line_guids = self._extract_line_guids(guids)
+        lpoint_guids = self._extract_lpoint_guids(guids)
         return (line_guids, lpoint_guids)
+
+    def _extract_line_guids(self, guids):
+        """Receives:
+            [guid, ...]
+        Returns:
+            [guid, ...]     a list of line guids
+        """
+        line_guids = []
+        for guid in guids:
+            if rs.IsCurve(guid):
+                line_guids.append(guid)
+        return line_guids
+
+    def _extract_lpoint_guids(self, guids):
+        """Receives:
+            [guid, ...]
+        Returns:
+            [guid, ...]     a list of lpoint guids
+        """
+        lpoint_guids = []
+        for guid in guids:
+            if rs.IsTextDot(guid):
+                lpoint_guids.append(guid)
+        return lpoint_guids
 
     def _get_line_specs(self, line_guids):
         """Receives:
@@ -246,10 +268,9 @@ class Exporter2(object):
         else:
             lpoint_specs = []
             for lpoint_guid in lpoint_guids:
-                lpoint_spec = self._get_lpoint_spec_from(lpoint_guid)
+                lpoint_spec = self._get_lpoint_spec(lpoint_guid)
                 lpoint_specs.append(lpoint_spec)
-            return_value = lpoint_specs
-            # return_value = sorted(lpoint_specs)
+            return_value = sorted(lpoint_specs)
         finally:
             return return_value
 
@@ -261,18 +282,17 @@ class Exporter2(object):
                 break
         return value
 
-    def _get_lpoint_spec_from(self, lpoint_guid):
-                                                ##  04-02 10:05
-                                                ##  pending LabeledPoint
+    def _get_lpoint_spec(self, lpoint_guid):
         """Receives:
-            lpoint_guid     textdot guid
+            lpoint_guid     textdot guid. Verified by calling method
         Returns:
             ((num, num, num), str)              ##  Note: SG spec: (x, y, str)
                             the labeled point spec
         """
-        p = rs.TextDotPoint(lpoint_guid)
+        point = rs.TextDotPoint(lpoint_guid)
+        point_spec = tuple(point)
         label = rs.TextDotText(lpoint_guid)
-        return (p, label)
+        return (point_spec, label)
 
     def _write_file(self, file_type, shape_name, string):
         """Writes a string to a file with the name shape_name and the 

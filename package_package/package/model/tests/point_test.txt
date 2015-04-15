@@ -1,13 +1,14 @@
     >>> import point
 
 ### construct
-#   __init__()
+#   __init__
 
     ### bad type
     >>> bad_type = 'a'
     >>> good_type = 10
     >>> actual_point = point.Point(bad_type, good_type, good_type)
-    Point.__init__(): The arguments must all be numbers
+    Point.__init__:
+        The arguments must all be numbers
 
     ### good type xy
     >>> p23 = point.Point(2, 3)
@@ -31,7 +32,7 @@
     >>> p234.spec
     (2, 3, 4)
 
-#   _is_number()
+#   _is_number
     >>> point_x = point.Point(1, 2, 3)
     >>> point_x._is_number('a')
     False
@@ -49,7 +50,8 @@
 
     ### bad type
     >>> point_from_bad_type = point.Point.from_spec('x', y, z)
-    Point.__init__(): The arguments must all be numbers
+    Point.__init__:
+        The arguments must all be numbers
 
     ### good type xy
     >>> point_from_good_type_xy = point.Point.from_spec(x, y)
@@ -62,32 +64,48 @@
     (2, 3, 4)
 
 ### represent
-#   __str__()
     >>> p234 = point.Point(2, 3, 4)
-    >>> print p234
-    (2, 3, 4)
+    >>> p123456 = point.Point(1.2, 3.4, 5.6)
 
-#   listing()
+#   __str__
+    >>> str(p234)
+    '(2, 3, 4)'
+    >>> repr(p234)
+    '(2, 3, 4)'
+
+
+#   __repr__
+    >>> str(p123456)
+    '(1.2, 3.4, 5.6)'
+    >>> repr(p123456)
+    '(1.2, 3.4, 5.6)'
+
+#   listing
     >>> print p234.listing()
     (2, 3, 4)
     >>> print p234.listing(1)
     (2.0, 3.0, 4.0)
     >>> print p234.listing(2.1)
-    Point.listing(): The argument must be an integer
+    Point.listing:
+        The argument must be an integer
     None
     >>> print p234.listing(-1.3)
-    Point.listing(): The argument must be an integer
+    Point.listing:
+        The argument must be an integer
     None
     >>> print p234.listing(-1)
-    Point.listing(): The argument must be non-negative
+    Point.listing:
+        The argument must be non-negative
     None
 
-#   get_formatted_coord()
+#   get_formatted_coord
     >>> print p234.get_formatted_coord(25)
-    Point.get_formatted_coord(): The dimension must be a string ('x', 'y', or 'z')
+    Point.get_formatted_coord:
+        The dimension must be a string ('x', 'y', or 'z')
     None
     >>> print p234.get_formatted_coord('p')
-    Point.get_formatted_coord(): The dimension must be either 'x', 'y', or 'z'
+    Point.get_formatted_coord:
+        The dimension must be either 'x', 'y', or 'z'
     None
     >>> print p234.get_formatted_coord('x')
     2
@@ -103,7 +121,7 @@
     3
 
 ### relations
-#   __eq__()
+#   __eq__
     >>> point_eq =  point.Point(0, 0, 0)
     >>> point_eq == point.Point(0, 0, 0)
     True
@@ -114,7 +132,7 @@
     >>> point_eq == point.Point(1, 0, 0)
     False
 
-#   __ge__()
+#   __ge__
     >>> point_ge  = point.Point( 0,  0,  0)
 
     >>> point_ge >= point.Point(-1,  0,  0)
@@ -132,7 +150,7 @@
     >>> point_ge >= point.Point( 1,  0,  0)
     False
 
-#   __gt__()
+#   __gt__
     >>> point_gt = point.Point( 0,  0,  0)
     >>> point_gt > point.Point(-1,  0,  0)
     True
@@ -149,7 +167,7 @@
     >>> point_gt > point.Point( 1,  0,  0)
     False
 
-#   __le__()
+#   __le__
     >>> point_le  = point.Point( 0,  0,  0)
     >>> point_le <= point.Point(-1,  0,  0)
     False
@@ -166,7 +184,7 @@
     >>> point_le <= point.Point( 1,  0,  0)
     True
 
-#   __lt__()
+#   __lt__
     >>> point_lt = point.Point( 0,  0,  0)
     >>> point_lt < point.Point(-1,  0,  0)
     False
@@ -183,7 +201,7 @@
     >>> point_lt < point.Point( 1,  0,  0)
     True
 
-#   __ne__()
+#   __ne__
     >>> point_ne  = point.Point(0, 0, 0)
     >>> point_ne != point.Point(0, 0, 0)
     False
@@ -195,8 +213,23 @@
     True
 
 ### other
-#   _print_error_message()
-    >>> test_method_name = 'test_method()'
+#   is_point_spec(cls)
+    >>> bad_type = 37
+    >>> bad_type_element = (1.2, 3.4, 'c')
+    >>> bad_type_length = (1.2, 3.4)
+    >>> good_arg = (1.2, 3.4, 5.6)
+    >>> point.Point.is_point_spec(bad_type)
+    False
+    >>> point.Point.is_point_spec(bad_type_element)
+    False
+    >>> point.Point.is_point_spec(bad_type_length)
+    False
+    >>> point.Point.is_point_spec(good_arg)
+    True
+
+#   _print_error_message
+    >>> test_method_name = 'test_method'
     >>> test_message = 'This is a test'
     >>> point.Point._print_error_message(test_method_name, test_message)
-    Point.test_method(): This is a test
+    Point.test_method:
+        This is a test
