@@ -1,29 +1,52 @@
 class Point(object):
 
     ### construct
-    def __init__(self, x, y, z=0):
+    def __init__(self, spec):
         """Receives:
-            x   number
-            y   number
-            z   number
+            spec            (num, num, num=0)
         Immutable
         """
         method_name = '__init__'
         try:
-            if not (
-                self._is_number(x) and
-                self._is_number(y) and
-                self._is_number(z)
-            ):
+            if not self._is_point_spec(spec):
                 raise TypeError
         except TypeError:
-            message = 'The arguments must all be numbers'
+            message = 'The argument must be a 2- or 3-tuple of numbers'
             self.__class__._print_error_message(method_name, message)
         else:
-            self.x = x
-            self.y = y
-            self.z = z
-            self.spec = (x, y, z)
+            if len(spec) == 2:
+                self.x, self.y = spec
+                self.z = 0
+            else:
+                self.x, self.y, self.z = spec
+            self.spec = (self.x, self.y, self.z)
+
+    def _is_point_spec(self, item):
+        """Receives:
+            item            any type
+        Returns:
+            boolean         True, if item is of the form (num, num) or
+                            (num, num, num)
+                            False, otherwise
+        """
+        if not (
+            len(item) == 2 or
+            len(item) == 3
+        ):
+            value = False
+        elif not self._contains_only_numbers(item):
+            value = False
+        else:
+            value = True
+        return value
+
+    def _contains_only_numbers(self, elements):
+        value = True
+        for element in elements:
+            if not self._is_number(element):
+                value = False
+                break
+        return value
 
     def _is_number(self, item):
         value = (
@@ -32,8 +55,11 @@ class Point(object):
         return value
 
     @classmethod
-    def from_spec(cls, x, y, z=0):
-        return Point(x, y, z)
+    def from_coords(cls, x, y, z=0):
+        method_name = 'from_coords'
+        new_spec = (x, y, z)
+        new_point = Point(new_spec)
+        return new_point
 
     ### represent
     def __str__(self):

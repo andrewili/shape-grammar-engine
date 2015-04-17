@@ -2,38 +2,42 @@
 
 ### construct
 #   __init__
+    >>> x = 2
+    >>> y = 3
+    >>> z = 4
 
-    ### bad type
-    >>> bad_type = 'a'
-    >>> good_type = 10
-    >>> actual_point = point.Point(bad_type, good_type, good_type)
+    ### bad type iter
+    >>> point_from_bad_type_iter = point.Point('xyz')
     Point.__init__:
-        The arguments must all be numbers
+        The argument must be a 2- or 3-tuple of numbers
+
+    ### bad type element
+    >>> point_from_bad_type_element = point.Point(('x', y, z))
+    Point.__init__:
+        The argument must be a 2- or 3-tuple of numbers
+    
+    ### bad value one element
+    >>> point_from_bad_value_one_element = point.Point((1))
+    Point.__init__:
+        The argument must be a 2- or 3-tuple of numbers
+
+    ### bad value four elements
+    >>> point_from_bad_value_one_element = point.Point((1, 2, 3, 4))
+    Point.__init__:
+        The argument must be a 2- or 3-tuple of numbers
 
     ### good type xy
-    >>> p23 = point.Point(2, 3)
-    >>> p23.x
-    2
-    >>> p23.y
-    3
-    >>> p23.z
-    0
-    >>> p23.spec
+    >>> point_from_good_type_xy = point.Point((x, y))
+    >>> point_from_good_type_xy.spec
     (2, 3, 0)
 
     ### good type xyz
-    >>> p234 = point.Point(2, 3, 4)
-    >>> p234.x
-    2
-    >>> p234.y
-    3
-    >>> p234.z
-    4
-    >>> p234.spec
+    >>> point_from_good_type_xyz = point.Point((x, y, z))
+    >>> point_from_good_type_xyz.spec
     (2, 3, 4)
 
 #   _is_number
-    >>> point_x = point.Point(1, 2, 3)
+    >>> point_x = point.Point((1, 2, 3))
     >>> point_x._is_number('a')
     False
     >>> point_x._is_number([1])
@@ -43,36 +47,35 @@
     >>> point_x._is_number(1.1)
     True
 
-#   from_spec(x, y, z)
+#   from_coords(x, y, z)
     >>> x = 2
     >>> y = 3
     >>> z = 4
 
     ### bad type
-    >>> point_from_bad_type = point.Point.from_spec('x', y, z)
+    >>> point_from_bad_type = point.Point.from_coords('x', y, z)
     Point.__init__:
-        The arguments must all be numbers
-
+        The argument must be a 2- or 3-tuple of numbers
+    
     ### good type xy
-    >>> point_from_good_type_xy = point.Point.from_spec(x, y)
+    >>> point_from_good_type_xy = point.Point.from_coords(x, y)
     >>> point_from_good_type_xy.spec
     (2, 3, 0)
 
     ### good type xyz
-    >>> point_from_good_type_xyz = point.Point.from_spec(x, y, z)
+    >>> point_from_good_type_xyz = point.Point.from_coords(x, y, z)
     >>> point_from_good_type_xyz.spec
     (2, 3, 4)
 
 ### represent
-    >>> p234 = point.Point(2, 3, 4)
-    >>> p123456 = point.Point(1.2, 3.4, 5.6)
+    >>> p234 = point.Point((2, 3, 4))
+    >>> p123456 = point.Point((1.2, 3.4, 5.6))
 
 #   __str__
     >>> str(p234)
     '(2, 3, 4)'
     >>> repr(p234)
     '(2, 3, 4)'
-
 
 #   __repr__
     >>> str(p123456)
@@ -122,94 +125,94 @@
 
 ### relations
 #   __eq__
-    >>> point_eq =  point.Point(0, 0, 0)
-    >>> point_eq == point.Point(0, 0, 0)
+    >>> point_eq =  point.Point.from_coords(0, 0, 0)
+    >>> point_eq == point.Point.from_coords(0, 0, 0)
     True
-    >>> point_eq == point.Point(0, 0, 1)
+    >>> point_eq == point.Point.from_coords(0, 0, 1)
     False
-    >>> point_eq == point.Point(0, 1, 0)
+    >>> point_eq == point.Point.from_coords(0, 1, 0)
     False
-    >>> point_eq == point.Point(1, 0, 0)
+    >>> point_eq == point.Point.from_coords(1, 0, 0)
     False
 
 #   __ge__
-    >>> point_ge  = point.Point( 0,  0,  0)
+    >>> point_ge  = point.Point.from_coords( 0,  0,  0)
 
-    >>> point_ge >= point.Point(-1,  0,  0)
+    >>> point_ge >= point.Point.from_coords(-1,  0,  0)
     True
-    >>> point_ge >= point.Point( 0, -1,  0)
+    >>> point_ge >= point.Point.from_coords( 0, -1,  0)
     True
-    >>> point_ge >= point.Point( 0,  0, -1)
+    >>> point_ge >= point.Point.from_coords( 0,  0, -1)
     True
-    >>> point_ge >= point.Point( 0,  0,  0)
+    >>> point_ge >= point.Point.from_coords( 0,  0,  0)
     True
-    >>> point_ge >= point.Point( 0,  0,  1)
+    >>> point_ge >= point.Point.from_coords( 0,  0,  1)
     False
-    >>> point_ge >= point.Point( 0,  1,  0)
+    >>> point_ge >= point.Point.from_coords( 0,  1,  0)
     False
-    >>> point_ge >= point.Point( 1,  0,  0)
+    >>> point_ge >= point.Point.from_coords( 1,  0,  0)
     False
 
 #   __gt__
-    >>> point_gt = point.Point( 0,  0,  0)
-    >>> point_gt > point.Point(-1,  0,  0)
+    >>> point_gt = point.Point.from_coords( 0,  0,  0)
+    >>> point_gt > point.Point.from_coords(-1,  0,  0)
     True
-    >>> point_gt > point.Point( 0, -1,  0)
+    >>> point_gt > point.Point.from_coords( 0, -1,  0)
     True
-    >>> point_gt > point.Point( 0,  0, -1)
+    >>> point_gt > point.Point.from_coords( 0,  0, -1)
     True
-    >>> point_gt > point.Point( 0,  0,  0)
+    >>> point_gt > point.Point.from_coords( 0,  0,  0)
     False
-    >>> point_gt > point.Point( 0,  0,  1)
+    >>> point_gt > point.Point.from_coords( 0,  0,  1)
     False
-    >>> point_gt > point.Point( 0,  1,  0)
+    >>> point_gt > point.Point.from_coords( 0,  1,  0)
     False
-    >>> point_gt > point.Point( 1,  0,  0)
+    >>> point_gt > point.Point.from_coords( 1,  0,  0)
     False
 
 #   __le__
-    >>> point_le  = point.Point( 0,  0,  0)
-    >>> point_le <= point.Point(-1,  0,  0)
+    >>> point_le  = point.Point.from_coords( 0,  0,  0)
+    >>> point_le <= point.Point.from_coords(-1,  0,  0)
     False
-    >>> point_le <= point.Point( 0, -1,  0)
+    >>> point_le <= point.Point.from_coords( 0, -1,  0)
     False
-    >>> point_le <= point.Point( 0,  0, -1)
+    >>> point_le <= point.Point.from_coords( 0,  0, -1)
     False
-    >>> point_le <= point.Point( 0,  0,  0)
+    >>> point_le <= point.Point.from_coords( 0,  0,  0)
     True
-    >>> point_le <= point.Point( 0,  0,  1)
+    >>> point_le <= point.Point.from_coords( 0,  0,  1)
     True
-    >>> point_le <= point.Point( 0,  1,  0)
+    >>> point_le <= point.Point.from_coords( 0,  1,  0)
     True
-    >>> point_le <= point.Point( 1,  0,  0)
+    >>> point_le <= point.Point.from_coords( 1,  0,  0)
     True
 
 #   __lt__
-    >>> point_lt = point.Point( 0,  0,  0)
-    >>> point_lt < point.Point(-1,  0,  0)
+    >>> point_lt = point.Point.from_coords( 0,  0,  0)
+    >>> point_lt < point.Point.from_coords(-1,  0,  0)
     False
-    >>> point_lt < point.Point( 0, -1,  0)
+    >>> point_lt < point.Point.from_coords( 0, -1,  0)
     False
-    >>> point_lt < point.Point( 0,  0, -1)
+    >>> point_lt < point.Point.from_coords( 0,  0, -1)
     False
-    >>> point_lt < point.Point( 0,  0,  0)
+    >>> point_lt < point.Point.from_coords( 0,  0,  0)
     False
-    >>> point_lt < point.Point( 0,  0,  1)
+    >>> point_lt < point.Point.from_coords( 0,  0,  1)
     True
-    >>> point_lt < point.Point( 0,  1,  0)
+    >>> point_lt < point.Point.from_coords( 0,  1,  0)
     True
-    >>> point_lt < point.Point( 1,  0,  0)
+    >>> point_lt < point.Point.from_coords( 1,  0,  0)
     True
 
 #   __ne__
-    >>> point_ne  = point.Point(0, 0, 0)
-    >>> point_ne != point.Point(0, 0, 0)
+    >>> point_ne  = point.Point.from_coords(0, 0, 0)
+    >>> point_ne != point.Point.from_coords(0, 0, 0)
     False
-    >>> point_ne != point.Point(0, 0, 1)
+    >>> point_ne != point.Point.from_coords(0, 0, 1)
     True
-    >>> point_ne != point.Point(0, 1, 0)
+    >>> point_ne != point.Point.from_coords(0, 1, 0)
     True
-    >>> point_ne != point.Point(1, 0, 0)
+    >>> point_ne != point.Point.from_coords(1, 0, 0)
     True
 
 ### other
