@@ -3,14 +3,15 @@ import point
 
 class Line(object):
     ### construct
-    def __init__(self, p1, p2):
-        """Receives 2 distinct points:
-            Point, Point
-        Returns a line with head > tail (which implies that length > 0):
-            Line
-        Immutable. 2D implementation
+    def __init__(self, p1, p2):                 ##  04-17 17:06
+        """Receives:
+            p1              Point
+            p2              Point != p1
+        Returns:
+            Line            head > tail, implying that length > 0
+        Immutable. 3D implementation started
         """
-        method_name = '__init__()'
+        method_name = '__init__'
         try:
             if not (
                 p1.__class__ == point.Point and
@@ -34,16 +35,20 @@ class Line(object):
                 self.head = p1
             self.x1 = self.tail.x
             self.y1 = self.tail.y
+            self.z1 = self.tail.z
             self.x2 = self.head.x
             self.y2 = self.head.y
-            self.spec = (self.x1, self.y1, self.x2, self.y2)
+            self.z2 = self.head.z
+            self.spec = (self.tail.spec, self.head.spec)
+            # self.spec = (self.x1, self.y1, self.x2, self.y2)
             self.carrier = self._compute_carrier_from(self.spec)
             self.bearing, self.intercept = self.carrier
             self.length = self._compute_length()
 
     def _compute_carrier_from(self, line_spec):
         """Receives line_spec:
-            (x1, y1, x2, y2)
+            ((num, num, num), (num, num, num))
+                            a duple of point specs
         Returns carrier:
             (bearing, intercept)
         """
@@ -297,7 +302,7 @@ class Line(object):
 
     @classmethod
     def _print_error_message(cls, method_name, message):
-        print '%s.%s: %s' % (cls.__name__, method_name, message)
+        print '%s.%s:\n    %s' % (cls.__name__, method_name, message)
 
     ###
 if __name__ == '__main__':

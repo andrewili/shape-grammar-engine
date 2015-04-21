@@ -2,70 +2,74 @@
     >>> import line
     >>> import point
 
-    >>> drone_line = line.Line.from_spec(0, 0, 10, 10)
+    ??? drone_line = line.Line.from_spec(0, 0, 10, 10)
     
 ### construct
-#   __init__(), __str__()
-    >>> p1 = point.Point(0, 0)
-    >>> line_from_non_points = line.Line(p1, 'x')
-    Line.__init__(): The arguments must both be points
-    >>> zero_length_line = line.Line.from_spec(0, 0, 0, 0)
-    Line.__init__(): The arguments must be different points
+#   __init__(), __str__()                       ##  04-17 17:07
+    >>> p0 = point.Point.from_coords(0, 0, 0)
+    >>> p00 = point.Point.from_coords(0, 0, 0)
+    >>> p1 = point.Point.from_coords(1, 1, 1)
+    >>> line_from_non_points = line.Line(p0, 'x')
+    Line.__init__:
+        The arguments must both be points
+    >>> zero_length_line = line.Line(p0, p00)
+    Line.__init__:
+        The arguments must be different points
     
-    >>> line_01 = line.Line.from_spec(0, 0, 1, 1)
-    >>> print line_01.tail
-    (0, 0)
-    >>> print line_01.head
-    (1, 1)
-    >>> line_01.spec
-    (0, 0, 1, 1)
-    >>> line_01.carrier
+    ??? line_01 = line.Line(p0, p1)
+    ??? print line_01.tail
+    (0, 0, 0)
+    ??? print line_01.head
+    (1, 1, 1)
+    ??? line_01.spec
+    ((0, 0, 0), (1, 1, 1))
+    ??? line_01.carrier
     (45.0, 0)
-    >>> line_01.length
+    ??? line_01.length
     1.4142135623730951
-    >>> print line_01
-    (0, 0, 1, 1)
+    ??? print line_01
+    ((0, 0, 0), (1, 1, 1))
     
-    >>> line_w_big_tail = line.Line.from_spec(1, 1, 0, 0)
-    >>> print line_w_big_tail.tail
+    ??? line_w_big_tail = line.Line.from_spec(1, 1, 0, 0)
+    ??? print line_w_big_tail.tail
     (0, 0)
-    >>> print line_w_big_tail.head
+    ??? print line_w_big_tail.head
     (1, 1)
     
-    >>> print line.Line.from_spec(0, 0, 0, 1).carrier
+    ??? print line.Line.from_spec(0, 0, 0, 1).carrier
     (0.0, 0)
-    >>> print line.Line.from_spec(0, 0, 1, 0).carrier
+    ??? print line.Line.from_spec(0, 0, 1, 0).carrier
     (90.0, 0)
-    >>> print line.Line.from_spec(0, 0, 1, 1).carrier
+    ??? print line.Line.from_spec(0, 0, 1, 1).carrier
     (45.0, 0)
-    >>> print line.Line.from_spec(0, 1, 0, 0).carrier
+    ??? print line.Line.from_spec(0, 1, 0, 0).carrier
     (0.0, 0)
-    >>> print line.Line.from_spec(0, 1, 1, 0).carrier
+    ??? print line.Line.from_spec(0, 1, 1, 0).carrier
     (135.0, 1)
-    >>> print line.Line.from_spec(0, 1, 1, 1).carrier
+    ??? print line.Line.from_spec(0, 1, 1, 1).carrier
     (90.0, 1)
-    >>> print line.Line.from_spec(1, 0, 0, 0).carrier
+    ??? print line.Line.from_spec(1, 0, 0, 0).carrier
     (90.0, 0)
-    >>> print line.Line.from_spec(1, 0, 0, 1).carrier
+    ??? print line.Line.from_spec(1, 0, 0, 1).carrier
     (135.0, 1)
-    >>> print line.Line.from_spec(1, 0, 1, 1).carrier
+    ??? print line.Line.from_spec(1, 0, 1, 1).carrier
     (0.0, 1)
-    >>> print line.Line.from_spec(1, 1, 0, 0).carrier
+    ??? print line.Line.from_spec(1, 1, 0, 0).carrier
     (45.0, 0)
-    >>> print line.Line.from_spec(1, 1, 0, 1).carrier
+    ??? print line.Line.from_spec(1, 1, 0, 1).carrier
     (90.0, 1)
-    >>> print line.Line.from_spec(1, 1, 1, 0).carrier
+    ??? print line.Line.from_spec(1, 1, 1, 0).carrier
     (0.0, 1)
 
-#   _compute_carrier_from(line_spec)
-    >>> line_spec_0011 = (0, 0, 1, 1)
-    >>> drone_line._compute_carrier_from(line_spec_0011)
+#   _compute_carrier_from(line_spec)            ##  04-17 17:35 
+    >>> line_spec_000110 = ((0, 0, 0), (1, 1, 0))
+    >>> drone_line._compute_carrier_from(line_spec_000110)
     (45.0, 0)
-    >>> line_spec_0010 = (0, 0, 1, 0)
-    >>> drone_line._compute_carrier_from(line_spec_0010)
+    ??? line_spec_0010 = (0, 0, 1, 0)
+    ??? drone_line._compute_carrier_from(line_spec_0010)
     (90.0, 0)
-    >>> line_spec_0001 = (0, 0, 0, 1)
-    >>> drone_line._compute_carrier_from(line_spec_0001)
+    ??? line_spec_0001 = (0, 0, 0, 1)
+    ??? drone_line._compute_carrier_from(line_spec_0001)
     (0.0, 0)
 
 #   from_spec(x1, y1, x2, y2)
