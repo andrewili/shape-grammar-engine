@@ -1,5 +1,5 @@
 from package.translators import exporter
-from package.translators import exporter2
+# from package.translators import exporter2
 from package.view import component_name as cn
 from package.view import insertion_point as ip
 from package.view import llist as ll

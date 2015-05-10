@@ -8,7 +8,6 @@ class ComponentName(object):
     component_types = {'initial shape', 'rule', 'shape'}
     prohibited_characters = {' ', '#'}
 
-
     def __init__(self):
         pass
 

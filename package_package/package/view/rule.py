@@ -9,9 +9,11 @@ class Rule(object):
     component_type = 'rule'
     first_rule_name = 'rule_1'
     first_rule_position = [0, -100, 0]
+    tag_offset = [-10, 0, 0]
     right_shape_offset_x_factor = 1.5           ##  centralize presentation info?
     rule_name_list_name = 'rule names'
-
+    text_height = 2
+    
     def __init__(self):
         pass
 
@@ -49,7 +51,7 @@ class Rule(object):
         return return_value
 
     @classmethod
-    def _new(cls, rule_name, position):
+    def _new(cls, rule_name, position):         ##  04-26 08:26
         """Receives validated arguments:
             rule_name       str; validated upstream
             position        Point3d; validated upstream
@@ -68,6 +70,8 @@ class Rule(object):
             cls._get_shape_name_from_rule_name(rule_name, 'right'),
             cls._get_right_shape_position(position)
         )
+        tag_position = rs.PointAdd(position, cls.tag_offset)
+        tag_guid = cls._add_tag(rule_name, tag_position)
         left_shape = sl.ShapeLayer.new(
             left_shape_name, left_shape_position)
         right_shape = sl.ShapeLayer.new(
@@ -81,6 +85,18 @@ class Rule(object):
             return_value = rule_name
         else:
             return_value = None
+        return return_value
+
+    @classmethod
+    def _add_tag(cls, rule_name, tag_position):
+        """Receives:
+            rule_name       str
+            tag_position    Point3d, z = 0
+        Adds the rule name as a text object. Returns:
+            guid            the guid of the tag, if successful
+            None            otherwise
+        """
+        return_value = rs.AddText(rule_name, tag_position, cls.text_height)
         return return_value
 
     @classmethod
