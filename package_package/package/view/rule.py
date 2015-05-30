@@ -14,9 +14,6 @@ class Rule(object):
     rule_name_list_name = 'rule names'
     text_height = 2
     
-    def __init__(self):
-        pass
-
     @classmethod
     def add_first(cls):
         """Adds a pre-named new shape layer pair. Inserts a shape frame block 
@@ -86,6 +83,17 @@ class Rule(object):
         else:
             return_value = None
         return return_value
+
+    @classmethod
+    def new(cls, name, origin):                 ##  05-25 13:36
+        """Receives:
+            name            str. The name of the rule
+            origin          Point3d. The origin of the rule, z = 0
+        Creates a rule layer. Adds it to the grammar's list of rules. Returns:
+            name            str. The name of the rule, if successful
+            None            otherwise
+        """
+        pass
 
     @classmethod
     def _add_tag(cls, rule_name, tag_position):
@@ -182,23 +190,45 @@ class Rule(object):
             return return_value
 
     @classmethod
-    def export(cls):
-        """Constructs the is_string of the rule, and writes it to a file named 
-        <rule_name>.rul
+    def export(cls):                            ##  to do
+        """Writes the rule's repr string (rul format) to a file. Returns:
+            rule_name       str. The rule's name, if successful
+            None            otherwise
         """
-        rule_name = cls._get_name()
-        c.Controller.export_rule(rule_name)
-        ##  or
-        # rule_elements = cls._get_rule_elements(selected_item)
-        # c.Controller.export_rule(rule_elements)
+        return rule_name
 
     @classmethod
-    def _get_rule_elements(cls):
-        """Prompts the user for a rule (or the selected rule?). Returns:
-            str             the name of the rule
-            (name, lines, labeled_points)
-                            the left labeled shape elements
-            (name, lines, labeled_points)
-                            the right labeled shape elements
+    def get_repr(cls, rule):                    ##  05-26 07:24
+        """Receives:
+            rule            str. The rule's name
+        Returns:
+            rule_repr       str. The rule's repr string, if successful
+            None            otherwise
         """
-        pass
+        left_lshape_guids, right_lshape_guids = Rule.get_guids(rule)
+        left_lshape_spec = LabeledShape.get_spec_from_lshape_guids(
+            left_lshape_guids, left_lshape_origin)
+        right_lshape_spec = LabeledShape.get_spec_from_lshape_guids(
+            right_lshape_guids, right_lshape_origin)
+        left_lshape_repr = get_repr_from_lshape_spec(
+            left_lshape_spec)
+        right_lshape_repr = get_repr_from_lshape_spec(
+            right_lshape_spec)
+        rule_repr = cls.get_rule_repr_from_lshape_reprs(
+            left_lshape_repr, right_lshape_repr)
+        return rule_repr
+
+    @classmethod
+    def get_guids(cls, rule):
+        """Receives:
+            rule            str. The name of a rule
+        Returns:
+            left_lshape_guids
+                            [guid, ...]. A list of the element guids in the 
+                            left labeled shape
+            right_lshape_guids
+                            [guid, ...]. A list of the element guids in the 
+                            right labeled shape
+        """
+        return (left_lshape_guids, right_lshape_guids)
+

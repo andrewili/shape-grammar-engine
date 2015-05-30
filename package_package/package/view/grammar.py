@@ -57,43 +57,67 @@ class Grammar(object):
     def _set_up(cls):
         fb.FrameBlock.new()
         rfb.RuleFrameBlock.new()                ##  then work here
-        cls._add_first_initial_shape()
-        cls._add_first_rule()
+        ish.InitialShape.add_first()
+        r.Rule.add_first()
+
+    ### attribute equivalents
+    @classmethod
+    def get_name(cls):
+        """Returns:
+            name            str. The name of the Rhino document
+        """
+        name = rs.DocumentName()
+        return name
 
     @classmethod
-    def _add_first_initial_shape(cls):
-        """Adds the first initial shape layer. Returns:
-            str             the name of the first initial shape, if successful
-            None            otherwise
+    def get_initial_shapes(cls):                ##  05-25 13:04 to do
+        """Returns:
+            ishapes         [str, ...]. A list of the names of the initial 
+                            shapes in the grammar
         """
-        return_value = ish.InitialShape.add_first()
-        return return_value
+        return ishapes
 
     @classmethod
-    def _add_first_rule(cls):
-        """Adds the first rule layer. Returns:
-            str             the name of the first rule, if successful
-            None            otherwise
+    def get_rules(cls):                         ##  05-25 13:05 to do
+        """Returns:
+            rules           [str, ...]. A list of the names of the rules in 
+                            the grammar
         """
-        return_value = r.Rule.add_first()
-        return return_value
+        return rules
 
     ### continuing methods
     @classmethod
-    def export_grammar(cls):                    ##  02-14 18:16
-        pass
+    def export(cls):                            ##  05-26 04:45 to do
+        """Writes the grammar's string to a file. Returns:
+            dat_string      str. The dat string, if successful
+            None            otherwise
+        """
+        name = cls.get_name()
+        ishapes = cls.get_initial_shapes()
+        rules = cls.get_rules()
+        dat_string = cls.construct_dat_string(name, ishapes, rules)
+        cls.write_to_file(name, dat_string)
 
     @classmethod
-    def export_initial_shape(cls):
-        pass
+    def construct_dat_string(cls, name, ishapes, rules):
+        """Receives:
+            ishapes         [str, ...]. A list of the names of the initial 
+                            ishapes in the grammar
+            rules           [str, ...]. A list of the names of the rules in 
+                            the grammar
+        Returns:
+            dat_string      str. The grammar's dat string, if successful
+            None            otherwise
+        """
+        return dat_string
 
     @classmethod
-    def export_rule(cls):
+    def write_to_file(cls):
         pass
 
     ### utility methods
     @classmethod
-    def print_test_error_message(
+    def print_test_error_message(               ##  relocate
         cls, method_name, try_name, expected_value, actual_value
     ):
         message = "%s: %s:\n    expected '%s'; got '%s'" % (

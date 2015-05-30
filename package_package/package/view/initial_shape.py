@@ -12,9 +12,6 @@ class InitialShape(object):
                                                 ##  make this parametric
     initial_shape_name_list_name = 'initial shape names'
 
-    def __init__(self):
-        pass
-
     @classmethod
     def add_first(cls):
         """Adds a pre-named new shape layer. Inserts a shape frame block at a 
@@ -71,24 +68,48 @@ class InitialShape(object):
         finally:
             return return_value
 
-    @classmethod                                ##  02-27 09:27 Include origin
-    def export(cls):                            ##  Initial shape / Export...
-        """Prompts the user to select an initial shape and its origin. 
-        Constructs the is_string of the initial shape, and writes it to a file 
-        named <initial_shape_name>.is. Returns:
-            str             the name of the initial shape, if successful
+    @classmethod
+    def new(cls):                               ##  05-25 13:33
+        """Receives:
+            name            str. The name of the initial shape (layer)
+            origin          Point3d. The origin of the initial shape, z = 0
+        Creates an initial shape (layer). Adds it to the grammar's list of 
+        initial shapes. Returns:
+            name            str. The name of the initial shape, if successful
             None            otherwise
         """
-        exp = exporter.Exporter()
-        exp.export_shape()
+        pass
 
-    @classmethod                                ##  02-28 08:02
-    def export2(cls):
-        """Writes the repr string to a file named <initial_shape_name>.is. 
-        (Delegated to Exporter.)
+    @classmethod
+    def export(cls):                            ##  to do
+        """Writes the initial shape's repr string (is format) to a file. 
+        Returns:
+            ishape_name     str. The initial shape's name, if successful
+            None            otherwise
         """
-        exp2 = exporter2.Exporter2()
-        exp2.export_initial_shape()
+        return ishape_name
 
+    @classmethod
+    def get_repr(cls, ishape):                  ##  05-30 07:49
+        """Receives:
+            ishape          str. The initial shape's name
+        Returns:
+            rrepr           str. The initial shape's repr string, if 
+                            successful
+            None            otherwise
+        """
+        guids = cls.get_guids(ishape)
+        origin = cls.get_origin(ishape)
+        spec = LabeledShape.get_spec_from_lshape_guids(guids, origin)
+        rrepr = get_repr_from_lshape_spec(spec)
+        return rrepr
 
-
+    @classmethod
+    def get_guids(cls, ishape):                 ##  05-30 07:52
+        """Receives:
+            ishape          str. The name of an initial shape
+        Returns:
+            guids           [guid, ...]. A list of the guids of the elements 
+                            in the initial shape 
+        """
+        return guids
