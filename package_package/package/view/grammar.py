@@ -85,6 +85,22 @@ class Grammar(object):
         """
         return rules
 
+    @classmethod
+    def add_to_initial_shapes(cls):             ##  to do
+        pass
+
+    @classmethod
+    def add_to_rules(cls):                      ##  to do
+        pass
+
+    @classmethod
+    def remove_from_initial_shapes(cls):        ##  to do
+        pass
+
+    @classmethod
+    def remove_from_rule(cls):                  ##  to do
+        pass
+
     ### continuing methods
     @classmethod
     def export(cls):                            ##  05-26 04:45 to do
@@ -116,11 +132,11 @@ class Grammar(object):
         pass
 
     ### utility methods
-    @classmethod
-    def print_test_error_message(               ##  relocate
-        cls, method_name, try_name, expected_value, actual_value
-    ):
-        message = "%s: %s:\n    expected '%s'; got '%s'" % (
-            method_name, try_name, expected_value, actual_value)
-        print(message)
+    # @classmethod
+    # def print_test_error_message(
+    #     cls, method_name, try_name, expected_value, actual_value
+    # ):
+    #     message = "%s: %s:\n    expected '%s'; got '%s'" % (
+    #         method_name, try_name, expected_value, actual_value)
+    #     print(message)
 

@@ -1,5 +1,4 @@
 from package.translators import exporter
-# from package.translators import exporter2
 from package.view import component_name as cn
 from package.view import insertion_point as ip
 from package.view import llist as ll
@@ -13,12 +12,16 @@ class InitialShape(object):
     initial_shape_name_list_name = 'initial shape names'
 
     @classmethod
-    def add_first(cls):
+    def add_first(cls):                         ##  05-31 07:00
         """Adds a pre-named new shape layer. Inserts a shape frame block at a 
         predetermined position. Should be executed only once. Returns:
             str             cls.first_initial_shape_name, if successful
             None            otherwise
         """
+        # name = cls.first_initial_shape_name
+        # origin = cls.first_initial_shape_origin
+        # cl.Container(name, origin, 'initial shape')
+
         if cn.ComponentName._component_name_is_listed(
             cls.component_type, cls.first_initial_shape_name
         ):
@@ -37,6 +40,10 @@ class InitialShape(object):
             str             the name of the new shape layer, if successful
             None            otherwise
         """
+        # name = cls.get_name_from_user()
+        # origin = cls.get_origin_from_user()
+        # cl.Container.new(name, origin, 'initial shape')
+
         initial_shape_name = (
             cn.ComponentName.get_initial_shape_name_from_user())
         position = ip.InsertionPoint.get_insertion_point_from_user()
@@ -67,18 +74,6 @@ class InitialShape(object):
                 cls.initial_shape_name_list_name, initial_shape_name)
         finally:
             return return_value
-
-    @classmethod
-    def new(cls):                               ##  05-25 13:33
-        """Receives:
-            name            str. The name of the initial shape (layer)
-            origin          Point3d. The origin of the initial shape, z = 0
-        Creates an initial shape (layer). Adds it to the grammar's list of 
-        initial shapes. Returns:
-            name            str. The name of the initial shape, if successful
-            None            otherwise
-        """
-        pass
 
     @classmethod
     def export(cls):                            ##  to do
