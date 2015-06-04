@@ -1,10 +1,13 @@
 from package.view import frame_block as fb
 from package.view import initial_shape as ish
+from package.view import llist as ll
 from package.view import rule as r
-from package.view import rule_frame_block as rfb
 import rhinoscriptsyntax as rs
 
 class Grammar(object):
+    initial_shapes = 'initial shapes'
+    rules = 'rules'
+
     def __init__(self):
         pass
 
@@ -56,7 +59,6 @@ class Grammar(object):
     @classmethod
     def _set_up(cls):
         fb.FrameBlock.new()
-        rfb.RuleFrameBlock.new()                ##  then work here
         ish.InitialShape.add_first()
         r.Rule.add_first()
 
@@ -86,12 +88,32 @@ class Grammar(object):
         return rules
 
     @classmethod
-    def add_to_initial_shapes(cls):             ##  to do
-        pass
+    def add_to_initial_shapes(cls, name):
+        """Receives:
+            name            str. The name of an initial shape. Value verified
+        Adds the name to the grammar's list of initial shape names. Returns:
+            name            str. The name of the initial shape, if successful
+            None            otherwise
+        """
+        value = ll.Llist.set_entry('initial shapes', name)
+        if value:
+            return name
+        else:
+            return None
 
     @classmethod
-    def add_to_rules(cls):                      ##  to do
-        pass
+    def add_to_rules(cls, name):
+        """Receives:
+            name            str. The name of a rule. Value verified
+        Adds the name to the grammar's list of rule names. Returns:
+            name            str. The name of the rule, if successful
+            None            otherwise
+        """
+        value = ll.Llist.set_entry('rules', name)
+        if value:
+            return name
+        else:
+            return None
 
     @classmethod
     def remove_from_initial_shapes(cls):        ##  to do
@@ -100,6 +122,20 @@ class Grammar(object):
     @classmethod
     def remove_from_rule(cls):                  ##  to do
         pass
+
+    @classmethod
+    def component_name_is_in_use(cls, name):
+        """Receives:
+            name            str. The name of a component
+        Returns:
+            boolean         True, if the name is on either the grammar's list 
+                            of initial shapes or its list of rules
+                            False, otherwise
+        """
+        value = (
+            ll.Llist.contains_entry(cls.initial_shapes, name) or
+            ll.Llist.contains_entry(cls.rules, name))
+        return value
 
     ### continuing methods
     @classmethod
@@ -130,13 +166,4 @@ class Grammar(object):
     @classmethod
     def write_to_file(cls):
         pass
-
-    ### utility methods
-    # @classmethod
-    # def print_test_error_message(
-    #     cls, method_name, try_name, expected_value, actual_value
-    # ):
-    #     message = "%s: %s:\n    expected '%s'; got '%s'" % (
-    #         method_name, try_name, expected_value, actual_value)
-    #     print(message)
 

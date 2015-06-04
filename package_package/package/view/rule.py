@@ -1,3 +1,4 @@
+from package.view import container as c
 from package.view import component_name as cn
 from package.view import dictionary as d
 from package.view import frame as f
@@ -8,7 +9,7 @@ import rhinoscriptsyntax as rs
 class Rule(object):
     component_type = 'rule'
     first_rule_name = 'rule_1'
-    first_rule_position = [0, -100, 0]
+    first_rule_origin = [0, -100, 0]
     tag_offset = [-10, 0, 0]
     right_shape_offset_x_factor = 1.5           ##  centralize presentation info?
     rule_name_list_name = 'rule names'
@@ -16,23 +17,18 @@ class Rule(object):
     
     @classmethod
     def add_first(cls):
-        """Adds a pre-named new shape layer pair. Inserts a shape frame block 
-        at a predetermined position on each layer. Should be executed only 
-        once. Returns:
+        """Adds and names a new layer. Inserts two shape frame blocks at 
+        predetermined positions. Should be executed only once. Returns:
             str             cls.first_rule_name, if successful
             None            otherwise
         """
-        if cn.ComponentName._component_name_is_listed(
-            cls.component_type, cls.first_rule_name):
-            return_value = None
+        name = cls.first_rule_name
+        origin = cls.first_rule_origin
+        value = c.Container.new(name, origin, cls.component_type)
+        if value:
+            return name
         else:
-            rule_added = cls._new(
-                cls.first_rule_name, cls.first_rule_position)
-            if rule_added:
-                return_value = cls.first_rule_name
-            else:
-                return_value = None
-        return return_value
+            return None
 
     @classmethod
     def add_subsequent(cls):

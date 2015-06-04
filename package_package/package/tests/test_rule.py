@@ -2,6 +2,7 @@ from package.view import frame_block as fb
 from package.view import grammar as g
 from package.view import rule as r
 import rhinoscriptsyntax as rs
+from package.tests import utilities as u
 
 bad_type_rule_name = 37
 bad_type_side = 37
@@ -15,28 +16,26 @@ left_shape_position = [0, 0, 0]
 def test_add_first():
     method_name = 'add_first'
 
-    def try_bad_state():
-        try_name = 'bad_state'
-        g.Grammar.clear_all()
-        fb.FrameBlock.new()
-        r.Rule._new(r.Rule.first_rule_name, position)
+    def try_bad_state_first_rule_exists():
+        try_name = 'bad_state_first_rule_exists'
+        _set_up()
+        g.Grammar.add_to_initial_shapes(r.Rule.first_rule_name)
         actual_value = r.Rule.add_first()
         expected_value = None
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_state():
         try_name = 'good_state'
-        g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        _set_up()
         actual_value = r.Rule.add_first()
         expected_value = r.Rule.first_rule_name
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    try_bad_state()
+    try_bad_state_first_rule_exists()
     try_good_state()
 
 def test_add_subsequent():
@@ -116,6 +115,10 @@ def test__get_right_shape_position():
                 method_name, try_name, expected_value, actual_value)
 
     try_good_args()
+
+def _set_up():
+    g.Grammar.clear_all()
+    fb.FrameBlock.new()
 
 def test__record():
     method_name = '_record'

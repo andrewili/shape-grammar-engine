@@ -1,5 +1,6 @@
-from package.translators import exporter
+from package.view import container as c
 from package.view import component_name as cn
+from package.translators import exporter
 from package.view import insertion_point as ip
 from package.view import llist as ll
 from package.view import shape_layer as sl
@@ -7,31 +8,24 @@ from package.view import shape_layer as sl
 class InitialShape(object):
     component_type = 'initial shape'
     first_initial_shape_name = 'initial_shape_1'
-    first_initial_shape_frame_position = [0, -40, 0]
+    first_initial_shape_origin = [0, -40, 0]
                                                 ##  make this parametric
     initial_shape_name_list_name = 'initial shape names'
 
     @classmethod
-    def add_first(cls):                         ##  05-31 07:00
-        """Adds a pre-named new shape layer. Inserts a shape frame block at a 
+    def add_first(cls):
+        """Adds and names a new layer. Inserts a shape frame block at a 
         predetermined position. Should be executed only once. Returns:
             str             cls.first_initial_shape_name, if successful
             None            otherwise
         """
-        # name = cls.first_initial_shape_name
-        # origin = cls.first_initial_shape_origin
-        # cl.Container(name, origin, 'initial shape')
-
-        if cn.ComponentName._component_name_is_listed(
-            cls.component_type, cls.first_initial_shape_name
-        ):
-            return_value = None
+        name = cls.first_initial_shape_name
+        origin = cls.first_initial_shape_origin
+        value = c.Container.new(name, origin, cls.component_type)
+        if value:
+            return name
         else:
-            return_value = sl.ShapeLayer.new(
-                cls.first_initial_shape_name,
-                cls.first_initial_shape_frame_position)
-            cls._record(cls.first_initial_shape_name)
-            return return_value
+            return None
 
     @classmethod
     def add_subsequent(cls):                    ##  Initial Shape / New
