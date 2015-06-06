@@ -18,6 +18,115 @@ class Grammar(object):
         cls._set_up()
         
     @classmethod
+    def export(cls):                            ##  05-26 04:45
+        """Writes the grammar's string to a file. Returns:
+            dat_string      str. The dat string, if successful
+            None            otherwise
+        """
+        name = cls.get_name()
+        ishapes = cls.get_initial_shapes()      ##  
+        rules = cls.get_rules()
+        dat_string = cls.construct_dat_string(name, ishapes, rules)
+        cls.write_to_file(name, dat_string)
+
+    @classmethod
+    def get_initial_shapes(cls):
+        """Returns:
+            initial_shapes  [str, ...]. A sorted list of the names of the 
+                            initial shapes in the grammar, if successful
+            None            otherwise
+        """
+        ishapes = ll.Llist.get_entries(cls.initial_shapes)
+        return ishapes
+            
+    @classmethod
+    def get_rules(cls):
+        """Returns:
+            rules           [str, ...]. A sorted list of the names of the 
+                            rules in the grammar, if successful
+            None            otherwise
+        """
+        rules = ll.Llist.get_entries(cls.rules)
+        return rules
+
+    ### attribute equivalents
+    @classmethod
+    def get_name(cls):
+        """Returns:
+            name            str. The name of the Rhino document
+        """
+        name = rs.DocumentName()
+        return name
+
+    @classmethod
+    def add_to_initial_shapes(cls, name):
+        """Receives:
+            name            str. The name of an initial shape. Value verified
+        Adds the name to the grammar's list of initial shape names. Returns:
+            name            str. The name of the initial shape, if successful
+            None            otherwise
+        """
+        value = ll.Llist.set_entry(cls.initial_shapes, name)
+        if value:
+            return name
+        else:
+            return None
+
+    @classmethod
+    def add_to_rules(cls, name):
+        """Receives:
+            name            str. The name of a rule. Value verified
+        Adds the name to the grammar's list of rule names. Returns:
+            name            str. The name of the rule, if successful
+            None            otherwise
+        """
+        value = ll.Llist.set_entry(cls.rules, name)
+        if value:
+            return name
+        else:
+            return None
+
+    @classmethod
+    def remove_from_initial_shapes(cls):        ##  to do
+        pass
+
+    @classmethod
+    def remove_from_rule(cls):                  ##  to do
+        pass
+
+    @classmethod
+    def component_name_is_in_use(cls, name):
+        """Receives:
+            name            str. The name of a component
+        Returns:
+            boolean         True, if the name is on either the grammar's list 
+                            of initial shapes or its list of rules
+                            False, otherwise
+        """
+        value = (
+            ll.Llist.contains_entry(cls.initial_shapes, name) or
+            ll.Llist.contains_entry(cls.rules, name))
+        return value
+
+    ### continuing methods
+    @classmethod
+    def construct_dat_string(cls, name, ishapes, rules):
+        """Receives:
+            ishapes         [str, ...]. A list of the names of the initial 
+                            ishapes in the grammar
+            rules           [str, ...]. A list of the names of the rules in 
+                            the grammar
+        Returns:
+            dat_string      str. The grammar's dat string, if successful
+            None            otherwise
+        """
+        return dat_string
+
+    @classmethod
+    def write_to_file(cls):
+        pass
+
+    @classmethod
     def clear_all(cls):
         cls._clear_objects()
         cls._clear_blocks()
@@ -61,109 +170,4 @@ class Grammar(object):
         fb.FrameBlock.new()
         ish.InitialShape.add_first()
         r.Rule.add_first()
-
-    ### attribute equivalents
-    @classmethod
-    def get_name(cls):
-        """Returns:
-            name            str. The name of the Rhino document
-        """
-        name = rs.DocumentName()
-        return name
-
-    @classmethod
-    def get_initial_shapes(cls):                ##  05-25 13:04 to do
-        """Returns:
-            ishapes         [str, ...]. A list of the names of the initial 
-                            shapes in the grammar
-        """
-        return ishapes
-
-    @classmethod
-    def get_rules(cls):                         ##  05-25 13:05 to do
-        """Returns:
-            rules           [str, ...]. A list of the names of the rules in 
-                            the grammar
-        """
-        return rules
-
-    @classmethod
-    def add_to_initial_shapes(cls, name):
-        """Receives:
-            name            str. The name of an initial shape. Value verified
-        Adds the name to the grammar's list of initial shape names. Returns:
-            name            str. The name of the initial shape, if successful
-            None            otherwise
-        """
-        value = ll.Llist.set_entry('initial shapes', name)
-        if value:
-            return name
-        else:
-            return None
-
-    @classmethod
-    def add_to_rules(cls, name):
-        """Receives:
-            name            str. The name of a rule. Value verified
-        Adds the name to the grammar's list of rule names. Returns:
-            name            str. The name of the rule, if successful
-            None            otherwise
-        """
-        value = ll.Llist.set_entry('rules', name)
-        if value:
-            return name
-        else:
-            return None
-
-    @classmethod
-    def remove_from_initial_shapes(cls):        ##  to do
-        pass
-
-    @classmethod
-    def remove_from_rule(cls):                  ##  to do
-        pass
-
-    @classmethod
-    def component_name_is_in_use(cls, name):
-        """Receives:
-            name            str. The name of a component
-        Returns:
-            boolean         True, if the name is on either the grammar's list 
-                            of initial shapes or its list of rules
-                            False, otherwise
-        """
-        value = (
-            ll.Llist.contains_entry(cls.initial_shapes, name) or
-            ll.Llist.contains_entry(cls.rules, name))
-        return value
-
-    ### continuing methods
-    @classmethod
-    def export(cls):                            ##  05-26 04:45 to do
-        """Writes the grammar's string to a file. Returns:
-            dat_string      str. The dat string, if successful
-            None            otherwise
-        """
-        name = cls.get_name()
-        ishapes = cls.get_initial_shapes()
-        rules = cls.get_rules()
-        dat_string = cls.construct_dat_string(name, ishapes, rules)
-        cls.write_to_file(name, dat_string)
-
-    @classmethod
-    def construct_dat_string(cls, name, ishapes, rules):
-        """Receives:
-            ishapes         [str, ...]. A list of the names of the initial 
-                            ishapes in the grammar
-            rules           [str, ...]. A list of the names of the rules in 
-                            the grammar
-        Returns:
-            dat_string      str. The grammar's dat string, if successful
-            None            otherwise
-        """
-        return dat_string
-
-    @classmethod
-    def write_to_file(cls):
-        pass
 

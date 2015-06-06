@@ -40,21 +40,23 @@ def test_add_first():
     try_good_state()
 
 def test_add_subsequent():
-    method_name = 'add_subsequent'
-    
-    def try_good_state():
-        try_name = 'good_state'
-        g.Grammar.clear_all()
-        fb.FrameBlock.new()
+    def try_good_state_existing_name():
+        try_name = 'good_state_existing_name'
+        _set_up()
         ish.InitialShape.add_first()
+        good_name = 'good_name'
+        message1 = "First time, enter 'initial_shape_1'."
+        message2 = "Second time, enter '%s'" % good_name
+        print("%s %s" % (message1, message2))
         actual_value = ish.InitialShape.add_subsequent()
-        expected_value = 'subsequent_initial_shape'
+        expected_value = good_name
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    try_good_state()
-
+    method_name = 'add_subsequent'
+    try_good_state_existing_name()
+    
 def test__record():
     method_name = '_record'
 
@@ -154,8 +156,8 @@ def _draw_text_object(insertion_point):
     for lpoint in lpoints:
         rs.AddText(lpoint[0], lpoint[1], text_height)
 
-test_add_first()
-# test_add_subsequent()
+# test_add_first()
+test_add_subsequent()
 # test__record()
 # test_export()
 # test_get_guids()

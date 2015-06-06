@@ -1,4 +1,5 @@
 from package.view import grammar as g
+from package.tests import utilities as u
 from package.view import llist as ll
 import rhinoscriptsyntax as rs
 
@@ -24,7 +25,7 @@ def test_contains_entry():
             bad_type_list_name, good_entry)
         expected_value = False
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_bad_type_entry():
@@ -35,7 +36,7 @@ def test_contains_entry():
         actual_value = ll.Llist.contains_entry(list_name, bad_type_entry)
         expected_value = False
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_bad_value_list_name():
@@ -46,7 +47,7 @@ def test_contains_entry():
         actual_value = ll.Llist.contains_entry(bad_value_list_name, entry_1)
         expected_value = False
         if not expected_value == actual_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_args_false_entry():
@@ -57,7 +58,7 @@ def test_contains_entry():
         actual_value = ll.Llist.contains_entry(list_name, false_entry)
         expected_value = False
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_args_true_entry():
@@ -69,7 +70,7 @@ def test_contains_entry():
         actual_value = ll.Llist.contains_entry(dict_name, dict_entry)
         expected_value = True
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     try_bad_type_list_name()
@@ -89,7 +90,7 @@ def test_set_entry():
         actual_value = ll.Llist.set_entry(non_list_name, entry_1)
         expected_value = None
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_bad_value_entry():
@@ -100,7 +101,7 @@ def test_set_entry():
         actual_value = ll.Llist.set_entry(list_name, bad_value_entry)
         expected_value = None
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_args():
@@ -112,7 +113,7 @@ def test_set_entry():
         actual_value = ll.Llist.set_entry(good_arg_list_name, good_arg_entry)
         expected_value = good_arg_entry
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     try_bad_type_list_name()
@@ -130,7 +131,7 @@ def test_get_entries():
         actual_value = ll.Llist.get_entries(bad_type_list_name)
         expected_value = None
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
         
     def try_bad_value_list_name():
@@ -141,7 +142,7 @@ def test_get_entries():
         actual_value = ll.Llist.get_entries(bad_value_list_name)
         expected_value = None
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_arg():
@@ -151,7 +152,7 @@ def test_get_entries():
         actual_value = ll.Llist.get_entries(list_name)
         expected_value = ['montreal', 'tokyo']
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     try_bad_type_list_name()
@@ -169,7 +170,7 @@ def test_delete_entry():
         actual_value = ll.Llist.delete_entry(bad_type_list_name, entry_1)
         expected_value = False
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_bad_type_entry():
@@ -180,7 +181,7 @@ def test_delete_entry():
         actual_value = ll.Llist.delete_entry(list_name, bad_type_entry)
         expected_value = False
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_bad_value_list_name():
@@ -191,7 +192,7 @@ def test_delete_entry():
         actual_value = ll.Llist.delete_entry(bad_value_list_name, entry_1)
         expected_value = False
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_bad_value_entry():
@@ -202,7 +203,7 @@ def test_delete_entry():
         actual_value = ll.Llist.delete_entry(list_name, bad_value_entry)
         expected_value = False
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_args():
@@ -212,7 +213,7 @@ def test_delete_entry():
         actual_value = ll.Llist.delete_entry(list_name, entry_1)
         expected_value = True
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     try_bad_type_list_name()
@@ -230,7 +231,7 @@ def test_list_name_exists():
         actual_value = ll.Llist.list_name_exists(list_name)
         expected_value = False
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_state_true():
@@ -240,7 +241,7 @@ def test_list_name_exists():
         actual_value = ll.Llist.list_name_exists(list_name)
         expected_value = True
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     try_good_state_false()

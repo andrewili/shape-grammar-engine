@@ -39,20 +39,19 @@ def test_add_first():
     try_good_state()
 
 def test_add_subsequent():
-    method_name = 'add_subsequent'
-    
-    def try_good_state_with_first_rule():
-        try_name = 'good_state'
-        g.Grammar.clear_all()
-        fb.FrameBlock.new()
+    def try_good_state_existing_name():
+        try_name = 'good_state_existing_name'
+        _set_up()
         r.Rule.add_first()
+        print("Enter '%s'" % rule_name)
         actual_value = r.Rule.add_subsequent()
         expected_value = rule_name
         if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
+            u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    try_good_state_with_first_rule()
+    method_name = 'add_subsequent'
+    try_good_state_existing_name()
     
 def test__new():
     method_name = '_new'
@@ -144,8 +143,8 @@ def test__record():
     try_bad_type()
     try_good_args()
 
-test_add_first()
-# test_add_subsequent()
+# test_add_first()
+test_add_subsequent()
 # test__new()
 # test__get_shape_name_from_rule_name()
 # test__get_right_shape_position()

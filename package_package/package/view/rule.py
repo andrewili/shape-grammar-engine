@@ -7,24 +7,26 @@ from package.view import shape_layer as sl
 import rhinoscriptsyntax as rs
 
 class Rule(object):
+                                                ##  centralize presentation 
+                                                ##  info?
     component_type = 'rule'
     first_rule_name = 'rule_1'
-    first_rule_origin = [0, -100, 0]
+    first_rule_insertion_point = [0, -100, 0]
     tag_offset = [-10, 0, 0]
-    right_shape_offset_x_factor = 1.5           ##  centralize presentation info?
+    right_shape_offset_x_factor = 1.5
     rule_name_list_name = 'rule names'
     text_height = 2
     
     @classmethod
     def add_first(cls):
         """Adds and names a new layer. Inserts two shape frame blocks at 
-        predetermined positions. Should be executed only once. Returns:
+        predetermined insertion points. Should be executed only once. Returns:
             str             cls.first_rule_name, if successful
             None            otherwise
         """
         name = cls.first_rule_name
-        origin = cls.first_rule_origin
-        value = c.Container.new(name, origin, cls.component_type)
+        insertion_point = cls.first_rule_insertion_point
+        value = c.Container.new(name, insertion_point, cls.component_type)
         if value:
             return name
         else:
@@ -32,64 +34,16 @@ class Rule(object):
 
     @classmethod
     def add_subsequent(cls):
-        """Prompts the user for a name and a position. Adds a new shape 
-        layer pair. Inserts a shape frame block on each layer. Returns:
-            str             the name of the new rule, if successful
+        """Prompts the user for a name and an insertion point. Adds a new 
+        layer with the name. Inserts two frame blocks. Returns:
+            name            str. The name of the new rule, if successful
             None            otherwise
         """
-        rule_name = cn.ComponentName.get_component_name_from_user(
-            cls.component_type)
-        point = ip.InsertionPoint.get_insertion_point_from_user()
-        return_value = cls._new(rule_name, point)
+        name = cn.ComponentName.get_rule_name_from_user()
+        insertion_point = ip.InsertionPoint.get_insertion_point_from_user()
+        return_value = c.Container.new(
+            name, insertion_point, cls.component_type)
         return return_value
-
-    @classmethod
-    def _new(cls, rule_name, position):         ##  04-26 08:26
-        """Receives validated arguments:
-            rule_name       str; validated upstream
-            position        Point3d; validated upstream
-        Creates a new rule. Records it in the rule name list. Returns:
-            str             the name of the rule, if successful
-            None            otherwise
-        """
-        method_name = '_new'
-        (   left_shape_name,
-            left_shape_position,
-            right_shape_name,
-            right_shape_position
-        ) = (
-            cls._get_shape_name_from_rule_name(rule_name, 'left'),
-            position,
-            cls._get_shape_name_from_rule_name(rule_name, 'right'),
-            cls._get_right_shape_position(position)
-        )
-        tag_position = rs.PointAdd(position, cls.tag_offset)
-        tag_guid = cls._add_tag(rule_name, tag_position)
-        left_shape = sl.ShapeLayer.new(
-            left_shape_name, left_shape_position)
-        right_shape = sl.ShapeLayer.new(
-            right_shape_name, right_shape_position)
-        recorded_rule = cls._record(
-            rule_name, left_shape_name, right_shape_name)
-        if (left_shape and
-            right_shape and
-            recorded_rule
-        ):
-            return_value = rule_name
-        else:
-            return_value = None
-        return return_value
-
-    @classmethod
-    def new(cls, name, origin):                 ##  05-25 13:36
-        """Receives:
-            name            str. The name of the rule
-            origin          Point3d. The origin of the rule, z = 0
-        Creates a rule layer. Adds it to the grammar's list of rules. Returns:
-            name            str. The name of the rule, if successful
-            None            otherwise
-        """
-        pass
 
     @classmethod
     def _add_tag(cls, rule_name, tag_position):

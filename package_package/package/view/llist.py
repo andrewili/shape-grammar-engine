@@ -73,7 +73,8 @@ class Llist(object):
             return_value = None
         else:
             return_value = sorted(rs.GetDocumentData(list_name))
-        return return_value
+        finally:
+            return return_value
 
     @classmethod
     def delete_entry(cls, list_name, entry):
