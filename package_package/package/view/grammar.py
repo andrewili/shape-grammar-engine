@@ -7,6 +7,9 @@ import rhinoscriptsyntax as rs
 class Grammar(object):
     initial_shapes = 'initial shapes'
     rules = 'rules'
+    dat_header = "%s\n%s" % (
+        "# shape data version 6.00",
+        "unit  mm  # mm - millimetre, cm - centimetre, m - metre")
 
     def __init__(self):
         pass
@@ -15,28 +18,50 @@ class Grammar(object):
     @classmethod
     def new(cls):
         cls.clear_all()
-        cls._set_up()
+        fb.FrameBlock.new()
+        rs.AddGroup(ish.InitialShape.component_type)
+        rs.AddGroup(r.Rule.component_type)
+        ish.InitialShape.add_first()
+        r.Rule.add_first()
+
+        # dat_string
+        # spec
         
     @classmethod
     def export(cls):                            ##  05-26 04:45
-        """Writes the grammar's string to a file. Returns:
+        """Writes the grammar's spec (dat string?) to a file. Returns:
             dat_string      str. The dat string, if successful
             None            otherwise
         """
         name = cls.get_name()
-        ishapes = cls.get_initial_shapes()      ##  
-        rules = cls.get_rules()
-        dat_string = cls.construct_dat_string(name, ishapes, rules)
+        dat_string = cls.get_dat_string()
         cls.write_to_file(name, dat_string)
 
+        # name = cls.get_name()
+        # ishapes = cls.get_initial_shapes()      ##  
+        # rules = cls.get_rules()
+        # dat_string = cls.get_dat_string(name, ishapes, rules)
+        # cls.write_to_file(name, dat_string)
+
+    ### attribute equivalents
     @classmethod
-    def get_initial_shapes(cls):
+    def get_name(cls):
+        """Returns:
+            name            str. The name of the Rhino document, if successful
+            None            otherwise
+        """
+        name = rs.DocumentName()
+        return name
+
+    @classmethod
+    def get_initial_shapes(cls):                ##  06-10 09:04
         """Returns:
             initial_shapes  [str, ...]. A sorted list of the names of the 
                             initial shapes in the grammar, if successful
             None            otherwise
         """
         ishapes = ll.Llist.get_entries(cls.initial_shapes)
+        # ishapes = rs.ObjectsByName('initial shape')
         return ishapes
             
     @classmethod
@@ -47,16 +72,23 @@ class Grammar(object):
             None            otherwise
         """
         rules = ll.Llist.get_entries(cls.rules)
+        # rules = rs.ObjectsByName('rule')
         return rules
 
-    ### attribute equivalents
     @classmethod
-    def get_name(cls):
+    def get_rule_shapes(cls):                   ##  06-09 06:24
         """Returns:
-            name            str. The name of the Rhino document
+            rule_shapes     [str, ...]. A sorted list of the names of the 
+                            labeled shapes in the grammar's rules, if 
+                            successful
+            None            otherwise
         """
-        name = rs.DocumentName()
-        return name
+        rules = g.Grammar.get_rules()
+        rule_lshapes = []
+        for rule in rules:
+            rule_lshape_pair = r.Rule.get_lshape_pair_from_rule(rule)
+            rule_lshapes.extend(rule_lshape_pair)
+        return rule_lshapes
 
     @classmethod
     def add_to_initial_shapes(cls, name):
@@ -110,17 +142,97 @@ class Grammar(object):
 
     ### continuing methods
     @classmethod
-    def construct_dat_string(cls, name, ishapes, rules):
-        """Receives:
-            ishapes         [str, ...]. A list of the names of the initial 
-                            ishapes in the grammar
-            rules           [str, ...]. A list of the names of the rules in 
-                            the grammar
+    def get_dat_string(cls):                    ##  06-08 05:56
+        """The dat string consists of: 
+            header
+            ordered_named_lshapes_string
+            ordered_named_ishape_defs_string
+            ordered_named_rule_defs_string
         Returns:
             dat_string      str. The grammar's dat string, if successful
             None            otherwise
         """
+        ordered_named_lshapes_string = cls._get_ordered_named_lshapes_string()
+        ordered_named_ishape_defs_string = (
+            cls._get_ordered_named_ishape_defs_string())
+        ordered_named_rule_defs_string = (
+            cls._get_ordered_named_rule_defs_string())
+        dat_string = '\n'.join([
+            cls.dat_header,
+            ordered_named_lshapes_string,
+            ordered_named_ishape_defs_string,
+            ordered_named_rule_defs_string])
         return dat_string
+
+    @classmethod
+    def _get_ordered_named_lshapes_string(cls): ##  06-08 08:46
+        """Returns:
+            ordered_named_lshapes_string
+                            str. The ordered concatenation of named lshape 
+                            strings, both those in initial shapes and those in 
+                            rules
+        """
+        ishape_lshapes = g.Grammar.get_initial_shapes()
+        rule_lshapes = g.Grammar.get_rule_shapes()
+        named_lshapes = []
+        named_lshapes.extend(ishape_lshapes)
+        named_lshapes.extend(rule_lshapes)
+        ordered_named_lshapes = sorted(named_lshapes)
+        ordered_named_lshape_strings = []
+        for named_lshape in ordered_named_lshapes:
+            named_lshape_string = (
+                ls.LabeledShape.get_string_from_named_lshape(named_lshape))
+            ordered_named_lshape_strings.append(named_lshape_string)
+        ordered_named_lshapes_string = '\n'.join(ordered_named_lshape_strings)
+        return ordered_named_lshapes_string
+
+    @classmethod
+    def _get_ishape_lshape_strings():           ##  06-08 09:32
+        """Returns:
+            ishape_lshape_strings
+                        [str, ...]. A list of lshape strings of the 
+                        grammar's initial shapes
+        """
+        ishape_lshape_strings = []
+        ishapes = cls.get_initial_shapes()
+        for ishape in ishapes:
+            lshape_string = cls._get_lshape_string_from_ishape(ishape)
+            ishape_lshape_strings.append(lshape_string)
+        return ishape_lshape_strings
+
+    @classmethod
+    def _get_rule_lshape_strings():
+        """Returns:
+            rule_lshape_strings
+                        [str, ...]. A list of lshape strings of the 
+                        grammar's rules
+        """
+        rule_lshape_strings = []
+        rules = cls.get_rules()
+        for rule in rules:
+            lshape_string_pair = cls._get_lshape_string_pair_from_rule(rule)
+            rule_lshape_strings.extend(lshape_string_pair)
+        return rule_lshape_strings
+
+    @classmethod
+    def _get_ordered_named_ishape_defs_string(cls):
+        """Returns:
+            ordered_ishape_defs
+                            [str, ...]. An ordered list (by name) of initial 
+                            shape definitions
+        """
+        return ordered_ishape_defs
+
+    @classmethod
+    def _get_ordered_named_rule_defs_string(cls):
+        """Returns:
+            ordered_rule_defs
+                            [str, ...]. An ordered list (by name) of rule 
+                            definitions
+        """
+        return ordered_rule_defs
+
+
 
     @classmethod
     def write_to_file(cls):
@@ -164,10 +276,4 @@ class Grammar(object):
     @classmethod
     def _clear_data(cls):
         rs.DeleteDocumentData()
-
-    @classmethod
-    def _set_up(cls):
-        fb.FrameBlock.new()
-        ish.InitialShape.add_first()
-        r.Rule.add_first()
 

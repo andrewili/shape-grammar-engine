@@ -19,7 +19,7 @@ class Container(object):
         """Receives:
             name            str. The name of the component
             origin          Point3d. The local origin of the container. z = 0
-            ttype           str: 'initial shape' | 'rule'. The type of the 
+            ttype           str: {'initial shape' | 'rule'}. The type of the 
                             component
         Creates a new component layer, with name tag and one (initial shape) 
         or two (rule) frame blocks. Adds the layer to the grammar's initial 
@@ -43,27 +43,10 @@ class Container(object):
                 return_value = g.Grammar.add_to_rules(name)
             else:
                 pass
-            cls._add_name_tag(name, origin)     ##  return_value?
+            cls._add_name_tag(name, ttype, origin)     ##  return_value?
             rs.CurrentLayer('Default')
         finally:
             return return_value
-
-        # rs.AddLayer(name, cls.color)
-        # rs.CurrentLayer(name)
-        # if ttype == 'initial shape':
-        #     cls._add_initial_shape_frame_block(name, origin)
-        #     g.Grammar.add_to_initial_shapes(name)
-        # elif ttype == 'rule':
-        #     cls._add_rule_frame_blocks(name, origin)
-        #     g.Grammar.add_to_rules(name)
-        # else:
-        #     pass
-        # cls._add_name_tag(name, origin)
-        # rs.CurrentLayer('Default')
-        # if okay:
-        #     return name
-        # else:
-        #     return None
 
     @classmethod
     def _add_initial_shape_frame_block(cls, name, origin):
@@ -100,19 +83,22 @@ class Container(object):
             return None
 
     @classmethod
-    def _add_name_tag(cls, name, origin):
+    def _add_name_tag(cls, name, component_type, origin):   ##  06-10 09:12
         """Receives:
             name            str. The name of the container. Value verified
+            component_type  str: {'initial shape' | 'rule'}
             origin          Point3d. The origin of the container
-        Adds a name tag at the appropriate point. Returns:
+        Adds a name tag at the appropriate point. Adds it to the appropriate 
+        Rhino group (i.e., initial shape or rule). Returns:
             name            str. The name of the component, if successful
             None            otherwise
         """
         position = rs.PointAdd(origin, cls.name_tag_offset)
         height = 2
-        value = rs.AddText(name, position, height)
-        if value:
-            return name
+        guid = rs.AddText(name, position, height)
+        if guid:
+            rs.AddObjectToGroup(component_type, guid)   ##
+            return guid
         else:
             return None
 

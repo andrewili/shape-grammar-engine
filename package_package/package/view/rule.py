@@ -46,6 +46,17 @@ class Rule(object):
         return return_value
 
     @classmethod
+    def get_lshape_pair_from_rule(cls, rule):   ##  06-09 06:33
+        """Receives:
+            rule            str. The name of a rule
+        Returns:
+            lshape_pair     (str, str). A tuple of the names of the rule's 
+                            left and right shapes
+        Knows layer name. Checks all text objects. Identifies shape tags.
+        """
+        return lshape_pair
+
+    @classmethod
     def _add_tag(cls, rule_name, tag_position):
         """Receives:
             rule_name       str
