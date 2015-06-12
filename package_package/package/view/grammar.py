@@ -54,15 +54,18 @@ class Grammar(object):
         return name
 
     @classmethod
-    def get_initial_shapes(cls):                ##  06-10 09:04
+    def get_initial_shapes(cls):
         """Returns:
             initial_shapes  [str, ...]. A sorted list of the names of the 
                             initial shapes in the grammar, if successful
             None            otherwise
         """
-        ishapes = ll.Llist.get_entries(cls.initial_shapes)
-        # ishapes = rs.ObjectsByName('initial shape')
-        return ishapes
+        text_guids = rs.ObjectsByGroup(ish.InitialShape.component_type)
+        names = []
+        for guid in text_guids:
+            name = rs.TextObjectText(guid)
+            names.append(name)
+        return sorted(names)
             
     @classmethod
     def get_rules(cls):
@@ -71,9 +74,12 @@ class Grammar(object):
                             rules in the grammar, if successful
             None            otherwise
         """
-        rules = ll.Llist.get_entries(cls.rules)
-        # rules = rs.ObjectsByName('rule')
-        return rules
+        text_guids = rs.ObjectsByGroup(r.Rule.component_type)
+        names = []
+        for guid in text_guids:
+            name = rs.TextObjectText(guid)
+            names.append(name)
+        return sorted(names)
 
     @classmethod
     def get_rule_shapes(cls):                   ##  06-09 06:24

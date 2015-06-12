@@ -6,15 +6,23 @@ from package.view import rule as r
 import rhinoscriptsyntax as rs
 from package.tests import utilities as u
 
-def test_new():
+def test_new():                                 ##  06-11 09:10
     def try_bad_value_name():
+        def add_preexisting_rule_container(name, ttype):
+            origin = (0, 0, 0)
+            c.Container.new(name, origin, ttype)
+
+        def add_second_rule_container_with_existing_name(name, ttype):
+            origin = (0, -50, 0)
+            c.Container.new(name, origin, ttype)
+
         try_name = 'bad_value_name'
         _set_up()
-        ish.InitialShape.add_first()
-        bad_value_name = ish.InitialShape.first_initial_shape_name
-        origin = ish.InitialShape.first_initial_shape_origin
-        ttype = ish.InitialShape.component_type
-        actual_value = c.Container.new(bad_value_name, origin, ttype)
+        name = 'first name'
+        ttype = r.Rule.component_type
+        add_preexisting_rule_container(name, ttype)
+        origin = (0, -50, 0)
+        actual_value = c.Container.new(name, origin, ttype)
         expected_value = None
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -23,11 +31,11 @@ def test_new():
     def try_good_args_initial_shape():
         try_name = 'good_args_initial_shape'
         _set_up()
-        initial_shape_name = 'initial shape'
-        origin = rs.GetPoint('Select origin')
+        name = 'initial shape'
+        origin = (0, 0, 0)
         ttype = ish.InitialShape.component_type
-        actual_value = c.Container.new(initial_shape_name, origin, ttype)
-        expected_value = initial_shape_name
+        actual_value = c.Container.new(name, origin, ttype)
+        expected_value = name
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
@@ -36,7 +44,7 @@ def test_new():
         try_name = 'good_args_rule'
         _set_up()
         rule_name = 'rule'
-        origin = rs.GetPoint('Select origin')
+        origin = (0, 0, 0)
         ttype = r.Rule.component_type
         actual_value = c.Container.new(rule_name, origin, ttype)
         expected_value = rule_name
@@ -45,8 +53,8 @@ def test_new():
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'new'
-    try_bad_value_name()
-    # try_good_args_initial_shape()
+    try_bad_value_name()                        ##  do this later
+    # try_good_args_initial_shape()               ##  do this first
     # try_good_args_rule()
 
 def test__add_initial_shape_frame_block():
@@ -79,22 +87,18 @@ def test__add_rule_frame_blocks():
 def test__add_name_tag():
     def try_good_args():
         try_name = 'good_args'
-        _set_up()
-        _add_name_not_in_group()
-        name = 'in group'
+        name = 'shape'
         ttype = ish.InitialShape.component_type
-        origin = (20, 0, 0)
-        guid = c.Container._add_name_tag(name, ttype, origin)
-        select_names_in_group(ttype)
-
-        # name = 'name'
-        # ttype = ish.InitialShape.component_type
-        # message = 'Select point'
-        # origin = rs.GetPoint(message)
-        # c.Container._add_name_tag(name, ttype, origin)
-        # items_in_group = rs.ObjectsByGroup(ttype)
-        # for item in items_in_group:
-        #     rs.SelectObject(item)
+        position = (0, 0, 0)
+        guid = c.Container._add_name_tag(name, ttype, position)
+        guid_matches_name = _guid_matches_name(guid, name)
+        tag_is_in_group = _tag_is_in_group(guid, ttype)
+        actual_value = (
+            guid_matches_name, tag_is_in_group)
+        expected_value = (True, True)
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     method_name = '_add_name_tag'
     try_good_args()
@@ -104,19 +108,17 @@ def _set_up():
     fb.FrameBlock.new()
     rs.AddGroup(ish.InitialShape.component_type)
 
-def _add_name_not_in_group():
-    ttype = r.Rule.component_type
-    rs.AddGroup(ttype)
-    position = (0, 0, 0)
-    c.Container._add_name_tag('not in group', ttype, position)
+def _guid_matches_name(guid, name):
+    guid_text = rs.TextObjectText(guid)
+    value = guid_text == name
+    return value
 
-def select_names_in_group(ttype):
-    items = rs.ObjectsByGroup(ttype)
-    for item in items:
-        rs.SelectObject(item)
-    print('kilroy was here')
+def _tag_is_in_group(guid, group):
+    groups = rs.ObjectGroups(guid)
+    value = group in groups
+    return value
 
-# test_new()
+test_new()
 # test__add_initial_shape_frame_block()
 # test__add_rule_frame_blocks()
-test__add_name_tag()
+# test__add_name_tag()

@@ -15,38 +15,32 @@ class Container(object):
         pass
 
     @classmethod
-    def new(cls, name, origin, ttype):
+    def new(cls, name, origin, ttype):          ##  06-11 09:09
         """Receives:
-            name            str. The name of the component
-            origin          Point3d. The local origin of the container. z = 0
+            name            str. The name of the component. Type and value 
+                            guaranteed          ##  Check for bad value?
+            origin          Point3d. The local origin of the container. Type 
+                            and value guaranteed
             ttype           str: {'initial shape' | 'rule'}. The type of the 
-                            component
+                            component. Type and value guaranteed
         Creates a new component layer, with name tag and one (initial shape) 
-        or two (rule) frame blocks. Adds the layer to the grammar's initial 
-        shape list or its rule list. Returns: 
+        or two (rule) frame blocks. Returns: 
             name            str. The name of the component, if successful
             None            otherwise
         """
-        try:
-            if g.Grammar.component_name_is_in_use(name):
-                raise ValueError
-        except ValueError:
-            return_value = None
+        rs.AddLayer(name, cls.color)
+        rs.CurrentLayer(name)
+        if ttype == ish.InitialShape.component_type:
+            cls._add_initial_shape_frame_block(name, origin)
+        elif ttype == r.Rule.component_type:
+            cls._add_rule_frame_blocks(name, origin)
         else:
-            rs.AddLayer(name, cls.color)
-            rs.CurrentLayer(name)
-            if ttype == ish.InitialShape.component_type:
-                cls._add_initial_shape_frame_block(name, origin)
-                return_value = g.Grammar.add_to_initial_shapes(name)
-            elif ttype == r.Rule.component_type:
-                cls._add_rule_frame_blocks(name, origin)
-                return_value = g.Grammar.add_to_rules(name)
-            else:
-                pass
-            cls._add_name_tag(name, ttype, origin)     ##  return_value?
-            rs.CurrentLayer('Default')
-        finally:
-            return return_value
+            pass
+        tag_guid = cls._add_name_tag(name, ttype, origin)
+        actual_name = rs.TextObjectText(tag_guid)
+        return_value = actual_name
+        rs.CurrentLayer('Default')
+        return return_value
 
     @classmethod
     def _add_initial_shape_frame_block(cls, name, origin):
@@ -83,23 +77,30 @@ class Container(object):
             return None
 
     @classmethod
-    def _add_name_tag(cls, name, component_type, origin):   ##  06-10 09:12
+    def _add_name_tag(cls, name, component_type, origin):
         """Receives:
-            name            str. The name of the container. Value verified
-            component_type  str: {'initial shape' | 'rule'}
-            origin          Point3d. The origin of the container
+            name            str. The name of the container. Type and value 
+                            guaranteed
+            component_type  str: {'initial shape' | 'rule'}. Type and value 
+                            guaranteed
+            origin          Point3d. The origin of the container 
+                                    ##  Position of the name tag? 
         Adds a name tag at the appropriate point. Adds it to the appropriate 
         Rhino group (i.e., initial shape or rule). Returns:
-            name            str. The name of the component, if successful
+            guid            str. The guid of the component, if successful
             None            otherwise
         """
         position = rs.PointAdd(origin, cls.name_tag_offset)
         height = 2
         guid = rs.AddText(name, position, height)
-        if guid:
-            rs.AddObjectToGroup(component_type, guid)   ##
-            return guid
+        if not guid:
+            return_value = None
         else:
-            return None
+            value = rs.AddObjectToGroup(guid, component_type)
+            if value:
+                return_value = guid
+            else:
+                return_value = None
+        return return_value
 
 

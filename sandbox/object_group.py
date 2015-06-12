@@ -6,6 +6,19 @@ def group_and_retrieve_objects():
     draw_hash()
     get_group_for_selection()
 
+def add_to_nonexistent_group():
+    g.Grammar.clear_all()
+    line = rs.AddLine((10, 10, 0), (30, 10, 0))
+    non_existent_group = 'non-existent group'
+    actual_value = rs.AddObjectToGroup(line, non_existent_group)
+    print("actual value: %s" % actual_value)    ##  False
+
+def get_objects_in_nonexistent_group():
+    g.Grammar.clear_all()
+    non_existent_group = 'non-existent group'
+    objects = rs.ObjectsByGroup(non_existent_group)
+    print("objects: %s" % objects)
+
 def draw_hash():
     rs.AddGroup('h')
     rs.AddGroup('v')
@@ -31,4 +44,6 @@ def get_group_for_selection():
     guids = rs.ObjectsByGroup(group, select)
     rs.SelectObjects(guids)
 
-group_and_retrieve_objects()
+# group_and_retrieve_objects()
+# add_to_nonexistent_group()
+get_objects_in_nonexistent_group()
