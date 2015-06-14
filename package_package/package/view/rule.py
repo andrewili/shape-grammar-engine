@@ -33,13 +33,15 @@ class Rule(object):
             return None
 
     @classmethod
-    def add_subsequent(cls):
+    def add_subsequent(cls):                    ##  06-15 05:47
         """Prompts the user for a name and an insertion point. Adds a new 
         layer with the name. Inserts two frame blocks. Returns:
             name            str. The name of the new rule, if successful
             None            otherwise
         """
         name = cn.ComponentName.get_rule_name_from_user()
+        while not cn.ComponentName._is_available(name):
+            name = cn.ComponentName.get_rule_name_from_user()
         insertion_point = ip.InsertionPoint.get_insertion_point_from_user()
         return_value = c.Container.new(
             name, insertion_point, cls.component_type)

@@ -19,7 +19,7 @@ class InitialShape(object):
             str             cls.first_initial_shape_name, if successful
             None            otherwise
         """
-        name = cls.first_initial_shape_name
+        name = cls.first_initial_shape_name     ##  check for availability?
         insertion_point = cls.first_initial_shape_insertion_point
         value = c.Container.new(name, insertion_point, cls.component_type)
         if value:
@@ -36,6 +36,8 @@ class InitialShape(object):
             None            otherwise
         """
         name = cn.ComponentName.get_initial_shape_name_from_user()
+        while not cn.ComponentName._is_available(name):
+            name = cn.ComponentName.get_initial_shape_name_from_user()
         insertion_point = ip.InsertionPoint.get_insertion_point_from_user()
         return_value = c.Container.new(
             name, insertion_point, cls.component_type)

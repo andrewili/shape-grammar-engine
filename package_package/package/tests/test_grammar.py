@@ -116,29 +116,6 @@ def test_get_rules():
     try_good_state_no_ishapes_rules()
     try_good_state_ishapes_rules()
 
-    def try_good_state_no_list():
-        try_name = 'good_state_empty_list'
-        _set_up()
-        actual_value = g.Grammar.get_rules()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_non_empty_list():
-        try_name = 'good_state_non_empty_list'
-        _set_up()
-        first = r.Rule.first_rule_name
-        second = 'a_rule'
-        r.Rule.add_first()
-        print("Enter '%s'" % second)
-        r.Rule.add_subsequent()
-        actual_value = g.Grammar.get_rules()
-        expected_value = sorted([first, second])
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
 def test_add_to_initial_shapes():
     def try_good_args():
         try_name = 'good_args'
@@ -211,15 +188,16 @@ def _add_two_rules():
         name, origin = rule
         c.Container.new(name, origin, ttype)
 
-
 def _set_up():
     g.Grammar.clear_all()
     fb.FrameBlock.new()
+    rs.AddGroup(ish.InitialShape.component_type)
+    rs.AddGroup(r.Rule.component_type)
 
 # test_new()                                    ##  to do
 # test_export()                                 ##  to do
 # test_get_name()
-# test_get_initial_shapes()
-test_get_rules()
+test_get_initial_shapes()
+# test_get_rules()
 # test_add_to_initial_shapes()
 # test_add_to_rules()

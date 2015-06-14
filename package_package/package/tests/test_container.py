@@ -6,28 +6,7 @@ from package.view import rule as r
 import rhinoscriptsyntax as rs
 from package.tests import utilities as u
 
-def test_new():                                 ##  06-11 09:10
-    def try_bad_value_name():
-        def add_preexisting_rule_container(name, ttype):
-            origin = (0, 0, 0)
-            c.Container.new(name, origin, ttype)
-
-        def add_second_rule_container_with_existing_name(name, ttype):
-            origin = (0, -50, 0)
-            c.Container.new(name, origin, ttype)
-
-        try_name = 'bad_value_name'
-        _set_up()
-        name = 'first name'
-        ttype = r.Rule.component_type
-        add_preexisting_rule_container(name, ttype)
-        origin = (0, -50, 0)
-        actual_value = c.Container.new(name, origin, ttype)
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
+def test_new():
     def try_good_args_initial_shape():
         try_name = 'good_args_initial_shape'
         _set_up()
@@ -53,9 +32,8 @@ def test_new():                                 ##  06-11 09:10
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'new'
-    try_bad_value_name()                        ##  do this later
-    # try_good_args_initial_shape()               ##  do this first
-    # try_good_args_rule()
+    try_good_args_initial_shape()
+    try_good_args_rule()
 
 def test__add_initial_shape_frame_block():
     method_name = '_add_initial_shape_frame_block'
@@ -93,8 +71,7 @@ def test__add_name_tag():
         guid = c.Container._add_name_tag(name, ttype, position)
         guid_matches_name = _guid_matches_name(guid, name)
         tag_is_in_group = _tag_is_in_group(guid, ttype)
-        actual_value = (
-            guid_matches_name, tag_is_in_group)
+        actual_value = (guid_matches_name, tag_is_in_group)
         expected_value = (True, True)
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(

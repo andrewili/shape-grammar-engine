@@ -45,9 +45,9 @@ def test_add_subsequent():
         _set_up()
         ish.InitialShape.add_first()
         good_name = 'good_name'
-        message1 = "First time, enter 'initial_shape_1'."
-        message2 = "Second time, enter '%s'" % good_name
-        print("%s %s" % (message1, message2))
+        message = "Enter: 1, '%s'; 2, '%s'; 3, '%s'" % (
+            'kil#roy', ish.InitialShape.first_initial_shape_name, good_name)
+        print(message)
         actual_value = ish.InitialShape.add_subsequent()
         expected_value = good_name
         if not actual_value == expected_value:

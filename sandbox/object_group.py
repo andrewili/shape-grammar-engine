@@ -17,7 +17,7 @@ def get_objects_in_nonexistent_group():
     g.Grammar.clear_all()
     non_existent_group = 'non-existent group'
     objects = rs.ObjectsByGroup(non_existent_group)
-    print("objects: %s" % objects)
+    print("objects: %s" % objects)              ##  error message
 
 def draw_hash():
     rs.AddGroup('h')

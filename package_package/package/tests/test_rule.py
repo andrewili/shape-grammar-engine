@@ -42,8 +42,11 @@ def test_add_subsequent():
     def try_good_state_existing_name():
         try_name = 'good_state_existing_name'
         _set_up()
+        good_name = 'good_name'
         r.Rule.add_first()
-        print("Enter '%s'" % rule_name)
+        message = "Enter: 1, '%s'; 2, '%s'; 3, '%s'" % (
+            'kil#roy', r.Rule.first_rule_name, good_name)
+        print(message)
         actual_value = r.Rule.add_subsequent()
         expected_value = rule_name
         if not actual_value == expected_value:

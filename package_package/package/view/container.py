@@ -1,4 +1,5 @@
 from package.view import frame_block as fb
+from package.view import component_name as cn
 from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import rule as r
@@ -15,10 +16,10 @@ class Container(object):
         pass
 
     @classmethod
-    def new(cls, name, origin, ttype):          ##  06-11 09:09
+    def new(cls, name, origin, ttype):
         """Receives:
-            name            str. The name of the component. Type and value 
-                            guaranteed          ##  Check for bad value?
+            name            str. The name of the component. Type and valued 
+                            guaranteed
             origin          Point3d. The local origin of the container. Type 
                             and value guaranteed
             ttype           str: {'initial shape' | 'rule'}. The type of the 
@@ -96,6 +97,8 @@ class Container(object):
         if not guid:
             return_value = None
         else:
+            if not rs.IsGroup(component_type):
+                rs.AddGroup(component_type)
             value = rs.AddObjectToGroup(guid, component_type)
             if value:
                 return_value = guid

@@ -19,8 +19,8 @@ class Grammar(object):
     def new(cls):
         cls.clear_all()
         fb.FrameBlock.new()
-        rs.AddGroup(ish.InitialShape.component_type)
-        rs.AddGroup(r.Rule.component_type)
+        # rs.AddGroup(ish.InitialShape.component_type)
+        # rs.AddGroup(r.Rule.component_type)
         ish.InitialShape.add_first()
         r.Rule.add_first()
 
@@ -54,7 +54,7 @@ class Grammar(object):
         return name
 
     @classmethod
-    def get_initial_shapes(cls):
+    def get_initial_shapes(cls):                ##  fix me
         """Returns:
             initial_shapes  [str, ...]. A sorted list of the names of the 
                             initial shapes in the grammar, if successful
@@ -68,7 +68,7 @@ class Grammar(object):
         return sorted(names)
             
     @classmethod
-    def get_rules(cls):
+    def get_rules(cls):                         ##  fix me
         """Returns:
             rules           [str, ...]. A sorted list of the names of the 
                             rules in the grammar, if successful

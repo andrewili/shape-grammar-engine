@@ -39,7 +39,7 @@ class LabeledPoint(object):
                     rs.IsPoint(point))
             ):
                 raise TypeError
-            if not (cn.ComponentName._component_name_is_well_formed(label)):
+            if not (cn.ComponentName._is_well_formed(label)):
                 raise ValueError
         except TypeError:
             message = "The arguments must be a string and a point (or triple)"
