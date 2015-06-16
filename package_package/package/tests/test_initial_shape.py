@@ -57,6 +57,20 @@ def test_add_subsequent():
     method_name = 'add_subsequent'
     try_good_state_existing_name()
     
+def test_get_def_from_ishape():
+    def try_good_arg():
+        try_name = 'good_arg'
+        g.Grammar.clear_all()
+        name = 'kilroy'
+        actual_value = ish.InitialShape.get_def_from_ishape(name)
+        expected_value = "shape    %s" % name
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = 'get_def_from_ishape'
+    try_good_arg()
+
 def test__record():
     method_name = '_record'
 
@@ -157,7 +171,8 @@ def _draw_text_object(insertion_point):
         rs.AddText(lpoint[0], lpoint[1], text_height)
 
 # test_add_first()
-test_add_subsequent()
+# test_add_subsequent()
+test_get_def_from_ishape()
 # test__record()
 # test_export()
 # test_get_guids()

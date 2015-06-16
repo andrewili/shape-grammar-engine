@@ -37,12 +37,6 @@ class Grammar(object):
         dat_string = cls.get_dat_string()
         cls.write_to_file(name, dat_string)
 
-        # name = cls.get_name()
-        # ishapes = cls.get_initial_shapes()      ##  
-        # rules = cls.get_rules()
-        # dat_string = cls.get_dat_string(name, ishapes, rules)
-        # cls.write_to_file(name, dat_string)
-
     ### attribute equivalents
     @classmethod
     def get_name(cls):
@@ -54,7 +48,7 @@ class Grammar(object):
         return name
 
     @classmethod
-    def get_initial_shapes(cls):                ##  fix me
+    def get_initial_shapes(cls):
         """Returns:
             initial_shapes  [str, ...]. A sorted list of the names of the 
                             initial shapes in the grammar, if successful
@@ -68,7 +62,22 @@ class Grammar(object):
         return sorted(names)
             
     @classmethod
-    def get_rules(cls):                         ##  fix me
+    def get_rule_shapes(cls):
+        """Returns:
+            rule_shapes     [str, ...]. A sorted list of the names of the 
+                            labeled shapes in the grammar's rules, if 
+                            successful
+            None            otherwise
+        """
+        rules = cls.get_rules()
+        rule_lshapes = []
+        for rule in rules:
+            rule_lshape_pair = r.Rule.get_lshape_pair_from_rule(rule)
+            rule_lshapes.extend(rule_lshape_pair)
+        return sorted(rule_lshapes)
+
+    @classmethod
+    def get_rules(cls):
         """Returns:
             rules           [str, ...]. A sorted list of the names of the 
                             rules in the grammar, if successful
@@ -80,21 +89,6 @@ class Grammar(object):
             name = rs.TextObjectText(guid)
             names.append(name)
         return sorted(names)
-
-    @classmethod
-    def get_rule_shapes(cls):                   ##  06-09 06:24
-        """Returns:
-            rule_shapes     [str, ...]. A sorted list of the names of the 
-                            labeled shapes in the grammar's rules, if 
-                            successful
-            None            otherwise
-        """
-        rules = g.Grammar.get_rules()
-        rule_lshapes = []
-        for rule in rules:
-            rule_lshape_pair = r.Rule.get_lshape_pair_from_rule(rule)
-            rule_lshapes.extend(rule_lshape_pair)
-        return rule_lshapes
 
     @classmethod
     def add_to_initial_shapes(cls, name):
@@ -221,7 +215,7 @@ class Grammar(object):
         return rule_lshape_strings
 
     @classmethod
-    def _get_ordered_named_ishape_defs_string(cls):
+    def _get_ordered_named_ishape_defs_string(cls): ##  06-16 09:33
         """Returns:
             ordered_ishape_defs
                             [str, ...]. An ordered list (by name) of initial 
@@ -234,11 +228,15 @@ class Grammar(object):
         """Returns:
             ordered_rule_defs
                             [str, ...]. An ordered list (by name) of rule 
-                            definitions
+                            definitions, if successful
+            None            otherwise
         """
+        ordered_rules = cls.get_rules()
+        ordered_rule_defs = []
+        for rule_i in ordered_rules:
+            rule_def = r.Rule.get_def_from_rule(rule_i)
+            ordered_rule_defs.append(rule_def)
         return ordered_rule_defs
-
-
 
     @classmethod
     def write_to_file(cls):
@@ -250,6 +248,7 @@ class Grammar(object):
         cls._clear_blocks()
         cls._clear_layers()
         cls._clear_data()
+        cls._clear_groups()
 
     @classmethod
     def _clear_objects(cls):
@@ -283,3 +282,7 @@ class Grammar(object):
     def _clear_data(cls):
         rs.DeleteDocumentData()
 
+    @classmethod
+    def _clear_groups(cls):
+        rs.DeleteGroup(ish.InitialShape.component_type)
+        rs.DeleteGroup(r.Rule.component_type)

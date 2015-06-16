@@ -16,6 +16,8 @@ class Rule(object):
     right_shape_offset_x_factor = 1.5
     rule_name_list_name = 'rule names'
     text_height = 2
+    left_lshape_suffix = '_L'
+    right_lshape_suffix = '_R'
     
     @classmethod
     def add_first(cls):
@@ -33,7 +35,7 @@ class Rule(object):
             return None
 
     @classmethod
-    def add_subsequent(cls):                    ##  06-15 05:47
+    def add_subsequent(cls):
         """Prompts the user for a name and an insertion point. Adds a new 
         layer with the name. Inserts two frame blocks. Returns:
             name            str. The name of the new rule, if successful
@@ -48,15 +50,29 @@ class Rule(object):
         return return_value
 
     @classmethod
-    def get_lshape_pair_from_rule(cls, rule):   ##  06-09 06:33
+    def get_def_from_rule(cls, name):
         """Receives:
-            rule            str. The name of a rule
+            name            str. The name of a rule. Type and value guaranteed
         Returns:
-            lshape_pair     (str, str). A tuple of the names of the rule's 
-                            left and right shapes
-        Knows layer name. Checks all text objects. Identifies shape tags.
+            definition      str in the form:
+                                rule    <name>    <name>_L -> <name>_R
+                            The definition of the rule
         """
-        return lshape_pair
+        definition = "rule    %s    %s_L -> %s_R" % (name, name, name)
+        return definition
+
+    @classmethod
+    def get_lshape_pair_from_rule(cls, rule):
+        """Receives:
+            rule            str. The name of a rule. Value guaranteed
+        Returns:
+            lshape_pair     (str, str). A 2-tuple of the rule's left and right 
+                            labeled shape names, if successful
+            None            otherwise
+        """
+        left_lshape = "%s%s" % (rule, cls.left_lshape_suffix)
+        right_lshape = "%s%s" % (rule, cls.right_lshape_suffix)
+        return (left_lshape, right_lshape)
 
     @classmethod
     def _add_tag(cls, rule_name, tag_position):
