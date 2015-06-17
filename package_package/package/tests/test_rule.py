@@ -146,28 +146,28 @@ test_get_def_from_rule()
 # test__get_right_shape_position()
 
 # def test__record():
-#     method_name = '_record'
+    # def try_bad_type():
+    #     try_name = 'bad_type'
+    #     actual_value = r.Rule._record(
+    #         bad_type_rule_name, left_lshape_name, right_lshape_name)
+    #     expected_value = None
+    #     if not actual_value == expected_value:
+    #         g.Grammar.print_test_error_message(
+    #             method_name, try_name, expected_value, actual_value)
 
-#     def try_bad_type():
-#         try_name = 'bad_type'
-#         actual_value = r.Rule._record(
-#             bad_type_rule_name, left_lshape_name, right_lshape_name)
-#         expected_value = None
-#         if not actual_value == expected_value:
-#             g.Grammar.print_test_error_message(
-#                 method_name, try_name, expected_value, actual_value)
+    # def try_good_args():
+    #     try_name = 'good_args'
+    #     actual_value = r.Rule._record(
+    #         rule_name, left_lshape_name, right_lshape_name)
+    #     expected_value = "%s %s" % (left_lshape_name, right_lshape_name)
+    #     if not actual_value == expected_value:
+    #         g.Grammar.print_test_error_message(
+    #             method_name, try_name, expected_value, actual_value)
 
-#     def try_good_args():
-#         try_name = 'good_args'
-#         actual_value = r.Rule._record(
-#             rule_name, left_lshape_name, right_lshape_name)
-#         expected_value = "%s %s" % (left_lshape_name, right_lshape_name)
-#         if not actual_value == expected_value:
-#             g.Grammar.print_test_error_message(
-#                 method_name, try_name, expected_value, actual_value)
+    # method_name = '_record'
+    # try_bad_type()
+    # try_good_args()
 
-#     try_bad_type()
-#     try_good_args()
 # def test__new():
     # method_name = '_new'
 

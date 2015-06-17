@@ -44,7 +44,7 @@ class InitialShape(object):
         return return_value
 
     @classmethod
-    def get_def_from_ishape(cls, name):         ##  06-16 09:40
+    def get_def_from_ishape(cls, name):
         """Receives:
             name            str. The name of an initial shape. Type and value 
                             guaranteed

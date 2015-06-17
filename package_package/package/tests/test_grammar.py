@@ -32,15 +32,43 @@ def test_get_name():
 # def test__get_ordered_named_lshapes_string():
     # pass
 
-# def test__get_ordered_named_ishape_defs_string():
-    # pass
+def test__get_ordered_named_ishape_defs_string():   ##  06-17 08:27
+    def try_good_state_no_ishapes_no_rules():
+        try_name = 'good_state_no_ishapes_no_rules'
+        _set_up()
+        actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
+        expected_value = []
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_no_ishapes_rules():
+        try_name = 'good_state_no_ishapes_rules'
+
+    def try_good_state_ishapes_no_rules():
+        try_name = 'good_state_ishapes_no_rules'
+
+    def try_good_state_ishapes_rules():
+        try_name = 'good_state_ishapes_rules'
+
+    method_name = '_get_ordered_named_ishape_defs_string'
+    try_good_state_no_ishapes_no_rules()
+    try_good_state_no_ishapes_rules()
+    try_good_state_ishapes_no_rules()
+    try_good_state_ishapes_rules()
+
+    # try_0_ishapes()
+    # try_3_ishapes_2_names()
+    # try_3_ishapes_2_layers()
+    # try_3_ishapes_1_unnamed()
+    # try_3_ishapes()
 
 def test__get_ordered_named_rule_defs_string():
     def try_good_state_no_ishapes_no_rules():
         try_name = 'good_state_no_ishapes_no_rules'
         _set_up()
         actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = []
+        expected_value = ''
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
@@ -50,10 +78,10 @@ def test__get_ordered_named_rule_defs_string():
         _make_new_grammar_3_rules()
         name_1, name_2, name_3 = 'a_rule', 'rule_1', 'z_rule'
         actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = [
+        expected_value = "%s\n%s\n%s" % (
             "rule    %s    %s_L -> %s_R" % (name_1, name_1, name_1),
             "rule    %s    %s_L -> %s_R" % (name_2, name_2, name_2),
-            "rule    %s    %s_L -> %s_R" % (name_3, name_3, name_3)]
+            "rule    %s    %s_L -> %s_R" % (name_3, name_3, name_3))
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
@@ -62,7 +90,7 @@ def test__get_ordered_named_rule_defs_string():
         try_name = 'good_state_ishapes_no_rules'
         _make_new_grammar_3_ishapes()
         actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = []
+        expected_value = ''
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
@@ -72,10 +100,10 @@ def test__get_ordered_named_rule_defs_string():
         _make_new_grammar_3_ishapes_3_rules()
         name_1, name_2, name_3 = 'a_rule', 'rule_1', 'z_rule'
         actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = [
-            "rule    %s    %s_L -> %s_R" % (name_1, name_1, name_1),
-            "rule    %s    %s_L -> %s_R" % (name_2, name_2, name_2),
-            "rule    %s    %s_L -> %s_R" % (name_3, name_3, name_3)]
+        expected_value = "%s\n%s\n%s" % (
+                    "rule    %s    %s_L -> %s_R" % (name_1, name_1, name_1),
+                    "rule    %s    %s_L -> %s_R" % (name_2, name_2, name_2),
+                    "rule    %s    %s_L -> %s_R" % (name_3, name_3, name_3))
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
@@ -85,7 +113,6 @@ def test__get_ordered_named_rule_defs_string():
     try_good_state_no_ishapes_rules()
     try_good_state_ishapes_no_rules()
     try_good_state_ishapes_rules()
-
 
 def test_get_initial_shapes():
     def try_good_state_no_ishapes_no_rules():

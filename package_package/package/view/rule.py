@@ -50,7 +50,7 @@ class Rule(object):
         return return_value
 
     @classmethod
-    def get_def_from_rule(cls, name):
+    def get_def_from_rule(cls, name):           ##  bad cases?
         """Receives:
             name            str. The name of a rule. Type and value guaranteed
         Returns:

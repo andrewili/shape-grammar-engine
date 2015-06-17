@@ -219,16 +219,22 @@ class Grammar(object):
         """Returns:
             ordered_ishape_defs
                             [str, ...]. An ordered list (by name) of initial 
-                            shape definitions
+                            shape definitions, if successful
+            None            otherwise
         """
-        return ordered_ishape_defs
+        # ordered_ishape_defs = []
+        # for 
+        # get_def_from_ishape
+        # return ordered_ishape_defs
+        pass
 
     @classmethod
     def _get_ordered_named_rule_defs_string(cls):
         """Returns:
-            ordered_rule_defs
-                            [str, ...]. An ordered list (by name) of rule 
-                            definitions, if successful
+            ordered_rule_defs_string
+                            str: str\nstr\n...\nstr. The string form of 
+                            [str, ...], an ordered list (by name) of rule 
+                            definition strings, if successful
             None            otherwise
         """
         ordered_rules = cls.get_rules()
@@ -236,7 +242,8 @@ class Grammar(object):
         for rule_i in ordered_rules:
             rule_def = r.Rule.get_def_from_rule(rule_i)
             ordered_rule_defs.append(rule_def)
-        return ordered_rule_defs
+        ordered_rule_def_string = '\n'.join(ordered_rule_defs)
+        return ordered_rule_def_string
 
     @classmethod
     def write_to_file(cls):
