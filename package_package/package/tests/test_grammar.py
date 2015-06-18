@@ -29,39 +29,80 @@ def test_get_name():
 # def test_get_dat_string():
     # pass
 
-# def test__get_ordered_named_lshapes_string():
-    # pass
+def test__get_ordered_named_lshapes_string():
+    def try_no_ishapes_no_rules():
+        try_name = 'no_ishapes_no_rules'
+        pass
 
-def test__get_ordered_named_ishape_defs_string():   ##  06-17 08:27
+    def try_no_ishapes_rules():
+        try_name = 'no_ishapes_rules'
+        pass
+
+    def try_ishapes_no_rules():
+        try_name = 'ishapes_no_rules'
+        pass
+
+    def try_ishapes_rules():
+        try_name = 'ishapes_rules'
+        pass
+
+    method_name = '_get_ordered_named_lshapes_string'
+    try_no_ishapes_no_rules()
+    try_no_ishapes_rules()
+    try_ishapes_no_rules()
+    try_ishapes_rules()
+
+def test__get_ordered_named_ishape_defs_string():
     def try_good_state_no_ishapes_no_rules():
         try_name = 'good_state_no_ishapes_no_rules'
         _set_up()
         actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
-        expected_value = []
+        expected_value = ''
+        # if actual_value == expected_value:
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_good_state_no_ishapes_rules():
         try_name = 'good_state_no_ishapes_rules'
+        _make_new_grammar_3_rules()
+        actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
+        expected_value = ''
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     def try_good_state_ishapes_no_rules():
         try_name = 'good_state_ishapes_no_rules'
+        _make_new_grammar_3_ishapes()
+        name_1, name_2, name_3 = 'a_ishape', 'initial_shape_1', 'z_ishape'
+        actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
+        expected_value = "%s\n%s\n%s" % (
+            "shape    %s" % (name_1),
+            "shape    %s" % (name_2),
+            "shape    %s" % (name_3))
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     def try_good_state_ishapes_rules():
         try_name = 'good_state_ishapes_rules'
+        _make_new_grammar_3_ishapes_3_rules()
+        name_1, name_2, name_3 = 'a_ishape', 'initial_shape_1', 'z_ishape'
+        actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
+        expected_value = "%s\n%s\n%s" % (
+            "shape    %s" % (name_1),
+            "shape    %s" % (name_2),
+            "shape    %s" % (name_3))
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     method_name = '_get_ordered_named_ishape_defs_string'
     try_good_state_no_ishapes_no_rules()
     try_good_state_no_ishapes_rules()
     try_good_state_ishapes_no_rules()
     try_good_state_ishapes_rules()
-
-    # try_0_ishapes()
-    # try_3_ishapes_2_names()
-    # try_3_ishapes_2_layers()
-    # try_3_ishapes_1_unnamed()
-    # try_3_ishapes()
 
 def test__get_ordered_named_rule_defs_string():
     def try_good_state_no_ishapes_no_rules():
@@ -318,8 +359,6 @@ def _set_up():
 # test_get_name()                               ##  done
 # test_get_dat_string()
 # test__get_ordered_named_lshapes_string()
-# test__get_ordered_named_ishape_defs_string()
-test__get_ordered_named_rule_defs_string()
 
 # done
 # test_get_initial_shapes()
@@ -327,3 +366,5 @@ test__get_ordered_named_rule_defs_string()
 # test_get_rules()
 # test_add_to_initial_shapes()
 # test_add_to_rules()
+# test__get_ordered_named_ishape_defs_string()
+# test__get_ordered_named_rule_defs_string()

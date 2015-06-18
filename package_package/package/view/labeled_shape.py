@@ -82,3 +82,17 @@ class LabeledShape(object):
                             to the origin
         """
         pass
+
+
+    @classmethod
+    def get_string_from_named_lshape(cls, named_lshape):    ##  06-18 09:25
+        """Receives:
+            name            str. The name of a labeled shape of either an 
+                            initial shape or a rule, i.e., either 
+                            <ishape_name> or <rule_name>_L or <rule_name>_R
+        Returns:
+            named_lshape_string
+                            str. The .is string of the labeled shape
+        """
+        named_lshape_string = 'kilroy'
+        return named_lshape_string
