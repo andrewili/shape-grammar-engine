@@ -21,8 +21,8 @@ class Grammar(object):
         fb.FrameBlock.new()
         # rs.AddGroup(ish.InitialShape.component_type)
         # rs.AddGroup(r.Rule.component_type)
-        ish.InitialShape.add_first()
-        r.Rule.add_first()
+        ish.InitialShape.add_first()            ##  'add_first_container'?
+        r.Rule.add_first()                      ##  'add_first_container'?
 
         # dat_string
         # spec

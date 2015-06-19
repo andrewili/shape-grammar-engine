@@ -1,6 +1,7 @@
 from package.view import grammar as g
 from package.view import labeled_shape as ls
 import rhinoscriptsyntax as rs
+from package.tests import utilities as u
 
 def test_get_spec_from_lshape_guids():          ##  05-26 09:28
     def get_origin():
@@ -115,7 +116,42 @@ def get_spec_from_line_end_points(line_end_points):
     head_spec = rs.PointCoordinates(head)
     return (tail_spec, head_spec)
 
-test_get_spec_from_lshape_guids()
+def test_get_string_from_named_lshape():        ##  06-19 09:23
+    def draw_grammar():
+        u.Utilities.make_grammar_3_ishapes_3_rules()
+        
+    def try_bad_value_no_lshape():
+        u.Utilities.make_grammar_3_3_containers()
+        try_name = 'bad_value_no_lshape'
+        no_lshape = ''
+        actual_value = ls.LabeledShape.get_string_from_named_lshape(no_lshape)
+        expected_value = ''
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_bad_value_non_existent_lshape():
+        try_name = 'bad_value_non_existent_lshape'
+
+    def try_good_value_ishape_lshape():
+        try_name = 'good_value_ishape_lshape'
+
+    def try_good_value_rule_left_lshape():
+        try_name = 'good_value_rule_left_lshape'
+
+    def try_good_value_rule_right_lshape():
+        try_name = 'good_value_rule_right_lshape'
+
+    method_name = 'get_string_from_named_lshape'
+    draw_grammar()
+    # try_bad_value_no_lshape()
+    # try_bad_value_non_existent_lshape()
+    # try_good_value_ishape_lshape()
+    # try_good_value_rule_left_lshape()
+    # try_good_value_rule_right_lshape()
+
+# test_get_spec_from_lshape_guids()
 # test_classify_guids()
 # draw_labeled_triangle_345()
 # test_get_end_points()
+test_get_string_from_named_lshape()

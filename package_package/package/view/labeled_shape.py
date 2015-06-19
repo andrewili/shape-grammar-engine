@@ -89,7 +89,8 @@ class LabeledShape(object):
         """Receives:
             name            str. The name of a labeled shape of either an 
                             initial shape or a rule, i.e., either 
-                            <ishape_name> or <rule_name>_L or <rule_name>_R
+                            <ishape_name> or <rule_name>_L or <rule_name>_R. 
+                            Type and value guaranteed
         Returns:
             named_lshape_string
                             str. The .is string of the labeled shape

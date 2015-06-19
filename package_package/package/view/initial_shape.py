@@ -13,7 +13,7 @@ class InitialShape(object):
     initial_shape_name_list_name = 'initial shape names'
 
     @classmethod
-    def add_first(cls):
+    def add_first(cls):                         ##  'add_first_container'?
         """Adds and names a new layer. Inserts a shape frame block at a 
         predetermined insertion point. Should be executed only once. Returns:
             str             cls.first_initial_shape_name, if successful

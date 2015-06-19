@@ -20,7 +20,7 @@ class Rule(object):
     right_lshape_suffix = '_R'
     
     @classmethod
-    def add_first(cls):
+    def add_first(cls):                         ##  'add_first_container'?
         """Adds and names a new layer. Inserts two shape frame blocks at 
         predetermined insertion points. Should be executed only once. Returns:
             str             cls.first_rule_name, if successful
