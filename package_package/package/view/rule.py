@@ -3,12 +3,11 @@ from package.view import component_name as cn
 from package.view import dictionary as d
 from package.view import frame as f
 from package.view import insertion_point as ip
+from package.view import settings as s
 from package.view import shape_layer as sl
 import rhinoscriptsyntax as rs
 
 class Rule(object):
-                                                ##  centralize presentation 
-                                                ##  info?
     component_type = 'rule'
     first_rule_name = 'rule_1'
     first_rule_insertion_point = [0, -100, 0]
@@ -18,7 +17,48 @@ class Rule(object):
     text_height = 2
     left_lshape_suffix = '_L'
     right_lshape_suffix = '_R'
-    
+
+    def __init__(self):
+        pass
+
+    @classmethod
+    def set_up_first(cls):                      ##  06-19 23:22
+        """Adds a new layer, named <name>. Inserts 2 frame blocks, named 
+        <name>_L and <name>_R. <name> = cls.first_rule_name. 
+        Should be executed only once. Returns:
+            name            str. The name of the rule, if successful
+            None            otherwise
+        """
+        method_name = 'set_up_first'
+        try:
+            if not required_name_is_available:
+                raise ValueError
+        except ValueError:
+            message = "The first rule name is not available"
+            print("%s.%s: %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            name = s.Settings.first_rule_name
+            color = s.Settings.layer_color
+            layer_name = rs.AddLayer(name, color)
+            rs.CurrentLayer(layer_name)
+            left_lshape_name = "%s_L" % name
+            right_lshape_name = "%s_R" % name
+            left_lshape_position = s.Settings.first_rule_lshape_origin
+            right_lshape_position = s.Settings.get_right_lshape_position(
+                left_lshape_position)
+            left_block_guid = fb.FrameBlock.insert(
+                left_lshape_name, left_lshape_position)
+            right_block_guid = fb.FrameBlock.insert(
+                right_lshape_name, right_position)
+            rs.CurrentLayer(s.Settings.default_layer_name)
+            if not (layer_name and left_block_guid and right_block_guid):
+                return_value = None
+            else:
+                return_value = name
+        finally:
+            return return_value
+
     @classmethod
     def add_first(cls):                         ##  'add_first_container'?
         """Adds and names a new layer. Inserts two shape frame blocks at 

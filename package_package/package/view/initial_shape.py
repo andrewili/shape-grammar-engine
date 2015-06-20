@@ -1,8 +1,10 @@
 from package.view import container as c
 from package.view import component_name as cn
 from package.translators import exporter
+from package.view import frame_block as fb
 from package.view import insertion_point as ip
 from package.view import llist as ll
+from package.view import settings as s
 from package.view import shape_layer as sl
 
 class InitialShape(object):
@@ -12,8 +14,43 @@ class InitialShape(object):
                                                 ##  make this parametric
     initial_shape_name_list_name = 'initial shape names'
 
+    def __init__(self):
+        pass
+
     @classmethod
-    def add_first(cls):                         ##  'add_first_container'?
+    def set_up_first(cls):                      ##  06-19 23:21
+        """Adds a new layer, named <name>. Inserts a frame block, also named 
+        <name>. <name> = cls.first_initial_shape_name. Should be executed only 
+        once. Returns:
+            name            str. The name of the initial shape, if successful
+            None            otherwise
+        """
+        method_name = 'set_up_first'
+        try:
+            if not required_name_is_available:
+                raise ValueError
+        except ValueError:
+            message = "The first initial shape name is not available"
+            print("%s.%s: %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            name = s.Settings.first_initial_shape_name
+            color = s.Settings.layer_color
+            layer_name = rs.AddLayer(name, color)
+            # rs.CurrentLayer(layer_name)
+            position = s.Settings.first_initial_shape_origin
+            block_guid = fb.FrameBlock.insert(name, origin, layer_name)
+                                                ##  kilroy is here
+            # rs.CurrentLayer(s.Settings.default_layer_name)
+            if not (layer_name and block_guid):
+                return_value = None
+            else:
+                return_value = name
+        finally:
+            return return_value
+
+    @classmethod
+    def add_first(cls):
         """Adds and names a new layer. Inserts a shape frame block at a 
         predetermined insertion point. Should be executed only once. Returns:
             str             cls.first_initial_shape_name, if successful

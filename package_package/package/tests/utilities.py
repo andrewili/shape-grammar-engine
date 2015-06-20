@@ -106,7 +106,7 @@ class Utilities(object):
     @classmethod
     def _draw_labeled_shape_in_container(cls, labeled_shape_spec, name):
         rs.CurrentLayer(name)
-        position = get_frame_position_from_name(name)
+        position = get_frame_position_from_labeled_shape_name(name)
         cls._draw_labeled_shape(labeled_shape_spec, position)
         rs.CurrentLayer('Default')
 

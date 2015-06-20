@@ -6,7 +6,7 @@ def test_new():
     method_name = 'new'
     try_name = 'nil'
     g.Grammar.clear_all()
-    position = [0, 0, 0]
+    position = (0, 0, 0)
     guids = f.Frame.new(position)
     actual_value = type(guids)
     expected_value = list

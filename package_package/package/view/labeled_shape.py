@@ -1,3 +1,4 @@
+from package.view import grammar as g
 import rhinoscriptsyntax as rs
 
 class LabeledShape(object):
@@ -83,7 +84,6 @@ class LabeledShape(object):
         """
         pass
 
-
     @classmethod
     def get_string_from_named_lshape(cls, named_lshape):    ##  06-18 09:25
         """Receives:
@@ -97,3 +97,62 @@ class LabeledShape(object):
         """
         named_lshape_string = 'kilroy'
         return named_lshape_string
+
+
+    @classmethod
+    def get_frame_position_from_labeled_shape_name(cls, name):  ##  06-19 16:27
+        """Receives:
+            name            str. The name of a labeled shape, i.e., <ishape>,
+                            <rule>_L, or <rule>_R
+        Returns:
+            position        Point3d. The location of the frame block's origin
+        """
+        block = cls.get_frame_block()
+        position = get_position(block)
+        return position
+
+    @classmethod
+    def get_frame_block(cls):
+        """Returns:
+            block           guid. The guid of the labeled shape's frame block
+        """
+        layer_items = get_items_on_this_layer()
+        frame_blocks_on_this_layer = get_frame_blocks(layer_items)
+        return block
+        
+
+    @classmethod
+    def name_is_available(cls, labeled_shape_name): ##  06-20 09:13
+        """Receives:
+            labeled_shape_name
+                            str. The name of an initial shape or either of a 
+                            rule's shapes
+        Returns:
+            value           boolean. True, if the name is available. False, 
+                            otherwise
+        """
+        layer_name = cls._extract_layer_name(labeled_shape_name)
+        initial_shape_names = g.Grammar.get_initial_shapes()
+        rule_names = g.Grammar.get_rules()
+        value = not (
+            layer_name in initial_shape_names or
+            layer_name in rule_names)
+        return value
+
+    @classmethod
+    def _extract_layer_name(cls, labeled_shape_name):
+        """Receives:
+            labeled_shape_name
+                            str. The name of a labeled shape
+        Returns:
+            layer_name      str. The name of the labeled shape's layer 
+        """
+        if labeled_shape_name[-2:] == '_L':
+            layer_name = labeled_shape_name[:-2]
+        elif labeled_shape_name[-2:] == '_R':
+            layer_name = labeled_shape_name[:-2]
+        else:
+            layer_name = labeled_shape_name
+        return layer_name
+
+

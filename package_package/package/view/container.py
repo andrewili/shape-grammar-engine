@@ -5,8 +5,8 @@ from package.view import initial_shape as ish
 from package.view import rule as r
 import rhinoscriptsyntax as rs
 
-class Container(object):
-    color = 'black'
+class Container(object):                        ##  06-19 16:57
+    color = 'black'                             ##  combine with LabeledShape?
     initial_shape_offset = (10, 10, 0)
     left_shape_offset = (10, 10, 0)
     right_shape_offset = (50, 10, 0)

@@ -1,6 +1,7 @@
 from package.view import frame as f
 from package.view import layer as l
 import rhinoscriptsyntax as rs
+from package.view import settings as s
 
 class FrameBlock(object):
     base_point = [0, 0, 0]
@@ -14,23 +15,28 @@ class FrameBlock(object):
     @classmethod
     def new(cls):
         """Creates a frame block definition on a frame block layer. Returns:
-            str             the name of the block, if successful
+            name            str. The name of the block, if successful
             None            otherwise
         """
         if cls._frame_block_exists():
             return_value = None
         else:
-            l.Layer.new(cls.layer_name, cls.color_name)
-            rs.CurrentLayer(cls.layer_name)
-            frame_guids = f.Frame.new(cls.base_point)
-            # frame_guids = f.Frame.new()
+            layer_name = s.Settings.frame_block_layer_name
+            color_name = s.Settings.frame_block_color_name
+            base_point = s.Settings.frame_block_base_point
+            block_name = s.Settings.frame_block_name
+            default_layer = s.Settings.default_layer_name
+            l.Layer.new(layer_name, color_name)
+            rs.CurrentLayer(layer_name)
+            line_guids = f.Frame.new(base_point)
+            delete_input = True
             actual_block_name = rs.AddBlock(
-                frame_guids, cls.base_point, cls.block_name, True)
-            rs.CurrentLayer('Default')
+                line_guids, base_point, block_name, delete_input)
+            rs.CurrentLayer(default_layer)
             layer_names = rs.LayerNames()
             if (
-                cls.layer_name in layer_names and
-                actual_block_name == cls.block_name
+                layer_name in layer_names and
+                actual_block_name == block_name
             ):
                 return_value = actual_block_name
             else:
@@ -70,30 +76,46 @@ class FrameBlock(object):
 
 
     @classmethod
-    def insert(cls, position):
+    def insert(cls, lshape_name, position, layer_name): ##  06-20 05:41
         """Receives:
-            position        point from user input (i.e., type guaranteed) or
-                            list from Grammar (type not guaranteed)
-        Inserts a frame block. Returns:
+            lshape_name     str. The name of a labeled shape 
+            position        Point3D. The insertion point of the frame block
+            layer_name      str. The name of a layer
+        Creates a frame block definition, if there is not already one. Inserts 
+        a frame block at the specified point on the specified layer. Names the 
+        block lshape_name. Returns:
             guid            the guid of the new block instance, if successful
             None            otherwise
         """
         method_name = 'insert'
         try:
-            if not position[2] == 0:
+            if not ls.LabeledShape.name_is_available(): ##  06-20 09:08
+                raise TypeError
+            position_z = position[2]
+            if not position_z == 0:
                 raise ValueError
         except TypeError:
-            message = "%s.%s: The argument must be a point" % (
-                cls.__name__, method_name)
-            print(message)
+            message = "The labeled shape name is not available"
+            print("%s.%s: %s" % (cls.__name__, method_name, message))
             return_value = None
         except ValueError:
-            message = "%s.%s: The point must lie on the xy plane" % (
-                cls.__name__, method_name)
-            print(message)
+            message = "The point must lie on the xy plane"
+            print("%s.%s: %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
-            return_value = rs.InsertBlock(cls.block_name, position)
+            if not cls._definition_exists():
+                cls.new()
+            block_name = s.Settings.frame_block_name
+            return_value = rs.InsertBlock(block_name, position)
         finally:
             return return_value
 
+    @classmethod
+    def _definition_exists(cls):
+        """Returns:
+            value           boolean. True, if a block definition exists. 
+                            False, otherwise
+        """
+        block_name = s.Settings.frame_block_name
+        value = rs.IsBlock(block_name)
+        return value

@@ -19,13 +19,8 @@ class Grammar(object):
     def new(cls):
         cls.clear_all()
         fb.FrameBlock.new()
-        # rs.AddGroup(ish.InitialShape.component_type)
-        # rs.AddGroup(r.Rule.component_type)
-        ish.InitialShape.add_first()            ##  'add_first_container'?
-        r.Rule.add_first()                      ##  'add_first_container'?
-
-        # dat_string
-        # spec
+        ish.InitialShape.set_up_first()
+        r.Rule.set_up_first()
         
     @classmethod
     def export(cls):                            ##  05-26 04:45

@@ -3,6 +3,42 @@ from package.view import labeled_shape as ls
 import rhinoscriptsyntax as rs
 from package.tests import utilities as u
 
+def test__extract_layer_name():
+    def try_left_shape_name():
+        try_name = 'left_shape_name'
+        g.Grammar.clear_all()
+        labeled_shape_name = 'rule_1_L'
+        actual_value = ls.LabeledShape._extract_layer_name(labeled_shape_name)
+        expected_value = 'rule_1'
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_right_shape_name():
+        try_name = 'right_shape_name'
+        g.Grammar.clear_all()
+        labeled_shape_name = 'rule_1_R'
+        actual_value = ls.LabeledShape._extract_layer_name(labeled_shape_name)
+        expected_value = 'rule_1'
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_initial_shape_name():
+        try_name = 'initial_shape_name'
+        g.Grammar.clear_all()
+        labeled_shape_name = 'initial_shape'
+        actual_value = ls.LabeledShape._extract_layer_name(labeled_shape_name)
+        expected_value = 'initial_shape'
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_extract_layer_name'
+    try_left_shape_name()
+    try_right_shape_name()
+    try_initial_shape_name()
+
 def test_get_spec_from_lshape_guids():          ##  05-26 09:28
     def get_origin():
         message = "Select the origin"
@@ -150,8 +186,10 @@ def test_get_string_from_named_lshape():        ##  06-19 09:23
     # try_good_value_rule_left_lshape()
     # try_good_value_rule_right_lshape()
 
+test_name_is_available()
+# test__extract_layer_name()                      ##  done
 # test_get_spec_from_lshape_guids()
 # test_classify_guids()
 # draw_labeled_triangle_345()
 # test_get_end_points()
-test_get_string_from_named_lshape()
+# test_get_string_from_named_lshape()
