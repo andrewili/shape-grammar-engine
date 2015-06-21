@@ -3,6 +3,7 @@ from package.view import initial_shape as ish
 from package.view import llist as ll
 from package.view import rule as r
 import rhinoscriptsyntax as rs
+from package.view import settings as s
 
 class Grammar(object):
     initial_shapes = 'initial shapes'
@@ -18,9 +19,64 @@ class Grammar(object):
     @classmethod
     def new(cls):
         cls.clear_all()
-        fb.FrameBlock.new()
-        ish.InitialShape.set_up_first()
-        r.Rule.set_up_first()
+        cls._set_up_first_initial_shape_layer() ##  kilroy was here
+        cls._set_up_first_rule_layer()
+
+    @classmethod
+    def _set_up_first_initial_shape(cls):       ##  
+        """Adds a new layer with one frame block. Should be executed only 
+        once. Returns:
+            layer_name      str. The name of the layer, if successful
+            None            otherwise
+        """
+        method_name = '_set_up_first_initial_shape'
+        try:
+            layer_name = s.Settings.first_initial_shape_layer_name
+            layer_name_is_in_use = rs.IsLayer(layer_name)
+            if layer_name_is_in_use:
+                raise ValueError
+        except ValueError:
+            message = "The layer name '%s' is in use" % layer_name
+            print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            value_1 = l.Layer.new(layer_name)
+            frame_block_name = layer_name
+            frame_block_origin = (
+                s.Settings.first_initial_shape_layer_origin)
+            value_2 = fb.FrameBlock.insert(
+                frame_block_name, frame_block_origin)
+            if value_1 and value_2:
+                return_value = layer_name
+            else:
+                return_value = None
+        finally:
+            return return_value
+
+    @classmethod
+    def _set_up_first_rule_layer(cls):
+        """Adds a new layer with two frame blocks. Should be executed only 
+        once. Returns:
+            layer_name      str. The name of the layer, if successful
+            None            otherwise
+        """
+        method_name = '_set_up_first_rule_layer'
+        try:
+            layer_name = s.Settings.first_rule_layer_name
+            layer_name_is_in_use = rs.IsLayer(layer_name)
+            if layer_name_is_in_use:
+                raise ValueError
+        except ValueError:
+            message = "The layer name %s is in use" % layer_name
+            print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            l.Layer.new(layer_name)
+            left_frame_block_name = "%s_L" % layer_name
+            right_frame_block_name = "%s_R" % layer_name
+            left_frame_block_origin = s.Settings.first_rule_layer_origin
+        finally:
+            return return_value
         
     @classmethod
     def export(cls):                            ##  05-26 04:45

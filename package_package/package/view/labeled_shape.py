@@ -5,6 +5,24 @@ class LabeledShape(object):
     def __init__(self):
         pass
 
+    @classmethod                                ##  06-21 09:04
+    def set_up(
+        cls, component_name, component_base_point, lshape_type
+    ):
+        """Receives:
+            component_name  str. The name of the initial shape or rule
+            component_base_point
+                            Point3d. The base point of the initial shape or 
+                            rule
+            lshape_type     str: {'initial' | 'left' | 'right'}. The group of 
+                            the labeled shape
+        Inserts a frame block. Assigns it to the appropriate lshape group. 
+        Returns:
+            lshape_name     str. The name of the labeled shape: <initial shape 
+                            name> or <rule name>_L or <rule name>_R
+        """
+        pass
+
     @classmethod                                ##  05-26 08:54
     def get_spec_from_lshape_guids(cls, lshape_guids, origin):
         """Receives:

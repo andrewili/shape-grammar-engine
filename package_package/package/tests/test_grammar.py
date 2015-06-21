@@ -4,12 +4,38 @@ from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import rule as r
 import rhinoscriptsyntax as rs
+from package.view import settings as s
 from package.tests import utilities as u
 
 def test_new():
     method_name = 'new'
     g.Grammar.clear_all()
     g.Grammar.new()
+
+def test__set_up_first_initial_shape_layer():
+    def try_bad_state_layer_exists():
+        try_name = 'bad_state_layer_exists'
+        rs.AddLayer(s.Settings.first_initial_shape_layer_name)
+        actual_value = g.Grammar._set_up_first_initial_shape_layer()
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+        
+    def try_good_state():                       ##  pending
+        try_name = 'good_state'
+        actual_value = g.Grammar._set_up_first_initial_shape_layer()
+        expected_value = s.Settings.first_initial_shape_layer_name
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+        
+    method_name = '_set_up_first_initial_shape_layer'
+    try_bad_state_layer_exists()
+    # try_good_state()
+
+def test__set_up_first_rule_layer():
+    pass
 
 def test_export():
     pass
@@ -354,7 +380,10 @@ def _set_up():
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
 
-# test_new()
+# test_new()                                    ##  pending
+
+test__set_up_first_initial_shape_layer()
+# test__set_up_first_rule_layer()
 # test_export()
 # test_get_name()                               ##  done
 # test_get_dat_string()

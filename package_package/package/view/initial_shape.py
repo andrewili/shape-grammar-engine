@@ -4,14 +4,14 @@ from package.translators import exporter
 from package.view import frame_block as fb
 from package.view import insertion_point as ip
 from package.view import llist as ll
+import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.view import shape_layer as sl
 
 class InitialShape(object):
     component_type = 'initial shape'
-    first_initial_shape_name = 'initial_shape_1'
-    first_initial_shape_insertion_point = [0, -40, 0]
-                                                ##  make this parametric
+    # first_initial_shape_name = 'initial_shape_1'
+    # first_initial_shape_insertion_point = [0, -40, 0]
     initial_shape_name_list_name = 'initial shape names'
 
     def __init__(self):
@@ -19,35 +19,47 @@ class InitialShape(object):
 
     @classmethod
     def set_up_first(cls):                      ##  06-19 23:21
-        """Adds a new layer, named <name>. Inserts a frame block, also named 
-        <name>. <name> = cls.first_initial_shape_name. Should be executed only 
-        once. Returns:
+        """Adds a new layer with a frame block. Should be executed only once. 
+        Returns:
             name            str. The name of the initial shape, if successful
             None            otherwise
         """
         method_name = 'set_up_first'
         try:
-            if not required_name_is_available:
+            name_is_in_use = rs.IsLayer(s.Settings.first_initial_shape_name)
+            if name_is_in_use:
                 raise ValueError
         except ValueError:
-            message = "The first initial shape name is not available"
-            print("%s.%s: %s" % (cls.__name__, method_name, message))
+            message = "The first initial shape name is in use"
+            print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
             name = s.Settings.first_initial_shape_name
-            color = s.Settings.layer_color
-            layer_name = rs.AddLayer(name, color)
-            # rs.CurrentLayer(layer_name)
-            position = s.Settings.first_initial_shape_origin
-            block_guid = fb.FrameBlock.insert(name, origin, layer_name)
-                                                ##  kilroy is here
-            # rs.CurrentLayer(s.Settings.default_layer_name)
-            if not (layer_name and block_guid):
-                return_value = None
-            else:
+            base_point = s.Settings.first_initial_shape_base_point
+            component_type = cls.component_type
+            value = l.Layer.new(name, base_point, component_type)
+            if value:
                 return_value = name
+            else:
+                return_value = None
         finally:
             return return_value
+
+        #     name = s.Settings.first_initial_shape_name
+        #     color = s.Settings.layer_color
+        #     layer_name = rs.AddLayer(name, color)
+        #     add_name_tag(layer_name, component_type, origin)
+        #     rs.CurrentLayer(layer_name)
+        #     position = s.Settings.first_initial_shape_origin
+        #     block_guid = fb.FrameBlock.insert(name, origin, layer_name)
+        #                                         ##  kilroy is here
+        #     rs.CurrentLayer(s.Settings.default_layer_name)
+        #     if not (layer_name and block_guid):
+        #         return_value = None
+        #     else:
+        #         return_value = name
+        # finally:
+        #     return return_value
 
     @classmethod
     def add_first(cls):

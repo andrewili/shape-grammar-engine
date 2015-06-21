@@ -3,6 +3,7 @@ from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import labeled_point as lp
 import rhinoscriptsyntax as rs
+from package.view import settings as s
 from package.tests import utilities as u
 
 existing_name = 'existing_shape'
@@ -12,6 +13,29 @@ bad_type_name = 37
 bad_type_position = 37
 bad_value_name = existing_name
 bad_value_position = (0, 0, 5)
+
+def test_set_up_first():
+    def try_bad_state_first_exists():
+        try_name = 'bad_state_first_exists'
+        g.Grammar.clear_all()
+        rs.AddLayer(s.Settings.first_initial_shape_name)
+        actual_value = ish.InitialShape.set_up_first()
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state():
+        try_name = 'good_state'
+        actual_value = ish.InitialShape.set_up_first()
+        expected_value = s.Settings.first_initial_shape_name
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = 'set_up_first'
+    # try_bad_state_first_exists()
+    try_good_state()
 
 def test_add_first():
     method_name = 'add_first'
@@ -170,9 +194,12 @@ def _draw_text_object(insertion_point):
     for lpoint in lpoints:
         rs.AddText(lpoint[0], lpoint[1], text_height)
 
+test_set_up_first()
+
+# old
 # test_add_first()
 # test_add_subsequent()
-test_get_def_from_ishape()
+# test_get_def_from_ishape()
 # test__record()
 # test_export()
 # test_get_guids()
