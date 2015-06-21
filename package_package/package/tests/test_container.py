@@ -1,5 +1,5 @@
 from package.view import container as c
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import rule as r
@@ -82,7 +82,7 @@ def test__add_name_tag():
 
 def _set_up():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
     rs.AddGroup(ish.InitialShape.component_type)
 
 def _guid_matches_name(guid, name):

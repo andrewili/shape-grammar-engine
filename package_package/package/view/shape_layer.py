@@ -1,4 +1,4 @@
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import layer as l
 from package.view import llist as ll
 import rhinoscriptsyntax as rs
@@ -25,7 +25,7 @@ class ShapeLayer(object):
         cls._record_name(shape_name)            ##  
         l.Layer.new(shape_name)
         rs.CurrentLayer(shape_name)
-        guid = fb.FrameBlock.insert(position)
+        guid = f.Frame.insert(position)
         tag_position = rs.PointAdd(position, cls.tag_offset)
         tag_guid = cls._add_tag(shape_name, tag_position)
         rs.CurrentLayer('Default')

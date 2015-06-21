@@ -1,5 +1,5 @@
 from package.translators import exporter as e
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import rule as r
 from package.view import initial_shape as ish
@@ -27,7 +27,7 @@ def test__get_rule_name():
     def try_bad_type_preselection():
         def set_up_bad_type_preselection():
             g.Grammar.clear_all()
-            fb.FrameBlock.new()
+            f.Frame.new()
             r.Rule.add_first()
             line = rs.AddLine((0, 0, 0), (20, 20, 0))
             text = rs.AddText('label', (10, 10, 0), 2)
@@ -48,7 +48,7 @@ def test__get_rule_name():
     def try_good_type_preselection():
         def set_up_good_type_selection():
             g.Grammar.clear_all()
-            fb.FrameBlock.new()
+            f.Frame.new()
             r.Rule.add_first()
 
         try_name = 'good_type_selection'
@@ -74,7 +74,7 @@ def test__a_rule_name_tag_is_selected():
     def try_bad_type():
         def set_up_bad_type_selection():
             g.Grammar.clear_all()
-            fb.FrameBlock.new()
+            f.Frame.new()
             r.Rule.add_first()
             line = rs.AddLine((0, 0, 0), (10, 10, 0))
             lpoint = rs.AddTextDot('textdot', (5, 5, 0))
@@ -92,7 +92,7 @@ def test__a_rule_name_tag_is_selected():
     def try_bad_value():
         def set_up_bad_value_selection():
             g.Grammar.clear_all()
-            fb.FrameBlock.new()
+            f.Frame.new()
             r.Rule.add_first()
             line = rs.AddLine((0, 0, 0), (10, 10, 0))
             lpoint = rs.AddTextDot('textdot', (10, 10, 0))
@@ -111,7 +111,7 @@ def test__a_rule_name_tag_is_selected():
     def try_no_selection():
         def set_up_no_selection():
             g.Grammar.clear_all()
-            fb.FrameBlock.new()
+            f.Frame.new()
             r.Rule.add_first()
             line = rs.AddLine((0, 0, 0), (10, 10, 0))
             lpoint = rs.AddTextDot('textdot', (10, 10, 0))
@@ -129,7 +129,7 @@ def test__a_rule_name_tag_is_selected():
     def try_good_arg():
         def set_up_good_arg():
             g.Grammar.clear_all()
-            fb.FrameBlock.new()
+            f.Frame.new()
             r.Rule.add_first()
             line = rs.AddLine((0, 0, 0), (10, 10, 0))
             lpoint = rs.AddTextDot('textdot', (10, 10, 0))
@@ -155,7 +155,7 @@ def test__a_rule_name_tag_is_selected():
 def test__get_rule_name_tag():
     def set_up():
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         r.Rule.add_first()
 
     method_name = "_get_rule_name_tag"
@@ -172,7 +172,7 @@ def test__get_rule_name_tag():
 def test__get_rule_name_from():
     def set_up_rule_name_tag():
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         r.Rule.add_first()
         message = "Test: select the rule name tag"
         text_filter = 512
@@ -193,7 +193,7 @@ def test__get_spec_from_rule_name():            ##  05-02 07:03
     def try_good_arg():
         try_name = 'good_arg'
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         r.Rule.add_first()
         my_ex = e.Exporter()
         good_arg = 'rule_1'
@@ -209,7 +209,7 @@ def test__get_spec_from_rule_name():            ##  05-02 07:03
 def test__get_shape_guids_from_rule_name():     ##  05-02 10:19
     def set_up():
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         r.Rule.add_first()
         sierpinski_before_spec = _make_sierpinski_before_spec()
         sierpinski_after_spec = _make_sierpinski_after_spec()
@@ -233,7 +233,7 @@ def test__get_shape_guids_from_rule_name():     ##  05-02 10:19
 def test__get_shape_names_from_rule_name():
     def set_up():
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         r.Rule.add_first()
 
     method_name = '_get_shape_names_from_rule_name'
@@ -563,7 +563,7 @@ def _set_up_labeled_shapes():
     """Draws two labeled shape and name tags
     """
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
     _draw_triangle_345_on_layer()
     _draw_triangle_12_on_layer()
 

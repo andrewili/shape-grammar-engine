@@ -1,4 +1,4 @@
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import component_name as cn
 from package.view import grammar as g
 from package.view import initial_shape as ish
@@ -53,7 +53,7 @@ class Container(object):                        ##  06-19 16:57
             None            otherwise
         """
         position = rs.PointAdd(origin, cls.initial_shape_offset)
-        guid = fb.FrameBlock.insert(position)
+        guid = f.Frame.insert(position)
         if guid:
             return name
         else:
@@ -70,8 +70,8 @@ class Container(object):                        ##  06-19 16:57
         """
         left_shape_position = rs.PointAdd(origin, cls.left_shape_offset)
         right_shape_position = rs.PointAdd(origin, cls.right_shape_offset)
-        left_shape_guid = fb.FrameBlock.insert(left_shape_position)
-        right_shape_guid = fb.FrameBlock.insert(right_shape_position)
+        left_shape_guid = f.Frame.insert(left_shape_position)
+        right_shape_guid = f.Frame.insert(right_shape_position)
         if left_shape_guid and right_shape_guid:
             return name
         else:

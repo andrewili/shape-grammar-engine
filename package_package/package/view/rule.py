@@ -47,9 +47,9 @@ class Rule(object):
             left_lshape_position = s.Settings.first_rule_lshape_origin
             right_lshape_position = s.Settings.get_right_lshape_position(
                 left_lshape_position)
-            left_block_guid = fb.FrameBlock.insert(
+            left_block_guid = f.Frame.insert(
                 left_lshape_name, left_lshape_position)
-            right_block_guid = fb.FrameBlock.insert(
+            right_block_guid = f.Frame.insert(
                 right_lshape_name, right_position)
             rs.CurrentLayer(s.Settings.default_layer_name)
             if not (layer_name and left_block_guid and right_block_guid):

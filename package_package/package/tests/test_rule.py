@@ -1,4 +1,4 @@
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import rule as r
 import rhinoscriptsyntax as rs
@@ -134,7 +134,7 @@ def test__get_right_shape_position():
 
 def _set_up():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
 
 # test_add_first()
 # test_add_subsequent()
@@ -174,7 +174,7 @@ test_get_def_from_rule()
     # def try_good_args():
     #     try_name = 'good_args'
     #     g.Grammar.clear_all()
-    #     fb.FrameBlock.new()
+    #     f.Frame.new()
     #     actual_value = r.Rule._new(rule_name, position)
     #     expected_value = rule_name
     #     if not actual_value == expected_value:

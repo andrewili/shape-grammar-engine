@@ -1,6 +1,6 @@
 from package.view import block as b
 from package.view import frame as f
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import layer as l
 import rhinoscriptsyntax as rs
 

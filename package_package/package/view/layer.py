@@ -1,4 +1,4 @@
-from package.view import frame_block as fb
+from package.view import frame as f
 import rhinoscriptsyntax as rs
 from package.view import settings as s
 
@@ -48,8 +48,8 @@ class Layer(object):
             left_block_origin)
         right_block_origin = rs.PointAdd(
             left_block_origin, right_block_origin)
-        fb.FrameBlock.add_frame_block(left_block_name, left_block_origin)
-        fb.FrameBlock.add_frame_block(right_block_name, right_block_origin)
+        f.Frame.add_frame_block(left_block_name, left_block_origin)
+        f.Frame.add_frame_block(right_block_name, right_block_origin)
         return_value = 'kilroy'
         return return_value
 

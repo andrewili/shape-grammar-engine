@@ -1,6 +1,6 @@
 from package.view import container as c
 from package.view import component_name as cn
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import llist as ll
@@ -88,7 +88,7 @@ def test__is_well_formed():
 
 def _set_up():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
 

@@ -9,10 +9,10 @@ class Settings(object):
     first_initial_shape_layer_origin = (0, -40, 0)
     first_rule_layer_name = 'rule_1'
     first_rule_layer_origin = (0, -100, 0)
-    frame_block_base_point = (0, 0, 0)
-    frame_block_color_name = dark_gray
-    frame_block_layer_name = 'frames'
-    frame_block_name = 'frame block'
+    frame_base_point = (0, 0, 0)
+    frame_color_name = dark_gray
+    frame_layer_name = 'frames'
+    frame_name = 'frame block'
     frame_block_size = (32, 32, 32)
     layer_color = Color.Black
     layer_tag_offset = (-10, 0, 0)

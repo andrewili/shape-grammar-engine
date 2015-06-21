@@ -1,4 +1,4 @@
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import labeled_point as lp
@@ -124,21 +124,21 @@ def test_export():                              ##  Doesn't account for location
     def try_labeled_shape_text_dot():
         try_name = 'labeled_shape_text_dot'
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         _draw_labeled_x_text_dot()
         ish.InitialShape.export()
 
     def try_labeled_shape_text_object():
         try_name = 'labeled_shape_text_object'
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         _draw_labeled_x_text_object()
         ish.InitialShape.export()
 
     def try_labeled_shape_text_dot_and_object():
         try_name = 'labeled_shape_text_dot_and_object'
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         _draw_labeled_x_text_object_text_dot()
         ish.InitialShape.export()
 
@@ -154,7 +154,7 @@ def test_get_guids():                           ##  05-30 08:38
 
 def _set_up():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
 
 def _draw_labeled_x_text_dot():
     _draw_x(insertion_point)

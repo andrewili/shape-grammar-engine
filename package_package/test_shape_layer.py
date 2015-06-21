@@ -1,4 +1,4 @@
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import llist as ll
 from package.view import shape_layer as sl
@@ -20,7 +20,7 @@ def test_new():
     def try_good_args():
         try_name = 'good_args'
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         actual_value = sl.ShapeLayer.new(new_shape_name, position)
         expected_value = new_shape_name
         if not actual_value == expected_value:

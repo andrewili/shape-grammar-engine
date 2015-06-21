@@ -1,5 +1,5 @@
 from package.view import container as c
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import rule as r
@@ -82,7 +82,7 @@ class Utilities(object):
     @classmethod
     def set_up(cls):
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         rs.AddGroup(ish.InitialShape.component_type)
         rs.AddGroup(r.Rule.component_type)
 
@@ -123,7 +123,7 @@ class Utilities(object):
     @classmethod
     def make_grammar_3_3_containers(cls):
         g.Grammar.clear_all()
-        fb.FrameBlock.new()
+        f.Frame.new()
         rs.AddGroup(ish.InitialShape.component_type)
         rs.AddGroup(r.Rule.component_type)
         ish.InitialShape.add_first()            ##  'add_first_container'?

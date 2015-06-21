@@ -1,7 +1,7 @@
 from package.view import container as c
 from package.view import component_name as cn
 from package.translators import exporter
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import insertion_point as ip
 from package.view import llist as ll
 import rhinoscriptsyntax as rs
@@ -51,7 +51,7 @@ class InitialShape(object):
         #     add_name_tag(layer_name, component_type, origin)
         #     rs.CurrentLayer(layer_name)
         #     position = s.Settings.first_initial_shape_origin
-        #     block_guid = fb.FrameBlock.insert(name, origin, layer_name)
+        #     block_guid = f.Frame.insert(name, origin, layer_name)
         #                                         ##  kilroy is here
         #     rs.CurrentLayer(s.Settings.default_layer_name)
         #     if not (layer_name and block_guid):

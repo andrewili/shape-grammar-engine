@@ -1,4 +1,4 @@
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import initial_shape as ish
 from package.view import llist as ll
 from package.view import rule as r
@@ -19,8 +19,8 @@ class Grammar(object):
     @classmethod
     def new(cls):
         cls.clear_all()
-        cls._set_up_first_initial_shape_layer() ##  kilroy was here
-        cls._set_up_first_rule_layer()
+        cls._set_up_first_initial_shape()       ##  kilroy was here
+        cls._set_up_first_rule()
 
     @classmethod
     def _set_up_first_initial_shape(cls):       ##  
@@ -44,7 +44,7 @@ class Grammar(object):
             frame_block_name = layer_name
             frame_block_origin = (
                 s.Settings.first_initial_shape_layer_origin)
-            value_2 = fb.FrameBlock.insert(
+            value_2 = f.Frame.insert(
                 frame_block_name, frame_block_origin)
             if value_1 and value_2:
                 return_value = layer_name
@@ -54,13 +54,13 @@ class Grammar(object):
             return return_value
 
     @classmethod
-    def _set_up_first_rule_layer(cls):
+    def _set_up_first_rule(cls):
         """Adds a new layer with two frame blocks. Should be executed only 
         once. Returns:
             layer_name      str. The name of the layer, if successful
             None            otherwise
         """
-        method_name = '_set_up_first_rule_layer'
+        method_name = '_set_up_first_rule'
         try:
             layer_name = s.Settings.first_rule_layer_name
             layer_name_is_in_use = rs.IsLayer(layer_name)

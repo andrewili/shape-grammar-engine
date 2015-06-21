@@ -1,4 +1,4 @@
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import rule as r
@@ -15,7 +15,7 @@ def draw_small_grammar():                       ##  05-24 11:49
 
 def set_up():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
 
 def draw_ishape_sierpinski_triangle():
     sierpinski_triangle_spec = (

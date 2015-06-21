@@ -1,5 +1,5 @@
 from package.view import container as c
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import initial_shape as ish
 from package.view import rule as r
@@ -12,11 +12,11 @@ def test_new():
     g.Grammar.clear_all()
     g.Grammar.new()
 
-def test__set_up_first_initial_shape_layer():
+def test__set_up_first_initial_shape():
     def try_bad_state_layer_exists():
         try_name = 'bad_state_layer_exists'
         rs.AddLayer(s.Settings.first_initial_shape_layer_name)
-        actual_value = g.Grammar._set_up_first_initial_shape_layer()
+        actual_value = g.Grammar._set_up_first_initial_shape()
         expected_value = None
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -24,17 +24,17 @@ def test__set_up_first_initial_shape_layer():
         
     def try_good_state():                       ##  pending
         try_name = 'good_state'
-        actual_value = g.Grammar._set_up_first_initial_shape_layer()
+        actual_value = g.Grammar._set_up_first_initial_shape()
         expected_value = s.Settings.first_initial_shape_layer_name
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
         
-    method_name = '_set_up_first_initial_shape_layer'
+    method_name = '_set_up_first_initial_shape'
     try_bad_state_layer_exists()
     # try_good_state()
 
-def test__set_up_first_rule_layer():
+def test__set_up_first_rule():
     pass
 
 def test_export():
@@ -332,7 +332,7 @@ def test_add_to_rules():
 
 def _make_new_grammar_3_ishapes_3_rules():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
     ish.InitialShape.add_first()
@@ -342,7 +342,7 @@ def _make_new_grammar_3_ishapes_3_rules():
 
 def _make_new_grammar_3_ishapes():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
     ish.InitialShape.add_first()
@@ -350,7 +350,7 @@ def _make_new_grammar_3_ishapes():
 
 def _make_new_grammar_3_rules():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
     r.Rule.add_first()
@@ -376,14 +376,14 @@ def _add_two_rules():
 
 def _set_up():
     g.Grammar.clear_all()
-    fb.FrameBlock.new()
+    f.Frame.new()
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
 
 # test_new()                                    ##  pending
 
-test__set_up_first_initial_shape_layer()
-# test__set_up_first_rule_layer()
+test__set_up_first_initial_shape()
+# test__set_up_first_rule()
 # test_export()
 # test_get_name()                               ##  done
 # test_get_dat_string()

@@ -1,5 +1,5 @@
 from System.Drawing import Color
-from package.view import frame_block as fb
+from package.view import frame as f
 from package.view import grammar as g
 from package.view import layer as l
 from package.view import llist as ll
@@ -10,11 +10,11 @@ position = [0, 0, 0]
 user_assigned_name = 'test rule'
 
 def _add_frames_layer():
-    layer_name = fb.FrameBlock.layer_name
+    layer_name = f.Frame.layer_name
     dark_gray = Color.FromArgb(105, 105, 105)
     rs.AddLayer(layer_name, dark_gray)
     layer_name_list_name = l.Layer.layer_name_list_name
-    layer_name = fb.FrameBlock.layer_name
+    layer_name = f.Frame.layer_name
     layer_value = ll.Llist.dummy_value
     rs.SetDocumentData(layer_name_list_name, layer_name, layer_value)
 
