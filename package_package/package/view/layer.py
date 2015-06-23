@@ -3,6 +3,8 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 
 class Layer(object):
+    prohibited_characters = [' ', '#']
+
     def __init__(self):
         pass
 
@@ -15,6 +17,51 @@ class Layer(object):
         """
         name_out = rs.AddLayer(name_in)
         return name_out
+
+    @classmethod
+    def get_layer_name_from_user(cls):
+        """Gets a valid name from the user. Returns:
+            name            str. A well-formed and available layer name
+        """
+        message_1 = "%s %s" % (
+            "Enter the layer name.", 
+            "It must be unique and contain no spaces or '#' characters")
+        message_2 = "%s %s %s" % (
+            "That name is already in use",
+            "or it contains spaces or '#' characters.",
+            "Try again")
+        name = rs.GetString(message_1)
+        while not (
+            cls._is_well_formed(name) and 
+            cls._is_available(name)
+        ):
+            name = rs.GetString(message_2)
+        return name
+
+    @classmethod
+    def _is_well_formed(cls, name):
+        """Receives:
+            name            str. The name of a layer
+        Returns:
+            boolean         True, if the name is well-formed. False, 
+                            otherwise
+        """
+        return_value = True
+        for character in cls.prohibited_characters:
+            if character in name:
+                return_value = False
+                break
+        return return_value
+
+    @classmethod
+    def _is_available(cls, name):
+        """Receives:
+            name            str. The name of a layer
+        Returns:
+            boolean         True, if the name is available. False, otherwise
+        """
+        return_value = not rs.IsLayer(name)
+        return return_value
 
     @classmethod
     def new_1_frame_block(cls, name, origin):   ##  06-21 17:16

@@ -1,5 +1,6 @@
 from package.view import frame as f
 from package.view import initial_shape as ish
+from package.view import layer as l
 from package.view import llist as ll
 from package.view import rule as r
 import rhinoscriptsyntax as rs
@@ -17,22 +18,22 @@ class Grammar(object):
 
     ### new
     @classmethod
-    def new(cls):
+    def new(cls):                               ##  06-23 09:24 test
         cls.clear_all()
-        cls._set_up_first_initial_shape()       ##  kilroy was here
+        cls._set_up_first_initial_shape()
         cls._set_up_first_rule()
 
     @classmethod
-    def _set_up_first_initial_shape(cls):       ##  
-        """Adds a new layer with one frame block. Should be executed only 
-        once. Returns:
+    def _set_up_first_initial_shape(cls):
+        """Adds a new layer with one frame. Should be executed only once. 
+        Returns:
             layer_name      str. The name of the layer, if successful
             None            otherwise
         """
         method_name = '_set_up_first_initial_shape'
         try:
             layer_name = s.Settings.first_initial_shape_layer_name
-            layer_name_is_in_use = rs.IsLayer(layer_name)
+            layer_name_is_in_use = rs.IsLayer(layer_name)   ##  None
             if layer_name_is_in_use:
                 raise ValueError
         except ValueError:
@@ -40,22 +41,44 @@ class Grammar(object):
             print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
-            value_1 = l.Layer.new(layer_name)
-            frame_block_name = layer_name
-            frame_block_origin = (
-                s.Settings.first_initial_shape_layer_origin)
-            value_2 = f.Frame.insert(
-                frame_block_name, frame_block_origin)
-            if value_1 and value_2:
-                return_value = layer_name
-            else:
-                return_value = None
+            frame_instance_origin = (
+                s.Settings.first_initial_shape_frame_position)
+            return_value = cls._set_up_initial_shape(
+                layer_name, frame_instance_origin)
         finally:
             return return_value
 
     @classmethod
+    def _set_up_subsequent_initial_shape(cls):
+        """Adds a new layer with one frame. Returns:
+            layer_name      str. The name of the layer, if successful
+            None            otherwise
+        """
+        layer_name = l.Layer.get_layer_name_from_user()
+        frame_origin = f.Frame.get_frame_position_from_user()
+        return_value = cls._set_up_initial_shape(
+            layer_name, frame_origin)
+        return return_value
+
+    @classmethod
+    def _set_up_initial_shape(cls, layer_name, frame_position):
+        """Receives:
+            layer_name      str. The name of the initial shape layer
+            frame_position  Point3D. The position of the frame instance
+        """
+        value_1 = l.Layer.new(layer_name)
+        frame_name = layer_name
+        value_2 = f.Frame.new_instance(
+            frame_name, layer_name, frame_position)
+        if value_1 and value_2:
+            return_value = layer_name
+        else:
+            return_value = None
+        return return_value
+
+    @classmethod
     def _set_up_first_rule(cls):
-        """Adds a new layer with two frame blocks. Should be executed only 
+        """Adds a new layer with two frame instances. Should be executed only 
         once. Returns:
             layer_name      str. The name of the layer, if successful
             None            otherwise
@@ -71,13 +94,45 @@ class Grammar(object):
             print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
-            l.Layer.new(layer_name)
-            left_frame_block_name = "%s_L" % layer_name
-            right_frame_block_name = "%s_R" % layer_name
-            left_frame_block_origin = s.Settings.first_rule_layer_origin
+            layer_name = s.Settings.first_rule_layer_name
+            left_frame_position = s.Settings.first_rule_left_frame_position
+            return_value = cls._set_up_rule(layer_name, left_frame_position)
         finally:
             return return_value
         
+    @classmethod
+    def _set_up_subsequent_rule(cls):
+        """Adds a new layer with two frames. Returns:
+            layer_name      str. The name of the layer, if successful
+            None            otherwise
+        """
+        layer_name = l.Layer.get_layer_name_from_user()
+        frame_origin = f.Frame.get_frame_position_from_user()
+        return_value = cls._set_up_rule(layer_name, frame_origin)
+        return return_value
+
+    @classmethod
+    def _set_up_rule(cls, layer_name, left_frame_position):
+        """Receives:
+            layer_name      str. The name of the rule layer
+            left_frame_position
+                            Point3D. The origin of the left frame instance
+        """
+        value_1 = l.Layer.new(layer_name)
+        left_frame_name = "%s_L" % layer_name
+        right_frame_name = "%s_R" % layer_name
+        right_frame_position = (
+            s.Settings.get_right_frame_position(left_frame_position))
+        value_2 = f.Frame.new_instance(
+            left_frame_name, layer_name, left_frame_position)
+        value_3 = f.Frame.new_instance(
+            right_frame_name, layer_name, right_frame_position)
+        if value_1 and value_2 and value_3:
+            return_value = layer_name
+        else:
+            return_value = None
+        return return_value
+
     @classmethod
     def export(cls):                            ##  05-26 04:45
         """Writes the grammar's spec (dat string?) to a file. Returns:

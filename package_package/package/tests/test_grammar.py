@@ -15,6 +15,7 @@ def test_new():
 def test__set_up_first_initial_shape():
     def try_bad_state_layer_exists():
         try_name = 'bad_state_layer_exists'
+        g.Grammar.clear_all()
         rs.AddLayer(s.Settings.first_initial_shape_layer_name)
         actual_value = g.Grammar._set_up_first_initial_shape()
         expected_value = None
@@ -22,8 +23,9 @@ def test__set_up_first_initial_shape():
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
         
-    def try_good_state():                       ##  pending
+    def try_good_state():
         try_name = 'good_state'
+        g.Grammar.clear_all()
         actual_value = g.Grammar._set_up_first_initial_shape()
         expected_value = s.Settings.first_initial_shape_layer_name
         if not actual_value == expected_value:
@@ -32,10 +34,101 @@ def test__set_up_first_initial_shape():
         
     method_name = '_set_up_first_initial_shape'
     try_bad_state_layer_exists()
-    # try_good_state()
+    try_good_state()
+
+def test__set_up_subsequent_initial_shape():
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        existing_name = 'abe'
+        rs.AddLayer(existing_name)
+        ill_formed_name = 'bob#'
+        good_name = 'cal'
+        print("Enter: 1, '%s'; 2, '%s'; 3, '%s'" % (
+            existing_name, ill_formed_name, good_name))
+        actual_value = g.Grammar._set_up_subsequent_initial_shape()
+        expected_value = good_name
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_set_up_subsequent_initial_shape'
+    try_good_state()
+
+def test__set_up_initial_shape():
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        good_name = 'sam'
+        origin = (20, 20, 0)
+        actual_value = g.Grammar._set_up_initial_shape(good_name, origin)
+        expected_value = good_name
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_set_up_initial_shape'
+    try_good_state()
 
 def test__set_up_first_rule():
-    pass
+    def try_bad_state_layer_exists():
+        try_name = 'bad_state_layer_exists'
+        g.Grammar.clear_all()
+        rs.AddLayer(s.Settings.first_rule_layer_name)
+        actual_value = g.Grammar._set_up_first_rule()
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        actual_value = g.Grammar._set_up_first_rule()
+        expected_value = s.Settings.first_rule_layer_name
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_set_up_first_rule'
+    try_bad_state_layer_exists()
+    try_good_state()
+
+def test__set_up_subsequent_rule():
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        existing_name = 'abe'
+        rs.AddLayer(existing_name)
+        ill_formed_name = 'bob#'
+        good_name = 'cal'
+        print("Enter: 1, '%s'; 2, '%s'; 3, '%s'" % (
+            existing_name, ill_formed_name, good_name))
+        actual_value = g.Grammar._set_up_subsequent_rule()
+        expected_value = good_name
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_set_up_subsequent_rule'
+    try_good_state()
+
+def test__set_up_rule():
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        good_name = 'good_name'
+        origin = (20, 20, 0)
+        actual_value = g.Grammar._set_up_rule(good_name, origin)
+        expected_value = good_name
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_set_up_rule'
+    try_good_state()
+
+####
 
 def test_export():
     pass
@@ -382,9 +475,15 @@ def _set_up():
 
 # test_new()                                    ##  pending
 
-test__set_up_first_initial_shape()
-# test__set_up_first_rule()
+test__set_up_first_initial_shape()              ##  done
+test__set_up_subsequent_initial_shape()         ##  done
+test__set_up_initial_shape()                    ##  done
+test__set_up_first_rule()                       ##  done
+test__set_up_subsequent_rule()                  ##  done
+test__set_up_rule()                             ##  done
+
 # test_export()
+
 # test_get_name()                               ##  done
 # test_get_dat_string()
 # test__get_ordered_named_lshapes_string()

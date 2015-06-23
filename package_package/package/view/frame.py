@@ -6,7 +6,7 @@ class Frame(object):
     def __init__(self):
         pass
 
-    @classmethod                                ##  06-22 06:19
+    @classmethod
     def new_instance(cls, frame_name, layer_name, origin):
         """Receives:
             frame_name      str. The name of the frame block: {
@@ -79,7 +79,7 @@ class Frame(object):
             None            otherwise
         """
         base_point = (0, 0, 0)
-        opposite_point = rs.PointAdd(base_point, s.Settings.frame_block_size)
+        opposite_point = rs.PointAdd(base_point, s.Settings.frame_size)
         x0, y0, z0 = base_point
         x1, y1, z1 = opposite_point
         p0 = [x0, y0, z0]
@@ -102,6 +102,19 @@ class Frame(object):
         else:
             return_value = None
         return return_value
+
+    @classmethod
+    def get_frame_position_from_user(cls):
+        """Returns:
+            origin          Point3D. The position of the frame instance. Must 
+                            be in the xy plane
+        """
+        message_1 = "Select a point in the xy plane"
+        message_2 = "The point must be in the xy plane. Try again"
+        origin = rs.GetPoint(message_1)
+        while not origin[2] == 0:
+            origin = rs.GetPoint(message_2)
+        return origin
 
     # @classmethod
     # def new(cls):
