@@ -4,6 +4,7 @@ import rhinoscriptsyntax as rs
 class Settings(object):
     dark_gray = Color.FromArgb(105, 105, 105)
     
+    block_type = 4096
     default_layer_name = 'Default'
     first_initial_shape_layer_name = 'initial_shape_1'
     first_initial_shape_frame_position = (0, -40, 0)

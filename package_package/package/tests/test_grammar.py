@@ -145,10 +145,10 @@ def test_get_name():
     method_name = 'get_name'
     try_good_state()
 
-# def test_get_dat_string():
-    # pass
+def test_get_dat_string():
+    pass
 
-def test__get_ordered_named_lshapes_string():
+def test__get_ordered_lshapes_string():         ##  06-24 08:12
     def try_no_ishapes_no_rules():
         try_name = 'no_ishapes_no_rules'
         pass
@@ -165,13 +165,13 @@ def test__get_ordered_named_lshapes_string():
         try_name = 'ishapes_rules'
         pass
 
-    method_name = '_get_ordered_named_lshapes_string'
+    method_name = '_get_ordered_lshapes_string'
     try_no_ishapes_no_rules()
     try_no_ishapes_rules()
     try_ishapes_no_rules()
     try_ishapes_rules()
 
-def test__get_ordered_named_ishape_defs_string():
+def test__get_ordered_ishape_defs_string():
     def try_good_state_no_ishapes_no_rules():
         try_name = 'good_state_no_ishapes_no_rules'
         _set_up()
@@ -223,7 +223,7 @@ def test__get_ordered_named_ishape_defs_string():
     try_good_state_ishapes_no_rules()
     try_good_state_ishapes_rules()
 
-def test__get_ordered_named_rule_defs_string():
+def test__get_ordered_rule_defs_string():
     def try_good_state_no_ishapes_no_rules():
         try_name = 'good_state_no_ishapes_no_rules'
         _set_up()
@@ -273,6 +273,8 @@ def test__get_ordered_named_rule_defs_string():
     try_good_state_no_ishapes_rules()
     try_good_state_ishapes_no_rules()
     try_good_state_ishapes_rules()
+
+####
 
 def test_get_initial_shapes():
     def try_good_state_no_ishapes_no_rules():
@@ -473,20 +475,20 @@ def _set_up():
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
 
-# test_new()                                    ##  pending
-
-test__set_up_first_initial_shape()              ##  done
-test__set_up_subsequent_initial_shape()         ##  done
-test__set_up_initial_shape()                    ##  done
-test__set_up_first_rule()                       ##  done
-test__set_up_subsequent_rule()                  ##  done
-test__set_up_rule()                             ##  done
+# test_new()                                      ##  done
+# test__set_up_first_initial_shape()              ##  done
+# test__set_up_subsequent_initial_shape()         ##  done
+# test__set_up_initial_shape()                    ##  done
+# test__set_up_first_rule()                       ##  done
+# test__set_up_subsequent_rule()                  ##  done
+# test__set_up_rule()                             ##  done
 
 # test_export()
-
 # test_get_name()                               ##  done
 # test_get_dat_string()
-# test__get_ordered_named_lshapes_string()
+test__get_ordered_lshapes_string()
+# test__get_ordered_ishape_defs_string()
+# test__get_ordered_rule_defs_string()
 
 # done
 # test_get_initial_shapes()
@@ -494,5 +496,3 @@ test__set_up_rule()                             ##  done
 # test_get_rules()
 # test_add_to_initial_shapes()
 # test_add_to_rules()
-# test__get_ordered_named_ishape_defs_string()
-# test__get_ordered_named_rule_defs_string()

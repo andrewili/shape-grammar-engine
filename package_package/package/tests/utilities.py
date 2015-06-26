@@ -25,7 +25,7 @@ class Utilities(object):
             ((4, 28, 0), (28, 28, 0)),
             ((28, 4, 0), (28, 28, 0))],
         [   ('a', (8, 24, 0))])
-    sub_divide_triangle_spec = (
+    subdivide_triangle_spec = (
         (   [   ((4, 4, 0), (4, 28, 0)),
                 ((4, 4, 0), (22, 4, 0)),
                 ((4, 28, 0), (22, 4, 0))],
@@ -70,45 +70,57 @@ class Utilities(object):
         pass
 
     @classmethod
-    def make_grammar_3_ishapes_3_rules(cls):    ##  06-19 10:00
-        cls.set_up()
-        cls._add_first_ishape(cls.labeled_right_triangle_spec)
-        # _add_subsequent_ishape(cls.labeled_h_spec)
-        # _add_subsequent_ishape(cls.labeled_square_spec)
-        # _add_first_rule(cls.sub_divide_triangle_spec)
-        # _add_subsequent_rule(cls.add_h_to_h_spec)
-        # _add_subsequent_rule(cls.add_h_in_square_spec)
-
-    @classmethod
-    def set_up(cls):
+    def make_grammar_3_ishapes_3_rules(cls):    ##  06-24 08:25
+        """Adds 3 initial shapes and 3 rules. Returns:
+            ?
+        """
         g.Grammar.clear_all()
-        f.Frame.new()
-        rs.AddGroup(ish.InitialShape.component_type)
-        rs.AddGroup(r.Rule.component_type)
+        cls._add_first_ishape(cls.labeled_right_triangle_spec)
+        cls._add_first_rule(cls.labeled_h_spec)
+        cls._add_subsequent_ishape(cls.labeled_square_spec)
+        cls._add_subsequent_ishape(cls.subdivide_triangle_spec)
+        cls._add_subsequent_rule(cls.add_h_to_h_spec)
+        cls._add_subsequent_rule(cls.add_h_in_square_spec)
 
     @classmethod
-    def _add_first_ishape(cls, labeled_shape_spec):
-        name = ish.InitialShape.add_first()     ##  'add_first_container'?
-        cls._draw_labeled_shape_in_container(labeled_shape_spec, name)
+    def _add_first_ishape(cls, labeled_shape_spec): ##  to do
+        """Receives:
+            labeled_shape_spec
+                            ([line_specs], [labeled_point_specs])
+        Returns:
+            ?
+        """
+        layer_name = g.Grammar._set_up_first_initial_shape()
+        cls._draw_labeled_shape_in_container(labeled_shape_spec, layer_name)
 
     @classmethod
-    def _add_subsequent_ishape(cls, ishape_in):
+    def _add_subsequent_ishape(cls, labeled_shape_spec):    ##  to do
         pass
 
     @classmethod
-    def _add_first_rule(cls, rule_in):
+    def _add_first_rule(cls, rule_spec):        ##  to do
         pass
 
     @classmethod
-    def _add_subsequent_rule(cls, rule_in):
-        pass
+    def _add_subsequent_rule(cls, layer_name, rule_spec):   ##  06-24 08:40
+        """Receives:
+            layer_name      str. The name of the layer containing the rule
+            rule_spec       (labeled_shape_spec, labeled_shape_spec)
+        Returns:
+            ?
+        """
+        left_labeled_shape_spec, right_labeled_shape_spec = rule_spec
+        left_position, right_position = (
+            l.Layer.get_frame_positions_from_layer_name(layer_name))
+        draw_labeled_shape(left_labeled_shape_spec, left_position)
+        draw_labeled_shape(right_labeled_shape_spec, right_position)
 
     @classmethod
-    def _draw_labeled_shape_in_container(cls, labeled_shape_spec, name):
-        rs.CurrentLayer(name)
-        position = get_frame_position_from_labeled_shape_name(name)
-        cls._draw_labeled_shape(labeled_shape_spec, position)
-        rs.CurrentLayer('Default')
+    def _draw_labeled_shape_in_container(cls, labeled_shape_spec, layer_name):
+        rs.CurrentLayer(layer_name)
+        frame_position = get_frame_position_from_layer_name(layer_name)
+        cls._draw_labeled_shape(labeled_shape_spec, frame_position)
+        rs.CurrentLayer(s.Settings.default_layer_name)
 
     @classmethod
     def _draw_labeled_shape(cls, labeled_shape_spec, position):

@@ -63,75 +63,109 @@ class Layer(object):
         return_value = not rs.IsLayer(name)
         return return_value
 
-    @classmethod
-    def new_1_frame_block(cls, name, origin):   ##  06-21 17:16
+    @classmethod                                ##  06-23 08:57
+    def get_frame_positions_from_layer_name(cls, layer_name):
         """Receives:
-            name            str. The name of the layer. Type and value 
+            layer_name      str. The name of a layer. Type and value not 
                             guaranteed
-            origin          Point3D. The origin of the layer
-        Adds a new layer with 1 frame block. Returns:
-            name            str. The name of the layer, if successful
+        Returns:
+            initial_shape_frame_position 
+                            Point3D. The position of the frame of an initial 
+                            shape. Or
+            rule_shape_frame_positions
+                            (Point3D, Point3D). A duple of the positions of 
+                            the left and right frames of a rule. Or
+            None            if unsuccessful
+        """
+        method_name = 'get_frame_positions_from_layer_name'
+        try:
+            if not type(layer_name) == str:
+                raise TypeError
+            layer_names = rs.LayerNames()
+            if not layer_name in layer_names:
+                raise ValueError
+        except TypeError:
+            message = "The layer name must be a string"
+            print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
+            return_value = None
+        except ValueError:
+            message = "The layer name does not exist"
+            print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            frame_positions = []
+            frame_guids = cls._get_frames(layer_name)
+            if frame_guids == None:
+                return_value = None
+            else:
+                for frame_guid in frame_guids:
+                    frame_position = rs.FrameInstanceInsertPoint(frame_guid)
+                    frame_positions.append(frame_position)
+                return_value = frame_positions
+        finally:
+            return return_value
+
+    @classmethod
+    def _get_frames(cls, layer_name):
+        """Receives:
+            layer_name      str. The name of a layer. Type and value 
+                            guaranteed
+        Returns:
+            frames          [initial_guid], for an initial shape layer, if 
+                            successful. Or
+                            [left_guid, right_guid], for a rule layer, if
+                            successful. Or
             None            otherwise
         """
-        rs.AddLayer(name)
-        return_value = 'kilroy'
+        method_name = '_get_frames'
+        objects_on_layer = rs.ObjectsByLayer(layer_name)
+        if len(objects_on_layer) == 0:
+            return_value = None
+        else:
+            frames_on_layer = []
+            for object_on_layer in objects_on_layer:
+                object_type = rs.ObjectType(object_on_layer)
+                if object_type == s.Settings.block_type:
+                    frames_on_layer.append(object_on_layer)
+            if len(frames_on_layer) == 1:
+                return_value = frames_on_layer
+            elif len(frames_on_layer) == 2:
+                return_value = cls._order_left_right(frames_on_layer)
+            else:
+                message = (
+                    "There should be 1 or 2 frame instances on this layer")
+                print("%s.%s\n    %s" % (cls.__name__, method_name, message))
+                return_value = None
         return return_value
 
     @classmethod
-    def new_2_frame_blocks(cls, name, origin):
+    def _order_left_right(cls, frame_guids):
         """Receives:
-            name            str. The name of the layer. Type and value 
-                            guaranteed
-            origin          Point3D. The origin of the layer
-        Adds a new layer with 2 frame blocks. Returns:
-            name            str. The name of the layer, if successful
-            None            otherwise
+            frame_guids     [guid, ...]. A list of not more than 2 frame 
+                            guids
+        Returns:
+            ordered_frame_guids
+                            [guid, ...]. The same list, ordered by insertion 
+                            point (i.e., smaller x first)
         """
-        cls._add_layer(name)
-        left_block_name = "%s_L" % name
-        right_block_name = "%s_R" % name
-        left_block_origin = origin
-        right_block_origin = s.Settings.get_right_frame_block_origin(
-            left_block_origin)
-        right_block_origin = rs.PointAdd(
-            left_block_origin, right_block_origin)
-        f.Frame.add_frame_block(left_block_name, left_block_origin)
-        f.Frame.add_frame_block(right_block_name, right_block_origin)
-        return_value = 'kilroy'
+        frame_guid_1, frame_guid_2 = frame_guids
+        p1, p2 = (
+            rs.BlockInstanceInsertPoint(frame_guid_1), 
+            rs.BlockInstanceInsertPoint(frame_guid_2))
+        x1, x2 = p1[0], p2[0]
+        if x1 < x2:
+            return_value = [frame_guid_1, frame_guid_2]
+        elif x1 == x2:
+            if y1 <= y2:
+                return_value = [frame_guid_1, frame_guid_2]
+            else:
+                return_value = [frame_guid_2, frame_guid_1]
+        else:
+            return_value = [frame_guid_2, frame_guid_1]
         return return_value
 
-    # @classmethod
-    # def new(cls, name_in, base_point, ttype):      ##  06-21 05:51
-        # """Receives:
-        #     name_in         str. The name to be assigned to the layer. Type 
-        #                     and value guaranteed
-        #     base_point      Point3D. The layer's base point
-        #     ttype           str: {ish.InitialShape.first_initial_shape_name | 
-        #                     r.Rule.first_rule_name}. The layer's type
-        # Creates a new layer. Sets up one or two labeled shapes. Returns:
-        #     name_out        str. The name of the rule as assigned, if 
-        #                     successful
-        #     None            otherwise
-        # """
-        # color = s.Settings.layer_color
-        # name_out = rs.AddLayer(name_in, color)
-        # if ttype == ish.InitialShape.component_type:
-        #     add_1_frame_block()
-        #     # lshape_set_up_value = ls.LabeledShape.set_up(       ##  kilroy
-        #     #     name_in, base_point, 'initial')
-        # elif ttype == r.Rule.component_type:
-        #     add_2_frame_blocks()
-        #     # left_value = ls.LabeledShape.set_up(name_in, base_point, 'left')
-        #     # right_value = ls.LabeledShape.set_up(name_in, base_point, 'right')
-        #     # lshape_set_up_value = left_value and return_value
-        # else:
-        #     pass
-        # if (name_out and
-        #     tag_guid and
-        #     lshape_set_up_value
-        # ):
-        #     return_value = name_out
-        # else:
-        #     return_value = None
-        # return return_value
+
+
+
+
 

@@ -96,121 +96,26 @@ def test_get_frame_position_from_user():
     method_name = 'get_frame_position_from_user'
     try_something()
 
-# def test_new():
-    # def try_bad_state_definition_exists():
-    #     try_name = 'bad_state_definition_exists'
-    #     g.Grammar.clear_all()
-    #     _set_frame_block()
-    #     actual_value = f.Frame.new()
-    #     expected_value = None
-    #     if not actual_value == expected_value:
-    #         u.Utilities.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
+def test_get_position_from_frame():        ##  06-24 09:11
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.clear_all()
+        frame_name = 'pieta'
+        layer_name = frame_name
+        rs.AddLayer(layer_name)
+        frame_position = (10, 10, 0)
+        f.Frame.new_instance(frame_name, layer_name, frame_position)
+        actual_value = f.Frame.get_position_from_frame(frame_name)
+        expected_value = frame_position
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
-    # def try_good_state():
-    #     try_name = 'good_state'
-    #     g.Grammar.clear_all()
-    #     frame_block_name = s.Settings.frame_block_name
-    #     actual_value = f.Frame.new()
-    #     expected_value = frame_block_name
-    #     if not actual_value == expected_value:
-    #         u.Utilities.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
+    method_name = 'get_position_from_frame'
+    try_good_state()
 
-    # method_name = 'new'
-    # try_bad_state_definition_exists()
-    # try_good_state()
-
-# def test__definition_exists():
-    # def try_no_definition():
-    #     try_name = 'no_definition'
-    #     g.Grammar.clear_all()
-    #     actual_value = f.Frame._definition_exists()
-    #     expected_value = False
-    #     if not actual_value == expected_value:
-    #         u.Utilities.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
-
-    # def try_definition():
-    #     try_name = 'definition'
-    #     g.Grammar.clear_all()
-    #     f.Frame.new()
-    #     actual_value = f.Frame._definition_exists()
-    #     expected_value = True
-    #     if not actual_value == expected_value:
-    #         u.Utilities.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
-        
-    # method_name = '_definition_exists'
-    # try_no_definition()
-    # try_definition()
-
-# def _set_frame_block():
-    # _add_layer()
-    # _record_layer()
-    # _add_block()
-
-# def _add_layer():
-    # rs.AddLayer(s.Settings.frame_block_layer_name)
-
-# def _record_layer():
-    # rs.SetDocumentData(
-    #     l.Layer.layer_name_list_name, 
-    #     s.Settings.frame_block_layer_name, 
-    #     ll.Llist.dummy_value)
-
-# def _add_block():
-    # rs.CurrentLayer(s.Settings.frame_block_layer_name)
-    # frame_guids = f.Frame.new(origin)
-    # base_point = s.Settings.frame_block_base_point
-    # block_name = s.Settings.frame_block_name
-    # rs.AddBlock(frame_guids, base_point, block_name)
-    # rs.CurrentLayer('Default')
-
-# def test_delete():
-    # method_name = 'delete'
-
-    # def try_bad_state_no_block():
-    #     try_name = 'bad_state_no_block'
-    #     g.Grammar.clear_all()
-    #     actual_value = f.Frame.delete()
-    #     expected_value = False
-    #     if not actual_value == expected_value:
-    #         g.Grammar.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
-
-    # def try_bad_state_no_layer():
-    #     try_name = 'bad_state_no_layer'
-    #     g.Grammar.clear_all()
-    #     frame_guids = f.Frame.new(origin)
-    #     base_point = s.Settings.frame_block_base_point
-    #     block_name = s.Settings.frame_block_name
-    #     rs.AddBlock(frame_guids, base_point, block_name)
-    #     actual_value = f.Frame.delete()
-    #     expected_value = False
-    #     if not actual_value == expected_value:
-    #         g.Grammar.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
-
-    # def try_good_state():
-    #     try_name = 'good_state'
-    #     g.Grammar.clear_all()
-    #     _set_frame_block()
-    #     actual_value = f.Frame.delete()
-    #     expected_value = True
-    #     if not actual_value == expected_value:
-    #         g.Grammar.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
-
-    # try_bad_state_no_block()
-    # try_bad_state_no_layer()
-    # try_good_state()
-
-test_new_instance()                             ##  done
-test__new_definition()                          ##  done
-test__get_guids()                               ##  done
-test_get_frame_position_from_user()             ##  done
-
-# test_new()                                    ##  done
-# test__definition_exists()                     ##  done
-# test_delete()
+# test_new_instance()                             ##  done
+# test__new_definition()                          ##  done
+# test__get_guids()                               ##  done
+# test_get_frame_position_from_user()             ##  done
+# test_get_position_from_frame()

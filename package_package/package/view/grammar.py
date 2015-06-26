@@ -18,7 +18,7 @@ class Grammar(object):
 
     ### new
     @classmethod
-    def new(cls):                               ##  06-23 09:24 test
+    def new(cls):
         cls.clear_all()
         cls._set_up_first_initial_shape()
         cls._set_up_first_rule()
@@ -134,24 +134,110 @@ class Grammar(object):
         return return_value
 
     @classmethod
-    def export(cls):                            ##  05-26 04:45
-        """Writes the grammar's spec (dat string?) to a file. Returns:
+    def export(cls):                            ##  06-23 21:53
+        """Writes the grammar's dat string to a file. Returns:
             dat_string      str. The dat string, if successful
             None            otherwise
         """
-        name = cls.get_name()
-        dat_string = cls.get_dat_string()
+        name = cls.get_doc_name()
+        dat_string = cls.get_dat_string()       ##  kilroy is here
         cls.write_to_file(name, dat_string)
 
-    ### attribute equivalents
     @classmethod
-    def get_name(cls):
+    def get_doc_name(cls):
         """Returns:
             name            str. The name of the Rhino document, if successful
             None            otherwise
         """
         name = rs.DocumentName()
         return name
+
+    @classmethod
+    def get_dat_string(cls):                    ##  06-23 21:58
+        """The dat string consists of: 
+            header
+            ordered_lshapes_string
+            ordered_ishape_defs_string
+            ordered_rule_defs_string
+        Returns:
+            dat_string      str. The grammar's dat string, if successful
+            None            otherwise
+        """
+        ordered_lshapes_string = cls._get_ordered_lshapes_string()
+        ordered_ishape_defs_string = (          ##  kilroy was here
+            cls._get_ordered_ishape_defs_string())  
+        ordered_rule_defs_string = (
+            cls._get_ordered_rule_defs_string())
+        dat_string = '\n'.join([
+            cls.dat_header,
+            ordered_lshapes_string,
+            ordered_ishape_defs_string,
+            ordered_rule_defs_string])
+        return dat_string
+
+    @classmethod
+    def _get_ordered_lshapes_string(cls):       ##  06-23 23:22
+        """Returns:
+            ordered_lshapes_string
+                            str: str\nstr\n...\nstr. The string form of 
+                            [str, ...], an ordered list (by shape name) of 
+                            .is strings of labeled shapes from both initial 
+                            shapes and rules
+        """
+        ishape_lshapes = g.Grammar.get_initial_shapes()
+        rule_lshapes = g.Grammar.get_rule_shapes()
+        named_lshapes = []
+        named_lshapes.extend(ishape_lshapes)
+        named_lshapes.extend(rule_lshapes)
+        ordered_named_lshapes = sorted(named_lshapes)
+        ordered_named_lshape_strings = []
+        for named_lshape in ordered_named_lshapes:
+            named_lshape_string = (
+                ls.LabeledShape.get_string_from_named_lshape(named_lshape))
+            ordered_named_lshape_strings.append(named_lshape_string)
+        ordered_lshapes_string = '\n'.join(ordered_named_lshape_strings)
+        return ordered_lshapes_string
+
+    @classmethod
+    def _get_ordered_ishape_defs_string(cls):
+        """Returns:
+            ordered_ishape_defs_string
+                            str: str\nstr\n...\nstr. The string form of 
+                            [str, ...], an ordered list (by name) of initial 
+                            shape definitions, if successful
+                            '' otherwise
+        """
+        ordered_ishapes = cls.get_initial_shapes()
+                            ##  also in _get_ordered_lshapes_string()
+        ordered_ishape_defs = []
+        for ishape in ordered_ishapes:
+            ishape_def = ish.InitialShape.get_def_from_ishape(ishape)
+            ordered_ishape_defs.append(ishape_def)
+        ordered_ishape_defs_string = '\n'.join(ordered_ishape_defs)
+        return ordered_ishape_defs_string
+
+    @classmethod
+    def _get_ordered_rule_defs_string(cls):
+        """Returns:
+            ordered_rule_defs_string
+                            str: str\nstr\n...\nstr. The string form of 
+                            [str, ...], an ordered list (by name) of rule 
+                            definition strings, if successful
+                            '' otherwise
+        """
+        ordered_rules = cls.get_rules()
+        ordered_rule_defs = []
+        for rule_i in ordered_rules:
+            rule_def = r.Rule.get_def_from_rule(rule_i)
+            ordered_rule_defs.append(rule_def)
+        ordered_rule_defs_string = '\n'.join(ordered_rule_defs)
+        return ordered_rule_defs_string
+
+    @classmethod
+    def write_to_file(cls):
+        pass
+
+    ####
 
     @classmethod
     def get_initial_shapes(cls):
@@ -247,52 +333,6 @@ class Grammar(object):
         return value
 
     ### continuing methods
-    @classmethod
-    def get_dat_string(cls):                    ##  06-18 08:29
-        """The dat string consists of: 
-            header
-            ordered_named_lshapes_string
-            ordered_named_ishape_defs_string
-            ordered_named_rule_defs_string
-        Returns:
-            dat_string      str. The grammar's dat string, if successful
-            None            otherwise
-        """
-        ordered_named_lshapes_string = cls._get_ordered_named_lshapes_string()
-        ordered_named_ishape_defs_string = (
-            cls._get_ordered_named_ishape_defs_string())
-        ordered_named_rule_defs_string = (
-            cls._get_ordered_named_rule_defs_string())
-        dat_string = '\n'.join([
-            cls.dat_header,
-            ordered_named_lshapes_string,
-            ordered_named_ishape_defs_string,
-            ordered_named_rule_defs_string])
-        return dat_string
-
-    @classmethod
-    def _get_ordered_named_lshapes_string(cls): ##  06-18 08:30
-        """Returns:
-            ordered_named_lshapes_string
-                            str: str\nstr\n...\nstr. The string form of 
-                            [str, ...], an ordered list (by shape name) of 
-                            .is strings (__str__?) of labeled shapes from both 
-                            initial shapes and rules
-        """
-        ishape_lshapes = g.Grammar.get_initial_shapes()
-        rule_lshapes = g.Grammar.get_rule_shapes()
-        named_lshapes = []
-        named_lshapes.extend(ishape_lshapes)
-        named_lshapes.extend(rule_lshapes)
-        ordered_named_lshapes = sorted(named_lshapes)
-        ordered_named_lshape_strings = []
-        for named_lshape in ordered_named_lshapes:
-            named_lshape_string = (
-                ls.LabeledShape.get_string_from_named_lshape(named_lshape))
-            ordered_named_lshape_strings.append(named_lshape_string)
-        ordered_named_lshapes_string = '\n'.join(ordered_named_lshape_strings)
-        return ordered_named_lshapes_string
-
     # @classmethod
     # def _get_ishape_lshape_strings():           ##  06-08 09:32
         # """Returns:
@@ -320,45 +360,6 @@ class Grammar(object):
         #     lshape_string_pair = cls._get_lshape_string_pair_from_rule(rule)
         #     rule_lshape_strings.extend(lshape_string_pair)
         # return rule_lshape_strings
-
-    @classmethod
-    def _get_ordered_named_ishape_defs_string(cls):
-        """Returns:
-            ordered_ishape_defs_string
-                            str: str\nstr\n...\nstr. The string form of 
-                            [str, ...], an ordered list (by name) of initial 
-                            shape definitions, if successful
-                            '' otherwise
-        """
-        ordered_ishapes = cls.get_initial_shapes()
-                            ##  also in _get_ordered_named_lshapes_string()
-        ordered_ishape_defs = []
-        for ishape in ordered_ishapes:
-            ishape_def = ish.InitialShape.get_def_from_ishape(ishape)
-            ordered_ishape_defs.append(ishape_def)
-        ordered_ishape_defs_string = '\n'.join(ordered_ishape_defs)
-        return ordered_ishape_defs_string
-
-    @classmethod
-    def _get_ordered_named_rule_defs_string(cls):
-        """Returns:
-            ordered_rule_defs_string
-                            str: str\nstr\n...\nstr. The string form of 
-                            [str, ...], an ordered list (by name) of rule 
-                            definition strings, if successful
-                            '' otherwise
-        """
-        ordered_rules = cls.get_rules()
-        ordered_rule_defs = []
-        for rule_i in ordered_rules:
-            rule_def = r.Rule.get_def_from_rule(rule_i)
-            ordered_rule_defs.append(rule_def)
-        ordered_rule_defs_string = '\n'.join(ordered_rule_defs)
-        return ordered_rule_defs_string
-
-    @classmethod
-    def write_to_file(cls):
-        pass
 
     @classmethod
     def clear_all(cls):
