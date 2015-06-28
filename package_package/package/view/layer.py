@@ -99,7 +99,7 @@ class Layer(object):
                 return_value = None
             else:
                 for frame_guid in frame_guids:
-                    frame_position = rs.FrameInstanceInsertPoint(frame_guid)
+                    frame_position = rs.BlockInstanceInsertPoint(frame_guid)
                     frame_positions.append(frame_position)
                 return_value = frame_positions
         finally:

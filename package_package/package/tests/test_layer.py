@@ -128,7 +128,9 @@ def test_get_frame_positions_from_layer_name(): ##  06-26 14:20
         position = s.Settings.first_initial_shape_frame_position
         f.Frame.new_instance(layer_name, layer_name, position)
         rs.CurrentLayer(s.Settings.default_layer_name)
-        actual_value = l.Layer.get_frame_positions_from_layer_name(layer_name)
+        actual_guids = l.Layer.get_frame_positions_from_layer_name(layer_name)
+        actual_coords = actual_guids.pop()
+        actual_value = tuple(actual_coords)
         expected_value = position
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -136,13 +138,37 @@ def test_get_frame_positions_from_layer_name(): ##  06-26 14:20
 
     def try_good_state_two_frames():
         try_name = 'good_state_two_frames'
+        g.Grammar.clear_all()
+        layer_name = s.Settings.first_rule_layer_name
+        l.Layer.new(layer_name)
+        rs.CurrentLayer(layer_name)
+        left_frame_name = "%s_L" % layer_name
+        right_frame_name = "%s_R" % layer_name
+        left_frame_position = s.Settings.first_rule_left_frame_position
+        right_frame_position = s.Settings.get_right_frame_position(
+            left_frame_position)
+        f.Frame.new_instance(left_frame_name, layer_name, left_frame_position)
+        f.Frame.new_instance(
+            right_frame_name, layer_name, right_frame_position)
+        rs.CurrentLayer(s.Settings.default_layer_name)
+        actual_guids = l.Layer.get_frame_positions_from_layer_name(layer_name)
+        coords = []
+        for guid in actual_guids:
+            coord = tuple(guid)
+            coords.append(coord)
+        actual_value = coords
+        expected_value = [left_frame_position, right_frame_position]
+        if not rs.PointCompare(actual_value, expected_value):
+        # if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     method_name = 'get_frame_positions_from_layer_names'
     # try_bad_type_layer_name()                   ##  done
     # try_bad_value_no_layer_name()               ##  done
     # try_bad_state_no_frame()                    ##  done
-    try_good_state_one_frame()
-    # try_good_state_two_frames()
+    # try_good_state_one_frame()                  ##  done
+    try_good_state_two_frames()
 
 def test__get_frames():
     def try_lines_lpoints_no_frames():

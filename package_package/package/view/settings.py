@@ -18,26 +18,24 @@ class Settings(object):
     layer_color = Color.Black
     layer_tag_offset = (-10, 0, 0)
     layer_tag_text_height = 2
-    right_frame_instance_offset_factor = 1.5
+    right_frame_offset_factor = 1.5
 
     def __init__(self):
         pass
 
     @classmethod
-    def get_right_frame_position(cls, left_instance_origin):
+    def get_right_frame_position(cls, left_frame_position):
         """Receives:
-            left_instance_origin
+            left_frame_position
                             Point3d. The origin of the left frame block
         Returns:
-            right_instance_origin
+            right_frame_position
                             Point3d. The origin of the right frame block
         """
         frame_side_x = cls.frame_size[0]
-        right_instance_offset_x = (
-            frame_side_x * cls.right_frame_instance_offset_factor)
-        right_instance_offset = (right_instance_offset_x, 0, 0)
-        # right_instance_offset = rs.VectorScale(
-        #     frame_side_x, cls.right_frame_instance_offset_factor)
-        right_instance_origin = rs.PointAdd(
-            left_instance_origin, right_instance_offset)
-        return right_instance_origin
+        right_frame_offset_x = (
+            frame_side_x * cls.right_frame_offset_factor)
+        right_frame_offset = (right_frame_offset_x, 0, 0)
+        right_frame_position = rs.PointAdd(
+            left_frame_position, right_frame_offset)
+        return right_frame_position
