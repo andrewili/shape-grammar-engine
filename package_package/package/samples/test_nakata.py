@@ -19,7 +19,7 @@ def test__draw_zigzag():
     guids = n.Nakata._draw_zigzag()
     rs.SelectObjects(guids)
 
-def test_draw_prototiles():                     ##  06-28 07:32
+def test_draw_prototiles():
     g.Grammar.clear_all()
     nakata = n.Nakata()
     nakata.draw_prototiles()

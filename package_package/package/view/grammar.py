@@ -116,7 +116,10 @@ class Grammar(object):
         """Receives:
             layer_name      str. The name of the rule layer
             left_frame_position
-                            Point3D. The origin of the left frame instance
+                            Point3D. The position of the left frame instance
+        Inserts left and right frame instances on the layer. Returns:
+            layer_name      str. The name of the rule layer, if successful
+            None            otherwise
         """
         value_1 = l.Layer.new(layer_name)
         left_frame_name = "%s_L" % layer_name

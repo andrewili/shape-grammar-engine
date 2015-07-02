@@ -63,7 +63,7 @@ class Layer(object):
         return_value = not rs.IsLayer(name)
         return return_value
 
-    @classmethod                                ##  06-23 08:57
+    @classmethod
     def get_frame_positions_from_layer_name(cls, layer_name):
         """Receives:
             layer_name      str. The name of a layer. Type and value not 

@@ -88,7 +88,7 @@ def test__is_available():
     try_used_name()
     try_unused_name()
 
-def test_get_frame_positions_from_layer_name(): ##  06-26 14:20
+def test_get_frame_positions_from_layer_name():
     def try_bad_type_layer_name():
         try_name = 'bad_type_layer_name'
         layer_name = 37
@@ -151,24 +151,21 @@ def test_get_frame_positions_from_layer_name(): ##  06-26 14:20
         f.Frame.new_instance(
             right_frame_name, layer_name, right_frame_position)
         rs.CurrentLayer(s.Settings.default_layer_name)
-        actual_guids = l.Layer.get_frame_positions_from_layer_name(layer_name)
-        coords = []
-        for guid in actual_guids:
-            coord = tuple(guid)
-            coords.append(coord)
-        actual_value = coords
-        expected_value = [left_frame_position, right_frame_position]
-        if not rs.PointCompare(actual_value, expected_value):
-        # if not actual_value == expected_value:
+        actual_value = l.Layer.get_frame_positions_from_layer_name(layer_name)
+        expected_value = (left_frame_position, right_frame_position)
+        if not (
+            rs.PointCompare(actual_value[0], expected_value[0]) and
+            rs.PointCompare(actual_value[1], expected_value[1])
+        ):
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'get_frame_positions_from_layer_names'
-    # try_bad_type_layer_name()                   ##  done
-    # try_bad_value_no_layer_name()               ##  done
-    # try_bad_state_no_frame()                    ##  done
-    # try_good_state_one_frame()                  ##  done
-    try_good_state_two_frames()
+    try_bad_type_layer_name()                   ##  done
+    try_bad_value_no_layer_name()               ##  done
+    try_bad_state_no_frame()                    ##  done
+    try_good_state_one_frame()                  ##  done
+    try_good_state_two_frames()                 ##  done
 
 def test__get_frames():
     def try_lines_lpoints_no_frames():
@@ -251,6 +248,7 @@ def _add_lines_lpoints_two_frames():
 
 def _add_lines():
     layer_name = s.Settings.first_rule_layer_name
+    l.Layer.new(layer_name)
     rs.CurrentLayer(layer_name)
     line_specs = [
         ((0, 0, 0), (20, 20, 0)),
@@ -265,6 +263,7 @@ def _add_lpoints():
         ('a', (0, 10, 0)),
         ('a', (20, 10, 0))]
     layer_name = s.Settings.first_rule_layer_name
+    l.Layer.new(layer_name)
     rs.CurrentLayer(layer_name)
     for lpoint in lpoints:
         text, point = lpoint
@@ -282,6 +281,7 @@ def _add_one_frame():
 
 def _add_two_frames():
     layer_name = s.Settings.first_rule_layer_name
+    l.Layer.new(layer_name)
     frame_name = layer_name
     frame_specs = [
         ("%s_L" % frame_name, layer_name, (20, 20, 0)),
@@ -307,14 +307,14 @@ def test__add_two_frames():
     g.Grammar.clear_all()
     _add_two_frames()
 
-# test_new()                                      ##  done
-# test_get_layer_name_from_user()                 ##  done
-# test__is_well_formed()                          ##  done
-# test__is_available()                            ##  done
-test_get_frame_positions_from_layer_name()     ##  kilroy is waiting
-# test__get_frames()                              ##  done
+test_new()                                      ##  done
+test_get_layer_name_from_user()                 ##  done
+test__is_well_formed()                          ##  done
+test__is_available()                            ##  done
+test_get_frame_positions_from_layer_name()      ##  done
+test__get_frames()                              ##  done
 
-# test__add_lines()                               ##  done
-# test__add_lpoints()                             ##  done
-# test__add_two_frames()                          ##  done
+test__add_lines()                               ##  done
+test__add_lpoints()                             ##  done
+test__add_two_frames()                          ##  done
 

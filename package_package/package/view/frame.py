@@ -116,12 +116,3 @@ class Frame(object):
             origin = rs.GetPoint(message_2)
         return origin
 
-    # @classmethod
-    # def get_position_from_frame(cls, frame_name):  ##  06-24 08:59
-        # """Receives:
-        #     frame_name      str. The name of the frame
-        # Returns:
-        #     position        Point3D. The position of the frame's base_point
-        # """
-        # position = rs.BlockInstanceInsertPoint(frame_name)  ##  need guid
-        # return position

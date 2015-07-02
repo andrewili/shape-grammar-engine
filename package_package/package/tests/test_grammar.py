@@ -479,14 +479,14 @@ def _set_up():
 # test__set_up_first_initial_shape()              ##  done
 # test__set_up_subsequent_initial_shape()         ##  done
 # test__set_up_initial_shape()                    ##  done
-# test__set_up_first_rule()                       ##  done
+test__set_up_first_rule()                       ##  done
 # test__set_up_subsequent_rule()                  ##  done
 # test__set_up_rule()                             ##  done
 
 # test_export()
 # test_get_name()                               ##  done
 # test_get_dat_string()
-test__get_ordered_lshapes_string()
+# test__get_ordered_lshapes_string()
 # test__get_ordered_ishape_defs_string()
 # test__get_ordered_rule_defs_string()
 

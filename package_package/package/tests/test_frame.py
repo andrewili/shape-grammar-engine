@@ -97,24 +97,6 @@ def test_get_frame_position_from_user():
     method_name = 'get_frame_position_from_user'
     try_something()
 
-# def test_get_position_from_frame():             ##  06-24 09:11
-    # def try_good_state():
-    #     try_name = 'good_state'
-    #     g.Grammar.clear_all()
-    #     frame_name = 'pieta'
-    #     layer_name = frame_name
-    #     rs.AddLayer(layer_name)
-    #     frame_position = (10, 10, 0)
-    #     f.Frame.new_instance(frame_name, layer_name, frame_position)
-    #     actual_value = f.Frame.get_position_from_frame(frame_name)
-    #     expected_value = frame_position
-    #     if not actual_value == expected_value:
-    #         u.Utilities.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
-
-    # method_name = 'get_position_from_frame'
-    # try_good_state()
-
 # test_new_instance()                             ##  done
 # test__new_definition()                          ##  done
 # test__get_guids()                               ##  done

@@ -2,7 +2,9 @@ from package.view import container as c
 from package.view import frame as f
 from package.view import grammar as g
 from package.view import initial_shape as ish
+from package.view import layer as l
 from package.view import rule as r
+from package.view import settings as s
 import rhinoscriptsyntax as rs
 
 class Utilities(object):
@@ -44,12 +46,12 @@ class Utilities(object):
                 ((10, 14, 0), (26, 14, 0))],
             [   ('a', (10, 27, 0))]),
         (   [   ((6, 18, 0), (6, 26, 0)),
-                ((6, 22, 0), (18, 22, 0)),
+                ((6, 22, 0), (14, 22, 0)),
                 ((10, 6, 0), (10, 22, 0)),
                 ((10, 14, 0), (26, 14, 0)),
                 ((14, 18, 0), (14, 26, 0))],
-            [   ('a', (10, 17, 0)),
-                ('a', (10, 27, 0)),
+            [   ('a', (6, 17, 0)),
+                ('a', (6, 27, 0)),
                 ('a', (14, 17, 0)),
                 ('a', (14, 27, 0))]))
     add_h_in_square_spec = (
@@ -71,49 +73,166 @@ class Utilities(object):
 
     @classmethod
     def make_grammar_3_ishapes_3_rules(cls):    ##  06-24 08:25
-        """Adds 3 initial shapes and 3 rules. Returns:
-            ?
+        """Adds 3 initial shapes and 3 rules
         """
         g.Grammar.clear_all()
-        cls._add_first_ishape(cls.labeled_right_triangle_spec)
-        cls._add_first_rule(cls.labeled_h_spec)
-        cls._add_subsequent_ishape(cls.labeled_square_spec)
-        cls._add_subsequent_ishape(cls.subdivide_triangle_spec)
-        cls._add_subsequent_rule(cls.add_h_to_h_spec)
-        cls._add_subsequent_rule(cls.add_h_in_square_spec)
+        cls._add_first_initial_shape(
+            'labeled_right_triangle_spec', cls.labeled_right_triangle_spec)
+        cls._add_subsequent_initial_shape(
+            'labeled_h_spec', 
+            cls.labeled_h_spec, 
+            (0, -80, 0))
+        cls._add_subsequent_initial_shape(
+            'labeled_square_spec', cls.labeled_square_spec, (0, -120, 0))
+        cls._add_first_rule(
+            'subdivide_triangle_spec', cls.subdivide_triangle_spec)
+        cls._add_subsequent_rule(
+            'add_h_to_h_spec', cls.add_h_to_h_spec, (60, -80, 0))
+        cls._add_subsequent_rule(
+            'add_h_in_square_spec', cls.add_h_in_square_spec, (60, -120, 0))
 
     @classmethod
-    def _add_first_ishape(cls, labeled_shape_spec): ##  to do
+    def _add_first_initial_shape(cls, layer_name, initial_shape_spec):
         """Receives:
-            labeled_shape_spec
-                            ([line_specs], [labeled_point_specs])
-        Returns:
-            ?
+            layer_name      str. The name of the layer containing the initial 
+                            shape
+            initial_shape_spec
+                            (line_specs, labeled_point_specs)
+        Adds a new layer named layer_name. Inserts an initial shape frame. 
+        Draws the initial shape. Returns:
+            layer_name      str. If successful
+            None            otherwise
         """
-        layer_name = g.Grammar._set_up_first_initial_shape()
-        cls._draw_labeled_shape_in_container(labeled_shape_spec, layer_name)
+        set_up_okay = g.Grammar._set_up_first_initial_shape()
+        rs.RenameLayer(s.Settings.first_initial_shape_layer_name, layer_name)
+        frame_position = s.Settings.first_initial_shape_frame_position
+        draw_okay = cls._draw_initial_shape(
+            initial_shape_spec, layer_name, frame_position)
+        if set_up_okay and draw_okay:
+            return_value = layer_name
+        else:
+            return_value = None
+        return return_value
 
     @classmethod
-    def _add_subsequent_ishape(cls, labeled_shape_spec):    ##  to do
-        pass
+    def _add_subsequent_initial_shape(
+        cls, layer_name, initial_shape_spec, frame_position
+    ):
+        """Receives:
+            layer_name      str. The name of the layer containing the labeled 
+                            shape
+            initial_shape_spec
+                            (line_specs, labeled_point_specs)
+            frame_position  (num, num, num) or Point3d. The position of the 
+                            initial shape frame
+        Adds a new layer named layer_name. Inserts an initial shape frame. 
+        Draws the initial shape. Returns:
+            layer_name      str. If successful
+            None            otherwise
+        """
+        g.Grammar._set_up_initial_shape(layer_name, frame_position)
+        draw_okay = cls._draw_initial_shape(
+            initial_shape_spec, layer_name, frame_position)
+        if draw_okay:
+            return_value = layer_name
+        else:
+            return_value = None
+        return return_value
 
     @classmethod
-    def _add_first_rule(cls, rule_spec):        ##  to do
-        pass
+    def _draw_initial_shape(
+        cls, initial_shape_spec, layer_name, frame_position
+    ):
+        """Receives:
+            initial_shape_spec
+                            (line_specs, labeled_point_specs)
+            layer_name      str. The name of the layer containing the initial 
+                            shape
+            frame_position  (num, num, num) or Point3d. The position of the 
+                            initial shape frame
+        Draws the initial shape at the frame position on the specified 
+        layer. Returns:
+            layer_name      str. If successful
+            None            otherwise
+        """
+        rs.CurrentLayer(layer_name)
+        draw_okay = cls._draw_labeled_shape(initial_shape_spec, frame_position)
+        rs.CurrentLayer(s.Settings.default_layer_name)
+        if draw_okay:
+            return_value = layer_name
+        else:
+            return_value = None
+        return return_value
 
     @classmethod
-    def _add_subsequent_rule(cls, layer_name, rule_spec):   ##  06-24 08:40
+    def _add_first_rule(cls, layer_name, rule_spec):
         """Receives:
             layer_name      str. The name of the layer containing the rule
             rule_spec       (labeled_shape_spec, labeled_shape_spec)
-        Returns:
-            ?
+        Adds a new layer named layer_name. Inserts left and right frame 
+        instances. Draws the left and right labeled shapes. Returns:
+            layer_name_out  str. If successful
+            None            otherwise
+        """
+        set_up_okay = g.Grammar._set_up_first_rule()
+        rs.RenameLayer(s.Settings.first_rule_layer_name, layer_name)
+        left_frame_position = s.Settings.first_rule_left_frame_position
+        draw_okay = cls._draw_rule(rule_spec, layer_name, left_frame_position)
+        if set_up_okay and draw_okay:
+            return_value = layer_name
+        else:
+            return_value = None
+        return return_value
+
+    @classmethod
+    def _add_subsequent_rule(cls, layer_name, rule_spec, left_frame_position):
+        """Receives:
+            layer_name      str. The name of the layer containing the rule
+            rule_spec       (labeled_shape_spec, labeled_shape_spec)
+            left_frame_position
+                            (num, num, num) or Point3d. The position of the 
+                            left frame
+        Adds a new layer named layer_name. Inserts left and right frame 
+        instances. Draws the left and right labeled shapes. Returns:
+            layer_name_out  str. If successful
+            None            otherwise
+        """
+        set_up_okay = g.Grammar._set_up_rule(
+            layer_name, left_frame_position)
+        draw_okay = cls._draw_rule(
+            rule_spec, layer_name, left_frame_position)
+        if set_up_okay and draw_okay:
+            return_value = layer_name
+        else:
+            return_value = None
+        return return_value
+
+    @classmethod
+    def _draw_rule(cls, rule_spec, layer_name, left_frame_position):
+        """Receives:
+            rule_spec       (   left_labeled_shape_spec, 
+                                right_labeled_shape_spec)
+            layer_name      str. The name of the layer
+        Draws the left and right shapes at the specified position on the 
+        specified layer. Returns:
+            layer_name      str. The name of the layer, if successful
+            None            otherwise
         """
         left_labeled_shape_spec, right_labeled_shape_spec = rule_spec
-        left_position, right_position = (
-            l.Layer.get_frame_positions_from_layer_name(layer_name))
-        draw_labeled_shape(left_labeled_shape_spec, left_position)
-        draw_labeled_shape(right_labeled_shape_spec, right_position)
+        right_frame_position = s.Settings.get_right_frame_position(
+            left_frame_position)
+        rs.CurrentLayer(layer_name)
+        left_okay = cls._draw_labeled_shape(
+            left_labeled_shape_spec, left_frame_position)
+        right_okay = cls._draw_labeled_shape(
+            right_labeled_shape_spec, right_frame_position)
+        rs.CurrentLayer(s.Settings.default_layer_name)
+        all_okay = left_okay and right_okay
+        if all_okay:
+            return_value = layer_name
+        else:
+            return_value = None
+        return return_value
 
     @classmethod
     def _draw_labeled_shape_in_container(cls, labeled_shape_spec, layer_name):
@@ -124,13 +243,43 @@ class Utilities(object):
 
     @classmethod
     def _draw_labeled_shape(cls, labeled_shape_spec, position):
+        """Receives:
+            labeled_shape_spec
+                            (line_specs, labeled_point_specs)
+            position        (num, num, num) or Point3d
+        Draws the labeled shape at the specified position. Returns:
+            boolean         True, if successful
+            None            otherwise
+        """
         line_specs, lpoint_specs = labeled_shape_spec
+        return_value = True
         for line_spec in line_specs:
             tail, head = line_spec
-            rs.AddLine(tail, head)
+            offset_tail = cls._offset_point(tail, position)
+            offset_head = cls._offset_point(head, position)
+            line_guid = rs.AddLine(offset_tail, offset_head)
+            if not line_guid:
+                return_value = None
+                break
         for lpoint_spec in lpoint_specs:
             text, point = lpoint_spec
-            rs.AddTextDot(text, point)
+            offset_point = cls._offset_point(point, position)
+            text_dot_guid = rs.AddTextDot(text, offset_point)
+            if not text_dot_guid:
+                return_value = None
+                break
+        return return_value
+
+    @classmethod
+    def _offset_point(cls, point, offset):
+        """Receives:
+            point           (num, num, num)
+            offset          (num, num, num)
+        Returns:
+            offset_point    Point3d. The offset point
+        """
+        offset_point = rs.PointAdd(point, offset)
+        return offset_point
 
     @classmethod
     def make_grammar_3_3_containers(cls):

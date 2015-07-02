@@ -98,12 +98,8 @@ class Nakata(object):
             p               (num, num, num). The coordinates of the center of 
                             the cell (ix, iy)
         """
-        # center_center_x = self.prototile_side + self.prototile_gap_x
-        # center_center_y = self.prototile_side + self.prototile_gap_y
         x = (self.prototile_center_center_x * ix) + self.zigzag_side
         y = (self.prototile_center_center_y * iy) + self.zigzag_side
-        # x = (center_center_x * ix) + self.zigzag_side
-        # y = (center_center_y * iy) + self.zigzag_side
         z = 0
         return (x, y, z)
 
@@ -157,36 +153,4 @@ class Nakata(object):
             pass
         rs.InsertBlock(self.zigzag, insertion_point, scale, angle)
 
-
-
-    # def show_prototiles(self):
-        # """Draws an n x m matrix of prototiles
-        # """
-        # n, m = 16, 16
-        # i, j = 0, 0
-        # for i in range(n):
-        #     for j in range(m):
-        #         xi, yj = i * offset_x, j * offset_y
-        #         transformation_ij = self._get_transformation(i, j)
-        #         self.draw_quartet_at_place(xi, yj, transformation_ij)
-
-    # def _get_transformation(self, i, j):
-        # """Receives:
-        #     i               int. The x-index of the matrix cell
-        #     j               int. The y-index of the matrix cell
-        # Returns:
-        #     (t1, t2, t3, t4)
-        #                     A 4-tuple of the transformations of the 4 zigzags, 
-        #                     transformation: (reflection, rotation)
-        # """
-        # return transformation_ij
-
-    # def draw_quartet_at_place(self, x, y, transformations):
-        # """Receives:
-        #     x               Point3D. The x-value of the base point
-        #     y               Point3D. The y-value of the base point
-        #     transformations (xform, xform, xform, xform)
-        # Draws a quartet of zigzags with the specified transformations
-        # """
-        # pass
 
