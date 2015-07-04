@@ -9,10 +9,8 @@ from package.view import settings as s
 from package.view import shape_layer as sl
 
 class InitialShape(object):
-    component_type = 'initial shape'
-    # first_initial_shape_name = 'initial_shape_1'
-    # first_initial_shape_insertion_point = [0, -40, 0]
-    initial_shape_name_list_name = 'initial shape names'
+    # component_type = 'initial shape'
+    # initial_shape_name_list_name = 'initial shape names'
 
     def __init__(self):
         pass
@@ -68,7 +66,8 @@ class InitialShape(object):
             str             cls.first_initial_shape_name, if successful
             None            otherwise
         """
-        name = cls.first_initial_shape_name     ##  check for availability?
+        name = s.Settings.first_initial_shape_layer_name
+                                                ##  check for availability?
         insertion_point = cls.first_initial_shape_insertion_point
         value = c.Container.new(name, insertion_point, cls.component_type)
         if value:

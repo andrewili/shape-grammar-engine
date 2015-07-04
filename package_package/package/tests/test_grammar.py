@@ -1,4 +1,4 @@
-from package.view import container as c
+# from package.view import container as c
 from package.view import frame as f
 from package.view import grammar as g
 from package.view import initial_shape as ish
@@ -36,7 +36,7 @@ def test__set_up_first_initial_shape():
     try_bad_state_layer_exists()
     try_good_state()
 
-def test__set_up_subsequent_initial_shape():
+def test_set_up_subsequent_initial_shape():
     def try_good_state():
         try_name = 'good_state'
         g.Grammar.clear_all()
@@ -46,13 +46,13 @@ def test__set_up_subsequent_initial_shape():
         good_name = 'cal'
         print("Enter: 1, '%s'; 2, '%s'; 3, '%s'" % (
             existing_name, ill_formed_name, good_name))
-        actual_value = g.Grammar._set_up_subsequent_initial_shape()
+        actual_value = g.Grammar.set_up_subsequent_initial_shape()
         expected_value = good_name
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    method_name = '_set_up_subsequent_initial_shape'
+    method_name = 'set_up_subsequent_initial_shape'
     try_good_state()
 
 def test__set_up_initial_shape():
@@ -94,7 +94,7 @@ def test__set_up_first_rule():
     try_bad_state_layer_exists()
     try_good_state()
 
-def test__set_up_subsequent_rule():
+def test_set_up_subsequent_rule():
     def try_good_state():
         try_name = 'good_state'
         g.Grammar.clear_all()
@@ -104,13 +104,13 @@ def test__set_up_subsequent_rule():
         good_name = 'cal'
         print("Enter: 1, '%s'; 2, '%s'; 3, '%s'" % (
             existing_name, ill_formed_name, good_name))
-        actual_value = g.Grammar._set_up_subsequent_rule()
+        actual_value = g.Grammar.set_up_subsequent_rule()
         expected_value = good_name
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    method_name = '_set_up_subsequent_rule'
+    method_name = 'set_up_subsequent_rule'
     try_good_state()
 
 def test__set_up_rule():
@@ -148,10 +148,15 @@ def test_get_name():
 def test_get_dat_string():
     pass
 
-def test__get_ordered_lshapes_string():         ##  06-24 08:12
+def test__get_ordered_labeled_shapes_string():         ##  06-24 08:12
     def try_no_ishapes_no_rules():
         try_name = 'no_ishapes_no_rules'
-        pass
+        g.Grammar.clear_all()
+        actual_value = g.Grammar._get_ordered_labeled_shapes_string()
+        expected_value = ''
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     def try_no_ishapes_rules():
         try_name = 'no_ishapes_rules'
@@ -165,17 +170,17 @@ def test__get_ordered_lshapes_string():         ##  06-24 08:12
         try_name = 'ishapes_rules'
         pass
 
-    method_name = '_get_ordered_lshapes_string'
+    method_name = '_get_ordered_labeled_shapes_string'
     try_no_ishapes_no_rules()
-    try_no_ishapes_rules()
-    try_ishapes_no_rules()
-    try_ishapes_rules()
+    # try_no_ishapes_rules()
+    # try_ishapes_no_rules()
+    # try_ishapes_rules()
 
-def test__get_ordered_ishape_defs_string():
+def test__get_ordered_initial_shape_defs_string():
     def try_good_state_no_ishapes_no_rules():
         try_name = 'good_state_no_ishapes_no_rules'
         _set_up()
-        actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
+        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
         expected_value = ''
         # if actual_value == expected_value:
         if not actual_value == expected_value:
@@ -185,7 +190,7 @@ def test__get_ordered_ishape_defs_string():
     def try_good_state_no_ishapes_rules():
         try_name = 'good_state_no_ishapes_rules'
         _make_new_grammar_3_rules()
-        actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
+        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
         expected_value = ''
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -195,7 +200,7 @@ def test__get_ordered_ishape_defs_string():
         try_name = 'good_state_ishapes_no_rules'
         _make_new_grammar_3_ishapes()
         name_1, name_2, name_3 = 'a_ishape', 'initial_shape_1', 'z_ishape'
-        actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
+        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
         expected_value = "%s\n%s\n%s" % (
             "shape    %s" % (name_1),
             "shape    %s" % (name_2),
@@ -208,7 +213,7 @@ def test__get_ordered_ishape_defs_string():
         try_name = 'good_state_ishapes_rules'
         _make_new_grammar_3_ishapes_3_rules()
         name_1, name_2, name_3 = 'a_ishape', 'initial_shape_1', 'z_ishape'
-        actual_value = g.Grammar._get_ordered_named_ishape_defs_string()
+        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
         expected_value = "%s\n%s\n%s" % (
             "shape    %s" % (name_1),
             "shape    %s" % (name_2),
@@ -217,7 +222,7 @@ def test__get_ordered_ishape_defs_string():
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    method_name = '_get_ordered_named_ishape_defs_string'
+    method_name = '_get_ordered_named_initial_shape_defs_string'
     try_good_state_no_ishapes_no_rules()
     try_good_state_no_ishapes_rules()
     try_good_state_ishapes_no_rules()
@@ -437,7 +442,7 @@ def _make_new_grammar_3_ishapes_3_rules():
 
 def _make_new_grammar_3_ishapes():
     g.Grammar.clear_all()
-    f.Frame.new()
+    f.Frame._new_definition()
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
     ish.InitialShape.add_first()
@@ -471,23 +476,23 @@ def _add_two_rules():
 
 def _set_up():
     g.Grammar.clear_all()
-    f.Frame.new()
+    f.Frame._new_definition()
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
 
 # test_new()                                      ##  done
 # test__set_up_first_initial_shape()              ##  done
-# test__set_up_subsequent_initial_shape()         ##  done
+# test_set_up_subsequent_initial_shape()          ##  done
 # test__set_up_initial_shape()                    ##  done
-test__set_up_first_rule()                       ##  done
-# test__set_up_subsequent_rule()                  ##  done
+# test__set_up_first_rule()                       ##  done
+# test_set_up_subsequent_rule()                   ##  done
 # test__set_up_rule()                             ##  done
 
 # test_export()
 # test_get_name()                               ##  done
 # test_get_dat_string()
-# test__get_ordered_lshapes_string()
-# test__get_ordered_ishape_defs_string()
+test__get_ordered_labeled_shapes_string()
+# test__get_ordered_initial_shape_defs_string()
 # test__get_ordered_rule_defs_string()
 
 # done

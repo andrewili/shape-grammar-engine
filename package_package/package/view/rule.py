@@ -8,15 +8,15 @@ from package.view import shape_layer as sl
 import rhinoscriptsyntax as rs
 
 class Rule(object):
-    component_type = 'rule'
-    first_rule_name = 'rule_1'
-    first_rule_insertion_point = [0, -100, 0]
-    tag_offset = [-10, 0, 0]
-    right_shape_offset_x_factor = 1.5
-    rule_name_list_name = 'rule names'
-    text_height = 2
-    left_lshape_suffix = '_L'
-    right_lshape_suffix = '_R'
+    # component_type = 'rule'
+    # first_rule_name = 'rule_1'
+    # first_rule_insertion_point = [0, -100, 0]
+    # tag_offset = [-10, 0, 0]
+    # right_shape_offset_x_factor = 1.5
+    # rule_name_list_name = 'rule names'
+    # text_height = 2
+    # left_lshape_suffix = '_L'
+    # right_lshape_suffix = '_R'
 
     def __init__(self):
         pass

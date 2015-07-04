@@ -102,4 +102,3 @@ def test_get_frame_position_from_user():
 # test__get_guids()                               ##  done
 # test_get_frame_position_from_user()             ##  done
 
-# test_get_position_from_frame()                  ##  suspended

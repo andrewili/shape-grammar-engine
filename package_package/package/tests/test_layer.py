@@ -88,6 +88,134 @@ def test__is_available():
     try_used_name()
     try_unused_name()
 
+def test_is_initial_shape():
+    method_name = ''
+
+def test_is_rule():
+    method_name = ''
+
+def test__get_number_of_frames():
+    def try_good_state_0_frames_0_others():
+        try_name = 'good_state_0_frames_0_others'
+        g.Grammar._clear_objects()
+        f.Frame._new_definition()
+        l.Layer.new(layer_name)
+        actual_value = l.Layer._get_number_of_frames(layer_name)
+        expected_value = 0
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_0_frames_2_others():
+        try_name = 'good_state_0_frames_2_others'
+        g.Grammar._clear_objects()
+        f.Frame._new_definition()
+        l.Layer.new(layer_name)
+        _insert_other_block(other_block_name, layer_name, p4)
+        _insert_other_block(other_block_name, layer_name, p5)
+        actual_value = l.Layer._get_number_of_frames(layer_name)
+        expected_value = 0
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_1_frames_0_others():
+        try_name = 'good_state_1_frames_0_others'
+        g.Grammar._clear_objects()
+        l.Layer.new(layer_name)
+        f.Frame.new_instance(frame_name, layer_name, p1)
+        actual_value = l.Layer._get_number_of_frames(layer_name)
+        expected_value = 1
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_1_frames_2_others():
+        try_name = 'good_state_1_frames_2_others'
+        g.Grammar._clear_objects()
+        l.Layer.new(layer_name)
+        f.Frame.new_instance(frame_name, layer_name, p1)
+        _insert_other_block(other_block_name, layer_name, p4)
+        _insert_other_block(other_block_name, layer_name, p5)
+        actual_value = l.Layer._get_number_of_frames(layer_name)
+        expected_value = 1
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_2_frames_0_others():
+        try_name = 'good_state_2_frames_0_others'
+        g.Grammar._clear_objects()
+        l.Layer.new(layer_name)
+        f.Frame.new_instance(frame_name, layer_name, p1)
+        f.Frame.new_instance(frame_name, layer_name, p2)
+        actual_value = l.Layer._get_number_of_frames(layer_name)
+        expected_value = 2
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_2_frames_2_others():
+        try_name = 'good_state_2_frames_2_others'
+        g.Grammar._clear_objects()
+        l.Layer.new(layer_name)
+        f.Frame.new_instance(frame_name, layer_name, p1)
+        f.Frame.new_instance(frame_name, layer_name, p2)
+        _insert_other_block(other_block_name, layer_name, p4)
+        _insert_other_block(other_block_name, layer_name, p5)
+        actual_value = l.Layer._get_number_of_frames(layer_name)
+        expected_value = 2
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_3_frames_0_others():
+        try_name = 'good_state_3_frames_0_others'
+        g.Grammar._clear_objects()
+        l.Layer.new(layer_name)
+        f.Frame.new_instance(frame_name, layer_name, p1)
+        f.Frame.new_instance(frame_name, layer_name, p2)
+        f.Frame.new_instance(frame_name, layer_name, p3)
+        actual_value = l.Layer._get_number_of_frames(layer_name)
+        expected_value = 3
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_3_frames_2_others():
+        try_name = 'good_state_3_frames_2_others'
+        g.Grammar._clear_objects()
+        l.Layer.new(layer_name)
+        f.Frame.new_instance(frame_name, layer_name, p1)
+        f.Frame.new_instance(frame_name, layer_name, p2)
+        f.Frame.new_instance(frame_name, layer_name, p3)
+        _insert_other_block(other_block_name, layer_name, p4)
+        _insert_other_block(other_block_name, layer_name, p5)
+        actual_value = l.Layer._get_number_of_frames(layer_name)
+        expected_value = 3
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_number_of_frames'
+    g.Grammar.clear_all()
+    layer_name = 'layer_i'
+    frame_name = s.Settings.frame_name
+    other_block_name = _define_other_block()
+    p1 = (0, 0, 0)
+    p2 = (50, 0, 0)
+    p3 = (100, 0, 0)
+    p4 = (0, 50, 0)
+    p5 = (50, 50, 0)
+    try_good_state_0_frames_0_others()
+    try_good_state_0_frames_2_others()
+    try_good_state_1_frames_0_others()
+    try_good_state_1_frames_2_others()
+    try_good_state_2_frames_0_others()
+    try_good_state_2_frames_2_others()
+    try_good_state_3_frames_0_others()
+    try_good_state_3_frames_2_others()
+
 def test_get_frame_positions_from_layer_name():
     def try_bad_type_layer_name():
         try_name = 'bad_type_layer_name'
@@ -307,14 +435,38 @@ def test__add_two_frames():
     g.Grammar.clear_all()
     _add_two_frames()
 
-test_new()                                      ##  done
-test_get_layer_name_from_user()                 ##  done
-test__is_well_formed()                          ##  done
-test__is_available()                            ##  done
-test_get_frame_positions_from_layer_name()      ##  done
-test__get_frames()                              ##  done
+def _define_other_block():
+    guids = _draw_x()
+    base_point = (0, 0, 0)
+    name = 'x'
+    rs.AddBlock(guids, base_point, name)
+    return name
 
-test__add_lines()                               ##  done
-test__add_lpoints()                             ##  done
-test__add_two_frames()                          ##  done
+def _draw_x():
+    guid_1 = rs.AddLine((0, 0, 0), (40, 40, 0))
+    guid_2 = rs.AddLine((0, 40, 0), (40, 0, 0))
+    guids = [guid_1, guid_2]
+    return guids
+
+def _insert_other_block(other_block_name, layer_name, position):
+    rs.CurrentLayer(layer_name)
+    rs.InsertBlock(other_block_name, position)
+    rs.CurrentLayer(s.Settings.default_layer_name)
+
+
+# test_new()                                      ##  done
+# test_get_layer_name_from_user()                 ##  done
+# test__is_well_formed()                          ##  done
+# test__is_available()                            ##  done
+
+# test_is_initial_shape()
+# test_is_rule()
+# test__get_number_of_frames()                    ##  done
+
+# test_get_frame_positions_from_layer_name()      ##  done
+# test__get_frames()                              ##  done
+
+# test__add_lines()                               ##  done
+# test__add_lpoints()                             ##  done
+# test__add_two_frames()                          ##  done
 

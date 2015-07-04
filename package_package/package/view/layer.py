@@ -21,7 +21,7 @@ class Layer(object):
     @classmethod
     def get_layer_name_from_user(cls):
         """Gets a valid name from the user. Returns:
-            name            str. A well-formed and available layer name
+            name            str. A unique and well-formed layer name
         """
         message_1 = "%s %s" % (
             "Enter the layer name.", 
@@ -62,6 +62,58 @@ class Layer(object):
         """
         return_value = not rs.IsLayer(name)
         return return_value
+
+    @classmethod
+    def is_initial_shape(cls, name):            ##  07-04 09:11
+        """Receives:
+            name            str. The name of the layer
+        Returns:
+            boolean         True, if the layer contains an initial shape. 
+                            False, otherwise
+        """
+        value = False
+        if cls._get_number_of_frames() == 1:
+            value = True
+        return value
+
+    @classmethod
+    def is_rule(cls, name):
+        """Receives:
+            name            str. The name of the layer_name
+        Returns:
+            boolean         True, if the layer contains a rule. False, 
+                            otherwise
+        """
+        value = False
+        if cls._get_number_of_frames() == 2:
+            value = True
+        return value
+
+    @classmethod                                ##  07-04 09:13
+    def _get_number_of_frames(cls, layer_name):
+        """Receives:
+            layer_name      str. The name of the layer
+        Returns:
+            n               int. The number of frame instances on the layer
+        """
+        frame_instance_guids = rs.BlockInstances(s.Settings.frame_name)
+        n = 0
+        for guid in frame_instance_guids:
+            if cls._contains_guid(guid, layer_name):
+                n = n + 1
+        return n
+
+    @classmethod
+    def _contains_guid(cls, frame_guid, layer_name):
+        """Receives:
+            frame_guid      The guid of a frame instance
+        Returns:
+            value           boolean. True, if the layer contains the frame 
+                            instance. False, otherwise
+        """
+        frame_layer_name = rs.ObjectLayer(frame_guid)
+        value = frame_layer_name == layer_name
+        return value
 
     @classmethod
     def get_frame_positions_from_layer_name(cls, layer_name):

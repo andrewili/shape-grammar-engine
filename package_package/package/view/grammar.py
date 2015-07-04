@@ -1,8 +1,8 @@
 from package.view import frame as f
-from package.view import initial_shape as ish
+# from package.view import initial_shape as ish   ##  to deprecate
 from package.view import layer as l
 from package.view import llist as ll
-from package.view import rule as r
+# from package.view import rule as r              ##  to deprecate
 import rhinoscriptsyntax as rs
 from package.view import settings as s
 
@@ -18,7 +18,7 @@ class Grammar(object):
 
     ### new
     @classmethod
-    def new(cls):
+    def new(cls):                               ##  set_up_grammar?
         cls.clear_all()
         cls._set_up_first_initial_shape()
         cls._set_up_first_rule()
@@ -49,8 +49,9 @@ class Grammar(object):
             return return_value
 
     @classmethod
-    def _set_up_subsequent_initial_shape(cls):
-        """Adds a new layer with one frame. Returns:
+    def set_up_subsequent_initial_shape(cls):
+        """Prompts the user for a layer name. Adds a new layer with one frame. 
+        Returns:
             layer_name      str. The name of the layer, if successful
             None            otherwise
         """
@@ -65,6 +66,7 @@ class Grammar(object):
         """Receives:
             layer_name      str. The name of the initial shape layer
             frame_position  Point3D. The position of the frame instance
+        Returns:
         """
         value_1 = l.Layer.new(layer_name)
         frame_name = layer_name
@@ -101,8 +103,9 @@ class Grammar(object):
             return return_value
         
     @classmethod
-    def _set_up_subsequent_rule(cls):
-        """Adds a new layer with two frames. Returns:
+    def set_up_subsequent_rule(cls):
+        """Prompts the user for a layer name. Adds a new layer with two 
+        frames. Returns:
             layer_name      str. The name of the layer, if successful
             None            otherwise
         """
@@ -136,6 +139,10 @@ class Grammar(object):
             return_value = None
         return return_value
 
+    # @classmethod
+    # def import(cls):
+    #     pass
+
     @classmethod
     def export(cls):                            ##  06-23 21:53
         """Writes the grammar's dat string to a file. Returns:
@@ -143,7 +150,7 @@ class Grammar(object):
             None            otherwise
         """
         name = cls.get_doc_name()
-        dat_string = cls.get_dat_string()       ##  kilroy is here
+        dat_string = cls.get_dat_string()
         cls.write_to_file(name, dat_string)
 
     @classmethod
@@ -159,52 +166,97 @@ class Grammar(object):
     def get_dat_string(cls):                    ##  06-23 21:58
         """The dat string consists of: 
             header
-            ordered_lshapes_string
-            ordered_ishape_defs_string
+            ordered_labeled_shapes_string
+            ordered_initial_shape_defs_string
             ordered_rule_defs_string
         Returns:
             dat_string      str. The grammar's dat string, if successful
             None            otherwise
         """
-        ordered_lshapes_string = cls._get_ordered_lshapes_string()
-        ordered_ishape_defs_string = (          ##  kilroy was here
-            cls._get_ordered_ishape_defs_string())  
+        ordered_labeled_shapes_string = (
+            cls._get_ordered_labeled_shapes_string())
+        ordered_initial_shape_defs_string = (          ##  kilroy was here
+            cls._get_ordered_initial_shape_defs_string())  
         ordered_rule_defs_string = (
             cls._get_ordered_rule_defs_string())
         dat_string = '\n'.join([
             cls.dat_header,
-            ordered_lshapes_string,
-            ordered_ishape_defs_string,
+            ordered_labeled_shapes_string,
+            ordered_initial_shape_defs_string,
             ordered_rule_defs_string])
         return dat_string
 
     @classmethod
-    def _get_ordered_lshapes_string(cls):       ##  06-23 23:22
+    def _get_ordered_labeled_shapes_string(cls):##  06-23 23:22
         """Returns:
-            ordered_lshapes_string
+            ordered_labeled_shapes_string
                             str: str\nstr\n...\nstr. The string form of 
                             [str, ...], an ordered list (by shape name) of 
                             .is strings of labeled shapes from both initial 
                             shapes and rules
         """
-        ishape_lshapes = g.Grammar.get_initial_shapes()
-        rule_lshapes = g.Grammar.get_rule_shapes()
-        named_lshapes = []
-        named_lshapes.extend(ishape_lshapes)
-        named_lshapes.extend(rule_lshapes)
-        ordered_named_lshapes = sorted(named_lshapes)
-        ordered_named_lshape_strings = []
-        for named_lshape in ordered_named_lshapes:
-            named_lshape_string = (
-                ls.LabeledShape.get_string_from_named_lshape(named_lshape))
-            ordered_named_lshape_strings.append(named_lshape_string)
-        ordered_lshapes_string = '\n'.join(ordered_named_lshape_strings)
-        return ordered_lshapes_string
+        layer_names = rs.LayerNames()
+        labeled_shape_strings = []
+        for layer_name in layer_names:          ##  skip user layers
+            if l.Layer.is_initial_shape(layer_name):
+                                                ##  kilroy is here
+                initial_labeled_shape_string = (
+                    cls._get_initial_labeled_shape_string(layer_name))
+                labeled_shape_strings.append(initial_labeled_shape_string)
+            elif l.Layer.is_rule(layer_name):
+                left_labeled_shape_string, right_labeled_shape_string = (
+                    cls._get_rule_labeled_shape_strings(layer_name))
+                labeled_shape_strings.append(left_labeled_shape_string)
+                labeled_shape_strings.append(right_labeled_shape_string)
+            else:
+                pass
+        ordered_labeled_shape_strings = sorted(labeled_shape_strings)
+        ordered_labeled_shapes_string = '\n'.join(
+            ordered_labeled_shape_strings)
+        return ordered_labeled_shapes_string
+
+    @classmethod                                ##  
+    def _get_initial_labeled_shape_string(cls, layer_name):
+        """Receives:
+            layer_name
+        Returns:
+            initial_labeled_shape_string
+                            str. The string of the initial labeled shape on 
+                            the layer
+        """
+        return initial_labeled_shape_string
 
     @classmethod
-    def _get_ordered_ishape_defs_string(cls):
+    def _get_rule_labeled_shape_strings(cls, layer_name):
+        """Receives:
+            layer_name
+        Returns:
+            rule_labeled_shape_strings
+                            (str, str). A duple of the strings of the left and 
+                            right labeled shapes on the layer
+        """
+        rule_labeled_shape_strings = (
+            left_labeled_shape_string, rule_labeled_shape_strings)
+        return rule_labeled_shape_strings
+
+        # ishape_lshapes = cls.get_initial_shapes()
+        # rule_lshapes = cls.get_rule_shapes()
+        # named_lshapes = []
+        # named_lshapes.extend(ishape_lshapes)
+        # named_lshapes.extend(rule_lshapes)
+        # ordered_named_lshapes = sorted(named_lshapes)
+        # ordered_named_lshape_strings = []
+        # for named_lshape in ordered_named_lshapes:
+        #     named_lshape_string = (
+        #         ls.LabeledShape.get_string_from_named_lshape(named_lshape))
+        #     ordered_named_lshape_strings.append(named_lshape_string)
+        # ordered_labeled_shapes_string = '\n'.join(ordered_named_lshape_strings)
+        # return ordered_labeled_shapes_string
+
+    @classmethod
+    def _get_ordered_initial_shape_defs_string(cls):
         """Returns:
-            ordered_ishape_defs_string
+            ordered_initial_shape_defs_string
                             str: str\nstr\n...\nstr. The string form of 
                             [str, ...], an ordered list (by name) of initial 
                             shape definitions, if successful
@@ -216,8 +268,8 @@ class Grammar(object):
         for ishape in ordered_ishapes:
             ishape_def = ish.InitialShape.get_def_from_ishape(ishape)
             ordered_ishape_defs.append(ishape_def)
-        ordered_ishape_defs_string = '\n'.join(ordered_ishape_defs)
-        return ordered_ishape_defs_string
+        ordered_initial_shape_defs_string = '\n'.join(ordered_ishape_defs)
+        return ordered_initial_shape_defs_string
 
     @classmethod
     def _get_ordered_rule_defs_string(cls):
@@ -243,7 +295,7 @@ class Grammar(object):
     ####
 
     @classmethod
-    def get_initial_shapes(cls):
+    def get_initial_shapes(cls):                ##  07-03 14:53
         """Returns:
             initial_shapes  [str, ...]. A sorted list of the names of the 
                             initial shapes in the grammar, if successful
@@ -370,7 +422,7 @@ class Grammar(object):
         cls._clear_blocks()
         cls._clear_layers()
         cls._clear_data()
-        cls._clear_groups()
+        # cls._clear_groups()
 
     @classmethod
     def _clear_objects(cls):
