@@ -21,6 +21,28 @@ class Utilities(object):
             ('a', (8, 26, 0)),
             ('a', (24, 6, 0)),
             ('a', (24, 26, 0))])
+    labeled_h_is_string = '\n'.join([
+        'shape    labeled_h_spec',
+        '    name',
+        '    coords 0 8 6 0',
+        '    coords 1 8 8 0',
+        '    coords 2 8 16 0',
+        '    coords 3 8 24 0',
+        '    coords 4 8 26 0',
+        '    coords 5 24 6 0',
+        '    coords 6 24 8 0',
+        '    coords 7 24 16 0',
+        '    coords 8 24 24 0',
+        '    coords 9 24 26 0',
+        '',
+        '    line 0 1 3',
+        '    line 1 2 7',
+        '    line 2 6 8',
+        '    point 0 0 a'
+        '    point 1 4 a'
+        '    point 2 5 a'
+        '    point 3 9 a'
+    ])
     labeled_square_spec = (
         [   ((4, 4, 0), (4, 28, 0)),
             ((4, 4, 0), (28, 4, 0)),

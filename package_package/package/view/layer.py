@@ -64,16 +64,14 @@ class Layer(object):
         return return_value
 
     @classmethod
-    def is_initial_shape(cls, name):            ##  07-04 09:11
+    def is_initial_shape(cls, name):
         """Receives:
             name            str. The name of the layer
         Returns:
             boolean         True, if the layer contains an initial shape. 
                             False, otherwise
         """
-        value = False
-        if cls._get_number_of_frames() == 1:
-            value = True
+        value = cls._get_number_of_frames(name) == 1
         return value
 
     @classmethod
@@ -84,12 +82,10 @@ class Layer(object):
             boolean         True, if the layer contains a rule. False, 
                             otherwise
         """
-        value = False
-        if cls._get_number_of_frames() == 2:
-            value = True
+        value = cls._get_number_of_frames(name) == 2
         return value
 
-    @classmethod                                ##  07-04 09:13
+    @classmethod
     def _get_number_of_frames(cls, layer_name):
         """Receives:
             layer_name      str. The name of the layer
@@ -216,7 +212,65 @@ class Layer(object):
             return_value = [frame_guid_2, frame_guid_1]
         return return_value
 
+    @classmethod                                ##  07-06 15:50
+    def _get_initial_labeled_shape_string(cls, layer_name):
+        """Receives:
+            layer_name      str. The layer name of an initial shape
+        Returns:
+            initial_labeled_shape_string
+                            str. The string of the initial labeled shape on 
+                            the layer, if successful
+            None            otherwise
+        """
+        header_stringlet = "%s%s%s" % (
+            'shape',
+            cls.spacer,
+            layer_name)
+        indented_name_stringlet = 'name'
+        ordered_indented_coord_lines_stringlet = (
+            cls._make_ordered_indented_coord_lines_stringlet())
+        blank_stringlet = ''
+        ordered_indented_line_lines_stringlet = (
+            cls._make_ordered_indented_line_lines_stringlet())
+        ordered_indented_labeled_point_lines_stringlet = (
+            cls._make_ordered_indented_labed_point_lines_stringlet())
+        initial_labeled_shape_stringlets = [
+            header_stringlet,
+            indented_name_stringlet,
+            ordered_indented_coord_lines_stringlet,
+            blank_stringlet,
+            ordered_indented_line_lines_stringlet,
+            ordered_indented_labeled_point_lines_stringlet]
+        initial_labeled_shape_string = '\n'.join(
+            initial_labeled_shape_stringlets)
+        return initial_labeled_shape_string
 
+    @classmethod
+    def _get_rule_labeled_shape_strings(cls, layer_name):
+        """Receives:
+            layer_name      str. The layer name of a rule
+        Returns:
+            rule_labeled_shape_strings
+                            (str, str). A duple of the strings of the left and 
+                            right labeled shapes on the layer
+        """
+        rule_labeled_shape_strings = (
+            left_labeled_shape_string, rule_labeled_shape_strings)
+        return rule_labeled_shape_strings
+
+        # ishape_lshapes = cls.get_initial_shapes()
+        # rule_lshapes = cls.get_rule_shapes()
+        # named_lshapes = []
+        # named_lshapes.extend(ishape_lshapes)
+        # named_lshapes.extend(rule_lshapes)
+        # ordered_named_lshapes = sorted(named_lshapes)
+        # ordered_named_lshape_strings = []
+        # for named_lshape in ordered_named_lshapes:
+        #     named_lshape_string = (
+        #         ls.LabeledShape.get_string_from_named_lshape(named_lshape))
+        #     ordered_named_lshape_strings.append(named_lshape_string)
+        # ordered_labeled_shapes_string = '\n'.join(ordered_named_lshape_strings)
+        # return ordered_labeled_shapes_string
 
 
 

@@ -98,7 +98,6 @@ def test__get_number_of_frames():
     def try_good_state_0_frames_0_others():
         try_name = 'good_state_0_frames_0_others'
         g.Grammar._clear_objects()
-        f.Frame._new_definition()
         l.Layer.new(layer_name)
         actual_value = l.Layer._get_number_of_frames(layer_name)
         expected_value = 0
@@ -109,7 +108,6 @@ def test__get_number_of_frames():
     def try_good_state_0_frames_2_others():
         try_name = 'good_state_0_frames_2_others'
         g.Grammar._clear_objects()
-        f.Frame._new_definition()
         l.Layer.new(layer_name)
         _insert_other_block(other_block_name, layer_name, p4)
         _insert_other_block(other_block_name, layer_name, p5)
@@ -200,7 +198,7 @@ def test__get_number_of_frames():
     method_name = '_get_number_of_frames'
     g.Grammar.clear_all()
     layer_name = 'layer_i'
-    frame_name = s.Settings.frame_name
+    frame_name = f.Frame._new_definition()
     other_block_name = _define_other_block()
     p1 = (0, 0, 0)
     p2 = (50, 0, 0)
@@ -215,6 +213,31 @@ def test__get_number_of_frames():
     try_good_state_2_frames_2_others()
     try_good_state_3_frames_0_others()
     try_good_state_3_frames_2_others()
+
+def test__get_initial_labeled_shape_string():   ##  07-06 15:56
+    def try_bad_value_non_existent_initial_labeled_shape():
+        try_name = 'bad_value_no_initial_labeled_shape'
+        actual_value = g.Grammar._get_initial_labeled_shape_string(
+            non_existent_initial_shape_layer_name)
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_value():
+        try_name = 'good_state'
+        actual_value = g.Grammar._get_initial_labeled_shape_string(
+            u.Utilities.labeled_h_spec)
+        expected_value = u.Utilities.labeled_h_is_string
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_initial_labeled_shape_string'
+    g.Grammar.clear_all()
+    initial_shape_string = _add_initial_labeled_shape()
+    try_bad_value_non_existent_initial_labeled_shape()
+    try_good_value()
 
 def test_get_frame_positions_from_layer_name():
     def try_bad_type_layer_name():
@@ -461,10 +484,17 @@ def _insert_other_block(other_block_name, layer_name, position):
 
 # test_is_initial_shape()
 # test_is_rule()
+# test_is_initial_shape()                         ##  trivial
+# test_is_rule()                                  ##  trivial
 # test__get_number_of_frames()                    ##  done
+# test__contains_guid()                           ##  trivial
 
 # test_get_frame_positions_from_layer_name()      ##  done
 # test__get_frames()                              ##  done
+# test__order_left_right()                        ##  trivial
+
+test__get_initial_labeled_shape_string()
+test__get_rule_labeled_shape_strings()
 
 # test__add_lines()                               ##  done
 # test__add_lpoints()                             ##  done

@@ -43,22 +43,6 @@ class InitialShape(object):
         finally:
             return return_value
 
-        #     name = s.Settings.first_initial_shape_name
-        #     color = s.Settings.layer_color
-        #     layer_name = rs.AddLayer(name, color)
-        #     add_name_tag(layer_name, component_type, origin)
-        #     rs.CurrentLayer(layer_name)
-        #     position = s.Settings.first_initial_shape_origin
-        #     block_guid = f.Frame.insert(name, origin, layer_name)
-        #                                         ##  kilroy is here
-        #     rs.CurrentLayer(s.Settings.default_layer_name)
-        #     if not (layer_name and block_guid):
-        #         return_value = None
-        #     else:
-        #         return_value = name
-        # finally:
-        #     return return_value
-
     @classmethod
     def add_first(cls):
         """Adds and names a new layer. Inserts a shape frame block at a 
