@@ -1,4 +1,5 @@
 from package.view import frame as f
+from package.controller import guid_to_dat as gd
 # from package.view import initial_shape as ish   ##  to deprecate
 from package.view import layer as l
 from package.view import llist as ll
@@ -9,11 +10,6 @@ from package.view import settings as s
 class Grammar(object):
     initial_shapes = 'initial shapes'
     rules = 'rules'
-    dat_header = "%s\n%s" % (
-        "# shape data version 6.00",
-        "unit  mm  # mm - millimetre, cm - centimetre, m - metre")
-    blank_line = '\n'
-    spacer = '    '
 
     def __init__(self):
         pass
@@ -142,18 +138,19 @@ class Grammar(object):
         return return_value
 
     # @classmethod
-    # def import(cls):
+    # def import(cls):                            ##  can't use this word
     #     pass
 
-    @classmethod                                ##  06-23 21:53
+    @classmethod                                ##  07-07 08:42
     def export(cls):
         """Writes the grammar's dat string to a file. Returns:
             dat_string      str. The dat string, if successful
             None            otherwise
         """
         name = cls.get_doc_name()
-        dat_string = cls.get_dat_string()
-        cls.write_to_file(name, dat_string)
+        dat_string = gd.get_dat_string()        ##  if unsuccessful? empty?
+        cls._write_to_file(name, dat_string)    ##  if unsuccessful?
+        return dat_string
 
     @classmethod
     def get_doc_name(cls):
@@ -164,177 +161,45 @@ class Grammar(object):
         name = rs.DocumentName()
         return name
 
-    @classmethod                                ##  07-06 16:15
-    def get_dat_string(cls):
-        """The dat string consists of: 
-            header
-            ordered_labeled_shapes_string
-            ordered_initial_shapes_string
-            ordered_rules_string
-        Returns:
-            dat_string      str. The grammar's dat string, if successful
-            None            otherwise
-        """
-        initial_shape_names, rule_names = (
-            cls._get_initial_shape_and_rule_names())
-        if (len(initial_shape_names) == 0 or
-            len(rule_names) == 0
-        ):
-            return_value = None
-        else:
-                                                ##  kilroy is here
-            ordered_labeled_shape_names = cls._get_ordered_labeled_shape_names()
-            ordered_labeled_shapes_string = (
-                cls._get_ordered_labeled_shapes_string(
-                    ordered_labeled_shape_names))
-            ordered_initial_shapes_string = (
-                cls._get_ordered_initial_shapes_string(
-                    ordered_labeled_shape_names))
-            ordered_rules_string = (
-                cls._get_ordered_rules_string(ordered_labeled_shape_names))
-            dat_string = '\n'.join([
-                cls.dat_header,
-                ordered_labeled_shapes_string,
-                cls.blank_line,
-                ordered_initial_shapes_string,
-                ordered_rules_string])
-            return_value = dat_string
-        return return_value
 
-    @classmethod                                ##  07-06 22:08
-    def _get_initial_shape_and_rule_names(cls):
-        """Returns:
-            initial_shape_names_and_rule_names
-                            ([str, ...], [str, ...]). The duple consisting of 
-                            the list of initial shape names and the list of 
-                            rule names, if successful
-            None            otherwise
-        """
-        layer_names = cls._get_layer_names()
-        initial_shape_names_and_rule_names = cls._separate_layer_names(
-            layer_names)
-        return initial_shape_names_and_rule_names
+    # @classmethod                                ##  not called
+    # def _get_ordered_initial_shape_defs_string(cls):
+        # """Returns:
+        #     ordered_initial_shape_defs_string
+        #                     str: str\nstr\n...\nstr. The string form of 
+        #                     [str, ...], an ordered list (by name) of initial 
+        #                     shape definitions, if successful
+        #                     '' otherwise
+        # """
+        # ordered_ishapes = cls.get_initial_shapes()
+        #                     ##  also in _get_ordered_lshapes_string()
+        # ordered_ishape_defs = []
+        # for ishape in ordered_ishapes:
+        #     ishape_def = ish.InitialShape.get_def_from_ishape(ishape)
+        #     ordered_ishape_defs.append(ishape_def)
+        # ordered_initial_shape_defs_string = '\n'.join(ordered_ishape_defs)
+        # return ordered_initial_shape_defs_string
 
-    @classmethod                                ##  07-06 22:12
-    def _separate_layer_names(cls, layer_names):
-        """Receives:
-            layer_names     [str, ...]. A list of layer names
-        Returns:
-            (initial_shape_names, rule_names)
-                            ([str, ...], [str, ...]). The duple consisting of 
-                            the list of initial shape names and the list of 
-                            rule names
-        """
-
-        return (initial_shape_names, rule_names)
+    
+    # @classmethod                                ##  not called
+    # def _get_ordered_rule_defs_string(cls):
+        # """Returns:
+        #     ordered_rule_defs_string
+        #                     str: str\nstr\n...\nstr. The string form of 
+        #                     [str, ...], an ordered list (by name) of rule 
+        #                     definition strings, if successful
+        #                     '' otherwise
+        # """
+        # ordered_rules = cls.get_rules()
+        # ordered_rule_defs = []
+        # for rule_i in ordered_rules:
+        #     rule_def = r.Rule.get_def_from_rule(rule_i)
+        #     ordered_rule_defs.append(rule_def)
+        # ordered_rule_defs_string = '\n'.join(ordered_rule_defs)
+        # return ordered_rule_defs_string
 
     @classmethod
-    def _get_ordered_labeled_shape_names(cls):  ##  07-06 17:31
-        """Returns:
-            names           [str, ...]. An ordered name list of labeled shapes 
-                            in both initial shapes and rules, if successful
-            None            otherwise
-        """
-        method_name = '_get_ordered_labeled_shape_names'
-        try:
-            if not (
-                cls._layers_include_one_initial_shape_and_one_rule()
-            ):
-                raise Error
-        except Error:
-            message = 'message'
-            print('%s.%s:\n%s' % (cls.__name__, method_name, message))
-            return_value = None
-        else:
-            return_value = ordered_labeled_shape_names
-        finally:
-            return return_value
-            
-    @classmethod                                ##  07-06 17:43
-    def _layers_include_one_initial_shape_and_one_rule(cls):
-        """Returns:
-            value           boolean. True or False
-        """
-        layer_names = cls._get_layer_names()
-        
-        value = (
-            cls._there_is_at_least_one_initial_shape() and 
-            cls._there_is_at_least_one_rule())
-        return value
-        
-    @classmethod
-    def _there_is_at_least_one_rule(cls):
-        """Returns:
-            value           boolean. True or False
-        """
-        return value
-
-    @classmethod
-    def _get_ordered_labeled_shapes_string(cls):##  06-23 23:22
-        """Returns:
-            ordered_labeled_shapes_string
-                            str: str\nstr\n...\nstr. The string form of 
-                            [str, ...], an ordered list (by shape name) of 
-                            .is strings of labeled shapes from both initial 
-                            shapes and rules
-        """
-        layer_names = rs.LayerNames()
-        labeled_shape_strings = []
-        for layer_name in layer_names:          ##  skip user layers
-            if l.Layer.is_initial_shape(layer_name):
-                initial_labeled_shape_string = (
-                    l.Layer._get_initial_labeled_shape_string(layer_name))
-                                                ##  kilroy is here
-                labeled_shape_strings.append(initial_labeled_shape_string)
-            elif l.Layer.is_rule(layer_name):
-                left_labeled_shape_string, right_labeled_shape_string = (
-                    l.Layer._get_rule_labeled_shape_strings(layer_name))
-                labeled_shape_strings.append(left_labeled_shape_string)
-                labeled_shape_strings.append(right_labeled_shape_string)
-            else:
-                pass
-        ordered_labeled_shape_strings = sorted(labeled_shape_strings)
-        ordered_labeled_shapes_string = '\n'.join(
-            ordered_labeled_shape_strings)
-        return ordered_labeled_shapes_string
-
-    @classmethod
-    def _get_ordered_initial_shape_defs_string(cls):
-        """Returns:
-            ordered_initial_shape_defs_string
-                            str: str\nstr\n...\nstr. The string form of 
-                            [str, ...], an ordered list (by name) of initial 
-                            shape definitions, if successful
-                            '' otherwise
-        """
-        ordered_ishapes = cls.get_initial_shapes()
-                            ##  also in _get_ordered_lshapes_string()
-        ordered_ishape_defs = []
-        for ishape in ordered_ishapes:
-            ishape_def = ish.InitialShape.get_def_from_ishape(ishape)
-            ordered_ishape_defs.append(ishape_def)
-        ordered_initial_shape_defs_string = '\n'.join(ordered_ishape_defs)
-        return ordered_initial_shape_defs_string
-
-    @classmethod
-    def _get_ordered_rule_defs_string(cls):
-        """Returns:
-            ordered_rule_defs_string
-                            str: str\nstr\n...\nstr. The string form of 
-                            [str, ...], an ordered list (by name) of rule 
-                            definition strings, if successful
-                            '' otherwise
-        """
-        ordered_rules = cls.get_rules()
-        ordered_rule_defs = []
-        for rule_i in ordered_rules:
-            rule_def = r.Rule.get_def_from_rule(rule_i)
-            ordered_rule_defs.append(rule_def)
-        ordered_rule_defs_string = '\n'.join(ordered_rule_defs)
-        return ordered_rule_defs_string
-
-    @classmethod
-    def write_to_file(cls):
+    def _write_to_file(cls):
         pass
 
     ####
