@@ -133,6 +133,13 @@ def test__set_up_rule():
 def test_export():
     pass
 
+def test__is_well_formed():                     ##  07-09 08:57
+    method_name = '_is_well_formed'
+    try_0_ishapes_0_rules()
+    try_0_ishapes_3_rules()
+    try_3_ishapes_0_rules()
+    try_3_ishapes_3_rules()
+
 def test_get_name():
     def try_good_state():
         try_name = 'good_state'
@@ -150,6 +157,67 @@ def _there_are_at_least_one_initial_shape_and_one_rule():
     pass
 
 ####
+
+def test_get_labeled_shape_layer_names():
+    def try_0_ishapes_0_rules():
+        try_name = '0_ishapes_0_rules'
+        u.Utilities.make_grammar_0_initial_shapes_0_rules()
+        actual_value = g.Grammar.get_labeled_shape_layer_names()
+        expected_value = []
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_0_ishapes_3_rules():
+        try_name = '0_ishapes_3_rules'
+        u.Utilities.make_grammar_0_initial_shapes_3_rules()
+        actual_value = g.Grammar.get_labeled_shape_layer_names()
+        expected_value = [
+            'subdivide_triangle_spec_L',
+            'subdivide_triangle_spec_R',
+            'add_h_to_h_spec_L',
+            'add_h_to_h_spec_R',
+            'add_h_in_square_spec_L',
+            'add_h_in_square_spec_R']
+        if not set(actual_value) == set(expected_value):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_ishapes_0_rules():
+        try_name = '3_ishapes_0_rules'
+        u.Utilities.make_grammar_3_initial_shapes_0_rules()
+        actual_value = g.Grammar.get_labeled_shape_layer_names()
+        expected_value = [
+            'labeled_right_triangle_spec',
+            'labeled_h_spec',
+            'labeled_square_spec']
+        if not set(actual_value) == set(expected_value):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_ishapes_3_rules():
+        try_name = '3_ishapes_3_rules'
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
+        actual_value = g.Grammar.get_labeled_shape_layer_names()
+        expected_value = [
+            'subdivide_triangle_spec_L',
+            'subdivide_triangle_spec_R',
+            'add_h_to_h_spec_L',
+            'add_h_to_h_spec_R',
+            'add_h_in_square_spec_L',
+            'add_h_in_square_spec_R',
+            'labeled_right_triangle_spec',
+            'labeled_h_spec',
+            'labeled_square_spec']
+        if not set(actual_value) == set(expected_value):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = 'get_labeled_shape_layer_names'
+    try_0_ishapes_0_rules()
+    try_0_ishapes_3_rules()
+    try_3_ishapes_0_rules()
+    try_3_ishapes_3_rules()
 
 def test_get_initial_shapes():
     def try_good_state_no_ishapes_no_rules():
@@ -359,9 +427,11 @@ def _set_up():
 # test__set_up_rule()                             ##  done
 
 # test_export()
+test__is_well_formed()
 # test_get_name()                                 ##  done
 
 # done
+# test_get_labeled_shape_layer_names()            ##  done
 # test_get_initial_shapes()
 # test_get_rule_shapes()
 # test_get_rules()

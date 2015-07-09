@@ -1,16 +1,15 @@
+from package.view import grammar as g
 from package.controller import guids_to_dat as gd
 from package.tests import utilities as u
 
 def test_get_dat_string():
 	method_name = 'get_dat_string'
 
-test_get_dat_string()
-
-# from test_grammar
 def test__get_ordered_labeled_shape_names():
     def try_bad_state_0_initial_shapes_0_rules():
         try_name = 'bad_state_0_initial_shapes_0_rules'
-        actual_value = g.Grammar._get_ordered_labeled_shape_names()
+        u.Utilities.make_grammar_0_initial_shapes_0_rules()
+        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
         expected_value = None
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -18,8 +17,8 @@ def test__get_ordered_labeled_shape_names():
 
     def try_bad_state_0_initial_shapes_3_rules():
         try_name = 'bad_state_no_initial_shapes_rules'
-        u.Utilities._make_new_grammar_3_rules()
-        actual_value = g.Grammar._get_ordered_labeled_shape_names()
+        u.Utilities.make_grammar_0_initial_shapes_3_rules()
+        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
         expected_value = None
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -27,8 +26,8 @@ def test__get_ordered_labeled_shape_names():
 
     def try_bad_state_3_initial_shapes_0_rules():
         try_name = 'bad_state_initial_shapes_no_rules'
-        u.Utilities._make_new_grammar_3_ishapes()
-        actual_value = g.Grammar._get_ordered_labeled_shape_names()
+        u.Utilities.make_grammar_3_initial_shapes_0_rules()
+        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
         expected_value = None
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -36,8 +35,8 @@ def test__get_ordered_labeled_shape_names():
 
     def try_good_state_3_initial_shapes_3_rules():
         try_name = 'good_state_initial_shapes_rules'
-        u.Utilities._make_new_grammar_3_ishapes_3_rules()
-        actual_value = g.Grammar._get_ordered_labeled_shape_names()
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
+        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
         expected_value = 'kilroy'
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -181,8 +180,9 @@ def test__get_ordered_rule_defs_string():
     try_good_state_ishapes_no_rules()
     try_good_state_ishapes_rules()
 
+# test_get_dat_string()
 test__get_ordered_labeled_shape_names()
 
-test__get_ordered_labeled_shapes_string()
-test__get_ordered_initial_shape_defs_string()
-test__get_ordered_rule_defs_string()
+# test__get_ordered_labeled_shapes_string()
+# test__get_ordered_initial_shape_defs_string()
+# test__get_ordered_rule_defs_string()

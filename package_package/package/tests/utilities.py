@@ -95,7 +95,39 @@ class Utilities(object):
         pass
 
     @classmethod
-    def make_grammar_3_ishapes_3_rules(cls):
+    def make_grammar_0_initial_shapes_0_rules(cls):
+        """Adds nothing
+        """
+        g.Grammar.clear_all()
+
+    @classmethod
+    def make_grammar_0_initial_shapes_3_rules(cls):
+        """Adds 3 rules
+        """
+        g.Grammar.clear_all()
+        cls._add_first_rule(
+            'subdivide_triangle_spec', cls.subdivide_triangle_spec)
+        cls._add_subsequent_rule(
+            'add_h_to_h_spec', cls.add_h_to_h_spec, (60, -80, 0))
+        cls._add_subsequent_rule(
+            'add_h_in_square_spec', cls.add_h_in_square_spec, (60, -120, 0))
+        
+    @classmethod
+    def make_grammar_3_initial_shapes_0_rules(cls):
+        """Adds 3 initial shapes
+        """
+        g.Grammar.clear_all()
+        cls._add_first_initial_shape(
+            'labeled_right_triangle_spec', cls.labeled_right_triangle_spec)
+        cls._add_subsequent_initial_shape(
+            'labeled_h_spec', 
+            cls.labeled_h_spec, 
+            (0, -80, 0))
+        cls._add_subsequent_initial_shape(
+            'labeled_square_spec', cls.labeled_square_spec, (0, -120, 0))
+
+    @classmethod
+    def make_grammar_3_initial_shapes_3_rules(cls):
         """Adds 3 initial shapes and 3 rules
         """
         g.Grammar.clear_all()

@@ -1,5 +1,5 @@
 from package.view import frame as f
-from package.controller import guid_to_dat as gd
+from package.controller import guids_to_dat as gd
 # from package.view import initial_shape as ish   ##  to deprecate
 from package.view import layer as l
 from package.view import llist as ll
@@ -143,14 +143,40 @@ class Grammar(object):
 
     @classmethod                                ##  07-07 08:42
     def export(cls):
-        """Writes the grammar's dat string to a file. Returns:
+        """Writes the grammar's dat string to a file, if the grammar is well-
+        formed. Returns:
             dat_string      str. The dat string, if successful
             None            otherwise
         """
-        name = cls.get_doc_name()
-        dat_string = gd.get_dat_string()        ##  if unsuccessful? empty?
-        cls._write_to_file(name, dat_string)    ##  if unsuccessful?
-        return dat_string
+        if not cls._is_well_formed():
+            message = "%s %s" % (
+                "The grammar must contain",
+                "at least one initial shape and one rule")
+            print(message)
+            return_value = None
+        else:
+            name = cls.get_doc_name()
+            dat_string = gd.get_dat_string()        ##  if not well-formed?
+            cls._write_to_file(name, dat_string)    ##  if unsuccessful?
+            return_value = dat_string
+        return return_value
+
+    @classmethod                                    ##  07-09 08:50
+    def _is_well_formed(cls):
+        """Returns:
+            value           boolean. True, if the grammar contains at least 
+                            one initial shape and one rule. False, otherwise
+                                                    ##  empty shapes / rules?
+        """
+        layer_names = rs.LayerNames()
+        contains_one_initial_shape, contains_one_rule = False, False
+        for layer_name in layer_names:
+            if l.Layer.contains_initial_shape(layer_name):
+                contains_one_initial_shape = True
+            if l.Layer.contains_rule(layer_name):
+                contains_one_rule = True
+        value = contains_one_initial_shape and contains_one_rule
+        return value
 
     @classmethod
     def get_doc_name(cls):
@@ -203,6 +229,25 @@ class Grammar(object):
         pass
 
     ####
+
+    @classmethod
+    def get_labeled_shape_layer_names(cls):
+        """The grammar is guaranteed to be well-formed. Returns:
+            labeled_shape_layer_names
+                            [str, ...]. A list of the names of the labeled 
+                            shapes in initial shapes or rules, i.e., name, 
+                            name_L, or name_R
+        """
+        labeled_shape_layer_names = []
+        layer_names = rs.LayerNames()
+        for layer_name in layer_names:
+            if l.Layer.contains_initial_shape(layer_name):
+                labeled_shape_layer_names.append(layer_name)
+            elif l.Layer.contains_rule(layer_name):
+                left_name = "%s_L" % layer_name
+                right_name = "%s_R" % layer_name
+                labeled_shape_layer_names.extend([left_name, right_name])
+        return labeled_shape_layer_names
 
     @classmethod
     def get_initial_shapes(cls):                ##  07-03 14:53

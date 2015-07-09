@@ -3,8 +3,8 @@ from package.view import layer as l
 from package.tests import utilities as u
 import rhinoscriptsyntax as rs
 
-def test_make_grammar_3_ishapes_3_rules():
-    u.Utilities.make_grammar_3_ishapes_3_rules()
+def test_make_grammar_3_initial_shapes_3_rules():
+    u.Utilities.make_grammar_3_initial_shapes_3_rules()
 
 def test__add_first_initial_shape():
     def try_good_args():
@@ -119,7 +119,7 @@ def test__draw_labeled_shape():
     method_name = '_draw_labeled_shape'
     try_good_args()
 
-# test_make_grammar_3_ishapes_3_rules()           ##  done
+# test_make_grammar_3_initial_shapes_3_rules()           ##  done
 # test__add_first_initial_shape()                 ##  done
 # test__add_subsequent_initial_shape()            ##  done
 # test__draw_initial_shape()                      ##  done

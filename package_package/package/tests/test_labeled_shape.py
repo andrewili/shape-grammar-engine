@@ -154,7 +154,7 @@ def get_spec_from_line_end_points(line_end_points):
 
 def test_get_string_from_named_lshape():        ##  06-19 09:23
     def draw_grammar():
-        u.Utilities.make_grammar_3_ishapes_3_rules()
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
         
     def try_bad_value_no_lshape():
         u.Utilities.make_grammar_3_3_containers()

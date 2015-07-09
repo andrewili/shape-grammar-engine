@@ -64,7 +64,7 @@ class Layer(object):
         return return_value
 
     @classmethod
-    def is_initial_shape(cls, name):
+    def contains_initial_shape(cls, name):
         """Receives:
             name            str. The name of the layer
         Returns:
@@ -75,7 +75,7 @@ class Layer(object):
         return value
 
     @classmethod
-    def is_rule(cls, name):
+    def contains_rule(cls, name):
         """Receives:
             name            str. The name of the layer_name
         Returns:
@@ -92,11 +92,15 @@ class Layer(object):
         Returns:
             n               int. The number of frame instances on the layer
         """
-        frame_instance_guids = rs.BlockInstances(s.Settings.frame_name)
-        n = 0
-        for guid in frame_instance_guids:
-            if cls._contains_guid(guid, layer_name):
-                n = n + 1
+        frame_name = s.Settings.frame_name
+        if not rs.IsBlock(frame_name):
+            n = 0
+        else:
+            frame_instance_guids = rs.BlockInstances(frame_name)
+            n = 0
+            for guid in frame_instance_guids:
+                if cls._contains_guid(guid, layer_name):
+                    n = n + 1
         return n
 
     @classmethod

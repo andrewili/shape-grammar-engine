@@ -1,6 +1,6 @@
 import rhinoscriptsyntax as rs
 
-class GuidToDat(object):
+class GuidsToDat(object):
     dat_header = "%s\n%s" % (
         "# shape data version 6.00",
         "unit  mm  # mm - millimetre, cm - centimetre, m - metre")
@@ -17,22 +17,33 @@ class GuidToDat(object):
             ordered_labeled_shapes_string
             ordered_initial_shapes_string
             ordered_rules_string
-        Returns:
+        The grammar is guaranteed to be well-formed. Returns:
             dat_string      str. The grammar's dat string, if successful
             None            otherwise
+
+
         """
-        layer_names = rs.LayerNames()
-        initial_shape_layer_names, rule_layer_names = (
-            cls._separate_layer_names(layer_names))
-                                                ##  kilroy was here
+        labeled_shape_layer_names = g.Grammar.get_labeled_shape_layer_names()
+                            ##  [name, ...]
+        if not one_initial_shape_and_one_rule:
+            trouble
+        labeled_shape_name_dat_dict = cls._make_lshape_name_dat_dict(
+            labeled_shape_layer_names)
+                            ##  {lshape_name: (
+                            ##      [point_coord, ...], 
+                            ##      [codex_codex, ...], 
+                            ##      [codex_label, ...])}
         ordered_labeled_shapes_string = (
             cls._get_ordered_labeled_shapes_string(
-                initial_shape_layer_names, rule_layer_names))
+                labeled_shape_name_dat_dict))
+                            ##  'lshape_string\n...'
         ordered_initial_shapes_string = (
             cls._get_ordered_initial_shapes_string(
-                initial_shape_layer_names))
+                labeled_shape_name_dat_dict))
+                            ##  'initial    name\n...'
         ordered_rules_string = (
-            cls._get_ordered_rules_string(rule_layer_names))
+            cls._get_ordered_rules_string(labeled_shape_name_dat_dict))
+                            ##  'rule    name    name_L -> name_R\n...'
         dat_string = '\n'.join([
             cls.dat_header,
             ordered_labeled_shapes_string,
@@ -42,36 +53,34 @@ class GuidToDat(object):
         return_value = dat_string
         return return_value
 
-    @classmethod
-    def _separate_layer_names(cls, layer_names):
-        """Receives:
-            layer_names     [str, ...]. A list of layer names
-        Returns:
-            initial_shape_layer_names
-                            [str, ...]. A list of initial shape layer names
-            rule_layer_names
-                            [str, ...]. A list of rule layer names
-        """
-        initial_shape_layer_names = []
-        rule_layer_names = []
-        for layer_name in layer_names:
-            if l.Layer._contains_initial_shape(layer_name):
-                initial_shape_layer_names.append(layer_name)
-            elif l.Layer._contains_rule(layer_name):
-                rule_layer_names.append(layer_name)
-            else:
-                pass
-        return (initial_shape_layer_names, rule_layer_names)
+    # @classmethod
+    # def _separate_layer_names(cls, layer_names):
+        # """Receives:
+        #     layer_names     [str, ...]. A list of layer names
+        # Returns:
+        #     initial_shape_layer_names
+        #                     [str, ...]. A list of initial shape layer names
+        #     rule_layer_names
+        #                     [str, ...]. A list of rule layer names
+        # """
+        # initial_shape_layer_names = []
+        # rule_layer_names = []
+        # for layer_name in layer_names:
+        #     if l.Layer.contains_initial_shape(layer_name):
+        #         initial_shape_layer_names.append(layer_name)
+        #     elif l.Layer.contains_rule(layer_name):
+        #         rule_layer_names.append(layer_name)
+        #     else:
+        #         pass
+        # return (initial_shape_layer_names, rule_layer_names)
 
-    @classmethod                                ##  07-06 10:27
+    @classmethod
     def _get_ordered_labeled_shapes_string(
-        cls, initial_shape_layer_names, rule_layer_names
+        cls, labeled_shape_name_dat_dict
     ):
         """Receives:
-            initial_shape_layer_names
-                            [str, ...]. A list of initial shape layer names
-            rule_layer_names
-                            [str, ...]. A list of rule layer names
+            layer_names     [str, ...]
+            x
         Returns:
             ordered_labeled_shapes_string
                             str: str\nstr\n...\nstr. The string form of 
@@ -79,6 +88,14 @@ class GuidToDat(object):
                             .is strings of labeled shapes from both initial 
                             shapes and rules
         """
+        labeled_shape_string_or_string_pairs = []
+        for layer_name in layer_names:
+            labeled_shape_string_or_string_pair = (
+                cls._get_labeled_shape_string_or_string_pair(
+                    layer_name))
+            labeled_shape_string_or_string_pairs.append(
+                labeled_shape_string_or_string_pair)
+
         labeled_shape_strings = []
         initial_shape_strings = cls._get_initial_shape_strings(
             initial_shape_layer_names)
@@ -91,45 +108,43 @@ class GuidToDat(object):
             ordered_labeled_shape_strings)
         return ordered_labeled_shapes_string
 
-        # labeled_shape_strings = []
-        # for layer_name in layer_names:          ##  skip user layers
-        #     if l.Layer.is_initial_shape(layer_name):
-        #         initial_labeled_shape_string = (
-        #             l.Layer._get_initial_labeled_shape_string(layer_name))
-        #                                         ##  kilroy is here
-        #         labeled_shape_strings.append(initial_labeled_shape_string)
-        #     elif l.Layer.is_rule(layer_name):
-        #         left_labeled_shape_string, right_labeled_shape_string = (
-        #             l.Layer._get_rule_labeled_shape_strings(layer_name))
-        #         labeled_shape_strings.append(left_labeled_shape_string)
-        #         labeled_shape_strings.append(right_labeled_shape_string)
-        #     else:
-        #         pass
-        # ordered_labeled_shape_strings = sorted(labeled_shape_strings)
-        # ordered_labeled_shapes_string = '\n'.join(
-        #     ordered_labeled_shape_strings)
-        # return ordered_labeled_shapes_string
-
     @classmethod
-    def _get_ordered_initial_shapes_string(cls, layer_names):
+    def _get_ordered_initial_shapes_string(cls, labeled_shape_name_dat_dict):
         """Receives:
-            layer_names     [str, ...]. A list of layer names
+            initial_shape_names
+                            [str, ...]
+            y
         Returns:
             ordered_initial_shapes_string
                             str\nstr\n...\nstr. The joined string of an 
                             ordered list of initial shape strings
         """
+        initial_shape_strings = []
+        for initial_shape_name in initial_shape_names:
+            initial_shape_string = cls._get_initial_shape_string(
+                initial_shape_name)
+            initial_shape_strings.append(initial_shape_string)
+        ordered_initial_shape_strings = sorted(initial_shape_strings)
+        ordered_initial_shapes_string = '\n'.join(
+            ordered_initial_shape_strings)
         return ordered_initial_shapes_string
 
     @classmethod
-    def _get_ordered_rules_string(cls, layer_names):
+    def _get_ordered_rules_string(cls, labeled_shape_name_dat_dict):
         """Receives:
-            layer_names     [str, ...]. A list of layer names
+            rule_names      [str, ...]
+            z
         Returns:
             ordered_rules_string
                             str\nstr\n...\nstr. The joined string of an 
                             ordered list of rule strings
         """
+        rule_strings = []
+        for rule_name in rule_names:
+            rule_string = cls._get_rule_string(rule_name)
+            rule_strings.append(rule_string)
+        ordered_rule_strings = sorted(rule_strings)
+        ordered_rules_string = '\n'.join(ordered_rule_strings)
         return ordered_rules_string
 
     # @classmethod
