@@ -104,6 +104,16 @@ class Frame(object):
         return return_value
 
     @classmethod
+    def get_instance_position(cls, guid):
+        """Receives:
+            guid            guid. The guid of the frame instance
+        Returns:
+            position        Point3d. The position of the frame instance
+        """
+        position = rs.BlockInstanceInsertPoint(guid)
+        return position
+
+    @classmethod
     def get_frame_position_from_user(cls):
         """Returns:
             origin          Point3D. The position of the frame instance. Must 
