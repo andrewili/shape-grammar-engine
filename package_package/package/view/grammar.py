@@ -214,6 +214,23 @@ class Grammar(object):
     ####
 
     @classmethod
+    def get_initial_shapes_and_rules(cls):      ##  07-14 08:42
+        """Returns:
+            initial_shapes  [str, ...]. A list of the names of layers 
+                            containing initial shapes
+            rules           [str, ...]. A list of the names of layers 
+                            containing rules
+        """
+        initial_shapes, rules = [], []
+        layer_names = rs.LayerNames()
+        for name in layer_names:
+            if l.Layer.contains_initial_shape(name):
+                initial_shapes.append(name)
+            elif l.Layer.contains_rule(name):
+                rules.append(name)
+        return (initial_shapes, rules)
+
+    @classmethod
     def get_labeled_shape_names(cls):
         """The grammar is guaranteed to be well-formed. Returns:
             labeled_shape_names

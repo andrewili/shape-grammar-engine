@@ -1,4 +1,5 @@
 from package.view import frame as f
+from package.controller import guids_to_dat as gd
 import rhinoscriptsyntax as rs
 from package.view import settings as s
 
@@ -62,6 +63,43 @@ class Layer(object):
         """
         return_value = not rs.IsLayer(name)
         return return_value
+
+    @classmethod                                ##  07-13 13:55
+    def get_frame_instance(cls, labeled_shape_name):
+        """Receives:
+            labeled_shape_name
+                            str. The name of a labeled shape, i.e., initial 
+                            shape, left rule shape, or right rule shape
+        Returns:
+            frame_instance  guid. The guid of the associated frame instance
+        """
+        if labeled_shape_name[-2:] == gd.GuidsToDat.left_labeled_shape_suffix:
+            layer_name = labeled_shape_name[:-2]
+            labeled_shape = 'left'
+        elif labeled_shape_name[-2:] == (
+            gd.GuidsToDat.right_labeled_shape_suffix
+        ):
+            layer_name = labeled_shape_name[:-2]
+            labeled_shape = 'right'
+        else:
+            layer_name = labeled_shape_name
+            labeled_shape = 'initial'
+        all_frame_instances = rs.BlockInstances(s.Settings.frame_name)
+        frame_instances_on_layer = []           ##  name-frame dictionary?
+        for frame_instance in all_frame_instances:
+            if rs.ObjectLayer(frame_instance) == layer_name:
+                frame_instances_on_layer.append(frame_instance)
+        if labeled_shape == 'left':
+            frame_instance = cls.get_left_frame_instance(
+                frame_instances_on_layer)
+        elif labeled_shape == 'right':
+            frame_instance = cls.get_right_frame_instance(
+                frame_instances_on_layer)
+        elif labeled_shape == 'initial':
+            frame_instance = frame_instances_on_layer.pop()
+        else:
+            pass
+        return frame_instance
 
     @classmethod
     def contains_initial_shape(cls, name):

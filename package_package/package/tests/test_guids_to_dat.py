@@ -28,9 +28,9 @@ def test_get_dat_string():                      ##  07-10 13:32
     try_empty_left_rule_shape()
     try_good_grammar()
 
-def text__extract_guids_in_frame():             ##  07-12 07:59
-    def try_no_guids():
-        try_name = 'no_guids'
+def text__extract_elements_in_frame():          ##  07-12 07:59
+    def try_no_objects():
+        try_name = 'no_objects'
         g.Grammar.clear_all()
         layer_name = 'layer_x'
         l.Layer.new(layer_name)
@@ -39,15 +39,15 @@ def text__extract_guids_in_frame():             ##  07-12 07:59
         frame_guid = f.Frame.new_instance(
             frame_name, layer_name, frame_position)
         object_guids_on_layer =[]
-        actual_value = gd.GuidsToDat._extract_guids_in_frame(
+        actual_value = gd.GuidsToDat._extract_elements_in_frame(
             frame_guid, object_guids_on_layer)
         expected_value = []
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_guids():
-        try_name = 'guids'
+    def try_objects():
+        try_name = 'objects'
         g.Grammar.clear_all()
         layer_name = 'layer_x'
         l.Layer.new(layer_name)
@@ -56,7 +56,7 @@ def text__extract_guids_in_frame():             ##  07-12 07:59
         frame_guid = f.Frame.new_instance(
             frame_name, layer_name, frame_position)
         object_guids_on_layer = _make_objects_on_layer(layer_name)
-        actual_value = gd.GuidsToDat._extract_guids_in_frame(
+        actual_value = gd.GuidsToDat._extract_elements_in_frame(
             frame_guid, object_guids_on_layer)
         rs.SelectObjects(actual_value)
         # expected_value = ?
@@ -64,9 +64,9 @@ def text__extract_guids_in_frame():             ##  07-12 07:59
         #     u.Utilities.print_test_error_message(
         #         method_name, try_name, expected_value, actual_value)
 
-    method_name = '_extract_guids_in_frame'
-    try_no_guids()
-    try_guids()
+    method_name = '_extract_elements_in_frame'
+    try_no_objects()
+    try_objects()
 
 def test__point_is_in_box():
     def try_point_outside():
@@ -315,7 +315,7 @@ def test__get_ordered_rule_defs_string():
     try_good_state_ishapes_no_rules()
     try_good_state_ishapes_rules()
 
-def _make_objects_on_layer(layer_name):         ##  07-12 09:10
+def _make_objects_on_layer(layer_name):
     rs.CurrentLayer(layer_name)
     objects = []
     lines = _make_lines()
@@ -540,8 +540,13 @@ def _make_annotations():
     return annotations
 
 # test_get_dat_string()
-
-text__extract_guids_in_frame()
+# test__make_name_elements_dict()
+# test__get_elements()
+# test__remove_bad_names()
+# test__get_right_name_from_left()
+text__extract_elements_in_frame()             ##  done
+# test__is_line_or_textdot()
+# test__object_is_in_box()
 # test__point_is_in_box()                         ##  done
 # test__make_lshape_name_dat_dict()
 # test__get_ordered_labeled_shape_names()

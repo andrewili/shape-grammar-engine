@@ -152,6 +152,77 @@ def _there_are_at_least_one_initial_shape_and_one_rule():
 
 ####
 
+def test_get_initial_shapes_and_rules():        ##  07-14 08:45
+    def try_0_ishapes_0_rules():
+        try_name = '0_ishapes_0_rules'
+        g.Grammar.clear_all()
+        f.Frame._new_definition()
+        actual_value = g.Grammar.get_initial_shapes_and_rules()
+        expected_value = [], []
+        if not (
+            set(actual_value[0]) == set(expected_value[0]) and
+            set(actual_value[1]) == set(expected_value[1])
+        ):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_0_ishapes_3_rules():
+        try_name = '0_ishapes_3_rules'
+        u.Utilities.make_grammar_0_initial_shapes_3_rules()
+        actual_value = g.Grammar.get_initial_shapes_and_rules()
+        expected_value = (
+            [],
+            ['subdivide_triangle_spec',
+                'add_h_to_h_spec',
+                'add_h_in_square_spec'])
+        if not (
+            set(actual_value[0]) == set(expected_value[0]) and
+            set(actual_value[1]) == set(expected_value[1])
+        ):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+
+    def try_3_ishapes_0_rules():
+        try_name = '3_ishapes_0_rules'
+        u.Utilities.make_grammar_3_initial_shapes_0_rules()
+        actual_value = g.Grammar.get_initial_shapes_and_rules()
+        expected_value = (
+            ['labeled_right_triangle_spec',
+                'labeled_h_spec',
+                'labeled_square_spec'],
+            [])
+        if not (
+            set(actual_value[0]) == set(expected_value[0]) and
+            set(actual_value[1]) == set(expected_value[1])
+        ):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_ishapes_3_rules():
+        try_name = '3_ishapes_3_rules'
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
+        actual_value = g.Grammar.get_initial_shapes_and_rules()
+        expected_value = (
+            ['labeled_right_triangle_spec',
+                'labeled_h_spec',
+                'labeled_square_spec'],
+            ['subdivide_triangle_spec',
+                'add_h_to_h_spec',
+                'add_h_in_square_spec'])
+        if not (
+            set(actual_value[0]) == set(expected_value[0]) and
+            set(actual_value[1]) == set(expected_value[1])
+        ):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = 'get_initial_shapes_and_rules'
+    try_0_ishapes_0_rules()
+    try_0_ishapes_3_rules()
+    try_3_ishapes_0_rules()
+    try_3_ishapes_3_rules()
+
 def test_get_labeled_shape_names():
     def try_0_ishapes_0_rules():
         try_name = '0_ishapes_0_rules'
@@ -424,6 +495,7 @@ def _set_up():
 # test_get_name()                                 ##  done
 
 # done
+test_get_initial_shapes_and_rules()
 # test_get_labeled_shape_names()            ##  done
 # test_get_initial_shapes()
 # test_get_rule_shapes()

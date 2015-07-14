@@ -15,7 +15,7 @@ class GuidsToDat(object):
     def __init__(self):
         pass
 
-    @classmethod                                ##  07-10 13:31
+    @classmethod                                ##  07-14 08:39
     def get_dat_string(cls):
         """Composes the grammar's dat string, i.e.: 
             header
@@ -32,22 +32,45 @@ class GuidsToDat(object):
             dat_string      str. The grammar's dat string, if successful
             None            otherwise
         """
-        names = g.Grammar.get_labeled_shape_names()
-        name_guids_dict = (
-            cls._make_name_guids_dict(names))
-        name_dat_dict = (
-            cls._make_name_dat_dict(name_guids_dict))
+        initial_shapes, rules = g.Grammar.get_initial_shapes_and_rules()
+                                                ##  kilroy was here
+        initial_shape_frame_dict = cls._make_initial_shape_frame_dict(
+            initial_shapes)
+                            ##  {rule_name: frame_guid}
+        rule_frame_pair_dict = cls._make_rule_frame_pair_dict(rules)
+                            ##  {rule_name: (frame_guid, frame_guid)}
+        labeled_shape_name_elements_dict = (
+            cls._make_labeled_shape_name_elements_dict(
+                initial_shape_frame_dict, rule_frame_pair_dict))
+                            ##  {labeled_shape_name: [element, ...]}
         ordered_labeled_shapes_string = (
             cls._get_ordered_labeled_shapes_string(
-                name_dat_dict))
-                            ##  'lshape_string\n...'
+                labeled_shape_name_elements_dict))
+                            ##  'labeled_shape_string\n...'
         ordered_initial_shapes_string = (
             cls._get_ordered_initial_shapes_string(
-                name_dat_dict))
+                labeled_shape_name_elements_dict))
                             ##  'initial    name\n...'
         ordered_rules_string = (
-            cls._get_ordered_rules_string(name_dat_dict))
+            cls._get_ordered_rules_string(labeled_shape_name_elements_dict))
                             ##  'rule    name    name_L -> name_R\n...'
+        ##
+        # names = g.Grammar.get_labeled_shape_names()
+        # name_elements_dict = (
+        #     cls._make_name_elements_dict(names))
+        # name_dat_dict = (
+        #     cls._make_name_dat_dict(name_elements_dict))
+        # ordered_labeled_shapes_string = (
+        #     cls._get_ordered_labeled_shapes_string(
+        #         name_dat_dict))
+        #                     ##  'lshape_string\n...'
+        # ordered_initial_shapes_string = (
+        #     cls._get_ordered_initial_shapes_string(
+        #         name_dat_dict))
+        #                     ##  'initial    name\n...'
+        # ordered_rules_string = (
+        #     cls._get_ordered_rules_string(name_dat_dict))
+        #                     ##  'rule    name    name_L -> name_R\n...'
         dat_header = cls.dat_header
         blank_line = cls.blank_line
         dat_string = '\n'.join([
@@ -60,108 +83,111 @@ class GuidsToDat(object):
         return return_value
 
     @classmethod                                ##  07-11 06:07
-    def _make_name_guids_dict(cls, names):
+    def _make_name_elements_dict(cls, names):
         """Receives:
             names           [str, ...]. A list of labeled shape names, i.e., 
                             names of initial shapes, left rule shapes, and 
                             right rule shapes
         Returns:
-            name_guids_dict {str: [guid, ...]}. A dictionary of name-guidlist 
+            name_elements_dict
+                            {str: [guid, ...]}. A dictionary of name-guidlist 
                             entries of well-formed labeled shapes, i.e., 
                             non-empty initial shapes, non-empty left rule 
-                            shapes, and all associated right rule shapes
+                            shapes, and associated right rule shapes
             None            otherwise           ##  ?
         """
-        name_guids_dict = {}
+        layer_frame_dict = {}
+                            ##  {layer: [frame, frame]}
+        for layer_name in layer_names:
+            frames = l.Layer.get_frames(layer_name)
+            layer_frame_dict[layer_name] = frames
+
+        name_elements_dict = {}
         bad_names = []
         for name in sorted(names):
-            guids = cls._get_guids(name)
+            elements = cls._get_elements(name)
             if (    (   initial_shape or
                         left_rule_shape) and
-                    guids == []
+                    elements == []
             ):
                 bad_name = name
                 bad_names.append(bad_name)
                 cls._remove_bad_names(bad_name, names)
             else:
-                name_guids_dict[name] = guids
+                name_elements_dict[name] = elements
         cls._report_bad_names(bad_names)
-        return name_guids_dict
+        return name_elements_dict
 
     @classmethod
-    def _get_guids(cls, name):                  ## 07-11 07:01
+    def _get_elements(cls, name):               ## 07-11 07:01
         """Receives:
             name            str. The name of a labeled shape
         Returns:
-            guids           [guid, ...]. A list of the guids in the labeled 
-                            shape, if successful
+            elements        [guid, ...]. A list of the guids of the elements 
+                            in the labeled shape, if successful
             None            otherwise           ?
         """
-        if left_shape:
-            pass
-            # frame_guid = ?
-        elif right_shape:
-            pass
-            # frame_guid = ?
-        else:
-            frame_guid = l.Layer.get_frame_guid(name)
-        guids = cls._get_guids_from_frame(frame_guid)
-        return guids
+        frame_instance = l.Layer.get_frame_instance(name)
+        elements = cls._get_elements_in_frame(frame_instance)
+        return elements
 
     @classmethod
-    def _get_guids_from_frame(cls, frame_guid):
+    def _get_elements_in_frame(cls, frame_instance):
         """Receives:
-            frame_guid      The guid of a frame instance
+            frame_instance  The guid of a frame instance
         Returns:
-            guids_in_frame  [guid, ...]. A list of the line and textdot guids 
-                            contained in the frame, if successful
+            elements_in_frame                   ##  or objects?
+                            [guid, ...]. A list of the guids of the elements 
+                            (i.e., lines and textdots) contained in the frame,
+                            if successful
             None            otherwise
         """
-        guids_on_layer = cls._get_guids_on_layer(frame_guid)
-        guids_in_frame = cls._extract_guids_in_frame(
-            frame_guid, guids_on_layer)
-        return guids_in_frame
+        elements_on_layer = cls._get_elements_on_layer(frame_instance)
+        elements_in_frame = cls._extract_elements_in_frame(
+            frame_instance, elements_on_layer)
+        return elements_in_frame
 
     @classmethod
-    def _get_guids_on_layer(cls, frame_guid):
+    def _get_elements_on_layer(cls, frame_instance):
         """Receives:
-            frame_guid      The guid of a frame instance
+            frame_instance  The guid of a frame instance
         Returns:
-            guids_on_layer  [guid, ...]. A list of the object guids on the 
+            elements_on_layer
+                            [guid, ...]. A list of the object guids on the 
                             layer containing the frame instance, if 
                             successful
             None            otherwise
         """
-        layer_name = rs.ObjectLayer(frame_guid)
-        guids_on_layer = rs.ObjectsByLayer(layer_name)
-        return guids_on_layer
+        layer_name = rs.ObjectLayer(frame_instance)
+        elements_on_layer = rs.ObjectsByLayer(layer_name)
+        return elements_on_layer
 
     @classmethod                                ##  07-11 16:56
-    def _extract_guids_in_frame(cls, frame_guid, object_guids_on_layer):
+    def _extract_elements_in_frame(cls, frame_instance, objects_on_layer):
         """Receives:
-            frame_guid      guid. The guid of a frame instance
-            object_guids_on_layer
-                            [guid, ...]. A list of the object guids on the 
-                            layer containing the frame instance
+            frame_instance  guid. The guid of a frame instance
+            objects_on_layer
+                            [guid, ...]. A list of the guids of the objects  
+                            on the layer containing the frame instance
         Returns:
-            element_guids_in_frame
+            elements_in_frame
                             [guid, ...]. A list of the line and textdot guids 
                             in the frame instance
         """
-        element_guids_in_frame = []
-        frame_position = f.Frame.get_instance_position(frame_guid)
+        elements_in_frame = []
+        frame_position = f.Frame.get_instance_position(frame_instance)
         frame_size = s.Settings.frame_size
-        for object_guid in object_guids_on_layer:   ##  filter objects here?
-            if (cls._is_line_or_textdot(object_guid) and
+        for object_guid in objects_on_layer:   ##  filter objects here?
+            if (cls._is_element(object_guid) and
                 cls._object_is_in_box(
                     object_guid, frame_position, frame_size)
             ):
                 element_guid = object_guid
-                element_guids_in_frame.append(element_guid)
-        return element_guids_in_frame
+                elements_in_frame.append(element_guid)
+        return elements_in_frame
 
     @classmethod
-    def _is_line_or_textdot(cls, object_guid):
+    def _is_element(cls, object_guid):
         """Receives:
             object_guid     guid. The guid of an object
         Returns:
@@ -255,10 +281,10 @@ class GuidsToDat(object):
         return right_name
 
     @classmethod                                ##  07-11 06:10
-    def _make_name_dat_dict(cls, name_guids_dict):
+    def _make_name_dat_dict(cls, name_elements_dict):
         """Receives:
-            name_guids_dict {str: [guid, ...]}. A dictionary of name-guidlist 
-                            entries of labeled shapes
+            name_elements_dict {str: [guid, ...]}. A dictionary of 
+                            name-guidlist entries of labeled shapes
         Returns a dictionary of name-datspec entries of labeled shapes:
             name_dat_dict
                             {str: (
@@ -270,7 +296,7 @@ class GuidsToDat(object):
             None            if unsuccessful
         """
         name_dat_dict = {}
-        for labeled_shape_name in name_guids_dict:
+        for labeled_shape_name in name_elements_dict:
             guids = name_dat_dict[labeled_shape_name]
             dat_spec = cls._get_dat_spec(guids)
             name_dat_dict[labeled_shape_name] = dat_spec
