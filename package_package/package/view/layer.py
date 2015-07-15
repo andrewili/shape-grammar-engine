@@ -64,42 +64,49 @@ class Layer(object):
         return_value = not rs.IsLayer(name)
         return return_value
 
-    @classmethod                                ##  07-13 13:55
-    def get_frame_instance(cls, labeled_shape_name):
+    @classmethod
+    def get_frame_instance(cls, initial_shape):
         """Receives:
-            labeled_shape_name
-                            str. The name of a labeled shape, i.e., initial 
-                            shape, left rule shape, or right rule shape
+            initial_shape   str. The name of a layer containing one frame 
+                            instances (i.e., an initial shape layer). The 
+                            value is guaranteed
         Returns:
-            frame_instance  guid. The guid of the associated frame instance
+            frame_instance  guid. The guid of the frame instance on the layer 
         """
-        if labeled_shape_name[-2:] == gd.GuidsToDat.left_labeled_shape_suffix:
-            layer_name = labeled_shape_name[:-2]
-            labeled_shape = 'left'
-        elif labeled_shape_name[-2:] == (
-            gd.GuidsToDat.right_labeled_shape_suffix
-        ):
-            layer_name = labeled_shape_name[:-2]
-            labeled_shape = 'right'
-        else:
-            layer_name = labeled_shape_name
-            labeled_shape = 'initial'
         all_frame_instances = rs.BlockInstances(s.Settings.frame_name)
-        frame_instances_on_layer = []           ##  name-frame dictionary?
-        for frame_instance in all_frame_instances:
-            if rs.ObjectLayer(frame_instance) == layer_name:
-                frame_instances_on_layer.append(frame_instance)
-        if labeled_shape == 'left':
-            frame_instance = cls.get_left_frame_instance(
-                frame_instances_on_layer)
-        elif labeled_shape == 'right':
-            frame_instance = cls.get_right_frame_instance(
-                frame_instances_on_layer)
-        elif labeled_shape == 'initial':
-            frame_instance = frame_instances_on_layer.pop()
+        for instance_i in all_frame_instances:
+            if rs.ObjectLayer(instance_i) == initial_shape:
+                frame_instance = instance_i
+                break
+        return frame_instance
+
+    @classmethod
+    def get_frame_instance_pair(cls, rule):
+        """Receives:
+            rule            str. The name of a layer containing one frame 
+                            instance (i.e., a rule layer). The value is 
+                            guaranteed
+        Returns:
+            ordered_frame_instance_pair
+                            (guid, guid). A pair of the guids of the two frame 
+                            instances on the layer, ordered from left to right 
+        """
+        all_frame_instances = rs.BlockInstances(s.Settings.frame_name)
+        frame_instances = []
+        for instance_i in all_frame_instances:
+            if rs.ObjectLayer(instance_i) == rule:
+                frame_instances.append(instance_i)
+        p0 = f.Frame.get_instance_position(frame_instances[0])
+        p1 = f.Frame.get_instance_position(frame_instances[1])
+        if p0 < p1:
+            ordered_frame_instance_pair = (
+                frame_instances[0], frame_instances[1])
+        elif p0 > p1:
+            ordered_frame_instance_pair = (
+                frame_instances[1], frame_instances[0])
         else:
             pass
-        return frame_instance
+        return ordered_frame_instance_pair
 
     @classmethod
     def contains_initial_shape(cls, name):

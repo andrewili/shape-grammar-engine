@@ -152,7 +152,7 @@ def _there_are_at_least_one_initial_shape_and_one_rule():
 
 ####
 
-def test_get_initial_shapes_and_rules():        ##  07-14 08:45
+def test_get_initial_shapes_and_rules():
     def try_0_ishapes_0_rules():
         try_name = '0_ishapes_0_rules'
         g.Grammar.clear_all()
@@ -495,8 +495,8 @@ def _set_up():
 # test_get_name()                                 ##  done
 
 # done
-test_get_initial_shapes_and_rules()
-# test_get_labeled_shape_names()            ##  done
+# test_get_initial_shapes_and_rules()             ##  done
+# test_get_labeled_shape_names()                  ##  done
 # test_get_initial_shapes()
 # test_get_rule_shapes()
 # test_get_rules()

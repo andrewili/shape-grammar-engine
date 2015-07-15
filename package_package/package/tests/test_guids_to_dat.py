@@ -28,6 +28,63 @@ def test_get_dat_string():                      ##  07-10 13:32
     try_empty_left_rule_shape()
     try_good_grammar()
 
+def test__make_initial_shape_frame_dict():
+    def try_0_ishapes():
+        try_name = '0_ishapes'
+        g.Grammar.clear_all()
+        f.Frame._new_definition()
+        initial_shapes = []
+        actual_value = gd.GuidsToDat._make_initial_shape_frame_dict(
+            initial_shapes)
+        expected_value = {}
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_ishapes():
+        try_name = '3_ishapes'
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
+        initial_shapes = [
+            'labeled_right_triangle_spec',
+            'labeled_h_spec',
+            'labeled_square_spec']
+        actual_value = gd.GuidsToDat._make_initial_shape_frame_dict(
+            initial_shapes)
+        frames = actual_value.values()
+        rs.SelectObjects(frames)
+
+    method_name = '_make_initial_shape_frame_dict'
+    try_0_ishapes()
+    try_3_ishapes()
+
+def test__make_rule_frame_pair_dict():
+    def try_0_rules():
+        try_name = '0_rules'
+        g.Grammar.clear_all()
+        f.Frame._new_definition()
+        rules = []
+        actual_value = gd.GuidsToDat._make_rule_frame_pair_dict(rules)
+        expected_value = {}
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_rules():
+        try_name = '0_rules'
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
+        rules = [
+            'subdivide_triangle_spec',
+            'add_h_to_h_spec',
+            'add_h_in_square_spec']
+        actual_value = gd.GuidsToDat._make_rule_frame_pair_dict(rules)
+        frame_pairs = actual_value.values()
+        for pair in frame_pairs:
+            rs.SelectObject(pair[0])
+
+    method_name = '_make_rule_frame_pair_dict'
+    try_0_rules()
+    try_3_rules()
+
 def text__extract_elements_in_frame():          ##  07-12 07:59
     def try_no_objects():
         try_name = 'no_objects'
@@ -540,11 +597,14 @@ def _make_annotations():
     return annotations
 
 # test_get_dat_string()
+# test__make_initial_shape_frame_dict()           ##  done / manual test
+# test__make_rule_frame_pair_dict()               ##  done / manual test
+
 # test__make_name_elements_dict()
 # test__get_elements()
 # test__remove_bad_names()
 # test__get_right_name_from_left()
-text__extract_elements_in_frame()             ##  done
+# text__extract_elements_in_frame()               ##  done
 # test__is_line_or_textdot()
 # test__object_is_in_box()
 # test__point_is_in_box()                         ##  done

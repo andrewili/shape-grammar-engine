@@ -214,12 +214,12 @@ class Grammar(object):
     ####
 
     @classmethod
-    def get_initial_shapes_and_rules(cls):      ##  07-14 08:42
+    def get_initial_shapes_and_rules(cls):
         """Returns:
             initial_shapes  [str, ...]. A list of the names of layers 
-                            containing initial shapes
+                            containing one frame instance
             rules           [str, ...]. A list of the names of layers 
-                            containing rules
+                            containing two frame instances
         """
         initial_shapes, rules = [], []
         layer_names = rs.LayerNames()

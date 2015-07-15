@@ -1,5 +1,6 @@
 from package.view import frame as f
 from package.view import grammar as g
+from package.view import layer as l
 import rhinoscriptsyntax as rs
 from package.view import settings as s
 
@@ -33,16 +34,15 @@ class GuidsToDat(object):
             None            otherwise
         """
         initial_shapes, rules = g.Grammar.get_initial_shapes_and_rules()
-                                                ##  kilroy was here
         initial_shape_frame_dict = cls._make_initial_shape_frame_dict(
             initial_shapes)
-                            ##  {rule_name: frame_guid}
         rule_frame_pair_dict = cls._make_rule_frame_pair_dict(rules)
                             ##  {rule_name: (frame_guid, frame_guid)}
         labeled_shape_name_elements_dict = (
             cls._make_labeled_shape_name_elements_dict(
                 initial_shape_frame_dict, rule_frame_pair_dict))
                             ##  {labeled_shape_name: [element, ...]}
+                                                ##  kilroy was here
         ordered_labeled_shapes_string = (
             cls._get_ordered_labeled_shapes_string(
                 labeled_shape_name_elements_dict))
@@ -81,6 +81,38 @@ class GuidsToDat(object):
             ordered_rules_string])
         return_value = dat_string
         return return_value
+
+    @classmethod
+    def _make_initial_shape_frame_dict(cls, initial_shapes):
+        """Receives:
+            initial_shapes  [str, ...]. A list of names of layers containing 
+                            one frame instance. Values are guaranteed
+        Returns:
+            initial_shape_frame_dict
+                            {str: guid}. A dictionary of name-frame entries of 
+                            initial shapes
+        """
+        initial_shape_frame_dict = {}
+        for initial_shape in initial_shapes:
+            frame_instance = l.Layer.get_frame_instance(initial_shape)
+            initial_shape_frame_dict[initial_shape] = frame_instance
+        return initial_shape_frame_dict
+
+    @classmethod
+    def _make_rule_frame_pair_dict(cls, rules):
+        """Receives:
+            rules           [str, ...]. A list of names of layers containing 
+                            two frame instances. Values are guaranteed
+        Returns:
+            rule_frame_pair_dict
+                            {str: (guid, guid)}. A dictionary of name-
+                            framepair entries of rules
+        """
+        rule_frame_pair_dict = {}
+        for rule in rules:
+            frame_pair = l.Layer.get_frame_instance_pair(rule)
+            rule_frame_pair_dict[rule] = frame_pair
+        return rule_frame_pair_dict
 
     @classmethod                                ##  07-11 06:07
     def _make_name_elements_dict(cls, names):

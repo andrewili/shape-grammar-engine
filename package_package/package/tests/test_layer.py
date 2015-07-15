@@ -88,6 +88,27 @@ def test__is_available():
     try_used_name()
     try_unused_name()
 
+def test_get_frame_instance():
+    def try_good_arg():
+        try_name = 'good_arg'
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
+        actual_value = l.Layer.get_frame_instance('labeled_square_spec')
+        rs.SelectObject(actual_value)
+
+    method_name = 'get_frame_instance'
+    try_good_arg()
+
+def test_get_frame_instance_pair():
+    def try_good_arg():
+        method_name = 'good_arg'
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
+        actual_value = l.Layer.get_frame_instance_pair('add_h_in_square_spec')
+        # rs.SelectObject(actual_value[0])
+        rs.SelectObjects(actual_value)
+
+    method_name = 'get_frame_instance_pair'
+    try_good_arg()
+
 def test_contains_initial_shape():
     pass
 
@@ -496,9 +517,12 @@ def _insert_other_block(other_block_name, layer_name, position):
 # test__is_well_formed()                          ##  done
 # test__is_available()                            ##  done
 
+# test_get_frame_instance()                       ##  done / manual test
+# test_get_frame_instance_pair()                  ##  done / manual test
+
 # test_contains_initial_shape()                   ##  trivial
 # test_contains_rule()                            ##  trivial
-test__get_number_of_frames()                    ##  done
+# test__get_number_of_frames()                    ##  done
 # test__contains_guid()                           ##  trivial
 
 # test_get_frame_positions_from_layer_name()      ##  done
