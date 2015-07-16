@@ -384,7 +384,9 @@ class Grammar(object):
         """Deletes all drawn objects. Returns:
             int             the number of objects deleted, if successful
         """
-        objects = rs.AllObjects()
+        include_lights = True
+        include_grips = True
+        objects = rs.AllObjects(include_lights, include_grips)
         n_objects = rs.DeleteObjects(objects)
         return n_objects
 

@@ -90,6 +90,9 @@ class Utilities(object):
                 ((16, 4, 0), (28, 16, 0)),
                 ((28, 4, 0), (28, 28, 0))],
             []))
+    delete_labeled_point_spec = (
+        ([], [('a', (10, 10, 0))]),
+        ([], []))
 
     def __init__(self):
         pass
@@ -145,6 +148,35 @@ class Utilities(object):
             'add_h_to_h_spec', cls.add_h_to_h_spec, (60, -80, 0))
         cls._add_subsequent_rule(
             'add_h_in_square_spec', cls.add_h_in_square_spec, (60, -120, 0))
+
+    @classmethod
+    def make_grammar_3_initial_shapes_4_rules(cls):
+        """Adds 3 initial shapes and 4 rules (including delete label rule)
+        """
+        g.Grammar.clear_all()
+        cls._add_first_initial_shape(
+            'labeled_right_triangle_spec', cls.labeled_right_triangle_spec)
+        cls._add_subsequent_initial_shape(
+            'labeled_h_spec', 
+            cls.labeled_h_spec, 
+            (0, -80, 0))
+        cls._add_subsequent_initial_shape(
+            'labeled_square_spec', cls.labeled_square_spec, (0, -120, 0))
+        cls._add_first_rule(
+            'subdivide_triangle_spec', cls.subdivide_triangle_spec)
+        cls._add_subsequent_rule(
+            'add_h_to_h_spec', cls.add_h_to_h_spec, (60, -80, 0))
+        cls._add_subsequent_rule(
+            'add_h_in_square_spec', cls.add_h_in_square_spec, (60, -120, 0))
+        cls._add_subsequent_rule(
+            'delete_labeled_point_spec',
+            cls.delete_labeled_point_spec,
+            (60, -160, 0))
+        point_1_inside_labeled_point_frame = (75, -145, 15)
+        rs.AddPointLight(point_1_inside_labeled_point_frame)
+        text = 'text'
+        point_2_inside_labeled_point_frame = (65, -155, 5)
+        rs.AddText(text, point_2_inside_labeled_point_frame)
 
     @classmethod
     def _add_first_initial_shape(cls, layer_name, initial_shape_spec):

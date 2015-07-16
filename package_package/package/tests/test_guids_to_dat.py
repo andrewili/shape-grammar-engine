@@ -85,6 +85,50 @@ def test__make_rule_frame_pair_dict():
     try_0_rules()
     try_3_rules()
 
+def test__make_labeled_shape_elements_dict():   ##  07-16 07:48
+    def try_0_ishapes_0_rules():
+        try_name = '0_ishapes_0_rules'
+        g.Grammar.clear_all
+        f.Frame._new_definition()
+        initial_shape_frame_dict = {}
+        rule_frame_pair_dict = {}
+        actual_value = gd.GuidsToDat._make_labeled_shape_elements_dict(
+            initial_shape_frame_dict, rule_frame_pair_dict)
+        expected_value = {}
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_0_ishapes_3_rules():
+        try_name = '0_ishapes_3_rules'
+
+    def try_3_ishapes_0_rules():
+        try_name = '3_ishapes_0_rules'
+
+    def try_3_ishapes_3_rules():
+        try_name = '3_ishapes_3_rules'
+
+    method_name = '_make_labeled_shape_elements_dict'
+    try_0_ishapes_0_rules()
+    try_0_ishapes_3_rules()
+    try_3_ishapes_0_rules()
+    try_3_ishapes_3_rules()
+
+def test__get_elements():
+    def try_good_args():
+        try_name = 'good_value_empty_frame'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        message = "Select a frame instance"
+        block_instance_filter = 4096
+        frame_instance = rs.GetObject(message, block_instance_filter)
+        actual_value = gd.GuidsToDat._get_elements(frame_instance)
+        rs.SelectObjects(actual_value)
+
+    method_name = '_get_elements'
+    try_good_args()
+
+####
+
 def text__extract_elements_in_frame():          ##  07-12 07:59
     def try_no_objects():
         try_name = 'no_objects'
@@ -596,21 +640,14 @@ def _make_annotations():
         annotations.append(annotation)
     return annotations
 
+####
+
 # test_get_dat_string()
-# test__make_initial_shape_frame_dict()           ##  done / manual test
-# test__make_rule_frame_pair_dict()               ##  done / manual test
+# test__make_initial_shape_frame_dict()           ##  manual test / done
+# test__make_rule_frame_pair_dict()               ##  manual test / done
+# test__make_labeled_shape_elements_dict()        ##  pending
+# test__get_elements()                            ##  manual test / done
 
-# test__make_name_elements_dict()
-# test__get_elements()
-# test__remove_bad_names()
-# test__get_right_name_from_left()
-# text__extract_elements_in_frame()               ##  done
-# test__is_line_or_textdot()
-# test__object_is_in_box()
-# test__point_is_in_box()                         ##  done
-# test__make_lshape_name_dat_dict()
-# test__get_ordered_labeled_shape_names()
+####
 
-# test__get_ordered_labeled_shapes_string()
-# test__get_ordered_initial_shape_defs_string()
 # test__get_ordered_rule_defs_string()
