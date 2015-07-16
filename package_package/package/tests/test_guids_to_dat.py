@@ -88,8 +88,7 @@ def test__make_rule_frame_pair_dict():
 def test__make_labeled_shape_elements_dict():   ##  07-16 07:48
     def try_0_ishapes_0_rules():
         try_name = '0_ishapes_0_rules'
-        g.Grammar.clear_all
-        f.Frame._new_definition()
+        u.Utilities.make_grammar_0_initial_shapes_0_rules()
         initial_shape_frame_dict = {}
         rule_frame_pair_dict = {}
         actual_value = gd.GuidsToDat._make_labeled_shape_elements_dict(
@@ -99,20 +98,26 @@ def test__make_labeled_shape_elements_dict():   ##  07-16 07:48
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_0_ishapes_3_rules():
-        try_name = '0_ishapes_3_rules'
-
-    def try_3_ishapes_0_rules():
-        try_name = '3_ishapes_0_rules'
-
-    def try_3_ishapes_3_rules():
-        try_name = '3_ishapes_3_rules'
+    def try_3_ishapes_4_rules():
+        try_name = '3_ishapes_4_rules'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        initial_shapes, rules = g.Grammar.get_initial_shapes_and_rules()
+        initial_shape_frame_dict = _prompt_for_initial_shape_elements(
+            initial_shapes)
+        rule_frame_pair_dict = _prompt_for_rule_elements(rules)
+        labeled_shape_elements_dict = (
+            gd.GuidsToDat._make_labeled_shape_elements_dict(
+                initial_shape_frame_dict, rule_frame_pair_dict))
+        for labeled_shape in labeled_shape_elements_dict:
+            message = (
+                "Show elements in the labeled shape '%s'" % labeled_shape)
+            rs.GetString(message)
+            elements = labeled_shape_elements_dict[labeled_shape]
+            rs.SelectObjects(elements)
 
     method_name = '_make_labeled_shape_elements_dict'
     try_0_ishapes_0_rules()
-    try_0_ishapes_3_rules()
-    try_3_ishapes_0_rules()
-    try_3_ishapes_3_rules()
+    try_3_ishapes_4_rules()
 
 def test__get_elements():
     def try_good_args():
@@ -416,6 +421,46 @@ def test__get_ordered_rule_defs_string():
     try_good_state_ishapes_no_rules()
     try_good_state_ishapes_rules()
 
+####
+
+def _prompt_for_initial_shape_elements(initial_shapes):
+    """Receives:
+        initial_shapes      [str, ...]. A list of initial shape layer names
+    Prompts the user to select the frame instance of each initial shape in 
+    turn. Returns:
+        initial_shape_frame_dict
+                            {str: guid}. A dictionary of initial shape 
+                            names and frame instance guids
+    """
+    initial_shape_frame_dict = {}
+    block_type = 4096
+    for initial_shape in initial_shapes:
+        message = "Select the frame instance for the labeled shape '%s'" % (
+            initial_shape)
+        frame_instance = rs.GetObject(message, block_type)
+        initial_shape_frame_dict[initial_shape] = frame_instance
+    return initial_shape_frame_dict
+
+def _prompt_for_rule_elements(rules):
+    """Receives:
+        rules               [str, ...]. A list of rule layer names
+    Prompts the user to select the elements of each rule in turn. Returns:
+        rule_frame_pair_dict
+                            {str: (guid, guid)}. A dictionary of rule names 
+                            and frame instance pairs
+    """
+    rule_frame_pair_dict = {}
+    block_type = 4096
+    for rule in rules:
+        message = (
+            "Select the left and right frame instances for the rule '%s'" % (
+                rule))
+        guids = rs.GetObjects(message, block_type)
+        rule_frame_pair_dict[rule] = guids
+    return rule_frame_pair_dict
+
+####
+
 def _make_objects_on_layer(layer_name):
     rs.CurrentLayer(layer_name)
     objects = []
@@ -645,7 +690,7 @@ def _make_annotations():
 # test_get_dat_string()
 # test__make_initial_shape_frame_dict()           ##  manual test / done
 # test__make_rule_frame_pair_dict()               ##  manual test / done
-# test__make_labeled_shape_elements_dict()        ##  pending
+test__make_labeled_shape_elements_dict()        ##  pending
 # test__get_elements()                            ##  manual test / done
 
 ####
