@@ -85,7 +85,7 @@ def test__make_rule_frame_pair_dict():
     try_0_rules()
     try_3_rules()
 
-def test__make_labeled_shape_elements_dict():   ##  07-16 07:48
+def test__make_labeled_shape_elements_dict():
     def try_0_ishapes_0_rules():
         try_name = '0_ishapes_0_rules'
         u.Utilities.make_grammar_0_initial_shapes_0_rules()
@@ -132,7 +132,176 @@ def test__get_elements():
     method_name = '_get_elements'
     try_good_args()
 
-####
+def test__get_ordered_labeled_shapes_string():  ##  07-17 09:20
+    def try_0_ishapes_0_rules():
+        try_name = '0_ishapes_0_rules'
+        u.Utilities.make_grammar_0_initial_shapes_0_rules()
+        name_elements_dict = {}
+        actual_value = gd.GuidsToDat._get_ordered_labeled_shapes_string(
+            name_elements_dict)
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_ishapes_4_rules():
+        try_name = '0_ishapes_0_rules'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        labeled_shape_name_elements_dict = (
+            _prompt_for_labeled_shape_name_elements_dict())
+        actual_value = gd.GuidsToDat._get_ordered_labeled_shapes_string(
+            labeled_shape_name_elements_dict)
+        expected_value = u.Utilities.ordered_labeled_shapes_3_4_string
+
+    method_name = '_get_ordered_labeled_shapes_string'
+    try_0_ishapes_0_rules()                     ##  done
+    try_3_ishapes_4_rules()                     ##  pending
+
+def test__get_ordered_line_and_labeled_point_specs():
+    def try_0_lines_0_labeled_points():
+        try_name = '0_lines_0_labeled_points'
+        g.Grammar.clear_all()
+        element_guids = []
+        actual_value = (
+            gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
+                element_guids))
+        expected_value = ([], [])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_0_lines_1_labeled_point():
+        try_name = '0_lines_1_labeled_point'
+        g.Grammar.clear_all()
+        lpt0 = rs.AddTextDot('a', (10, 10, 0))
+        element_guids = [lpt0]
+        actual_value = (
+            gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
+                element_guids))
+        expected_value = ([], [('a', (10, 10, 0))])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_1_line_0_labeled_points():
+        try_name = '1_line_0_labeled_points'
+        g.Grammar.clear_all()
+        l0 = rs.AddLine((0, 0, 0), (20, 20, 0))
+        lpt0 = rs.AddTextDot('a', (10, 10, 0))
+        element_guids = [lpt0, l0]
+        actual_value = (
+            gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
+                element_guids))
+        expected_value = ([((0, 0, 0), (20, 20, 0))], [('a', (10, 10, 0))])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_lines_3_labeled_points():
+        try_name = '3_lines_3_labeled_points'
+        g.Grammar.clear_all()
+        l0 = rs.AddLine((0, 0, 0), (20, 20, 0))
+        l1 = rs.AddLine((0, 20, 0), (20, 0, 0))
+        l2 = rs.AddLine((0, 10, 0), (20, 10, 0))
+        lpt0 = rs.AddTextDot('a', (10, 10, 0))
+        lpt1 = rs.AddTextDot('a', (20, 20, 0))
+        lpt2 = rs.AddTextDot('a', (30, 30, 0))
+        element_guids = [lpt2, l2, lpt1, l1, lpt0, l0]
+        actual_value = (
+            gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
+                element_guids))
+        expected_value = (
+            [   ((0, 0, 0), (20, 20, 0)),
+                ((0, 10, 0), (20, 10, 0)),
+                ((0, 20, 0), (20, 0, 0))],
+            [   ('a', (10, 10, 0)),
+                ('a', (20, 20, 0)),
+                ('a', (30, 30, 0))])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_ordered_line_and_labeled_point_specs'
+    try_0_lines_0_labeled_points()
+    try_0_lines_1_labeled_point()
+    try_1_line_0_labeled_points()
+    try_3_lines_3_labeled_points()
+
+def test__get_labeled_shape_string():           ##  07-18 19:05
+    def try_0_line_0_labeled_point_specs():
+        try_name = '0_line_0_labeled_point_specs'
+        line_and_labeled_point_specs = ([], [])
+        actual_value = gd.GuidsToDat._get_labeled_shape_string(
+            line_and_labeled_point_specs)
+        expected_value = '\n'.join([
+            '    name',
+            ''
+        ])
+
+    def try_0_line_1_labeled_point_specs():
+        try_name = '0_line_1_labeled_point_specs'
+        line_and_labeled_point_specs = ([], [lp0])
+        actual_value = gd.GuidsToDat._get_labeled_shape_string(
+            line_and_labeled_point_specs)
+        expected_value = '\n'.join([
+            '    name',
+            '    coords 0 5 5 0',
+            '',
+            '    point 0 a'
+        ])
+
+    def try_1_line_0_labeled_point_specs():
+        try_name = '1_line_0_labeled_point_specs'
+        line_and_labeled_point_specs = ([l0], [])
+        actual_value = gd.GuidsToDat._get_labeled_shape_string(
+            line_and_labeled_point_specs)
+        expected_value = '\n'.join([
+            '    name',
+            '    coords 0 0 10 0',
+            '    coords 1 10 0 0',
+            '',
+            '    line 0 0 1'
+        ])
+
+    def try_3_line_3_labeled_point_specs():
+        try_name = '3_line_3_labeled_point_specs'
+        line_and_labeled_point_specs = ([l2, l1, l0], [lp2, lp1, lp0])
+        actual_value = gd.GuidsToDat._get_labeled_shape_string(
+            line_and_labeled_point_specs)
+        expected_value = '\n'.join([
+            '    name',
+            '    coords 0 0 10 0',
+            '    coords 1 5 5 0',
+            '    coords 2 10 0 0',
+            '    coords 3 10 20 0',
+            '    coords 4 15 15 0',
+            '    coords 5 20 10 0',
+            '    coords 6 20 30 0',
+            '    coords 7 25 25 0',
+            '    coords 8 30 20 0',
+            '',
+            '    line 0 0 2',
+            '    line 1 3 5',
+            '    line 2 6 8',
+            '    point 1 a',
+            '    point 4 a',
+            '    point 7 a'
+        ])
+
+    method_name = '_get_labeled_shape_string'
+    g.Grammar.clear_all()
+    l0 = ((0, 10, 0), (10, 0, 0))
+    l1 = ((10, 20, 0), (20, 10, 0))
+    l2 = ((20, 30, 0), (30, 20, 0))
+    lp0 = ('a', (5, 5, 0))
+    lp1 = ('a', (15, 15, 0))
+    lp0 = ('a', (25, 25, 0))
+    try_0_line_0_labeled_point_specs()
+    try_0_line_1_labeled_point_specs()
+    try_1_line_0_labeled_point_specs()
+    try_3_line_3_labeled_point_specs()
+
+### to deprecate
 
 def text__extract_elements_in_frame():          ##  07-12 07:59
     def try_no_objects():
@@ -289,34 +458,34 @@ def test__get_ordered_labeled_shape_names():
     try_bad_state_3_initial_shapes_0_rules()
     try_good_state_3_initial_shapes_3_rules()
 
-def test__get_ordered_labeled_shapes_string():
-    def try_no_ishapes_no_rules():
-        try_name = 'no_ishapes_no_rules'
-        g.Grammar.clear_all()
-        f.Frame._new_definition()
-        actual_value = g.Grammar._get_ordered_labeled_shapes_string()
-        expected_value = ''
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
+# def test__get_ordered_labeled_shapes_string():
+    # def try_no_ishapes_no_rules():
+    #     try_name = 'no_ishapes_no_rules'
+    #     g.Grammar.clear_all()
+    #     f.Frame._new_definition()
+    #     actual_value = g.Grammar._get_ordered_labeled_shapes_string()
+    #     expected_value = ''
+    #     if not actual_value == expected_value:
+    #         u.Utilities.print_test_error_message(
+    #             method_name, try_name, expected_value, actual_value)
 
-    def try_no_ishapes_rules():
-        try_name = 'no_ishapes_rules'
-        pass
+    # def try_no_ishapes_rules():
+    #     try_name = 'no_ishapes_rules'
+    #     pass
 
-    def try_ishapes_no_rules():
-        try_name = 'ishapes_no_rules'
-        pass
+    # def try_ishapes_no_rules():
+    #     try_name = 'ishapes_no_rules'
+    #     pass
 
-    def try_ishapes_rules():
-        try_name = 'ishapes_rules'
-        pass
+    # def try_ishapes_rules():
+    #     try_name = 'ishapes_rules'
+    #     pass
 
-    method_name = '_get_ordered_labeled_shapes_string'
-    try_no_ishapes_no_rules()
-    # try_no_ishapes_rules()
-    # try_ishapes_no_rules()
-    # try_ishapes_rules()
+    # method_name = '_get_ordered_labeled_shapes_string'
+    # try_no_ishapes_no_rules()
+    # # try_no_ishapes_rules()
+    # # try_ishapes_no_rules()
+    # # try_ishapes_rules()
 
 def test__get_ordered_initial_shape_defs_string():
     def try_good_state_no_ishapes_no_rules():
@@ -422,6 +591,33 @@ def test__get_ordered_rule_defs_string():
     try_good_state_ishapes_rules()
 
 ####
+
+                                                ##  07-17 16:40
+def _prompt_for_labeled_shape_name_elements_dict():
+    """Prompts the user to select the elements of labeled shapes  to construct 
+    the labeled shape name-elements dictionary. Returns:
+        labeled_shape_name_elements_dict
+                            {str: [guid, ...]}. A dictionary of labeled shape 
+                            names and lists of guids of associated elements
+    """
+    labeled_shape_name_elements_dict = {}
+    labeled_shape_names = g.Grammar.get_labeled_shape_names()
+    for labeled_shape_name in labeled_shape_names:
+        elements = _prompt_for_labeled_shape_elements(labeled_shape_name)
+        labeled_shape_name_elements_dict[labeled_shape_name] = elements
+    return labeled_shape_name_elements_dict
+
+def _prompt_for_labeled_shape_elements(labeled_shape_name):
+    """Receives:
+        labeled_shape_name  str. The name of a labeled shape
+    Prompts the user to select the elements belonging to the labeled shape. 
+    Returns:
+        elements            [guid, ...]. A list of guids of elements
+    """
+    message = "Select the elements in the labeled shape '%s'" % (
+        labeled_shape_name)
+    elements = rs.GetObjects(message)
+    return elements
 
 def _prompt_for_initial_shape_elements(initial_shapes):
     """Receives:
@@ -690,9 +886,12 @@ def _make_annotations():
 # test_get_dat_string()
 # test__make_initial_shape_frame_dict()           ##  manual test / done
 # test__make_rule_frame_pair_dict()               ##  manual test / done
-test__make_labeled_shape_elements_dict()        ##  pending
+# test__make_labeled_shape_elements_dict()        ##  manual test / done
 # test__get_elements()                            ##  manual test / done
+# test__get_ordered_labeled_shapes_string()       ##  pending
+# test__get_ordered_line_and_labeled_point_specs()##  done
+# test__get_labeled_shape_string()                ##  pending
 
-####
+### to deprecate
 
 # test__get_ordered_rule_defs_string()

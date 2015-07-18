@@ -34,6 +34,7 @@ class GuidsToDat(object):
             None            otherwise
         """
         initial_shapes, rules = g.Grammar.get_initial_shapes_and_rules()
+                                                ##  both non-empty
         initial_shape_frame_dict = cls._make_initial_shape_frame_dict(
             initial_shapes)
         rule_frame_pair_dict = cls._make_rule_frame_pair_dict(rules)
@@ -42,11 +43,11 @@ class GuidsToDat(object):
             cls._make_labeled_shape_elements_dict(
                 initial_shape_frame_dict, rule_frame_pair_dict))
                             ##  {labeled_shape: [element, ...]}
-                                                ##  kilroy was here
         ordered_labeled_shapes_string = (
             cls._get_ordered_labeled_shapes_string(
                 labeled_shape_elements_dict))
                             ##  'labeled_shape_string\n...'
+                                                ##  kilroy was here
         ordered_initial_shapes_string = (
             cls._get_ordered_initial_shapes_string(
                 labeled_shape_elements_dict))
@@ -97,7 +98,7 @@ class GuidsToDat(object):
             rule_frame_pair_dict[rule] = frame_pair
         return rule_frame_pair_dict
 
-    @classmethod                                ##  07-16 07:45
+    @classmethod
     def _make_labeled_shape_elements_dict(
         cls, initial_shape_frame_dict, rule_frame_pair_dict
     ):
@@ -278,11 +279,11 @@ class GuidsToDat(object):
     @classmethod                                ##  07-11 06:10
     def _make_name_dat_dict(cls, name_elements_dict):
         """Receives:
-            name_elements_dict {str: [guid, ...]}. A dictionary of 
+            name_elements_dict
+                            {str: [guid, ...]}. A dictionary of 
                             name-guidlist entries of labeled shapes
         Returns a dictionary of name-datspec entries of labeled shapes:
-            name_dat_dict
-                            {str: (
+            name_dat_dict   {str: (
                                 [coord, ...],
                                 [codex_codex, ...],
                                 [codex_label])}
@@ -319,39 +320,146 @@ class GuidsToDat(object):
         dat_spec = (coord_list, codex_codex_list, codex_label_list)
         return dat_spec
 
-    @classmethod
+    @classmethod                                ##  07-17 08:32
     def _get_ordered_labeled_shapes_string(
-        cls, name_dat_dict
+        cls, labeled_shape_name_elements_dict
     ):
         """Receives:
-            layer_names     [str, ...]
-            x
+            labeled_shape_name_elements_dict
+                            {str: [guid, ...]}. A dictionary of labeled shape 
+                            names and lists of the guids of their elements
         Returns:
             ordered_labeled_shapes_string
-                            str: str\nstr\n...\nstr. The string form of 
-                            [str, ...], an ordered list (by shape name) of 
-                            .is strings of labeled shapes from both initial 
-                            shapes and rules
+                            str\nstr\n...\nstr. The string form of [str, ...], 
+                            an ordered list (by shape name) of .is strings of 
+                            labeled shapes from both initial shapes and rules
         """
-        labeled_shape_string_or_string_pairs = []
-        for layer_name in layer_names:
-            labeled_shape_string_or_string_pair = (
-                cls._get_labeled_shape_string_or_string_pair(
-                    layer_name))
-            labeled_shape_string_or_string_pairs.append(
-                labeled_shape_string_or_string_pair)
+        method_name = '_get_ordered_labeled_shapes_string'
+        try:
+            if labeled_shape_name_elements_dict == {}:
+                raise ValueError
+        except ValueError:
+            message = "The labeled shape name-elements dictionary is empty"
+            print("%s.%s\n    %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            for name in labeled_shape_name_elements_dict:
+                element_guids = labeled_shape_name_elements_dict[name]
+                                                ##  [guid, ...]
+                line_and_labeled_point_specs = (
+                    cls._get_ordered_line_and_labeled_point_specs(
+                        element_guids))
+                                                ##  (   [line_spec], 
+                                                ##      [labeled_point_spec])
+                labeled_shape_string = cls._get_labeled_shape_string(
+                    line_and_labeled_point_specs)
+                                                ##  str
+                named_labeled_shape_string = '\n'.join([
+                    'shape    %s' % name,
+                    labeled_shape_string])
+                labeled_shape_strings.append(named_labeled_shape_string)
+            ordered_labeled_shape_strings = labeled_shape_strings
+            ordered_labeled_shapes_string = '\n'.join(
+                ordered_labeled_shape_strings)
+            return_value = ordered_labeled_shapes_string
+        finally:
+            return return_value
 
-        labeled_shape_strings = []
-        initial_shape_strings = cls._get_initial_shape_strings(
-            initial_shape_layer_names)
-        rule_shape_strings = cls._get_rule_shape_strings(
-            rule_layer_names)
-        labeled_shape_strings.append(initial_shape_strings)
-        labeled_shape_strings.append(rule_shape_strings)
-        ordered_labeled_shape_strings = sorted(labeled_shape_strings)
-        ordered_labeled_shapes_string = '\n'.join(
-            ordered_labeled_shape_strings)
-        return ordered_labeled_shapes_string
+    @classmethod
+    def _get_ordered_line_and_labeled_point_specs(cls, element_guids):
+        """Receives:
+            element_guids   [guid, ...]. A list of the guids of lines and 
+                            labeled points
+        Returns:
+            ordered_line_and_labeled_point_specs
+                            ([line_spec, ...], [labeled_point_spec, ...]). A 
+                            list of line specs 
+                                (   (num, num, num), 
+                                    (num, num, num)) 
+                            and a list of labeled point specs
+                                (   str,
+                                    (num, num, num))
+        """
+        line_specs, labeled_point_specs = [], []
+        curve_type, textdot_type = 4, 8192
+        for element_guid in element_guids:
+            if rs.ObjectType(element_guid) == curve_type:
+                p1 = rs.CurveStartPoint(element_guid)
+                p2 = rs.CurveEndPoint(element_guid)
+                p1_coords, p2_coords = tuple(p1), tuple(p2)
+                if p1_coords < p2_coords:
+                    tail, head = p1_coords, p2_coords
+                elif p1_coords > p2_coords:
+                    tail, head = p2_coords, p1_coords
+                else:
+                    pass
+                line_spec = (tail, head)
+                line_specs.append(line_spec)
+            elif rs.ObjectType(element_guid) == textdot_type:
+                label = rs.TextDotText(element_guid)
+                p = rs.TextDotPoint(element_guid)
+                p_coords = tuple(p)
+                labeled_point_spec = (label, p_coords)
+                labeled_point_specs.append(labeled_point_spec)
+            else:
+                pass
+        ordered_line_and_labeled_point_specs = (
+            sorted(line_specs), sorted(labeled_point_specs))
+        return ordered_line_and_labeled_point_specs
+
+    @classmethod                                ##  07-18 19:06
+    def _get_labeled_shape_string(cls, line_and_labeled_point_specs):
+        """Receives:
+            line_and_labeled_point_specs
+                            (   [((num, num, num), (num, num, num)), ...], 
+                                [(str, (num, num, num)), ...])
+                            A duple: 1) a list of line specs, and 2) a list of 
+                            labeled point specs
+        Returns:
+            labeled_shape_string
+                            str. The .is string of the labeled shape, without 
+                            the 'shape    <name>' line
+        """
+        line_specs, labeled_point_specs = line_and_labeled_point_specs
+        spacer = cls.spacer
+        indented_name_line = '%sname' % spacer
+        ordered_indented_coord_lines_string = (
+            cls._make_ordered_indented_coord_lines_string())
+        blank_line = cls.blank_line
+        ordered_indented_line_lines_string = (
+            cls._make_ordered_indented_line_lines_string())
+        ordered_indented_point_lines_string = (
+            cls._make_ordered_indented_point_lines_string())
+        labeled_shape_string = '\n'.join([
+            indented_name_line,
+            ordered_indented_coord_lines_string,
+            blank_line,
+            ordered_indented_line_lines_string,
+            ordered_indented_point_lines_string
+        ])
+        return labeled_shape_string
+
+    @classmethod                                ##  07-18 22:08
+    def _make_ordered_indented_coord_lines_string(cls):
+        """
+        Returns:
+            ordered_indented_coord_lines_string
+                            str\n.... 
+        """
+        pass
+
+    @classmethod
+    def _make_ordered_indented_line_lines_string(cls):
+        """
+        """
+        pass
+
+    @classmethod
+    def _make_ordered_indented_point_lines_string(cls):
+        """
+        """
+        pass
+
 
     @classmethod
     def _get_ordered_initial_shapes_string(cls, name_dat_dict):

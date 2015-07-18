@@ -56,8 +56,8 @@ class Utilities(object):
             [   ('a', (8, 8, 0))]),
         (   [   ((4, 4, 0), (4, 28, 0)),
                 ((4, 4, 0), (22, 4, 0)),
-                ((4, 16, 0), (13, 16, 0)),
                 ((4, 16, 0), (13, 4, 0)),
+                ((4, 16, 0), (13, 16, 0)),
                 ((4, 28, 0), (22, 4, 0)),
                 ((13, 4, 0), (13, 16, 0))],
             [   ('a', (6, 6, 0)),
@@ -93,6 +93,185 @@ class Utilities(object):
     delete_labeled_point_spec = (
         ([], [('a', (10, 10, 0))]),
         ([], []))
+    add_h_in_square_string = '\n'.join([
+        'shape    add_h_in_square_L',
+        '    name',
+        '    coords 0 4 4 0',
+        '    coords 1 4 28 0',
+        '    coords 2 8 24 0',
+        '    coords 3 28 4 0',
+        '    coords 4 28 28 0',
+        '',
+        '    line 0 0 1',
+        '    line 0 0 3',
+        '    line 0 1 4',
+        '    line 0 3 4',
+        '    point 2 a',
+        'shape    add_h_in_square_R',
+        '    name',
+        '    coords 0 4 4 0',
+        '    coords 0 4 16 0',
+        '    coords 0 4 28 0',
+        '    coords 0 10 22 0',
+        '    coords 0 16 4 0',
+        '    coords 0 16 28 0',
+        '    coords 0 22 10 0',
+        '    coords 0 22 16 0',
+        '    coords 0 28 4 0',
+        '    coords 0 28 28 0',
+        '',
+        '    line 0 0 0',
+        '    point 0 a'
+    ])
+    add_h_to_h_string = '\n'.join([
+        'shape    add_h_to_h_L',
+        '    name',
+        '    coords 0 10 6 0',
+        '    coords 1 10 14 0',
+        '    coords 2 10 22 0',
+        '    coords 3 10 27 0',
+        '    coords 4 26 14 0',
+        '',
+        '    line 0 0 2',
+        '    line 1 1 4',
+        '    point 0 a 3',
+        'shape    add_h_to_h_R',
+        '    name',
+        '    coords 0 6 17 0',
+        '    coords 1 6 18 0',
+        '    coords 2 6 22 0',
+        '    coords 3 6 26 0',
+        '    coords 4 6 27 0',
+        '    coords 5 10 6 0',
+        '    coords 6 10 14 0',
+        '    coords 7 10 22 0',
+        '    coords 8 14 17 0',
+        '    coords 9 14 18 0',
+        '    coords 10 14 22 0',
+        '    coords 11 14 26 0',
+        '    coords 12 14 27 0',
+        '    coords 13 26 14 0',
+        '',
+        '    line 0 1 3',
+        '    line 0 2 10',
+        '    line 0 5 7',
+        '    line 0 6 13',
+        '    line 0 9 11',
+        '    point 0 a',
+        '    point 4 a',
+        '    point 8 a',
+        '    point 12 a'
+    ])
+    delete_labeled_point_string = '\n'.join([
+        'shape    delete_labeled_point_L',
+        '    name',
+        '    coords 0 10 10 0',
+        '',
+        '    point 0 a'
+        'shape    delete_labeled_point_R',
+        '    name',
+        ''
+    ])
+    labeled_h_string = '\n'.join([
+        'shape    labeled_h',
+        '    name',
+        '    coords 0 8 6 0',
+        '    coords 1 8 8 0',
+        '    coords 2 8 16 0',
+        '    coords 3 8 24 0',
+        '    coords 4 8 26 0',
+        '    coords 5 24 6 0',
+        '    coords 6 24 8 0',
+        '    coords 7 24 16 0',
+        '    coords 8 24 24 0',
+        '    coords 9 24 26 0',
+        '',
+        '    line 0 1 3',
+        '    line 1 2 7',
+        '    line 2 6 8',
+        '    point 0 a',
+        '    point 4 a',
+        '    point 5 a',
+        '    point 9 a'
+    ])
+    labeled_right_triangle_string = '\n'.join([
+        'shape    labeled_right_triangle',
+        '    name',
+        '    coords 0 4 4 0',
+        '    coords 1 4 28 0',
+        '    coords 2 8 8 0',
+        '    coords 3 22 4 0',
+        '',
+        '    line 0 0 1',
+        '    line 0 0 3',
+        '    line 0 1 3',
+        '    point 2 a'
+    ])
+    labeled_square_string = '\n'.join([
+        'shape    labeled_square',
+        '    name',
+        '    coords 0 4 4 0',
+        '    coords 1 4 28 0',
+        '    coords 2 8 24 0',
+        '    coords 3 28 4 0',
+        '    coords 4 28 28 0',
+        '',
+        '    line 0 0 1',
+        '    line 0 0 3',
+        '    line 0 1 4',
+        '    line 0 3 4',
+        '    point 2 a'
+    ])
+    subdivide_triangle_string = '\n'.join([
+        'shape    subdivide_triangle_L',
+        '    name',
+        '    coords 0 4 4 0',
+        '    coords 0 4 28 0',
+        '    coords 0 8 8 0',
+        '    coords 0 22 4 0',
+        '    coords 0 22 4 0',
+        '',
+        '    line 0 0 0',
+        '    point 0 a',
+        'shape    subdivide_triangle_R',
+        '    name',
+        '    coords 0 4 4 0',
+        '    coords 1 4 16 0',
+        '    coords 2 4 28 0',
+        '    coords 3 6 6 0',
+        '    coords 4 6 18 0',
+        '    coords 5 13 4 0',
+        '    coords 6 13 16 0',
+        '    coords 7 15 6 0',
+        '    coords 8 22 4 0',
+        '',
+        '    line 0 0 2',
+        '    line 0 0 8',
+        '    line 0 1 6',
+        '    line 0 1 5',
+        '    line 0 2 8',
+        '    line 0 5 6',
+        '    point 3 a',
+        '    point 4 a',
+        '    point 7 a'
+    ])
+    ordered_labeled_shapes_3_4_string = '\n'.join([
+        add_h_in_square_string,
+        add_h_to_h_string,
+        delete_labeled_point_string,
+        labeled_h_string,
+        labeled_right_triangle_string,
+        labeled_square_string,
+        subdivide_triangle_string,
+        '',
+        'initial    labeled_h',
+        'initial    labeled_right_triangle',
+        'initial    labeled_square',
+        'rule    add_h_in_square    add_h_in_square_L -> add_h_in_square_R',
+        'rule    add_h_to_h    add_h_to_h_L -> add_h_to_h_R',
+        'rule    delete_labeled_point    delete_labeled_point_L -> delete_labeled_point_R',
+        'rule    subdivide_triangle    subdivide_triangle_L -> subdivide_triangle_R',
+    ])
 
     def __init__(self):
         pass
@@ -109,11 +288,11 @@ class Utilities(object):
         """
         g.Grammar.clear_all()
         cls._add_first_rule(
-            'subdivide_triangle_spec', cls.subdivide_triangle_spec)
+            'subdivide_triangle', cls.subdivide_triangle_spec)
         cls._add_subsequent_rule(
-            'add_h_to_h_spec', cls.add_h_to_h_spec, (60, -80, 0))
+            'add_h_to_h', cls.add_h_to_h_spec, (60, -80, 0))
         cls._add_subsequent_rule(
-            'add_h_in_square_spec', cls.add_h_in_square_spec, (60, -120, 0))
+            'add_h_in_square', cls.add_h_in_square_spec, (60, -120, 0))
         
     @classmethod
     def make_grammar_3_initial_shapes_0_rules(cls):
@@ -121,13 +300,13 @@ class Utilities(object):
         """
         g.Grammar.clear_all()
         cls._add_first_initial_shape(
-            'labeled_right_triangle_spec', cls.labeled_right_triangle_spec)
+            'labeled_right_triangle', cls.labeled_right_triangle_spec)
         cls._add_subsequent_initial_shape(
-            'labeled_h_spec', 
+            'labeled_h', 
             cls.labeled_h_spec, 
             (0, -80, 0))
         cls._add_subsequent_initial_shape(
-            'labeled_square_spec', cls.labeled_square_spec, (0, -120, 0))
+            'labeled_square', cls.labeled_square_spec, (0, -120, 0))
 
     @classmethod
     def make_grammar_3_initial_shapes_3_rules(cls):
@@ -135,19 +314,19 @@ class Utilities(object):
         """
         g.Grammar.clear_all()
         cls._add_first_initial_shape(
-            'labeled_right_triangle_spec', cls.labeled_right_triangle_spec)
+            'labeled_right_triangle', cls.labeled_right_triangle_spec)
         cls._add_subsequent_initial_shape(
-            'labeled_h_spec', 
+            'labeled_h', 
             cls.labeled_h_spec, 
             (0, -80, 0))
         cls._add_subsequent_initial_shape(
-            'labeled_square_spec', cls.labeled_square_spec, (0, -120, 0))
+            'labeled_square', cls.labeled_square_spec, (0, -120, 0))
         cls._add_first_rule(
-            'subdivide_triangle_spec', cls.subdivide_triangle_spec)
+            'subdivide_triangle', cls.subdivide_triangle_spec)
         cls._add_subsequent_rule(
-            'add_h_to_h_spec', cls.add_h_to_h_spec, (60, -80, 0))
+            'add_h_to_h', cls.add_h_to_h_spec, (60, -80, 0))
         cls._add_subsequent_rule(
-            'add_h_in_square_spec', cls.add_h_in_square_spec, (60, -120, 0))
+            'add_h_in_square', cls.add_h_in_square_spec, (60, -120, 0))
 
     @classmethod
     def make_grammar_3_initial_shapes_4_rules(cls):
@@ -155,21 +334,21 @@ class Utilities(object):
         """
         g.Grammar.clear_all()
         cls._add_first_initial_shape(
-            'labeled_right_triangle_spec', cls.labeled_right_triangle_spec)
+            'labeled_right_triangle', cls.labeled_right_triangle_spec)
         cls._add_subsequent_initial_shape(
-            'labeled_h_spec', 
+            'labeled_h', 
             cls.labeled_h_spec, 
             (0, -80, 0))
         cls._add_subsequent_initial_shape(
-            'labeled_square_spec', cls.labeled_square_spec, (0, -120, 0))
+            'labeled_square', cls.labeled_square_spec, (0, -120, 0))
         cls._add_first_rule(
-            'subdivide_triangle_spec', cls.subdivide_triangle_spec)
+            'subdivide_triangle', cls.subdivide_triangle_spec)
         cls._add_subsequent_rule(
-            'add_h_to_h_spec', cls.add_h_to_h_spec, (60, -80, 0))
+            'add_h_to_h', cls.add_h_to_h_spec, (60, -80, 0))
         cls._add_subsequent_rule(
-            'add_h_in_square_spec', cls.add_h_in_square_spec, (60, -120, 0))
+            'add_h_in_square', cls.add_h_in_square_spec, (60, -120, 0))
         cls._add_subsequent_rule(
-            'delete_labeled_point_spec',
+            'delete_labeled_point',
             cls.delete_labeled_point_spec,
             (60, -160, 0))
         point_1_inside_labeled_point_frame = (75, -145, 15)
