@@ -301,6 +301,129 @@ def test__get_labeled_shape_string():           ##  07-18 19:05
     try_1_line_0_labeled_point_specs()
     try_3_line_3_labeled_point_specs()
 
+def test__make_ordered_point_specs():
+    def try_0_line_specs_0_labeled_point_specs():
+        try_name = '0_line_specs_0_labeled_point_specs'
+        line_specs = []
+        labeled_point_specs = []
+        actual_value = gd.GuidsToDat._make_ordered_point_specs(
+            line_specs, labeled_point_specs)
+        expected_value = []
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_0_line_specs_3_labeled_point_specs():
+        try_name = '0_line_specs_3_labeled_point_specs'
+        line_specs = []
+        labeled_point_specs = [lp3, lp2, lp1, lp2]
+        actual_value = gd.GuidsToDat._make_ordered_point_specs(
+            line_specs, labeled_point_specs)
+        expected_value = [p1, p2, p3]
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+        
+
+    def try_3_line_specs_0_labeled_point_specs():
+        try_name = '3_line_specs_0_labeled_point_specs'
+        line_specs = [l3, l2, l1, l2]
+        labeled_point_specs = []
+        actual_value = gd.GuidsToDat._make_ordered_point_specs(
+            line_specs, labeled_point_specs)
+        expected_value = [p0, p1, p2, p3]
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_line_specs_3_labeled_point_specs():
+        try_name = '3_line_specs_3_labeled_point_specs'
+        line_specs = [l3, l2, l1, l2]
+        labeled_point_specs = [lp3, lp2, lp1, lp2]
+        actual_value = gd.GuidsToDat._make_ordered_point_specs(
+            line_specs, labeled_point_specs)
+        expected_value = [p0, p1, p2, p3]
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_make_ordered_point_specs'
+    g.Grammar.clear_all()
+    a = 'a'
+    p0, p1, p2, p3 = (0, 0, 0), (10, 10, 10), (20, 20, 20), (30, 30, 30)
+    l1, l2, l3 = (p0, p1), (p0, p2), (p0, p3)
+    lp1, lp2, lp3 = (a, p1), (a, p2), (a, p3)
+    try_0_line_specs_0_labeled_point_specs()
+    try_0_line_specs_3_labeled_point_specs()
+    try_3_line_specs_0_labeled_point_specs()
+    try_3_line_specs_3_labeled_point_specs()
+
+def test__make_ordered_indented_coord_codex_xyz_polystring():
+    def try_0_ordered_point_specs():
+        try_name = '0_ordered_point_specs'
+        ordered_point_specs = []
+        actual_value = (
+            gd.GuidsToDat._make_ordered_indented_coord_codex_xyz_polystring(
+                ordered_point_specs))
+        expected_value = ''
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_ordered_point_specs():
+        try_name = '3_ordered_point_specs'
+        ordered_point_specs = [p0, p1, p2]
+        actual_value = (
+            gd.GuidsToDat._make_ordered_indented_coord_codex_xyz_polystring(
+                ordered_point_specs))
+        expected_value = '\n'.join([
+            '    coords 0 0 0 0',
+            '    coords 1 10 10 10',
+            '    coords 2 20 20 20',
+        ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_make_ordered_indented_coord_codex_xyz_polystring'
+    p0, p1, p2 = (0, 0, 0), (10, 10, 10), (20, 20, 20)
+    try_0_ordered_point_specs()
+    try_3_ordered_point_specs()
+
+def test__make_ordered_indented_line_lindex_codex_codex_polystring():
+    def try_0_line_specs():
+        try_name = '0_line_specs'
+        line_specs = []
+        actual_value = (
+            gd.GuidsToDat._make_ordered_indented_line_lindex_codex_codex_polystring(
+                line_specs, ordered_point_specs))
+        expected_value = ''
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_line_specs():
+        try_name = '3_line_specs'
+        line_specs = [l1, l2, l3]
+        actual_value = (
+            gd.GuidsToDat._make_ordered_indented_line_lindex_codex_codex_polystring(
+                line_specs, ordered_point_specs))
+        expected_value = '\n'.join([
+            '    line 0 0 1',
+            '    line 1 0 2',
+            '    line 2 0 3',
+        ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_make_ordered_indented_line_lindex_codex_codex_polystring'
+    p0, p1, p2, p3 = (0, 0, 0), (0, 10, 0), (10, 0, 0), (10, 10, 0)
+    l1, l2, l3 = (p0, p1), (p0, p2), (p0, p3)
+    ordered_point_specs = [p0, p1, p2, p3]
+    try_0_line_specs()
+    try_3_line_specs()
+
 ### to deprecate
 
 def text__extract_elements_in_frame():          ##  07-12 07:59
@@ -891,6 +1014,11 @@ def _make_annotations():
 # test__get_ordered_labeled_shapes_string()       ##  pending
 # test__get_ordered_line_and_labeled_point_specs()##  done
 # test__get_labeled_shape_string()                ##  pending
+# test__make_ordered_point_specs()                ##  done
+# test__make_ordered_indented_coord_codex_xyz_polystring()
+#                                                 ##  done
+# test__make_ordered_indented_line_lindex_codex_codex_polystring()
+#                                                 ##  done
 
 ### to deprecate
 

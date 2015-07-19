@@ -420,45 +420,146 @@ class GuidsToDat(object):
                             str. The .is string of the labeled shape, without 
                             the 'shape    <name>' line
         """
-        line_specs, labeled_point_specs = line_and_labeled_point_specs
         spacer = cls.spacer
-        indented_name_line = '%sname' % spacer
-        ordered_indented_coord_lines_string = (
-            cls._make_ordered_indented_coord_lines_string())
+        indented_name_string = '%sname' % spacer
+                            ##  '    name'
+        line_specs, labeled_point_specs = line_and_labeled_point_specs
+        ordered_point_specs = (
+            cls._make_ordered_point_specs(line_specs, labeled_point_specs))
+                            ##  ordered_point_specs
+                            ##  [(0, 0, 0), (0, 0, 1), ...]
+        ordered_indented_coord_codex_xyz_polystring = (
+            cls._make_ordered_indented_coord_codex_xyz_polystring(
+                ordered_point_specs))
+                            ##  coord_codex_xyz
+                            ##  '    coords 0 0 0 0\n    coords 1 0 0 1\n...'
         blank_line = cls.blank_line
-        ordered_indented_line_lines_string = (
-            cls._make_ordered_indented_line_lines_string())
-        ordered_indented_point_lines_string = (
-            cls._make_ordered_indented_point_lines_string())
+        ordered_indented_line_lindex_codex_codex_polystring = (
+            cls._make_ordered_indented_line_lindex_codex_codex_polystring(
+                line_specs, ordered_point_specs))
+                            ##  line_lindex_codex_codex
+                            ##  '    line 0 0 1\n    line 1 1 0\n...'
+        ordered_indented_point_codex_label_polystring = (
+            cls._make_ordered_indented_point_codex_label_polystring(
+                labeled_point_specs, ordered_point_specs))
+                            ##  point_codex_label
+                            ##  '    point 0 a\n    point 1 a\n...'
         labeled_shape_string = '\n'.join([
-            indented_name_line,
-            ordered_indented_coord_lines_string,
+            indented_name_string,
+            ordered_indented_coord_codex_xyz_polystring,
             blank_line,
-            ordered_indented_line_lines_string,
-            ordered_indented_point_lines_string
+            ordered_indented_line_lindex_codex_codex_polystring,
+            ordered_indented_point_codex_label_polystring
         ])
         return labeled_shape_string
 
-    @classmethod                                ##  07-18 22:08
-    def _make_ordered_indented_coord_lines_string(cls):
-        """
+    @classmethod
+    def _make_ordered_point_specs(cls, line_specs, labeled_point_specs):
+        """Receives:
+            line_specs      [line_spec, ...]. A list of line specs, each of 
+                            the form 
+                                ((num, num, num), (num, num, num))
+            labeled_point_specs
+                            [labeled_point_spec, ...]. A list of labeled point 
+                            specs, each of the form 
+                                (str, (num, num, num))
         Returns:
-            ordered_indented_coord_lines_string
-                            str\n.... 
+            ordered_point_specs
+                            [point_spec, ...]. An ordered list of point specs, 
+                            each of the form 
+                                (num, num, num)
         """
-        pass
+        point_specs = []
+        for line_spec in line_specs:
+            for point_spec in line_spec:
+                if not point_spec in point_specs:
+                    point_specs.append(point_spec)
+        for labeled_point_spec in labeled_point_specs:
+            point_spec = labeled_point_spec[1]
+            if not point_spec in point_specs:
+                point_specs.append(point_spec)
+        ordered_point_specs = sorted(point_specs)
+        return ordered_point_specs
 
     @classmethod
-    def _make_ordered_indented_line_lines_string(cls):
+    def _make_ordered_indented_coord_codex_xyz_polystring(
+        cls, ordered_point_specs
+    ):
+        """Receives:
+            ordered_point_specs
+                            [point_spec, ...]. An ordered list of point specs 
+                            of the form 
+                                (num, num, num)
+        Returns:
+            ordered_indented_coord_codex_xyz_polystring
+                            str\n.... An ordered joining of indented coord 
+                            line strings, each of the form 
+                                '    coords int num num num'
         """
-        """
-        pass
+        ordered_indented_coord_codex_xyz_strings = []
+        for point_spec in ordered_point_specs:
+            codex = ordered_point_specs.index(point_spec)
+            x, y, z = point_spec
+            indented_coord_codex_xyz_string = '%scoords %i %s %s %s' % (
+                cls.spacer, codex, x, y, z)
+            ordered_indented_coord_codex_xyz_strings.append(
+                indented_coord_codex_xyz_string)
+        ordered_indented_coord_codex_xyz_polystring = '\n'.join(
+            ordered_indented_coord_codex_xyz_strings)
+        return ordered_indented_coord_codex_xyz_polystring
 
     @classmethod
-    def _make_ordered_indented_point_lines_string(cls):
+    def _make_ordered_indented_line_lindex_codex_codex_polystring(
+        cls, line_specs, ordered_point_specs
+    ):
+        """Receives:
+            line_specs      [line_spec, ...]. A list of line specs, each of 
+                            the form
+                                ((num, num, num), (num, num, num))
+            ordered_point_specs
+                            [point_spec, ...]. A list of point specs, each of 
+                            the form
+                                (num, num, num)
+        Returns:
+            ordered_indented_line_lindex_codex_codex_polystring
+                            str\n.... An ordered joining of indented line- 
+                            lindex-codex-codex strings, each of the form
+                                '    line 0 0 0'
         """
+        ordered_indented_line_lindex_codex_codex_strings = []
+        ordered_line_specs = sorted(line_specs)
+        for line_spec in ordered_line_specs:
+            lindex = ordered_line_specs.index(line_spec)
+            tail, head = sorted(line_spec)
+            codex1 = ordered_point_specs.index(tail)
+            codex2 = ordered_point_specs.index(head)
+            ordered_indented_line_lindex_codex_codex_string = (
+                '%sline %i %i %i' % (cls.spacer, lindex, codex1, codex2))
+            ordered_indented_line_lindex_codex_codex_strings.append(
+                ordered_indented_line_lindex_codex_codex_string)
+        ordered_indented_line_lindex_codex_codex_polystring = '\n'.join(
+            ordered_indented_line_lindex_codex_codex_strings)
+        return ordered_indented_line_lindex_codex_codex_polystring
+
+    @classmethod
+    def _make_ordered_indented_point_codex_label_polystring(
+        cls, labeled_point_specs, ordered_point_specs):
+        """Receives:
+            labeled_point_specs
+                            [labeled_point_spec, ...]. A list of labeled point 
+                            specs, each of the form
+                                (str, (num, num, num))
+            ordered_point_specs
+                            [point_spec, ...]. A list of point specs, each of 
+                            the form
+                                (num, num, num)
+        Returns:
+            ordered_indented_point_codex_label_polystring
+                            str\n.... An ordered joining of indented point-
+                            codex-label strings, each of the form
+                                '    point 0 a'
         """
-        pass
+        return ordered_indented_point_codex_label_polystring
 
 
     @classmethod
