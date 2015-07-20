@@ -109,27 +109,48 @@ def test__make_labeled_shape_elements_dict():
             gd.GuidsToDat._make_labeled_shape_elements_dict(
                 initial_shape_frame_dict, rule_frame_pair_dict))
         for labeled_shape in labeled_shape_elements_dict:
-            message = (
-                "Show elements in the labeled shape '%s'" % labeled_shape)
-            rs.GetString(message)
             elements = labeled_shape_elements_dict[labeled_shape]
+            frame_guid = elements.pop(0)
+            message_show_frame = (
+                "Show the frame of the labeled shape '%s'" % labeled_shape)
+            rs.MessageBox(message_show_frame)
+            rs.UnselectAllObjects()
+            rs.SelectObject(frame_guid)
+            message_show_elements = (
+                "Show the elements in the labeled shape '%s'" % labeled_shape)
+            rs.MessageBox(message_show_elements)
+            rs.UnselectAllObjects()
             rs.SelectObjects(elements)
 
     method_name = '_make_labeled_shape_elements_dict'
-    try_0_ishapes_0_rules()
-    try_3_ishapes_4_rules()
+    try_0_ishapes_0_rules()                     ##  automatic test
+    try_3_ishapes_4_rules()                     ##  manual test
 
 def test__get_elements():
-    def try_good_args():
-        try_name = 'good_value_empty_frame'
-        u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        message = "Select a frame instance"
+    def try_empty_frame():
+        try_name = 'empty_frame'
+        u.Utilities.make_grammar_1_initial_shape_1_delete_rule()
+        message = "%s %s" % (
+            "Select the empty frame instance.",
+            "Nothing will be selected")
         block_instance_filter = 4096
         frame_instance = rs.GetObject(message, block_instance_filter)
         actual_value = gd.GuidsToDat._get_elements(frame_instance)
         rs.SelectObjects(actual_value)
 
+    def try_good_args():
+        try_name = 'good_args'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        message = "%s %s" % (
+            "Select a frame instance.",
+            "The elements in the frame will be selected")
+        block_instance_filter = 4096
+        frame_instance_in = rs.GetObject(message, block_instance_filter)
+        actual_value = gd.GuidsToDat._get_elements(frame_instance_in)
+        rs.SelectObjects(actual_value)
+
     method_name = '_get_elements'
+    try_empty_frame()
     try_good_args()
 
 def test__get_ordered_labeled_shapes_string():  ##  07-17 09:20
@@ -144,18 +165,34 @@ def test__get_ordered_labeled_shapes_string():  ##  07-17 09:20
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
+    def try_1_ishape_1_delete_rule():
+        try_name = '1_ishape_1_delete_rule'
+        u.Utilities.make_grammar_1_initial_shape_1_delete_rule()
+        labeled_shape_name_elements_dict = (
+            _prompt_for_labeled_shape_name_elements_dict())
+        actual_value = gd.GuidsToDat._get_ordered_labeled_shapes_string(
+            labeled_shape_name_elements_dict)
+        expected_value = u.Utilities.ordered_labeled_shapes_1_1_string
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
     def try_3_ishapes_4_rules():
-        try_name = '0_ishapes_0_rules'
+        try_name = '3_ishapes_4_rules'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
         labeled_shape_name_elements_dict = (
             _prompt_for_labeled_shape_name_elements_dict())
         actual_value = gd.GuidsToDat._get_ordered_labeled_shapes_string(
             labeled_shape_name_elements_dict)
         expected_value = u.Utilities.ordered_labeled_shapes_3_4_string
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     method_name = '_get_ordered_labeled_shapes_string'
-    try_0_ishapes_0_rules()                     ##  done
-    try_3_ishapes_4_rules()                     ##  pending
+    # try_0_ishapes_0_rules()                     ##  done
+    try_1_ishape_1_delete_rule()                ##  
+    # try_3_ishapes_4_rules()                     ##  fix me
 
 def test__get_ordered_line_and_labeled_point_specs():
     def try_0_lines_0_labeled_points():
@@ -166,7 +203,8 @@ def test__get_ordered_line_and_labeled_point_specs():
             gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
                 element_guids))
         expected_value = ([], [])
-        if not actual_value == expected_value:
+        if actual_value == expected_value:
+        # if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
@@ -227,16 +265,18 @@ def test__get_ordered_line_and_labeled_point_specs():
     try_1_line_0_labeled_points()
     try_3_lines_3_labeled_points()
 
-def test__get_labeled_shape_string():           ##  07-18 19:05
+def test__get_labeled_shape_string():
     def try_0_line_0_labeled_point_specs():
         try_name = '0_line_0_labeled_point_specs'
         line_and_labeled_point_specs = ([], [])
         actual_value = gd.GuidsToDat._get_labeled_shape_string(
             line_and_labeled_point_specs)
         expected_value = '\n'.join([
-            '    name',
-            ''
+            '    name'
         ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     def try_0_line_1_labeled_point_specs():
         try_name = '0_line_1_labeled_point_specs'
@@ -249,6 +289,9 @@ def test__get_labeled_shape_string():           ##  07-18 19:05
             '',
             '    point 0 a'
         ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     def try_1_line_0_labeled_point_specs():
         try_name = '1_line_0_labeled_point_specs'
@@ -262,6 +305,9 @@ def test__get_labeled_shape_string():           ##  07-18 19:05
             '',
             '    line 0 0 1'
         ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     def try_3_line_3_labeled_point_specs():
         try_name = '3_line_3_labeled_point_specs'
@@ -287,6 +333,9 @@ def test__get_labeled_shape_string():           ##  07-18 19:05
             '    point 4 a',
             '    point 7 a'
         ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     method_name = '_get_labeled_shape_string'
     g.Grammar.clear_all()
@@ -295,7 +344,7 @@ def test__get_labeled_shape_string():           ##  07-18 19:05
     l2 = ((20, 30, 0), (30, 20, 0))
     lp0 = ('a', (5, 5, 0))
     lp1 = ('a', (15, 15, 0))
-    lp0 = ('a', (25, 25, 0))
+    lp2 = ('a', (25, 25, 0))
     try_0_line_0_labeled_point_specs()
     try_0_line_1_labeled_point_specs()
     try_1_line_0_labeled_point_specs()
@@ -404,7 +453,7 @@ def test__make_ordered_indented_line_lindex_codex_codex_polystring():
 
     def try_3_line_specs():
         try_name = '3_line_specs'
-        line_specs = [l1, l2, l3]
+        line_specs = [l3, l2, l1]
         actual_value = (
             gd.GuidsToDat._make_ordered_indented_line_lindex_codex_codex_polystring(
                 line_specs, ordered_point_specs))
@@ -423,6 +472,42 @@ def test__make_ordered_indented_line_lindex_codex_codex_polystring():
     ordered_point_specs = [p0, p1, p2, p3]
     try_0_line_specs()
     try_3_line_specs()
+
+def test__make_ordered_indented_point_codex_label_polystring():
+    def try_0_labeled_point_specs():
+        try_name = '0_labeled_point_specs'
+        labeled_point_specs = []
+        actual_value = (
+            gd.GuidsToDat._make_ordered_indented_point_codex_label_polystring(
+                labeled_point_specs, ordered_point_specs))
+        expected_value = ''
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_labeled_point_specs():
+        try_name = '0_labeled_point_specs'
+        labeled_point_specs = [lp3, lp2, lp1, lp0]
+        actual_value = (
+            gd.GuidsToDat._make_ordered_indented_point_codex_label_polystring(
+                labeled_point_specs, ordered_point_specs))
+        expected_value = '\n'.join([
+            '    point 0 a',
+            '    point 1 a',
+            '    point 2 a',
+            '    point 3 a'
+        ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_make_ordered_indented_point_codex_label_polystring'
+    p0, p1, p2, p3 = (0, 0, 0), (10, 10, 10), (20, 20, 20), (30, 30, 30) 
+    ordered_point_specs = [p0, p1, p2, p3]
+    a = 'a'
+    lp0, lp1, lp2, lp3 = (a, p0), (a, p1), (a, p2), (a, p3)
+    try_0_labeled_point_specs()
+    try_3_labeled_point_specs()
 
 ### to deprecate
 
@@ -715,7 +800,6 @@ def test__get_ordered_rule_defs_string():
 
 ####
 
-                                                ##  07-17 16:40
 def _prompt_for_labeled_shape_name_elements_dict():
     """Prompts the user to select the elements of labeled shapes  to construct 
     the labeled shape name-elements dictionary. Returns:
@@ -740,6 +824,8 @@ def _prompt_for_labeled_shape_elements(labeled_shape_name):
     message = "Select the elements in the labeled shape '%s'" % (
         labeled_shape_name)
     elements = rs.GetObjects(message)
+    if not elements:
+        elements = []
     return elements
 
 def _prompt_for_initial_shape_elements(initial_shapes):
@@ -1013,11 +1099,13 @@ def _make_annotations():
 # test__get_elements()                            ##  manual test / done
 # test__get_ordered_labeled_shapes_string()       ##  pending
 # test__get_ordered_line_and_labeled_point_specs()##  done
-# test__get_labeled_shape_string()                ##  pending
+# test__get_labeled_shape_string()                ##  done
 # test__make_ordered_point_specs()                ##  done
 # test__make_ordered_indented_coord_codex_xyz_polystring()
 #                                                 ##  done
 # test__make_ordered_indented_line_lindex_codex_codex_polystring()
+#                                                 ##  done
+# test__make_ordered_indented_point_codex_label_polystring()
 #                                                 ##  done
 
 ### to deprecate

@@ -167,10 +167,9 @@ class Utilities(object):
         '    name',
         '    coords 0 10 10 0',
         '',
-        '    point 0 a'
+        '    point 0 a',
         'shape    delete_labeled_point_R',
-        '    name',
-        ''
+        '    name'
     ])
     labeled_h_string = '\n'.join([
         'shape    labeled_h',
@@ -203,8 +202,8 @@ class Utilities(object):
         '    coords 3 22 4 0',
         '',
         '    line 0 0 1',
-        '    line 0 0 3',
-        '    line 0 1 3',
+        '    line 1 0 3',
+        '    line 2 1 3',
         '    point 2 a'
     ])
     labeled_square_string = '\n'.join([
@@ -255,6 +254,10 @@ class Utilities(object):
         '    point 4 a',
         '    point 7 a'
     ])
+    ordered_labeled_shapes_1_1_string = '\n'.join([
+        delete_labeled_point_string,
+        labeled_right_triangle_string
+    ])
     ordered_labeled_shapes_3_4_string = '\n'.join([
         add_h_in_square_string,
         add_h_to_h_string,
@@ -262,15 +265,15 @@ class Utilities(object):
         labeled_h_string,
         labeled_right_triangle_string,
         labeled_square_string,
-        subdivide_triangle_string,
-        '',
-        'initial    labeled_h',
-        'initial    labeled_right_triangle',
-        'initial    labeled_square',
-        'rule    add_h_in_square    add_h_in_square_L -> add_h_in_square_R',
-        'rule    add_h_to_h    add_h_to_h_L -> add_h_to_h_R',
-        'rule    delete_labeled_point    delete_labeled_point_L -> delete_labeled_point_R',
-        'rule    subdivide_triangle    subdivide_triangle_L -> subdivide_triangle_R',
+        subdivide_triangle_string
+        # '',
+        # 'initial    labeled_h',
+        # 'initial    labeled_right_triangle',
+        # 'initial    labeled_square',
+        # 'rule    add_h_in_square    add_h_in_square_L -> add_h_in_square_R',
+        # 'rule    add_h_to_h    add_h_to_h_L -> add_h_to_h_R',
+        # 'rule    delete_labeled_point    delete_labeled_point_L -> delete_labeled_point_R',
+        # 'rule    subdivide_triangle    subdivide_triangle_L -> subdivide_triangle_R',
     ])
 
     def __init__(self):
@@ -293,7 +296,18 @@ class Utilities(object):
             'add_h_to_h', cls.add_h_to_h_spec, (60, -80, 0))
         cls._add_subsequent_rule(
             'add_h_in_square', cls.add_h_in_square_spec, (60, -120, 0))
-        
+
+    @classmethod
+    def make_grammar_1_initial_shape_1_delete_rule(cls):
+        """Adds 1 initial shape and 1 delete rule
+        """
+        g.Grammar.clear_all()
+        cls._add_first_initial_shape(
+            'labeled_right_triangle', cls.labeled_right_triangle_spec)
+        cls._add_first_rule(
+            'delete_labeled_point',
+            cls.delete_labeled_point_spec)
+
     @classmethod
     def make_grammar_3_initial_shapes_0_rules(cls):
         """Adds 3 initial shapes

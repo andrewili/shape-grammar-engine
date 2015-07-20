@@ -39,10 +39,12 @@ class GuidsToDat(object):
             initial_shapes)
         rule_frame_pair_dict = cls._make_rule_frame_pair_dict(rules)
                             ##  {rule_name: (frame_instance, frame_instance)}
+        # _make_labeled_shape_elements_and_frame_dict
         labeled_shape_elements_dict = (
             cls._make_labeled_shape_elements_dict(
                 initial_shape_frame_dict, rule_frame_pair_dict))
                             ##  {labeled_shape: [element, ...]}
+                            ##  {labeled_shape: ([element, ...], frame_instance)}
         ordered_labeled_shapes_string = (
             cls._get_ordered_labeled_shapes_string(
                 labeled_shape_elements_dict))
@@ -112,21 +114,29 @@ class GuidsToDat(object):
         Returns:
             labeled_shape_elements_dict
                             {str: [guid, ...]}. A dictionary of labeled shape 
-                            names and lists of their element guids
+                            names and lists of their element guids. The first 
+                            guid is the guid of the frame instance
         """
         labeled_shape_elements_dict = {}
         for initial_shape in initial_shape_frame_dict:
             frame_instance = initial_shape_frame_dict[initial_shape]
             elements = cls._get_elements(frame_instance)
-            labeled_shape_elements_dict[initial_shape] = elements
+            elements.insert(0, frame_instance)
+            frame_and_elements = elements
+            labeled_shape_elements_dict[initial_shape] = frame_and_elements
         for rule in rule_frame_pair_dict:
             left_shape = '%s_L' % rule
             right_shape = '%s_R' % rule
             left_frame, right_frame = rule_frame_pair_dict[rule]
             left_elements = cls._get_elements(left_frame)
             right_elements = cls._get_elements(right_frame)
-            labeled_shape_elements_dict[left_shape] = left_elements
-            labeled_shape_elements_dict[right_shape] = right_elements
+            left_elements.insert(0, left_frame)
+            right_elements.insert(0, right_frame)
+            left_frame_and_elements = left_elements
+            right_frame_and_elements = right_elements
+            labeled_shape_elements_dict[left_shape] = left_frame_and_elements
+            labeled_shape_elements_dict[right_shape] = (
+                right_frame_and_elements)
         return labeled_shape_elements_dict
 
     @classmethod
@@ -135,7 +145,7 @@ class GuidsToDat(object):
             frame_instance  str. The name of a frame instance
         Returns:
             elements        [guid, ...]. A list of the guids of the elements 
-                            in the frame instance, if successful
+                            in the frame instance. 
             None            otherwise           ?
         """
         objects_on_layer = cls._get_objects_on_layer(frame_instance)
@@ -329,7 +339,7 @@ class GuidsToDat(object):
                             {str: [guid, ...]}. A dictionary of labeled shape 
                             names and lists of the guids of their elements
         Returns:
-            ordered_labeled_shapes_string
+            ordered_labeled_shapes_string       ##  poly_string
                             str\nstr\n...\nstr. The string form of [str, ...], 
                             an ordered list (by shape name) of .is strings of 
                             labeled shapes from both initial shapes and rules
@@ -343,12 +353,16 @@ class GuidsToDat(object):
             print("%s.%s\n    %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
+            labeled_shape_strings = []
             for name in labeled_shape_name_elements_dict:
                 element_guids = labeled_shape_name_elements_dict[name]
+                # element_guids, frame_instance_position = (
+                #     labeled_shape_name_elements_dict[name])
                                                 ##  [guid, ...]
                 line_and_labeled_point_specs = (
                     cls._get_ordered_line_and_labeled_point_specs(
                         element_guids))
+                        # element_guids, frame_instance_position))
                                                 ##  (   [line_spec], 
                                                 ##      [labeled_point_spec])
                 labeled_shape_string = cls._get_labeled_shape_string(
@@ -358,18 +372,24 @@ class GuidsToDat(object):
                     'shape    %s' % name,
                     labeled_shape_string])
                 labeled_shape_strings.append(named_labeled_shape_string)
-            ordered_labeled_shape_strings = labeled_shape_strings
+            ordered_labeled_shape_strings = sorted(labeled_shape_strings)
             ordered_labeled_shapes_string = '\n'.join(
                 ordered_labeled_shape_strings)
             return_value = ordered_labeled_shapes_string
         finally:
             return return_value
 
-    @classmethod
-    def _get_ordered_line_and_labeled_point_specs(cls, element_guids):
+    @classmethod                                ##  07-20 10:13
+    def _get_ordered_line_and_labeled_point_specs(
+        cls, element_guids
+    ):
+        # cls, element_guids, frame_instance_position
         """Receives:
-            element_guids   [guid, ...]. A list of the guids of lines and 
-                            labeled points
+            element_guids   [guid, ...]. A list of the guids of first the 
+                            frame instance and then of the lines and labeled 
+                            points
+            # frame_instance_position
+            #               point3d. The insertion point of the frame instance
         Returns:
             ordered_line_and_labeled_point_specs
                             ([line_spec, ...], [labeled_point_spec, ...]). A 
@@ -379,27 +399,33 @@ class GuidsToDat(object):
                             and a list of labeled point specs
                                 (   str,
                                     (num, num, num))
+                            where the specs are relative to the frame instance 
         """
-        line_specs, labeled_point_specs = [], []
+        line_specs , labeled_point_specs = [], []
+        frame_instance = element_guids.pop(0)
+        frame_position = rs.BlockInstanceInsertPoint(frame_instance)
         curve_type, textdot_type = 4, 8192
         for element_guid in element_guids:
             if rs.ObjectType(element_guid) == curve_type:
                 p1 = rs.CurveStartPoint(element_guid)
                 p2 = rs.CurveEndPoint(element_guid)
-                p1_coords, p2_coords = tuple(p1), tuple(p2)
-                if p1_coords < p2_coords:
-                    tail, head = p1_coords, p2_coords
-                elif p1_coords > p2_coords:
-                    tail, head = p2_coords, p1_coords
-                else:
-                    pass
+                p1_spec, p2_spec = tuple(p1), tuple(p2)
+                p1_spec_relative = rs.PointSubtract(p1_spec, frame_position)
+                p2_spec_relative = rs.PointSubtract(p2_spec, frame_position)
+                if p1_spec_relative < p2_spec_relative:
+                    tail = p1_spec_relative
+                    head = p2_spec_relative
+                elif p1_spec_relative > p2_spec_relative:
+                    tail = p2_spec_relative
+                    head = p1_spec_relative
                 line_spec = (tail, head)
                 line_specs.append(line_spec)
             elif rs.ObjectType(element_guid) == textdot_type:
                 label = rs.TextDotText(element_guid)
                 p = rs.TextDotPoint(element_guid)
-                p_coords = tuple(p)
-                labeled_point_spec = (label, p_coords)
+                p_spec = tuple(p)
+                p_spec_relative = rs.PointSubtract(p_spec, frame_position)
+                labeled_point_spec = (label, p_spec_relative)
                 labeled_point_specs.append(labeled_point_spec)
             else:
                 pass
@@ -407,7 +433,36 @@ class GuidsToDat(object):
             sorted(line_specs), sorted(labeled_point_specs))
         return ordered_line_and_labeled_point_specs
 
-    @classmethod                                ##  07-18 19:06
+        ####
+
+        # line_specs, labeled_point_specs = [], []
+        # curve_type, textdot_type = 4, 8192
+        # for element_guid in element_guids:
+        #     if rs.ObjectType(element_guid) == curve_type:
+        #         p1 = rs.CurveStartPoint(element_guid)
+        #         p2 = rs.CurveEndPoint(element_guid)
+        #         p1_coords, p2_coords = tuple(p1), tuple(p2)
+        #         if p1_coords < p2_coords:
+        #             tail, head = p1_coords, p2_coords
+        #         elif p1_coords > p2_coords:
+        #             tail, head = p2_coords, p1_coords
+        #         else:
+        #             pass
+        #         line_spec = (tail, head)
+        #         line_specs.append(line_spec)
+        #     elif rs.ObjectType(element_guid) == textdot_type:
+        #         label = rs.TextDotText(element_guid)
+        #         p = rs.TextDotPoint(element_guid)
+        #         p_coords = tuple(p)
+        #         labeled_point_spec = (label, p_coords)
+        #         labeled_point_specs.append(labeled_point_spec)
+        #     else:
+        #         pass
+        # ordered_line_and_labeled_point_specs = (
+        #     sorted(line_specs), sorted(labeled_point_specs))
+        # return ordered_line_and_labeled_point_specs
+
+    @classmethod
     def _get_labeled_shape_string(cls, line_and_labeled_point_specs):
         """Receives:
             line_and_labeled_point_specs
@@ -426,31 +481,36 @@ class GuidsToDat(object):
         line_specs, labeled_point_specs = line_and_labeled_point_specs
         ordered_point_specs = (
             cls._make_ordered_point_specs(line_specs, labeled_point_specs))
-                            ##  ordered_point_specs
                             ##  [(0, 0, 0), (0, 0, 1), ...]
         ordered_indented_coord_codex_xyz_polystring = (
             cls._make_ordered_indented_coord_codex_xyz_polystring(
                 ordered_point_specs))
-                            ##  coord_codex_xyz
                             ##  '    coords 0 0 0 0\n    coords 1 0 0 1\n...'
         blank_line = cls.blank_line
         ordered_indented_line_lindex_codex_codex_polystring = (
             cls._make_ordered_indented_line_lindex_codex_codex_polystring(
                 line_specs, ordered_point_specs))
-                            ##  line_lindex_codex_codex
                             ##  '    line 0 0 1\n    line 1 1 0\n...'
         ordered_indented_point_codex_label_polystring = (
             cls._make_ordered_indented_point_codex_label_polystring(
                 labeled_point_specs, ordered_point_specs))
-                            ##  point_codex_label
                             ##  '    point 0 a\n    point 1 a\n...'
-        labeled_shape_string = '\n'.join([
-            indented_name_string,
-            ordered_indented_coord_codex_xyz_polystring,
-            blank_line,
-            ordered_indented_line_lindex_codex_codex_polystring,
+        indented_name_string_parts = []
+        indented_name_string_parts.append(indented_name_string)
+        if ordered_indented_coord_codex_xyz_polystring:
+            indented_name_string_parts.append(
+                ordered_indented_coord_codex_xyz_polystring)
+        if (ordered_indented_line_lindex_codex_codex_polystring or
             ordered_indented_point_codex_label_polystring
-        ])
+        ):
+            indented_name_string_parts.append(blank_line)
+        if ordered_indented_line_lindex_codex_codex_polystring:
+            indented_name_string_parts.append(
+                ordered_indented_line_lindex_codex_codex_polystring)
+        if ordered_indented_point_codex_label_polystring:
+            indented_name_string_parts.append(
+                ordered_indented_point_codex_label_polystring)
+        labeled_shape_string = '\n'.join(indented_name_string_parts)
         return labeled_shape_string
 
     @classmethod
@@ -543,7 +603,8 @@ class GuidsToDat(object):
 
     @classmethod
     def _make_ordered_indented_point_codex_label_polystring(
-        cls, labeled_point_specs, ordered_point_specs):
+        cls, labeled_point_specs, ordered_point_specs
+    ):
         """Receives:
             labeled_point_specs
                             [labeled_point_spec, ...]. A list of labeled point 
@@ -559,6 +620,17 @@ class GuidsToDat(object):
                             codex-label strings, each of the form
                                 '    point 0 a'
         """
+        ordered_indented_point_codex_label_strings = []
+        ordered_labeled_point_specs = sorted(labeled_point_specs)
+        for labeled_point_spec in ordered_labeled_point_specs:
+            label, point = labeled_point_spec
+            codex = ordered_point_specs.index(point)
+            indented_point_codex_label_string = '%spoint %i %s' % (
+                cls.spacer, codex, label)
+            ordered_indented_point_codex_label_strings.append(
+                indented_point_codex_label_string)
+        ordered_indented_point_codex_label_polystring = '\n'.join(
+            ordered_indented_point_codex_label_strings)
         return ordered_indented_point_codex_label_polystring
 
 
