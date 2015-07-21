@@ -379,17 +379,12 @@ class GuidsToDat(object):
         finally:
             return return_value
 
-    @classmethod                                ##  07-20 10:13
-    def _get_ordered_line_and_labeled_point_specs(
-        cls, element_guids
-    ):
-        # cls, element_guids, frame_instance_position
+    @classmethod
+    def _get_ordered_line_and_labeled_point_specs(cls, element_guids):
         """Receives:
-            element_guids   [guid, ...]. A list of the guids of first the 
-                            frame instance and then of the lines and labeled 
+            element_guids   [guid, ...]. A list of the guids of (first) the 
+                            frame instance and (then) the lines and labeled 
                             points
-            # frame_instance_position
-            #               point3d. The insertion point of the frame instance
         Returns:
             ordered_line_and_labeled_point_specs
                             ([line_spec, ...], [labeled_point_spec, ...]). A 
@@ -399,68 +394,53 @@ class GuidsToDat(object):
                             and a list of labeled point specs
                                 (   str,
                                     (num, num, num))
-                            where the specs are relative to the frame instance 
+                            where the specs are relative to the frame 
+                            instance, if successful
+            None            otherwise
         """
-        line_specs , labeled_point_specs = [], []
-        frame_instance = element_guids.pop(0)
-        frame_position = rs.BlockInstanceInsertPoint(frame_instance)
-        curve_type, textdot_type = 4, 8192
-        for element_guid in element_guids:
-            if rs.ObjectType(element_guid) == curve_type:
-                p1 = rs.CurveStartPoint(element_guid)
-                p2 = rs.CurveEndPoint(element_guid)
-                p1_spec, p2_spec = tuple(p1), tuple(p2)
-                p1_spec_relative = rs.PointSubtract(p1_spec, frame_position)
-                p2_spec_relative = rs.PointSubtract(p2_spec, frame_position)
-                if p1_spec_relative < p2_spec_relative:
-                    tail = p1_spec_relative
-                    head = p2_spec_relative
-                elif p1_spec_relative > p2_spec_relative:
-                    tail = p2_spec_relative
-                    head = p1_spec_relative
-                line_spec = (tail, head)
-                line_specs.append(line_spec)
-            elif rs.ObjectType(element_guid) == textdot_type:
-                label = rs.TextDotText(element_guid)
-                p = rs.TextDotPoint(element_guid)
-                p_spec = tuple(p)
-                p_spec_relative = rs.PointSubtract(p_spec, frame_position)
-                labeled_point_spec = (label, p_spec_relative)
-                labeled_point_specs.append(labeled_point_spec)
-            else:
-                pass
-        ordered_line_and_labeled_point_specs = (
-            sorted(line_specs), sorted(labeled_point_specs))
-        return ordered_line_and_labeled_point_specs
-
-        ####
-
-        # line_specs, labeled_point_specs = [], []
-        # curve_type, textdot_type = 4, 8192
-        # for element_guid in element_guids:
-        #     if rs.ObjectType(element_guid) == curve_type:
-        #         p1 = rs.CurveStartPoint(element_guid)
-        #         p2 = rs.CurveEndPoint(element_guid)
-        #         p1_coords, p2_coords = tuple(p1), tuple(p2)
-        #         if p1_coords < p2_coords:
-        #             tail, head = p1_coords, p2_coords
-        #         elif p1_coords > p2_coords:
-        #             tail, head = p2_coords, p1_coords
-        #         else:
-        #             pass
-        #         line_spec = (tail, head)
-        #         line_specs.append(line_spec)
-        #     elif rs.ObjectType(element_guid) == textdot_type:
-        #         label = rs.TextDotText(element_guid)
-        #         p = rs.TextDotPoint(element_guid)
-        #         p_coords = tuple(p)
-        #         labeled_point_spec = (label, p_coords)
-        #         labeled_point_specs.append(labeled_point_spec)
-        #     else:
-        #         pass
-        # ordered_line_and_labeled_point_specs = (
-        #     sorted(line_specs), sorted(labeled_point_specs))
-        # return ordered_line_and_labeled_point_specs
+        method_name = '_get_ordered_line_and_labeled_point_specs'
+        try:
+            if element_guids == []:
+                raise ValueError
+        except ValueError:
+            message = "There is no frame instance"
+            print("%s.%s\n    %s" % (cls.__name__, method_name, message))
+            return_value = None
+        else:
+            line_specs , labeled_point_specs = [], []
+            frame_instance = element_guids.pop(0)
+            frame_position = rs.BlockInstanceInsertPoint(frame_instance)
+            curve_type, textdot_type = 4, 8192
+            for element_guid in element_guids:
+                if rs.ObjectType(element_guid) == curve_type:
+                    p1_absolute = rs.CurveStartPoint(element_guid)
+                    p2_absolute = rs.CurveEndPoint(element_guid)
+                    p1_relative = rs.PointSubtract(p1_absolute, frame_position)
+                    p2_relative = rs.PointSubtract(p2_absolute, frame_position)
+                    p1_spec = tuple(p1_relative)
+                    p2_spec = tuple(p2_relative)
+                    if p1_spec < p2_spec:
+                        tail = p1_spec
+                        head = p2_spec
+                    elif p1_spec > p2_spec:
+                        tail = p2_spec
+                        head = p1_spec
+                    line_spec = (tail, head)
+                    line_specs.append(line_spec)
+                elif rs.ObjectType(element_guid) == textdot_type:
+                    label = rs.TextDotText(element_guid)
+                    p_absolute = rs.TextDotPoint(element_guid)
+                    p_relative = rs.PointSubtract(p_absolute, frame_position)
+                    p_spec = tuple(p_relative)
+                    labeled_point_spec = (label, p_spec)
+                    labeled_point_specs.append(labeled_point_spec)
+                else:
+                    pass
+            ordered_line_and_labeled_point_specs = (
+                sorted(line_specs), sorted(labeled_point_specs))
+            return_value = ordered_line_and_labeled_point_specs
+        finally:
+            return return_value
 
     @classmethod
     def _get_labeled_shape_string(cls, line_and_labeled_point_specs):

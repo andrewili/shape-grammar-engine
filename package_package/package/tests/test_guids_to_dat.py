@@ -202,68 +202,80 @@ def test__get_ordered_line_and_labeled_point_specs():
         actual_value = (
             gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
                 element_guids))
-        expected_value = ([], [])
-        if actual_value == expected_value:
-        # if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_0_lines_1_labeled_point():
-        try_name = '0_lines_1_labeled_point'
-        g.Grammar.clear_all()
-        lpt0 = rs.AddTextDot('a', (10, 10, 0))
-        element_guids = [lpt0]
-        actual_value = (
-            gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
-                element_guids))
-        expected_value = ([], [('a', (10, 10, 0))])
+        expected_value = None
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_1_line_0_labeled_points():
-        try_name = '1_line_0_labeled_points'
-        g.Grammar.clear_all()
-        l0 = rs.AddLine((0, 0, 0), (20, 20, 0))
-        lpt0 = rs.AddTextDot('a', (10, 10, 0))
-        element_guids = [lpt0, l0]
+    def try_0_lines_4_labeled_points():
+        try_name = '0_lines_4_labeled_points'
+
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        message_frame = "Select the frame instance of the labeled h"
+        frame_instance = rs.GetObject(message_frame, block_instance_filter)
+        message_labeled_points = "Select the labeled points in the labeled h"
+        element_guids = rs.GetObjects(message_labeled_points, text_dot_filter)
+        element_guids.insert(0, frame_instance)
         actual_value = (
             gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
                 element_guids))
-        expected_value = ([((0, 0, 0), (20, 20, 0))], [('a', (10, 10, 0))])
+        expected_value = (
+            [],
+            [   ('a', (8, 6, 0)),
+                ('a', (8, 26, 0)),
+                ('a', (24, 6, 0)),
+                ('a', (24, 26, 0))])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_lines_0_labeled_points():
+        try_name = '3_lines_0_labeled_points'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+
+        message_frame = "Select the frame instance of the labeled square"
+        frame_instance = rs.GetObject(message_frame, block_instance_filter)
+        message_lines = "Select the lines in the labeled square"
+        element_guids = rs.GetObjects(message_lines, curve_filter)
+        element_guids.insert(0, frame_instance)
+        actual_value = (
+            gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
+                element_guids))
+        expected_value = (
+            [   ((4, 4, 0), (4, 28, 0)),
+                ((4, 4, 0), (28, 4, 0)),
+                ((4, 28, 0), (28, 28, 0)),
+                ((28, 4, 0), (28, 28, 0))],
+            [])
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     def try_3_lines_3_labeled_points():
         try_name = '3_lines_3_labeled_points'
-        g.Grammar.clear_all()
-        l0 = rs.AddLine((0, 0, 0), (20, 20, 0))
-        l1 = rs.AddLine((0, 20, 0), (20, 0, 0))
-        l2 = rs.AddLine((0, 10, 0), (20, 10, 0))
-        lpt0 = rs.AddTextDot('a', (10, 10, 0))
-        lpt1 = rs.AddTextDot('a', (20, 20, 0))
-        lpt2 = rs.AddTextDot('a', (30, 30, 0))
-        element_guids = [lpt2, l2, lpt1, l1, lpt0, l0]
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        message_frame = "Select the frame instance of the labeled square"
+        frame_instance = rs.GetObject(message_frame, block_instance_filter)
+        message_elements = "Select the elements of the labeled square"
+        element_filter = curve_filter + text_dot_filter
+        element_guids = rs.GetObjects(message_elements, element_filter)
+        element_guids.insert(0, frame_instance)
         actual_value = (
             gd.GuidsToDat._get_ordered_line_and_labeled_point_specs(
                 element_guids))
-        expected_value = (
-            [   ((0, 0, 0), (20, 20, 0)),
-                ((0, 10, 0), (20, 10, 0)),
-                ((0, 20, 0), (20, 0, 0))],
-            [   ('a', (10, 10, 0)),
-                ('a', (20, 20, 0)),
-                ('a', (30, 30, 0))])
+        expected_value = u.Utilities.labeled_square_spec
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     method_name = '_get_ordered_line_and_labeled_point_specs'
-    try_0_lines_0_labeled_points()
-    try_0_lines_1_labeled_point()
-    try_1_line_0_labeled_points()
-    try_3_lines_3_labeled_points()
+    curve_filter = 4
+    block_instance_filter = 4096
+    text_dot_filter = 8192
+    # try_0_lines_0_labeled_points()              ##  done
+    # try_0_lines_4_labeled_points()              ##  done
+    # try_3_lines_0_labeled_points()              ##  done
+    # try_3_lines_3_labeled_points()              ##  done
 
 def test__get_labeled_shape_string():
     def try_0_line_0_labeled_point_specs():
@@ -1093,12 +1105,12 @@ def _make_annotations():
 ####
 
 # test_get_dat_string()
-# test__make_initial_shape_frame_dict()           ##  manual test / done
-# test__make_rule_frame_pair_dict()               ##  manual test / done
-# test__make_labeled_shape_elements_dict()        ##  manual test / done
-# test__get_elements()                            ##  manual test / done
+# test__make_initial_shape_frame_dict()           ##  done / manual test
+# test__make_rule_frame_pair_dict()               ##  done / manual test
+# test__make_labeled_shape_elements_dict()        ##  done / manual test
+# test__get_elements()                            ##  done / manual test
 # test__get_ordered_labeled_shapes_string()       ##  pending
-# test__get_ordered_line_and_labeled_point_specs()##  done
+# test__get_ordered_line_and_labeled_point_specs()##  done / manual test
 # test__get_labeled_shape_string()                ##  done
 # test__make_ordered_point_specs()                ##  done
 # test__make_ordered_indented_coord_codex_xyz_polystring()
