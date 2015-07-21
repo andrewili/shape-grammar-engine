@@ -349,18 +349,63 @@ def test__get_labeled_shape_string():
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
+    def try_5_line_5_labeled_point_specs():
+        try_name = '5_line_5_labeled_point_specs'
+        line_and_labeled_point_specs = (
+            [l4, l3, l2, l1, l0],
+            [lp4, lp3, lp2, lp1, lp0])
+        actual_value = gd.GuidsToDat._get_labeled_shape_string(
+            line_and_labeled_point_specs)
+        expected_value = '\n'.join([
+            '    name',
+            '    coords 0 0 10 0',
+            '    coords 1 5 5 0',
+            '    coords 2 10 0 0',
+            '    coords 3 10 20 0',
+            '    coords 4 15 15 0',
+            '    coords 5 20 10 0',
+            '    coords 6 20 30 0',
+            '    coords 7 25 25 0',
+            '    coords 8 30 20 0',
+            '    coords 9 30 40 0',
+            '    coords 10 35 35 0',
+            '    coords 11 40 30 0',
+            '    coords 12 40 50 0',
+            '    coords 13 45 45 0',
+            '    coords 14 50 40 0',
+            '',
+            '    line 0 0 2',
+            '    line 1 3 5',
+            '    line 2 6 8',
+            '    line 3 9 11',
+            '    line 4 12 14',
+            '    point 1 a',
+            '    point 4 a',
+            '    point 7 a',
+            '    point 10 a',
+            '    point 13 a',
+        ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
     method_name = '_get_labeled_shape_string'
     g.Grammar.clear_all()
     l0 = ((0, 10, 0), (10, 0, 0))
     l1 = ((10, 20, 0), (20, 10, 0))
     l2 = ((20, 30, 0), (30, 20, 0))
+    l3 = ((30, 40, 0), (40, 30, 0))
+    l4 = ((40, 50, 0), (50, 40, 0))
     lp0 = ('a', (5, 5, 0))
     lp1 = ('a', (15, 15, 0))
     lp2 = ('a', (25, 25, 0))
+    lp3 = ('a', (35, 35, 0))
+    lp4 = ('a', (45, 45, 0))
     try_0_line_0_labeled_point_specs()
     try_0_line_1_labeled_point_specs()
     try_1_line_0_labeled_point_specs()
     try_3_line_3_labeled_point_specs()
+    try_5_line_5_labeled_point_specs()
 
 def test__make_ordered_point_specs():
     def try_0_line_specs_0_labeled_point_specs():
