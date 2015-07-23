@@ -330,7 +330,7 @@ class GuidsToDat(object):
         dat_spec = (coord_list, codex_codex_list, codex_label_list)
         return dat_spec
 
-    @classmethod                                ##  07-17 08:32
+    @classmethod
     def _get_ordered_labeled_shapes_string(
         cls, labeled_shape_name_elements_dict
     ):
@@ -356,13 +356,10 @@ class GuidsToDat(object):
             labeled_shape_strings = []
             for name in labeled_shape_name_elements_dict:
                 element_guids = labeled_shape_name_elements_dict[name]
-                # element_guids, frame_instance_position = (
-                #     labeled_shape_name_elements_dict[name])
                                                 ##  [guid, ...]
                 line_and_labeled_point_specs = (
                     cls._get_ordered_line_and_labeled_point_specs(
                         element_guids))
-                        # element_guids, frame_instance_position))
                                                 ##  (   [line_spec], 
                                                 ##      [labeled_point_spec])
                 labeled_shape_string = cls._get_labeled_shape_string(

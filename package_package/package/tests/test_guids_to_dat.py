@@ -153,7 +153,7 @@ def test__get_elements():
     try_empty_frame()
     try_good_args()
 
-def test__get_ordered_labeled_shapes_string():  ##  07-17 09:20
+def test__get_ordered_labeled_shapes_string():
     def try_0_ishapes_0_rules():
         try_name = '0_ishapes_0_rules'
         u.Utilities.make_grammar_0_initial_shapes_0_rules()
@@ -190,9 +190,10 @@ def test__get_ordered_labeled_shapes_string():  ##  07-17 09:20
                 method_name, try_name, expected_value, actual_value)
 
     method_name = '_get_ordered_labeled_shapes_string'
+    print('tests disabled')
     # try_0_ishapes_0_rules()                     ##  done
-    try_1_ishape_1_delete_rule()                ##  
-    # try_3_ishapes_4_rules()                     ##  fix me
+    # try_1_ishape_1_delete_rule()                ##  done
+    # try_3_ishapes_4_rules()                     ##  done
 
 def test__get_ordered_line_and_labeled_point_specs():
     def try_0_lines_0_labeled_points():
@@ -272,6 +273,7 @@ def test__get_ordered_line_and_labeled_point_specs():
     curve_filter = 4
     block_instance_filter = 4096
     text_dot_filter = 8192
+    print('tests disabled')
     # try_0_lines_0_labeled_points()              ##  done
     # try_0_lines_4_labeled_points()              ##  done
     # try_3_lines_0_labeled_points()              ##  done
@@ -723,35 +725,6 @@ def test__get_ordered_labeled_shape_names():
     try_bad_state_3_initial_shapes_0_rules()
     try_good_state_3_initial_shapes_3_rules()
 
-# def test__get_ordered_labeled_shapes_string():
-    # def try_no_ishapes_no_rules():
-    #     try_name = 'no_ishapes_no_rules'
-    #     g.Grammar.clear_all()
-    #     f.Frame._new_definition()
-    #     actual_value = g.Grammar._get_ordered_labeled_shapes_string()
-    #     expected_value = ''
-    #     if not actual_value == expected_value:
-    #         u.Utilities.print_test_error_message(
-    #             method_name, try_name, expected_value, actual_value)
-
-    # def try_no_ishapes_rules():
-    #     try_name = 'no_ishapes_rules'
-    #     pass
-
-    # def try_ishapes_no_rules():
-    #     try_name = 'ishapes_no_rules'
-    #     pass
-
-    # def try_ishapes_rules():
-    #     try_name = 'ishapes_rules'
-    #     pass
-
-    # method_name = '_get_ordered_labeled_shapes_string'
-    # try_no_ishapes_no_rules()
-    # # try_no_ishapes_rules()
-    # # try_ishapes_no_rules()
-    # # try_ishapes_rules()
-
 def test__get_ordered_initial_shape_defs_string():
     def try_good_state_no_ishapes_no_rules():
         try_name = 'good_state_no_ishapes_no_rules'
@@ -862,14 +835,29 @@ def _prompt_for_labeled_shape_name_elements_dict():
     the labeled shape name-elements dictionary. Returns:
         labeled_shape_name_elements_dict
                             {str: [guid, ...]}. A dictionary of labeled shape 
-                            names and lists of guids of associated elements
+                            names and lists of guids of (first) the frame 
+                            instance and (then) the associated elements
     """
     labeled_shape_name_elements_dict = {}
     labeled_shape_names = g.Grammar.get_labeled_shape_names()
     for labeled_shape_name in labeled_shape_names:
+        frame_instance = _prompt_for_frame_instance(labeled_shape_name)
         elements = _prompt_for_labeled_shape_elements(labeled_shape_name)
+        elements.insert(0, frame_instance)
         labeled_shape_name_elements_dict[labeled_shape_name] = elements
     return labeled_shape_name_elements_dict
+
+def _prompt_for_frame_instance(labeled_shape_name):
+    """Receives:
+        labeled_shape_name  str. The name of a labeled shape
+    Returns:
+        frame_instance      guid. The guid of the associated frame instance
+    """
+    message = "Select the frame instance of the labeled shape '%s'" % (
+        labeled_shape_name)
+    block_instance_filter = 4096
+    frame_instance = rs.GetObject(message, block_instance_filter)
+    return frame_instance
 
 def _prompt_for_labeled_shape_elements(labeled_shape_name):
     """Receives:
@@ -1154,7 +1142,7 @@ def _make_annotations():
 # test__make_rule_frame_pair_dict()               ##  done / manual test
 # test__make_labeled_shape_elements_dict()        ##  done / manual test
 # test__get_elements()                            ##  done / manual test
-# test__get_ordered_labeled_shapes_string()       ##  pending
+# test__get_ordered_labeled_shapes_string()       ##  done / manual test
 # test__get_ordered_line_and_labeled_point_specs()##  done / manual test
 # test__get_labeled_shape_string()                ##  done
 # test__make_ordered_point_specs()                ##  done
