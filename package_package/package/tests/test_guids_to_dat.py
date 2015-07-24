@@ -20,12 +20,18 @@ def test_get_dat_string():                      ##  07-10 13:32
 
     def try_good_grammar():
         try_name = 'good_grammar'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        actual_value = gd.GuidsToDat.get_dat_string()
+        expected_value = u.Utilities.grammar_3_4_dat_string
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     method_name = 'get_dat_string'
-    try_no_initial_shape_layer()
-    try_no_rule_layer()
-    try_empty_initial_shape()
-    try_empty_left_rule_shape()
+    # try_no_initial_shape_layer()
+    # try_no_rule_layer()
+    # try_empty_initial_shape()
+    # try_empty_left_rule_shape()
     try_good_grammar()
 
 def test__make_initial_shape_frame_dict():
@@ -567,6 +573,62 @@ def test__make_ordered_indented_point_codex_label_polystring():
     lp0, lp1, lp2, lp3 = (a, p0), (a, p1), (a, p2), (a, p3)
     try_0_labeled_point_specs()
     try_3_labeled_point_specs()
+
+def test__get_ordered_initial_shape_names_string():
+    def try_0_ishapes():
+        try_name = '0_ishapes'
+        initial_shapes = []
+        actual_value = gd.GuidsToDat._get_ordered_initial_shape_names_string(
+            initial_shapes)
+        expected_value = ''
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_ishapes():
+        try_name = '3_ishapes_0_rules'
+        initial_shapes = ['three', 'blind', 'mice']
+        actual_value = gd.GuidsToDat._get_ordered_initial_shape_names_string(
+            initial_shapes)
+        expected_value = '\n'.join([
+            'initial    blind',
+            'initial    mice',
+            'initial    three'
+        ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_ordered_initial_shape_names_string'
+    try_0_ishapes()
+    try_3_ishapes()
+
+def test__get_ordered_rule_names_string():
+    def try_0_rules():
+        try_name = '0_rules'
+        rules = []
+        actual_value = gd.GuidsToDat._get_ordered_rule_names_string(rules)
+        expected_value = ''
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_rules():
+        try_name = '3_rules'
+        rules = ['three', 'blind', 'mice']
+        actual_value = gd.GuidsToDat._get_ordered_rule_names_string(rules)
+        expected_value = '\n'.join([
+            'rule    blind    blind_L -> blind_R',
+            'rule    mice    mice_L -> mice_R',
+            'rule    three    three_L -> three_R'
+        ])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_ordered_rule_names_string'
+    try_0_rules()
+    try_3_rules()
 
 ### to deprecate
 
@@ -1137,7 +1199,7 @@ def _make_annotations():
 
 ####
 
-# test_get_dat_string()
+test_get_dat_string()                           ##  kilroy is here
 # test__make_initial_shape_frame_dict()           ##  done / manual test
 # test__make_rule_frame_pair_dict()               ##  done / manual test
 # test__make_labeled_shape_elements_dict()        ##  done / manual test
@@ -1152,6 +1214,8 @@ def _make_annotations():
 #                                                 ##  done
 # test__make_ordered_indented_point_codex_label_polystring()
 #                                                 ##  done
+# test__get_ordered_initial_shape_names_string()  ##  done
+# test__get_ordered_rule_names_string()           ##  done
 
 ### to deprecate
 

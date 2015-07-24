@@ -21,8 +21,8 @@ class GuidsToDat(object):
         """Composes the grammar's dat string, i.e.: 
             header
             ordered_labeled_shapes_string
-            ordered_initial_shapes_string
-            ordered_rules_string
+            ordered_initial_shape_names_string
+            ordered_rule_names_string
         The grammar must be well-formed, i.e., 
             it must have at least one well-formed initial shape layer (i.e., 
                 a layer with one frame instance and at least one line or 
@@ -49,22 +49,21 @@ class GuidsToDat(object):
             cls._get_ordered_labeled_shapes_string(
                 labeled_shape_elements_dict))
                             ##  'labeled_shape_string\n...'
-                                                ##  kilroy was here
-        ordered_initial_shapes_string = (
-            cls._get_ordered_initial_shapes_string(
-                labeled_shape_elements_dict))
+        ordered_initial_shape_names_string = (
+            cls._get_ordered_initial_shape_names_string(initial_shapes))
                             ##  'initial    name\n...'
-        ordered_rules_string = (
-            cls._get_ordered_rules_string(labeled_shape_elements_dict))
+        ordered_rule_names_string = (
+            cls._get_ordered_rule_names_string(rules))
                             ##  'rule    name    name_L -> name_R\n...'
+                                                ##  kilroy was here
         dat_header = cls.dat_header
         blank_line = cls.blank_line
         dat_string = '\n'.join([
             dat_header,
-            ordered_labeled_shapes_string,
+            ordered_labeled_shapes_string,      ##  polystring?
             blank_line,
-            ordered_initial_shapes_string,
-            ordered_rules_string])
+            ordered_initial_shape_names_string, ##  polystring?
+            ordered_rule_names_string])         ##  polystring?
         return_value = dat_string
         return return_value
 
@@ -612,43 +611,69 @@ class GuidsToDat(object):
 
 
     @classmethod
-    def _get_ordered_initial_shapes_string(cls, name_dat_dict):
+    def _get_ordered_initial_shape_names_string(cls, initial_shapes):
         """Receives:
-            initial_shape_names
-                            [str, ...]
-            y
+            initial_shapes  [str, ...]. A list of names of initial shapes
         Returns:
-            ordered_initial_shapes_string
-                            str\nstr\n...\nstr. The joined string of an 
-                            ordered list of initial shape strings
+            ordered_initial_shape_names_string
+                            str\nstr\n...\nstr. The joining of an ordered 
+                            list of initial shape name strings, each of the 
+                            form 
+                                '    initial    <name>'
         """
-        initial_shape_strings = []
-        for initial_shape_name in initial_shape_names:
-            initial_shape_string = cls._get_initial_shape_string(
-                initial_shape_name)
-            initial_shape_strings.append(initial_shape_string)
-        ordered_initial_shape_strings = sorted(initial_shape_strings)
-        ordered_initial_shapes_string = '\n'.join(
-            ordered_initial_shape_strings)
-        return ordered_initial_shapes_string
+        initial_shape_name_strings = []
+        for name in initial_shapes:
+            initial_shape_name_string = (
+                cls._get_initial_shape_name_string(name))
+            initial_shape_name_strings.append(initial_shape_name_string)
+        ordered_initial_shape_name_strings = sorted(
+            initial_shape_name_strings)
+        ordered_initial_shape_names_string = '\n'.join(
+            ordered_initial_shape_name_strings)
+        return ordered_initial_shape_names_string
 
     @classmethod
-    def _get_ordered_rules_string(cls, name_dat_dict):
+    def _get_initial_shape_name_string(cls, name):
         """Receives:
-            rule_names      [str, ...]
-            z
+            name            str. The name of an initial shape
         Returns:
-            ordered_rules_string
-                            str\nstr\n...\nstr. The joined string of an 
-                            ordered list of rule strings
+            initial_shape_name_string
+                            str. In the form:
+                                'initial    <name>'
         """
-        rule_strings = []
-        for rule_name in rule_names:
-            rule_string = cls._get_rule_string(rule_name)
-            rule_strings.append(rule_string)
-        ordered_rule_strings = sorted(rule_strings)
-        ordered_rules_string = '\n'.join(ordered_rule_strings)
-        return ordered_rules_string
+        initial_shape_name_string = "initial%s%s" % (
+            cls.spacer, name)
+        return initial_shape_name_string
 
+    @classmethod
+    def _get_ordered_rule_names_string(cls, rules):
+        """Receives:
+            rules           [str, ...]. A list of names of rules
+        Returns:
+            ordered_rule_names_string
+                            str\nstr\n...\nstr. The joining of an ordered list 
+                            of rule strings
+        """
+        rule_name_strings = []
+        for name in rules:
+            rule_name_string = cls._get_rule_name_string(name)
+            rule_name_strings.append(rule_name_string)
+        ordered_rule_name_strings = sorted(rule_name_strings)
+        ordered_rule_names_string = '\n'.join(ordered_rule_name_strings)
+        return ordered_rule_names_string
 
+    @classmethod
+    def _get_rule_name_string(cls, name):
+        """Receives:
+            name            str. The name of a rule
+        Returns:
+            rule_name_string
+                            str. In the form:
+                                'rule    <name>    <name>_L -> <name>_R'
+        """
+        spacer = cls.spacer
+        rule_name_string = 'rule%s%s%s%s_L -> %s_R' % (
+            spacer, name, spacer, name, name)
+                                                ##  centralize?
+        return rule_name_string
 
