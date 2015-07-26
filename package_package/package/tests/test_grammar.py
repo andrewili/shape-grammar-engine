@@ -130,9 +130,18 @@ def test__set_up_rule():
 
 ####
 
-def test_export():
-    pass
+def test_export():                              ##  07-25 08:22
+    def try_good_grammar():
+        try_name = 'good_grammar'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        actual_value = g.Grammar.export()
+        expected_value = u.Utilities.grammar_3_4_dat_string
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
+    method_name = 'export'
+    try_good_grammar()
 
 def test_get_name():
     def try_good_state():
@@ -491,7 +500,7 @@ def _set_up():
 # test_set_up_subsequent_rule()                   ##  done
 # test__set_up_rule()                             ##  done
 
-# test_export()
+test_export()                                   ##  manual test
 # test_get_name()                                 ##  done
 
 # done

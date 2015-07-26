@@ -63,7 +63,8 @@ class GuidsToDat(object):
             ordered_labeled_shapes_string,      ##  polystring?
             blank_line,
             ordered_initial_shape_names_string, ##  polystring?
-            ordered_rule_names_string])         ##  polystring?
+            ordered_rule_names_string,          ##  polystring?
+            blank_line])
         return_value = dat_string
         return return_value
 

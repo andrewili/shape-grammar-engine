@@ -333,7 +333,8 @@ class Utilities(object):
         ordered_labeled_shapes_3_4_string,
         gd.GuidsToDat.blank_line,
         ordered_initial_shape_names_3_string,
-        ordered_rule_names_4_string
+        ordered_rule_names_4_string,
+        gd.GuidsToDat.blank_line
     ])
 
     def __init__(self):

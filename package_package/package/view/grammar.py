@@ -156,7 +156,7 @@ class Grammar(object):
             return_value = None
         else:
             file_name = cls.get_doc_name()
-            dat_string = gd.get_dat_string()
+            dat_string = gd.GuidsToDat.get_dat_string()
             cls._write_to_file(file_name, dat_string)
             return_value = dat_string
         return return_value
@@ -207,9 +207,21 @@ class Grammar(object):
         # ordered_rule_defs_string = '\n'.join(ordered_rule_defs)
         # return ordered_rule_defs_string
 
-    @classmethod
-    def _write_to_file(cls):
-        pass
+    @classmethod                                ##  07-25 08:33
+    def _write_to_file(cls, file_name_in, dat_string):
+        title = 'Save grammar as'
+        file_filter = 'DAT file (*.dat)|*.dat||'
+        folder = None
+        file_name = file_name_in
+        extension = 'dat'
+        file_name_out = (
+            rs.SaveFileName(title, file_filter, folder, file_name, extension))
+        if not file_name_out: 
+            return
+        file = open(file_name_out, "w" )
+        file.write(dat_string)
+        file.close()
+        print(dat_string)
 
     ####
 
