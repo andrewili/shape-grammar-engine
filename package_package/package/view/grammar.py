@@ -8,8 +8,8 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 
 class Grammar(object):
-    initial_shapes = 'initial shapes'
-    rules = 'rules'
+    # initial_shapes = 'initial shapes'
+    # rules = 'rules'
 
     def __init__(self):
         pass
@@ -141,22 +141,22 @@ class Grammar(object):
     # def import(cls):                            ##  can't use this word
     #     pass
 
-    @classmethod                                ##  07-07 08:42
+    @classmethod                                ##  done / in use
     def export(cls):
         """Writes the grammar's dat string to a file, proposing the Rhino 
         document name as the file name. Returns:
             dat_string      str. The dat string, if successful
             None            otherwise
         """
-        if not rs.IsBlock(s.Settings.frame_name):
-            message = "%s %s" % (
-                "The grammar must contain a frame block definition.",
-                "Please use the 'new grammar' command")
-            print(message)
+        file_name = cls.get_doc_name()
+        dat_string = gd.GuidsToDat.get_dat_string()
+        if not(dat_string):
+            error_message = "%s %s" % (
+                "Export failed", 
+                "because the dat string could not be written")
+            print(error_message)
             return_value = None
         else:
-            file_name = cls.get_doc_name()
-            dat_string = gd.GuidsToDat.get_dat_string()
             cls._write_to_file(file_name, dat_string)
             return_value = dat_string
         return return_value
@@ -207,9 +207,9 @@ class Grammar(object):
         # ordered_rule_defs_string = '\n'.join(ordered_rule_defs)
         # return ordered_rule_defs_string
 
-    @classmethod                                ##  07-25 08:33
+    @classmethod                                ##  done
     def _write_to_file(cls, file_name_in, dat_string):
-        title = 'Save grammar as'
+        title = 'Save grammar'
         file_filter = 'DAT file (*.dat)|*.dat||'
         folder = None
         file_name = file_name_in
@@ -225,7 +225,32 @@ class Grammar(object):
 
     ####
 
-    @classmethod
+    # @classmethod                                ##  in use 07-28 08:56
+    # def make_element_frame_dicts(cls):
+        # """Returns:
+        #     initial_shape_frame_dict
+        #                     {str: guid}. A non-empty dictionary of initial 
+        #                     shape layer names and frame instance guids, if 
+        #                     successful
+        #     rule_frame_pair_dict
+        #                     {str: (guid, guid)}. A non-empty dictionary of 
+        #                     rule shape layer names and frame instance guid 
+        #                     pairs, if successful
+        #     None            otherwise
+        # """
+        # initial_shapes, rules = cls.get_initial_shapes_and_rules()
+
+        # initial_shape_frame_dict = {}
+        # rule_frame_pair_dict = {}
+        # error_message = None
+        # if error_message:
+        #     print(error_message)
+        # return_value = (
+        #     initial_shape_frame_dict, 
+        #     rule_frame_pair_dict)
+        # return return_value
+
+    @classmethod                                ##  
     def get_initial_shapes_and_rules(cls):
         """Returns:
             initial_shapes  [str, ...]. A list of the names of layers 
@@ -242,38 +267,38 @@ class Grammar(object):
                 rules.append(name)
         return (initial_shapes, rules)
 
-    @classmethod
-    def get_labeled_shape_names(cls):
-        """The grammar is guaranteed to be well-formed. Returns:
-            labeled_shape_names
-                            [str, ...]. A list of the names of the labeled 
-                            shapes in initial shapes or rules, i.e., name, 
-                            name_L, or name_R
-        """
-        labeled_shape_names = []
-        layer_names = rs.LayerNames()
-        for layer_name in layer_names:
-            if l.Layer.contains_initial_shape(layer_name):
-                labeled_shape_names.append(layer_name)
-            elif l.Layer.contains_rule(layer_name):
-                left_name = "%s_L" % layer_name
-                right_name = "%s_R" % layer_name
-                labeled_shape_names.extend([left_name, right_name])
-        return labeled_shape_names
+    # @classmethod
+    # def get_labeled_shape_names(cls):
+        # """The grammar is guaranteed to be well-formed. Returns:
+        #     labeled_shape_names
+        #                     [str, ...]. A list of the names of the labeled 
+        #                     shapes in initial shapes or rules, i.e., name, 
+        #                     name_L, or name_R
+        # """
+        # labeled_shape_names = []
+        # layer_names = rs.LayerNames()
+        # for layer_name in layer_names:
+        #     if l.Layer.contains_initial_shape(layer_name):
+        #         labeled_shape_names.append(layer_name)
+        #     elif l.Layer.contains_rule(layer_name):
+        #         left_name = "%s_L" % layer_name
+        #         right_name = "%s_R" % layer_name
+        #         labeled_shape_names.extend([left_name, right_name])
+        # return labeled_shape_names
 
-    @classmethod
-    def get_initial_shapes(cls):                ##  07-03 14:53
-        """Returns:
-            initial_shapes  [str, ...]. A sorted list of the names of the 
-                            initial shapes in the grammar, if successful
-            None            otherwise
-        """
-        text_guids = rs.ObjectsByGroup(ish.InitialShape.component_type)
-        names = []
-        for guid in text_guids:
-            name = rs.TextObjectText(guid)
-            names.append(name)
-        return sorted(names)
+    # @classmethod
+    # def get_initial_shapes(cls):
+        # """Returns:
+        #     initial_shapes  [str, ...]. A sorted list of the names of the 
+        #                     initial shapes in the grammar, if successful
+        #     None            otherwise
+        # """
+        # text_guids = rs.ObjectsByGroup(ish.InitialShape.component_type)
+        # names = []
+        # for guid in text_guids:
+        #     name = rs.TextObjectText(guid)
+        #     names.append(name)
+        # return sorted(names)
             
     @classmethod
     def get_rule_shapes(cls):

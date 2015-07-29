@@ -89,14 +89,48 @@ def test__is_available():
     try_unused_name()
 
 def test_get_frame_instance():
-    def try_good_arg():
+    def try_bad_value_non_existent_layer():
+        try_name = 'try_bad_state_non_existent_layer'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        initial_shape = 'no_such_layer'
+        actual_value = l.Layer.get_frame_instance(initial_shape)
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_bad_state_0_frame_instances():
+        try_name = 'bad_state_0_frame_instances'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        initial_shape = 'frames'
+        actual_value = l.Layer.get_frame_instance(initial_shape)
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_bad_state_2_frame_instances():
+        try_name = 'bad_state_2_frame_instances'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        initial_shape = 'subdivide_triangle'
+        actual_value = l.Layer.get_frame_instance(initial_shape)
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_state_1_frame_instance():
         try_name = 'good_arg'
-        u.Utilities.make_grammar_3_initial_shapes_3_rules()
-        actual_value = l.Layer.get_frame_instance('labeled_square_spec')
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        initial_shape = 'labeled_square'
+        actual_value = l.Layer.get_frame_instance(initial_shape)
         rs.SelectObject(actual_value)
 
     method_name = 'get_frame_instance'
-    try_good_arg()
+    try_bad_value_non_existent_layer()
+    try_bad_state_0_frame_instances()
+    try_bad_state_2_frame_instances()
+    try_good_state_1_frame_instance()
 
 def test_get_frame_instance_pair():
     def try_good_arg():
