@@ -41,7 +41,7 @@ class GuidsToDat(object):
         ):
             error_message = "%s %s" % (
                 "The grammar must have",
-                "at least one initial shape and one rule"
+                "at least one initial shape and one rule")
             print(error_message)
             return_value = None
         else:
@@ -129,9 +129,9 @@ class GuidsToDat(object):
     ):
         """Receives:
             element_layer   str. The name of an initial shape layer or a rule 
-                            layer. Value guaranteed
-            frame_instance  guid. The guid of a frame instance on that layer. 
-                            Value guaranteed
+                            layer (guaranteed)
+            frame_instance  guid. The guid of a frame instance on that layer 
+                            (guaranteed)
             initial_shape_frame_dict
                             {str: guid}. A dictionary, possibly empty, of 
                             initial shape layer names and frame instance guids
@@ -140,10 +140,10 @@ class GuidsToDat(object):
                             of rule shape layer names and frame instance guid 
                             pairs
         If there is no entry for element_layer in initial_shape_frame_dict, 
-        adds a new entry to initial_shape_frame_dict. 
-        If there is an entry for element_layer in initial_shape_frame_dict, 
-        deletes that entry and adds a new entry (with both frame instances) to 
-        rule_frame_pair_dict. Returns:
+        adds a new entry to initial_shape_frame_dict. If there is an entry for 
+        element_layer in initial_shape_frame_dict, deletes that entry and adds 
+        a new entry (with both frame instances) to rule_frame_pair_dict. 
+        Returns:
             initial_shape_frame_dict
                             {str: guid}. A dictionary, possibly empty, of 
                             initial shape layer names and frame instance guids
@@ -152,8 +152,61 @@ class GuidsToDat(object):
                             of rule shape layer names and frame instance guid 
                             pairs
         """
-
+        if element_layer in initial_shape_frame_dict:
+            frame_instance_1 = initial_shape_frame_dict.pop(element_layer)
+            frame_instance_2 = frame_instance
+            cls._add_entry_to_rule_frame_pair_dict(
+                element_layer, 
+                frame_instance_1, 
+                frame_instance_2, 
+                rule_frame_pair_dict)
+        else:
+            cls._add_entry_to_initial_shape_frame_dict(
+                element_layer, 
+                frame_instance, 
+                initial_shape_frame_dict)
         return element_frame_dict
+
+    @classmethod
+    def _add_entry_to_rule_frame_pair_dict(
+        cls, 
+        element_layer, 
+        frame_instance_1, 
+        frame_instance_2, 
+        rule_frame_pair_dict
+    ):
+        """Receives:
+            element_layer   str. The name of a rule layer (guaranteed)
+            frame_instance_1
+                            guid. The guid of the first frame instance on the 
+                            layer (guaranteed)
+            frame_instance_2
+                            guid. The guid of the second frame instance on the 
+                            layer (guaranteed)
+            rule_frame_pair_dict
+                            {str: (guid, guid)}. A dictionary, possibly empty, 
+                            of rule shape layer names and frame instance guid 
+                            pairs
+        Adds a new layer-guid-pair entry, with the left guid first. Returns:
+            rule_frame_pair_dict
+                            {str: (guid, guid)}. A non-empty dictionary of 
+                            rule shape layer names and frame instance guid 
+                            pairs.
+        """
+        p1 = rs.BlockInstanceInsertPoint(frame_instance_1)
+        p2 = rs.BlockInstanceInsertPoint(frame_instance_2)
+        if p1 < p2:
+            frame_instance_left = frame_instance_1
+            frame_instance_right = frame_instance_2
+        elif p1 > p2:
+            frame_instance_left = frame_instance_2
+            frame_instance_right = frame_instance_1
+        else:
+            error_message = "The two frame instances have the same location"
+            print(error_message)
+        rule_frame_pair_dict[element_layer] = (
+            frame_instance_left, frame_instance_right)
+        return rule_frame_pair_dict
 
     @classmethod                                ##  07-28 17:37
     def _add_frame_instance_guid_to_rule_dict(
