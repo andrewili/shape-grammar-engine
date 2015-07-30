@@ -16,262 +16,83 @@ class GuidsToDat(object):
     def __init__(self):
         pass
 
-    @classmethod                                ##  07-27 06:28
+    @classmethod                                ##  07-14 08:39
     def get_dat_string(cls):
-        """Composes the grammar's dat string, if the grammar is well-formed. 
-        The grammar consists of:
+        """Composes the grammar's dat string, i.e.: 
             header
             ordered_labeled_shapes_string
-            blank_line
             ordered_initial_shape_names_string
             ordered_rule_names_string
-            blank_line
-        The grammar is well-formed if and only if:
-            it has at least one initial shape layer
-            it has at least one rule layer
+        The grammar must be well-formed, i.e., 
+            it must have at least one well-formed initial shape layer (i.e., 
+                a layer with one frame instance and at least one line or 
+                textdot)
+            it must have at least one well-formed rule layer (i.e., a layer 
+                with two frame instances and at least one line or textdot)
         Returns:
             dat_string      str. The grammar's dat string, if successful
             None            otherwise
         """
-        initial_shape_frame_dict, rule_frame_pair_dict = {}, {}
-        cls._make_element_frame_dicts(
-            initial_shape_frame_dict, rule_frame_pair_dict)
-        if (initial_shape_frame_dict == None or
-            rule_frame_pair_dict == None
-        ):
-            error_message = "%s %s" % (
-                "The grammar must have",
-                "at least one initial shape and one rule")
-            print(error_message)
-            return_value = None
-        else:
-
-            initial_shape_frame_dict = cls._make_initial_shape_frame_dict(
-                initial_shapes)
-                            ##  {rule_name: frame_instance}
-            rule_frame_pair_dict = cls._make_rule_frame_pair_dict(rules)
-                            ##  {rule_name: (frame_instance, frame_instance)}
-            labeled_shape_elements_dict = (
-                cls._make_labeled_shape_elements_dict(
-                    initial_shape_frame_dict, rule_frame_pair_dict))
-                            ##  {labeled_shape: [element, ...]}
-            ordered_labeled_shapes_string = (
-                cls._get_ordered_labeled_shapes_string(
-                    labeled_shape_elements_dict))
-                            ##  'labeled_shape_string\n...'
-            ordered_initial_shape_names_string = (
-                cls._get_ordered_initial_shape_names_string(initial_shapes))
-                            ##  'initial    name\n...'
-            ordered_rule_names_string = (
-                cls._get_ordered_rule_names_string(rules))
-                            ##  'rule    <name>    <name_L> -> <name_R>\n...'
-            dat_header = cls.dat_header
-            blank_line = cls.blank_line
-            dat_string = '\n'.join([
-                dat_header,
-                ordered_labeled_shapes_string,  ##  polystring?
-                blank_line,
-                ordered_initial_shape_names_string, ##  polystring?
-                ordered_rule_names_string,      ##  polystring?
-                blank_line])
-            return_value = dat_string
-        return return_value
-
-    @classmethod                                ##  07-28 08:56
-    def _make_element_frame_dicts(
-        cls, initial_shape_frame_dict, rule_frame_pair_dict
-    ):
-        """Receives:
-            initial_shape_frame_dict
-                            {str: guid}. A dictionary, possibly empty, of 
-                            initial shape layer names and frame instance guids
-            rule_frame_pair_dict
-                            {str: (guid, guid)}. A dictionary, possibly empty, 
-                            of rule shape layer names and frame instance guid 
-                            pairs
-        Returns:
-            (initial_shape_frame_dict, rule_frame_pair_dict), where:
-                initial_shape_frame_dict
-                            {str: guid}. A dictionary, possibly empty, of 
-                            initial shape layer names and frame instance 
-                            guids, if successful; None otherwise
-                rule_frame_pair_dict
-                            {str: (guid, guid)}. A dictionary, possibly empty, 
-                            of rule shape layer names and frame instance guid 
-                            pairs, if successful; None otherwise
-        """
-        frame_instances = rs.BlockInstances(s.Settings.frame_name)
-        for frame_instance in frame_instances:
-            layer = rs.ObjectLayer(frame_instance)
-            cls._add_frame_instance_to_element_frame_dicts(
-                layer,
-                frame_instance,
-                initial_shape_frame_dict,
-                rule_frame_pair_dict)
-
-        initial_shape_frame_dict = {}
-        rule_frame_pair_dict = {}
+        initial_shapes, rules = g.Grammar.get_initial_shapes_and_rules()
+                                                ##  both non-empty
         initial_shape_frame_dict = cls._make_initial_shape_frame_dict(
             initial_shapes)
         rule_frame_pair_dict = cls._make_rule_frame_pair_dict(rules)
-        return_value = (
-            initial_shape_frame_dict, 
-            rule_frame_pair_dict)
+                            ##  {rule_name: (frame_instance, frame_instance)}
+        # _make_labeled_shape_elements_and_frame_dict
+        labeled_shape_elements_dict = (
+            cls._make_labeled_shape_elements_dict(
+                initial_shape_frame_dict, rule_frame_pair_dict))
+                            ##  {labeled_shape: [element, ...]}
+                            ##  {labeled_shape: ([element, ...], frame_instance)}
+        ordered_labeled_shapes_string = (
+            cls._get_ordered_labeled_shapes_string(
+                labeled_shape_elements_dict))
+                            ##  'labeled_shape_string\n...'
+        ordered_initial_shape_names_string = (
+            cls._get_ordered_initial_shape_names_string(initial_shapes))
+                            ##  'initial    name\n...'
+        ordered_rule_names_string = (
+            cls._get_ordered_rule_names_string(rules))
+                            ##  'rule    name    name_L -> name_R\n...'
+                                                ##  kilroy was here
+        dat_header = cls.dat_header
+        blank_line = cls.blank_line
+        dat_string = '\n'.join([
+            dat_header,
+            ordered_labeled_shapes_string,      ##  polystring?
+            blank_line,
+            ordered_initial_shape_names_string, ##  polystring?
+            ordered_rule_names_string,          ##  polystring?
+            blank_line])
+        return_value = dat_string
         return return_value
-
-    @classmethod                                ##  07-29 08:40
-    def _add_frame_instance_to_element_frame_dicts(
-        cls,
-        element_layer,
-        frame_instance,
-        initial_shape_frame_dict,
-        rule_frame_pair_dict
-    ):
-        """Receives:
-            element_layer   str. The name of an initial shape layer or a rule 
-                            layer (guaranteed)
-            frame_instance  guid. The guid of a frame instance on that layer 
-                            (guaranteed)
-            initial_shape_frame_dict
-                            {str: guid}. A dictionary, possibly empty, of 
-                            initial shape layer names and frame instance guids
-            rule_frame_pair_dict
-                            {str: (guid, guid)}. A dictionary, possibly empty, 
-                            of rule shape layer names and frame instance guid 
-                            pairs
-        If there is no entry for element_layer in initial_shape_frame_dict, 
-        adds a new entry to initial_shape_frame_dict. If there is an entry for 
-        element_layer in initial_shape_frame_dict, deletes that entry and adds 
-        a new entry (with both frame instances) to rule_frame_pair_dict. 
-        Returns:
-            initial_shape_frame_dict
-                            {str: guid}. A dictionary, possibly empty, of 
-                            initial shape layer names and frame instance guids
-            rule_frame_pair_dict
-                            {str: (guid, guid)}. A dictionary, possibly empty, 
-                            of rule shape layer names and frame instance guid 
-                            pairs
-        """
-        if element_layer in initial_shape_frame_dict:
-            frame_instance_1 = initial_shape_frame_dict.pop(element_layer)
-            frame_instance_2 = frame_instance
-            cls._add_entry_to_rule_frame_pair_dict(
-                element_layer, 
-                frame_instance_1, 
-                frame_instance_2, 
-                rule_frame_pair_dict)
-        else:
-            cls._add_entry_to_initial_shape_frame_dict(
-                element_layer, 
-                frame_instance, 
-                initial_shape_frame_dict)
-        return element_frame_dict
 
     @classmethod
-    def _add_entry_to_rule_frame_pair_dict(
-        cls, 
-        element_layer, 
-        frame_instance_1, 
-        frame_instance_2, 
-        rule_frame_pair_dict
-    ):
-        """Receives:
-            element_layer   str. The name of a rule layer (guaranteed)
-            frame_instance_1
-                            guid. The guid of the first frame instance on the 
-                            layer (guaranteed)
-            frame_instance_2
-                            guid. The guid of the second frame instance on the 
-                            layer (guaranteed)
-            rule_frame_pair_dict
-                            {str: (guid, guid)}. A dictionary, possibly empty, 
-                            of rule shape layer names and frame instance guid 
-                            pairs
-        Adds a new layer-guid-pair entry, with the left guid first. Returns:
-            rule_frame_pair_dict
-                            {str: (guid, guid)}. A non-empty dictionary of 
-                            rule shape layer names and frame instance guid 
-                            pairs.
-        """
-        p1 = rs.BlockInstanceInsertPoint(frame_instance_1)
-        p2 = rs.BlockInstanceInsertPoint(frame_instance_2)
-        if p1 < p2:
-            frame_instance_left = frame_instance_1
-            frame_instance_right = frame_instance_2
-        elif p1 > p2:
-            frame_instance_left = frame_instance_2
-            frame_instance_right = frame_instance_1
-        else:
-            error_message = "The two frame instances have the same location"
-            print(error_message)
-        rule_frame_pair_dict[element_layer] = (
-            frame_instance_left, frame_instance_right)
-        return rule_frame_pair_dict
-
-    @classmethod                                ##  07-28 17:37
-    def _add_frame_instance_guid_to_rule_dict(
-        cls, frame_instance_guid, frame_instance_layer, rule_frame_pair_dict
-    ):
-        """Receives:
-            frame_instance_guid
-                            guid. The guid of a frame instance
-            frame_instance_layer
-                            str. The name of the layer containing the frame 
-                            instance
-            rule_frame_pair_dict
-                            {str: (guid, guid)}
-        Adds the frame guid to an entry, if one exists. Creates a new rule-
-        frame entry, otherwise
-        """
-        if frame_instance_layer in rule_frame_pair_dict:
-            frame_instance_guid_1 = rule_frame_pair_dict[frame_instance_layer]
-            frame_instance_guid_2 = frame_instance_guid
-            p1 = rs.BlockInstanceInsertPoint(frame_instance_guid_1)
-            p2 = rs.BlockInstanceInsertPoint(frame_instance_guid_2)
-            if p1 < p2:
-                rule_frame_pair_dict[frame_instance_layer] = (
-                    frame_instance_guid_1, frame_instance_guid_2)
-            else:
-                rule_frame_pair_dict[frame_instance_layer] = (
-                    frame_instance_guid_2, frame_instance_guid_1)
-        else:
-            rule_frame_pair_dict[frame_instance_layer] = frame_instance_guid
-            return rule_frame_pair_dict
-
-    @classmethod                                ##  07-27 08:24 paused
     def _make_initial_shape_frame_dict(cls, initial_shapes):
         """Receives:
-            initial_shapes  [str, ...]. A non-empty list of names of layers 
-                            containing one frame instance. The values are 
-                            guaranteed
+            initial_shapes  [str, ...]. A list of names of layers containing 
+                            one frame instance. Values are guaranteed
         Returns:
             initial_shape_frame_dict
-                            {str: guid}. A non-empty dictionary of initial 
-                            shape names and frame instance guids, if 
-                            successful
-            None            otherwise
+                            {str: guid}. A dictionary of initial shape names 
+                            and frame instance guids
         """
-        if not initial_shapes:
-            return_value = None
-        else:
-            initial_shape_frame_dict = {}
-            for initial_shape in initial_shapes:
-                frame_instance = l.Layer.get_frame_instance(initial_shape)
-                                                ##  kilroy is here
-                initial_shape_frame_dict[initial_shape] = frame_instance
-            return_value = initial_shape_frame_dict
-        return return_value
+        initial_shape_frame_dict = {}
+        for initial_shape in initial_shapes:
+            frame_instance = l.Layer.get_frame_instance(initial_shape)
+            initial_shape_frame_dict[initial_shape] = frame_instance
+        return initial_shape_frame_dict
 
     @classmethod
     def _make_rule_frame_pair_dict(cls, rules):
         """Receives:
-            rules           [str, ...]. A non-empty list of names of layers 
-                            containing two frame instances. The values are 
-                            guaranteed
+            rules           [str, ...]. A list of names of layers containing 
+                            two frame instances. Values are guaranteed
         Returns:
             rule_frame_pair_dict
-                            {str: (guid, guid)}. A non-empty dictionary of 
-                            rule names and frame instance guid pairs
+                            {str: (guid, guid)}. A dictionary of rule names 
+                            and frame instance guid pairs
         """
         rule_frame_pair_dict = {}
         for rule in rules:
@@ -509,7 +330,7 @@ class GuidsToDat(object):
         dat_spec = (coord_list, codex_codex_list, codex_label_list)
         return dat_spec
 
-    @classmethod                                ##  polystring?
+    @classmethod
     def _get_ordered_labeled_shapes_string(
         cls, labeled_shape_name_elements_dict
     ):
@@ -790,7 +611,7 @@ class GuidsToDat(object):
         return ordered_indented_point_codex_label_polystring
 
 
-    @classmethod                                ##  polystring?
+    @classmethod
     def _get_ordered_initial_shape_names_string(cls, initial_shapes):
         """Receives:
             initial_shapes  [str, ...]. A list of names of initial shapes
@@ -825,7 +646,7 @@ class GuidsToDat(object):
             cls.spacer, name)
         return initial_shape_name_string
 
-    @classmethod                                ##  polystring?
+    @classmethod
     def _get_ordered_rule_names_string(cls, rules):
         """Receives:
             rules           [str, ...]. A list of names of rules

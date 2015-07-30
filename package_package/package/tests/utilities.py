@@ -404,28 +404,6 @@ class Utilities(object):
             'add_h_in_square', cls.add_h_in_square_spec, (60, -120, 0))
 
     @classmethod
-    def make_grammar_0_initial_shapes_3_rules_1_3_frame(cls):
-        """Adds 3 initial shapes, 3 rules, and 1 layer with 3 frames
-        """
-        g.Grammar.clear_all()
-        cls._add_first_initial_shape(
-            'labeled_right_triangle', cls.labeled_right_triangle_spec)
-        cls._add_subsequent_initial_shape(
-            'labeled_h', 
-            cls.labeled_h_spec, 
-            (0, -80, 0))
-        cls._add_subsequent_initial_shape(
-            'labeled_square', cls.labeled_square_spec, (0, -120, 0))
-        cls._add_first_rule(
-            'subdivide_triangle', cls.subdivide_triangle_spec)
-        cls._add_subsequent_rule(
-            'add_h_to_h', cls.add_h_to_h_spec, (60, -80, 0))
-        cls._add_subsequent_rule(
-            'add_h_in_square', cls.add_h_in_square_spec, (60, -120, 0))
-        cls._add_3_frame_layer(
-            '3_frame_layer', cls.delete_labeled_point_spec, (60, -160, 0))
-
-    @classmethod
     def make_grammar_3_initial_shapes_4_rules(cls):
         """Adds 3 initial shapes and 4 rules (including delete label rule)
         """
@@ -596,22 +574,6 @@ class Utilities(object):
         else:
             return_value = None
         return return_value
-
-    @classmethod
-    def _add_3_frame_layer(cls, layer_name, rule_spec, left_frame_position):
-        """Receives:
-            layer_name      str
-            left_frame_position
-                            Point3d. The location of the leftmost frame 
-                            instance
-        Draws 3 frame instances on the specified layer
-        """
-        cls._add_subsequent_rule(layer_name, rule_spec, left_frame_position)
-        frame_name = s.Settings.frame_name
-        right_frame_offset = (100, 0, 0)
-        right_frame_position = rs.PointAdd(
-            left_frame_position, right_frame_offset)
-        f.Frame.new_instance(frame_name, layer_name, right_frame_position)
 
     @classmethod                                ##  07-24 09:32
     def _make_grammar_3_4_dat_string(cls):

@@ -130,7 +130,7 @@ def test__set_up_rule():
 
 ####
 
-def test_export():
+def test_export():                              ##  07-25 08:22
     def try_good_grammar():
         try_name = 'good_grammar'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
@@ -160,7 +160,6 @@ def _there_are_at_least_one_initial_shape_and_one_rule():
     pass
 
 ####
-
 
 def test_get_initial_shapes_and_rules():
     def try_0_ishapes_0_rules():
@@ -501,14 +500,14 @@ def _set_up():
 # test_set_up_subsequent_rule()                   ##  done
 # test__set_up_rule()                             ##  done
 
-# test_export()                                   ##  done / manual test
+test_export()                                   ##  manual test
 # test_get_name()                                 ##  done
 
 # done
 # test_get_initial_shapes_and_rules()             ##  done
 # test_get_labeled_shape_names()                  ##  done
-# test_get_initial_shapes()                             ##  deprecated
+# test_get_initial_shapes()
 # test_get_rule_shapes()
-# test_get_rules()                                      ##  deprecated
+# test_get_rules()
 # test_add_to_initial_shapes()
 # test_add_to_rules()
