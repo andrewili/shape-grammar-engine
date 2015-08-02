@@ -1,3 +1,4 @@
+from package.view import arrow as a
 from package.view import frame as f
 from package.controller import guids_to_dat as gd
 # from package.view import initial_shape as ish   ##  to deprecate
@@ -118,20 +119,27 @@ class Grammar(object):
             layer_name      str. The name of the rule layer
             left_frame_position
                             Point3D. The position of the left frame instance
-        Inserts left and right frame instances on the layer. Returns:
+        Inserts left frame, right frame, and arrow instances on the layer. 
+        Returns:
             layer_name      str. The name of the rule layer, if successful
             None            otherwise
         """
-        value_1 = l.Layer.new(layer_name)
+        layer_name_in = l.Layer.new(layer_name)
         left_frame_name = "%s_L" % layer_name
         right_frame_name = "%s_R" % layer_name
         right_frame_position = (
             s.Settings.get_right_frame_position(left_frame_position))
-        value_2 = f.Frame.new_instance(
+        arrow_position = s.Settings.get_arrow_position(left_frame_position)
+        left_frame_instance = f.Frame.new_instance(
             left_frame_name, layer_name, left_frame_position)
-        value_3 = f.Frame.new_instance(
+        right_frame_instance = f.Frame.new_instance(
             right_frame_name, layer_name, right_frame_position)
-        if value_1 and value_2 and value_3:
+        arrow_instance = a.Arrow.new_instance(arrow_position, layer_name)
+        if (layer_name_in and 
+            left_frame_instance and 
+            right_frame_instance and 
+            arrow_instance
+        ):
             return_value = layer_name
         else:
             return_value = None
