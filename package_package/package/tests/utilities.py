@@ -292,6 +292,20 @@ class Utilities(object):
         subdivide_triangle_R_string
     ])
 
+    three_initial_shapes = [
+        'labeled_h',
+        'labeled_right_triangle',
+        'labeled_square']
+    three_rules = [
+        'add_h_in_square',
+        'add_h_to_h',
+        'subdivide_triangle']
+    four_rules = [
+        'add_h_in_square',
+        'add_h_to_h',
+        'subdivide_triangle',
+        'delete_labeled_point']
+
     ordered_labeled_shapes_1_1_string = '\n'.join([
         delete_labeled_point_string,
         labeled_right_triangle_string
@@ -402,6 +416,28 @@ class Utilities(object):
             'add_h_to_h', cls.add_h_to_h_spec, (60, -80, 0))
         cls._add_subsequent_rule(
             'add_h_in_square', cls.add_h_in_square_spec, (60, -120, 0))
+
+    @classmethod
+    def make_grammar_0_initial_shapes_3_rules_1_3_frame(cls):
+        """Adds 3 initial shapes, 3 rules, and 1 layer with 3 frames
+        """
+        g.Grammar.clear_all()
+        cls._add_first_initial_shape(
+            'labeled_right_triangle', cls.labeled_right_triangle_spec)
+        cls._add_subsequent_initial_shape(
+            'labeled_h', 
+            cls.labeled_h_spec, 
+            (0, -80, 0))
+        cls._add_subsequent_initial_shape(
+            'labeled_square', cls.labeled_square_spec, (0, -120, 0))
+        cls._add_first_rule(
+            'subdivide_triangle', cls.subdivide_triangle_spec)
+        cls._add_subsequent_rule(
+            'add_h_to_h', cls.add_h_to_h_spec, (60, -80, 0))
+        cls._add_subsequent_rule(
+            'add_h_in_square', cls.add_h_in_square_spec, (60, -120, 0))
+        cls._add_3_frame_layer(
+            '3_frame_layer', cls.delete_labeled_point_spec, (60, -160, 0))
 
     @classmethod
     def make_grammar_3_initial_shapes_4_rules(cls):
@@ -575,6 +611,22 @@ class Utilities(object):
             return_value = None
         return return_value
 
+    @classmethod
+    def _add_3_frame_layer(cls, layer_name, rule_spec, left_frame_position):
+        """Receives:
+            layer_name      str
+            left_frame_position
+                            Point3d. The location of the leftmost frame 
+                            instance
+        Draws 3 frame instances on the specified layer
+        """
+        cls._add_subsequent_rule(layer_name, rule_spec, left_frame_position)
+        frame_name = s.Settings.frame_name
+        right_frame_offset = (100, 0, 0)
+        right_frame_position = rs.PointAdd(
+            left_frame_position, right_frame_offset)
+        f.Frame.new_instance(frame_name, layer_name, right_frame_position)
+
     @classmethod                                ##  07-24 09:32
     def _make_grammar_3_4_dat_string(cls):
         pass
@@ -659,6 +711,34 @@ class Utilities(object):
         """
         offset_point = rs.PointAdd(point, offset)
         return offset_point
+
+    @classmethod
+    def prompt_for_initial_shape_frame_dict(cls, initial_shapes):
+        block_instance_filter = s.Settings.block_instance_filter
+        initial_shape_frame_dict = {}
+        for initial_shape in initial_shapes:
+            message = (
+                "Select the frame instance on the layer '%s'" % initial_shape)
+            frame_instance = rs.GetObject(message, block_instance_filter)
+            initial_shape_frame_dict[initial_shape] = frame_instance
+        return initial_shape_frame_dict
+
+    @classmethod
+    def prompt_for_rule_frame_pair_dict(cls, rules):
+        block_instance_filter = s.Settings.block_instance_filter
+        rule_frame_pair_dict = {}
+        for rule in rules:
+            message_left = (
+                "Select the left frame instance on the layer '%s'" % rule)
+            message_right = (
+                "Select the right frame instance on the layer '%s'" % rule)
+            frame_instance_left = rs.GetObject(
+                message_left, block_instance_filter)
+            frame_instance_right = rs.GetObject(
+                message_right, block_instance_filter)
+            rule_frame_pair_dict[rule] = (
+                frame_instance_left, frame_instance_right)
+        return rule_frame_pair_dict
 
     @classmethod
     def make_grammar_3_3_containers(cls):

@@ -9,6 +9,7 @@ class Settings(object):
     arrow_color_name = dark_gray
     arrow_length = frame_size[0] / 4
     arrow_name = 'arrow'    
+    block_instance_filter = 4096    
     block_type = 4096
     default_layer_name = 'Default'
     first_initial_shape_layer_name = 'initial_shape_1'

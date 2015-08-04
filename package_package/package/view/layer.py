@@ -64,27 +64,48 @@ class Layer(object):
         return_value = not rs.IsLayer(name)
         return return_value
 
-    @classmethod
+    @classmethod                                ##  07-28 07:02
     def get_frame_instance(cls, initial_shape):
         """Receives:
             initial_shape   str. The name of a layer containing one frame 
-                            instances (i.e., an initial shape layer). The 
-                            value is guaranteed
+                            instance (i.e., an initial shape layer). The value 
+                            is guaranteed
         Returns:
             frame_instance  guid. The guid of the frame instance on the layer 
+                            Isn't this redundant?
         """
+        
+
+        if not rs.IsLayer(initial_shape):
+            message = "There is no layer named '%s'" % initial_shape
         all_frame_instances = rs.BlockInstances(s.Settings.frame_name)
-        for instance_i in all_frame_instances:
-            if rs.ObjectLayer(instance_i) == initial_shape:
-                frame_instance = instance_i
-                break
-        return frame_instance
+        frame_instances_on_layer = []
+        for frame_instance in all_frame_instances:
+            if rs.ObjectLayer(frame_instance) == initial_shape:
+                frame_instances_on_layer.append(frame_instance)
+        n_instances = len(frame_instances_on_layer)
+        if n_instances == 0:
+            message = "%s %s" % (
+                "There is no frame instance", 
+                "on the layer '%s'" % initial_shape)
+            return_value = None
+        elif n_instances == 1:
+            message = None
+            return_value = frame_instances_on_layer.pop()
+        else:
+            message = "%s %s" % (
+                "There is more than 1 frame instance", 
+                "on the layer '%s'" % initial_shape)
+            return_value = None
+        if message:
+            print(message)
+        return return_value
 
     @classmethod
     def get_frame_instance_pair(cls, rule):
         """Receives:
-            rule            str. The name of a layer containing one frame 
-                            instance (i.e., a rule layer). The value is 
+            rule            str. The name of a layer containing two frame 
+                            instances (i.e., a rule layer). The value is 
                             guaranteed
         Returns:
             ordered_frame_instance_pair
