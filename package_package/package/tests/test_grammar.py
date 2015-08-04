@@ -498,9 +498,9 @@ def _set_up():
 # test__set_up_initial_shape()                    ##  done
 # test__set_up_first_rule()                       ##  done
 # test_set_up_subsequent_rule()                   ##  done
-# test__set_up_rule()                             ##  done
+# test__set_up_rule()                             ##  done / manual test
 
-test_export()                                   ##  manual test
+# test_export()                                   ##  done / manual test
 # test_get_name()                                 ##  done
 
 # done
