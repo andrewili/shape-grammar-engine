@@ -9,30 +9,29 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 
 class Grammar(object):
-    # initial_shapes = 'initial shapes'
-    # rules = 'rules'
-
     def __init__(self):
         pass
 
     ### new
     @classmethod
-    def new(cls):                               ##  set_up_grammar?
+    def set_up_grammar(cls):
         cls.clear_all()
         cls._set_up_first_initial_shape()
         cls._set_up_first_rule()
 
     @classmethod
     def _set_up_first_initial_shape(cls):
-        """Adds a new layer with one frame. Should be executed only once. 
-        Returns:
-            layer_name      str. The name of the layer, if successful
-            None            otherwise
+        """Assumes:
+            There is not already a layer with the first initial shape layer 
+            name
+        Adds a new layer with one frame instance. Returns:
+            layer_name      str. The name of the layer, if successful. None, 
+                            otherwise
         """
         method_name = '_set_up_first_initial_shape'
         try:
             layer_name = s.Settings.first_initial_shape_layer_name
-            layer_name_is_in_use = rs.IsLayer(layer_name)   ##  None
+            layer_name_is_in_use = rs.IsLayer(layer_name)
             if layer_name_is_in_use:
                 raise ValueError
         except ValueError:
@@ -40,10 +39,10 @@ class Grammar(object):
             print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
-            frame_instance_origin = (
+            frame_instance_position = (
                 s.Settings.first_initial_shape_frame_position)
             return_value = cls._set_up_initial_shape(
-                layer_name, frame_instance_origin)
+                layer_name, frame_instance_position)
         finally:
             return return_value
 
@@ -79,10 +78,11 @@ class Grammar(object):
 
     @classmethod
     def _set_up_first_rule(cls):
-        """Adds a new layer with two frame instances. Should be executed only 
-        once. Returns:
-            layer_name      str. The name of the layer, if successful
-            None            otherwise
+        """Assumes:
+            There is not already a layer with the first rule layer name
+        Adds a new layer with two frame instances. Returns:
+            layer_name      str. The name of the layer, if successful. None, 
+                            otherwise
         """
         method_name = '_set_up_first_rule'
         try:
@@ -149,35 +149,22 @@ class Grammar(object):
     # def import(cls):                            ##  can't use this word
     #     pass
 
-    @classmethod                                ##  done / in use
+    ### export
+    @classmethod
     def export(cls):
         """Writes the grammar's dat string to a file, proposing the Rhino 
         document name as the file name. Returns:
             dat_string      str. The dat string, if successful
             None            otherwise
         """
-        file_name = cls.get_doc_name()          ##  fix me
+        suggested_file_name = rs.DocumentName()
         dat_string = gd.GuidsToDat.get_dat_string()
         if not(dat_string):
-            error_message = "%s %s" % (
-                "Export failed", 
-                "because the dat string could not be written")
-            print(error_message)
             return_value = None
         else:
-            cls._write_to_file(file_name, dat_string)
+            cls._write_to_file(suggested_file_name, dat_string)
             return_value = dat_string
         return return_value
-
-    @classmethod
-    def get_doc_name(cls):
-        """Returns:
-            name            str. The name of the Rhino document, if successful
-            None            otherwise
-        """
-        name = rs.DocumentName()
-        return name
-
 
     # @classmethod                                ##  not called
     # def _get_ordered_initial_shape_defs_string(cls):
@@ -417,17 +404,16 @@ class Grammar(object):
         # return rule_lshape_strings
 
     @classmethod
-    def clear_all(cls):
+    def clear_all(cls):                         ##  system-created blocks only?
         cls._clear_objects()
         cls._clear_blocks()
         cls._clear_layers()
         cls._clear_data()
-        # cls._clear_groups()
 
     @classmethod
     def _clear_objects(cls):
         """Deletes all drawn objects. Returns:
-            int             the number of objects deleted, if successful
+            n_objects       int. The number of objects deleted, if successful
         """
         include_lights = True
         include_grips = True
@@ -445,20 +431,16 @@ class Grammar(object):
     def _clear_layers(cls):                     ##  clear only user layers
         """Deletes all layers. Leaves Default layer
         """
-        default_name = 'Default'
+        default_layer_name = s.Settings.default_layer_name
         layer_names = rs.LayerNames()
-        if not default_name in layer_names:
-            rs.AddLayer(default_name)
-        rs.CurrentLayer(default_name)
+        if not default_layer_name in layer_names:
+            rs.AddLayer(default_layer_name)
+        rs.CurrentLayer(default_layer_name)
         for layer_name in layer_names:
-            if not layer_name == default_name:
+            if not layer_name == default_layer_name:
                 rs.DeleteLayer(layer_name)
 
     @classmethod
     def _clear_data(cls):
         rs.DeleteDocumentData()
 
-    @classmethod
-    def _clear_groups(cls):
-        rs.DeleteGroup(ish.InitialShape.component_type)
-        rs.DeleteGroup(r.Rule.component_type)
