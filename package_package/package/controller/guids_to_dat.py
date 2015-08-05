@@ -42,8 +42,8 @@ class GuidsToDat(object):
             rule_frame_pair_dict == {}
         ):
             error_message = ' '.join([
-                "The dat string could not be written", 
-                "because the grammar must have", 
+                "The dat string cannot be written", 
+                "because the grammar does not have", 
                 "at least one initial shape layer", 
                 "and at least one rule layer"])
             print(error_message)

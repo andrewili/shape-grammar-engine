@@ -10,7 +10,7 @@ from package.tests import utilities as u
 def test_new():
     method_name = 'new'
     g.Grammar.clear_all()
-    g.Grammar.new()
+    g.Grammar.set_up_grammar()
 
 def test__set_up_first_initial_shape():
     def try_bad_state_layer_exists():
@@ -131,6 +131,24 @@ def test__set_up_rule():
 ####
 
 def test_export():
+    def try_no_initial_shapes():
+        try_name = 'no_initial_shapes'
+        u.Utilities.make_grammar_0_initial_shapes_3_rules()
+        actual_value = g.Grammar.export()
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_no_rules():
+        try_name = 'no_rules'
+        u.Utilities.make_grammar_3_initial_shapes_0_rules()
+        actual_value = g.Grammar.export()
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
     def try_good_grammar():
         try_name = 'good_grammar'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
@@ -141,6 +159,8 @@ def test_export():
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'export'
+    try_no_initial_shapes()
+    try_no_rules()
     try_good_grammar()
 
 def test_get_name():
@@ -501,7 +521,7 @@ def _set_up():
 # test_set_up_subsequent_rule()                   ##  done
 # test__set_up_rule()                             ##  done / manual test
 
-# test_export()                                   ##  done / manual test
+test_export()                                   ##  done / manual test
 # test_get_name()                                 ##  done
 
 # done

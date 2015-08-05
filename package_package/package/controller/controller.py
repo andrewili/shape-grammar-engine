@@ -68,7 +68,7 @@ class Controller(object):
     ### grammar
     @classmethod
     def new_grammar(cls):
-        g.Grammar.new()
+        g.Grammar.set_up_grammar()
 
     # def _set_up(self):
         # self._set_layers()
