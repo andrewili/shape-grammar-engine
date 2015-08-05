@@ -21,17 +21,15 @@ class Grammar(object):
 
     @classmethod
     def _set_up_first_initial_shape(cls):
-        """Assumes:
-            There is not already a layer with the first initial shape layer 
-            name
-        Adds a new layer with one frame instance. Returns:
+        """Adds a new layer with one frame instance. Should be executed only 
+        once. Returns:
             layer_name      str. The name of the layer, if successful. None, 
                             otherwise
         """
         method_name = '_set_up_first_initial_shape'
         try:
             layer_name = s.Settings.first_initial_shape_layer_name
-            layer_name_is_in_use = rs.IsLayer(layer_name)
+            layer_name_is_in_use = rs.IsLayer(layer_name)   ##  None
             if layer_name_is_in_use:
                 raise ValueError
         except ValueError:
@@ -39,10 +37,10 @@ class Grammar(object):
             print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
-            frame_instance_position = (
+            frame_instance_origin = (
                 s.Settings.first_initial_shape_frame_position)
             return_value = cls._set_up_initial_shape(
-                layer_name, frame_instance_position)
+                layer_name, frame_instance_origin)
         finally:
             return return_value
 
@@ -78,11 +76,10 @@ class Grammar(object):
 
     @classmethod
     def _set_up_first_rule(cls):
-        """Assumes:
-            There is not already a layer with the first rule layer name
-        Adds a new layer with two frame instances. Returns:
-            layer_name      str. The name of the layer, if successful. None, 
-                            otherwise
+        """Adds a new layer with two frame instances. Should be executed only 
+        once. Returns:
+            layer_name      str. The name of the layer, if successful
+            None            otherwise
         """
         method_name = '_set_up_first_rule'
         try:
