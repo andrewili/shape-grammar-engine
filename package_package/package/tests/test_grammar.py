@@ -7,8 +7,8 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.tests import utilities as u
 
-def test_new():                                 ##  done 08-06
-    method_name = 'new'
+def test_set_up_grammar():                      ##  done 08-06
+    method_name = 'set_up_grammar'
     g.Grammar.clear_all()
     g.Grammar.set_up_grammar()
 
@@ -133,6 +133,19 @@ def test__set_up_rule():                        ##  done 08-06
 
     method_name = '_set_up_rule'
     try_good_args()
+
+def set_up_grammar_3_shapes_3_rules():          ##  done 08-07
+    def try_good_state():
+        try_name = 'good_state'
+        g.Grammar.set_up_grammar()
+        n_initial_shapes, n_rules = range(2), range(2)
+        for i in n_initial_shapes:
+            g.Grammar.set_up_subsequent_initial_shape()
+        for j in n_rules:
+            g.Grammar.set_up_subsequent_rule()
+
+    method_name = 'set_up_grammar_3_shapes_3_rules'
+    try_good_state()
 
 ####
 
@@ -519,13 +532,14 @@ def _set_up():
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
 
-# test_new()                                      ##  done 08-06 / manual
+# test_set_up_grammar()                           ##  done 08-06 / manual
 # test__set_up_first_initial_shape()              ##  done 08-06
 # test_set_up_subsequent_initial_shape()          ##  done 08-06 / manual
 # test__set_up_initial_shape()                    ##  done 08-06
 # test__set_up_first_rule()                       ##  done 08-06
 # test_set_up_subsequent_rule()                   ##  done 08-06 / manual
 # test__set_up_rule()                             ##  done 08-06
+# set_up_grammar_3_shapes_3_rules()               ##  done 08-07 / manual
 
 # test_export()                                   ##  done / manual
 # test_get_name()                                 ##  done
