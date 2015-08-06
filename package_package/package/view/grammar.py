@@ -19,7 +19,7 @@ class Grammar(object):
         cls._set_up_first_initial_shape()
         cls._set_up_first_rule()
 
-    @classmethod
+    @classmethod                                ##  done 08-06
     def _set_up_first_initial_shape(cls):
         """Adds a new layer with one frame instance. Should be executed only 
         once. Returns:
@@ -29,7 +29,9 @@ class Grammar(object):
         method_name = '_set_up_first_initial_shape'
         try:
             layer_name = s.Settings.first_initial_shape_layer_name
-            layer_name_is_in_use = rs.IsLayer(layer_name)   ##  None
+            (   layer_name_is_in_use
+            ) = (
+                rs.IsLayer(layer_name))
             if layer_name_is_in_use:
                 raise ValueError
         except ValueError:
@@ -37,110 +39,107 @@ class Grammar(object):
             print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
-            frame_instance_origin = (
+            frame_instance_position = (
                 s.Settings.first_initial_shape_frame_position)
             return_value = cls._set_up_initial_shape(
-                layer_name, frame_instance_origin)
+                layer_name, frame_instance_position)
         finally:
             return return_value
 
-    @classmethod
+    @classmethod                                ##  done 08-06
     def set_up_subsequent_initial_shape(cls):
-        """Prompts the user for a layer name. Adds a new layer with one frame. 
+        """Prompts the user for a valid layer name and a valid point. Adds a 
+        new layer with that name and one frame instance at that point. 
         Returns:
-            layer_name      str. The name of the layer, if successful
-            None            otherwise
+            layer_name      str. The name of the layer, if successful. None,
+                            otherwise
         """
-        layer_name = l.Layer.get_layer_name_from_user()
-        frame_origin = f.Frame.get_frame_position_from_user()
-        return_value = cls._set_up_initial_shape(
-            layer_name, frame_origin)
+        (   layer_name, 
+            frame_position
+        ) = (
+            l.Layer.get_layer_name_from_user(), 
+            f.Frame.get_frame_position_from_user())
+        return_value = cls._set_up_initial_shape(layer_name, frame_position)
         return return_value
 
-    @classmethod
+    @classmethod                                ##  done 08-06
     def _set_up_initial_shape(cls, layer_name, frame_position):
         """Receives:
-            layer_name      str. The name of the initial shape layer
-            frame_position  Point3D. The position of the frame instance
-        Returns:
+            layer_name      str. A well-formed and available layer name
+            frame_position  Point3d. The position of the frame instance
+        Creates a new layer with the specified name. Inserts a frame instance 
+        on the new layer at the specified position. Returns:
+            layer_name_out  str. The name of the layer
         """
-        value_1 = l.Layer.new(layer_name)
-        frame_name = layer_name
-        value_2 = f.Frame.new_instance(
-            frame_name, layer_name, frame_position)
-        if value_1 and value_2:
-            return_value = layer_name
-        else:
-            return_value = None
-        return return_value
+        l.Layer.new(layer_name)
+        frame_instance_out = f.Frame.new_instance(layer_name, frame_position)
+        layer_name_out = rs.ObjectLayer(frame_instance_out)
+        return layer_name_out
 
     @classmethod
-    def _set_up_first_rule(cls):
+    def _set_up_first_rule(cls):                ##  done 08-06
         """Adds a new layer with two frame instances. Should be executed only 
         once. Returns:
-            layer_name      str. The name of the layer, if successful
-            None            otherwise
+            layer_name      str. The name of the layer, if successful. None, 
+                            otherwise
         """
         method_name = '_set_up_first_rule'
         try:
             layer_name = s.Settings.first_rule_layer_name
-            layer_name_is_in_use = rs.IsLayer(layer_name)
+            (   layer_name_is_in_use
+            ) = (
+                rs.IsLayer(layer_name))
             if layer_name_is_in_use:
                 raise ValueError
         except ValueError:
-            message = "The layer name %s is in use" % layer_name
+            message = "The layer name '%s' is in use" % layer_name
             print("%s.%s:\n    %s" % (cls.__name__, method_name, message))
             return_value = None
         else:
-            layer_name = s.Settings.first_rule_layer_name
-            left_frame_position = s.Settings.first_rule_left_frame_position
+            (   left_frame_position
+            ) = (
+                s.Settings.first_rule_left_frame_position)
             return_value = cls._set_up_rule(layer_name, left_frame_position)
         finally:
             return return_value
         
-    @classmethod
+    @classmethod                                ##  done 08-06
     def set_up_subsequent_rule(cls):
-        """Prompts the user for a layer name. Adds a new layer with two 
-        frames. Returns:
-            layer_name      str. The name of the layer, if successful
-            None            otherwise
+        """Prompts the user for a valid layer name and a valid point. Adds a 
+        new layer with that name and two frame instances relative to that 
+        point. Returns:
+            layer_name      str. The name of the layer, if successful. None,
+                            otherwise
         """
-        layer_name = l.Layer.get_layer_name_from_user()
-        frame_origin = f.Frame.get_frame_position_from_user()
-        return_value = cls._set_up_rule(layer_name, frame_origin)
+        (   layer_name,
+            frame_position
+        ) = (
+            l.Layer.get_layer_name_from_user(),
+            f.Frame.get_frame_position_from_user())
+        return_value = cls._set_up_rule(layer_name, frame_position)
         return return_value
 
-    @classmethod
+    @classmethod                                ##  done 08-06
     def _set_up_rule(cls, layer_name, left_frame_position):
         """Receives:
-            layer_name      str. The name of the rule layer
+            layer_name      str. A well-formed and available layer name
             left_frame_position
-                            Point3D. The position of the left frame instance
-        Inserts left frame, right frame, and arrow instances on the layer. 
-        Returns:
-            layer_name      str. The name of the rule layer, if successful
-            None            otherwise
+                            Point3d. The position of the left frame instance
+        Creates a new layer with the specified name. Inserts left frame, right 
+        frame, and arrow instances on the new layer. Returns:
+            layer_name_out  str. The name of the rule layer
         """
-        layer_name_in = l.Layer.new(layer_name)
-        left_frame_name = "%s_L" % layer_name
-        right_frame_name = "%s_R" % layer_name
-        right_frame_position = (
-            s.Settings.get_right_frame_position(left_frame_position))
-        arrow_position = s.Settings.get_arrow_position(left_frame_position)
-        left_frame_instance = f.Frame.new_instance(
-            left_frame_name, layer_name, left_frame_position)
-        right_frame_instance = f.Frame.new_instance(
-            right_frame_name, layer_name, right_frame_position)
-        arrow_instance = a.Arrow.new_instance(arrow_position, layer_name)
-        if (layer_name_in and 
-            left_frame_instance and 
-            right_frame_instance and 
-            arrow_instance
-        ):
-            return_value = layer_name
-        else:
-            return_value = None
-        return return_value
+        l.Layer.new(layer_name)
+        (   right_frame_position,
+            arrow_position
+        ) = (   
+            s.Settings.get_right_frame_position(left_frame_position),
+            s.Settings.get_arrow_position(left_frame_position))
+        f.Frame.new_instance(layer_name, left_frame_position)
+        f.Frame.new_instance(layer_name, right_frame_position)
+        arrow_out = a.Arrow.new_instance(layer_name, arrow_position)
+        layer_name_out = rs.ObjectLayer(arrow_out)
+        return layer_name_out
 
     # @classmethod
     # def import(cls):                            ##  can't use this word
@@ -400,6 +399,7 @@ class Grammar(object):
         #     rule_lshape_strings.extend(lshape_string_pair)
         # return rule_lshape_strings
 
+    ### utilities
     @classmethod
     def clear_all(cls):                         ##  system-created blocks only?
         cls._clear_objects()

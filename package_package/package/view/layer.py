@@ -9,17 +9,17 @@ class Layer(object):
     def __init__(self):
         pass
 
-    @classmethod
+    @classmethod                                ##  done 08-05
     def new(cls, name_in):
         """Receives:
-            name_in         str. The name of the layer
-        Adds a layer named name. Returns:
-            name_out        str. The name of the layer, if successful
+            name_in         str. A well-formed and available layer name
+        Adds a layer named <name_in>. Returns:
+            name_out        str. The name of the layer
         """
         name_out = rs.AddLayer(name_in)
         return name_out
 
-    @classmethod
+    @classmethod                                ##  done 08-06
     def get_layer_name_from_user(cls):
         """Gets a valid name from the user. Returns:
             name            str. A unique and well-formed layer name

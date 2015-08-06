@@ -11,42 +11,35 @@ bad_type_point = 37
 bad_value_point = [0, 0, 5]
 point = [0, 0, 0]
 
-def test_new_instance():
+def test_new_instance():                        ##  done 08-06
     def try_good_state_no_block_definition():
         try_name = 'good_state_no_block_definition'
         g.Grammar.clear_all()
-        layer_name = s.Settings.first_initial_shape_layer_name
+        (   layer_name,
+            position
+        ) = (
+            'gaudi',
+            (20, 20, 0))
         rs.AddLayer(layer_name)
-        block_name = s.Settings.first_initial_shape_layer_name
-        origin = (0, -50, 0)
-        guid = f.Frame.new_instance(block_name, layer_name, origin)
-        actual_value = rs.ObjectLayer(guid)
+        guid_out = f.Frame.new_instance(layer_name, position)
+        actual_value = rs.ObjectLayer(guid_out)
         expected_value = layer_name
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_bad_value_origin():
-        try_name = 'bad_value_point'
+    def try_good_state_has_block_definition():
+        try_name = 'good_state_has_block_definition'
         g.Grammar.clear_all()
-        f.Frame.new()
-        rs.CurrentLayer('Default')
-        actual_value = f.Frame.new_instance(bad_value_point)
-        expected_value = None
-        if not actual_value == expected_value:
-            g.Grammar.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_args():
-        try_name = 'good_args'
-        g.Grammar.clear_all()
-        layer_name = 'gaudi'
+        (   layer_name, 
+            position
+        ) = (
+            'gaudi', 
+            (10, 10, 0))
         rs.AddLayer(layer_name)
         rs.CurrentLayer(layer_name)
-        block_name = layer_name
-        origin = (10, 10, 0)
-        guid = f.Frame.new_instance(block_name, layer_name, origin)
-        actual_value = rs.ObjectLayer(guid)
+        guid_out = f.Frame.new_instance(layer_name, position)
+        actual_value = rs.ObjectLayer(guid_out)
         expected_value = layer_name
         if not actual_value:
             g.Grammar.print_test_error_message(
@@ -54,9 +47,9 @@ def test_new_instance():
 
     method_name = 'new_instance'
     try_good_state_no_block_definition()
-    try_good_args()
+    try_good_state_has_block_definition()
 
-def test__new_definition():
+def test__new_definition():                     ##  done 08-05
     def try_good_state():
         try_name = 'good_state'
         g.Grammar.clear_all()
@@ -69,19 +62,13 @@ def test__new_definition():
     method_name = '_new_definition'
     try_good_state()
 
-def test__get_guids():
-    method_name = '_get_guids'
-    try_name = 'nil'
+def test__get_guids():                          ##  done 08-06
     g.Grammar.clear_all()
     position = (0, 0, 0)
     guids = f.Frame._get_guids()
-    actual_value = type(guids)
-    expected_value = list
-    if not actual_value == expected_value:
-        g.Grammar.print_test_error_message(
-            method_name, try_name, expected_value, actual_value)
+    rs.SelectObjects(guids)
 
-def test_get_frame_position_from_user():
+def test_get_frame_position_from_user():        ##  done 08-06
     def try_something():
         try_name = 'something'
         g.Grammar.clear_all()
@@ -97,8 +84,8 @@ def test_get_frame_position_from_user():
     method_name = 'get_frame_position_from_user'
     try_something()
 
-# test_new_instance()                             ##  done
-# test__new_definition()                          ##  done
-# test__get_guids()                               ##  done
-# test_get_frame_position_from_user()             ##  done
+# test_new_instance()                             ##  done 08-06
+# test__new_definition()                          ##  done 08-05
+# test__get_guids()                               ##  done 08-06 / manual test
+# test_get_frame_position_from_user()             ##  done 08-06 / manual test
 

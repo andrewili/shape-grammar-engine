@@ -7,12 +7,12 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.tests import utilities as u
 
-def test_new():
+def test_new():                                 ##  done 08-06
     method_name = 'new'
     g.Grammar.clear_all()
     g.Grammar.set_up_grammar()
 
-def test__set_up_first_initial_shape():
+def test__set_up_first_initial_shape():         ##  done 08-06
     def try_bad_state_layer_exists():
         try_name = 'bad_state_layer_exists'
         g.Grammar.clear_all()
@@ -36,14 +36,14 @@ def test__set_up_first_initial_shape():
     try_bad_state_layer_exists()
     try_good_state()
 
-def test_set_up_subsequent_initial_shape():
+def test_set_up_subsequent_initial_shape():     ##  done 08-06
     def try_good_state():
         try_name = 'good_state'
         g.Grammar.clear_all()
-        existing_name = 'abe'
+        existing_name = 'existing_name'
         rs.AddLayer(existing_name)
         ill_formed_name = 'bob#'
-        good_name = 'cal'
+        good_name = 'good_name'
         print("Enter: 1, '%s'; 2, '%s'; 3, '%s'" % (
             existing_name, ill_formed_name, good_name))
         actual_value = g.Grammar.set_up_subsequent_initial_shape()
@@ -55,22 +55,25 @@ def test_set_up_subsequent_initial_shape():
     method_name = 'set_up_subsequent_initial_shape'
     try_good_state()
 
-def test__set_up_initial_shape():
-    def try_good_state():
-        try_name = 'good_state'
+def test__set_up_initial_shape():               ##  done 08-06
+    def try_good_args():
+        try_name = 'good_args'
         g.Grammar.clear_all()
-        good_name = 'sam'
-        origin = (20, 20, 0)
-        actual_value = g.Grammar._set_up_initial_shape(good_name, origin)
+        (   good_name, 
+            position
+        ) = (
+            'sam',
+            (20, 20, 0))
+        actual_value = g.Grammar._set_up_initial_shape(good_name, position)
         expected_value = good_name
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     method_name = '_set_up_initial_shape'
-    try_good_state()
+    try_good_args()
 
-def test__set_up_first_rule():
+def test__set_up_first_rule():                  ##  done 08-06
     def try_bad_state_layer_exists():
         try_name = 'bad_state_layer_exists'
         g.Grammar.clear_all()
@@ -94,14 +97,14 @@ def test__set_up_first_rule():
     try_bad_state_layer_exists()
     try_good_state()
 
-def test_set_up_subsequent_rule():
+def test_set_up_subsequent_rule():              ##  done 08-06
     def try_good_state():
         try_name = 'good_state'
         g.Grammar.clear_all()
-        existing_name = 'abe'
+        existing_name = 'existing_name'
         rs.AddLayer(existing_name)
         ill_formed_name = 'bob#'
-        good_name = 'cal'
+        good_name = 'good_name'
         print("Enter: 1, '%s'; 2, '%s'; 3, '%s'" % (
             existing_name, ill_formed_name, good_name))
         actual_value = g.Grammar.set_up_subsequent_rule()
@@ -113,20 +116,23 @@ def test_set_up_subsequent_rule():
     method_name = 'set_up_subsequent_rule'
     try_good_state()
 
-def test__set_up_rule():
-    def try_good_state():
-        try_name = 'good_state'
+def test__set_up_rule():                        ##  done 08-06
+    def try_good_args():
+        try_name = 'good_args'
         g.Grammar.clear_all()
-        good_name = 'good_name'
-        origin = (20, 20, 0)
-        actual_value = g.Grammar._set_up_rule(good_name, origin)
+        (   good_name, 
+            position
+        ) = (
+            'bock',
+            (20, 20, 0))
+        actual_value = g.Grammar._set_up_rule(good_name, position)
         expected_value = good_name
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     method_name = '_set_up_rule'
-    try_good_state()
+    try_good_args()
 
 ####
 
@@ -513,15 +519,15 @@ def _set_up():
     rs.AddGroup(ish.InitialShape.component_type)
     rs.AddGroup(r.Rule.component_type)
 
-# test_new()                                      ##  done
-# test__set_up_first_initial_shape()              ##  done
-# test_set_up_subsequent_initial_shape()          ##  done
-# test__set_up_initial_shape()                    ##  done
-# test__set_up_first_rule()                       ##  done
-# test_set_up_subsequent_rule()                   ##  done
-# test__set_up_rule()                             ##  done / manual test
+# test_new()                                      ##  done 08-06 / manual
+# test__set_up_first_initial_shape()              ##  done 08-06
+# test_set_up_subsequent_initial_shape()          ##  done 08-06 / manual
+# test__set_up_initial_shape()                    ##  done 08-06
+# test__set_up_first_rule()                       ##  done 08-06
+# test_set_up_subsequent_rule()                   ##  done 08-06 / manual
+# test__set_up_rule()                             ##  done 08-06
 
-test_export()                                   ##  done / manual test
+# test_export()                                   ##  done / manual
 # test_get_name()                                 ##  done
 
 # done

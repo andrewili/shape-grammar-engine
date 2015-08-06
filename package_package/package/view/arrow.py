@@ -6,20 +6,22 @@ class Arrow(object):
         pass
 
     @classmethod
-    def new_instance(cls, position, layer_name):
+    def new_instance(cls, layer_name, position):
         """Receives:
+            layer_name      str. The name of an existing layer
             position        Point3d or (num, num, num). The center point of 
                             the arrow
-            layer_name      str. The name of the layer to contain the arrow 
-                            instance
+        Creates an arrow definition, if there is not already one. Inserts 
+        an arrow instance at the specified position on the specified layer. 
         Returns:
-            instance        guid. The guid of the new arrow instance, if 
-                            successful. None otherwise
+            arrow_instance  guid. The guid of the new arrow instance
         """
         if not cls._definition_exists():
             cls._new_definition()
         rs.CurrentLayer(layer_name)
-        arrow_name = s.Settings.arrow_name
+        (   arrow_name
+        ) = (
+            s.Settings.arrow_name)
         return_value = rs.InsertBlock(arrow_name, position)
         default_layer_name = s.Settings.default_layer_name
         rs.CurrentLayer(default_layer_name)

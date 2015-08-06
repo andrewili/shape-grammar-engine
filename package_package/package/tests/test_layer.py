@@ -5,9 +5,9 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.tests import utilities as u
 
-def test_new():
-    def try_good_args():
-        try_name = 'good_args'
+def test_new():                                 ##  done 08-05
+    def try_good_value():
+        try_name = 'good_value'
         g.Grammar.clear_all()
         name = 'gaudi'
         actual_value = l.Layer.new(name)
@@ -17,9 +17,9 @@ def test_new():
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'new'
-    try_good_args()
+    try_good_value()
 
-def test_get_layer_name_from_user():
+def test_get_layer_name_from_user():            ##  done 08-06
     def try_something():
         try_name = 'something'
         g.Grammar.clear_all()
@@ -546,8 +546,8 @@ def _insert_other_block(other_block_name, layer_name, position):
     rs.CurrentLayer(s.Settings.default_layer_name)
 
 
-# test_new()                                      ##  done
-# test_get_layer_name_from_user()                 ##  done
+# test_new()                                      ##  done 08-05
+test_get_layer_name_from_user()                 ##  done 08-06 / manual test
 # test__is_well_formed()                          ##  done
 # test__is_available()                            ##  done
 
