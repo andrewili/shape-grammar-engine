@@ -21,8 +21,10 @@ class Grammar(object):
 
     @classmethod                                ##  done 08-06
     def _set_up_first_initial_shape(cls):
-        """Adds a new layer with one frame instance. Should be executed only 
-        once. Returns:
+        """Required state:
+            There must be no layer with the first initial shape layer name
+        Adds a new layer with the first initial shape layer name and one frame 
+        instance. Should be executed only once. Returns:
             layer_name      str. The name of the layer, if successful. None, 
                             otherwise
         """
@@ -78,8 +80,10 @@ class Grammar(object):
 
     @classmethod
     def _set_up_first_rule(cls):                ##  done 08-06
-        """Adds a new layer with two frame instances. Should be executed only 
-        once. Returns:
+        """Required state:
+            There must be no layer with the first rule layer name
+        Adds a new layer with the first rule layer name and two frame 
+        instances. Should be executed only once. Returns:
             layer_name      str. The name of the layer, if successful. None, 
                             otherwise
         """
@@ -150,17 +154,87 @@ class Grammar(object):
     def export(cls):
         """Writes the grammar's dat string to a file, proposing the Rhino 
         document name as the file name. Returns:
-            dat_string      str. The dat string, if successful
-            None            otherwise
+            dat_string      str. The dat string, if successful. None, 
+                            otherwise
         """
-        suggested_file_name = rs.DocumentName()
-        dat_string = gd.GuidsToDat.get_dat_string()
-        if not(dat_string):
-            return_value = None
-        else:
+        # initial_shapes, rules = gd.GuidsToDat._get_element_layers()
+        # if (initial_shapes == [] or 
+        #     rules == []
+        # ):
+        #     print('error')
+        #     return_value = None
+        # else:
+        #     (   suggested_file_name, 
+        #         dat_string
+        #     ) = (
+        #         rs.DocumentName(), 
+        #         gd.GuidsToDat.get_dat_string(initial_shapes, rules))
+        #     dat_string_out = cls._write_to_file(
+        #         suggested_file_name, dat_string)
+        #     return dat_string_out
+
+        (   dat_string, 
+            suggested_file_name
+        ) = (
+            gd.GuidsToDat.get_dat_string(),     ##  kilroy is here
+            rs.DocumentName())
+        if dat_string:
             cls._write_to_file(suggested_file_name, dat_string)
             return_value = dat_string
+        else:
+            return_value = None
         return return_value
+
+    # @classmethod                                ##  depends on new export()
+    # def _grammar_is_well_formed(cls):
+        # """Returns:
+        #     value           boolean. True, if the grammar contains at least 
+        #                     one well-formed initial shape and one well-formed 
+        #                     rule. False, otherwise
+        # """
+        # (   layer_names,
+        #     there_is_a_well_formed_initial_shape_layer,
+        #     there_is_a_well_formed_rule_layer
+        # ) = (
+        #     rs.LayerNames(), 
+        #     False, 
+        #     False)
+        # while not (
+        #     there_is_a_well_formed_initial_shape_layer and
+        #     there_is_a_well_formed_rule_layer
+        # ):
+        #     for layer_name in layer_names:
+        #         n_frame_instances = l.Layer._get_number_of_frames(layer_name)
+        #         if n_frame_instances == 1:
+        #             if non_empty_initial_shape():
+        #                 there_is_a_well_formed_initial_shape_layer = True
+        #         elif n_frame_instances == 2:
+        #             if non_empty_left_shape():
+        #                 there_is_a_well_formed_rule_layer = True
+        #         else:
+        #             pass
+        # return value
+
+    # @classmethod                                ##  hmm
+    # def _there_is_a_well_formed_initial_shape_layer(cls):
+        # """Returns:
+        #     value           boolean. True, if there is a layer with one frame 
+        #                     instance and a non-empty shape. False, otherwise
+        # """
+        # value = False
+        # layers = rs.Layers()
+        # for layer in layers:
+        #     if 
+        # return value
+
+    # @classmethod                                ##  hmm
+    # def _there_is_a_well_formed_rule_layer(cls):
+        # """Returns:
+        #     value           boolean. True, if there is a layer with two frame 
+        #                     instances and a non-empty left shape. False, 
+        #                     otherwise
+        # """
+        # return value
 
     # @classmethod                                ##  not called
     # def _get_ordered_initial_shape_defs_string(cls):
@@ -240,23 +314,6 @@ class Grammar(object):
         #     initial_shape_frame_dict, 
         #     rule_frame_pair_dict)
         # return return_value
-
-    @classmethod                                ##  
-    def get_initial_shapes_and_rules(cls):
-        """Returns:
-            initial_shapes  [str, ...]. A list of the names of layers 
-                            containing one frame instance
-            rules           [str, ...]. A list of the names of layers 
-                            containing two frame instances
-        """
-        initial_shapes, rules = [], []
-        layer_names = rs.LayerNames()
-        for name in layer_names:
-            if l.Layer.contains_initial_shape(name):
-                initial_shapes.append(name)
-            elif l.Layer.contains_rule(name):
-                rules.append(name)
-        return (initial_shapes, rules)
 
     # @classmethod
     # def get_labeled_shape_names(cls):
@@ -400,8 +457,8 @@ class Grammar(object):
         # return rule_lshape_strings
 
     ### utilities
-    @classmethod
-    def clear_all(cls):                         ##  system-created blocks only?
+    @classmethod                                ##  system-created blocks 
+    def clear_all(cls):                         ##  only?
         cls._clear_objects()
         cls._clear_blocks()
         cls._clear_layers()
