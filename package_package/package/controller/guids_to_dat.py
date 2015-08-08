@@ -16,11 +16,15 @@ class GuidsToDat(object):
     def __init__(self):
         pass
 
-    @classmethod
-    def get_dat_string(cls):                    ##  done 08-08
-        """Required state:
-            There exists one initial shape layer 
-            There exists one rule layer
+    @classmethod                                ##  done 08-08
+    def get_dat_string(cls, initial_shapes, rules):
+        """Receives:
+            initial_shapes  [str, ...]. A non-empty list of the names of 
+                            layers containing one frame instance. Value 
+                            guaranteed by caller
+            rules           [str, ...]. A non-empty list of the names of 
+                            layers containing two frame instances. Value 
+                            guaranteed by caller
         Composes the grammar's dat string. The grammar consists of:
             header
             ordered_labeled_shapes_string
@@ -29,75 +33,41 @@ class GuidsToDat(object):
             ordered_rule_names_string
             blank_line
         Returns:
-            dat_string      str. The grammar's dat string, if successful. 
-                            None, otherwise
+            dat_string      str. The grammar's dat string
         """
-        initial_shapes, rules = cls._get_element_layers()
-                                                ##  from _make_element_frame_
-                                                ##  dicts()
-        if (initial_shapes == [] or
-            rules == []
-        ):
-            (   error_message
-            ) = (
-                ' '.join([
-                    "The dat string cannot be written",
-                    "because the grammar does not have",
-                    "at least one initial shape layer", 
-                    "and at least one rule layer"]))
-            print(error_message)
-            return_value = None
-        else:
-            initial_shape_frame_dict = (
-                cls._make_initial_shape_frame_dict(initial_shapes))
+        initial_shape_frame_dict = (
+            cls._make_initial_shape_frame_dict(initial_shapes))
                             ##  {rule_name: frame_instance}
-            rule_frame_pair_dict = (
-                cls._make_rule_frame_pair_dict(rules))
+        rule_frame_pair_dict = (
+            cls._make_rule_frame_pair_dict(rules))
                             ##  {rule_name: (frame_instance, frame_instance)}
-            labeled_shape_elements_dict = (
-                cls._make_labeled_shape_elements_dict(
-                    initial_shape_frame_dict, rule_frame_pair_dict))
+        labeled_shape_elements_dict = (
+            cls._make_labeled_shape_elements_dict(
+                initial_shape_frame_dict, rule_frame_pair_dict))
                             ##  {labeled_shape: [element]}
-            ordered_labeled_shapes_string = (
-                cls._get_ordered_labeled_shapes_string(
-                    labeled_shape_elements_dict))
+        ordered_labeled_shapes_string = (
+            cls._get_ordered_labeled_shapes_string(
+                labeled_shape_elements_dict))
                             ##  'labeled_shape_string\n...'
-            initial_shapes = initial_shape_frame_dict.keys()
-            ordered_initial_shape_names_string = (
-                cls._get_ordered_initial_shape_names_string(initial_shapes))
+        initial_shapes = initial_shape_frame_dict.keys()
+        ordered_initial_shape_names_string = (
+            cls._get_ordered_initial_shape_names_string(initial_shapes))
                             ##  'initial    name\n...'
-            rules = rule_frame_pair_dict.keys()
-            ordered_rule_names_string = (
-                cls._get_ordered_rule_names_string(rules))
+        rules = rule_frame_pair_dict.keys()
+        ordered_rule_names_string = (
+            cls._get_ordered_rule_names_string(rules))
                             ##  'rule    <name>    <name_L> -> <name_R>\n...'
-            dat_header = cls.dat_header
-            blank_line = cls.blank_line
-            dat_string = '\n'.join([
-                dat_header,
-                ordered_labeled_shapes_string,  ##  polystring?
-                blank_line,
-                ordered_initial_shape_names_string, ##  polystring?
-                ordered_rule_names_string,      ##  polystring?
-                blank_line])
-            return_value = dat_string
+        dat_header = cls.dat_header
+        blank_line = cls.blank_line
+        dat_string = '\n'.join([
+            dat_header,
+            ordered_labeled_shapes_string,  ##  polystring?
+            blank_line,
+            ordered_initial_shape_names_string, ##  polystring?
+            ordered_rule_names_string,      ##  polystring?
+            blank_line])
+        return_value = dat_string
         return return_value
-
-    @classmethod
-    def _get_element_layers(cls):               ##  done 08-07
-        """Returns:
-            initial_shapes  [str, ...]. A list of the names of layers 
-                            containing one frame instance
-            rules           [str, ...]. A list of the names of layers 
-                            containing two frame instances
-        """
-        initial_shapes, rules = [], []
-        layer_names = rs.LayerNames()
-        for name in layer_names:
-            if l.Layer.contains_initial_shape(name):
-                initial_shapes.append(name)
-            elif l.Layer.contains_rule(name):
-                rules.append(name)
-        return (initial_shapes, rules)
 
     @classmethod
     def _make_initial_shape_frame_dict(cls, initial_shapes):

@@ -149,9 +149,18 @@ def set_up_grammar_3_shapes_3_rules():          ##  done 08-07
 
 ####
 
-def test_export():
-    def try_no_initial_shapes():
-        try_name = 'no_initial_shapes'
+def test_export():                              ##  done 08-08
+    def try_0_initial_shapes_0_rules():
+        try_name = '0_initial_shapes_0_rules'
+        u.Utilities.make_grammar_0_initial_shapes_0_rules()
+        actual_value = g.Grammar.export()
+        expected_value = None
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_0_initial_shapes_3_rules():
+        try_name = '0_initial_shapes_3_rules'
         u.Utilities.make_grammar_0_initial_shapes_3_rules()
         actual_value = g.Grammar.export()
         expected_value = None
@@ -159,8 +168,8 @@ def test_export():
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_no_rules():
-        try_name = 'no_rules'
+    def try_3_initial_shapes_0_rules():
+        try_name = '3_initial_shapes_0_rules'
         u.Utilities.make_grammar_3_initial_shapes_0_rules()
         actual_value = g.Grammar.export()
         expected_value = None
@@ -168,8 +177,8 @@ def test_export():
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_good_grammar():
-        try_name = 'good_grammar'
+    def try_3_initial_shapes_4_rules():         ##  manual
+        try_name = '3_initial_shapes_4_rules'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
         actual_value = g.Grammar.export()
         expected_value = u.Utilities.grammar_3_4_dat_string
@@ -178,9 +187,81 @@ def test_export():
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'export'
-    # try_no_initial_shapes()
-    # try_no_rules()
-    try_good_grammar()
+    try_0_initial_shapes_0_rules()
+    try_0_initial_shapes_3_rules()
+    try_3_initial_shapes_0_rules()
+    try_3_initial_shapes_4_rules()              ##  manual
+
+def test__get_element_layers():                 ##  done 08-08
+    def try_0_ishapes_0_rules():
+        try_name = '0_ishapes_0_rules'
+        g.Grammar.clear_all()
+        f.Frame._new_definition()
+        actual_value = g.Grammar._get_element_layers()
+        expected_value = [], []
+        if not (
+            set(actual_value[0]) == set(expected_value[0]) and
+            set(actual_value[1]) == set(expected_value[1])
+        ):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_0_ishapes_3_rules():
+        try_name = '0_ishapes_3_rules'
+        u.Utilities.make_grammar_0_initial_shapes_3_rules()
+        actual_value = g.Grammar._get_element_layers()
+        expected_value = (
+            [],
+            [   'subdivide_triangle',
+                'add_h_to_h',
+                'add_h_in_square'])
+        if not (
+            set(actual_value[0]) == set(expected_value[0]) and
+            set(actual_value[1]) == set(expected_value[1])
+        ):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+
+    def try_3_ishapes_0_rules():
+        try_name = '3_ishapes_0_rules'
+        u.Utilities.make_grammar_3_initial_shapes_0_rules()
+        actual_value = g.Grammar._get_element_layers()
+        expected_value = (
+            [   'labeled_right_triangle',
+                'labeled_h',
+                'labeled_square'],
+            [])
+        if not (
+            set(actual_value[0]) == set(expected_value[0]) and
+            set(actual_value[1]) == set(expected_value[1])
+        ):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_3_ishapes_3_rules():
+        try_name = '3_ishapes_3_rules'
+        u.Utilities.make_grammar_3_initial_shapes_3_rules()
+        actual_value = g.Grammar._get_element_layers()
+        expected_value = (
+            [   'labeled_right_triangle',
+                'labeled_h',
+                'labeled_square'],
+            [   'subdivide_triangle',
+                'add_h_to_h',
+                'add_h_in_square'])
+        if not (
+            set(actual_value[0]) == set(expected_value[0]) and
+            set(actual_value[1]) == set(expected_value[1])
+        ):
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_element_layers'
+    try_0_ishapes_0_rules()
+    try_0_ishapes_3_rules()
+    try_3_ishapes_0_rules()
+    try_3_ishapes_3_rules()
 
 def test_get_name():
     def try_good_state():
@@ -541,7 +622,8 @@ def _set_up():
 # test__set_up_rule()                             ##  done 08-06
 # set_up_grammar_3_shapes_3_rules()               ##  done 08-07 / manual
 
-test_export()                                   ##  done / manual
+# test_export()                                   ##  done / manual
+# test__get_element_layers()                      ##  done
 # test_get_name()                                 ##  done
 
 # done

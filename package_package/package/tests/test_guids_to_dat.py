@@ -6,109 +6,24 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.tests import utilities as u
 
-def test_get_dat_string():                      ##  done 08-08 07:53
-    def try_bad_state_no_initial_shape_layer():
-        try_name = 'bad_state_no_initial_shape_layer'
-        u.Utilities.make_grammar_0_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat.get_dat_string()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_state_no_rule_layer():
-        try_name = 'bad_state_no_rule_layer'
-        u.Utilities.make_grammar_3_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat.get_dat_string()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
+def test_get_dat_string():                      ##  done 08-08
     def try_good_grammar():
         try_name = 'good_grammar'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        actual_value = gd.GuidsToDat.get_dat_string()
+        (   initial_shapes, 
+            rules
+        ) = (
+            u.Utilities.three_initial_shapes,
+            u.Utilities.four_rules)
+        actual_value = gd.GuidsToDat.get_dat_string(
+            initial_shapes, rules)
         expected_value = u.Utilities.grammar_3_4_dat_string
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'get_dat_string'
-    try_bad_state_no_initial_shape_layer()
-    try_bad_state_no_rule_layer()
     try_good_grammar()
-
-def test__get_element_layers():                 ##  done 08-07
-    def try_0_ishapes_0_rules():
-        try_name = '0_ishapes_0_rules'
-        g.Grammar.clear_all()
-        f.Frame._new_definition()
-        actual_value = gd.GuidsToDat._get_element_layers()
-        expected_value = [], []
-        if not (
-            set(actual_value[0]) == set(expected_value[0]) and
-            set(actual_value[1]) == set(expected_value[1])
-        ):
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_0_ishapes_3_rules():
-        try_name = '0_ishapes_3_rules'
-        u.Utilities.make_grammar_0_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat._get_element_layers()
-        expected_value = (
-            [],
-            [   'subdivide_triangle',
-                'add_h_to_h',
-                'add_h_in_square'])
-        if not (
-            set(actual_value[0]) == set(expected_value[0]) and
-            set(actual_value[1]) == set(expected_value[1])
-        ):
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-
-    def try_3_ishapes_0_rules():
-        try_name = '3_ishapes_0_rules'
-        u.Utilities.make_grammar_3_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat._get_element_layers()
-        expected_value = (
-            [   'labeled_right_triangle',
-                'labeled_h',
-                'labeled_square'],
-            [])
-        if not (
-            set(actual_value[0]) == set(expected_value[0]) and
-            set(actual_value[1]) == set(expected_value[1])
-        ):
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_3_ishapes_3_rules():
-        try_name = '3_ishapes_3_rules'
-        u.Utilities.make_grammar_3_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat._get_element_layers()
-        expected_value = (
-            [   'labeled_right_triangle',
-                'labeled_h',
-                'labeled_square'],
-            [   'subdivide_triangle',
-                'add_h_to_h',
-                'add_h_in_square'])
-        if not (
-            set(actual_value[0]) == set(expected_value[0]) and
-            set(actual_value[1]) == set(expected_value[1])
-        ):
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_element_layers'
-    try_0_ishapes_0_rules()
-    try_0_ishapes_3_rules()
-    try_3_ishapes_0_rules()
-    try_3_ishapes_3_rules()
 
 def test__make_initial_shape_frame_dict():      ##  done 08-08
     def try_3_ishapes():
@@ -1251,7 +1166,6 @@ def _make_annotations():
 ####
 
 # test_get_dat_string()                           ##  done
-# test__get_element_layers()                      ##  done
 # test__make_initial_shape_frame_dict()           ##  done / manual test
 # test__make_rule_frame_pair_dict()               ##  done / manual test
 
