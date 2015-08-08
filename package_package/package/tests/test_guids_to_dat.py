@@ -73,8 +73,7 @@ def test__make_labeled_shape_elements_dict():
     def try_3_ishapes_4_rules():
         try_name = '3_ishapes_4_rules'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        initial_shapes, rules = gd.GuidsToDat._get_element_layers()
-        # initial_shapes, rules = g.Grammar.get_initial_shapes_and_rules()
+        initial_shapes, rules = g.Grammar._get_element_layers()
         initial_shape_frame_dict = _prompt_for_initial_shape_elements(
             initial_shapes)
         rule_frame_pair_dict = _prompt_for_rule_elements(rules)
@@ -125,6 +124,55 @@ def test__get_elements():
     method_name = '_get_elements'
     try_empty_frame()
     try_good_args()
+
+def test__extract_elements_in_frame():          ##  done 08-08
+    def try_no_objects():
+        try_name = 'no_objects'
+        g.Grammar.clear_all()
+        layer_name = 'layer_x'
+        l.Layer.new(layer_name)
+        frame_name = layer_name
+        frame_position = (0, 0, 0)
+        frame_guid = f.Frame.new_instance(
+            layer_name, frame_position)
+        object_guids_on_layer =[]
+        actual_value = gd.GuidsToDat._extract_elements_in_frame(
+            frame_guid, object_guids_on_layer)
+        expected_value = []
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_objects():
+        try_name = 'objects'
+        g.Grammar.clear_all()
+        layer_name = 'layer_x'
+        l.Layer.new(layer_name)
+        frame_name = layer_name
+        frame_position = (0, 0, 0)
+        frame_guid = f.Frame.new_instance(
+            layer_name, frame_position)
+        object_guids_on_layer = _make_objects_on_layer(layer_name)
+        actual_value = gd.GuidsToDat._extract_elements_in_frame(
+            frame_guid, object_guids_on_layer)
+        rs.SelectObjects(actual_value)
+        # expected_value = ?
+        # if not set(actual_value) == set(expected_value):
+        #     u.Utilities.print_test_error_message(
+        #         method_name, try_name, expected_value, actual_value)
+
+    method_name = '_extract_elements_in_frame'
+    try_no_objects()
+    try_objects()
+
+def test__is_element():                         ##  trivial
+    pass
+
+def test__object_is_in_box():                   ##  trivial
+    pass
+
+def test__point_is_in_box():                    ##  trivial
+    pass
 
 def test__get_ordered_labeled_shapes_string():
     def try_0_ishapes_0_rules():
@@ -599,46 +647,6 @@ def test__get_ordered_rule_names_string():
 
 ### to deprecate
 
-def text__extract_elements_in_frame():          ##  07-12 07:59
-    def try_no_objects():
-        try_name = 'no_objects'
-        g.Grammar.clear_all()
-        layer_name = 'layer_x'
-        l.Layer.new(layer_name)
-        frame_name = layer_name
-        frame_position = (0, 0, 0)
-        frame_guid = f.Frame.new_instance(
-            frame_name, layer_name, frame_position)
-        object_guids_on_layer =[]
-        actual_value = gd.GuidsToDat._extract_elements_in_frame(
-            frame_guid, object_guids_on_layer)
-        expected_value = []
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_objects():
-        try_name = 'objects'
-        g.Grammar.clear_all()
-        layer_name = 'layer_x'
-        l.Layer.new(layer_name)
-        frame_name = layer_name
-        frame_position = (0, 0, 0)
-        frame_guid = f.Frame.new_instance(
-            frame_name, layer_name, frame_position)
-        object_guids_on_layer = _make_objects_on_layer(layer_name)
-        actual_value = gd.GuidsToDat._extract_elements_in_frame(
-            frame_guid, object_guids_on_layer)
-        rs.SelectObjects(actual_value)
-        # expected_value = ?
-        # if not set(actual_value) == set(expected_value):
-        #     u.Utilities.print_test_error_message(
-        #         method_name, try_name, expected_value, actual_value)
-
-    method_name = '_extract_elements_in_frame'
-    try_no_objects()
-    try_objects()
-
 def test__point_is_in_box():
     def try_point_outside():
         try_name = 'point_is_outside'
@@ -806,57 +814,6 @@ def test__get_ordered_initial_shape_defs_string():
     try_good_state_ishapes_no_rules()
     try_good_state_ishapes_rules()
 
-def test__get_ordered_rule_defs_string():
-    def try_good_state_no_ishapes_no_rules():
-        try_name = 'good_state_no_ishapes_no_rules'
-        _set_up()
-        actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = ''
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_no_ishapes_rules():
-        try_name = 'good_state_no_ishapes_rules'
-        _make_new_grammar_3_rules()
-        name_1, name_2, name_3 = 'a_rule', 'rule_1', 'z_rule'
-        actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = "%s\n%s\n%s" % (
-            "rule    %s    %s_L -> %s_R" % (name_1, name_1, name_1),
-            "rule    %s    %s_L -> %s_R" % (name_2, name_2, name_2),
-            "rule    %s    %s_L -> %s_R" % (name_3, name_3, name_3))
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_ishapes_no_rules():
-        try_name = 'good_state_ishapes_no_rules'
-        _make_new_grammar_3_ishapes()
-        actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = ''
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_ishapes_rules():
-        try_name = 'good_state_ishapes_rules'
-        _make_new_grammar_3_ishapes_3_rules()
-        name_1, name_2, name_3 = 'a_rule', 'rule_1', 'z_rule'
-        actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = "%s\n%s\n%s" % (
-                    "rule    %s    %s_L -> %s_R" % (name_1, name_1, name_1),
-                    "rule    %s    %s_L -> %s_R" % (name_2, name_2, name_2),
-                    "rule    %s    %s_L -> %s_R" % (name_3, name_3, name_3))
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_ordered_named_rule_defs_string'
-    try_good_state_no_ishapes_no_rules()
-    try_good_state_no_ishapes_rules()
-    try_good_state_ishapes_no_rules()
-    try_good_state_ishapes_rules()
-
 ####
 
 def _prompt_for_labeled_shape_name_elements_dict():
@@ -936,8 +893,6 @@ def _prompt_for_rule_elements(rules):
         guids = rs.GetObjects(message, block_type)
         rule_frame_pair_dict[rule] = guids
     return rule_frame_pair_dict
-
-####
 
 def _make_objects_on_layer(layer_name):
     rs.CurrentLayer(layer_name)
@@ -1173,6 +1128,10 @@ def _make_annotations():
 
 # test__make_labeled_shape_elements_dict()        ##  done / manual test
 # test__get_elements()                            ##  done / manual test
+# test__extract_elements_in_frame()               ##  done
+# test__is_element()                              ##  trivial
+# test__object_is_in_box()                        ##  trivial
+# test__point_is_in_box()                         ##  trivial
 # test__get_ordered_labeled_shapes_string()       ##  done / manual test
 # test__get_ordered_line_and_labeled_point_specs()##  done / manual test
 # test__get_labeled_shape_string()                ##  done
@@ -1184,8 +1143,7 @@ def _make_annotations():
 # test__make_ordered_indented_point_codex_label_polystring()
 #                                                 ##  done
 # test__get_ordered_initial_shape_names_string()  ##  done
+# test__get_initial_shape_name_string
 # test__get_ordered_rule_names_string()           ##  done
+# test__get_rule_name_string
 
-### to deprecate
-
-# test__get_ordered_rule_defs_string()

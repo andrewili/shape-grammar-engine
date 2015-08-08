@@ -10,8 +10,6 @@ class GuidsToDat(object):
         "unit  mm  # mm - millimetre, cm - centimetre, m - metre")
     blank_line = ''
     spacer = '    '
-    left_labeled_shape_suffix = '_L'
-    right_labeled_shape_suffix = '_R'
 
     def __init__(self):
         pass
@@ -69,7 +67,7 @@ class GuidsToDat(object):
         return_value = dat_string
         return return_value
 
-    @classmethod
+    @classmethod                                ##  called
     def _make_initial_shape_frame_dict(cls, initial_shapes):
         """Receives:
             initial_shapes  [str]. A non-empty list of names of layers 
@@ -86,7 +84,7 @@ class GuidsToDat(object):
             initial_shape_frame_dict[initial_shape] = frame_instance
         return initial_shape_frame_dict
 
-    @classmethod
+    @classmethod                                ##  called
     def _make_rule_frame_pair_dict(cls, rules):
         """Receives:
             rules           [str]. A non-empty list of names of layers 
@@ -106,7 +104,7 @@ class GuidsToDat(object):
 
     ####
 
-    @classmethod
+    @classmethod                                ##  called
     def _make_labeled_shape_elements_dict(
         cls, initial_shape_frame_dict, rule_frame_pair_dict
     ):
@@ -145,7 +143,7 @@ class GuidsToDat(object):
                 right_frame_and_elements)
         return labeled_shape_elements_dict
 
-    @classmethod
+    @classmethod                                ##  called
     def _get_elements(cls, frame_instance):
         """Receives:
             frame_instance  str. The name of a frame instance
@@ -154,27 +152,12 @@ class GuidsToDat(object):
                             in the frame instance. 
             None            otherwise           ?
         """
-        objects_on_layer = cls._get_objects_on_layer(frame_instance)
+        objects_on_layer = l.Layer._get_objects_on_layer(frame_instance)
         elements = cls._extract_elements_in_frame(
             frame_instance, objects_on_layer)
         return elements
 
-    @classmethod
-    def _get_objects_on_layer(cls, frame_instance):
-        """Receives:
-            frame_instance  The guid of a frame instance
-        Returns:
-            objects_on_layer
-                            [guid, ...]. A list of the guids of the objects 
-                            on the layer containing the frame instance, if 
-                            successful
-            None            otherwise
-        """
-        layer_name = rs.ObjectLayer(frame_instance)
-        objects_on_layer = rs.ObjectsByLayer(layer_name)
-        return objects_on_layer
-
-    @classmethod
+    @classmethod                                ##  called
     def _extract_elements_in_frame(cls, frame_instance, objects_on_layer):
         """Receives:
             frame_instance  guid. The guid of a frame instance
@@ -198,7 +181,7 @@ class GuidsToDat(object):
                 elements_in_frame.append(element_guid)
         return elements_in_frame
 
-    @classmethod
+    @classmethod                                ##  called
     def _is_element(cls, object_guid):
         """Receives:
             object_guid     guid. The guid of an object
@@ -213,7 +196,7 @@ class GuidsToDat(object):
             rs.ObjectType(object_guid) == textdot_type)
         return value
 
-    @classmethod
+    @classmethod                                ##  called
     def _object_is_in_box(cls, object_guid, box_position, box_size):
         """Receives:
             object_guid     guid. The guid of an object
@@ -238,7 +221,7 @@ class GuidsToDat(object):
                 break
         return value
 
-    @classmethod
+    @classmethod                                ##  called
     def _point_is_in_box(cls, point, position, size):
         """Receives:
             point           Point3d or (num, num, num)
@@ -261,82 +244,7 @@ class GuidsToDat(object):
             z1 <= z0 <= z2)
         return value
 
-    @classmethod
-    def _remove_bad_names(cls, name, names):
-        """Receives:
-            name            str. without the right labeled shape suffix. The 
-                            name of a labeled shape
-            names           [str, ...]. A list of labeled shape names
-        If the name of an initial shape, removes the name from the list of 
-        labeled shape names. If the name of a rule, removes both the left and
-        right labeled shape names from the list of labeled shape names
-        """
-        names.remove(name)
-        left_suffix = cls.left_labeled_shape_suffix
-        suffix_length = len(left_suffix)
-        if name[-suffix_length:] == cls.left_labeled_shape_suffix:
-            right_shape_name = cls._get_right_name_from_left(name)
-            names.remove(right_shape_name)
-
-    @classmethod                                ##  to Layer?
-    def _get_right_name_from_left(cls, left_name):
-        """Receives:
-            left_name       str. The name of a left rule labeled shape
-        Returns:
-            right_name      str. The name of the associated right labeled 
-                            shape
-        """
-        left_suffix = cls.left_labeled_shape_suffix
-        suffix_length = len(left_suffix)
-        rule_name = left_name[:-suffix_length]
-        right_name = '%s%s' % (rule_name, cls.right_labeled_shape_suffix)
-        return right_name
-
-    @classmethod                                ##  07-11 06:10
-    def _make_name_dat_dict(cls, name_elements_dict):
-        """Receives:
-            name_elements_dict
-                            {str: [guid, ...]}. A dictionary of 
-                            name-guidlist entries of labeled shapes
-        Returns a dictionary of name-datspec entries of labeled shapes:
-            name_dat_dict   {str: (
-                                [coord, ...],
-                                [codex_codex, ...],
-                                [codex_label])}
-                            if the labeled shape is well-formed
-                            {str: None}, if the labeled shape is ill-formed
-            None            if unsuccessful
-        """
-        name_dat_dict = {}
-        for labeled_shape_name in name_elements_dict:
-            guids = name_dat_dict[labeled_shape_name]
-            dat_spec = cls._get_dat_spec(guids)
-            name_dat_dict[labeled_shape_name] = dat_spec
-        return name_dat_dict
-
-    @classmethod                                ##  07-11 06:45
-    def _get_dat_spec(cls, guids):
-        """Receives:
-            guids           [guid, ...]. A list of guids of elements in a 
-                            labeled shape, i.e., initial shape, left rule 
-                            shape, or right rule shape
-        Returns:
-            dat_spec        (   [coord, ...],
-                                [codex_codex, ...],
-                                [codex_label, ...])
-                            a triple consisting of a point coordinate list, a 
-                            codex-codex list, and a codex-label list, if the 
-                            labeled shape is well-formed, i.e., if it contains 
-                            at least one guid (for initial and left shapes)
-            None            otherwise           ?           
-        """
-        coord_list = []
-        codex_codex_list = []
-        codex_label_list = []
-        dat_spec = (coord_list, codex_codex_list, codex_label_list)
-        return dat_spec
-
-    @classmethod                                ##  polystring?
+    @classmethod                                ##  called / polystring?
     def _get_ordered_labeled_shapes_string(
         cls, labeled_shape_name_elements_dict
     ):
@@ -382,7 +290,7 @@ class GuidsToDat(object):
         finally:
             return return_value
 
-    @classmethod
+    @classmethod                                ##  called
     def _get_ordered_line_and_labeled_point_specs(cls, element_guids):
         """Receives:
             element_guids   [guid, ...]. A list of the guids of (first) the 
@@ -445,7 +353,7 @@ class GuidsToDat(object):
         finally:
             return return_value
 
-    @classmethod
+    @classmethod                                ##  called
     def _get_labeled_shape_string(cls, line_and_labeled_point_specs):
         """Receives:
             line_and_labeled_point_specs
@@ -496,7 +404,7 @@ class GuidsToDat(object):
         labeled_shape_string = '\n'.join(indented_name_string_parts)
         return labeled_shape_string
 
-    @classmethod
+    @classmethod                                ##  called
     def _make_ordered_point_specs(cls, line_specs, labeled_point_specs):
         """Receives:
             line_specs      [line_spec, ...]. A list of line specs, each of 
@@ -524,7 +432,7 @@ class GuidsToDat(object):
         ordered_point_specs = sorted(point_specs)
         return ordered_point_specs
 
-    @classmethod
+    @classmethod                                ##  called
     def _make_ordered_indented_coord_codex_xyz_polystring(
         cls, ordered_point_specs
     ):
@@ -551,7 +459,7 @@ class GuidsToDat(object):
             ordered_indented_coord_codex_xyz_strings)
         return ordered_indented_coord_codex_xyz_polystring
 
-    @classmethod
+    @classmethod                                ##  called
     def _make_ordered_indented_line_lindex_codex_codex_polystring(
         cls, line_specs, ordered_point_specs
     ):
@@ -584,7 +492,7 @@ class GuidsToDat(object):
             ordered_indented_line_lindex_codex_codex_strings)
         return ordered_indented_line_lindex_codex_codex_polystring
 
-    @classmethod
+    @classmethod                                ##  called
     def _make_ordered_indented_point_codex_label_polystring(
         cls, labeled_point_specs, ordered_point_specs
     ):
@@ -616,8 +524,7 @@ class GuidsToDat(object):
             ordered_indented_point_codex_label_strings)
         return ordered_indented_point_codex_label_polystring
 
-
-    @classmethod                                ##  polystring?
+    @classmethod                                ##  called / polystring?
     def _get_ordered_initial_shape_names_string(cls, initial_shapes):
         """Receives:
             initial_shapes  [str, ...]. A list of names of initial shapes
@@ -639,7 +546,7 @@ class GuidsToDat(object):
             ordered_initial_shape_name_strings)
         return ordered_initial_shape_names_string
 
-    @classmethod
+    @classmethod                                ##  called
     def _get_initial_shape_name_string(cls, name):
         """Receives:
             name            str. The name of an initial shape
@@ -652,7 +559,7 @@ class GuidsToDat(object):
             cls.spacer, name)
         return initial_shape_name_string
 
-    @classmethod                                ##  polystring?
+    @classmethod                                ##  called / polystring?
     def _get_ordered_rule_names_string(cls, rules):
         """Receives:
             rules           [str, ...]. A list of names of rules
@@ -669,7 +576,7 @@ class GuidsToDat(object):
         ordered_rule_names_string = '\n'.join(ordered_rule_name_strings)
         return ordered_rule_names_string
 
-    @classmethod
+    @classmethod                                ##  called
     def _get_rule_name_string(cls, name):
         """Receives:
             name            str. The name of a rule

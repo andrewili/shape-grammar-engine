@@ -99,7 +99,7 @@ class Frame(object):
             line_guids.append(guid)
         return line_guids
 
-    @classmethod
+    @classmethod                                ##  called
     def get_instance_position(cls, guid):
         """Receives:
             guid            guid. The guid of the frame instance

@@ -445,6 +445,9 @@ def test__get_frames():
     try_no_lines_no_lpoints_two_frames()        ##  done
     try_lines_lpoints_two_frames()              ##  done
 
+def test__get_objects_on_layer():
+    pass
+
 def _add_lines_lpoints_no_frames():
     _add_lines()
     _add_lpoints()
@@ -565,6 +568,8 @@ test_get_layer_name_from_user()                 ##  done 08-06 / manual test
 
 # test__get_initial_labeled_shape_string()
 # test__get_rule_labeled_shape_strings()
+
+# test__get_objects_on_layer()
 
 # test__add_lines()                               ##  done
 # test__add_lpoints()                             ##  done

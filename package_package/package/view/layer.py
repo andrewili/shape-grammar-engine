@@ -64,7 +64,7 @@ class Layer(object):
         return_value = not rs.IsLayer(name)
         return return_value
 
-    @classmethod                                ##  07-28 07:02
+    @classmethod                                ##  called
     def get_frame_instance(cls, initial_shape):
         """Receives:
             initial_shape   str. The name of a layer containing one frame 
@@ -101,7 +101,7 @@ class Layer(object):
             print(message)
         return return_value
 
-    @classmethod
+    @classmethod                                ##  called
     def get_frame_instance_pair(cls, rule):
         """Receives:
             rule            str. The name of a layer containing two frame 
@@ -293,64 +293,78 @@ class Layer(object):
         """
         return value
 
+    @classmethod                                ##  called. To Layer?
+    def _get_objects_on_layer(cls, frame_instance):
+        """Receives:
+            frame_instance  The guid of a frame instance
+        Returns:
+            objects_on_layer
+                            [guid, ...]. A list of the guids of the objects 
+                            on the layer containing the frame instance, if 
+                            successful
+            None            otherwise
+        """
+        layer_name = rs.ObjectLayer(frame_instance)
+        objects_on_layer = rs.ObjectsByLayer(layer_name)
+        return objects_on_layer
 
     # @classmethod                                ##  07-06 15:50
     # def _get_initial_labeled_shape_string(cls, layer_name):
-    #     """Receives:
-    #         layer_name      str. The layer name of an initial shape
-    #     Returns:
-    #         initial_labeled_shape_string
-    #                         str. The string of the initial labeled shape on 
-    #                         the layer, if successful
-    #         None            otherwise
-    #     """
-    #     header_stringlet = "%s%s%s" % (
-    #         'shape',
-    #         cls.spacer,
-    #         layer_name)
-    #     indented_name_stringlet = 'name'
-    #     ordered_indented_coord_lines_stringlet = (
-    #         cls._make_ordered_indented_coord_lines_stringlet())
-    #     blank_stringlet = ''
-    #     ordered_indented_line_lines_stringlet = (
-    #         cls._make_ordered_indented_line_lines_stringlet())
-    #     ordered_indented_labeled_point_lines_stringlet = (
-    #         cls._make_ordered_indented_labed_point_lines_stringlet())
-    #     initial_labeled_shape_stringlets = [
-    #         header_stringlet,
-    #         indented_name_stringlet,
-    #         ordered_indented_coord_lines_stringlet,
-    #         blank_stringlet,
-    #         ordered_indented_line_lines_stringlet,
-    #         ordered_indented_labeled_point_lines_stringlet]
-    #     initial_labeled_shape_string = '\n'.join(
-    #         initial_labeled_shape_stringlets)
-    #     return initial_labeled_shape_string
+        # """Receives:
+        #     layer_name      str. The layer name of an initial shape
+        # Returns:
+        #     initial_labeled_shape_string
+        #                     str. The string of the initial labeled shape on 
+        #                     the layer, if successful
+        #     None            otherwise
+        # """
+        # header_stringlet = "%s%s%s" % (
+        #     'shape',
+        #     cls.spacer,
+        #     layer_name)
+        # indented_name_stringlet = 'name'
+        # ordered_indented_coord_lines_stringlet = (
+        #     cls._make_ordered_indented_coord_lines_stringlet())
+        # blank_stringlet = ''
+        # ordered_indented_line_lines_stringlet = (
+        #     cls._make_ordered_indented_line_lines_stringlet())
+        # ordered_indented_labeled_point_lines_stringlet = (
+        #     cls._make_ordered_indented_labed_point_lines_stringlet())
+        # initial_labeled_shape_stringlets = [
+        #     header_stringlet,
+        #     indented_name_stringlet,
+        #     ordered_indented_coord_lines_stringlet,
+        #     blank_stringlet,
+        #     ordered_indented_line_lines_stringlet,
+        #     ordered_indented_labeled_point_lines_stringlet]
+        # initial_labeled_shape_string = '\n'.join(
+        #     initial_labeled_shape_stringlets)
+        # return initial_labeled_shape_string
 
     # @classmethod
     # def _get_rule_labeled_shape_strings(cls, layer_name):
-    #     """Receives:
-    #         layer_name      str. The layer name of a rule
-    #     Returns:
-    #         rule_labeled_shape_strings
-    #                         (str, str). A duple of the strings of the left and 
-    #                         right labeled shapes on the layer
-    #     """
-    #     rule_labeled_shape_strings = (
-    #         left_labeled_shape_string, rule_labeled_shape_strings)
-    #     return rule_labeled_shape_strings
+        # """Receives:
+        #     layer_name      str. The layer name of a rule
+        # Returns:
+        #     rule_labeled_shape_strings
+        #                     (str, str). A duple of the strings of the left and 
+        #                     right labeled shapes on the layer
+        # """
+        # rule_labeled_shape_strings = (
+        #     left_labeled_shape_string, rule_labeled_shape_strings)
+        # return rule_labeled_shape_strings
 
-    #     # ishape_lshapes = cls.get_initial_shapes()
-    #     # rule_lshapes = cls.get_rule_shapes()
-    #     # named_lshapes = []
-    #     # named_lshapes.extend(ishape_lshapes)
-    #     # named_lshapes.extend(rule_lshapes)
-    #     # ordered_named_lshapes = sorted(named_lshapes)
-    #     # ordered_named_lshape_strings = []
-    #     # for named_lshape in ordered_named_lshapes:
-    #     #     named_lshape_string = (
-    #     #         ls.LabeledShape.get_string_from_named_lshape(named_lshape))
-    #     #     ordered_named_lshape_strings.append(named_lshape_string)
-    #     # ordered_labeled_shapes_string = '\n'.join(ordered_named_lshape_strings)
-    #     # return ordered_labeled_shapes_string
+        # # ishape_lshapes = cls.get_initial_shapes()
+        # # rule_lshapes = cls.get_rule_shapes()
+        # # named_lshapes = []
+        # # named_lshapes.extend(ishape_lshapes)
+        # # named_lshapes.extend(rule_lshapes)
+        # # ordered_named_lshapes = sorted(named_lshapes)
+        # # ordered_named_lshape_strings = []
+        # # for named_lshape in ordered_named_lshapes:
+        # #     named_lshape_string = (
+        # #         ls.LabeledShape.get_string_from_named_lshape(named_lshape))
+        # #     ordered_named_lshape_strings.append(named_lshape_string)
+        # # ordered_labeled_shapes_string = '\n'.join(ordered_named_lshape_strings)
+        # # return ordered_labeled_shapes_string
 

@@ -249,60 +249,60 @@ class Grammar(object):
             
     # @classmethod                              ##  obsolete
     # def get_rule_shapes(cls):
-    #     """Returns:
-    #         rule_shapes     [str, ...]. A sorted list of the names of the 
-    #                         labeled shapes in the grammar's rules, if 
-    #                         successful
-    #         None            otherwise
-    #     """
-    #     rules = cls.get_rules()
-    #     rule_lshapes = []
-    #     for rule in rules:
-    #         rule_lshape_pair = r.Rule.get_lshape_pair_from_rule(rule)
-    #         rule_lshapes.extend(rule_lshape_pair)
-    #     return sorted(rule_lshapes)
+        # """Returns:
+        #     rule_shapes     [str, ...]. A sorted list of the names of the 
+        #                     labeled shapes in the grammar's rules, if 
+        #                     successful
+        #     None            otherwise
+        # """
+        # rules = cls.get_rules()
+        # rule_lshapes = []
+        # for rule in rules:
+        #     rule_lshape_pair = r.Rule.get_lshape_pair_from_rule(rule)
+        #     rule_lshapes.extend(rule_lshape_pair)
+        # return sorted(rule_lshapes)
 
     # @classmethod                              ##  obsolete
     # def get_rules(cls):
-    #     """Returns:
-    #         rules           [str, ...]. A sorted list of the names of the 
-    #                         rules in the grammar, if successful
-    #         None            otherwise
-    #     """
-    #     text_guids = rs.ObjectsByGroup(r.Rule.component_type)
-    #     names = []
-    #     for guid in text_guids:
-    #         name = rs.TextObjectText(guid)
-    #         names.append(name)
-    #     return sorted(names)
+        # """Returns:
+        #     rules           [str, ...]. A sorted list of the names of the 
+        #                     rules in the grammar, if successful
+        #     None            otherwise
+        # """
+        # text_guids = rs.ObjectsByGroup(r.Rule.component_type)
+        # names = []
+        # for guid in text_guids:
+        #     name = rs.TextObjectText(guid)
+        #     names.append(name)
+        # return sorted(names)
 
     # @classmethod                              ##  obsolete
     # def add_to_initial_shapes(cls, name):
-    #     """Receives:
-    #         name            str. The name of an initial shape. Value verified
-    #     Adds the name to the grammar's list of initial shape names. Returns:
-    #         name            str. The name of the initial shape, if successful
-    #         None            otherwise
-    #     """
-    #     value = ll.Llist.set_entry(cls.initial_shapes, name)
-    #     if value:
-    #         return name
-    #     else:
-    #         return None
+        # """Receives:
+        #     name            str. The name of an initial shape. Value verified
+        # Adds the name to the grammar's list of initial shape names. Returns:
+        #     name            str. The name of the initial shape, if successful
+        #     None            otherwise
+        # """
+        # value = ll.Llist.set_entry(cls.initial_shapes, name)
+        # if value:
+        #     return name
+        # else:
+        #     return None
 
     # @classmethod                              ##  obsolete
     # def add_to_rules(cls, name):
-    #     """Receives:
-    #         name            str. The name of a rule. Value verified
-    #     Adds the name to the grammar's list of rule names. Returns:
-    #         name            str. The name of the rule, if successful
-    #         None            otherwise
-    #     """
-    #     value = ll.Llist.set_entry(cls.rules, name)
-    #     if value:
-    #         return name
-    #     else:
-    #         return None
+        """Receives:
+            name            str. The name of a rule. Value verified
+        Adds the name to the grammar's list of rule names. Returns:
+            name            str. The name of the rule, if successful
+            None            otherwise
+        """
+        value = ll.Llist.set_entry(cls.rules, name)
+        if value:
+            return name
+        else:
+            return None
 
     @classmethod
     def remove_from_initial_shapes(cls):        ##  to do
@@ -314,17 +314,17 @@ class Grammar(object):
 
     # @classmethod
     # def component_name_is_in_use(cls, name):
-    #     """Receives:
-    #         name            str. The name of a component
-    #     Returns:
-    #         boolean         True, if the name is on either the grammar's list 
-    #                         of initial shapes or its list of rules
-    #                         False, otherwise
-    #     """
-    #     value = (
-    #         ll.Llist.contains_entry(cls.initial_shapes, name) or
-    #         ll.Llist.contains_entry(cls.rules, name))
-    #     return value
+        """Receives:
+            name            str. The name of a component
+        Returns:
+            boolean         True, if the name is on either the grammar's list 
+                            of initial shapes or its list of rules
+                            False, otherwise
+        """
+        value = (
+            ll.Llist.contains_entry(cls.initial_shapes, name) or
+            ll.Llist.contains_entry(cls.rules, name))
+        return value
 
     ### continuing methods
     # @classmethod
