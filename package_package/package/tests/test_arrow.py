@@ -40,5 +40,6 @@ def test__new_definition():
     actual_value = a.Arrow._new_definition()
 
 # test_new_instance()                             ##  done 08-06
+# test__definition_exists()                       ##  trivial
 # test__new_definition()                          ##  done / manual test
-
+# test__get_guids()                               ##  trivial

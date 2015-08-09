@@ -1,5 +1,4 @@
 from package.view import frame as f
-from package.view import grammar as g
 from package.view import layer as l
 import rhinoscriptsyntax as rs
 from package.view import settings as s
@@ -152,7 +151,7 @@ class GuidsToDat(object):
                             in the frame instance. 
             None            otherwise           ?
         """
-        objects_on_layer = l.Layer._get_objects_on_layer(frame_instance)
+        objects_on_layer = l.Layer.get_objects_on_layer(frame_instance)
         elements = cls._extract_elements_in_frame(
             frame_instance, objects_on_layer)
         return elements

@@ -1,4 +1,4 @@
-from package.view import layer as l
+# from package.view import layer as l
 import rhinoscriptsyntax as rs
 from package.view import settings as s
 

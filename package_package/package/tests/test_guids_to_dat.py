@@ -171,8 +171,66 @@ def test__is_element():                         ##  trivial
 def test__object_is_in_box():                   ##  trivial
     pass
 
-def test__point_is_in_box():                    ##  trivial
-    pass
+def test__point_is_in_box():
+    def try_point_outside():
+        try_name = 'point_is_outside'
+        point = (30, -30, 0)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = False
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_point_on_surface():
+        try_name = 'point_is_on_surface'
+        point = (-10, 10, -25)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_point_on_edge():
+        try_name = 'point_is_on_edge'
+        point = (0, -25, 25)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_point_on_vertex():
+        try_name = 'point_is_on_vertex'
+        point = (-25, 25, -25)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_point_inside():
+        try_name = 'point_is_inside'
+        point = (5, -10, 15)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_point_is_in_box'
+    g.Grammar.clear_all()
+    box_position = (-25, -25, -25)
+    box_size = (50, 50, 50)
+    try_point_outside()
+    try_point_on_surface()
+    try_point_on_edge()
+    try_point_on_vertex()
+    try_point_inside()
 
 def test__get_ordered_labeled_shapes_string():
     def try_0_ishapes_0_rules():
@@ -211,7 +269,7 @@ def test__get_ordered_labeled_shapes_string():
                 method_name, try_name, expected_value, actual_value)
 
     method_name = '_get_ordered_labeled_shapes_string'
-    print('tests disabled')
+    # print('tests disabled')
     # try_0_ishapes_0_rules()                     ##  done
     # try_1_ishape_1_delete_rule()                ##  done
     # try_3_ishapes_4_rules()                     ##  done
@@ -645,175 +703,6 @@ def test__get_ordered_rule_names_string():
     try_0_rules()
     try_3_rules()
 
-### to deprecate
-
-def test__point_is_in_box():
-    def try_point_outside():
-        try_name = 'point_is_outside'
-        point = (30, -30, 0)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = False
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_point_on_surface():
-        try_name = 'point_is_on_surface'
-        point = (-10, 10, -25)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = True
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_point_on_edge():
-        try_name = 'point_is_on_edge'
-        point = (0, -25, 25)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = True
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_point_on_vertex():
-        try_name = 'point_is_on_vertex'
-        point = (-25, 25, -25)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = True
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_point_inside():
-        try_name = 'point_is_inside'
-        point = (5, -10, 15)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = True
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_point_is_in_box'
-    g.Grammar.clear_all()
-    box_position = (-25, -25, -25)
-    box_size = (50, 50, 50)
-    try_point_outside()
-    try_point_on_surface()
-    try_point_on_edge()
-    try_point_on_vertex()
-    try_point_inside()
-
-def test__make_labeled_shape_name_dat_dict():   ##  07-10 14:05
-    method_name = '_make_lshape_name_dat_dict'
-    try_no_labeled_shape_layers()
-    try_no_frame_definition()
-    try_empty_initial_shape()
-    try_empty_left_rule_shape()
-    try_0_initial_shapes_0_rules()
-    try_0_initial_shapes_3_rules()
-    try_3_initial_shapes_0_rules()
-    try_3_initial_shapes_3_rules()
-
-def test__get_ordered_labeled_shape_names():
-    def try_bad_state_0_initial_shapes_0_rules():
-        try_name = 'bad_state_0_initial_shapes_0_rules'
-        u.Utilities.make_grammar_0_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_state_0_initial_shapes_3_rules():
-        try_name = 'bad_state_no_initial_shapes_rules'
-        u.Utilities.make_grammar_0_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_state_3_initial_shapes_0_rules():
-        try_name = 'bad_state_initial_shapes_no_rules'
-        u.Utilities.make_grammar_3_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_3_initial_shapes_3_rules():
-        try_name = 'good_state_initial_shapes_rules'
-        u.Utilities.make_grammar_3_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
-        expected_value = 'kilroy'
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_ordered_labeled_shape_names'
-    try_bad_state_0_initial_shapes_0_rules()
-    try_bad_state_0_initial_shapes_3_rules()
-    try_bad_state_3_initial_shapes_0_rules()
-    try_good_state_3_initial_shapes_3_rules()
-
-def test__get_ordered_initial_shape_defs_string():
-    def try_good_state_no_ishapes_no_rules():
-        try_name = 'good_state_no_ishapes_no_rules'
-        _set_up()
-        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
-        expected_value = ''
-        # if actual_value == expected_value:
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_no_ishapes_rules():
-        try_name = 'good_state_no_ishapes_rules'
-        _make_new_grammar_3_rules()
-        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
-        expected_value = ''
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_ishapes_no_rules():
-        try_name = 'good_state_ishapes_no_rules'
-        _make_new_grammar_3_ishapes()
-        name_1, name_2, name_3 = 'a_ishape', 'initial_shape_1', 'z_ishape'
-        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
-        expected_value = "%s\n%s\n%s" % (
-            "shape    %s" % (name_1),
-            "shape    %s" % (name_2),
-            "shape    %s" % (name_3))
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_ishapes_rules():
-        try_name = 'good_state_ishapes_rules'
-        _make_new_grammar_3_ishapes_3_rules()
-        name_1, name_2, name_3 = 'a_ishape', 'initial_shape_1', 'z_ishape'
-        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
-        expected_value = "%s\n%s\n%s" % (
-            "shape    %s" % (name_1),
-            "shape    %s" % (name_2),
-            "shape    %s" % (name_3))
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_ordered_named_initial_shape_defs_string'
-    try_good_state_no_ishapes_no_rules()
-    try_good_state_no_ishapes_rules()
-    try_good_state_ishapes_no_rules()
-    try_good_state_ishapes_rules()
-
 ####
 
 def _prompt_for_labeled_shape_name_elements_dict():
@@ -1123,15 +1012,12 @@ def _make_annotations():
 # test_get_dat_string()                           ##  done
 # test__make_initial_shape_frame_dict()           ##  done / manual test
 # test__make_rule_frame_pair_dict()               ##  done / manual test
-
-####
-
 # test__make_labeled_shape_elements_dict()        ##  done / manual test
 # test__get_elements()                            ##  done / manual test
 # test__extract_elements_in_frame()               ##  done
 # test__is_element()                              ##  trivial
 # test__object_is_in_box()                        ##  trivial
-# test__point_is_in_box()                         ##  trivial
+# test__point_is_in_box()                         ##  done
 # test__get_ordered_labeled_shapes_string()       ##  done / manual test
 # test__get_ordered_line_and_labeled_point_specs()##  done / manual test
 # test__get_labeled_shape_string()                ##  done
@@ -1143,7 +1029,5 @@ def _make_annotations():
 # test__make_ordered_indented_point_codex_label_polystring()
 #                                                 ##  done
 # test__get_ordered_initial_shape_names_string()  ##  done
-# test__get_initial_shape_name_string
 # test__get_ordered_rule_names_string()           ##  done
-# test__get_rule_name_string
 
