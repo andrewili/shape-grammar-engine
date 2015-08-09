@@ -1,7 +1,5 @@
 from package.view import frame as f
 from package.view import grammar as g
-from package.view import initial_shape as ish   ##
-from package.view import rule as r              ##
 import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.tests import utilities as u
@@ -334,58 +332,6 @@ def test_get_labeled_shape_names():
     try_0_ishapes_3_rules()
     try_3_ishapes_0_rules()
     try_3_ishapes_3_rules()
-
-####
-
-def _make_new_grammar_3_ishapes_3_rules():      ##  ish, r
-    g.Grammar.clear_all()
-    f.Frame.new()
-    rs.AddGroup(ish.InitialShape.component_type)
-    rs.AddGroup(r.Rule.component_type)
-    ish.InitialShape.add_first()
-    r.Rule.add_first()
-    _add_two_ishapes()
-    _add_two_rules()
-
-def _make_new_grammar_3_ishapes():              ##  ish, r
-    g.Grammar.clear_all()
-    f.Frame._new_definition()
-    rs.AddGroup(ish.InitialShape.component_type)
-    rs.AddGroup(r.Rule.component_type)
-    ish.InitialShape.add_first()
-    _add_two_ishapes()
-
-def _make_new_grammar_3_rules():                ##  ish, r
-    g.Grammar.clear_all()
-    f.Frame.new()
-    rs.AddGroup(ish.InitialShape.component_type)
-    rs.AddGroup(r.Rule.component_type)
-    r.Rule.add_first()
-    _add_two_rules()
-
-def _add_two_ishapes():                         ##  ish
-    ishapes = [
-        ('a_ishape', (100, -40, 0)), 
-        ('z_ishape', (200, -40, 0))]
-    ttype = ish.InitialShape.component_type
-    for ishape in ishapes:
-        name, origin = ishape
-        c.Container.new(name, origin, ttype)
-
-def _add_two_rules():                           ##  r
-    rules = [
-        ('a_rule', (100, -100, 0)), 
-        ('z_rule', (200, -100, 0))]
-    ttype = r.Rule.component_type
-    for rule in rules:
-        name, origin = rule
-        c.Container.new(name, origin, ttype)
-
-def _set_up():                                  ##  ish, r
-    g.Grammar.clear_all()
-    f.Frame._new_definition()
-    rs.AddGroup(ish.InitialShape.component_type)
-    rs.AddGroup(r.Rule.component_type)
 
 # set_up_grammar_3_shapes_3_rules()               ##  done 08-07 / manual
 # test_set_up_grammar()                           ##  done 08-06 / manual
