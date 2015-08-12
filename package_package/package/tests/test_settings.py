@@ -29,32 +29,4 @@ def test_get_right_frame_position():
     try_good_type_triple()
     try_good_type_point3d()
 
-def test_new_point():
-    def try_good_value_zero():
-        try_name = 'try_good_value_zero'
-        zero = (0, 0, 0)
-        output = s.Settings.new_point(zero)
-        x, y, z = output[0], output[1], output[2]
-        actual_value = (x, y, z)
-        expected_value = (0, 0, 0)
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_value_1010():
-        try_name = 'try_good_value_1010'
-        good_value_1010 = (10, 10, 0)
-        output = s.Settings.new_point(good_value_1010)
-        x, y, z = output[0], output[1], output[2]
-        actual_value = (x, y, z)
-        expected_value = (10, 10, 0)
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = 'new_point'
-    try_good_value_zero()
-    try_good_value_1010()
-
 test_get_right_frame_position()
-test_new_point()

@@ -6,225 +6,26 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.tests import utilities as u
 
-def test_get_dat_string():
-    def try_bad_state_no_initial_shape_layer():
-        try_name = 'bad_state_no_initial_shape_layer'
-        u.Utilities.make_grammar_0_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat.get_dat_string()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_state_no_rule_layer():
-        try_name = 'bad_state_no_rule_layer'
-        u.Utilities.make_grammar_3_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat.get_dat_string()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
+def test_get_dat_string():                      ##  done 08-08
     def try_good_grammar():
         try_name = 'good_grammar'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        actual_value = gd.GuidsToDat.get_dat_string()
+        (   initial_shapes, 
+            rules
+        ) = (
+            u.Utilities.three_initial_shapes,
+            u.Utilities.four_rules)
+        actual_value = gd.GuidsToDat.get_dat_string(
+            initial_shapes, rules)
         expected_value = u.Utilities.grammar_3_4_dat_string
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'get_dat_string'
-    try_bad_state_no_initial_shape_layer()
-    try_bad_state_no_rule_layer()
     try_good_grammar()
 
-def test__make_element_frame_dicts():
-    def try_0_initial_shape_0_rule_layers():
-        try_name = '0_initial_shape_0_rule_layers'
-        u.Utilities.make_grammar_0_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat._make_element_frame_dicts()
-        expected_value = ({}, {})
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_0_initial_shape_3_rule_layers():
-        try_name = '0_initial_shape_3_rule_layers'
-        u.Utilities.make_grammar_0_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat._make_element_frame_dicts()
-        rules = u.Utilities.three_rules
-        expected_rule_frame_pair_dict = (
-            u.Utilities.prompt_for_rule_frame_pair_dict(rules))
-        expected_value = ({}, expected_rule_frame_pair_dict)
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_3_initial_shape_0_rule_layers():
-        try_name = '3_initial_shape_0_rule_layers'
-        u.Utilities.make_grammar_3_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat._make_element_frame_dicts()
-        initial_shapes = u.Utilities.three_initial_shapes
-        expected_initial_shape_frame_dict = (
-            u.Utilities.prompt_for_initial_shape_frame_dict(initial_shapes))
-        expected_value = (expected_initial_shape_frame_dict, {})
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_3_initial_shape_4_rule_layers():
-        try_name = '3_initial_shape_4_rule_layers'
-        u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        actual_value = gd.GuidsToDat._make_element_frame_dicts()
-        initial_shapes = u.Utilities.three_initial_shapes
-        rules = u.Utilities.four_rules
-        expected_initial_shape_frame_dict = (
-            u.Utilities.prompt_for_initial_shape_frame_dict(initial_shapes))
-        expected_rule_frame_pair_dict = (
-            u.Utilities.prompt_for_rule_frame_pair_dict(rules))
-        expected_value = (
-            expected_initial_shape_frame_dict,
-            expected_rule_frame_pair_dict)
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_make_element_frame_dicts'
-    try_0_initial_shape_0_rule_layers()
-    try_0_initial_shape_3_rule_layers()
-    try_3_initial_shape_0_rule_layers()
-    try_3_initial_shape_4_rule_layers()
-
-def test__add_frame_instance_to_element_frame_dicts():   ##  not called
-    def try_good_value_initial_shape_frame_instance():
-        try_name = 'good_value_first_frame_instance'
-        u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        element_layer = 'labeled_h'
-        message = "Select the frame instance on the layer '%s'" % (
-            element_layer)
-        block_instance_filter = s.Settings.block_instance_filter
-        frame_instance = rs.GetObject(message, block_instance_filter)
-        initial_shape_frame_dict = {}
-        rule_frame_pair_dict = {}
-        actual_value = (
-            gd.GuidsToDat._add_frame_instance_to_element_frame_dicts(
-                element_layer, 
-                frame_instance, 
-                initial_shape_frame_dict, 
-                rule_frame_pair_dict))
-        expected_initial_shape_frame_dict = {element_layer: frame_instance}
-        expected_rule_frame_pair_dict = {}
-        expected_value = (
-            expected_initial_shape_frame_dict, expected_rule_frame_pair_dict)
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_value_first_rule_frame_instance():
-        try_name = 'good_value_first_rule_frame_instance'
-
-    def try_good_value_second_rule_frame_instance():
-        try_name = 'good_value_second_rule_frame_instance'
-        u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        layer = 'add_h_to_h'
-        message_right = (
-            "Select the right frame instance on the layer '%s'" % (
-                    'add_h_to_h'))
-        block_instance_filter = s.Settings.block_instance_filter
-        frame_right = rs.GetObject(message_right, block_instance_filter)
-        initial_shape_frame_dict = {layer_name: frame_right}
-        rule_frame_pair_dict = {}
-        actual_value = (
-            gd.GuidsToDat._add_frame_instance_to_element_frame_dicts(
-                layer, 
-                frame_right, 
-                initial_shape_frame_dict, 
-                rule_frame_pair_dict))
-        expected_initial_shape_frame_dict = {}
-        message_left = "Select the left frame instance on the layer '%s'" % (
-            'add_h_to_h')
-        frame_left = rs.GetObject(message_left, block_instance_filter)
-        expected_rule_frame_pair_dict = {layer: (frame_right, frame_left)}
-        expected_value = (
-            expected_initial_shape_frame_dict, expected_rule_frame_pair_dict)
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_add_frame_instance_to_element_frame_dicts'
-    # try_good_value_initial_shape_frame_instance()
-    try_good_value_first_rule_frame_instance()
-    # try_good_value_second_rule_frame_instance()
-
-def test__add_entry_to_rule_frame_pair_dict():
-    def try_frame_instances_left_right():
-        try_name = 'frame_instances_left_right'
-        element_layer = 'add_h_to_h'
-        message_left = "Select the left frame instance on the layer '%s'" % (
-            element_layer)
-        block_instance_filter = s.Settings.block_instance_filter
-        frame_instance_left = rs.GetObject(
-            message_left, block_instance_filter)
-        message_right = (
-            "Select the right frame instance on the layer '%s'" % (
-                    element_layer))
-        frame_instance_right = rs.GetObject(
-            message_right, block_instance_filter)
-        rule_frame_pair_dict_in = {}
-        actual_value = gd.GuidsToDat._add_entry_to_rule_frame_pair_dict(
-            element_layer, 
-            frame_instance_left, 
-            frame_instance_right, 
-            rule_frame_pair_dict_in)
-        expected_value = {
-            element_layer: (frame_instance_left, frame_instance_right)}
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_frame_instances_right_left():
-        try_name = 'frame_instances_right_left'
-        element_layer = 'add_h_to_h'
-        message_right = (
-            "Select the right frame instance on the layer '%s'" % (
-                    element_layer))
-        block_instance_filter = s.Settings.block_instance_filter
-        frame_instance_right = rs.GetObject(
-            message_right, block_instance_filter)
-        message_left = "Select the left frame instance on the layer '%s'" % (
-            element_layer)
-        frame_instance_left = rs.GetObject(
-            message_left, block_instance_filter)
-        rule_frame_pair_dict_in = {}
-        actual_value = gd.GuidsToDat._add_entry_to_rule_frame_pair_dict(
-            element_layer, 
-            frame_instance_right, 
-            frame_instance_left, 
-            rule_frame_pair_dict_in)
-        expected_value = {
-            element_layer: (frame_instance_left, frame_instance_right)}
-        if actual_value == expected_value:
-        # if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_add_entry_to_rule_frame_pair_dict'
-    try_frame_instances_left_right()
-    try_frame_instances_right_left()
-
-def test__make_initial_shape_frame_dict():
-    def try_0_ishapes():
-        try_name = '0_ishapes'
-        u.Utilities.make_grammar_0_initial_shapes_0_rules()
-        initial_shapes = []
-        actual_value = gd.GuidsToDat._make_initial_shape_frame_dict(
-            initial_shapes)
-        expected_value = {}
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
+def test__make_initial_shape_frame_dict():      ##  done 08-08
     def try_3_ishapes():
         try_name = '3_ishapes'
         u.Utilities.make_grammar_3_initial_shapes_3_rules()
@@ -238,22 +39,12 @@ def test__make_initial_shape_frame_dict():
                 method_name, try_name, expected_value, actual_value)
 
     method_name = '_make_initial_shape_frame_dict'
-    try_0_ishapes()
     try_3_ishapes()
 
-def test__make_rule_frame_pair_dict():
-    def try_0_rules():
-        try_name = '0_rules'
-        u.Utilities.make_grammar_0_initial_shapes_0_rules()
-        rules = []
-        actual_value = gd.GuidsToDat._make_rule_frame_pair_dict(rules)
-        expected_value = {}
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
+def test__make_rule_frame_pair_dict():          ##  done 08-08
     def try_3_rules():
-        try_name = '0_rules'
+        try_name = '3_rules'
+
         u.Utilities.make_grammar_3_initial_shapes_3_rules()
         rules = u.Utilities.three_rules
         actual_value = gd.GuidsToDat._make_rule_frame_pair_dict(rules)
@@ -264,7 +55,6 @@ def test__make_rule_frame_pair_dict():
                 method_name, try_name, expected_value, actual_value)
 
     method_name = '_make_rule_frame_pair_dict'
-    try_0_rules()
     try_3_rules()
 
 def test__make_labeled_shape_elements_dict():
@@ -283,7 +73,7 @@ def test__make_labeled_shape_elements_dict():
     def try_3_ishapes_4_rules():
         try_name = '3_ishapes_4_rules'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        initial_shapes, rules = g.Grammar.get_initial_shapes_and_rules()
+        initial_shapes, rules = g.Grammar._get_element_layers()
         initial_shape_frame_dict = _prompt_for_initial_shape_elements(
             initial_shapes)
         rule_frame_pair_dict = _prompt_for_rule_elements(rules)
@@ -335,6 +125,113 @@ def test__get_elements():
     try_empty_frame()
     try_good_args()
 
+def test__extract_elements_in_frame():          ##  done 08-08
+    def try_no_objects():
+        try_name = 'no_objects'
+        g.Grammar.clear_all()
+        layer_name = 'layer_x'
+        l.Layer.new(layer_name)
+        frame_name = layer_name
+        frame_position = (0, 0, 0)
+        frame_guid = f.Frame.new_instance(
+            layer_name, frame_position)
+        object_guids_on_layer =[]
+        actual_value = gd.GuidsToDat._extract_elements_in_frame(
+            frame_guid, object_guids_on_layer)
+        expected_value = []
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_objects():
+        try_name = 'objects'
+        g.Grammar.clear_all()
+        layer_name = 'layer_x'
+        l.Layer.new(layer_name)
+        frame_name = layer_name
+        frame_position = (0, 0, 0)
+        frame_guid = f.Frame.new_instance(
+            layer_name, frame_position)
+        object_guids_on_layer = _make_objects_on_layer(layer_name)
+        actual_value = gd.GuidsToDat._extract_elements_in_frame(
+            frame_guid, object_guids_on_layer)
+        rs.SelectObjects(actual_value)
+        # expected_value = ?
+        # if not set(actual_value) == set(expected_value):
+        #     u.Utilities.print_test_error_message(
+        #         method_name, try_name, expected_value, actual_value)
+
+    method_name = '_extract_elements_in_frame'
+    try_no_objects()
+    try_objects()
+
+def test__is_element():                         ##  trivial
+    pass
+
+def test__object_is_in_box():                   ##  trivial
+    pass
+
+def test__point_is_in_box():
+    def try_point_outside():
+        try_name = 'point_is_outside'
+        point = (30, -30, 0)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = False
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_point_on_surface():
+        try_name = 'point_is_on_surface'
+        point = (-10, 10, -25)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_point_on_edge():
+        try_name = 'point_is_on_edge'
+        point = (0, -25, 25)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_point_on_vertex():
+        try_name = 'point_is_on_vertex'
+        point = (-25, 25, -25)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_point_inside():
+        try_name = 'point_is_inside'
+        point = (5, -10, 15)
+        actual_value = gd.GuidsToDat._point_is_in_box(
+            point, box_position, box_size)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_point_is_in_box'
+    g.Grammar.clear_all()
+    box_position = (-25, -25, -25)
+    box_size = (50, 50, 50)
+    try_point_outside()
+    try_point_on_surface()
+    try_point_on_edge()
+    try_point_on_vertex()
+    try_point_inside()
+
 def test__get_ordered_labeled_shapes_string():
     def try_0_ishapes_0_rules():
         try_name = '0_ishapes_0_rules'
@@ -372,7 +269,7 @@ def test__get_ordered_labeled_shapes_string():
                 method_name, try_name, expected_value, actual_value)
 
     method_name = '_get_ordered_labeled_shapes_string'
-    print('tests disabled')
+    # print('tests disabled')
     # try_0_ishapes_0_rules()                     ##  done
     # try_1_ishape_1_delete_rule()                ##  done
     # try_3_ishapes_4_rules()                     ##  done
@@ -806,266 +703,6 @@ def test__get_ordered_rule_names_string():
     try_0_rules()
     try_3_rules()
 
-### to deprecate
-
-def text__extract_elements_in_frame():          ##  07-12 07:59
-    def try_no_objects():
-        try_name = 'no_objects'
-        g.Grammar.clear_all()
-        layer_name = 'layer_x'
-        l.Layer.new(layer_name)
-        frame_name = layer_name
-        frame_position = (0, 0, 0)
-        frame_guid = f.Frame.new_instance(
-            frame_name, layer_name, frame_position)
-        object_guids_on_layer =[]
-        actual_value = gd.GuidsToDat._extract_elements_in_frame(
-            frame_guid, object_guids_on_layer)
-        expected_value = []
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_objects():
-        try_name = 'objects'
-        g.Grammar.clear_all()
-        layer_name = 'layer_x'
-        l.Layer.new(layer_name)
-        frame_name = layer_name
-        frame_position = (0, 0, 0)
-        frame_guid = f.Frame.new_instance(
-            frame_name, layer_name, frame_position)
-        object_guids_on_layer = _make_objects_on_layer(layer_name)
-        actual_value = gd.GuidsToDat._extract_elements_in_frame(
-            frame_guid, object_guids_on_layer)
-        rs.SelectObjects(actual_value)
-        # expected_value = ?
-        # if not set(actual_value) == set(expected_value):
-        #     u.Utilities.print_test_error_message(
-        #         method_name, try_name, expected_value, actual_value)
-
-    method_name = '_extract_elements_in_frame'
-    try_no_objects()
-    try_objects()
-
-def test__point_is_in_box():
-    def try_point_outside():
-        try_name = 'point_is_outside'
-        point = (30, -30, 0)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = False
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_point_on_surface():
-        try_name = 'point_is_on_surface'
-        point = (-10, 10, -25)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = True
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_point_on_edge():
-        try_name = 'point_is_on_edge'
-        point = (0, -25, 25)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = True
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_point_on_vertex():
-        try_name = 'point_is_on_vertex'
-        point = (-25, 25, -25)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = True
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_point_inside():
-        try_name = 'point_is_inside'
-        point = (5, -10, 15)
-        actual_value = gd.GuidsToDat._point_is_in_box(
-            point, box_position, box_size)
-        expected_value = True
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_point_is_in_box'
-    g.Grammar.clear_all()
-    box_position = (-25, -25, -25)
-    box_size = (50, 50, 50)
-    try_point_outside()
-    try_point_on_surface()
-    try_point_on_edge()
-    try_point_on_vertex()
-    try_point_inside()
-
-def test__make_labeled_shape_name_dat_dict():   ##  07-10 14:05
-    method_name = '_make_lshape_name_dat_dict'
-    try_no_labeled_shape_layers()
-    try_no_frame_definition()
-    try_empty_initial_shape()
-    try_empty_left_rule_shape()
-    try_0_initial_shapes_0_rules()
-    try_0_initial_shapes_3_rules()
-    try_3_initial_shapes_0_rules()
-    try_3_initial_shapes_3_rules()
-
-def test__get_ordered_labeled_shape_names():
-    def try_bad_state_0_initial_shapes_0_rules():
-        try_name = 'bad_state_0_initial_shapes_0_rules'
-        u.Utilities.make_grammar_0_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_state_0_initial_shapes_3_rules():
-        try_name = 'bad_state_no_initial_shapes_rules'
-        u.Utilities.make_grammar_0_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_state_3_initial_shapes_0_rules():
-        try_name = 'bad_state_initial_shapes_no_rules'
-        u.Utilities.make_grammar_3_initial_shapes_0_rules()
-        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_3_initial_shapes_3_rules():
-        try_name = 'good_state_initial_shapes_rules'
-        u.Utilities.make_grammar_3_initial_shapes_3_rules()
-        actual_value = gd.GuidsToDat._get_ordered_labeled_shape_names()
-        expected_value = 'kilroy'
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_ordered_labeled_shape_names'
-    try_bad_state_0_initial_shapes_0_rules()
-    try_bad_state_0_initial_shapes_3_rules()
-    try_bad_state_3_initial_shapes_0_rules()
-    try_good_state_3_initial_shapes_3_rules()
-
-def test__get_ordered_initial_shape_defs_string():
-    def try_good_state_no_ishapes_no_rules():
-        try_name = 'good_state_no_ishapes_no_rules'
-        _set_up()
-        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
-        expected_value = ''
-        # if actual_value == expected_value:
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_no_ishapes_rules():
-        try_name = 'good_state_no_ishapes_rules'
-        _make_new_grammar_3_rules()
-        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
-        expected_value = ''
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_ishapes_no_rules():
-        try_name = 'good_state_ishapes_no_rules'
-        _make_new_grammar_3_ishapes()
-        name_1, name_2, name_3 = 'a_ishape', 'initial_shape_1', 'z_ishape'
-        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
-        expected_value = "%s\n%s\n%s" % (
-            "shape    %s" % (name_1),
-            "shape    %s" % (name_2),
-            "shape    %s" % (name_3))
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_ishapes_rules():
-        try_name = 'good_state_ishapes_rules'
-        _make_new_grammar_3_ishapes_3_rules()
-        name_1, name_2, name_3 = 'a_ishape', 'initial_shape_1', 'z_ishape'
-        actual_value = g.Grammar._get_ordered_named_initial_shape_defs_string()
-        expected_value = "%s\n%s\n%s" % (
-            "shape    %s" % (name_1),
-            "shape    %s" % (name_2),
-            "shape    %s" % (name_3))
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_ordered_named_initial_shape_defs_string'
-    try_good_state_no_ishapes_no_rules()
-    try_good_state_no_ishapes_rules()
-    try_good_state_ishapes_no_rules()
-    try_good_state_ishapes_rules()
-
-def test__get_ordered_rule_defs_string():
-    def try_good_state_no_ishapes_no_rules():
-        try_name = 'good_state_no_ishapes_no_rules'
-        _set_up()
-        actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = ''
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_no_ishapes_rules():
-        try_name = 'good_state_no_ishapes_rules'
-        _make_new_grammar_3_rules()
-        name_1, name_2, name_3 = 'a_rule', 'rule_1', 'z_rule'
-        actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = "%s\n%s\n%s" % (
-            "rule    %s    %s_L -> %s_R" % (name_1, name_1, name_1),
-            "rule    %s    %s_L -> %s_R" % (name_2, name_2, name_2),
-            "rule    %s    %s_L -> %s_R" % (name_3, name_3, name_3))
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_ishapes_no_rules():
-        try_name = 'good_state_ishapes_no_rules'
-        _make_new_grammar_3_ishapes()
-        actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = ''
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_ishapes_rules():
-        try_name = 'good_state_ishapes_rules'
-        _make_new_grammar_3_ishapes_3_rules()
-        name_1, name_2, name_3 = 'a_rule', 'rule_1', 'z_rule'
-        actual_value = g.Grammar._get_ordered_named_rule_defs_string()
-        expected_value = "%s\n%s\n%s" % (
-                    "rule    %s    %s_L -> %s_R" % (name_1, name_1, name_1),
-                    "rule    %s    %s_L -> %s_R" % (name_2, name_2, name_2),
-                    "rule    %s    %s_L -> %s_R" % (name_3, name_3, name_3))
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_ordered_named_rule_defs_string'
-    try_good_state_no_ishapes_no_rules()
-    try_good_state_no_ishapes_rules()
-    try_good_state_ishapes_no_rules()
-    try_good_state_ishapes_rules()
-
 ####
 
 def _prompt_for_labeled_shape_name_elements_dict():
@@ -1145,8 +782,6 @@ def _prompt_for_rule_elements(rules):
         guids = rs.GetObjects(message, block_type)
         rule_frame_pair_dict[rule] = guids
     return rule_frame_pair_dict
-
-####
 
 def _make_objects_on_layer(layer_name):
     rs.CurrentLayer(layer_name)
@@ -1374,14 +1009,15 @@ def _make_annotations():
 
 ####
 
-test_get_dat_string()                           ##  done
-# test__make_element_frame_dicts()                ##  done / manual test
-# test__add_frame_instance_to_element_frame_dicts()   ##  not called / manual test
-# test__add_entry_to_rule_frame_pair_dict()       ##  done / manual test
+# test_get_dat_string()                           ##  done
 # test__make_initial_shape_frame_dict()           ##  done / manual test
 # test__make_rule_frame_pair_dict()               ##  done / manual test
 # test__make_labeled_shape_elements_dict()        ##  done / manual test
 # test__get_elements()                            ##  done / manual test
+# test__extract_elements_in_frame()               ##  done
+# test__is_element()                              ##  trivial
+# test__object_is_in_box()                        ##  trivial
+# test__point_is_in_box()                         ##  done
 # test__get_ordered_labeled_shapes_string()       ##  done / manual test
 # test__get_ordered_line_and_labeled_point_specs()##  done / manual test
 # test__get_labeled_shape_string()                ##  done
@@ -1395,6 +1031,3 @@ test_get_dat_string()                           ##  done
 # test__get_ordered_initial_shape_names_string()  ##  done
 # test__get_ordered_rule_names_string()           ##  done
 
-### to deprecate
-
-# test__get_ordered_rule_defs_string()

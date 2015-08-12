@@ -84,8 +84,10 @@ def test_get_frame_position_from_user():        ##  done 08-06
     method_name = 'get_frame_position_from_user'
     try_something()
 
-# test_new_instance()                             ##  done 08-06
+test_new_instance()                             ##  done 08-06
+# test__definition_exists()                       ##  trivial
 # test__new_definition()                          ##  done 08-05
 # test__get_guids()                               ##  done 08-06 / manual test
+# test_get_instance_position()                    ##  trivial
 # test_get_frame_position_from_user()             ##  done 08-06 / manual test
 

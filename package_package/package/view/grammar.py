@@ -1,10 +1,7 @@
 from package.view import arrow as a
 from package.view import frame as f
 from package.controller import guids_to_dat as gd
-# from package.view import initial_shape as ish   ##  to deprecate
 from package.view import layer as l
-from package.view import llist as ll
-# from package.view import rule as r              ##  to deprecate
 import rhinoscriptsyntax as rs
 from package.view import settings as s
 
@@ -13,7 +10,7 @@ class Grammar(object):
         pass
 
     ### new
-    @classmethod
+    @classmethod                                ##  done 08-08
     def set_up_grammar(cls):
         cls.clear_all()
         cls._set_up_first_initial_shape()
@@ -21,8 +18,10 @@ class Grammar(object):
 
     @classmethod                                ##  done 08-06
     def _set_up_first_initial_shape(cls):
-        """Adds a new layer with one frame instance. Should be executed only 
-        once. Returns:
+        """Required state:
+            There must be no layer with the first initial shape layer name
+        Adds a new layer with the first initial shape layer name and one frame 
+        instance. Should be executed only once. Returns:
             layer_name      str. The name of the layer, if successful. None, 
                             otherwise
         """
@@ -78,8 +77,10 @@ class Grammar(object):
 
     @classmethod
     def _set_up_first_rule(cls):                ##  done 08-06
-        """Adds a new layer with two frame instances. Should be executed only 
-        once. Returns:
+        """Required state:
+            There must be no layer with the first rule layer name
+        Adds a new layer with the first rule layer name and two frame 
+        instances. Should be executed only once. Returns:
             layer_name      str. The name of the layer, if successful. None, 
                             otherwise
         """
@@ -146,57 +147,51 @@ class Grammar(object):
     #     pass
 
     ### export
-    @classmethod
+    @classmethod                                ##  done 08-08
     def export(cls):
         """Writes the grammar's dat string to a file, proposing the Rhino 
         document name as the file name. Returns:
-            dat_string      str. The dat string, if successful
-            None            otherwise
+            dat_string      str. The dat string, if successful. None, 
+                            otherwise
         """
-        suggested_file_name = rs.DocumentName()
-        dat_string = gd.GuidsToDat.get_dat_string()
-        if not(dat_string):
+        initial_shapes, rules = cls._get_element_layers()
+        if (initial_shapes == [] or 
+            rules == []
+        ):
+            (   error_message
+            ) = (
+                ' '.join([
+                    "The grammar must have at least", 
+                    "one initial shape and one rule"]))
+            print(error_message)
             return_value = None
         else:
-            cls._write_to_file(suggested_file_name, dat_string)
-            return_value = dat_string
+            (   suggested_file_name, 
+                dat_string
+            ) = (
+                rs.DocumentName(), 
+                gd.GuidsToDat.get_dat_string(initial_shapes, rules))
+            dat_string_out = cls._write_to_file(
+                suggested_file_name, dat_string)
+            return_value = dat_string_out
         return return_value
 
-    # @classmethod                                ##  not called
-    # def _get_ordered_initial_shape_defs_string(cls):
-        # """Returns:
-        #     ordered_initial_shape_defs_string
-        #                     str: str\nstr\n...\nstr. The string form of 
-        #                     [str, ...], an ordered list (by name) of initial 
-        #                     shape definitions, if successful
-        #                     '' otherwise
-        # """
-        # ordered_ishapes = cls.get_initial_shapes()
-        #                     ##  also in _get_ordered_lshapes_string()
-        # ordered_ishape_defs = []
-        # for ishape in ordered_ishapes:
-        #     ishape_def = ish.InitialShape.get_def_from_ishape(ishape)
-        #     ordered_ishape_defs.append(ishape_def)
-        # ordered_initial_shape_defs_string = '\n'.join(ordered_ishape_defs)
-        # return ordered_initial_shape_defs_string
-
-    
-    # @classmethod                                ##  not called
-    # def _get_ordered_rule_defs_string(cls):
-        # """Returns:
-        #     ordered_rule_defs_string
-        #                     str: str\nstr\n...\nstr. The string form of 
-        #                     [str, ...], an ordered list (by name) of rule 
-        #                     definition strings, if successful
-        #                     '' otherwise
-        # """
-        # ordered_rules = cls.get_rules()
-        # ordered_rule_defs = []
-        # for rule_i in ordered_rules:
-        #     rule_def = r.Rule.get_def_from_rule(rule_i)
-        #     ordered_rule_defs.append(rule_def)
-        # ordered_rule_defs_string = '\n'.join(ordered_rule_defs)
-        # return ordered_rule_defs_string
+    @classmethod
+    def _get_element_layers(cls):               ##  done 08-07
+        """Returns:
+            initial_shapes  [str, ...]. A list of the names of layers 
+                            containing one frame instance
+            rules           [str, ...]. A list of the names of layers 
+                            containing two frame instances
+        """
+        initial_shapes, rules = [], []
+        layer_names = rs.LayerNames()
+        for name in layer_names:
+            if l.Layer.contains_initial_shape(name):
+                initial_shapes.append(name)
+            elif l.Layer.contains_rule(name):
+                rules.append(name)
+        return (initial_shapes, rules)
 
     @classmethod                                ##  done
     def _write_to_file(cls, file_name_in, dat_string):
@@ -216,137 +211,24 @@ class Grammar(object):
 
     ####
 
-    # @classmethod                                ##  in use 07-28 08:56
-    # def make_element_frame_dicts(cls):
-        # """Returns:
-        #     initial_shape_frame_dict
-        #                     {str: guid}. A non-empty dictionary of initial 
-        #                     shape layer names and frame instance guids, if 
-        #                     successful
-        #     rule_frame_pair_dict
-        #                     {str: (guid, guid)}. A non-empty dictionary of 
-        #                     rule shape layer names and frame instance guid 
-        #                     pairs, if successful
-        #     None            otherwise
-        # """
-        # initial_shapes, rules = cls.get_initial_shapes_and_rules()
-
-        # initial_shape_frame_dict = {}
-        # rule_frame_pair_dict = {}
-        # error_message = None
-        # if error_message:
-        #     print(error_message)
-        # return_value = (
-        #     initial_shape_frame_dict, 
-        #     rule_frame_pair_dict)
-        # return return_value
-
-    @classmethod                                ##  
-    def get_initial_shapes_and_rules(cls):
-        """Returns:
-            initial_shapes  [str, ...]. A list of the names of layers 
-                            containing one frame instance
-            rules           [str, ...]. A list of the names of layers 
-                            containing two frame instances
+    @classmethod                                ##  for tests
+    def get_labeled_shape_names(cls):
+        """The grammar is guaranteed to be well-formed. Returns:
+            labeled_shape_names
+                            [str, ...]. A list of the names of the labeled 
+                            shapes in initial shapes or rules, i.e., name, 
+                            name_L, or name_R
         """
-        initial_shapes, rules = [], []
+        labeled_shape_names = []
         layer_names = rs.LayerNames()
-        for name in layer_names:
-            if l.Layer.contains_initial_shape(name):
-                initial_shapes.append(name)
-            elif l.Layer.contains_rule(name):
-                rules.append(name)
-        return (initial_shapes, rules)
-
-    # @classmethod
-    # def get_labeled_shape_names(cls):
-        # """The grammar is guaranteed to be well-formed. Returns:
-        #     labeled_shape_names
-        #                     [str, ...]. A list of the names of the labeled 
-        #                     shapes in initial shapes or rules, i.e., name, 
-        #                     name_L, or name_R
-        # """
-        # labeled_shape_names = []
-        # layer_names = rs.LayerNames()
-        # for layer_name in layer_names:
-        #     if l.Layer.contains_initial_shape(layer_name):
-        #         labeled_shape_names.append(layer_name)
-        #     elif l.Layer.contains_rule(layer_name):
-        #         left_name = "%s_L" % layer_name
-        #         right_name = "%s_R" % layer_name
-        #         labeled_shape_names.extend([left_name, right_name])
-        # return labeled_shape_names
-
-    # @classmethod
-    # def get_initial_shapes(cls):
-        # """Returns:
-        #     initial_shapes  [str, ...]. A sorted list of the names of the 
-        #                     initial shapes in the grammar, if successful
-        #     None            otherwise
-        # """
-        # text_guids = rs.ObjectsByGroup(ish.InitialShape.component_type)
-        # names = []
-        # for guid in text_guids:
-        #     name = rs.TextObjectText(guid)
-        #     names.append(name)
-        # return sorted(names)
-            
-    @classmethod
-    def get_rule_shapes(cls):
-        """Returns:
-            rule_shapes     [str, ...]. A sorted list of the names of the 
-                            labeled shapes in the grammar's rules, if 
-                            successful
-            None            otherwise
-        """
-        rules = cls.get_rules()
-        rule_lshapes = []
-        for rule in rules:
-            rule_lshape_pair = r.Rule.get_lshape_pair_from_rule(rule)
-            rule_lshapes.extend(rule_lshape_pair)
-        return sorted(rule_lshapes)
-
-    @classmethod
-    def get_rules(cls):
-        """Returns:
-            rules           [str, ...]. A sorted list of the names of the 
-                            rules in the grammar, if successful
-            None            otherwise
-        """
-        text_guids = rs.ObjectsByGroup(r.Rule.component_type)
-        names = []
-        for guid in text_guids:
-            name = rs.TextObjectText(guid)
-            names.append(name)
-        return sorted(names)
-
-    @classmethod
-    def add_to_initial_shapes(cls, name):
-        """Receives:
-            name            str. The name of an initial shape. Value verified
-        Adds the name to the grammar's list of initial shape names. Returns:
-            name            str. The name of the initial shape, if successful
-            None            otherwise
-        """
-        value = ll.Llist.set_entry(cls.initial_shapes, name)
-        if value:
-            return name
-        else:
-            return None
-
-    @classmethod
-    def add_to_rules(cls, name):
-        """Receives:
-            name            str. The name of a rule. Value verified
-        Adds the name to the grammar's list of rule names. Returns:
-            name            str. The name of the rule, if successful
-            None            otherwise
-        """
-        value = ll.Llist.set_entry(cls.rules, name)
-        if value:
-            return name
-        else:
-            return None
+        for layer_name in layer_names:
+            if l.Layer.contains_initial_shape(layer_name):
+                labeled_shape_names.append(layer_name)
+            elif l.Layer.contains_rule(layer_name):
+                left_name = "%s_L" % layer_name
+                right_name = "%s_R" % layer_name
+                labeled_shape_names.extend([left_name, right_name])
+        return labeled_shape_names
 
     @classmethod
     def remove_from_initial_shapes(cls):        ##  to do
@@ -356,58 +238,15 @@ class Grammar(object):
     def remove_from_rule(cls):                  ##  to do
         pass
 
-    @classmethod
-    def component_name_is_in_use(cls, name):
-        """Receives:
-            name            str. The name of a component
-        Returns:
-            boolean         True, if the name is on either the grammar's list 
-                            of initial shapes or its list of rules
-                            False, otherwise
-        """
-        value = (
-            ll.Llist.contains_entry(cls.initial_shapes, name) or
-            ll.Llist.contains_entry(cls.rules, name))
-        return value
-
-    ### continuing methods
-    # @classmethod
-    # def _get_ishape_lshape_strings():           ##  06-08 09:32
-        # """Returns:
-        #     ishape_lshape_strings
-        #                 [str, ...]. A list of lshape strings of the 
-        #                 grammar's initial shapes
-        # """
-        # ishape_lshape_strings = []
-        # ishapes = cls.get_initial_shapes()
-        # for ishape in ishapes:
-        #     lshape_string = cls._get_lshape_string_from_ishape(ishape)
-        #     ishape_lshape_strings.append(lshape_string)
-        # return ishape_lshape_strings
-
-    # @classmethod
-    # def _get_rule_lshape_strings():
-        # """Returns:
-        #     rule_lshape_strings
-        #                 [str, ...]. A list of lshape strings of the 
-        #                 grammar's rules
-        # """
-        # rule_lshape_strings = []
-        # rules = cls.get_rules()
-        # for rule in rules:
-        #     lshape_string_pair = cls._get_lshape_string_pair_from_rule(rule)
-        #     rule_lshape_strings.extend(lshape_string_pair)
-        # return rule_lshape_strings
-
     ### utilities
-    @classmethod
+    @classmethod                                ##  called
     def clear_all(cls):                         ##  system-created blocks only?
         cls._clear_objects()
         cls._clear_blocks()
         cls._clear_layers()
         cls._clear_data()
 
-    @classmethod
+    @classmethod                                ##  called
     def _clear_objects(cls):
         """Deletes all drawn objects. Returns:
             n_objects       int. The number of objects deleted, if successful
@@ -418,13 +257,13 @@ class Grammar(object):
         n_objects = rs.DeleteObjects(objects)
         return n_objects
 
-    @classmethod
+    @classmethod                                ##  called
     def _clear_blocks(cls):
         block_names = rs.BlockNames()
         for name in block_names:
             rs.DeleteBlock(name)
 
-    @classmethod
+    @classmethod                                ##  called
     def _clear_layers(cls):                     ##  clear only user layers
         """Deletes all layers. Leaves Default layer
         """
@@ -437,7 +276,7 @@ class Grammar(object):
             if not layer_name == default_layer_name:
                 rs.DeleteLayer(layer_name)
 
-    @classmethod
+    @classmethod                                ##  called
     def _clear_data(cls):
         rs.DeleteDocumentData()
 

@@ -15,15 +15,11 @@ class Settings(object):
     first_initial_shape_layer_name = 'initial_shape_1'
     first_initial_shape_frame_position = (0, -40, 0)
     first_rule_layer_name = 'rule_1'
-    first_rule_left_frame_position = (60, -40, 0)
-    # first_rule_left_frame_position = rs.PointAdd((0, -100, 0), (0, 0, 0))
+    first_rule_left_frame_position = (0, -90, 0)
     frame_base_point = (0, 0, 0)                ##  Point3D
     frame_color_name = dark_gray
     frame_layer_name = 'frames'
     frame_name = 'frame block'
-    layer_color = Color.Black
-    layer_tag_offset = (-10, 0, 0)
-    layer_tag_text_height = 2
     right_frame_offset_factor = 1.5
 
     def __init__(self):
@@ -64,13 +60,3 @@ class Settings(object):
         arrow_position = rs.PointAdd(left_frame_position, arrow_offset)
         return arrow_position
 
-    @classmethod
-    def new_point(cls, triple):
-        """Receives:
-            triple          (num, num, num)
-        Returns:
-            point           Point3d. The point at (x, y, z)
-        """
-        zero = (0, 0, 0)
-        point = rs.PointAdd(triple, zero)
-        return point

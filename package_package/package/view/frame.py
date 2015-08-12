@@ -1,4 +1,3 @@
-from package.view import layer as l
 import rhinoscriptsyntax as rs
 from package.view import settings as s
 
@@ -99,7 +98,7 @@ class Frame(object):
             line_guids.append(guid)
         return line_guids
 
-    @classmethod
+    @classmethod                                ##  called
     def get_instance_position(cls, guid):
         """Receives:
             guid            guid. The guid of the frame instance

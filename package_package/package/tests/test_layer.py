@@ -137,17 +137,10 @@ def test_get_frame_instance_pair():
         method_name = 'good_arg'
         u.Utilities.make_grammar_3_initial_shapes_3_rules()
         actual_value = l.Layer.get_frame_instance_pair('add_h_in_square_spec')
-        # rs.SelectObject(actual_value[0])
         rs.SelectObjects(actual_value)
 
     method_name = 'get_frame_instance_pair'
     try_good_arg()
-
-def test_contains_initial_shape():
-    pass
-
-def test_contains_rule():
-    pass
 
 def test__get_number_of_frames():
     def try_bad_state_no_frame_definition():
@@ -186,7 +179,7 @@ def test__get_number_of_frames():
         try_name = 'good_state_1_frames_0_others'
         g.Grammar.clear_all()
         l.Layer.new(layer_name)
-        f.Frame.new_instance(frame_name, layer_name, p1)
+        f.Frame.new_instance(layer_name, p1)
         actual_value = l.Layer._get_number_of_frames(layer_name)
         expected_value = 1
         if not actual_value == expected_value:
@@ -197,7 +190,7 @@ def test__get_number_of_frames():
         try_name = 'good_state_1_frames_2_others'
         g.Grammar.clear_all()
         l.Layer.new(layer_name)
-        f.Frame.new_instance(frame_name, layer_name, p1)
+        f.Frame.new_instance(layer_name, p1)
         _insert_other_block(other_block_name, layer_name, p4)
         _insert_other_block(other_block_name, layer_name, p5)
         actual_value = l.Layer._get_number_of_frames(layer_name)
@@ -210,8 +203,8 @@ def test__get_number_of_frames():
         try_name = 'good_state_2_frames_0_others'
         g.Grammar.clear_all()
         l.Layer.new(layer_name)
-        f.Frame.new_instance(frame_name, layer_name, p1)
-        f.Frame.new_instance(frame_name, layer_name, p2)
+        f.Frame.new_instance(layer_name, p1)
+        f.Frame.new_instance(layer_name, p2)
         actual_value = l.Layer._get_number_of_frames(layer_name)
         expected_value = 2
         if not actual_value == expected_value:
@@ -222,8 +215,8 @@ def test__get_number_of_frames():
         try_name = 'good_state_2_frames_2_others'
         g.Grammar.clear_all()
         l.Layer.new(layer_name)
-        f.Frame.new_instance(frame_name, layer_name, p1)
-        f.Frame.new_instance(frame_name, layer_name, p2)
+        f.Frame.new_instance(layer_name, p1)
+        f.Frame.new_instance(layer_name, p2)
         _insert_other_block(other_block_name, layer_name, p4)
         _insert_other_block(other_block_name, layer_name, p5)
         actual_value = l.Layer._get_number_of_frames(layer_name)
@@ -236,9 +229,9 @@ def test__get_number_of_frames():
         try_name = 'good_state_3_frames_0_others'
         g.Grammar.clear_all()
         l.Layer.new(layer_name)
-        f.Frame.new_instance(frame_name, layer_name, p1)
-        f.Frame.new_instance(frame_name, layer_name, p2)
-        f.Frame.new_instance(frame_name, layer_name, p3)
+        f.Frame.new_instance(layer_name, p1)
+        f.Frame.new_instance(layer_name, p2)
+        f.Frame.new_instance(layer_name, p3)
         actual_value = l.Layer._get_number_of_frames(layer_name)
         expected_value = 3
         if not actual_value == expected_value:
@@ -249,9 +242,9 @@ def test__get_number_of_frames():
         try_name = 'good_state_3_frames_2_others'
         g.Grammar.clear_all()
         l.Layer.new(layer_name)
-        f.Frame.new_instance(frame_name, layer_name, p1)
-        f.Frame.new_instance(frame_name, layer_name, p2)
-        f.Frame.new_instance(frame_name, layer_name, p3)
+        f.Frame.new_instance(layer_name, p1)
+        f.Frame.new_instance(layer_name, p2)
+        f.Frame.new_instance(layer_name, p3)
         _insert_other_block(other_block_name, layer_name, p4)
         _insert_other_block(other_block_name, layer_name, p5)
         actual_value = l.Layer._get_number_of_frames(layer_name)
@@ -280,170 +273,7 @@ def test__get_number_of_frames():
     try_good_state_3_frames_0_others()
     try_good_state_3_frames_2_others()
 
-def test__get_initial_labeled_shape_string():   ##  07-06 15:56
-    def try_bad_value_non_existent_initial_labeled_shape():
-        try_name = 'bad_value_no_initial_labeled_shape'
-        actual_value = g.Grammar._get_initial_labeled_shape_string(
-            non_existent_initial_shape_layer_name)
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_value():
-        try_name = 'good_state'
-        actual_value = g.Grammar._get_initial_labeled_shape_string(
-            u.Utilities.labeled_h_spec)
-        expected_value = u.Utilities.labeled_h_is_string
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_initial_labeled_shape_string'
-    g.Grammar.clear_all()
-    initial_shape_string = _add_initial_labeled_shape()
-    try_bad_value_non_existent_initial_labeled_shape()
-    try_good_value()
-
-def test_get_frame_positions_from_layer_name():
-    def try_bad_type_layer_name():
-        try_name = 'bad_type_layer_name'
-        layer_name = 37
-        actual_value = l.Layer.get_frame_positions_from_layer_name(layer_name)
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_value_no_layer_name():
-        try_name = 'bad_state_no_layer_name'
-        g.Grammar.clear_all()
-        layer_name = s.Settings.first_rule_layer_name
-        actual_value = l.Layer.get_frame_positions_from_layer_name(layer_name)
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_bad_state_no_frame():
-        try_name = 'bad_state_no_frame'
-        g.Grammar.clear_all()
-        layer_name = s.Settings.first_rule_layer_name
-        l.Layer.new(layer_name)
-        actual_value = l.Layer.get_frame_positions_from_layer_name(layer_name)
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_one_frame():
-        try_name = 'good_state_one_frame'
-        g.Grammar.clear_all()
-        layer_name = s.Settings.first_initial_shape_layer_name
-        l.Layer.new(layer_name)
-        rs.CurrentLayer(layer_name)
-        position = s.Settings.first_initial_shape_frame_position
-        f.Frame.new_instance(layer_name, layer_name, position)
-        rs.CurrentLayer(s.Settings.default_layer_name)
-        actual_guids = l.Layer.get_frame_positions_from_layer_name(layer_name)
-        actual_coords = actual_guids.pop()
-        actual_value = tuple(actual_coords)
-        expected_value = position
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_good_state_two_frames():
-        try_name = 'good_state_two_frames'
-        g.Grammar.clear_all()
-        layer_name = s.Settings.first_rule_layer_name
-        l.Layer.new(layer_name)
-        rs.CurrentLayer(layer_name)
-        left_frame_name = "%s_L" % layer_name
-        right_frame_name = "%s_R" % layer_name
-        left_frame_position = s.Settings.first_rule_left_frame_position
-        right_frame_position = s.Settings.get_right_frame_position(
-            left_frame_position)
-        f.Frame.new_instance(left_frame_name, layer_name, left_frame_position)
-        f.Frame.new_instance(
-            right_frame_name, layer_name, right_frame_position)
-        rs.CurrentLayer(s.Settings.default_layer_name)
-        actual_value = l.Layer.get_frame_positions_from_layer_name(layer_name)
-        expected_value = (left_frame_position, right_frame_position)
-        if not (
-            rs.PointCompare(actual_value[0], expected_value[0]) and
-            rs.PointCompare(actual_value[1], expected_value[1])
-        ):
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = 'get_frame_positions_from_layer_names'
-    try_bad_type_layer_name()                   ##  done
-    try_bad_value_no_layer_name()               ##  done
-    try_bad_state_no_frame()                    ##  done
-    try_good_state_one_frame()                  ##  done
-    try_good_state_two_frames()                 ##  done
-
-def test__get_frames():
-    def try_lines_lpoints_no_frames():
-        try_name = 'lines_lpoints_no_frames'
-        g.Grammar.clear_all()
-        l.Layer.new(layer_name)
-        rs.CurrentLayer(layer_name)
-        _add_lines_lpoints_no_frames()
-        rs.CurrentLayer(default_layer_name)
-        actual_value = l.Layer._get_frames(layer_name)
-        expected_value = None
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_no_lines_no_lpoints_one_frame():
-        try_name = 'no_lines_no_lpoints_one_frame'
-        g.Grammar.clear_all()
-        l.Layer.new(layer_name)
-        rs.CurrentLayer(layer_name)
-        frame_guid = _add_no_lines_no_lpoints_one_frame()
-        rs.CurrentLayer(s.Settings.default_layer_name)
-        actual_value = l.Layer._get_frames(layer_name)
-        expected_value = [frame_guid]
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_no_lines_no_lpoints_two_frames():
-        try_name = 'no_lines_no_lpoints_two_frames'
-        g.Grammar.clear_all()
-        l.Layer.new(layer_name)
-        rs.CurrentLayer(layer_name)
-        frame_guids = _add_no_lines_no_lpoints_two_frames()
-        rs.CurrentLayer(default_layer_name)
-        actual_value = l.Layer._get_frames(layer_name)
-        expected_value = frame_guids
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_lines_lpoints_two_frames():
-        try_name = 'lines_lpoints_two_frames'
-        g.Grammar.clear_all()
-        l.Layer.new(layer_name)
-        rs.CurrentLayer(layer_name)
-        frame_guids = _add_lines_lpoints_two_frames()
-        rs.CurrentLayer(default_layer_name)
-        actual_value = l.Layer._get_frames(layer_name)
-        expected_value = frame_guids
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_frames'
-    layer_name = s.Settings.first_rule_layer_name
-    default_layer_name = s.Settings.default_layer_name
-    try_lines_lpoints_no_frames()               ##  done
-    try_no_lines_no_lpoints_one_frame()         ##  done
-    try_no_lines_no_lpoints_two_frames()        ##  done
-    try_lines_lpoints_two_frames()              ##  done
+####
 
 def _add_lines_lpoints_no_frames():
     _add_lines()
@@ -507,7 +337,7 @@ def _add_two_frames():
     frame_guids = []
     for frame_spec in frame_specs:
         frame_name, layer_name, origin = frame_spec
-        frame_guid = f.Frame.new_instance(frame_name, layer_name, origin)
+        frame_guid = f.Frame.new_instance(layer_name, origin)
         frame_guids.append(frame_guid)
     rs.CurrentLayer(s.Settings.default_layer_name)
     return frame_guids
@@ -547,26 +377,18 @@ def _insert_other_block(other_block_name, layer_name, position):
 
 
 # test_new()                                      ##  done 08-05
-test_get_layer_name_from_user()                 ##  done 08-06 / manual test
-# test__is_well_formed()                          ##  done
-# test__is_available()                            ##  done
-
-# test_get_frame_instance()                       ##  done / manual test
-# test_get_frame_instance_pair()                  ##  done / manual test
-
+# test_get_layer_name_from_user()                 ##  done 08-06 / manual test
+# test__is_well_formed()                          ##  done 08-09
+# test__is_available()                            ##  done 08-09
+# test_get_frame_instance()                       ##  done 08-06 / manual
+# test_get_frame_instance_pair()                  ##  done 08-09 / manual
 # test_contains_initial_shape()                   ##  trivial
 # test_contains_rule()                            ##  trivial
-# test__get_number_of_frames()                    ##  done
+# test__get_number_of_frames()                    ##  done 08-09 / manual
 # test__contains_guid()                           ##  trivial
+# test_get_objects_on_layer()                     ##  trivial
 
-# test_get_frame_positions_from_layer_name()      ##  done
-# test__get_frames()                              ##  done
-# test__order_left_right()                        ##  trivial
-
-# test__get_initial_labeled_shape_string()
-# test__get_rule_labeled_shape_strings()
-
-# test__add_lines()                               ##  done
-# test__add_lpoints()                             ##  done
-# test__add_two_frames()                          ##  done
+# test__add_lines()                               ##  done 08-09 / manual
+# test__add_lpoints()                             ##  done 08-09 / manual
+# test__add_two_frames()                          ##  done 08-09 / manual
 
