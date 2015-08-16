@@ -73,8 +73,6 @@ class Layer(object):
             frame_instance  guid. The guid of the frame instance on the layer 
                             Isn't this redundant?
         """
-        
-
         if not rs.IsLayer(initial_shape):
             message = "There is no layer named '%s'" % initial_shape
         all_frame_instances = rs.BlockInstances(s.Settings.frame_name)

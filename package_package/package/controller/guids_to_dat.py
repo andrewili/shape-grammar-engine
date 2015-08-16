@@ -14,7 +14,7 @@ class GuidsToDat(object):
         pass
 
                                                 ##  ill-formed components
-    @classmethod                                ##  08-13 10:32
+    @classmethod                                ##  done 08-16
     def get_dat_string(cls, initial_shapes, rules):
         """Receives:
             initial_shapes  [str, ...]. A non-empty list of the names of 
@@ -43,22 +43,15 @@ class GuidsToDat(object):
             cls._make_labeled_shape_elements_dict(
                 initial_shape_frame_dict, rule_frame_pair_dict))
                             ##  {labeled_shape: [element]}
-                                                ##  len(list) == 1 -> 
-                                                ##  reduce lshape list
-                                                ##  send message
         ordered_labeled_shapes_string = (
             cls._get_ordered_labeled_shapes_string(
                 labeled_shape_elements_dict))
                             ##  'labeled_shape_string\n...'
-        initial_shapes = initial_shape_frame_dict.keys()
-                                                ##  replace
+        initial_shapes, rules = cls._get_components(
+            labeled_shape_elements_dict)
         ordered_initial_shape_names_string = (
             cls._get_ordered_initial_shape_names_string(initial_shapes))
                             ##  'initial    name\n...'
-        rules = rule_frame_pair_dict.keys()
-                                                ##  replace
-        # initial_shapes, rules = cls._get_components(
-        #     labeled_shape_elements_dict)
         ordered_rule_names_string = (
             cls._get_ordered_rule_names_string(rules))
                             ##  'rule    <name>    <name_L> -> <name_R>\n...'
@@ -109,9 +102,7 @@ class GuidsToDat(object):
             rule_frame_pair_dict[rule] = frame_pair
         return rule_frame_pair_dict
 
-    ####
-
-    @classmethod
+    @classmethod                                ##  done 08-16
     def _make_labeled_shape_elements_dict(
         cls, initial_shape_frame_dict, rule_frame_pair_dict
     ):
@@ -124,9 +115,14 @@ class GuidsToDat(object):
                             rule names and frame instance guid pairs
         Returns:
             labeled_shape_elements_dict
-                            {str: [guid, ...]}. A non-empty dictionary of 
+                            {str: [guid, ...]}. A possibly empty dictionary of 
                             labeled shape names and lists of their element 
-                            guids. The first guid is the guid of the frame 
+                            guids. The names are of labeled shapes with lists 
+                            containing first the guid of the frame instance 
+                            and then at least one element guid, i.e., 
+                            non-empty labeled shapes. The exception is that a 
+                            right labeled shape may be empty, in which case 
+                            its list contains only the guid of the frame 
                             instance
         """
         labeled_shape_elements_dict = {}
@@ -167,7 +163,10 @@ class GuidsToDat(object):
             error_message = "%s %s" % (
                 "The following initial shapes and rules were omitted", 
                 "because they contained inappropriate empty shapes")
-            print("%s: %s" % (error_message, ill_formed_components))
+            ill_formed_components_string = ',  '.join(ill_formed_components)
+            total_message = "%s:\n\n%s" % (
+                error_message, ill_formed_components_string)
+            rs.MessageBox(total_message)
         return labeled_shape_elements_dict
 
     @classmethod                                ##  called
@@ -269,6 +268,38 @@ class GuidsToDat(object):
             y1 <= y0 <= y2 and 
             z1 <= z0 <= z2)
         return value
+
+    @classmethod                                ##  done 08-16
+    def _get_components(cls, labeled_shape_elements_dict):
+        """Receives:
+            labeled_shape_elements_dict
+                            {str: [guid, ...]}. A possibly empty dictionary of 
+                            labeled shape names and lists of their element 
+                            guids. The names are of labeled shapes with lists 
+                            containing first the guid of the frame instance 
+                            and then at least one element guid, i.e., 
+                            non-empty labeled shapes. The exception is that a 
+                            right labeled shape may be empty, in which case 
+                            its list contains only the guid of the frame 
+                            instance
+        Returns:
+            initial_shapes  [str]. A possibly empty list of names of non-empty 
+                            initial shapes
+            rules           [str]. A possibly empty list of names of non-empty 
+                            rules
+        """
+        initial_shapes, rules = [], []
+        for labeled_shape in labeled_shape_elements_dict:
+            if labeled_shape[-2:] == '_L':
+                rule = labeled_shape[:-2]
+                rules.append(rule)
+            elif labeled_shape[-2:] == '_R':
+                pass
+            else:
+                initial_shape = labeled_shape
+                initial_shapes.append(initial_shape)
+        components = (initial_shapes, rules)
+        return components
 
     @classmethod                                ##  called / polystring?
     def _get_ordered_labeled_shapes_string(

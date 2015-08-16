@@ -7,7 +7,7 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.tests import utilities as u
 
-def test_get_dat_string():                      ##  08-15 08:54
+def test_get_dat_string():                      ##  done 08-16
     def try_grammar_1_empty_rule():
         try_name = 'grammar_1_empty_rule'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
@@ -54,7 +54,7 @@ def test_get_dat_string():                      ##  08-15 08:54
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'get_dat_string'
-    try_grammar_1_empty_rule()
+    # try_grammar_1_empty_rule()
     # try_grammar_1_empty_initial_shape()
     # try_good_grammar()
 
@@ -108,6 +108,7 @@ def test__make_labeled_shape_elements_dict():   ##  done 08-15
     def try_non_empty_and_empty_initial_shapes_and_rules_3_0_4_1():
         try_name = 'non_empty_and_empty_initial_shapes_and_rules_3_0_4_1'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        print("Add 'empty_rule'")
         g.Grammar.set_up_subsequent_rule()
         (   actual_initial_shape_frame_dict) = (
             _prompt_for_actual_initial_shape_frame_dict())
@@ -118,6 +119,7 @@ def test__make_labeled_shape_elements_dict():   ##  done 08-15
         expected_dict = _prompt_for_expected_labeled_shape_elements_dict()
         actual_value = _compare_dicts(actual_dict, expected_dict)
         expected_value = True
+        print(actual_dict)
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
@@ -125,6 +127,7 @@ def test__make_labeled_shape_elements_dict():   ##  done 08-15
     def try_non_empty_and_empty_initial_shapes_and_rules_3_1_4_0():
         try_name = 'non_empty_and_empty_initial_shapes_and_rules_3_1_4_0'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        print("Add 'empty_initial_shape'")
         g.Grammar.set_up_subsequent_initial_shape()
         (   actual_initial_shape_frame_dict) = (
             _prompt_for_actual_initial_shape_frame_dict())
@@ -157,7 +160,7 @@ def test__make_labeled_shape_elements_dict():   ##  done 08-15
 
     method_name = '_make_labeled_shape_elements_dict'
     # try_non_empty_and_empty_initial_shapes_and_rules_0_1_0_1()  ##  done
-    # try_non_empty_and_empty_initial_shapes_and_rules_3_0_4_1()  ##  done / manual
+    try_non_empty_and_empty_initial_shapes_and_rules_3_0_4_1()  ##  done / manual
     # try_non_empty_and_empty_initial_shapes_and_rules_3_1_4_0()  ##  done / manual
     # try_non_empty_and_empty_initial_shapes_and_rules_3_0_4_0()  ##  done / manual
 
@@ -294,6 +297,41 @@ def test__point_is_in_box():
     try_point_on_edge()
     try_point_on_vertex()
     try_point_inside()
+
+def test__get_components():                     ##  done 08-16
+    def try_empty_dict():
+        try_name = 'empty_dict'
+        empty_dict = {}
+        actual_value = gd.GuidsToDat._get_components(empty_dict)
+        expected_value = ([], [])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_dict():
+        try_name = 'good_dict'
+        good_dict = {
+            'initial_shape_2': ['c', 'd'],
+            'initial_shape_1': ['a', 'b'],
+            'rule_2_R': ['k'],
+            'rule_1_R': ['g', 'h'],
+            'rule_2_L': ['i', 'j'],
+            'rule_1_L': ['e', 'f']}
+        actual_initial_shapes, actual_rules = (
+            gd.GuidsToDat._get_components(good_dict))
+        actual_value = (
+            sorted(actual_initial_shapes), 
+            sorted(actual_rules))
+        expected_value = (
+            ['initial_shape_1', 'initial_shape_2'],
+            ['rule_1', 'rule_2'])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_components'
+    try_empty_dict()
+    try_good_dict()
 
 def test__get_ordered_labeled_shapes_string():
     def try_0_ishapes_0_rules():
@@ -1196,6 +1234,7 @@ test_get_dat_string()                           ##  done
 # test__is_element()                              ##  trivial
 # test__object_is_in_box()                        ##  trivial
 # test__point_is_in_box()                         ##  done
+# test__get_components()
 # test__get_ordered_labeled_shapes_string()       ##  done / manual test
 # test__get_ordered_line_and_labeled_point_specs()##  done / manual test
 # test__get_labeled_shape_string()                ##  done
