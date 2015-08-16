@@ -11,16 +11,18 @@ class Settings(object):
     arrow_name = 'arrow'    
     block_instance_filter = 4096    
     block_type = 4096
+    curve_filter = 4
     default_layer_name = 'Default'
     first_initial_shape_layer_name = 'initial_shape_1'
     first_initial_shape_frame_position = (0, -40, 0)
     first_rule_layer_name = 'rule_1'
-    first_rule_left_frame_position = (0, -90, 0)
+    first_rule_left_frame_position = (60, -40, 0)
     frame_base_point = (0, 0, 0)                ##  Point3D
     frame_color_name = dark_gray
     frame_layer_name = 'frames'
     frame_name = 'frame block'
     right_frame_offset_factor = 1.5
+    text_dot_filter = 8192
 
     def __init__(self):
         pass

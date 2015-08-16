@@ -342,7 +342,7 @@ def test_get_labeled_shape_names():
 # test_set_up_subsequent_rule()                   ##  done 08-06 / manual
 # test__set_up_rule()                             ##  done 08-06
 
-# test_export()                                   ##  done / manual
+test_export()                                   ##  done / manual
 # test__get_element_layers()                      ##  done
 # test_get_name()                                 ##  done
 

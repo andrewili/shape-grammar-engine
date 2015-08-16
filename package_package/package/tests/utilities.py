@@ -1,10 +1,7 @@
-from package.view import container as c
 from package.view import frame as f
 from package.view import grammar as g
 from package.controller import guids_to_dat as gd
-from package.view import initial_shape as ish
 from package.view import layer as l
-from package.view import rule as r
 from package.view import settings as s
 import rhinoscriptsyntax as rs
 

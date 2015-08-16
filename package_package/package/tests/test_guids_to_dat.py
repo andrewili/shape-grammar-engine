@@ -1,3 +1,4 @@
+import copy
 from package.view import frame as f
 from package.view import grammar as g
 from package.controller import guids_to_dat as gd
@@ -6,7 +7,37 @@ import rhinoscriptsyntax as rs
 from package.view import settings as s
 from package.tests import utilities as u
 
-def test_get_dat_string():                      ##  done 08-08
+def test_get_dat_string():                      ##  done 08-16
+    def try_grammar_1_empty_rule():
+        try_name = 'grammar_1_empty_rule'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        (   empty_rule) = 'empty_rule'
+        print("Add '%s'" % empty_rule)
+        g.Grammar.set_up_subsequent_rule()
+        (   initial_shapes) = u.Utilities.three_initial_shapes
+        (   rules) = copy.copy(u.Utilities.four_rules)
+        (   rules.append(empty_rule))
+        actual_value = gd.GuidsToDat.get_dat_string(initial_shapes, rules)
+        expected_value = u.Utilities.grammar_3_4_dat_string
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_grammar_1_empty_initial_shape():
+        try_name = 'grammar_1_empty_initial_shape'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        (   empty_initial_shape) = 'empty_initial_shape'
+        print("Add '%s'" % empty_initial_shape)
+        g.Grammar.set_up_subsequent_initial_shape()
+        (   initial_shapes) = copy.copy(u.Utilities.three_initial_shapes)
+        (   initial_shapes.append(empty_initial_shape))
+        (   rules) = u.Utilities.four_rules
+        actual_value = gd.GuidsToDat.get_dat_string(initial_shapes, rules)
+        expected_value = u.Utilities.grammar_3_4_dat_string
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
     def try_good_grammar():
         try_name = 'good_grammar'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
@@ -23,7 +54,9 @@ def test_get_dat_string():                      ##  done 08-08
                 method_name, try_name, expected_value, actual_value)
 
     method_name = 'get_dat_string'
-    try_good_grammar()
+    # try_grammar_1_empty_rule()
+    # try_grammar_1_empty_initial_shape()
+    # try_good_grammar()
 
 def test__make_initial_shape_frame_dict():      ##  done 08-08
     def try_3_ishapes():
@@ -57,46 +90,79 @@ def test__make_rule_frame_pair_dict():          ##  done 08-08
     method_name = '_make_rule_frame_pair_dict'
     try_3_rules()
 
-def test__make_labeled_shape_elements_dict():
-    def try_0_ishapes_0_rules():
-        try_name = '0_ishapes_0_rules'
-        u.Utilities.make_grammar_0_initial_shapes_0_rules()
-        initial_shape_frame_dict = {}
-        rule_frame_pair_dict = {}
+def test__make_labeled_shape_elements_dict():   ##  done 08-15
+    def try_non_empty_and_empty_initial_shapes_and_rules_0_1_0_1():
+        try_name = 'non_empty_and_empty_initial_shapes_and_rules_0_1_0_1'
+        g.Grammar.set_up_grammar()
+        (   actual_initial_shape_frame_dict) = (
+            _prompt_for_actual_initial_shape_frame_dict())
+        (   actual_rule_frame_pair_dict) = (
+            _prompt_for_actual_rule_frame_pair_dict())
         actual_value = gd.GuidsToDat._make_labeled_shape_elements_dict(
-            initial_shape_frame_dict, rule_frame_pair_dict)
+            actual_initial_shape_frame_dict, actual_rule_frame_pair_dict)
         expected_value = {}
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_3_ishapes_4_rules():
-        try_name = '3_ishapes_4_rules'
+    def try_non_empty_and_empty_initial_shapes_and_rules_3_0_4_1():
+        try_name = 'non_empty_and_empty_initial_shapes_and_rules_3_0_4_1'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        initial_shapes, rules = g.Grammar._get_element_layers()
-        initial_shape_frame_dict = _prompt_for_initial_shape_elements(
-            initial_shapes)
-        rule_frame_pair_dict = _prompt_for_rule_elements(rules)
-        labeled_shape_elements_dict = (
-            gd.GuidsToDat._make_labeled_shape_elements_dict(
-                initial_shape_frame_dict, rule_frame_pair_dict))
-        for labeled_shape in labeled_shape_elements_dict:
-            elements = labeled_shape_elements_dict[labeled_shape]
-            frame_guid = elements.pop(0)
-            message_show_frame = (
-                "Show the frame of the labeled shape '%s'" % labeled_shape)
-            rs.MessageBox(message_show_frame)
-            rs.UnselectAllObjects()
-            rs.SelectObject(frame_guid)
-            message_show_elements = (
-                "Show the elements in the labeled shape '%s'" % labeled_shape)
-            rs.MessageBox(message_show_elements)
-            rs.UnselectAllObjects()
-            rs.SelectObjects(elements)
+        print("Add 'empty_rule'")
+        g.Grammar.set_up_subsequent_rule()
+        (   actual_initial_shape_frame_dict) = (
+            _prompt_for_actual_initial_shape_frame_dict())
+        (   actual_rule_frame_pair_dict) = (
+            _prompt_for_actual_rule_frame_pair_dict())
+        actual_dict = gd.GuidsToDat._make_labeled_shape_elements_dict(
+            actual_initial_shape_frame_dict, actual_rule_frame_pair_dict)
+        expected_dict = _prompt_for_expected_labeled_shape_elements_dict()
+        actual_value = _compare_dicts(actual_dict, expected_dict)
+        expected_value = True
+        print(actual_dict)
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_non_empty_and_empty_initial_shapes_and_rules_3_1_4_0():
+        try_name = 'non_empty_and_empty_initial_shapes_and_rules_3_1_4_0'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        print("Add 'empty_initial_shape'")
+        g.Grammar.set_up_subsequent_initial_shape()
+        (   actual_initial_shape_frame_dict) = (
+            _prompt_for_actual_initial_shape_frame_dict())
+        (   actual_rule_frame_pair_dict) = (
+            _prompt_for_actual_rule_frame_pair_dict())
+        actual_dict = gd.GuidsToDat._make_labeled_shape_elements_dict(
+            actual_initial_shape_frame_dict, actual_rule_frame_pair_dict)
+        expected_dict = _prompt_for_expected_labeled_shape_elements_dict()
+        actual_value = _compare_dicts(actual_dict, expected_dict)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_non_empty_and_empty_initial_shapes_and_rules_3_0_4_0():
+        try_name = 'non_empty_and_empty_initial_shapes_and_rules_3_0_4_0'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        (   actual_initial_shape_frame_dict) = (
+            _prompt_for_actual_initial_shape_frame_dict())
+        (   actual_rule_frame_pair_dict) = (
+            _prompt_for_actual_rule_frame_pair_dict())
+        actual_dict = gd.GuidsToDat._make_labeled_shape_elements_dict(
+            actual_initial_shape_frame_dict, actual_rule_frame_pair_dict)
+        expected_dict = _prompt_for_expected_labeled_shape_elements_dict()
+        actual_value = _compare_dicts(actual_dict, expected_dict)
+        expected_value = True
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
 
     method_name = '_make_labeled_shape_elements_dict'
-    try_0_ishapes_0_rules()                     ##  automatic test
-    try_3_ishapes_4_rules()                     ##  manual test
+    # try_non_empty_and_empty_initial_shapes_and_rules_0_1_0_1()  ##  done
+    try_non_empty_and_empty_initial_shapes_and_rules_3_0_4_1()  ##  done / manual
+    # try_non_empty_and_empty_initial_shapes_and_rules_3_1_4_0()  ##  done / manual
+    # try_non_empty_and_empty_initial_shapes_and_rules_3_0_4_0()  ##  done / manual
 
 def test__get_elements():
     def try_empty_frame():
@@ -231,6 +297,41 @@ def test__point_is_in_box():
     try_point_on_edge()
     try_point_on_vertex()
     try_point_inside()
+
+def test__get_components():                     ##  done 08-16
+    def try_empty_dict():
+        try_name = 'empty_dict'
+        empty_dict = {}
+        actual_value = gd.GuidsToDat._get_components(empty_dict)
+        expected_value = ([], [])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    def try_good_dict():
+        try_name = 'good_dict'
+        good_dict = {
+            'initial_shape_2': ['c', 'd'],
+            'initial_shape_1': ['a', 'b'],
+            'rule_2_R': ['k'],
+            'rule_1_R': ['g', 'h'],
+            'rule_2_L': ['i', 'j'],
+            'rule_1_L': ['e', 'f']}
+        actual_initial_shapes, actual_rules = (
+            gd.GuidsToDat._get_components(good_dict))
+        actual_value = (
+            sorted(actual_initial_shapes), 
+            sorted(actual_rules))
+        expected_value = (
+            ['initial_shape_1', 'initial_shape_2'],
+            ['rule_1', 'rule_2'])
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_components'
+    try_empty_dict()
+    try_good_dict()
 
 def test__get_ordered_labeled_shapes_string():
     def try_0_ishapes_0_rules():
@@ -705,13 +806,128 @@ def test__get_ordered_rule_names_string():
 
 ####
 
-def _prompt_for_labeled_shape_name_elements_dict():
-    """Prompts the user to select the elements of labeled shapes  to construct 
+def _prompt_for_actual_initial_shape_frame_dict():
+    """Prompts the user to select initial shape frame instances to construct 
+    an actual initial shape name-frame dictionary. Returns:
+        initial_shape_frame_dict
+                            {str: guid}. A non-empty dictionary of initial 
+                            shape names and frame instance guids
+    """
+    (   initial_shape_frame_dict) = {}
+    (   message) = "Select the frames of all initial shapes" 
+    (   block_instance_filter) = s.Settings.block_instance_filter
+    (   frame_instances) = rs.GetObjects(message, block_instance_filter)
+    for frame_instance in frame_instances:
+        initial_shape = rs.ObjectLayer(frame_instance)
+        initial_shape_frame_dict[initial_shape] = frame_instance
+    return initial_shape_frame_dict
+
+def _prompt_for_actual_rule_frame_pair_dict():
+    """Prompts the user to select rule frame instance pairs to construct an 
+    actual rule name-frame pair dictionary. Returns:
+        rule_frame_pair_dict
+                            {str: (guid, guid)}. A non-empty dictionary of 
+                            rule names and frame instance guid pairs
+    """
+    (   message_1) = "Select the frames of all rules"
+    print(message_1)
+    (   rule_frame_pair_dict) = {}
+    (   message_2) = "Select the frames of a rule: first left, then right"
+    (   block_instance_filter) = s.Settings.block_instance_filter
+    while True:
+        frame_instance_pair = rs.GetObjects(message_2, block_instance_filter)
+        if not frame_instance_pair:
+            break
+        else:
+            left_frame_instance, right_frame_instance = frame_instance_pair
+            rule = rs.ObjectLayer(left_frame_instance)
+            rule_frame_pair_dict[rule] = (
+                left_frame_instance, right_frame_instance)
+    return rule_frame_pair_dict
+
+def _prompt_for_expected_labeled_shape_elements_dict():
+    """Prompts the user to select frame instances and their elements to 
+    construct an expected labeled shape elements dictionary. Returns:
+        expected_labeled_shape_elements_dict
+                            {str: [guid]}. A non-empty dictionary of labeled 
+                            shape names and element lists
+    """
+    (   message_intro) = "%s %s" % (
+        "Select the frame instance of a non-empty initial shape ('i'),", 
+        "or the left ('l') or right ('r') shape of a non-empty rule")
+    print(message_intro)
+    (   message_type) = "Enter the type of frame: 'i', 'l', or 'r'"
+    (   labeled_shape_elements_dict) = {}
+    (   message_frame) = "Select a frame"
+    (   block_instance_filter) = s.Settings.block_instance_filter
+    (   message_elements) = "Select the elements in the frame"
+    (       curve_filter) = s.Settings.curve_filter
+    (       text_dot_filter) = s.Settings.text_dot_filter
+    (   element_filter) = curve_filter + text_dot_filter
+    while True:
+        labeled_shape_type = rs.GetString(message_type)
+        if not labeled_shape_type:
+            break
+        else:
+            frame_instance = rs.GetObject(
+                message_frame, block_instance_filter)
+            layer = rs.ObjectLayer(frame_instance)
+            if labeled_shape_type == 'i':
+                labeled_shape = layer
+            elif labeled_shape_type == 'l':
+                labeled_shape = '%s_L' % layer
+            elif labeled_shape_type == 'r':
+                labeled_shape = '%s_R' % layer
+            else:
+                labeled_shape = 'bad_labeled_shape'
+            element_list = [frame_instance]
+            elements = rs.GetObjects(message_elements, element_filter)
+            if elements:
+                element_list.extend(elements)
+            labeled_shape_elements_dict[labeled_shape] = element_list
+    return labeled_shape_elements_dict
+
+def _compare_dicts(actual_dict, expected_dict):
+    """Receives:
+        actual_dict
+        expected_dict
+    Returns:
+        value               boolean. True, if the corresponding element lists 
+                            contain the same elements
+    """
+    value = True
+    actual_key_set = set(actual_dict.keys())
+    expected_key_set = set(expected_dict.keys())
+    if not actual_key_set == expected_key_set:
+        print("keys don't match")
+        value = False
+    else:
+        for key in actual_key_set:
+            actual_elements = actual_dict[key]
+            expected_elements = expected_dict[key]
+            actual_element_set = set(actual_elements)
+            expected_element_set = set(expected_elements)
+            if actual_element_set == expected_element_set:
+                pass
+            else:
+                value = False
+                break
+    return value
+
+def _prompt_for_labeled_shape_frames():         ##  in process
+    """Prompts the user to select the frame instances of labeled shapes to 
+    construct a list of frame instance names. Returns:
+        frame_instances     [str]. A list of names of frame instances
+    """
+    pass
+
+def _prompt_for_labeled_shape_name_elements_dict():     ##  don't pick all!
+    """Prompts the user to select the elements of labeled shapes to construct 
     the labeled shape name-elements dictionary. Returns:
         labeled_shape_name_elements_dict
-                            {str: [guid, ...]}. A dictionary of labeled shape 
-                            names and lists of guids of (first) the frame 
-                            instance and (then) the associated elements
+                            {str: [guid]}. A dictionary of labeled shape names 
+                            and lists of guids of (first) the frame instance 
+                            and (then) the associated elements
     """
     labeled_shape_name_elements_dict = {}
     labeled_shape_names = g.Grammar.get_labeled_shape_names()
@@ -1009,7 +1225,7 @@ def _make_annotations():
 
 ####
 
-# test_get_dat_string()                           ##  done
+test_get_dat_string()                           ##  done
 # test__make_initial_shape_frame_dict()           ##  done / manual test
 # test__make_rule_frame_pair_dict()               ##  done / manual test
 # test__make_labeled_shape_elements_dict()        ##  done / manual test
@@ -1018,6 +1234,7 @@ def _make_annotations():
 # test__is_element()                              ##  trivial
 # test__object_is_in_box()                        ##  trivial
 # test__point_is_in_box()                         ##  done
+# test__get_components()
 # test__get_ordered_labeled_shapes_string()       ##  done / manual test
 # test__get_ordered_line_and_labeled_point_specs()##  done / manual test
 # test__get_labeled_shape_string()                ##  done
