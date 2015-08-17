@@ -1,5 +1,5 @@
-from package.view import grammar as g
-from package.view import frame as f
+from package.scripts import grammar as g
+from package.scripts import frame as f
 import rhinoscriptsyntax as rs
 
 def try_none_selected():

@@ -1,9 +1,9 @@
-from package.view import frame as f
-from package.view import grammar as g
-from package.view import layer as l
-from package.view import llist as ll
+from package.scripts import frame as f
+from package.scripts import grammar as g
+from package.scripts import layer as l
+from package.scripts import llist as ll
 import rhinoscriptsyntax as rs
-from package.view import settings as s
+from package.scripts import settings as s
 from package.tests import utilities as u
 
 origin = [0, 0, 0]

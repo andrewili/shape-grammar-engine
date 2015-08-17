@@ -1,4 +1,4 @@
-from package.view import grammar as g
+from package.scripts import grammar as g
 import nakata as n
 import rhinoscriptsyntax as rs
 from package.tests import utilities as u

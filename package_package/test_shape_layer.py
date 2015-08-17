@@ -1,7 +1,7 @@
-from package.view import frame as f
-from package.view import grammar as g
-from package.view import llist as ll
-from package.view import shape_layer as sl
+from package.scripts import frame as f
+from package.scripts import grammar as g
+from package.scripts import llist as ll
+from package.scripts import shape_layer as sl
 
 existing_shape_name = 'existing_shape'
 new_shape_name = 'new_shape'

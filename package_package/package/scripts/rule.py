@@ -1,4 +1,4 @@
-from package.translators import shape
+from package.scripts import shape
 
 class Rule(object):
     def __init__(self, name, left_shape, right_shape):

@@ -1,5 +1,5 @@
-from package.view import grammar as g
-from package.view import layer as l
+from package.scripts import grammar as g
+from package.scripts import layer as l
 from package.tests import utilities as u
 import rhinoscriptsyntax as rs
 

@@ -1,5 +1,5 @@
 import rhinoscriptsyntax as rs
-from package.view import settings as s
+from package.scripts import settings as s
 
 class Frame(object):
     def __init__(self):

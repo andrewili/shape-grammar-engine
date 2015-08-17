@@ -1,9 +1,9 @@
-from package.view import arrow as a
-from package.view import frame as f
+from package.scripts import arrow as a
+from package.scripts import frame as f
 from package.controller import guids_to_dat as gd
-from package.view import layer as l
+from package.scripts import layer as l
 import rhinoscriptsyntax as rs
-from package.view import settings as s
+from package.scripts import settings as s
 
 class Grammar(object):
     def __init__(self):
