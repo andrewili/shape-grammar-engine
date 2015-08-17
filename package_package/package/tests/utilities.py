@@ -1,8 +1,8 @@
-from package.view import frame as f
-from package.view import grammar as g
+from package.scripts import frame as f
+from package.scripts import grammar as g
 from package.controller import guids_to_dat as gd
-from package.view import layer as l
-from package.view import settings as s
+from package.scripts import layer as l
+from package.scripts import settings as s
 import rhinoscriptsyntax as rs
 
 class Utilities(object):

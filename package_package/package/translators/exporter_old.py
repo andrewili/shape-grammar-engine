@@ -1,8 +1,8 @@
-from package.view import component_name as cn
-from package.view import layer as l
+from package.scripts import component_name as cn
+from package.scripts import layer as l
 from package.model import labeled_shape as ls
 from package.model import point
-from package.view import rule as r
+from package.scripts import rule as r
 import rhinoscriptsyntax as rs
 
 class Exporter(object):

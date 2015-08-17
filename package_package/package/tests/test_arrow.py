@@ -1,7 +1,7 @@
-from package.view import arrow as a
-from package.view import grammar as g
+from package.scripts import arrow as a
+from package.scripts import grammar as g
 import rhinoscriptsyntax as rs
-from package.view import settings as s
+from package.scripts import settings as s
 from package.tests import utilities as u
 
 def test_new_instance():                        ##  done 08-06

@@ -1,7 +1,7 @@
-from package.view import frame as f
-from package.view import layer as l
+from package.scripts import frame as f
+from package.scripts import layer as l
 import rhinoscriptsyntax as rs
-from package.view import settings as s
+from package.scripts import settings as s
 
 class GuidsToDat(object):
     dat_header = "%s\n%s" % (

@@ -1,4 +1,4 @@
-from package.view import grammar as g
+from package.scripts import grammar as g
 import rhinoscriptsyntax as rs
 
 def test_types():

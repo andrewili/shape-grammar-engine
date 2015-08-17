@@ -1,8 +1,8 @@
-from package.view import frame as f
-from package.view import grammar as g
-from package.view import initial_shape as ish
-from package.view import rule as r
-from package.view import shape_layer as sl
+from package.scripts import frame as f
+from package.scripts import grammar as g
+from package.scripts import initial_shape as ish
+from package.scripts import rule as r
+from package.scripts import shape_layer as sl
 import rhinoscriptsyntax as rs
 
 ### utility methods

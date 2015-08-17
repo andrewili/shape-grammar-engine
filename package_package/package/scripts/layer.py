@@ -1,6 +1,6 @@
-from package.view import frame as f
+from package.scripts import frame as f
 import rhinoscriptsyntax as rs
-from package.view import settings as s
+from package.scripts import settings as s
 
 class Layer(object):
     prohibited_characters = [' ', '#']

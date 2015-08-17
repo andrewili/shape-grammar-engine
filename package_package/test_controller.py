@@ -1,5 +1,5 @@
 from package.controller import controller as c
-from package.view import grammar as g
+from package.scripts import grammar as g
 import rhinoscriptsyntax as rs
 
 bad_type_initial_shape_name = 37

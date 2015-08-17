@@ -1,6 +1,6 @@
 import rhinoscriptsyntax as rs
-import rule
-import shape
+from package.scripts import rule
+from package.scripts import shape
 
 class Importer(object):
     def __init__(self):

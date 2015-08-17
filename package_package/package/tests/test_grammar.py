@@ -1,7 +1,7 @@
-from package.view import frame as f
-from package.view import grammar as g
+from package.scripts import frame as f
+from package.scripts import grammar as g
 import rhinoscriptsyntax as rs
-from package.view import settings as s
+from package.scripts import settings as s
 from package.tests import utilities as u
 
 def test_set_up_grammar():                      ##  done 08-06

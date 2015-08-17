@@ -1,4 +1,4 @@
-from package.view import component_name as cn
+from package.scripts import component_name as cn
 import rhinoscriptsyntax as rs
 
 class LabeledPoint(object):
