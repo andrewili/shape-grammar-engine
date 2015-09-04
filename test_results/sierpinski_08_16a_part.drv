@@ -1,0 +1,4495 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    initial_shape_1
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 12.0 8.0 0.0
+    coords 3 24.0 4.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 3
+    point 2 a
+shape    part_sier
+    name
+    coords 0 8.0 4.0 32.0
+    coords 1 8.0 4.75 32.0
+    coords 2 8.0 5.5 32.0
+    coords 3 8.0 6.25 32.0
+    coords 4 8.0 7.0 32.0
+    coords 5 8.0 7.75 32.0
+    coords 6 8.0 8.5 32.0
+    coords 7 8.0 9.25 32.0
+    coords 8 8.0 10.0 32.0
+    coords 9 8.0 16.0 32.0
+    coords 10 8.0 28.0 32.0
+    coords 11 8.5 4.0 32.0
+    coords 12 8.5 4.75 32.0
+    coords 13 8.5 5.5 32.0
+    coords 14 8.5 6.25 32.0
+    coords 15 8.5 7.0 32.0
+    coords 16 8.5 7.75 32.0
+    coords 17 8.5 8.5 32.0
+    coords 18 8.5 9.25 32.0
+    coords 19 9.0 4.0 32.0
+    coords 20 9.0 4.75 32.0
+    coords 21 9.0 5.5 32.0
+    coords 22 9.0 7.0 32.0
+    coords 23 9.0 7.75 32.0
+    coords 24 9.0 8.5 32.0
+    coords 25 9.0 11.0 0.0
+    coords 26 9.5 4.0 32.0
+    coords 27 9.5 4.75 32.0
+    coords 28 9.5 7.0 32.0
+    coords 29 9.5 7.75 32.0
+    coords 30 10.0 4.0 32.0
+    coords 31 10.0 4.75 32.0
+    coords 32 10.0 5.5 32.0
+    coords 33 10.0 6.25 32.0
+    coords 34 10.0 7.0 32.0
+    coords 35 10.0 18.0 0.0
+    coords 36 10.5 4.0 32.0
+    coords 37 10.5 4.75 32.0
+    coords 38 10.5 5.5 32.0
+    coords 39 10.5 6.25 32.0
+    coords 40 11.0 4.0 32.0
+    coords 41 11.0 4.75 32.0
+    coords 42 11.0 5.5 32.0
+    coords 43 11.5 4.0 32.0
+    coords 44 11.5 4.75 32.0
+    coords 45 12.0 4.0 32.0
+    coords 46 12.0 7.0 32.0
+    coords 47 12.0 7.75 32.0
+    coords 48 12.0 8.5 32.0
+    coords 49 12.0 9.25 32.0
+    coords 50 12.0 10.0 32.0
+    coords 51 12.5 4.5 32.0
+    coords 52 12.5 7.0 32.0
+    coords 53 12.5 7.75 32.0
+    coords 54 12.5 8.5 32.0
+    coords 55 12.5 9.25 32.0
+    coords 56 13.0 7.0 32.0
+    coords 57 13.0 7.75 32.0
+    coords 58 13.0 8.5 32.0
+    coords 59 13.5 7.0 32.0
+    coords 60 13.5 7.75 32.0
+    coords 61 14.0 4.0 32.0
+    coords 62 14.0 7.0 32.0
+    coords 63 14.5 4.5 32.0
+    coords 64 16.0 4.0 32.0
+    coords 65 16.0 4.75 32.0
+    coords 66 16.0 5.5 32.0
+    coords 67 16.0 6.25 32.0
+    coords 68 16.0 7.0 32.0
+    coords 69 16.0 7.75 32.0
+    coords 70 16.0 8.5 32.0
+    coords 71 16.0 9.25 32.0
+    coords 72 16.0 10.0 32.0
+    coords 73 16.0 10.75 32.0
+    coords 74 16.0 11.5 32.0
+    coords 75 16.0 12.25 32.0
+    coords 76 16.0 13.0 32.0
+    coords 77 16.0 13.75 32.0
+    coords 78 16.0 14.5 32.0
+    coords 79 16.0 15.25 32.0
+    coords 80 16.0 16.0 32.0
+    coords 81 16.5 4.0 32.0
+    coords 82 16.5 4.75 32.0
+    coords 83 16.5 5.5 32.0
+    coords 84 16.5 6.25 32.0
+    coords 85 16.5 7.0 32.0
+    coords 86 16.5 7.75 32.0
+    coords 87 16.5 8.5 32.0
+    coords 88 16.5 9.25 32.0
+    coords 89 16.5 10.0 32.0
+    coords 90 16.5 10.75 32.0
+    coords 91 16.5 11.5 32.0
+    coords 92 16.5 12.25 32.0
+    coords 93 16.5 13.0 32.0
+    coords 94 16.5 13.75 32.0
+    coords 95 16.5 14.5 32.0
+    coords 96 16.5 15.25 32.0
+    coords 97 17.0 4.0 32.0
+    coords 98 17.0 4.75 32.0
+    coords 99 17.0 5.5 32.0
+    coords 100 17.0 7.0 32.0
+    coords 101 17.0 7.75 32.0
+    coords 102 17.0 8.5 32.0
+    coords 103 17.0 10.0 32.0
+    coords 104 17.0 10.75 32.0
+    coords 105 17.0 11.5 32.0
+    coords 106 17.0 13.0 32.0
+    coords 107 17.0 13.75 32.0
+    coords 108 17.0 14.5 32.0
+    coords 109 17.5 4.0 32.0
+    coords 110 17.5 4.75 32.0
+    coords 111 17.5 7.0 32.0
+    coords 112 17.5 7.75 32.0
+    coords 113 17.5 10.0 32.0
+    coords 114 17.5 10.75 32.0
+    coords 115 17.5 13.0 32.0
+    coords 116 17.5 13.75 32.0
+    coords 117 18.0 4.0 32.0
+    coords 118 18.0 4.75 32.0
+    coords 119 18.0 5.5 32.0
+    coords 120 18.0 6.25 32.0
+    coords 121 18.0 7.0 32.0
+    coords 122 18.0 10.0 32.0
+    coords 123 18.0 10.75 32.0
+    coords 124 18.0 11.5 32.0
+    coords 125 18.0 12.25 32.0
+    coords 126 18.0 13.0 32.0
+    coords 127 18.5 4.0 32.0
+    coords 128 18.5 4.75 32.0
+    coords 129 18.5 5.5 32.0
+    coords 130 18.5 6.25 32.0
+    coords 131 18.5 10.0 32.0
+    coords 132 18.5 10.75 32.0
+    coords 133 18.5 11.5 32.0
+    coords 134 18.5 12.25 32.0
+    coords 135 19.0 4.0 32.0
+    coords 136 19.0 4.75 32.0
+    coords 137 19.0 5.5 32.0
+    coords 138 19.0 10.0 32.0
+    coords 139 19.0 10.75 32.0
+    coords 140 19.0 11.5 32.0
+    coords 141 19.5 4.0 32.0
+    coords 142 19.5 4.75 32.0
+    coords 143 19.5 10.0 32.0
+    coords 144 19.5 10.75 32.0
+    coords 145 20.0 4.0 32.0
+    coords 146 20.0 4.75 32.0
+    coords 147 20.0 5.5 32.0
+    coords 148 20.0 6.25 32.0
+    coords 149 20.0 7.0 32.0
+    coords 150 20.0 7.75 32.0
+    coords 151 20.0 8.5 32.0
+    coords 152 20.0 9.25 32.0
+    coords 153 20.0 10.0 32.0
+    coords 154 20.5 4.0 32.0
+    coords 155 20.5 4.75 32.0
+    coords 156 20.5 5.5 32.0
+    coords 157 20.5 6.25 32.0
+    coords 158 20.5 7.0 32.0
+    coords 159 20.5 7.75 32.0
+    coords 160 20.5 8.5 32.0
+    coords 161 20.5 9.25 32.0
+    coords 162 21.0 4.0 32.0
+    coords 163 21.0 4.75 32.0
+    coords 164 21.0 5.5 32.0
+    coords 165 21.0 7.0 32.0
+    coords 166 21.0 7.75 32.0
+    coords 167 21.0 8.5 32.0
+    coords 168 21.5 4.0 32.0
+    coords 169 21.5 4.75 32.0
+    coords 170 21.5 7.0 32.0
+    coords 171 21.5 7.75 32.0
+    coords 172 22.0 4.0 32.0
+    coords 173 22.0 4.75 32.0
+    coords 174 22.0 5.5 32.0
+    coords 175 22.0 6.25 32.0
+    coords 176 22.0 7.0 32.0
+    coords 177 22.5 4.0 32.0
+    coords 178 22.5 4.75 32.0
+    coords 179 22.5 5.5 32.0
+    coords 180 22.5 6.25 32.0
+    coords 181 23.0 4.0 32.0
+    coords 182 23.0 4.75 32.0
+    coords 183 23.0 5.5 32.0
+    coords 184 23.5 4.0 32.0
+    coords 185 23.5 4.75 32.0
+    coords 186 24.0 4.0 32.0
+
+    line 0 0 10
+    line 1 0 186
+    line 2 1 11
+    line 3 1 12
+    line 4 2 19
+    line 5 2 21
+    line 6 3 13
+    line 7 3 14
+    line 8 4 30
+    line 9 4 34
+    line 10 5 15
+    line 11 5 16
+    line 12 6 22
+    line 13 6 24
+    line 14 7 17
+    line 15 7 18
+    line 16 8 45
+    line 17 8 50
+    line 18 9 64
+    line 19 9 80
+    line 20 10 186
+    line 21 11 12
+    line 22 13 14
+    line 23 15 16
+    line 24 17 18
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 46 45 50
+    line 47 46 61
+    line 48 46 62
+    line 49 47 52
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 60 59 60
+    line 61 61 62
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    point 25 a
+    point 35 a
+    point 51 a
+    point 63 a
+shape    rule_1_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 12.0 8.0 0.0
+    coords 3 24.0 4.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 3
+    point 2 a
+shape    rule_1_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 10.0 6.0 0.0
+    coords 4 10.0 18.0 0.0
+    coords 5 16.0 4.0 0.0
+    coords 6 16.0 16.0 0.0
+    coords 7 16.0 4.0 0.0
+    coords 8 18.0 6.0 0.0
+    coords 9 24.0 4.0 0.0
+
+    line 0 0 2
+    line 1 0 9
+    line 2 1 5
+    line 3 1 6
+    line 4 2 9
+    line 5 6 7
+    point 3 a
+    point 4 a
+    point 8 a
+shape    rule_2_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 12.0 8.0 0.0
+    coords 3 24.0 4.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 3
+    point 2 a
+shape    rule_2_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 4.0 0.0
+    coords 4 16.0 16.0 0.0
+    coords 5 16.0 4.0 0.0
+    coords 6 24.0 4.0 0.0
+
+    line 0 0 2
+    line 1 0 6
+    line 2 1 3
+    line 3 1 4
+    line 4 2 6
+    line 5 4 5
+
+initial    initial_shape_1
+initial    part_sier
+rule    rule_1    rule_1_L -> rule_1_R
+rule    rule_2    rule_2_L -> rule_2_R
+# derivation record
+shape    part_sier
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 19 9 4 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 21 9 5.5 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 51 12.5 4.5 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 63 14.5 4.5 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 1 0 186
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 18 9 64
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 19 9 80
+    line 2 1 11
+    line 20 10 186
+    line 21 11 12
+    line 22 13 14
+    line 23 15 16
+    line 24 17 18
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 46 45 50
+    line 47 46 61
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 61 61 62
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 25 a
+    point 35 a
+    point 51 a
+    point 63 a
+rule    rule_1
+shape    part_sier_rule_1_1
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 187 15.25 4.25 32
+    coords 188 14.25 5.75 32
+    coords 189 14.25 4.25 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 21 9 5.5 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 51 12.5 4.5 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 186 0 186
+    line 187 9 64
+    line 188 61 62
+    line 189 190 191
+    line 19 9 80
+    line 190 190 192
+    line 191 191 192
+    line 2 1 11
+    line 20 10 186
+    line 21 11 12
+    line 22 13 14
+    line 23 15 16
+    line 24 17 18
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 46 45 50
+    line 47 46 61
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 187 a
+    point 188 a
+    point 189 a
+    point 25 a
+    point 35 a
+    point 51 a
+rule    rule_2
+shape    part_sier_rule_1_1_rule_2_1
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 187 15.25 4.25 32
+    coords 188 14.25 5.75 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 193 14 4.75 32
+    coords 194 14.5 4.75 32
+    coords 195 14.5 4 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 21 9 5.5 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 51 12.5 4.5 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 187 9 64
+    line 189 190 191
+    line 19 9 80
+    line 191 191 192
+    line 195 0 186
+    line 196 190 192
+    line 197 62 61
+    line 198 193 194
+    line 199 193 195
+    line 2 1 11
+    line 20 10 186
+    line 200 194 195
+    line 21 11 12
+    line 22 13 14
+    line 23 15 16
+    line 24 17 18
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 46 45 50
+    line 47 46 61
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 187 a
+    point 188 a
+    point 25 a
+    point 35 a
+    point 51 a
+rule    rule_2
+shape    part_sier_rule_1_1_rule_2_1_rule_2_2
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 187 15.25 4.25 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 193 14 4.75 32
+    coords 194 14.5 4.75 32
+    coords 195 14.5 4 32
+    coords 196 14 6.25 32
+    coords 197 14.5 6.25 32
+    coords 198 14.5 5.5 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 21 9 5.5 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 51 12.5 4.5 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 19 9 80
+    line 191 191 192
+    line 195 0 186
+    line 196 190 192
+    line 198 193 194
+    line 199 193 195
+    line 2 1 11
+    line 20 10 186
+    line 200 194 195
+    line 204 190 191
+    line 205 9 64
+    line 206 61 62
+    line 207 196 197
+    line 208 196 198
+    line 209 197 198
+    line 21 11 12
+    line 22 13 14
+    line 23 15 16
+    line 24 17 18
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 46 45 50
+    line 47 46 61
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 187 a
+    point 25 a
+    point 35 a
+    point 51 a
+rule    rule_2
+shape    part_sier_rule_1_1_rule_2_1_rule_2_2_rule_2_2
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 193 14 4.75 32
+    coords 194 14.5 4.75 32
+    coords 195 14.5 4 32
+    coords 196 14 6.25 32
+    coords 197 14.5 6.25 32
+    coords 198 14.5 5.5 32
+    coords 199 15 4.75 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 200 15.5 4.75 32
+    coords 201 15.5 4 32
+    coords 21 9 5.5 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 51 12.5 4.5 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 19 9 80
+    line 196 190 192
+    line 198 193 194
+    line 199 193 195
+    line 2 1 11
+    line 20 10 186
+    line 200 194 195
+    line 204 190 191
+    line 206 61 62
+    line 207 196 197
+    line 208 196 198
+    line 209 197 198
+    line 21 11 12
+    line 213 0 186
+    line 214 9 64
+    line 215 192 191
+    line 216 199 200
+    line 217 199 201
+    line 218 200 201
+    line 22 13 14
+    line 23 15 16
+    line 24 17 18
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 46 45 50
+    line 47 46 61
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 25 a
+    point 35 a
+    point 51 a
+rule    rule_1
+shape    part_sier_rule_1_1_rule_2_1_rule_2_2_rule_2_2_rule_1_1
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 193 14 4.75 32
+    coords 194 14.5 4.75 32
+    coords 195 14.5 4 32
+    coords 196 14 6.25 32
+    coords 197 14.5 6.25 32
+    coords 198 14.5 5.5 32
+    coords 199 15 4.75 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 200 15.5 4.75 32
+    coords 201 15.5 4 32
+    coords 202 13.25 4.25 32
+    coords 203 12.25 5.75 32
+    coords 204 12.25 4.25 32
+    coords 205 12 5.5 32
+    coords 206 13 5.5 32
+    coords 207 13 4 32
+    coords 21 9 5.5 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 19 9 80
+    line 196 190 192
+    line 198 193 194
+    line 199 193 195
+    line 2 1 11
+    line 20 10 186
+    line 200 194 195
+    line 204 190 191
+    line 206 61 62
+    line 207 196 197
+    line 208 196 198
+    line 209 197 198
+    line 21 11 12
+    line 214 9 64
+    line 215 192 191
+    line 216 199 200
+    line 217 199 201
+    line 218 200 201
+    line 22 13 14
+    line 222 0 186
+    line 223 46 61
+    line 224 50 45
+    line 225 205 206
+    line 226 205 207
+    line 227 206 207
+    line 23 15 16
+    line 24 17 18
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 202 a
+    point 203 a
+    point 204 a
+    point 25 a
+    point 35 a
+rule    rule_2
+shape    part_sier_rule_1_1_rule_2_1_rule_2_2_rule_2_2_rule_1_1_rule_2_1
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 193 14 4.75 32
+    coords 194 14.5 4.75 32
+    coords 195 14.5 4 32
+    coords 196 14 6.25 32
+    coords 197 14.5 6.25 32
+    coords 198 14.5 5.5 32
+    coords 199 15 4.75 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 200 15.5 4.75 32
+    coords 201 15.5 4 32
+    coords 202 13.25 4.25 32
+    coords 204 12.25 4.25 32
+    coords 205 12 5.5 32
+    coords 206 13 5.5 32
+    coords 207 13 4 32
+    coords 208 12 6.25 32
+    coords 209 12.5 6.25 32
+    coords 21 9 5.5 32
+    coords 210 12.5 5.5 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 19 9 80
+    line 196 190 192
+    line 198 193 194
+    line 199 193 195
+    line 2 1 11
+    line 20 10 186
+    line 200 194 195
+    line 204 190 191
+    line 206 61 62
+    line 207 196 197
+    line 208 196 198
+    line 209 197 198
+    line 21 11 12
+    line 214 9 64
+    line 215 192 191
+    line 216 199 200
+    line 217 199 201
+    line 218 200 201
+    line 22 13 14
+    line 222 0 186
+    line 226 205 207
+    line 227 206 207
+    line 23 15 16
+    line 231 205 206
+    line 232 61 46
+    line 233 45 50
+    line 234 208 209
+    line 235 208 210
+    line 236 209 210
+    line 24 17 18
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 202 a
+    point 204 a
+    point 25 a
+    point 35 a
+rule    rule_2
+shape    part_sier_rule_1_1_rule_2_1_rule_2_2_rule_2_2_rule_1_1_rule_2_1_rule_2_1
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 193 14 4.75 32
+    coords 194 14.5 4.75 32
+    coords 195 14.5 4 32
+    coords 196 14 6.25 32
+    coords 197 14.5 6.25 32
+    coords 198 14.5 5.5 32
+    coords 199 15 4.75 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 200 15.5 4.75 32
+    coords 201 15.5 4 32
+    coords 202 13.25 4.25 32
+    coords 205 12 5.5 32
+    coords 206 13 5.5 32
+    coords 207 13 4 32
+    coords 208 12 6.25 32
+    coords 209 12.5 6.25 32
+    coords 21 9 5.5 32
+    coords 210 12.5 5.5 32
+    coords 211 12 4.75 32
+    coords 212 12.5 4.75 32
+    coords 213 12.5 4 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 19 9 80
+    line 196 190 192
+    line 198 193 194
+    line 199 193 195
+    line 2 1 11
+    line 20 10 186
+    line 200 194 195
+    line 204 190 191
+    line 206 61 62
+    line 207 196 197
+    line 208 196 198
+    line 209 197 198
+    line 21 11 12
+    line 214 9 64
+    line 215 192 191
+    line 216 199 200
+    line 217 199 201
+    line 218 200 201
+    line 22 13 14
+    line 227 206 207
+    line 23 15 16
+    line 231 205 206
+    line 232 61 46
+    line 234 208 209
+    line 235 208 210
+    line 236 209 210
+    line 24 17 18
+    line 240 0 186
+    line 241 205 207
+    line 242 50 45
+    line 243 211 212
+    line 244 211 213
+    line 245 212 213
+    line 25 19 21
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 202 a
+    point 25 a
+    point 35 a
+rule    rule_2
+shape    part_sier_rule_1_1_rule_2_1_rule_2_2_rule_2_2_rule_1_1_rule_2_1_rule_2_1_rule_2_1
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 193 14 4.75 32
+    coords 194 14.5 4.75 32
+    coords 195 14.5 4 32
+    coords 196 14 6.25 32
+    coords 197 14.5 6.25 32
+    coords 198 14.5 5.5 32
+    coords 199 15 4.75 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 200 15.5 4.75 32
+    coords 201 15.5 4 32
+    coords 205 12 5.5 32
+    coords 206 13 5.5 32
+    coords 207 13 4 32
+    coords 208 12 6.25 32
+    coords 209 12.5 6.25 32
+    coords 21 9 5.5 32
+    coords 210 12.5 5.5 32
+    coords 211 12 4.75 32
+    coords 212 12.5 4.75 32
+    coords 213 12.5 4 32
+    coords 214 13 4.75 32
+    coords 215 13.5 4.75 32
+    coords 216 13.5 4 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 19 9 80
+    line 196 190 192
+    line 198 193 194
+    line 199 193 195
+    line 2 1 11
+    line 20 10 186
+    line 200 194 195
+    line 204 190 191
+    line 206 61 62
+    line 207 196 197
+    line 208 196 198
+    line 209 197 198
+    line 21 11 12
+    line 214 9 64
+    line 215 192 191
+    line 216 199 200
+    line 217 199 201
+    line 218 200 201
+    line 22 13 14
+    line 23 15 16
+    line 231 205 206
+    line 234 208 209
+    line 235 208 210
+    line 236 209 210
+    line 24 17 18
+    line 241 205 207
+    line 242 50 45
+    line 243 211 212
+    line 244 211 213
+    line 245 212 213
+    line 249 0 186
+    line 25 19 21
+    line 250 46 61
+    line 251 207 206
+    line 252 214 215
+    line 253 214 216
+    line 254 215 216
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 25 a
+    point 35 a
+rule    rule_2
+shape    part_sier_rule_1_1_rule_2_1_rule_2_2_rule_2_2_rule_1_1_rule_2_1_rule_2_1_rule_2_1
+    name 
+    coords 0 8 4 32
+    coords 1 8 4.75 32
+    coords 10 8 28 32
+    coords 100 17 7 32
+    coords 101 17 7.75 32
+    coords 102 17 8.5 32
+    coords 103 17 10 32
+    coords 104 17 10.75 32
+    coords 105 17 11.5 32
+    coords 106 17 13 32
+    coords 107 17 13.75 32
+    coords 108 17 14.5 32
+    coords 109 17.5 4 32
+    coords 11 8.5 4 32
+    coords 110 17.5 4.75 32
+    coords 111 17.5 7 32
+    coords 112 17.5 7.75 32
+    coords 113 17.5 10 32
+    coords 114 17.5 10.75 32
+    coords 115 17.5 13 32
+    coords 116 17.5 13.75 32
+    coords 117 18 4 32
+    coords 118 18 4.75 32
+    coords 119 18 5.5 32
+    coords 12 8.5 4.75 32
+    coords 120 18 6.25 32
+    coords 121 18 7 32
+    coords 122 18 10 32
+    coords 123 18 10.75 32
+    coords 124 18 11.5 32
+    coords 125 18 12.25 32
+    coords 126 18 13 32
+    coords 127 18.5 4 32
+    coords 128 18.5 4.75 32
+    coords 129 18.5 5.5 32
+    coords 13 8.5 5.5 32
+    coords 130 18.5 6.25 32
+    coords 131 18.5 10 32
+    coords 132 18.5 10.75 32
+    coords 133 18.5 11.5 32
+    coords 134 18.5 12.25 32
+    coords 135 19 4 32
+    coords 136 19 4.75 32
+    coords 137 19 5.5 32
+    coords 138 19 10 32
+    coords 139 19 10.75 32
+    coords 14 8.5 6.25 32
+    coords 140 19 11.5 32
+    coords 141 19.5 4 32
+    coords 142 19.5 4.75 32
+    coords 143 19.5 10 32
+    coords 144 19.5 10.75 32
+    coords 145 20 4 32
+    coords 146 20 4.75 32
+    coords 147 20 5.5 32
+    coords 148 20 6.25 32
+    coords 149 20 7 32
+    coords 15 8.5 7 32
+    coords 150 20 7.75 32
+    coords 151 20 8.5 32
+    coords 152 20 9.25 32
+    coords 153 20 10 32
+    coords 154 20.5 4 32
+    coords 155 20.5 4.75 32
+    coords 156 20.5 5.5 32
+    coords 157 20.5 6.25 32
+    coords 158 20.5 7 32
+    coords 159 20.5 7.75 32
+    coords 16 8.5 7.75 32
+    coords 160 20.5 8.5 32
+    coords 161 20.5 9.25 32
+    coords 162 21 4 32
+    coords 163 21 4.75 32
+    coords 164 21 5.5 32
+    coords 165 21 7 32
+    coords 166 21 7.75 32
+    coords 167 21 8.5 32
+    coords 168 21.5 4 32
+    coords 169 21.5 4.75 32
+    coords 17 8.5 8.5 32
+    coords 170 21.5 7 32
+    coords 171 21.5 7.75 32
+    coords 172 22 4 32
+    coords 173 22 4.75 32
+    coords 174 22 5.5 32
+    coords 175 22 6.25 32
+    coords 176 22 7 32
+    coords 177 22.5 4 32
+    coords 178 22.5 4.75 32
+    coords 179 22.5 5.5 32
+    coords 18 8.5 9.25 32
+    coords 180 22.5 6.25 32
+    coords 181 23 4 32
+    coords 182 23 4.75 32
+    coords 183 23 5.5 32
+    coords 184 23.5 4 32
+    coords 185 23.5 4.75 32
+    coords 186 24 4 32
+    coords 19 9 4 32
+    coords 190 14 5.5 32
+    coords 191 15 5.5 32
+    coords 192 15 4 32
+    coords 193 14 4.75 32
+    coords 194 14.5 4.75 32
+    coords 195 14.5 4 32
+    coords 196 14 6.25 32
+    coords 197 14.5 6.25 32
+    coords 198 14.5 5.5 32
+    coords 199 15 4.75 32
+    coords 2 8 5.5 32
+    coords 20 9 4.75 32
+    coords 200 15.5 4.75 32
+    coords 201 15.5 4 32
+    coords 205 12 5.5 32
+    coords 206 13 5.5 32
+    coords 207 13 4 32
+    coords 208 12 6.25 32
+    coords 209 12.5 6.25 32
+    coords 21 9 5.5 32
+    coords 210 12.5 5.5 32
+    coords 211 12 4.75 32
+    coords 212 12.5 4.75 32
+    coords 213 12.5 4 32
+    coords 214 13 4.75 32
+    coords 215 13.5 4.75 32
+    coords 216 13.5 4 32
+    coords 22 9 7 32
+    coords 23 9 7.75 32
+    coords 24 9 8.5 32
+    coords 25 9 11 0
+    coords 26 9.5 4 32
+    coords 27 9.5 4.75 32
+    coords 28 9.5 7 32
+    coords 29 9.5 7.75 32
+    coords 3 8 6.25 32
+    coords 30 10 4 32
+    coords 31 10 4.75 32
+    coords 32 10 5.5 32
+    coords 33 10 6.25 32
+    coords 34 10 7 32
+    coords 35 10 18 0
+    coords 36 10.5 4 32
+    coords 37 10.5 4.75 32
+    coords 38 10.5 5.5 32
+    coords 39 10.5 6.25 32
+    coords 4 8 7 32
+    coords 40 11 4 32
+    coords 41 11 4.75 32
+    coords 42 11 5.5 32
+    coords 43 11.5 4 32
+    coords 44 11.5 4.75 32
+    coords 45 12 4 32
+    coords 46 12 7 32
+    coords 47 12 7.75 32
+    coords 48 12 8.5 32
+    coords 49 12 9.25 32
+    coords 5 8 7.75 32
+    coords 50 12 10 32
+    coords 52 12.5 7 32
+    coords 53 12.5 7.75 32
+    coords 54 12.5 8.5 32
+    coords 55 12.5 9.25 32
+    coords 56 13 7 32
+    coords 57 13 7.75 32
+    coords 58 13 8.5 32
+    coords 59 13.5 7 32
+    coords 6 8 8.5 32
+    coords 60 13.5 7.75 32
+    coords 61 14 4 32
+    coords 62 14 7 32
+    coords 64 16 4 32
+    coords 65 16 4.75 32
+    coords 66 16 5.5 32
+    coords 67 16 6.25 32
+    coords 68 16 7 32
+    coords 69 16 7.75 32
+    coords 7 8 9.25 32
+    coords 70 16 8.5 32
+    coords 71 16 9.25 32
+    coords 72 16 10 32
+    coords 73 16 10.75 32
+    coords 74 16 11.5 32
+    coords 75 16 12.25 32
+    coords 76 16 13 32
+    coords 77 16 13.75 32
+    coords 78 16 14.5 32
+    coords 79 16 15.25 32
+    coords 8 8 10 32
+    coords 80 16 16 32
+    coords 81 16.5 4 32
+    coords 82 16.5 4.75 32
+    coords 83 16.5 5.5 32
+    coords 84 16.5 6.25 32
+    coords 85 16.5 7 32
+    coords 86 16.5 7.75 32
+    coords 87 16.5 8.5 32
+    coords 88 16.5 9.25 32
+    coords 89 16.5 10 32
+    coords 9 8 16 32
+    coords 90 16.5 10.75 32
+    coords 91 16.5 11.5 32
+    coords 92 16.5 12.25 32
+    coords 93 16.5 13 32
+    coords 94 16.5 13.75 32
+    coords 95 16.5 14.5 32
+    coords 96 16.5 15.25 32
+    coords 97 17 4 32
+    coords 98 17 4.75 32
+    coords 99 17 5.5 32
+
+    line 0 0 10
+    line 10 5 15
+    line 100 95 96
+    line 101 97 99
+    line 102 98 109
+    line 103 98 110
+    line 104 100 102
+    line 105 101 111
+    line 106 101 112
+    line 107 103 105
+    line 108 104 113
+    line 109 104 114
+    line 11 5 16
+    line 110 106 108
+    line 111 107 115
+    line 112 107 116
+    line 113 109 110
+    line 114 111 112
+    line 115 113 114
+    line 116 115 116
+    line 117 117 121
+    line 118 118 127
+    line 119 118 128
+    line 12 6 22
+    line 120 119 135
+    line 121 119 137
+    line 122 120 129
+    line 123 120 130
+    line 124 122 126
+    line 125 123 131
+    line 126 123 132
+    line 127 124 138
+    line 128 124 140
+    line 129 125 133
+    line 13 6 24
+    line 130 125 134
+    line 131 127 128
+    line 132 129 130
+    line 133 131 132
+    line 134 133 134
+    line 135 135 137
+    line 136 136 141
+    line 137 136 142
+    line 138 138 140
+    line 139 139 143
+    line 14 7 17
+    line 140 139 144
+    line 141 141 142
+    line 142 143 144
+    line 143 145 153
+    line 144 146 154
+    line 145 146 155
+    line 146 147 162
+    line 147 147 164
+    line 148 148 156
+    line 149 148 157
+    line 15 7 18
+    line 150 149 172
+    line 151 149 176
+    line 152 150 158
+    line 153 150 159
+    line 154 151 165
+    line 155 151 167
+    line 156 152 160
+    line 157 152 161
+    line 158 154 155
+    line 159 156 157
+    line 16 8 45
+    line 160 158 159
+    line 161 160 161
+    line 162 162 164
+    line 163 163 168
+    line 164 163 169
+    line 165 165 167
+    line 166 166 170
+    line 167 166 171
+    line 168 168 169
+    line 169 170 171
+    line 17 8 50
+    line 170 172 176
+    line 171 173 177
+    line 172 173 178
+    line 173 174 181
+    line 174 174 183
+    line 175 175 179
+    line 176 175 180
+    line 177 177 178
+    line 178 179 180
+    line 179 181 183
+    line 180 182 184
+    line 181 182 185
+    line 182 184 185
+    line 19 9 80
+    line 196 190 192
+    line 198 193 194
+    line 199 193 195
+    line 2 1 11
+    line 20 10 186
+    line 200 194 195
+    line 204 190 191
+    line 206 61 62
+    line 207 196 197
+    line 208 196 198
+    line 209 197 198
+    line 21 11 12
+    line 214 9 64
+    line 215 192 191
+    line 216 199 200
+    line 217 199 201
+    line 218 200 201
+    line 22 13 14
+    line 23 15 16
+    line 231 205 206
+    line 234 208 209
+    line 235 208 210
+    line 236 209 210
+    line 24 17 18
+    line 241 205 207
+    line 242 50 45
+    line 243 211 212
+    line 244 211 213
+    line 245 212 213
+    line 249 0 186
+    line 25 19 21
+    line 250 46 61
+    line 251 207 206
+    line 252 214 215
+    line 253 214 216
+    line 254 215 216
+    line 26 20 26
+    line 27 20 27
+    line 28 22 24
+    line 29 23 28
+    line 3 1 12
+    line 30 23 29
+    line 31 26 27
+    line 32 28 29
+    line 33 30 34
+    line 34 31 36
+    line 35 31 37
+    line 36 32 40
+    line 37 32 42
+    line 38 33 38
+    line 39 33 39
+    line 4 2 19
+    line 40 36 37
+    line 41 38 39
+    line 42 40 42
+    line 43 41 43
+    line 44 41 44
+    line 45 43 44
+    line 48 46 62
+    line 49 47 52
+    line 5 2 21
+    line 50 47 53
+    line 51 48 56
+    line 52 48 58
+    line 53 49 54
+    line 54 49 55
+    line 55 52 53
+    line 56 54 55
+    line 57 56 58
+    line 58 57 59
+    line 59 57 60
+    line 6 3 13
+    line 60 59 60
+    line 62 64 80
+    line 63 65 81
+    line 64 65 82
+    line 65 66 97
+    line 66 66 99
+    line 67 67 83
+    line 68 67 84
+    line 69 68 117
+    line 7 3 14
+    line 70 68 121
+    line 71 69 85
+    line 72 69 86
+    line 73 70 100
+    line 74 70 102
+    line 75 71 87
+    line 76 71 88
+    line 77 72 145
+    line 78 72 153
+    line 79 73 89
+    line 8 4 30
+    line 80 73 90
+    line 81 74 103
+    line 82 74 105
+    line 83 75 91
+    line 84 75 92
+    line 85 76 122
+    line 86 76 126
+    line 87 77 93
+    line 88 77 94
+    line 89 78 106
+    line 9 4 34
+    line 90 78 108
+    line 91 79 95
+    line 92 79 96
+    line 93 81 82
+    line 94 83 84
+    line 95 85 86
+    line 96 87 88
+    line 97 89 90
+    line 98 91 92
+    line 99 93 94
+    point 25 a
+    point 35 a

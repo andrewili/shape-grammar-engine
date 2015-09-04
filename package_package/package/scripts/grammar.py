@@ -142,13 +142,9 @@ class Grammar(object):
         layer_name_out = rs.ObjectLayer(arrow_out)
         return layer_name_out
 
-    # @classmethod
-    # def import(cls):                            ##  can't use this word
-    #     pass
-
     ### export
     @classmethod                                ##  done 08-08
-    def export(cls):
+    def export(cls):                            ##  cf import deriv
         """Writes the grammar's dat string to a file, proposing the Rhino 
         document name as the file name. Returns:
             dat_string      str. The dat string, if successful. None, 
@@ -237,6 +233,18 @@ class Grammar(object):
     @classmethod
     def remove_from_rule(cls):                  ##  to do
         pass
+
+    ### import 
+    # @classmethod
+    # def import(cls):                            ##  can't use this word
+    #     pass
+
+    # @classmethod
+    # def import_derivation(cls):
+    #     """Prompts the user for a drv file. Draws the derivation
+    #     Put this in dats_to_guid?
+    #     """
+    #     draw_derivation(shape_specs, rules)
 
     ### utilities
     @classmethod                                ##  called

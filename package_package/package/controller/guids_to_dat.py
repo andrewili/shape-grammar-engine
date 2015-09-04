@@ -14,6 +14,7 @@ class GuidsToDat(object):
         pass
 
                                                 ##  ill-formed components
+
     @classmethod                                ##  done 08-16
     def get_dat_string(cls, initial_shapes, rules):
         """Receives:

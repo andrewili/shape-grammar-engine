@@ -25,3 +25,13 @@ print("rs.PointCompare(p, q): %s" % rs.PointCompare(p, q))
 # print("coords_p == q" % coords_p == q)
 # print("rs.PointCompare(coords_p, q)" % rs.PointCompare(coords_p, q))
 # print("len(p) = %i"% len(p))
+# print('tuple(coords_p) %s' % tuple(coords_p))
+print('p[x]: %s' % coords_p[0]) 				##  10.0
+
+print('rs.IsPoint(p): %s' % rs.IsPoint(p)) 		##	True
+print('rs.IsPoint(coords_p): %s' % rs.IsPoint(coords_p))
+												##	False
+print(coords_p)									##	10,10,10
+xyz = tuple(coords_p)
+print(xyz) 										##	(10.0, 10.0, 10.0)
+print('coords_p_x = %s' % coords_p[0]) 			##	10.0
