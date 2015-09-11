@@ -264,6 +264,8 @@ class Shape(object):
                 first_token = tokens[0]
                 if first_token == 'line':
                     final_shape_text_lines_reversed.append(drv_text_line)
+                elif first_token == 'point':
+                    final_shape_text_lines_reversed.append(drv_text_line)
                 elif first_token == 'coords':
                     final_shape_text_lines_reversed.append(drv_text_line)
                 elif first_token == 'name':
