@@ -1,0 +1,81 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    initial_shape_1
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 20.0 12.0 0.0
+    coords 3 20.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    initialshape2
+    name
+    coords 0 8.0 18.0 0.0
+    coords 1 17.0 26.0 0.0
+    coords 2 18.0 18.0 0.0
+    coords 3 18.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 2 3
+    point 1 a
+shape    rule2_L
+    name
+    coords 0 4.0 16.0 0.0
+    coords 1 13.0 24.0 0.0
+    coords 2 14.0 16.0 0.0
+    coords 3 14.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 2 3
+    point 1 a
+shape    rule2_R
+    name
+    coords 0 5.0 16.0 0.0
+    coords 1 14.0 24.0 0.0
+    coords 2 15.0 16.0 0.0
+    coords 3 15.0 26.0 0.0
+    coords 4 15.0128821399 25.0240449228 8.0
+    coords 5 15.0143096734 26.0240439038 0.0
+    coords 6 15.0143096734 26.0240439038 10.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 2 3
+    line 3 2 6
+    line 4 3 5
+    line 4 3 5
+    line 6 5 6
+    point 1 a
+    point 4 a
+shape    rule_1_L
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 20.0 12.0 0.0
+    coords 3 20.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    rule_1_R
+    name
+    coords 0 12.0 12.0 0.0
+    coords 1 12.0 22.0 0.0
+    coords 2 22.0 12.0 0.0
+    coords 3 22.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+
+initial    initial_shape_1
+initial    initialshape2
+rule    rule2    rule2_L -> rule2_R
+rule    rule_1    rule_1_L -> rule_1_R

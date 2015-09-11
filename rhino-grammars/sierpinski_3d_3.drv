@@ -1,0 +1,4754 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    initial_shape_1
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 24.0
+    coords 2 8.0 24.0 0.0
+    coords 3 12.0 12.0 4.0
+    coords 4 24.0 8.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+shape    rule_1_L
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 24.0
+    coords 2 8.0 24.0 0.0
+    coords 3 12.0 12.0 4.0
+    coords 4 24.0 8.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+    point 3 a
+shape    rule_1_R
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 12.0
+    coords 2 8.0 8.0 24.0
+    coords 3 8.0 16.0 0.0
+    coords 4 8.0 16.0 12.0
+    coords 5 8.0 24.0 0.0
+    coords 6 10.0 10.0 2.0
+    coords 7 10.0 10.0 14.0
+    coords 8 10.0 18.0 2.0
+    coords 9 16.0 8.0 0.0
+    coords 10 16.0 8.0 12.0
+    coords 11 16.0 16.0 0.0
+    coords 12 18.0 10.0 2.0
+    coords 13 24.0 8.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 0 13
+    line 3 1 3
+    line 4 1 4
+    line 5 1 9
+    line 6 1 10
+    line 7 2 5
+    line 8 2 13
+    line 9 3 4
+    line 10 3 9
+    line 11 3 11
+    line 12 4 10
+    line 13 4 11
+    line 14 5 13
+    line 15 9 10
+    line 16 9 11
+    line 17 10 11
+    point 6 a
+    point 7 a
+    point 8 a
+    point 12 a
+shape    rule_2_L
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 24.0
+    coords 2 8.0 24.0 0.0
+    coords 3 12.0 12.0 4.0
+    coords 4 24.0 8.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+shape    rule_2_R
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 12.0
+    coords 2 8.0 8.0 24.0
+    coords 3 8.0 16.0 0.0
+    coords 4 8.0 16.0 12.0
+    coords 5 8.0 24.0 0.0
+    coords 6 16.0 8.0 0.0
+    coords 7 16.0 8.0 12.0
+    coords 8 16.0 16.0 0.0
+    coords 9 24.0 8.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 0 9
+    line 3 1 3
+    line 4 1 4
+    line 5 1 6
+    line 6 1 7
+    line 7 2 5
+    line 8 2 9
+    line 9 3 4
+    line 10 3 6
+    line 11 3 8
+    line 12 4 7
+    line 13 4 8
+    line 14 5 9
+    line 15 6 7
+    line 16 6 8
+    line 17 7 8
+
+initial    initial_shape_1
+rule    rule_1    rule_1_L -> rule_1_R
+rule    rule_2    rule_2_L -> rule_2_R
+# derivation record
+shape    initial_shape_1
+    name 
+    coords 0 8 8 0
+    coords 1 8 8 24
+    coords 2 8 24 0
+    coords 3 12 12 4
+    coords 4 24 8 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+rule    rule_1
+shape    initial_shape_1_rule_1_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 14 24 8 4.16333634234434e-017
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 5 10 10 2
+    coords 6 10 18 2
+    coords 7 10 10 14
+    coords 8 18 10 2
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 11 13 11
+    line 12 16 10
+    line 13 17 10
+    line 14 18 15
+    line 15 18 9
+    line 16 9 17
+    line 17 17 15
+    line 18 12 14
+    line 19 16 15
+    line 20 11 14
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 6 9 10
+    line 7 11 12
+    line 8 13 14
+    line 9 15 10
+    point 5 a
+    point 6 a
+    point 7 a
+    point 8 a
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 19 17 9 1
+    coords 20 17 13 0.999999999999999
+    coords 21 17 9 7
+    coords 22 21 9 0.999999999999999
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 25 24 7.99999999999999 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 5 10 10 2
+    coords 6 10 18 2
+    coords 7 10 10 14
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 11 13 11
+    line 13 17 10
+    line 14 18 15
+    line 15 18 9
+    line 16 9 17
+    line 17 17 15
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 27 23 24
+    line 28 15 10
+    line 29 13 25
+    line 30 26 24
+    line 31 16 10
+    line 32 16 15
+    line 33 27 24
+    line 34 28 24
+    line 35 29 26
+    line 36 29 23
+    line 37 23 28
+    line 38 28 26
+    line 39 12 25
+    line 40 27 26
+    line 41 11 25
+    line 42 29 28
+    line 43 23 27
+    line 44 29 27
+    line 6 9 10
+    line 7 11 12
+    point 19 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 5 a
+    point 6 a
+    point 7 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 19 17 9 1
+    coords 20 17 13 0.999999999999999
+    coords 21 17 9 7
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 5 10 10 2
+    coords 6 10 18 2
+    coords 7 10 10 14
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 11 13 11
+    line 13 17 10
+    line 14 18 15
+    line 15 18 9
+    line 16 9 17
+    line 17 17 15
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 27 23 24
+    line 28 15 10
+    line 31 16 10
+    line 32 16 15
+    line 34 28 24
+    line 35 29 26
+    line 36 29 23
+    line 37 23 28
+    line 38 28 26
+    line 42 29 28
+    line 43 23 27
+    line 44 29 27
+    line 48 31 32
+    line 49 26 24
+    line 50 13 33
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 6 9 10
+    line 60 12 33
+    line 61 35 34
+    line 62 11 33
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 7 11 12
+    point 19 a
+    point 20 a
+    point 21 a
+    point 5 a
+    point 6 a
+    point 7 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 19 17 9 1
+    coords 20 17 13 0.999999999999999
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 5 10 10 2
+    coords 6 10 18 2
+    coords 7 10 10 14
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 11 13 11
+    line 13 17 10
+    line 14 18 15
+    line 15 18 9
+    line 16 9 17
+    line 17 17 15
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 27 23 24
+    line 31 16 10
+    line 34 28 24
+    line 36 29 23
+    line 37 23 28
+    line 43 23 27
+    line 44 29 27
+    line 48 31 32
+    line 49 26 24
+    line 50 13 33
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 6 9 10
+    line 60 12 33
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 7 11 12
+    line 70 38 39
+    line 71 10 15
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 75 16 15
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    point 19 a
+    point 20 a
+    point 5 a
+    point 6 a
+    point 7 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 20 17 13 0.999999999999999
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 5 10 10 2
+    coords 6 10 18 2
+    coords 7 10 10 14
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 11 13 11
+    line 13 17 10
+    line 14 18 15
+    line 15 18 9
+    line 16 9 17
+    line 17 17 15
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 27 23 24
+    line 34 28 24
+    line 37 23 28
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 6 9 10
+    line 60 12 33
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 7 11 12
+    line 70 38 39
+    line 71 10 15
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 94 33 13
+    line 95 46 45
+    line 96 10 16
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 20 a
+    point 5 a
+    point 6 a
+    point 7 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 5 10 10 2
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 6 10 18 2
+    coords 7 10 10 14
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 11 13 11
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 126 12 33
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 13 17 10
+    line 130 50 53
+    line 131 55 53
+    line 14 18 15
+    line 15 18 9
+    line 16 9 17
+    line 17 17 15
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 6 9 10
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 7 11 12
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 94 33 13
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 5 a
+    point 6 a
+    point 7 a
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 5 10 10 2
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 56 9 17 1
+    coords 57 9 21 0.999999999999999
+    coords 58 9 17 7
+    coords 59 13 17 0.999999999999999
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 62 8 24 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 7 10 10 14
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 11 13 11
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 135 60 61
+    line 136 11 62
+    line 137 9 10
+    line 138 63 61
+    line 139 13 62
+    line 14 18 15
+    line 140 9 17
+    line 141 64 61
+    line 142 65 61
+    line 143 66 63
+    line 144 66 60
+    line 145 60 65
+    line 146 65 63
+    line 147 33 62
+    line 148 64 63
+    line 149 17 10
+    line 15 18 9
+    line 150 66 65
+    line 151 60 64
+    line 152 66 64
+    line 17 17 15
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 94 33 13
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 5 a
+    point 56 a
+    point 57 a
+    point 58 a
+    point 59 a
+    point 7 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 5 10 10 2
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 56 9 17 1
+    coords 57 9 21 0.999999999999999
+    coords 58 9 17 7
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 62 8 24 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 11 13 11
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 135 60 61
+    line 136 11 62
+    line 139 13 62
+    line 14 18 15
+    line 140 9 17
+    line 142 65 61
+    line 143 66 63
+    line 144 66 60
+    line 145 60 65
+    line 146 65 63
+    line 15 18 9
+    line 150 66 65
+    line 151 60 64
+    line 152 66 64
+    line 157 67 68
+    line 158 63 61
+    line 159 9 10
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 169 33 62
+    line 17 17 15
+    line 170 70 69
+    line 171 17 10
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 94 33 13
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 5 a
+    point 56 a
+    point 57 a
+    point 58 a
+    point 7 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 5 10 10 2
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 57 9 21 0.999999999999999
+    coords 58 9 17 7
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 62 8 24 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 11 13 11
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 135 60 61
+    line 136 11 62
+    line 14 18 15
+    line 142 65 61
+    line 143 66 63
+    line 145 60 65
+    line 146 65 63
+    line 15 18 9
+    line 150 66 65
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 169 33 62
+    line 17 17 15
+    line 170 70 69
+    line 171 17 10
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 183 62 13
+    line 184 17 9
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 94 33 13
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 5 a
+    point 57 a
+    point 58 a
+    point 7 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 5 10 10 2
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 58 9 17 7
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 11 13 11
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 14 18 15
+    line 143 66 63
+    line 146 65 63
+    line 15 18 9
+    line 150 66 65
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 17 17 15
+    line 170 70 69
+    line 171 17 10
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 184 17 9
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 201 11 81
+    line 202 60 61
+    line 203 82 80
+    line 204 13 81
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 21 18 17
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 22 9 16
+    line 23 18 16
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 94 33 13
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 5 a
+    point 58 a
+    point 7 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 5 10 10 2
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 11 13 11
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 14 18 15
+    line 15 18 9
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 17 17 15
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 204 13 81
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 21 18 17
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 22 9 16
+    line 222 86 87
+    line 223 81 11
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 23 18 16
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 94 33 13
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 5 a
+    point 7 a
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 11 8 8 24
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 93 9 9 1
+    coords 94 9 13 1
+    coords 95 9 9 7
+    coords 96 13 9 1
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+    coords 99 8 8 -4.1286418728248e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 14 18 15
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 17 17 15
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 21 18 17
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 223 81 11
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 243 97 98
+    line 244 18 9
+    line 245 33 99
+    line 246 92 98
+    line 247 81 99
+    line 248 11 99
+    line 249 100 98
+    line 250 30 98
+    line 251 101 92
+    line 252 101 97
+    line 253 97 30
+    line 254 30 92
+    line 255 9 16
+    line 256 100 92
+    line 257 18 16
+    line 258 101 30
+    line 259 97 100
+    line 260 101 100
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 7 a
+    point 93 a
+    point 94 a
+    point 95 a
+    point 96 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 11 8 8 24
+    coords 110 12 10 2.53269627492614e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 94 9 13 1
+    coords 95 9 9 7
+    coords 96 13 9 1
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 14 18 15
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 17 17 15
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 21 18 17
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 223 81 11
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 243 97 98
+    line 244 18 9
+    line 246 92 98
+    line 249 100 98
+    line 250 30 98
+    line 251 101 92
+    line 253 97 30
+    line 254 30 92
+    line 255 9 16
+    line 256 100 92
+    line 257 18 16
+    line 258 101 30
+    line 264 103 104
+    line 265 101 97
+    line 266 33 105
+    line 267 102 104
+    line 268 81 105
+    line 269 11 105
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 7 a
+    point 94 a
+    point 95 a
+    point 96 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1_rule_2_3
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 11 8 8 24
+    coords 110 12 10 2.53269627492614e-016
+    coords 111 8 14 -7.82543246782147e-016
+    coords 112 10 14 -9.08995101411847e-016
+    coords 113 10 12 3
+    coords 114 8 14 3
+    coords 115 8 12 3
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 95 9 9 7
+    coords 96 13 9 1
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 14 18 15
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 17 17 15
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 21 18 17
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 223 81 11
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 246 92 98
+    line 249 100 98
+    line 251 101 92
+    line 254 30 92
+    line 256 100 92
+    line 257 18 16
+    line 258 101 30
+    line 264 103 104
+    line 265 101 97
+    line 266 33 105
+    line 267 102 104
+    line 269 11 105
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 286 111 112
+    line 287 18 9
+    line 288 97 98
+    line 289 113 112
+    line 290 105 81
+    line 291 97 30
+    line 292 109 112
+    line 293 114 112
+    line 294 115 113
+    line 295 115 111
+    line 296 111 114
+    line 297 114 113
+    line 298 16 9
+    line 299 109 113
+    line 300 30 98
+    line 301 115 114
+    line 302 111 109
+    line 303 115 109
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 7 a
+    point 95 a
+    point 96 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1_rule_2_3_rule_2_3
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 11 8 8 24
+    coords 110 12 10 2.53269627492614e-016
+    coords 111 8 14 -7.82543246782147e-016
+    coords 112 10 14 -9.08995101411847e-016
+    coords 113 10 12 3
+    coords 114 8 14 3
+    coords 115 8 12 3
+    coords 116 14 10 -9.08995101411847e-016
+    coords 117 14 8 3
+    coords 118 14 8 -1.06488756253358e-015
+    coords 119 12 10 3
+    coords 120 12 8 3
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 95 9 9 7
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 14 18 15
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 17 17 15
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 21 18 17
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 223 81 11
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 251 101 92
+    line 254 30 92
+    line 258 101 30
+    line 264 103 104
+    line 265 101 97
+    line 267 102 104
+    line 269 11 105
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 286 111 112
+    line 287 18 9
+    line 288 97 98
+    line 289 113 112
+    line 290 105 81
+    line 291 97 30
+    line 292 109 112
+    line 293 114 112
+    line 294 115 113
+    line 295 115 111
+    line 296 111 114
+    line 297 114 113
+    line 299 109 113
+    line 300 30 98
+    line 301 115 114
+    line 302 111 109
+    line 303 115 109
+    line 308 110 116
+    line 309 92 98
+    line 310 33 105
+    line 311 117 116
+    line 312 100 98
+    line 313 100 92
+    line 314 118 116
+    line 315 119 116
+    line 316 120 117
+    line 317 120 110
+    line 318 110 119
+    line 319 119 117
+    line 320 9 16
+    line 321 118 117
+    line 322 18 16
+    line 323 120 119
+    line 324 110 118
+    line 325 120 118
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 7 a
+    point 95 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1_rule_2_3_rule_2_3_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 11 8 8 24
+    coords 110 12 10 2.53269627492614e-016
+    coords 111 8 14 -7.82543246782147e-016
+    coords 112 10 14 -9.08995101411847e-016
+    coords 113 10 12 3
+    coords 114 8 14 3
+    coords 115 8 12 3
+    coords 116 14 10 -9.08995101411847e-016
+    coords 117 14 8 3
+    coords 118 14 8 -1.06488756253358e-015
+    coords 119 12 10 3
+    coords 120 12 8 3
+    coords 121 8 10 6
+    coords 122 10 10 6
+    coords 123 10 8 9
+    coords 124 10 8 6
+    coords 125 8 10 9
+    coords 126 8 8 9
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 7 10 10 14
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 14 18 15
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 17 17 15
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 21 18 17
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 223 81 11
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 264 103 104
+    line 265 101 97
+    line 267 102 104
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 286 111 112
+    line 288 97 98
+    line 289 113 112
+    line 290 105 81
+    line 291 97 30
+    line 292 109 112
+    line 293 114 112
+    line 294 115 113
+    line 295 115 111
+    line 296 111 114
+    line 297 114 113
+    line 299 109 113
+    line 300 30 98
+    line 301 115 114
+    line 302 111 109
+    line 303 115 109
+    line 308 110 116
+    line 309 92 98
+    line 310 33 105
+    line 311 117 116
+    line 312 100 98
+    line 313 100 92
+    line 314 118 116
+    line 315 119 116
+    line 316 120 117
+    line 317 120 110
+    line 318 110 119
+    line 319 119 117
+    line 320 9 16
+    line 321 118 117
+    line 323 120 119
+    line 324 110 118
+    line 325 120 118
+    line 330 121 122
+    line 331 9 18
+    line 332 101 92
+    line 333 123 122
+    line 334 101 30
+    line 335 105 11
+    line 336 124 122
+    line 337 125 122
+    line 338 126 123
+    line 339 126 121
+    line 340 121 125
+    line 341 125 123
+    line 342 30 92
+    line 343 124 123
+    line 344 16 18
+    line 345 126 125
+    line 346 121 124
+    line 347 126 124
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 84 11 33
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 7 a
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1_rule_2_3_rule_2_3_rule_2_1_rule_1_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 110 12 10 2.53269627492614e-016
+    coords 111 8 14 -7.82543246782147e-016
+    coords 112 10 14 -9.08995101411847e-016
+    coords 113 10 12 3
+    coords 114 8 14 3
+    coords 115 8 12 3
+    coords 116 14 10 -9.08995101411847e-016
+    coords 117 14 8 3
+    coords 118 14 8 -1.06488756253358e-015
+    coords 119 12 10 3
+    coords 120 12 8 3
+    coords 121 8 10 6
+    coords 122 10 10 6
+    coords 123 10 8 9
+    coords 124 10 8 6
+    coords 125 8 10 9
+    coords 126 8 8 9
+    coords 127 9 9 13
+    coords 128 9 13 13
+    coords 129 9 9 19
+    coords 130 13 9 13
+    coords 131 8 12 12
+    coords 132 12 12 12
+    coords 133 8 8 24
+    coords 134 12 8 18
+    coords 135 12 8 12
+    coords 136 8 12 18
+    coords 137 8 8 18
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 264 103 104
+    line 265 101 97
+    line 267 102 104
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 286 111 112
+    line 288 97 98
+    line 289 113 112
+    line 290 105 81
+    line 291 97 30
+    line 292 109 112
+    line 293 114 112
+    line 294 115 113
+    line 295 115 111
+    line 296 111 114
+    line 297 114 113
+    line 299 109 113
+    line 300 30 98
+    line 301 115 114
+    line 302 111 109
+    line 303 115 109
+    line 308 110 116
+    line 309 92 98
+    line 310 33 105
+    line 311 117 116
+    line 312 100 98
+    line 313 100 92
+    line 314 118 116
+    line 315 119 116
+    line 316 120 117
+    line 317 120 110
+    line 318 110 119
+    line 319 119 117
+    line 320 9 16
+    line 321 118 117
+    line 323 120 119
+    line 324 110 118
+    line 325 120 118
+    line 330 121 122
+    line 331 9 18
+    line 332 101 92
+    line 333 123 122
+    line 334 101 30
+    line 336 124 122
+    line 337 125 122
+    line 338 126 123
+    line 339 126 121
+    line 340 121 125
+    line 341 125 123
+    line 342 30 92
+    line 343 124 123
+    line 344 16 18
+    line 345 126 125
+    line 346 121 124
+    line 347 126 124
+    line 351 131 132
+    line 352 81 133
+    line 353 18 15
+    line 354 134 132
+    line 355 18 17
+    line 356 105 133
+    line 357 135 132
+    line 358 136 132
+    line 359 137 134
+    line 360 137 131
+    line 361 131 136
+    line 362 136 134
+    line 363 17 15
+    line 364 135 134
+    line 365 33 133
+    line 366 137 136
+    line 367 131 135
+    line 368 137 135
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 127 a
+    point 128 a
+    point 129 a
+    point 130 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1_rule_2_3_rule_2_3_rule_2_1_rule_1_1_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 110 12 10 2.53269627492614e-016
+    coords 111 8 14 -7.82543246782147e-016
+    coords 112 10 14 -9.08995101411847e-016
+    coords 113 10 12 3
+    coords 114 8 14 3
+    coords 115 8 12 3
+    coords 116 14 10 -9.08995101411847e-016
+    coords 117 14 8 3
+    coords 118 14 8 -1.06488756253358e-015
+    coords 119 12 10 3
+    coords 120 12 8 3
+    coords 121 8 10 6
+    coords 122 10 10 6
+    coords 123 10 8 9
+    coords 124 10 8 6
+    coords 125 8 10 9
+    coords 126 8 8 9
+    coords 127 9 9 13
+    coords 129 9 9 19
+    coords 130 13 9 13
+    coords 131 8 12 12
+    coords 132 12 12 12
+    coords 133 8 8 24
+    coords 134 12 8 18
+    coords 135 12 8 12
+    coords 136 8 12 18
+    coords 137 8 8 18
+    coords 138 8 14 12
+    coords 139 10 14 12
+    coords 140 10 12 15
+    coords 141 10 12 12
+    coords 142 8 14 15
+    coords 143 8 12 15
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 264 103 104
+    line 265 101 97
+    line 267 102 104
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 286 111 112
+    line 288 97 98
+    line 289 113 112
+    line 290 105 81
+    line 291 97 30
+    line 292 109 112
+    line 293 114 112
+    line 294 115 113
+    line 295 115 111
+    line 296 111 114
+    line 297 114 113
+    line 299 109 113
+    line 300 30 98
+    line 301 115 114
+    line 302 111 109
+    line 303 115 109
+    line 308 110 116
+    line 309 92 98
+    line 310 33 105
+    line 311 117 116
+    line 312 100 98
+    line 313 100 92
+    line 314 118 116
+    line 315 119 116
+    line 316 120 117
+    line 317 120 110
+    line 318 110 119
+    line 319 119 117
+    line 320 9 16
+    line 321 118 117
+    line 323 120 119
+    line 324 110 118
+    line 325 120 118
+    line 330 121 122
+    line 331 9 18
+    line 332 101 92
+    line 333 123 122
+    line 334 101 30
+    line 336 124 122
+    line 337 125 122
+    line 338 126 123
+    line 339 126 121
+    line 340 121 125
+    line 341 125 123
+    line 342 30 92
+    line 343 124 123
+    line 344 16 18
+    line 345 126 125
+    line 346 121 124
+    line 347 126 124
+    line 353 18 15
+    line 354 134 132
+    line 356 105 133
+    line 357 135 132
+    line 359 137 134
+    line 360 137 131
+    line 362 136 134
+    line 364 135 134
+    line 365 33 133
+    line 366 137 136
+    line 367 131 135
+    line 368 137 135
+    line 373 138 139
+    line 374 81 133
+    line 375 131 132
+    line 376 140 139
+    line 377 18 17
+    line 378 131 136
+    line 379 141 139
+    line 380 142 139
+    line 381 143 140
+    line 382 143 138
+    line 383 138 142
+    line 384 142 140
+    line 385 15 17
+    line 386 141 140
+    line 387 136 132
+    line 388 143 142
+    line 389 138 141
+    line 390 143 141
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 127 a
+    point 129 a
+    point 130 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1_rule_2_3_rule_2_3_rule_2_1_rule_1_1_rule_2_1_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 110 12 10 2.53269627492614e-016
+    coords 111 8 14 -7.82543246782147e-016
+    coords 112 10 14 -9.08995101411847e-016
+    coords 113 10 12 3
+    coords 114 8 14 3
+    coords 115 8 12 3
+    coords 116 14 10 -9.08995101411847e-016
+    coords 117 14 8 3
+    coords 118 14 8 -1.06488756253358e-015
+    coords 119 12 10 3
+    coords 120 12 8 3
+    coords 121 8 10 6
+    coords 122 10 10 6
+    coords 123 10 8 9
+    coords 124 10 8 6
+    coords 125 8 10 9
+    coords 126 8 8 9
+    coords 129 9 9 19
+    coords 130 13 9 13
+    coords 131 8 12 12
+    coords 132 12 12 12
+    coords 133 8 8 24
+    coords 134 12 8 18
+    coords 135 12 8 12
+    coords 136 8 12 18
+    coords 137 8 8 18
+    coords 138 8 14 12
+    coords 139 10 14 12
+    coords 140 10 12 15
+    coords 141 10 12 12
+    coords 142 8 14 15
+    coords 143 8 12 15
+    coords 144 8 10 12
+    coords 145 10 10 12
+    coords 146 10 8 15
+    coords 147 10 8 12
+    coords 148 8 10 15
+    coords 149 8 8 15
+    coords 15 16 8 12
+    coords 150 12 10 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 264 103 104
+    line 265 101 97
+    line 267 102 104
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 286 111 112
+    line 288 97 98
+    line 289 113 112
+    line 290 105 81
+    line 291 97 30
+    line 292 109 112
+    line 293 114 112
+    line 294 115 113
+    line 295 115 111
+    line 296 111 114
+    line 297 114 113
+    line 299 109 113
+    line 300 30 98
+    line 301 115 114
+    line 302 111 109
+    line 303 115 109
+    line 308 110 116
+    line 309 92 98
+    line 310 33 105
+    line 311 117 116
+    line 312 100 98
+    line 313 100 92
+    line 314 118 116
+    line 315 119 116
+    line 316 120 117
+    line 317 120 110
+    line 318 110 119
+    line 319 119 117
+    line 320 9 16
+    line 321 118 117
+    line 323 120 119
+    line 324 110 118
+    line 325 120 118
+    line 330 121 122
+    line 331 9 18
+    line 332 101 92
+    line 333 123 122
+    line 334 101 30
+    line 336 124 122
+    line 337 125 122
+    line 338 126 123
+    line 339 126 121
+    line 340 121 125
+    line 341 125 123
+    line 342 30 92
+    line 343 124 123
+    line 344 16 18
+    line 345 126 125
+    line 346 121 124
+    line 347 126 124
+    line 354 134 132
+    line 357 135 132
+    line 359 137 134
+    line 362 136 134
+    line 364 135 134
+    line 365 33 133
+    line 366 137 136
+    line 373 138 139
+    line 374 81 133
+    line 375 131 132
+    line 376 140 139
+    line 378 131 136
+    line 379 141 139
+    line 380 142 139
+    line 381 143 140
+    line 382 143 138
+    line 383 138 142
+    line 384 142 140
+    line 385 15 17
+    line 386 141 140
+    line 387 136 132
+    line 388 143 142
+    line 389 138 141
+    line 390 143 141
+    line 395 144 145
+    line 396 137 131
+    line 397 15 18
+    line 398 146 145
+    line 399 17 18
+    line 400 105 133
+    line 401 147 145
+    line 402 148 145
+    line 403 149 146
+    line 404 149 144
+    line 405 144 148
+    line 406 148 146
+    line 407 131 135
+    line 408 147 146
+    line 409 137 135
+    line 410 149 148
+    line 411 144 147
+    line 412 149 147
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 129 a
+    point 130 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1_rule_2_3_rule_2_3_rule_2_1_rule_1_1_rule_2_1_rule_2_1_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 110 12 10 2.53269627492614e-016
+    coords 111 8 14 -7.82543246782147e-016
+    coords 112 10 14 -9.08995101411847e-016
+    coords 113 10 12 3
+    coords 114 8 14 3
+    coords 115 8 12 3
+    coords 116 14 10 -9.08995101411847e-016
+    coords 117 14 8 3
+    coords 118 14 8 -1.06488756253358e-015
+    coords 119 12 10 3
+    coords 120 12 8 3
+    coords 121 8 10 6
+    coords 122 10 10 6
+    coords 123 10 8 9
+    coords 124 10 8 6
+    coords 125 8 10 9
+    coords 126 8 8 9
+    coords 129 9 9 19
+    coords 131 8 12 12
+    coords 132 12 12 12
+    coords 133 8 8 24
+    coords 134 12 8 18
+    coords 135 12 8 12
+    coords 136 8 12 18
+    coords 137 8 8 18
+    coords 138 8 14 12
+    coords 139 10 14 12
+    coords 140 10 12 15
+    coords 141 10 12 12
+    coords 142 8 14 15
+    coords 143 8 12 15
+    coords 144 8 10 12
+    coords 145 10 10 12
+    coords 146 10 8 15
+    coords 147 10 8 12
+    coords 148 8 10 15
+    coords 149 8 8 15
+    coords 15 16 8 12
+    coords 150 12 10 12
+    coords 151 14 10 12
+    coords 152 14 8 15
+    coords 153 14 8 12
+    coords 154 12 10 15
+    coords 155 12 8 15
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 264 103 104
+    line 265 101 97
+    line 267 102 104
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 286 111 112
+    line 288 97 98
+    line 289 113 112
+    line 290 105 81
+    line 291 97 30
+    line 292 109 112
+    line 293 114 112
+    line 294 115 113
+    line 295 115 111
+    line 296 111 114
+    line 297 114 113
+    line 299 109 113
+    line 300 30 98
+    line 301 115 114
+    line 302 111 109
+    line 303 115 109
+    line 308 110 116
+    line 309 92 98
+    line 310 33 105
+    line 311 117 116
+    line 312 100 98
+    line 313 100 92
+    line 314 118 116
+    line 315 119 116
+    line 316 120 117
+    line 317 120 110
+    line 318 110 119
+    line 319 119 117
+    line 320 9 16
+    line 321 118 117
+    line 323 120 119
+    line 324 110 118
+    line 325 120 118
+    line 330 121 122
+    line 331 9 18
+    line 332 101 92
+    line 333 123 122
+    line 334 101 30
+    line 336 124 122
+    line 337 125 122
+    line 338 126 123
+    line 339 126 121
+    line 340 121 125
+    line 341 125 123
+    line 342 30 92
+    line 343 124 123
+    line 344 16 18
+    line 345 126 125
+    line 346 121 124
+    line 347 126 124
+    line 359 137 134
+    line 362 136 134
+    line 366 137 136
+    line 373 138 139
+    line 374 81 133
+    line 375 131 132
+    line 376 140 139
+    line 378 131 136
+    line 379 141 139
+    line 380 142 139
+    line 381 143 140
+    line 382 143 138
+    line 383 138 142
+    line 384 142 140
+    line 386 141 140
+    line 387 136 132
+    line 388 143 142
+    line 389 138 141
+    line 390 143 141
+    line 395 144 145
+    line 396 137 131
+    line 398 146 145
+    line 399 17 18
+    line 400 105 133
+    line 401 147 145
+    line 402 148 145
+    line 403 149 146
+    line 404 149 144
+    line 405 144 148
+    line 406 148 146
+    line 407 131 135
+    line 408 147 146
+    line 409 137 135
+    line 410 149 148
+    line 411 144 147
+    line 412 149 147
+    line 417 150 151
+    line 418 134 132
+    line 419 18 15
+    line 420 152 151
+    line 421 135 132
+    line 422 135 134
+    line 423 153 151
+    line 424 154 151
+    line 425 155 152
+    line 426 155 150
+    line 427 150 154
+    line 428 154 152
+    line 429 17 15
+    line 430 153 152
+    line 431 133 33
+    line 432 155 154
+    line 433 150 153
+    line 434 155 153
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45
+    point 129 a
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_2_1_rule_2_2_rule_2_3_rule_2_4_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_2_rule_1_2_rule_2_1_rule_2_3_rule_2_3_rule_2_1_rule_1_1_rule_2_1_rule_2_1_rule_2_1_rule_2_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 100 12 8 3.12250225675826e-017
+    coords 101 8 8 6
+    coords 102 10 8 3
+    coords 103 8 10 -8.98586760555986e-016
+    coords 104 10 10 -1.34267597040605e-015
+    coords 105 8 8 -4.54497550705923e-016
+    coords 106 10 8 -8.98586760555986e-016
+    coords 107 8 10 3
+    coords 108 8 8 3
+    coords 109 10 12 2.53269627492614e-016
+    coords 110 12 10 2.53269627492614e-016
+    coords 111 8 14 -7.82543246782147e-016
+    coords 112 10 14 -9.08995101411847e-016
+    coords 113 10 12 3
+    coords 114 8 14 3
+    coords 115 8 12 3
+    coords 116 14 10 -9.08995101411847e-016
+    coords 117 14 8 3
+    coords 118 14 8 -1.06488756253358e-015
+    coords 119 12 10 3
+    coords 120 12 8 3
+    coords 121 8 10 6
+    coords 122 10 10 6
+    coords 123 10 8 9
+    coords 124 10 8 6
+    coords 125 8 10 9
+    coords 126 8 8 9
+    coords 131 8 12 12
+    coords 132 12 12 12
+    coords 134 12 8 18
+    coords 135 12 8 12
+    coords 136 8 12 18
+    coords 137 8 8 18
+    coords 138 8 14 12
+    coords 139 10 14 12
+    coords 140 10 12 15
+    coords 141 10 12 12
+    coords 142 8 14 15
+    coords 143 8 12 15
+    coords 144 8 10 12
+    coords 145 10 10 12
+    coords 146 10 8 15
+    coords 147 10 8 12
+    coords 148 8 10 15
+    coords 149 8 8 15
+    coords 15 16 8 12
+    coords 150 12 10 12
+    coords 151 14 10 12
+    coords 152 14 8 15
+    coords 153 14 8 12
+    coords 154 12 10 15
+    coords 155 12 8 15
+    coords 156 8 10 18
+    coords 157 10 10 18
+    coords 158 8 8 24
+    coords 159 10 8 21
+    coords 16 16 8 -4.02455846426619e-016
+    coords 160 10 8 18
+    coords 161 8 10 21
+    coords 162 8 8 21
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 20 10 -1.11542719505309e-015
+    coords 32 22 10 -1.55951640490315e-015
+    coords 33 24 8 -1.55951640490315e-015
+    coords 34 22 8 3
+    coords 35 22 8 -1.11542719505309e-015
+    coords 36 20 10 3
+    coords 37 20 8 3
+    coords 38 16 10 6
+    coords 39 18 10 6
+    coords 40 18 8 9
+    coords 41 18 8 6
+    coords 42 16 10 9
+    coords 43 16 8 9
+    coords 44 16 10 -6.81746326058885e-016
+    coords 45 18 10 -1.12583553590895e-015
+    coords 46 18 8 3
+    coords 47 18 8 -6.81746326058885e-016
+    coords 48 16 10 3
+    coords 49 16 8 3
+    coords 50 16 14 -1.11542719505309e-015
+    coords 51 18 14 -1.55951640490315e-015
+    coords 52 18 12 3
+    coords 53 18 12 -1.11542719505309e-015
+    coords 54 16 14 3
+    coords 55 16 12 3
+    coords 60 8 20 -8.98586760555986e-016
+    coords 61 12 20 -1.34267597040605e-015
+    coords 63 12 16 6
+    coords 64 12 16 -8.98586760555986e-016
+    coords 65 8 20 6
+    coords 66 8 16 6
+    coords 67 12 18 1.6306400674182e-016
+    coords 68 14 18 9.40220123979429e-016
+    coords 69 14 16 3
+    coords 70 14 16 1.6306400674182e-016
+    coords 71 12 18 3
+    coords 72 12 16 3
+    coords 73 8 18 -6.81746326058885e-016
+    coords 74 10 18 -1.12583553590895e-015
+    coords 75 10 16 3
+    coords 76 10 16 -6.81746326058885e-016
+    coords 77 8 18 3
+    coords 78 8 16 3
+    coords 79 8 22 -1.11542719505309e-015
+    coords 80 10 22 -1.55951640490315e-015
+    coords 81 8 24 -1.55951640490315e-015
+    coords 82 10 20 3
+    coords 83 10 20 -1.11542719505309e-015
+    coords 84 8 22 3
+    coords 85 8 20 3
+    coords 86 8 18 6
+    coords 87 10 18 6
+    coords 88 10 16 9
+    coords 89 10 16 6
+    coords 9 8 16 -4.02455846426619e-016
+    coords 90 8 18 9
+    coords 91 8 16 9
+    coords 92 12 8 5.99999999999999
+    coords 97 8 12 3.12250225675826e-017
+    coords 98 12 12 4.75314232417645e-016
+
+    line 100 49 46
+    line 101 49 44
+    line 102 44 48
+    line 103 48 46
+    line 104 23 27
+    line 105 47 46
+    line 106 29 27
+    line 107 49 48
+    line 108 44 47
+    line 109 49 47
+    line 114 50 51
+    line 115 15 10
+    line 116 23 24
+    line 117 52 51
+    line 118 16 10
+    line 119 23 28
+    line 120 53 51
+    line 121 54 51
+    line 122 55 52
+    line 123 55 50
+    line 124 50 54
+    line 125 54 52
+    line 127 53 52
+    line 128 28 24
+    line 129 55 54
+    line 130 50 53
+    line 131 55 53
+    line 157 67 68
+    line 158 63 61
+    line 160 69 68
+    line 161 64 61
+    line 162 64 63
+    line 163 70 68
+    line 164 71 68
+    line 165 72 69
+    line 166 72 67
+    line 167 67 71
+    line 168 71 69
+    line 170 70 69
+    line 172 72 71
+    line 173 67 70
+    line 174 72 70
+    line 179 73 74
+    line 180 66 60
+    line 181 10 9
+    line 182 75 74
+    line 185 76 74
+    line 186 77 74
+    line 187 78 75
+    line 188 78 73
+    line 189 73 77
+    line 190 77 75
+    line 191 60 64
+    line 192 76 75
+    line 193 66 64
+    line 194 78 77
+    line 195 73 76
+    line 196 78 76
+    line 200 79 80
+    line 202 60 61
+    line 203 82 80
+    line 205 60 65
+    line 206 83 80
+    line 207 84 80
+    line 208 85 82
+    line 209 85 79
+    line 210 79 84
+    line 211 84 82
+    line 212 33 81
+    line 213 83 82
+    line 214 65 61
+    line 215 85 84
+    line 216 79 83
+    line 217 85 83
+    line 222 86 87
+    line 224 66 63
+    line 225 88 87
+    line 226 66 65
+    line 227 9 17
+    line 228 89 87
+    line 229 90 87
+    line 230 91 88
+    line 231 91 86
+    line 232 86 90
+    line 233 90 88
+    line 234 65 63
+    line 235 89 88
+    line 236 10 17
+    line 237 91 90
+    line 238 86 89
+    line 239 91 89
+    line 264 103 104
+    line 265 101 97
+    line 267 102 104
+    line 270 106 104
+    line 271 107 104
+    line 272 108 102
+    line 273 108 103
+    line 274 103 107
+    line 275 107 102
+    line 276 97 100
+    line 277 106 102
+    line 278 101 100
+    line 279 108 107
+    line 280 103 106
+    line 281 108 106
+    line 286 111 112
+    line 288 97 98
+    line 289 113 112
+    line 290 105 81
+    line 291 97 30
+    line 292 109 112
+    line 293 114 112
+    line 294 115 113
+    line 295 115 111
+    line 296 111 114
+    line 297 114 113
+    line 299 109 113
+    line 300 30 98
+    line 301 115 114
+    line 302 111 109
+    line 303 115 109
+    line 308 110 116
+    line 309 92 98
+    line 310 33 105
+    line 311 117 116
+    line 312 100 98
+    line 313 100 92
+    line 314 118 116
+    line 315 119 116
+    line 316 120 117
+    line 317 120 110
+    line 318 110 119
+    line 319 119 117
+    line 320 9 16
+    line 321 118 117
+    line 323 120 119
+    line 324 110 118
+    line 325 120 118
+    line 330 121 122
+    line 331 9 18
+    line 332 101 92
+    line 333 123 122
+    line 334 101 30
+    line 336 124 122
+    line 337 125 122
+    line 338 126 123
+    line 339 126 121
+    line 340 121 125
+    line 341 125 123
+    line 342 30 92
+    line 343 124 123
+    line 344 16 18
+    line 345 126 125
+    line 346 121 124
+    line 347 126 124
+    line 373 138 139
+    line 375 131 132
+    line 376 140 139
+    line 378 131 136
+    line 379 141 139
+    line 380 142 139
+    line 381 143 140
+    line 382 143 138
+    line 383 138 142
+    line 384 142 140
+    line 386 141 140
+    line 387 136 132
+    line 388 143 142
+    line 389 138 141
+    line 390 143 141
+    line 395 144 145
+    line 396 137 131
+    line 398 146 145
+    line 399 17 18
+    line 401 147 145
+    line 402 148 145
+    line 403 149 146
+    line 404 149 144
+    line 405 144 148
+    line 406 148 146
+    line 407 131 135
+    line 408 147 146
+    line 409 137 135
+    line 410 149 148
+    line 411 144 147
+    line 412 149 147
+    line 417 150 151
+    line 418 134 132
+    line 419 18 15
+    line 420 152 151
+    line 421 135 132
+    line 422 135 134
+    line 423 153 151
+    line 424 154 151
+    line 425 155 152
+    line 426 155 150
+    line 427 150 154
+    line 428 154 152
+    line 429 17 15
+    line 430 153 152
+    line 432 155 154
+    line 433 150 153
+    line 434 155 153
+    line 438 156 157
+    line 439 81 158
+    line 440 137 134
+    line 441 159 157
+    line 442 137 136
+    line 443 105 158
+    line 444 160 157
+    line 445 161 157
+    line 446 162 159
+    line 447 162 156
+    line 448 156 161
+    line 449 161 159
+    line 450 136 134
+    line 451 160 159
+    line 452 33 158
+    line 453 162 161
+    line 454 156 160
+    line 455 162 160
+    line 48 31 32
+    line 49 26 24
+    line 51 34 32
+    line 52 27 24
+    line 53 27 26
+    line 54 35 32
+    line 55 36 32
+    line 56 37 34
+    line 57 37 31
+    line 58 31 36
+    line 59 36 34
+    line 61 35 34
+    line 63 37 36
+    line 64 31 35
+    line 65 37 35
+    line 70 38 39
+    line 72 29 26
+    line 73 40 39
+    line 74 29 28
+    line 76 41 39
+    line 77 42 39
+    line 78 43 40
+    line 79 43 38
+    line 80 38 42
+    line 81 42 40
+    line 82 28 26
+    line 83 41 40
+    line 85 43 42
+    line 86 38 41
+    line 87 43 41
+    line 92 44 45
+    line 93 29 23
+    line 95 46 45
+    line 97 15 16
+    line 98 47 45
+    line 99 48 45

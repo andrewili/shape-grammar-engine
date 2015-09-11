@@ -1,0 +1,332 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    initial_shape_1
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 24.0
+    coords 2 8.0 24.0 0.0
+    coords 3 12.0 12.0 4.0
+    coords 4 24.0 8.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+shape    rule_1_L
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 24.0
+    coords 2 8.0 24.0 0.0
+    coords 3 12.0 12.0 4.0
+    coords 4 24.0 8.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+    point 3 a
+shape    rule_1_R
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 12.0
+    coords 2 8.0 8.0 24.0
+    coords 3 8.0 16.0 0.0
+    coords 4 8.0 16.0 12.0
+    coords 5 8.0 24.0 0.0
+    coords 6 10.0 10.0 2.0
+    coords 7 10.0 10.0 14.0
+    coords 8 10.0 18.0 2.0
+    coords 9 16.0 8.0 0.0
+    coords 10 16.0 8.0 12.0
+    coords 11 16.0 16.0 0.0
+    coords 12 18.0 10.0 2.0
+    coords 13 24.0 8.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 0 13
+    line 3 1 3
+    line 4 1 4
+    line 5 1 9
+    line 6 1 10
+    line 7 2 5
+    line 8 2 13
+    line 9 3 4
+    line 10 3 9
+    line 11 3 11
+    line 12 4 10
+    line 13 4 11
+    line 14 5 13
+    line 15 9 10
+    line 16 9 11
+    line 17 10 11
+    point 6 a
+    point 7 a
+    point 8 a
+    point 12 a
+shape    rule_2_L
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 24.0
+    coords 2 8.0 24.0 0.0
+    coords 3 12.0 12.0 4.0
+    coords 4 24.0 8.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+shape    rule_2_R
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 8.0 12.0
+    coords 2 8.0 8.0 24.0
+    coords 3 8.0 16.0 0.0
+    coords 4 8.0 16.0 12.0
+    coords 5 8.0 24.0 0.0
+    coords 6 16.0 8.0 0.0
+    coords 7 16.0 8.0 12.0
+    coords 8 16.0 16.0 0.0
+    coords 9 24.0 8.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 0 9
+    line 3 1 3
+    line 4 1 4
+    line 5 1 6
+    line 6 1 7
+    line 7 2 5
+    line 8 2 9
+    line 9 3 4
+    line 10 3 6
+    line 11 3 8
+    line 12 4 7
+    line 13 4 8
+    line 14 5 9
+    line 15 6 7
+    line 16 6 8
+    line 17 7 8
+
+initial    initial_shape_1
+rule    rule_1    rule_1_L -> rule_1_R
+rule    rule_2    rule_2_L -> rule_2_R
+# derivation record
+shape    initial_shape_1
+    name 
+    coords 0 8 8 0
+    coords 1 8 8 24
+    coords 2 8 24 0
+    coords 3 12 12 4
+    coords 4 24 8 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 0 4
+    line 3 1 2
+    line 4 1 4
+    line 5 2 4
+    point 3 a
+rule    rule_1
+shape    initial_shape_1_rule_1_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 14 24 8 4.16333634234434e-017
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 5 10 10 2
+    coords 6 10 18 2
+    coords 7 10 10 14
+    coords 8 18 10 2
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 11 13 11
+    line 12 16 10
+    line 13 17 10
+    line 14 18 15
+    line 15 18 9
+    line 16 9 17
+    line 17 17 15
+    line 18 12 14
+    line 19 16 15
+    line 20 11 14
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 6 9 10
+    line 7 11 12
+    line 8 13 14
+    line 9 15 10
+    point 5 a
+    point 6 a
+    point 7 a
+    point 8 a
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 11 8 8 24
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 19 17 9 1
+    coords 20 17 13 0.999999999999999
+    coords 21 17 9 7
+    coords 22 21 9 0.999999999999999
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 25 24 7.99999999999999 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 5 10 10 2
+    coords 6 10 18 2
+    coords 7 10 10 14
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 11 13 11
+    line 13 17 10
+    line 14 18 15
+    line 15 18 9
+    line 16 9 17
+    line 17 17 15
+    line 21 18 17
+    line 22 9 16
+    line 23 18 16
+    line 27 23 24
+    line 28 15 10
+    line 29 13 25
+    line 30 26 24
+    line 31 16 10
+    line 32 16 15
+    line 33 27 24
+    line 34 28 24
+    line 35 29 26
+    line 36 29 23
+    line 37 23 28
+    line 38 28 26
+    line 39 12 25
+    line 40 27 26
+    line 41 11 25
+    line 42 29 28
+    line 43 23 27
+    line 44 29 27
+    line 6 9 10
+    line 7 11 12
+    point 19 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 5 a
+    point 6 a
+    point 7 a
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_1_4
+    name 
+    coords 10 16 16 4.16333634234434e-017
+    coords 12 8 24 4.16333634234434e-017
+    coords 13 8 8 -8.46545056276682e-016
+    coords 15 16 8 12
+    coords 16 16 8 -4.02455846426619e-016
+    coords 17 8 16 12
+    coords 18 8 8 12
+    coords 19 17 9 1
+    coords 20 17 13 0.999999999999999
+    coords 21 17 9 7
+    coords 22 21 9 0.999999999999999
+    coords 23 16 12 -8.98586760555986e-016
+    coords 24 20 12 -1.34267597040605e-015
+    coords 25 24 7.99999999999999 -1.34267597040605e-015
+    coords 26 20 8 6
+    coords 27 20 8 -8.98586760555986e-016
+    coords 28 16 12 6
+    coords 29 16 8 6
+    coords 30 8 12 6
+    coords 31 9 9 13
+    coords 32 9 13 13
+    coords 33 9 9 19
+    coords 34 13 9 13
+    coords 35 8 12 12
+    coords 36 12 12 12
+    coords 37 8 8 24
+    coords 38 12 8 18
+    coords 39 12 8 12
+    coords 40 8 12 18
+    coords 41 8 8 18
+    coords 5 10 10 2
+    coords 6 10 18 2
+    coords 9 8 16 -4.02455846426619e-016
+
+    line 10 13 12
+    line 13 17 10
+    line 15 18 9
+    line 16 9 17
+    line 22 9 16
+    line 23 18 16
+    line 27 23 24
+    line 28 15 10
+    line 29 13 25
+    line 30 26 24
+    line 31 16 10
+    line 32 16 15
+    line 33 27 24
+    line 34 28 24
+    line 35 29 26
+    line 36 29 23
+    line 37 23 28
+    line 38 28 26
+    line 39 12 25
+    line 40 27 26
+    line 42 29 28
+    line 43 23 27
+    line 44 29 27
+    line 48 35 36
+    line 49 12 37
+    line 50 18 15
+    line 51 38 36
+    line 52 18 17
+    line 53 13 37
+    line 54 39 36
+    line 55 40 36
+    line 56 41 38
+    line 57 41 35
+    line 58 35 40
+    line 59 40 38
+    line 6 9 10
+    line 60 17 15
+    line 61 39 38
+    line 62 25 37
+    line 63 41 40
+    line 64 35 39
+    line 65 41 39
+    point 19 a
+    point 20 a
+    point 21 a
+    point 22 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 34 a
+    point 5 a
+    point 6 a

@@ -1,0 +1,82 @@
+notes_tsinghua_2015-09-05.txt
+
+Pages for Tsinghua workshop
+
+Setting up 
+
+1.  Make sure you have Rhino and Windows installed. Use a version of Rhino that can run Python scripts (Rhino v5.8 (or later) for Windows, apparently). To see the version number, in Rhino select Help / About Rhinoceros. Look in the lower right corner, in parentheses.
+2.  Download the archive (called 'archive', 0.0 MB). It contains these items: 
+    a.  The grammar environment (also called the interpreter).
+    b.  A folder containing the translator scripts. 
+    c.  Documentation. 
+    d.  Sample grammars. 
+    e.  Readings (maybe)
+3.  Put the interpreter and the scripts folder in folders with English names only. Do not use names like '文法', 'グラマー', or even 'grámmar'. This naming restriction  also applies to all folders that contain these folders. (In more technical terms, the path names may contain ASCII characters only.) Be careful to use the English input method. A Chinese input method can input what looks like, say, an 'L', but it will have a different ASCII code from an 'L' input by the English input method.
+4.  Set the Python module search path. In Rhino, open the Python script editor (Tools / PythonScript / Edit). In the Python script editor, select Tools / Options / Files. Press '+'; navigate to the folder containing the folder 'package'. Restart Rhino.
+
+Creating a grammar 
+
+1.  Create a new Rhino document (File / New). I usually use the template Small objects / millimetres, although it may not make any difference 
+2.  Create a new grammar. 
+    a.  Open the 'new-grammar' script. In the Python script editor select File / Open. Navigate to 'package / commands / new_grammar'. The script opens in the editor. (Be careful not to mess it up.) 
+    b.  Run the 'new-grammar' script. In the Python script editor, click the green 'play' triangle or select 'File / Run Script'. It clears the Rhino document and creates two layers: one for the first initial shape and one for the first rule. Each layer has one or two cubic frames.
+3.  Draw the initial shape and rule using lines and textdots (for labeled points). Make sure your shapes are on the correct layer. See the tips on drawing shapes. 
+4.  Add new initial shape and rule layers as necessary using the 'new-initial-shape' and 'new-rule' scripts.
+5.  Go through the pre-export checklist. 
+6.  To export the grammar (as a .dat file), use the 'export-grammar' script. 
+
+Tips on drawing shapes 
+
+1.  You can use polygons, polylines, and blocks. Explode them into lines. Just don't explode the frames.
+2.  You can use scripts to draw shapes. 
+3.  To work with a curve, replace it with lines connecting its control points. 
+
+Pre-export checklist 
+
+1.  Check that your shapes consist only of lines and textdots. If you use things like blocks, polygons, or polylines, explode them. But don't explode the frames. 
+2.  Check that the frames are block instances. If you exploded a frame, delete its lines and instantiate a frame block on the appropriate layer. 
+3.  Use the top, front, and right views to look for any elements that lie outside a frame. 
+4.  Use the perspective view to check that lines are what you think they are. For instance, a line that in the top view appears parallel to the xy-plane may not be. You may have snapped to a point that was not where you thought it was. 
+5.  Set the current layer to 'Default'. Turn the initial shape and rule layers off one at a time to check for elements that are in the wrong layer.
+6.  Check that your lines are maximal.
+7.  Check that the left and right rule shapes are correctly located in their frames. The front lower left vertex of each frame is the origin for the shape it contains. 
+
+Running a grammar 
+
+1.  Import a grammar (.dat file). 
+2.  Select the initial shape. 
+3.  Either:
+    a.  Select one rule and 'Show next shapes (single rule)'; or
+    b.  Select 'Show next shapes (all rules)'
+4.  If there is at least one next shape, select one. 
+5.  Repeat as desired.
+6.  To export the final shape (as part of a .drv file), select 'Save derivation'.
+7.  To import the final shape into Rhino, select 'Import final shape'.
+
+Things that could go wrong 
+
+1.  A shape is not maximal. A maximal shape has no overlapping lines or abutting colinear lines.
+2.  A shape is in the wrong layer
+3.  A 2d shape is not completely in the xy plane
+4.  The pathname contains non-ASCII characters. Don't forget English input with Chinese or Japanese input methods
+
+Other tips 
+
+1.  Use polylines in grammar; replace with curves after application 
+
+To myself 
+
+1.  Use point cloud in finding transformations?
+2.  Curve control points as point clouds? 
+3.  From Rhino, export curves as polylines. In the interpreter, (tag and) transform the polylines. In Rhino, draw polylines as curves.
+4.  The reason to use shape grammar rather than grasshopper is that it's visual 
+5.  Bake in Rhino = 'transfer' from grasshopper. Could do same thing - act as a virtual display - for next shapes found by the interpreter (future sg plug-in). 
+6.  Weixin's 3d matrix of colored planes is a family of designs. But they're just parametric variations. There seems to be no possibility of different sequences of transformations.
+7.  Elements must lie completely inside frame
+8.  Polylines, rectangles, etc. Explode. Cannot export. Error message: variable called before assignment. 
+9.  Don't explode the frames. 
+10. Open dat file in interpreter; it's empty. Cause? 
+11. Offset shapes. Cause: location of frame was misleading (not on a major grid point)
+12. Why do shape elements have to be on different layers? After all, the elements in a shape are determined by the frame. This is what people can see. And maybe we don't need layers at all, although we do need to identify the rules somehow. After adding a new layer, make that the active layer? 
+13. Grasshopper is deterministic. All the input is at the beginning, through sliders. Parametric. In shape grammar, the user participates in the (visible) process. 
+14. Shape l.265. Add case for 'point'
