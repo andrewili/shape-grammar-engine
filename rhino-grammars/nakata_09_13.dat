@@ -1,0 +1,153 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    initial_shape_1
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 8.0 0.0
+    coords 2 4.0 12.0 0.0
+    coords 3 4.0 16.0 0.0
+    coords 4 4.0 20.0 0.0
+    coords 5 4.0 24.0 0.0
+    coords 6 4.0 28.0 0.0
+    coords 7 4.5 6.5 0.0
+    coords 8 4.5 14.5 0.0
+    coords 9 4.5 22.5 0.0
+    coords 10 7.5 10.5 0.0
+    coords 11 7.5 18.5 0.0
+    coords 12 7.5 26.5 0.0
+    coords 13 8.0 4.0 0.0
+    coords 14 8.0 28.0 0.0
+    coords 15 8.5 10.5 0.0
+    coords 16 8.5 18.5 0.0
+    coords 17 8.5 26.5 0.0
+    coords 18 11.5 6.5 0.0
+    coords 19 11.5 14.5 0.0
+    coords 20 11.5 22.5 0.0
+    coords 21 12.0 4.0 0.0
+    coords 22 12.0 28.0 0.0
+    coords 23 12.5 6.5 0.0
+    coords 24 12.5 14.5 0.0
+    coords 25 12.5 22.5 0.0
+    coords 26 15.5 10.5 0.0
+    coords 27 15.5 18.5 0.0
+    coords 28 15.5 26.5 0.0
+    coords 29 16.0 4.0 0.0
+    coords 30 16.0 28.0 0.0
+    coords 31 16.5 10.5 0.0
+    coords 32 16.5 18.5 0.0
+    coords 33 16.5 26.5 0.0
+    coords 34 19.5 6.5 0.0
+    coords 35 19.5 14.5 0.0
+    coords 36 19.5 22.5 0.0
+    coords 37 20.0 4.0 0.0
+    coords 38 20.0 28.0 0.0
+    coords 39 20.5 6.5 0.0
+    coords 40 20.5 14.5 0.0
+    coords 41 20.5 22.5 0.0
+    coords 42 23.5 10.5 0.0
+    coords 43 23.5 18.5 0.0
+    coords 44 23.5 26.5 0.0
+    coords 45 24.0 4.0 0.0
+    coords 46 24.0 28.0 0.0
+    coords 47 24.5 10.5 0.0
+    coords 48 24.5 18.5 0.0
+    coords 49 24.5 26.5 0.0
+    coords 50 27.5 6.5 0.0
+    coords 51 27.5 14.5 0.0
+    coords 52 27.5 22.5 0.0
+    coords 53 28.0 4.0 0.0
+    coords 54 28.0 8.0 0.0
+    coords 55 28.0 12.0 0.0
+    coords 56 28.0 16.0 0.0
+    coords 57 28.0 20.0 0.0
+    coords 58 28.0 24.0 0.0
+    coords 59 28.0 28.0 0.0
+
+    line 0 0 6
+    line 1 0 53
+    line 2 1 54
+    line 3 2 55
+    line 4 3 56
+    line 5 4 57
+    line 6 5 58
+    line 7 6 59
+    line 8 13 14
+    line 9 21 22
+    line 10 29 30
+    line 11 37 38
+    line 12 45 46
+    line 13 53 59
+    point 7 a
+    point 8 a
+    point 9 a
+    point 10 a
+    point 11 a
+    point 12 a
+    point 15 a
+    point 16 a
+    point 17 a
+    point 18 a
+    point 19 a
+    point 20 a
+    point 23 a
+    point 24 a
+    point 25 a
+    point 26 a
+    point 27 a
+    point 28 a
+    point 31 a
+    point 32 a
+    point 33 a
+    point 34 a
+    point 35 a
+    point 36 a
+    point 39 a
+    point 40 a
+    point 41 a
+    point 42 a
+    point 43 a
+    point 44 a
+    point 47 a
+    point 48 a
+    point 49 a
+    point 50 a
+    point 51 a
+    point 52 a
+shape    rule_1_L
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 24.0 0.0
+    coords 2 22.0 18.0 0.0
+    coords 3 24.0 8.0 0.0
+    coords 4 24.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 a
+shape    rule_1_R
+    name
+    coords 0 8.0 8.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 24.0 0.0
+    coords 3 12.0 18.0 0.0
+    coords 4 16.0 8.0 0.0
+    coords 5 16.0 24.0 0.0
+    coords 6 20.0 14.0 0.0
+    coords 7 24.0 8.0 0.0
+    coords 8 24.0 16.0 0.0
+    coords 9 24.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 7
+    line 2 1 3
+    line 3 1 4
+    line 4 2 9
+    line 5 3 6
+    line 6 5 8
+    line 7 6 8
+    line 8 7 9
+
+initial    initial_shape_1
+rule    rule_1    rule_1_L -> rule_1_R

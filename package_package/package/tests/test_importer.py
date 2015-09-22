@@ -1,6 +1,220 @@
+from package.scripts import grammar as g
 from package.scripts import importer as i
 import rhinoscriptsyntax as rs
+from package.scripts import settings as s
+from package.scripts import shape as sh
 from package.tests import utilities as u
+
+"""From conway_09.drv"
+"""
+
+conway_09_drv_file_text_lines = [
+    '# derivation file version 1.00                           --chen liang 2007/08/06',
+    '',
+    'shape    del_lpt_L',
+    '    name',
+    '    coords 0 16.0 16.0 32.0',
+    '',
+    '    point 0 a',
+    'shape    del_lpt_R',
+    '    name',
+    'shape    initial_shape_1',
+    '    name',
+    '    coords 0 4.0 10.0 0.0',
+    '    coords 1 4.0 22.0 0.0',
+    '    coords 2 12.0 14.0 0.0',
+    '    coords 3 28.0 10.0 0.0',
+    '',
+    '    line 0 0 1',
+    '    line 1 0 3',
+    '    line 2 1 3',
+    '    point 2 a',
+    'shape    rule_1_L',
+    '    name',
+    '    coords 0 4.0 10.0 32.0',
+    '    coords 1 4.0 22.0 32.0',
+    '    coords 2 12.0 14.0 32.0',
+    '    coords 3 28.0 10.0 32.0',
+    '',
+    '    line 0 0 1',
+    '    line 1 0 3',
+    '    line 2 1 3',
+    '    point 2 a',
+    'shape    rule_1_R',
+    '    name',
+    '    coords 0 4.0 10.0 32.0',
+    '    coords 1 4.0 22.0 32.0',
+    '    coords 2 5.6 17.2 32.0',
+    '    coords 3 6.4 14.8 32.0',
+    '    coords 4 8.8 19.6 32.0',
+    '    coords 5 8.8 11.6 32.0',
+    '    coords 6 10.4 14.8 32.0',
+    '    coords 7 14.4 14.8 32.0',
+    '    coords 8 16.0 10.0 32.0',
+    '    coords 9 18.4 14.8 32.0',
+    '    coords 10 20.8 11.6 32.0',
+    '    coords 11 28.0 10.0 32.0',
+    '',
+    '    line 0 0 1',
+    '    line 1 0 4',
+    '    line 2 0 11',
+    '    line 3 1 11',
+    '    line 4 3 8',
+    '    line 5 4 8',
+    '    line 6 8 9',
+    '    point 2 a',
+    '    point 5 a',
+    '    point 6 a',
+    '    point 7 a',
+    '    point 10 a',
+    '',
+    'initial    initial_shape_1',
+    'rule    del_lpt    del_lpt_L -> del_lpt_R',
+    'rule    rule_1    rule_1_L -> rule_1_R',
+    '# derivation record',
+    'shape    initial_shape_1',
+    '    name ',
+    '    coords 0 4 10 0',
+    '    coords 1 4 22 0',
+    '    coords 2 12 14 0',
+    '    coords 3 28 10 0',
+    '',
+    '    line 0 0 1',
+    '    line 1 0 3',
+    '    line 2 1 3',
+    '    point 2 a',
+    'rule    rule_1',
+    'shape    initial_shape_1_rule_1_1',
+    '    name ',
+    '    coords 10 18.4 14.8 0',
+    '    coords 11 4 10 0',
+    '    coords 12 8.8 19.6 0',
+    '    coords 13 6.4 14.8 0',
+    '    coords 14 4 22 0',
+    '    coords 15 28 10 0',
+    '    coords 4 10.4 14.8 0',
+    '    coords 5 14.4 14.8 0',
+    '    coords 6 20.8 11.6 0',
+    '    coords 7 5.6 17.2 0',
+    '    coords 8 8.8 11.6 0',
+    '    coords 9 16 10 0',
+    '',
+    '    line 3 9 10',
+    '    line 4 11 12',
+    '    line 5 13 9',
+    '    line 6 11 14',
+    '    line 7 14 15',
+    '    line 8 11 15',
+    '    line 9 12 9',
+    '    point 4 a',
+    '    point 5 a',
+    '    point 6 a',
+    '    point 7 a',
+    '    point 8 a',
+    'rule    rule_1',
+    'shape    initial_shape_1_rule_1_1_rule_1_3',
+    '    name ',
+    '    coords 10 18.4 14.8 0',
+    '    coords 11 4 10 0',
+    '    coords 13 6.4 14.8 0',
+    '    coords 14 4 22 0',
+    '    coords 15 28 10 0',
+    '    coords 16 9.92 15.44 0',
+    '    coords 17 11.52 14.64 0',
+    '    coords 18 13.44 12.08 0',
+    '    coords 19 8.48 17.36 0',
+    '    coords 20 8.64 14.48 0',
+    '    coords 21 11.2 12.4 0',
+    '    coords 22 13.12 13.84 0',
+    '    coords 23 10.24 17.68 0',
+    '    coords 24 8.32 16.24 0',
+    '    coords 25 8.8 19.6 0',
+    '    coords 5 14.4 14.8 0',
+    '    coords 6 20.8 11.6 0',
+    '    coords 7 5.6 17.2 0',
+    '    coords 8 8.8 11.6 0',
+    '    coords 9 16 10 0',
+    '',
+    '    line 11 21 22',
+    '    line 12 13 23',
+    '    line 13 24 21',
+    '    line 14 11 25',
+    '    line 15 25 9',
+    '    line 16 13 9',
+    '    line 17 23 21',
+    '    line 3 9 10',
+    '    line 6 11 14',
+    '    line 7 14 15',
+    '    line 8 11 15',
+    '    point 16 a',
+    '    point 17 a',
+    '    point 18 a',
+    '    point 19 a',
+    '    point 20 a',
+    '    point 5 a',
+    '    point 6 a',
+    '    point 7 a',
+    '    point 8 a',
+    'rule    rule_1',
+    'shape    initial_shape_1_rule_1_1_rule_1_3_rule_1_2',
+    '    name ',
+    '    coords 10 18.4 14.8 0',
+    '    coords 11 4 10 0',
+    '    coords 13 6.4 14.8 0',
+    '    coords 15 28 10 0',
+    '    coords 16 9.92 15.44 0',
+    '    coords 17 11.52 14.64 0',
+    '    coords 18 13.44 12.08 0',
+    '    coords 19 8.48 17.36 0',
+    '    coords 20 8.64 14.48 0',
+    '    coords 21 11.2 12.4 0',
+    '    coords 22 13.12 13.84 0',
+    '    coords 23 10.24 17.68 0',
+    '    coords 24 8.32 16.24 0',
+    '    coords 25 8.8 19.6 0',
+    '    coords 26 5.6 18 0',
+    '    coords 27 4.8 16.4 0',
+    '    coords 28 4.8 13.2 0',
+    '    coords 29 5.6 20.4 0',
+    '    coords 30 7.2 18 0',
+    '    coords 31 4 14.8 0',
+    '    coords 32 4 19.6 0',
+    '    coords 33 6.4 19.6 0',
+    '    coords 34 4 22 0',
+    '    coords 5 14.4 14.8 0',
+    '    coords 6 20.8 11.6 0',
+    '    coords 8 8.8 11.6 0',
+    '    coords 9 16 10 0',
+    '',
+    '    line 11 21 22',
+    '    line 12 13 23',
+    '    line 13 24 21',
+    '    line 15 25 9',
+    '    line 16 13 9',
+    '    line 17 23 21',
+    '    line 19 13 31',
+    '    line 20 25 32',
+    '    line 21 33 13',
+    '    line 22 15 34',
+    '    line 23 34 11',
+    '    line 24 25 11',
+    '    line 25 32 13',
+    '    line 3 9 10',
+    '    line 8 11 15',
+    '    point 16 a',
+    '    point 17 a',
+    '    point 18 a',
+    '    point 19 a',
+    '    point 20 a',
+    '    point 26 a',
+    '    point 27 a',
+    '    point 28 a',
+    '    point 29 a',
+    '    point 30 a',
+    '    point 5 a',
+    '    point 6 a',
+    '    point 8 a'
+]
 
 """From sierpinski_08_11_part.drv
 """
@@ -10401,6 +10615,30 @@ sierpinski_short_list_and_names = (
 )
 
 ###
+def test_import_derivation():
+    def try_any_drv():
+        try_name = 'any_drv'
+        g.Grammar.clear_all()
+        imp.import_derivation()
+
+    method_name = 'import_derivation'
+    imp = i.Importer()
+    try_any_drv()
+
+
+def test__get_text_lines_from_drv_file():
+    def try_conway_09_drv():
+        try_name = 'conway_09_drv'
+        print('Use file conway_09.drv')
+        actual_value = imp._get_text_lines_from_drv_file()
+        expected_value = conway_09_drv_file_text_lines
+        if not actual_value == expected_value:
+            u.Utilities.print_test_error_message(
+                method_name, try_name, expected_value, actual_value)
+
+    method_name = '_get_text_lines_from_drv_file'
+    imp = i.Importer()
+    try_conway_09_drv()
 
 def test__extract_derivation_text_lines():
     def try_sierpinski_short():
@@ -10411,6 +10649,8 @@ def test__extract_derivation_text_lines():
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
+        # else:
+        #     print('OK')
 
     def try_sierpinski_long():
         try_name = 'sierpinski_long'
@@ -10420,6 +10660,8 @@ def test__extract_derivation_text_lines():
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
+        # else:
+        #     print('OK')
 
     method_name = '_extract_derivation_text_lines'
     imp = i.Importer()
@@ -10435,6 +10677,8 @@ def test__get_labeled_shape_strings_and_rule_names():
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
+        # else:
+        #     print('OK')
 
     def try_sierpinski_derivation_text_lines():
         try_name = 'sierpinski_long_derivation_text_lines'
@@ -10444,6 +10688,8 @@ def test__get_labeled_shape_strings_and_rule_names():
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
+        # else:
+        #     print('OK')
 
     method_name = '_get_labeled_shape_strings_and_rule_names'
     imp = i.Importer()
@@ -10452,9 +10698,46 @@ def test__get_labeled_shape_strings_and_rule_names():
     try_sierpinski_short_derivation_text_lines()
     try_sierpinski_derivation_text_lines()
 
-def test__draw_derivation():                                ##  to do
-    method_name = '_draw_derivation'
+def test__draw_derivation():
+    def try_x():
+        try_name = 'x'
+        g.Grammar.clear_all()
+        shape_x = _make_shape_x()
+        labeled_shapes = [shape_x, shape_x, shape_x, shape_x]
+        rules = ['rule_x', 'rule_x', 'rule_x']
+        imp._draw_derivation(labeled_shapes, rules)
 
-# test__extract_derivation_text_lines()
-# test__get_labeled_shape_strings_and_rule_names()
-test__draw_derivation()                                     ##  to do
+    method_name = '_draw_derivation'
+    imp = i.Importer()
+    try_x()
+
+def test__draw_double_arrow():
+    def try_good_args():
+        try_name = 'good_args'
+        g.Grammar.clear_all()
+        double_arrow_name = s.Settings.double_arrow_name
+        message = "Select position for double arrow"
+        position = rs.GetPoint(message)
+        imp._draw_double_arrow(double_arrow_name, position)
+
+    method_name = '_draw_double_arrow'
+    imp = i.Importer()
+    try_good_args()
+
+def _make_shape_x():
+    """Returns:
+        shape_x             Shape
+    """
+    line_specs = [((0, 0, 0), (32, 32, 0)), ((0, 32, 0), (32, 0, 0))]
+    labeled_point_specs = [((16, 24, 0), 'a')]
+    shape_x = sh.Shape('shape_x', line_specs, labeled_point_specs)
+    return shape_x
+
+# test_import_derivation()                                    ##  done / manual
+# test__get_text_lines_from_drv_file()                        ##  done
+# test__extract_derivation_text_lines()                       ##  done
+# test__get_labeled_shape_strings_and_rule_names()            ##  done
+# test__draw_derivation()                                     ##  done / manual
+# test__draw_double_arrow()                                   ##  done / manual
+
+# test__make_shape_x()

@@ -1,53 +1,50 @@
 import rhinoscriptsyntax as rs
 from package.scripts import settings as s
 
-class Arrow(object):
+class DoubleArrow(object):
     def __init__(self):
         pass
 
     @classmethod
-    def new_instance(cls, layer_name, position):
+    def new_instance(cls, position):
         """Receives:
-            layer_name      str. The name of an existing layer
             position        Point3d or (num, num, num). The center point of 
                             the arrow
-        Creates an arrow definition, if there is not already one. Inserts 
-        an arrow instance at the specified position on the specified layer. 
+        Creates a double arrow definition, if there is not one already. 
+        Inserts an instance at the specified location on the specified layer. 
         Returns:
-            arrow_instance  guid. The guid of the new arrow instance
+            return_value    guid. The guid of the new instance if successful. 
+                            None otherwise
         """
         if not cls._definition_exists():
             cls._new_definition()
-        rs.CurrentLayer(layer_name)
-        arrow_name = s.Settings.arrow_name
+        arrow_name = s.Settings.double_arrow_name
         return_value = rs.InsertBlock(arrow_name, position)
-        default_layer_name = s.Settings.default_layer_name
-        rs.CurrentLayer(default_layer_name)
         return return_value
 
     @classmethod
     def _definition_exists(cls):
         """Returns:
-            value           boolean. True, if an arrow definition exists. 
-                            False, otherwise
+            value           boolean. True, if a double arrow definition 
+                            exists. False, otherwise
         """
-        arrow_name = s.Settings.arrow_name
+        arrow_name = s.Settings.double_arrow_name
         value = rs.IsBlock(arrow_name)
         return value
 
     @classmethod
     def _new_definition(cls):
-        """Creates an arrow definition on its own layer. Returns:
-            name            str. The name of the arrow, if successful. None 
-                            otherwise
+        """Creates a new double arrow definition on its own layer. Returns:
+            name            str. The name of the definition, if successful. 
+                            None otherwise
         """
-        layer_name = s.Settings.arrow_name
-        color_name = s.Settings.arrow_color_name
+        layer_name = s.Settings.double_arrow_name
+        color_name = s.Settings.double_arrow_color_name
         rs.AddLayer(layer_name, color_name)
         rs.CurrentLayer(layer_name)
-        base_point = s.Settings.arrow_base_point
+        base_point = s.Settings.double_arrow_base_point
         line_guids = cls._get_guids(base_point)
-        arrow_name = s.Settings.arrow_name
+        arrow_name = s.Settings.double_arrow_name
         delete_input = True
         actual_arrow_name = rs.AddBlock(
             line_guids, base_point, arrow_name, delete_input)
@@ -58,6 +55,8 @@ class Arrow(object):
             actual_arrow_name == arrow_name
         ):
             return_value = actual_arrow_name
+        else:
+            return_value = None
         return return_value
 
     @classmethod
@@ -67,16 +66,20 @@ class Arrow(object):
                             arrow
         Draws an arrow. Returns:
             guids           [guid]. A list of the guids of the lines in the 
-                            arrow, if successful. None otherwise
+                            double arrow, if successful. None otherwise
         """
-        x0, y0, z0 = base_point
-        half_length = s.Settings.arrow_length / 2
-        quarter_length = s.Settings.arrow_length / 4
-        p0 = [x0 - half_length, 0, 0]
-        p1 = [x0 + quarter_length, quarter_length, 0]
-        p2 = [x0 + quarter_length, -quarter_length, 0]
-        p3 = [x0 + half_length, 0, 0]
-        point_pairs = [(p0, p3), (p1, p3), (p2, p3)]
+        xo, yo, zo = base_point
+        half_length = s.Settings.double_arrow_length / 2.0
+        quarter_length = s.Settings.double_arrow_length / 4.0
+        sixteenth_length = s.Settings.double_arrow_length / 16.0
+        p0 = [xo - half_length, yo - sixteenth_length, zo]
+        p1 = [xo - half_length, yo + sixteenth_length, zo]
+        p2 = [xo + quarter_length, yo - quarter_length, zo]
+        p3 = [xo + quarter_length, yo + quarter_length, zo]
+        p4 = [xo + half_length - sixteenth_length, yo - sixteenth_length, zo]
+        p5 = [xo + half_length - sixteenth_length, yo + sixteenth_length, zo]
+        p6 = [xo + half_length, yo, zo]
+        point_pairs = [(p0, p4), (p1, p5), (p2, p6), (p3, p6)]
         line_guids = []
         for pair in point_pairs:
             guid = rs.AddLine(pair[0], pair[1])
