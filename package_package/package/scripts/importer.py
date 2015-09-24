@@ -15,8 +15,8 @@ class Importer(object):
 
     ###
     def import_derivation(self):
-        """Prompts the user for a drv file. Draws the derivation: one shape 
-        per layer (name?); rule name. Layout? 
+        """Prompts the user for a drv file. Creates a layer named 'Derivation' 
+        if it does not already exist and draws the derivation on that layer. 
             ##  At least two labeled shapes
         """
         drv_file_text_lines = self._get_text_lines_from_drv_file()
@@ -31,7 +31,13 @@ class Importer(object):
             new_shape = shape.Shape.new_from_is_text_lines(
                 labeled_shape_string_list)
             shapes.append(new_shape)
+        derivation_layer_name = s.Settings.derivation_layer_name
+        default_layer_name = s.Settings.default_layer_name
+        if not rs.IsLayer(derivation_layer_name):
+            rs.AddLayer(derivation_layer_name)
+        rs.CurrentLayer(derivation_layer_name)
         self._draw_derivation(shapes, rule_names)
+        rs.CurrentLayer(default_layer_name)
 
     def import_final_shape(self):
         """Prompts the user for a drv file. Draws the final shape in the 
@@ -58,7 +64,8 @@ class Importer(object):
         file = open(filename, 'r')
         untrimmed_drv_file_text_lines = file.readlines()
         file.close()
-        trimmed_drv_file_text_lines = self._trim(untrimmed_drv_file_text_lines)
+        trimmed_drv_file_text_lines = self._trim(
+            untrimmed_drv_file_text_lines)
         return trimmed_drv_file_text_lines
 
     def _trim(self, untrimmed_drv_file_text_lines):
@@ -164,10 +171,8 @@ class Importer(object):
             labeled_shapes  [Shape]. A list of labeled shape objects, n >= 2
             rule_names      [str]. A list of rule names, n >= 1
         Draws the derivation, i.e., the labeled shapes, rule names, and 
-        arrows
+        arrows, on the current layer
         """
-        layer_name = s.Settings.default_layer_name
-        rs.CurrentLayer(layer_name)
         i = 0
         n = len(labeled_shapes)
         derivation_element_positions = (

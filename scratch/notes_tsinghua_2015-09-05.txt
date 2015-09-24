@@ -90,3 +90,4 @@ To myself
 17. In SG the design has no structure. Which is why calculation takes so long: a structure is being extracted each time. So as an exploratory device, SG can be 'inefficient'. But as a retrospective analytical device, it seems unnecessary (and inefficient) to be structure-free. 
 18. How to add a new rule in mid-process? I don't want to abandon the process; just add a rule. 
 19. Use shape grammar to design something (e.g., Nakata jigsaw puzzle) and execute it in Grasshopper. 
+20. Actually we don't need the SG definition of shapes anywhere in these scripts. Because we're using only the Rhino shape and the dat specification. The only possible exception is to maximize shapes. 

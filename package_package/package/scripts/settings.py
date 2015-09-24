@@ -139,13 +139,11 @@ class Settings(object):
         derivation_array_cell_positions = []
         cell_positions_x = cls._get_derivation_cell_positions_x(n_shapes)
         cell_positions_y = cls._get_derivation_cell_positions_y(n_shapes)
-        print('i; cell_position_i')
         for i in range(n_shapes):
             x = cell_positions_x[i]
             y = cell_positions_y[i]
             z = 0
             position = (x, y, z)
-            print('%i; %s' % (i, position))
             derivation_array_cell_positions.append(position)
         return derivation_array_cell_positions
 
