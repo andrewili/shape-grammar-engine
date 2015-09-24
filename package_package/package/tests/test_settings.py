@@ -29,9 +29,10 @@ def test_get_right_frame_position():
     try_good_type_triple()
     try_good_type_point3d()
 
-def test_get_derivation_element_positions():                ##  done 08-29
+def test_get_derivation_array_cell_positions():             ##  09-21 18:42
     def try_2_labeled_shapes():
         try_name = '2_labeled_shapes'
+        g.Grammar.clear_all()
         n = 2
         p3d_triples = s.Settings.get_derivation_cell_position_triples(n)
         actual_value = _get_xyz_triples(p3d_triples)
@@ -157,7 +158,7 @@ def test__get_derivation_cell_positions_y():
     try_16_labeled_shapes()
 
 # test_get_right_frame_position()
-test_get_derivation_element_positions()
+test_get_derivation_array_cell_positions()
 # test__get_derivation_cell_positions_x()
 # test__get_derivation_cell_positions_y()
 # test__get_triple_from_point3d()

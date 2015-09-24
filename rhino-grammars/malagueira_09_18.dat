@@ -1,0 +1,421 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    initial_shape_1
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 10.0 16.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 24.0 4.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 4 5
+    point 2 a
+    point 3 f
+shape    rule-g_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 16.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 4 f1
+    point 3 f2
+shape    rule-g_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 20.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 20.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 4 f1
+    point 3 f2
+shape    rule-h_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 f
+shape    rule-h_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 f1
+shape    rule_a_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 10.0 16.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 24.0 4.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 4 5
+    point 2 a
+    point 3 f
+shape    rule_a_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 14.0 0.0
+    coords 5 16.0 18.0 0.0
+    coords 6 16.0 22.0 0.0
+    coords 7 24.0 4.0 0.0
+    coords 8 24.0 16.0 0.0
+    coords 9 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 7
+    line 2 1 8
+    line 3 2 9
+    line 4 7 9
+    point 4 a
+    point 5 a
+    point 6 f1
+    point 3 f2
+shape    rule_b_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 10.0 16.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 24.0 4.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 4 5
+    point 2 a
+    point 3 f
+shape    rule_b_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 14.0 0.0
+    coords 5 16.0 22.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 16.0 0.0
+    coords 8 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 6
+    line 2 1 7
+    line 3 2 8
+    line 4 6 8
+    point 4 a
+    point 5 f1
+    point 3 f2
+shape    rule_c_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 10.0 16.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 24.0 4.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 4 5
+    point 2 a
+    point 3 f
+shape    rule_c_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 14.0 16.0 0.0
+    coords 3 16.0 4.0 0.0
+    coords 4 16.0 28.0 0.0
+    coords 5 18.0 16.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 f1
+    point 5 f2
+shape    rule_d_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 10.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 a
+shape    rule_d_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 24.0 4.0 0.0
+    coords 3 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    rule_e_L
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 12.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 16.0 0.0
+    coords 5 20.0 28.0 0.0
+    coords 6 24.0 22.0 0.0
+    coords 7 28.0 16.0 0.0
+    coords 8 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 8
+    line 3 3 5
+    line 4 4 7
+    line 5 7 8
+    point 2 f1
+    point 6 f2
+shape    rule_e_R
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 12.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 16.0 0.0
+    coords 5 24.0 22.0 0.0
+    coords 6 28.0 16.0 0.0
+    coords 7 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 7
+    line 3 3 4
+    line 4 4 6
+    line 5 6 7
+    point 2 f1
+    point 5 f2
+shape    rule_f_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 16.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 f1
+    point 4 f1
+shape    rule_f_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 f1
+shape    rule_i_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 16.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 4 f1
+    point 3 f2
+shape    rule_i_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 16.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 f1
+    point 4 f2
+shape    rule_j_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 f
+shape    rule_j_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 18.0 13.0 0.0
+    coords 4 18.6666666667 24.9207985643 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 18.7623956930 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 4 f1
+    point 3 f2
+shape    rule_k_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 f
+shape    rule_k_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 12.0 28.0 0.0
+    coords 3 17.3494814009 13.9757778987 0.0
+    coords 4 20.0 25.6905989232 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 21.0717967697 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 5
+    line 2 1 7
+    line 3 2 6
+    line 4 5 7
+    point 4 f1
+    point 3 f2
+shape    rule_l_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 f
+shape    rule_l_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 24.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 11.7128129211 24.9282032303 0.0
+    coords 4 18.4023107691 10.9971115386 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 14.7623956930 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 f1
+    point 4 f2
+
+initial    initial_shape_1
+rule    rule-g    rule-g_L -> rule-g_R
+rule    rule-h    rule-h_L -> rule-h_R
+rule    rule_a    rule_a_L -> rule_a_R
+rule    rule_b    rule_b_L -> rule_b_R
+rule    rule_c    rule_c_L -> rule_c_R
+rule    rule_d    rule_d_L -> rule_d_R
+rule    rule_e    rule_e_L -> rule_e_R
+rule    rule_f    rule_f_L -> rule_f_R
+rule    rule_i    rule_i_L -> rule_i_R
+rule    rule_j    rule_j_L -> rule_j_R
+rule    rule_k    rule_k_L -> rule_k_R
+rule    rule_l    rule_l_L -> rule_l_R

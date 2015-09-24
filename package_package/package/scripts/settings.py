@@ -13,6 +13,10 @@ class Settings(object):
     block_type = 4096
     curve_filter = 4
     default_layer_name = 'Default'
+    double_arrow_base_point = (0, 0, 0)
+    double_arrow_color_name = dark_gray
+    double_arrow_name = 'double_arrow'
+    double_arrow_length = frame_size[0]/4
     first_initial_shape_layer_name = 'initial_shape_1'
     first_initial_shape_frame_position = (0, -40, 0)
     first_rule_layer_name = 'rule_1'
@@ -84,7 +88,7 @@ class Settings(object):
         return arrow_position
 
     @classmethod
-    def get_derivation_cell_position_triples(cls, n_shapes):
+    def get_derivation_cell_position_triples(cls, n_shapes):##  09-21 17:52
         """Receives:
             n_shapes        int >= 2. The number of labeled shapes in the 
                             derivation
