@@ -91,3 +91,8 @@ To myself
 18. How to add a new rule in mid-process? I don't want to abandon the process; just add a rule. 
 19. Use shape grammar to design something (e.g., Nakata jigsaw puzzle) and execute it in Grasshopper. 
 20. Actually we don't need the SG definition of shapes anywhere in these scripts. Because we're using only the Rhino shape and the dat specification. The only possible exception is to maximize shapes. It could be a Shape class method. 
+21. For schemas: draw the table of assignments (by script, possibly); script assembles into rules.
+
+Maximization
+
+We need this when exporting a grammar. Or it might be called with every new component layer. 
