@@ -1,0 +1,1478 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    2f
+    name
+    coords 0 1.0 6.0 0.0
+    coords 1 1.0 25.0 0.0
+    coords 2 31.0 6.0 0.0
+    coords 3 31.0 6.0 0.0
+    coords 4 31.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 2 4
+shape    2f_divide_L
+    name
+    coords 0 1.0 6.0 0.0
+    coords 1 1.0 25.0 0.0
+    coords 2 31.0 6.0 0.0
+    coords 3 31.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    2f_divide_R
+    name
+    coords 0 1.0 6.0 0.0
+    coords 1 1.0 25.0 0.0
+    coords 2 4.0 6.0 0.0
+    coords 3 4.0 25.0 0.0
+    coords 4 31.0 6.0 0.0
+    coords 5 31.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 2 3
+    line 4 4 5
+shape    2f_m_L
+    name
+    coords 0 3.0 12.0 0.0
+    coords 1 3.0 19.0 0.0
+    coords 2 30.0 12.0 0.0
+    coords 3 30.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    2f_m_R
+    name
+    coords 0 3.0 12.0 0.0
+    coords 1 3.0 19.0 0.0
+    coords 2 16.0 12.0 0.0
+    coords 3 16.0 19.0 0.0
+    coords 4 30.0 12.0 0.0
+    coords 5 30.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 2 3
+    line 4 4 5
+shape    2f_s_L
+    name
+    coords 0 3.0 14.0 0.0
+    coords 1 3.0 20.0 0.0
+    coords 2 30.0 14.0 0.0
+    coords 3 30.0 20.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    2f_s_R
+    name
+    coords 0 3.0 14.0 0.0
+    coords 1 3.0 20.0 0.0
+    coords 2 18.0 14.0 0.0
+    coords 3 18.0 20.0 0.0
+    coords 4 19.0 15.0 0.0
+    coords 5 24.0 14.0 0.0
+    coords 6 24.0 20.0 0.0
+    coords 7 25.0 15.0 0.0
+    coords 8 30.0 14.0 0.0
+    coords 9 30.0 20.0 0.0
+
+    line 0 0 1
+    line 1 0 8
+    line 2 1 9
+    line 3 2 3
+    line 4 5 6
+    line 5 8 9
+    point 4 s
+    point 7 s
+shape    2fex2_L
+    name
+    coords 0 7.0 10.0 0.0
+    coords 1 10.0 10.0 0.0
+    coords 2 10.0 19.0 0.0
+    coords 3 23.0 10.0 0.0
+    coords 4 23.0 19.0 0.0
+
+    line 0 0 3
+    line 1 1 2
+    line 2 2 4
+    line 3 3 4
+shape    2fex2_R
+    name
+    coords 0 7.0 10.0 0.0
+    coords 1 7.0 19.0 0.0
+    coords 2 23.0 10.0 0.0
+    coords 3 23.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    2fex_L
+    name
+    coords 0 5.0 12.0 0.0
+    coords 1 8.0 12.0 0.0
+    coords 2 8.0 19.0 0.0
+    coords 3 22.0 12.0 0.0
+    coords 4 22.0 19.0 0.0
+
+    line 0 0 3
+    line 1 1 2
+    line 2 2 4
+    line 3 3 4
+shape    2fex_R
+    name
+    coords 0 5.0 12.0 0.0
+    coords 1 5.0 19.0 0.0
+    coords 2 22.0 12.0 0.0
+    coords 3 22.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    2fst2_L
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 24.0 12.0 0.0
+    coords 3 24.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    2fst2_R
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 14.0 0.0
+    coords 2 10.0 22.0 0.0
+    coords 3 24.0 12.0 0.0
+    coords 4 24.0 14.0 0.0
+    coords 5 24.0 22.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    2fst_L
+    name
+    coords 0 7.0 12.0 0.0
+    coords 1 7.0 19.0 0.0
+    coords 2 24.0 12.0 0.0
+    coords 3 24.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    2fst_R
+    name
+    coords 0 7.0 12.0 0.0
+    coords 1 7.0 19.0 0.0
+    coords 2 9.0 12.0 0.0
+    coords 3 9.0 19.0 0.0
+    coords 4 24.0 12.0 0.0
+    coords 5 24.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 2 3
+    line 4 4 5
+shape    bath2_L
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 18.0 0.0
+    coords 2 18.0 12.0 0.0
+    coords 3 18.0 18.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    bath2_R
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 18.0 0.0
+    coords 2 14.0 12.0 0.0
+    coords 3 14.0 18.0 0.0
+    coords 4 18.0 12.0 0.0
+    coords 5 18.0 18.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 2 3
+    line 4 4 5
+shape    bed2_L
+    name
+    coords 0 3.0 12.0 0.0
+    coords 1 3.0 19.0 0.0
+    coords 2 17.0 9.0 0.0
+    coords 3 17.0 12.0 0.0
+    coords 4 17.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 2 4
+shape    bed2_R
+    name
+    coords 0 3.0 9.0 0.0
+    coords 1 3.0 19.0 0.0
+    coords 2 17.0 9.0 0.0
+    coords 3 17.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    bed_L
+    name
+    coords 0 9.0 10.0 0.0
+    coords 1 9.0 13.0 0.0
+    coords 2 9.0 19.0 0.0
+    coords 3 22.0 13.0 0.0
+    coords 4 22.0 19.0 0.0
+
+    line 0 0 2
+    line 1 1 3
+    line 2 2 4
+    line 3 3 4
+shape    bed_R
+    name
+    coords 0 9.0 10.0 0.0
+    coords 1 9.0 19.0 0.0
+    coords 2 22.0 10.0 0.0
+    coords 3 22.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    divide_bath_L
+    name
+    coords 0 12.0 12.0 0.0
+    coords 1 12.0 18.0 0.0
+    coords 2 18.0 12.0 0.0
+    coords 3 18.0 18.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    divide_bath_R
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 18.0 0.0
+    coords 2 12.0 12.0 0.0
+    coords 3 12.0 18.0 0.0
+    coords 4 18.0 12.0 0.0
+    coords 5 18.0 18.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 2 3
+    line 4 4 5
+shape    divide_m2_L
+    name
+    coords 0 8.0 9.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 29.0 9.0 0.0
+    coords 3 29.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    divide_m2_R
+    name
+    coords 0 8.0 9.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 18.0 9.0 0.0
+    coords 3 18.0 16.0 0.0
+    coords 4 29.0 9.0 0.0
+    coords 5 29.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 2 3
+    line 4 4 5
+shape    divide_m_L
+    name
+    coords 0 2.0 9.0 0.0
+    coords 1 2.0 16.0 0.0
+    coords 2 2.0 16.0 0.0
+    coords 3 29.0 9.0 0.0
+    coords 4 29.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 2 4
+    line 3 3 4
+shape    divide_m_R
+    name
+    coords 0 2.0 9.0 0.0
+    coords 1 2.0 16.0 0.0
+    coords 2 2.0 16.0 0.0
+    coords 3 8.0 9.0 0.0
+    coords 4 8.0 16.0 0.0
+    coords 5 29.0 9.0 0.0
+    coords 6 29.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 5
+    line 2 2 6
+    line 3 3 4
+    line 4 5 6
+shape    divide_s_L
+    name
+    coords 0 2.0 20.0 0.0
+    coords 1 2.0 26.0 0.0
+    coords 2 29.0 20.0 0.0
+    coords 3 29.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    divide_s_R
+    name
+    coords 0 2.0 20.0 0.0
+    coords 1 2.0 26.0 0.0
+    coords 2 7.0 26.0 0.0
+    coords 3 7.0 20.0 0.0
+    coords 4 17.0 20.0 0.0
+    coords 5 17.0 26.0 0.0
+    coords 6 18.0 21.0 0.0
+    coords 7 23.0 26.0 0.0
+    coords 8 23.0 20.0 0.0
+    coords 9 24.0 21.0 0.0
+    coords 10 29.0 20.0 0.0
+    coords 11 29.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 10
+    line 2 1 11
+    line 3 2 3
+    line 4 4 5
+    line 5 7 8
+    line 6 10 11
+    point 6 s
+    point 9 s
+shape    ent_L
+    name
+    coords 0 2.0 12.5 0.0
+    coords 1 2.0 16.0 0.0
+    coords 2 2.0 19.0 0.0
+    coords 3 8.0 12.5 0.0
+    coords 4 8.0 16.0 0.0
+    coords 5 8.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 4
+shape    ent_R
+    name
+    coords 0 2.0 12.5 0.0
+    coords 1 2.0 19.0 0.0
+    coords 2 8.0 12.5 0.0
+    coords 3 8.0 16.0 0.0
+    coords 4 8.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 4
+    line 3 2 3
+shape    initial_shape_1
+    name
+    coords 0 2.0 7.0 0.0
+    coords 1 2.0 26.0 0.0
+    coords 2 29.0 7.0 0.0
+    coords 3 29.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    k_L
+    name
+    coords 0 23.0 20.0 0.0
+    coords 1 23.0 26.0 0.0
+    coords 2 24.0 21.0 0.0
+    coords 3 29.0 17.0 0.0
+    coords 4 29.0 20.0 0.0
+    coords 5 29.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 3 5
+    point 2 s
+shape    k_R
+    name
+    coords 0 23.0 17.0 0.0
+    coords 1 23.0 17.0 0.0
+    coords 2 23.0 26.0 0.0
+    coords 3 29.0 17.0 0.0
+    coords 4 29.0 17.0 0.0
+    coords 5 29.0 26.0 0.0
+
+    line 0 0 2
+    line 1 1 4
+    line 2 2 5
+    line 3 3 5
+shape    ori3_L
+    name
+    coords 0 8.0 12.0 0.0
+    coords 1 8.0 12.0 0.0
+    coords 2 8.0 19.0 0.0
+    coords 3 8.0 19.0 0.0
+    coords 4 15.0 19.0 0.0
+    coords 5 19.0 12.0 0.0
+    coords 6 19.0 15.0 0.0
+
+    line 0 0 5
+    line 1 1 3
+    line 2 2 4
+    line 3 4 6
+    line 4 5 6
+shape    ori3_R
+    name
+    coords 0 8.0 12.0 0.0
+    coords 1 8.0 12.0 0.0
+    coords 2 8.0 19.0 0.0
+    coords 3 8.0 19.0 0.0
+    coords 4 15.0 19.0 0.0
+    coords 5 17.0 12.0 0.0
+    coords 6 17.0 17.0 0.0
+    coords 7 19.0 12.0 0.0
+    coords 8 19.0 15.0 0.0
+
+    line 0 0 7
+    line 1 1 3
+    line 2 2 4
+    line 3 4 8
+    line 4 5 6
+    line 5 7 8
+shape    ori4_L
+    name
+    coords 0 10.0 9.0 0.0
+    coords 1 10.0 15.0 0.0
+    coords 2 14.0 19.0 0.0
+    coords 3 20.0 9.0 0.0
+    coords 4 20.0 9.0 0.0
+    coords 5 20.0 19.0 0.0
+    coords 6 20.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 2
+    line 3 2 5
+    line 4 4 6
+shape    ori4_R
+    name
+    coords 0 10.0 9.0 0.0
+    coords 1 10.0 15.0 0.0
+    coords 2 11.0 9.0 0.0
+    coords 3 11.0 16.0 0.0
+    coords 4 14.0 19.0 0.0
+    coords 5 20.0 9.0 0.0
+    coords 6 20.0 9.0 0.0
+    coords 7 20.0 19.0 0.0
+    coords 8 20.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 5
+    line 2 1 4
+    line 3 2 3
+    line 4 4 7
+    line 5 6 8
+shape    ori6_L
+    name
+    coords 0 12.0 13.0 0.0
+    coords 1 12.0 19.0 0.0
+    coords 2 17.0 13.0 0.0
+    coords 3 17.0 19.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    ori6_R
+    name
+    coords 0 12.0 13.0 0.0
+    coords 1 17.0 13.0 0.0
+    coords 2 17.0 19.0 0.0
+
+    line 0 0 1
+    line 1 1 2
+shape    ori_L
+    name
+    coords 0 6.0 19.0 0.0
+    coords 1 16.0 12.0 0.0
+    coords 2 16.0 19.0 0.0
+    coords 3 27.0 19.0 0.0
+
+    line 0 0 3
+    line 1 1 2
+shape    ori_R
+    name
+    coords 0 6.0 19.0 0.0
+    coords 1 12.0 19.0 0.0
+    coords 2 16.0 12.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 20.0 19.0 0.0
+    coords 5 27.0 19.0 0.0
+
+    line 0 0 1
+    line 1 1 3
+    line 2 2 3
+    line 3 3 4
+    line 4 4 5
+shape    p_L
+    name
+    coords 0 8.0 9.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 18.0 6.0 0.0
+    coords 3 18.0 9.0 0.0
+    coords 4 18.0 16.0 0.0
+    coords 5 18.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+shape    p_R
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 18.0 6.0 0.0
+    coords 3 18.0 6.0 0.0
+    coords 4 18.0 16.0 0.0
+    coords 5 18.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 4
+    line 3 3 5
+shape    rule_1_L
+    name
+    coords 0 2.0 6.0 0.0
+    coords 1 2.0 25.0 0.0
+    coords 2 29.0 6.0 0.0
+    coords 3 29.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    rule_1_R
+    name
+    coords 0 2.0 6.0 0.0
+    coords 1 2.0 9.0 0.0
+    coords 2 2.0 16.0 0.0
+    coords 3 2.0 19.0 0.0
+    coords 4 2.0 25.0 0.0
+    coords 5 29.0 6.0 0.0
+    coords 6 29.0 9.0 0.0
+    coords 7 29.0 16.0 0.0
+    coords 8 29.0 19.0 0.0
+    coords 9 29.0 25.0 0.0
+
+    line 0 0 4
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 3 8
+    line 5 4 9
+    line 6 5 9
+shape    sfst3_L
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 21.0 0.0
+    coords 2 26.0 12.0 0.0
+    coords 3 26.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    sfst3_R
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 21.0 0.0
+    coords 2 12.0 12.0 0.0
+    coords 3 12.0 21.0 0.0
+    coords 4 26.0 12.0 0.0
+    coords 5 26.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 2 3
+    line 4 4 5
+shape    st_L
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 18.0 0.0
+    coords 2 11.0 13.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 18.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 s
+shape    st_R
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 18.0 0.0
+    coords 2 16.0 12.0 0.0
+    coords 3 16.0 18.0 0.0
+
+    line 0 0 1
+    line 1 1 3
+    line 2 2 3
+shape    wc_L
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 18.0 0.0
+    coords 2 12.0 12.0 0.0
+    coords 3 12.0 18.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    wc_R
+    name
+    coords 0 10.0 12.0 0.0
+    coords 1 10.0 13.0 0.0
+    coords 2 10.0 18.0 0.0
+    coords 3 12.0 12.0 0.0
+    coords 4 12.0 13.0 0.0
+    coords 5 12.0 18.0 0.0
+
+    line 0 0 2
+    line 1 1 4
+    line 2 2 5
+    line 3 3 5
+shape    y_L
+    name
+    coords 0 2.0 9.0 0.0
+    coords 1 2.0 16.0 0.0
+    coords 2 8.0 9.0 0.0
+    coords 3 8.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    y_R
+    name
+    coords 0 2.0 9.0 0.0
+    coords 1 2.0 12.5 0.0
+    coords 2 2.0 16.0 0.0
+    coords 3 8.0 9.0 0.0
+    coords 4 8.0 12.5 0.0
+    coords 5 8.0 16.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+
+initial    2f
+initial    initial_shape_1
+rule    2f_divide    2f_divide_L -> 2f_divide_R
+rule    2f_m    2f_m_L -> 2f_m_R
+rule    2f_s    2f_s_L -> 2f_s_R
+rule    2fex    2fex_L -> 2fex_R
+rule    2fex2    2fex2_L -> 2fex2_R
+rule    2fst    2fst_L -> 2fst_R
+rule    2fst2    2fst2_L -> 2fst2_R
+rule    bath2    bath2_L -> bath2_R
+rule    bed    bed_L -> bed_R
+rule    bed2    bed2_L -> bed2_R
+rule    divide_bath    divide_bath_L -> divide_bath_R
+rule    divide_m    divide_m_L -> divide_m_R
+rule    divide_m2    divide_m2_L -> divide_m2_R
+rule    divide_s    divide_s_L -> divide_s_R
+rule    ent    ent_L -> ent_R
+rule    k    k_L -> k_R
+rule    ori    ori_L -> ori_R
+rule    ori3    ori3_L -> ori3_R
+rule    ori4    ori4_L -> ori4_R
+rule    ori6    ori6_L -> ori6_R
+rule    p    p_L -> p_R
+rule    rule_1    rule_1_L -> rule_1_R
+rule    sfst3    sfst3_L -> sfst3_R
+rule    st    st_L -> st_R
+rule    wc    wc_L -> wc_R
+rule    y    y_L -> y_R
+# derivation record
+shape    initial_shape_1
+    name 
+    coords 0 2 7 0
+    coords 1 2 26 0
+    coords 2 29 7 0
+    coords 3 29 26 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+rule    rule_1
+shape    initial_shape_1_rule_1_1
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 13 29 10 0
+    coords 4 29 7 0
+    coords 5 29 26 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+    coords 8 29 20 0
+    coords 9 2 26 0
+
+    line 10 9 5
+    line 4 4 5
+    line 5 6 4
+    line 6 7 8
+    line 7 6 9
+    line 8 10 11
+    line 9 12 13
+rule    divide_s
+shape    initial_shape_1_rule_1_1_divide_s_2
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 13 29 10 0
+    coords 14 18 21 0
+    coords 15 24 21 0
+    coords 16 29 26 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+    coords 8 29 20 0
+
+    line 13 4 16
+    line 14 7 8
+    line 15 17 18
+    line 16 6 19
+    line 17 20 21
+    line 18 19 16
+    line 19 22 23
+    line 5 6 4
+    line 8 10 11
+    line 9 12 13
+    point 14 s
+    point 15 s
+rule    divide_m
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 13 29 10 0
+    coords 14 18 21 0
+    coords 15 24 21 0
+    coords 16 29 26 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+    coords 8 29 20 0
+
+    line 14 7 8
+    line 15 17 18
+    line 17 20 21
+    line 18 19 16
+    line 19 22 23
+    line 24 10 11
+    line 25 16 4
+    line 26 6 19
+    line 27 24 25
+    line 28 12 13
+    line 5 6 4
+    point 14 s
+    point 15 s
+rule    divide_m2
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 13 29 10 0
+    coords 14 18 21 0
+    coords 15 24 21 0
+    coords 16 29 26 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 26 19 17 0
+    coords 27 19 10 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+    coords 8 29 20 0
+
+    line 14 7 8
+    line 15 17 18
+    line 17 20 21
+    line 18 19 16
+    line 19 22 23
+    line 26 6 19
+    line 33 10 11
+    line 34 24 25
+    line 35 4 16
+    line 36 26 27
+    line 37 12 13
+    line 5 6 4
+    point 14 s
+    point 15 s
+rule    y
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 13 29 10 0
+    coords 14 18 21 0
+    coords 15 24 21 0
+    coords 16 29 26 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 26 19 17 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+    coords 8 29 20 0
+
+    line 14 7 8
+    line 15 17 18
+    line 17 20 21
+    line 18 19 16
+    line 19 22 23
+    line 35 4 16
+    line 36 26 27
+    line 42 11 10
+    line 43 24 25
+    line 44 19 6
+    line 45 13 12
+    line 46 28 29
+    line 5 6 4
+    point 14 s
+    point 15 s
+rule    y
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 13 29 10 0
+    coords 14 18 21 0
+    coords 15 24 21 0
+    coords 16 29 26 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 26 19 17 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+    coords 8 29 20 0
+
+    line 14 7 8
+    line 15 17 18
+    line 17 20 21
+    line 18 19 16
+    line 19 22 23
+    line 35 4 16
+    line 36 26 27
+    line 42 11 10
+    line 43 24 25
+    line 44 19 6
+    line 45 13 12
+    line 46 28 29
+    line 5 6 4
+    point 14 s
+    point 15 s
+rule    p
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 14 18 21 0
+    coords 15 24 21 0
+    coords 16 29 26 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 26 19 17 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+    coords 8 29 20 0
+
+    line 14 7 8
+    line 15 17 18
+    line 17 20 21
+    line 18 19 16
+    line 19 22 23
+    line 43 24 25
+    line 44 19 6
+    line 46 28 29
+    line 47 12 27
+    line 5 6 4
+    line 50 30 26
+    line 51 16 4
+    line 52 10 11
+    point 14 s
+    point 15 s
+rule    k
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 14 18 21 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 26 19 17 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+
+    line 15 17 18
+    line 17 20 21
+    line 43 24 25
+    line 44 19 6
+    line 46 28 29
+    line 47 12 27
+    line 5 6 4
+    line 50 30 26
+    line 52 10 11
+    line 53 7 23
+    line 56 31 22
+    line 57 4 32
+    line 58 19 32
+    point 14 s
+rule    divide_bath
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 14 18 21 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 26 19 17 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 33 15 20 0
+    coords 34 15 26 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+
+    line 17 20 21
+    line 43 24 25
+    line 44 19 6
+    line 46 28 29
+    line 47 12 27
+    line 5 6 4
+    line 50 30 26
+    line 52 10 11
+    line 57 4 32
+    line 63 7 23
+    line 64 31 22
+    line 65 33 34
+    line 66 17 18
+    line 67 19 32
+    point 14 s
+rule    st
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3_st_1
+    name 
+    coords 10 2 17 0
+    coords 11 29 17 0
+    coords 12 2 10 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 23 23 20 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 26 19 17 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 33 15 20 0
+    coords 34 15 26 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+
+    line 17 20 21
+    line 43 24 25
+    line 44 19 6
+    line 46 28 29
+    line 47 12 27
+    line 5 6 4
+    line 50 30 26
+    line 52 10 11
+    line 57 4 32
+    line 65 33 34
+    line 68 7 17
+    line 72 19 32
+    line 73 17 18
+    line 74 31 22
+rule    ori
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3_st_1_ori_1
+    name 
+    coords 10 2 17 0
+    coords 12 2 10 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 33 15 20 0
+    coords 34 15 26 0
+    coords 35 19 13 0
+    coords 36 15 17 0
+    coords 37 29 17 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+    coords 7 2 20 0
+
+    line 17 20 21
+    line 43 24 25
+    line 44 19 6
+    line 46 28 29
+    line 47 12 27
+    line 5 6 4
+    line 57 4 32
+    line 65 33 34
+    line 68 7 17
+    line 72 19 32
+    line 73 17 18
+    line 74 31 22
+    line 77 31 35
+    line 78 10 36
+    line 79 37 31
+    line 80 35 36
+    line 81 30 35
+rule    ent
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3_st_1_ori_1_ent_1
+    name 
+    coords 10 2 17 0
+    coords 12 2 10 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 24 8 17 0
+    coords 25 8 10 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 33 15 20 0
+    coords 34 15 26 0
+    coords 35 19 13 0
+    coords 36 15 17 0
+    coords 37 29 17 0
+    coords 38 8 20 0
+    coords 39 2 20 0
+    coords 4 29 7 0
+    coords 6 2 7 0
+
+    line 17 20 21
+    line 47 12 27
+    line 5 6 4
+    line 57 4 32
+    line 65 33 34
+    line 72 19 32
+    line 73 17 18
+    line 74 31 22
+    line 77 31 35
+    line 79 37 31
+    line 80 35 36
+    line 81 30 35
+    line 86 36 24
+    line 87 28 29
+    line 88 19 6
+    line 89 25 24
+    line 90 17 39
+rule    ori3
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3_st_1_ori_1_ent_1_ori3_1
+    name 
+    coords 12 2 10 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 25 8 10 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 33 15 20 0
+    coords 34 15 26 0
+    coords 35 19 13 0
+    coords 37 29 17 0
+    coords 39 2 20 0
+    coords 4 29 7 0
+    coords 40 8 17 0
+    coords 41 17 10 0
+    coords 42 17 15 0
+    coords 43 15 17 0
+    coords 6 2 7 0
+
+    line 17 20 21
+    line 5 6 4
+    line 57 4 32
+    line 65 33 34
+    line 72 19 32
+    line 73 17 18
+    line 74 31 22
+    line 77 31 35
+    line 79 37 31
+    line 87 28 29
+    line 88 19 6
+    line 90 17 39
+    line 93 25 40
+    line 94 41 42
+    line 95 12 27
+    line 96 43 35
+    line 97 40 43
+    line 98 30 35
+rule    ori4
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3_st_1_ori_1_ent_1_ori3_1_ori4_1
+    name 
+    coords 12 2 10 0
+    coords 17 17 20 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 25 8 10 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 33 15 20 0
+    coords 34 15 26 0
+    coords 35 19 13 0
+    coords 37 29 17 0
+    coords 39 2 20 0
+    coords 40 8 17 0
+    coords 41 17 10 0
+    coords 42 17 15 0
+    coords 43 15 17 0
+    coords 44 29 7 0
+    coords 45 20 7 0
+    coords 46 20 14 0
+    coords 6 2 7 0
+
+    line 101 6 44
+    line 102 31 37
+    line 103 30 35
+    line 104 45 46
+    line 105 35 31
+    line 106 32 44
+    line 17 20 21
+    line 65 33 34
+    line 72 19 32
+    line 73 17 18
+    line 74 31 22
+    line 87 28 29
+    line 88 19 6
+    line 90 17 39
+    line 93 25 40
+    line 94 41 42
+    line 95 12 27
+    line 96 43 35
+    line 97 40 43
+rule    wc
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3_st_1_ori_1_ent_1_ori3_1_ori4_1_wc_1
+    name 
+    coords 12 2 10 0
+    coords 18 17 26 0
+    coords 19 2 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 25 8 10 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 33 15 20 0
+    coords 34 15 26 0
+    coords 35 19 13 0
+    coords 37 29 17 0
+    coords 39 2 20 0
+    coords 40 8 17 0
+    coords 41 17 10 0
+    coords 42 17 15 0
+    coords 43 15 17 0
+    coords 44 29 7 0
+    coords 45 20 7 0
+    coords 46 20 14 0
+    coords 47 17 21 0
+    coords 48 15 21 0
+    coords 49 17 20 0
+    coords 6 2 7 0
+
+    line 101 6 44
+    line 102 31 37
+    line 103 30 35
+    line 104 45 46
+    line 105 35 31
+    line 106 32 44
+    line 107 39 33
+    line 110 47 48
+    line 111 49 18
+    line 112 33 34
+    line 113 32 19
+    line 17 20 21
+    line 74 31 22
+    line 87 28 29
+    line 88 19 6
+    line 93 25 40
+    line 94 41 42
+    line 95 12 27
+    line 96 43 35
+    line 97 40 43
+rule    ori6
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3_st_1_ori_1_ent_1_ori3_1_ori4_1_wc_1_ori6_4
+    name 
+    coords 12 2 10 0
+    coords 18 17 26 0
+    coords 20 7 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 25 8 10 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 33 15 20 0
+    coords 34 15 26 0
+    coords 35 19 13 0
+    coords 37 29 17 0
+    coords 39 2 20 0
+    coords 40 8 17 0
+    coords 41 17 10 0
+    coords 42 17 15 0
+    coords 43 15 17 0
+    coords 44 29 7 0
+    coords 45 20 7 0
+    coords 46 20 14 0
+    coords 47 17 21 0
+    coords 48 15 21 0
+    coords 49 17 20 0
+    coords 6 2 7 0
+
+    line 101 6 44
+    line 102 31 37
+    line 103 30 35
+    line 104 45 46
+    line 105 35 31
+    line 106 32 44
+    line 110 47 48
+    line 111 49 18
+    line 112 33 34
+    line 115 6 39
+    line 116 32 20
+    line 117 21 20
+    line 118 33 39
+    line 74 31 22
+    line 87 28 29
+    line 93 25 40
+    line 94 41 42
+    line 95 12 27
+    line 96 43 35
+    line 97 40 43
+rule    bath2
+shape    initial_shape_1_rule_1_1_divide_s_2_divide_m_1_divide_m2_2_y_1_p_2_k_1_divide_bath_3_st_1_ori_1_ent_1_ori3_1_ori4_1_wc_1_ori6_4_bath2_1
+    name 
+    coords 12 2 10 0
+    coords 18 17 26 0
+    coords 21 7 20 0
+    coords 22 23 26 0
+    coords 25 8 10 0
+    coords 27 19 10 0
+    coords 28 2 13.5 0
+    coords 29 8 13.5 0
+    coords 30 19 7 0
+    coords 31 23 17 0
+    coords 32 29 26 0
+    coords 34 15 26 0
+    coords 35 19 13 0
+    coords 37 29 17 0
+    coords 39 2 20 0
+    coords 40 8 17 0
+    coords 41 17 10 0
+    coords 42 17 15 0
+    coords 43 15 17 0
+    coords 44 29 7 0
+    coords 45 20 7 0
+    coords 46 20 14 0
+    coords 47 17 21 0
+    coords 48 15 21 0
+    coords 49 17 20 0
+    coords 50 7 26 0
+    coords 51 15 20 0
+    coords 52 11 26 0
+    coords 53 11 20 0
+    coords 6 2 7 0
+
+    line 101 6 44
+    line 102 31 37
+    line 103 30 35
+    line 104 45 46
+    line 105 35 31
+    line 106 32 44
+    line 110 47 48
+    line 111 49 18
+    line 115 6 39
+    line 121 32 50
+    line 122 34 51
+    line 123 50 21
+    line 124 52 53
+    line 125 39 51
+    line 74 31 22
+    line 87 28 29
+    line 93 25 40
+    line 94 41 42
+    line 95 12 27
+    line 96 43 35
+    line 97 40 43

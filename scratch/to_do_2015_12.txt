@@ -1,0 +1,51 @@
+to_do_2015_12
+
+
+2-part set-up (external interpreter): finish
+
+  • Rule name plates: implement
+  • Package: wrap up 
+      • Menu items
+      • Plug-in 
+  • Documentation: 
+      • Website
+      • Videos
+      • Errors, Q+A 
+
+
+Integrated set-up (internal interpreter): ideas
+
+
+User actions
+
+  • New grammar
+  • New rule
+  • New (initial) shape 
+  • Duplicate shape
+  • Duplicate rule
+  • Apply to prt(C) the rule A -> B 
+      • (): all C, all A -> B
+      • (prt(C)): all A -> B
+      • (prt(C), A -> B): C, A -> B
+      • (prt(C), A, B): C, A -> B
+  • Draw derivation [of selected shape]
+
+
+Applying a rule
+
+  • User draws a grammar (at least one available shape and at least one rule)
+  • User indicates that he's finished
+      • System attaches forward pointers to available shapes as appropriate. 
+        A forward pointer contains the left shape and the transformation under 
+        which the left shape is a part of the current shape
+  • User selects a current shape and rules (0, 1, or more)
+      • If there are eligible rule transformations:
+          • For every eligible rule transformation (where t(A) ≤ C):
+              • System calculates the next shape
+              • System draws the next shape in the (new) top row
+              • System adds the next shape to the current shape's forward 
+                pointer [necessary?]
+              • System attaches a backward pointer to the next shape 
+      • Else:
+          • System says: No next shape
+

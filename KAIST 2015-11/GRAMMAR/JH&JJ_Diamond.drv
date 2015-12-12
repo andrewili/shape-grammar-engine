@@ -1,0 +1,967 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    initial_shape_1
+    name
+    coords 0 3.0 25.0 0.0
+    coords 1 3.0 29.0 0.0
+    coords 2 7.0 21.0 0.0
+    coords 3 7.0 29.0 0.0
+    coords 4 11.0 21.0 0.0
+    coords 5 11.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 4
+    line 4 3 5
+    line 5 4 5
+shape    rule_1_L
+    name
+    coords 0 3.0 25.0 0.0
+    coords 1 3.0 29.0 0.0
+    coords 2 7.0 21.0 0.0
+    coords 3 7.0 29.0 0.0
+    coords 4 11.0 21.0 0.0
+    coords 5 11.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 4
+    line 4 3 5
+    line 5 4 5
+shape    rule_1_R
+    name
+    coords 0 3.0 25.0 0.0
+    coords 1 3.0 29.0 0.0
+    coords 2 7.0 21.0 0.0
+    coords 3 7.0 29.0 0.0
+    coords 4 11.0 17.0 0.0
+    coords 5 11.0 21.0 0.0
+    coords 6 11.0 25.0 0.0
+    coords 7 15.0 13.0 0.0
+    coords 8 15.0 21.0 0.0
+    coords 9 19.0 13.0 0.0
+    coords 10 19.0 17.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 5
+    line 4 3 6
+    line 5 4 5
+    line 6 4 7
+    line 7 5 6
+    line 8 5 8
+    line 9 7 9
+    line 10 8 10
+    line 11 9 10
+shape    rule_2_L
+    name
+    coords 0 3.0 25.0 0.0
+    coords 1 3.0 29.0 0.0
+    coords 2 7.0 21.0 0.0
+    coords 3 7.0 29.0 0.0
+    coords 4 11.0 21.0 0.0
+    coords 5 11.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 4
+    line 4 3 5
+    line 5 4 5
+shape    rule_2_R
+    name
+    coords 0 3.0 13.0 0.0
+    coords 1 3.0 17.0 0.0
+    coords 2 3.0 25.0 0.0
+    coords 3 3.0 29.0 0.0
+    coords 4 7.0 13.0 0.0
+    coords 5 7.0 21.0 0.0
+    coords 6 7.0 29.0 0.0
+    coords 7 11.0 17.0 0.0
+    coords 8 11.0 21.0 0.0
+    coords 9 11.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 4
+    line 2 1 5
+    line 3 2 3
+    line 4 2 5
+    line 5 3 6
+    line 6 4 7
+    line 7 5 8
+    line 8 6 9
+    line 9 7 8
+    line 10 8 9
+shape    rule_3_L
+    name
+    coords 0 3.0 25.0 0.0
+    coords 1 3.0 29.0 0.0
+    coords 2 7.0 21.0 0.0
+    coords 3 7.0 29.0 0.0
+    coords 4 11.0 21.0 0.0
+    coords 5 11.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 4
+    line 4 3 5
+    line 5 4 5
+shape    rule_3_R
+    name
+    coords 0 3.0 25.0 0.0
+    coords 1 3.0 29.0 0.0
+    coords 2 7.0 21.0 0.0
+    coords 3 7.0 29.0 0.0
+    coords 4 8.17157287525 18.1715728753 0.0
+    coords 5 8.17157287525 12.5147186258 0.0
+    coords 6 11.0 21.0 0.0
+    coords 7 11.0 25.0 0.0
+    coords 8 11.0 9.68629150102 0.0
+    coords 9 11.0 21.0 0.0
+    coords 10 13.8284271247 12.5147186258 0.0
+    coords 11 13.8284271247 18.1715728753 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 6
+    line 4 3 7
+    line 5 4 5
+    line 6 4 9
+    line 7 5 8
+    line 8 6 7
+    line 9 8 10
+    line 10 9 11
+    line 11 10 11
+
+initial    initial_shape_1
+rule    rule_1    rule_1_L -> rule_1_R
+rule    rule_2    rule_2_L -> rule_2_R
+rule    rule_3    rule_3_L -> rule_3_R
+# derivation record
+shape    initial_shape_1
+    name 
+    coords 0 3 25 0
+    coords 1 3 29 0
+    coords 2 7 21 0
+    coords 3 7 29 0
+    coords 4 11 21 0
+    coords 5 11 25 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 4
+    line 4 3 5
+    line 5 4 5
+rule    rule_1
+shape    initial_shape_1
+    name 
+    coords 0 3 25 0
+    coords 1 3 29 0
+    coords 2 7 21 0
+    coords 3 7 29 0
+    coords 4 11 21 0
+    coords 5 11 25 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 4
+    line 4 3 5
+    line 5 4 5
+rule    rule_1
+shape    initial_shape_1_rule_1_1
+    name 
+    coords 10 7 21 0
+    coords 11 11 21 0
+    coords 12 11 25 0
+    coords 13 3 29 0
+    coords 14 7 29 0
+    coords 15 15 21 0
+    coords 16 3 25 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 11 13 14
+    line 12 10 15
+    line 13 14 12
+    line 14 16 10
+    line 15 16 13
+    line 16 15 9
+    line 17 12 6
+    line 6 6 7
+    line 7 8 9
+rule    rule_1
+shape    initial_shape_1_rule_1_1
+    name 
+    coords 10 7 21 0
+    coords 11 11 21 0
+    coords 12 11 25 0
+    coords 13 3 29 0
+    coords 14 7 29 0
+    coords 15 15 21 0
+    coords 16 3 25 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 11 13 14
+    line 12 10 15
+    line 13 14 12
+    line 14 16 10
+    line 15 16 13
+    line 16 15 9
+    line 17 12 6
+    line 6 6 7
+    line 7 8 9
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_2_3
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 17 19 25 0
+    coords 18 7 29 0
+    coords 19 3 29 0
+    coords 20 11 25 0
+    coords 21 15 29 0
+    coords 22 3 25 0
+    coords 23 7 21 0
+    coords 24 19 29 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 20 17 15
+    line 21 18 19
+    line 22 6 20
+    line 23 21 20
+    line 24 22 23
+    line 25 24 17
+    line 26 18 20
+    line 27 24 21
+    line 28 15 23
+    line 29 19 22
+    line 6 6 7
+    line 7 8 9
+rule    rule_2
+shape    initial_shape_1_rule_1_1_rule_2_3
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 17 19 25 0
+    coords 18 7 29 0
+    coords 19 3 29 0
+    coords 20 11 25 0
+    coords 21 15 29 0
+    coords 22 3 25 0
+    coords 23 7 21 0
+    coords 24 19 29 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 20 17 15
+    line 21 18 19
+    line 22 6 20
+    line 23 21 20
+    line 24 22 23
+    line 25 24 17
+    line 26 18 20
+    line 27 24 21
+    line 28 15 23
+    line 29 19 22
+    line 6 6 7
+    line 7 8 9
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 18 7 29 0
+    coords 19 3 29 0
+    coords 20 11 25 0
+    coords 22 3 25 0
+    coords 23 7 21 0
+    coords 25 7 13 0
+    coords 26 3 13 0
+    coords 27 3 17 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 21 18 19
+    line 24 22 23
+    line 26 18 20
+    line 29 19 22
+    line 32 6 25
+    line 33 26 27
+    line 34 23 15
+    line 35 6 20
+    line 36 25 26
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 41 23 27
+    line 6 6 7
+    line 7 8 9
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 18 7 29 0
+    coords 19 3 29 0
+    coords 20 11 25 0
+    coords 22 3 25 0
+    coords 23 7 21 0
+    coords 25 7 13 0
+    coords 26 3 13 0
+    coords 27 3 17 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 21 18 19
+    line 24 22 23
+    line 26 18 20
+    line 29 19 22
+    line 32 6 25
+    line 33 26 27
+    line 34 23 15
+    line 35 6 20
+    line 36 25 26
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 41 23 27
+    line 6 6 7
+    line 7 8 9
+rule    rule_3
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 25 7 13 0
+    coords 26 3 13 0
+    coords 27 3 17 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 31 13.8284271247 23.82842712475 0
+    coords 32 19.4852813742 18.1715728753 0
+    coords 33 13.8284271247 18.1715728753 0
+    coords 34 19.4852813742 23.82842712475 0
+    coords 35 22.31370849898 21 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 32 6 25
+    line 33 26 27
+    line 36 25 26
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 41 23 27
+    line 44 31 11
+    line 45 32 33
+    line 46 6 20
+    line 47 34 35
+    line 48 35 32
+    line 49 36 37
+    line 50 15 23
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 54 11 33
+    line 55 31 34
+    line 6 6 7
+    line 7 8 9
+rule    rule_3
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 25 7 13 0
+    coords 26 3 13 0
+    coords 27 3 17 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 31 13.8284271247 23.82842712475 0
+    coords 32 19.4852813742 18.1715728753 0
+    coords 33 13.8284271247 18.1715728753 0
+    coords 34 19.4852813742 23.82842712475 0
+    coords 35 22.31370849898 21 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 32 6 25
+    line 33 26 27
+    line 36 25 26
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 41 23 27
+    line 44 31 11
+    line 45 32 33
+    line 46 6 20
+    line 47 34 35
+    line 48 35 32
+    line 49 36 37
+    line 50 15 23
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 54 11 33
+    line 55 31 34
+    line 6 6 7
+    line 7 8 9
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3_rule_1_12
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 25 7 13 0
+    coords 26 3 13 0
+    coords 27 3 17 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 41 8.17157287524 18.17157287546 0
+    coords 42 2.51471862576 18.17157287554 0
+    coords 43 -0.313708498940002 21.00000000032 0
+    coords 44 2.51471862584 23.82842712502 0
+    coords 45 13.82842712472 18.17157287538 0
+    coords 46 13.8284271248 23.82842712486 0
+    coords 47 22.31370849898 21 0
+    coords 48 19.48528137428 23.82842712478 0
+    coords 49 8.17157287532 23.82842712494 0
+    coords 50 19.4852813742 18.1715728753 0
+    coords 51 4.17157287500341 23.8284271249966 0
+    coords 52 4.17157287551658 18.1715728755166 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 32 6 25
+    line 33 26 27
+    line 36 25 26
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 41 23 27
+    line 46 6 20
+    line 49 36 37
+    line 50 15 23
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 56 41 42
+    line 57 43 44
+    line 6 6 7
+    line 60 42 43
+    line 61 47 48
+    line 62 45 49
+    line 63 48 46
+    line 64 50 45
+    line 65 50 47
+    line 66 49 44
+    line 67 46 41
+    line 7 8 9
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3_rule_1_12
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 25 7 13 0
+    coords 26 3 13 0
+    coords 27 3 17 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 41 8.17157287524 18.17157287546 0
+    coords 42 2.51471862576 18.17157287554 0
+    coords 43 -0.313708498940002 21.00000000032 0
+    coords 44 2.51471862584 23.82842712502 0
+    coords 45 13.82842712472 18.17157287538 0
+    coords 46 13.8284271248 23.82842712486 0
+    coords 47 22.31370849898 21 0
+    coords 48 19.48528137428 23.82842712478 0
+    coords 49 8.17157287532 23.82842712494 0
+    coords 50 19.4852813742 18.1715728753 0
+    coords 51 4.17157287500341 23.8284271249966 0
+    coords 52 4.17157287551658 18.1715728755166 0
+    coords 6 11 17 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 32 6 25
+    line 33 26 27
+    line 36 25 26
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 41 23 27
+    line 46 6 20
+    line 49 36 37
+    line 50 15 23
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 56 41 42
+    line 57 43 44
+    line 6 6 7
+    line 60 42 43
+    line 61 47 48
+    line 62 45 49
+    line 63 48 46
+    line 64 50 45
+    line 65 50 47
+    line 66 49 44
+    line 67 46 41
+    line 7 8 9
+rule    rule_3
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3_rule_1_12_rule_3_8
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 41 8.17157287524 18.17157287546 0
+    coords 42 2.51471862576 18.17157287554 0
+    coords 43 -0.313708498940002 21.00000000032 0
+    coords 44 2.51471862584 23.82842712502 0
+    coords 45 13.82842712472 18.17157287538 0
+    coords 46 13.8284271248 23.82842712486 0
+    coords 47 22.31370849898 21 0
+    coords 48 19.48528137428 23.82842712478 0
+    coords 49 8.17157287532 23.82842712494 0
+    coords 50 19.4852813742 18.1715728753 0
+    coords 51 4.17157287500341 23.8284271249966 0
+    coords 52 4.17157287551658 18.1715728755166 0
+    coords 53 13.8284271247 29.4852813742 0
+    coords 54 8.17157287525 29.4852813742 0
+    coords 55 11 32.31370849898 0
+    coords 56 3 13 0
+    coords 57 7 13 0
+    coords 58 3 17 0
+    coords 59 13.8284271247293 27.8284271247293 0
+    coords 6 11 17 0
+    coords 60 8.1715728752705 27.8284271247295 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 49 36 37
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 56 41 42
+    line 57 43 44
+    line 6 6 7
+    line 60 42 43
+    line 61 47 48
+    line 62 45 49
+    line 63 48 46
+    line 64 50 45
+    line 65 50 47
+    line 66 49 44
+    line 67 46 41
+    line 7 8 9
+    line 70 53 46
+    line 71 15 23
+    line 72 54 55
+    line 73 55 53
+    line 74 56 57
+    line 75 20 6
+    line 76 57 6
+    line 77 58 23
+    line 78 58 56
+    line 79 49 54
+rule    rule_3
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3_rule_1_12_rule_3_8
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 41 8.17157287524 18.17157287546 0
+    coords 42 2.51471862576 18.17157287554 0
+    coords 43 -0.313708498940002 21.00000000032 0
+    coords 44 2.51471862584 23.82842712502 0
+    coords 45 13.82842712472 18.17157287538 0
+    coords 46 13.8284271248 23.82842712486 0
+    coords 47 22.31370849898 21 0
+    coords 48 19.48528137428 23.82842712478 0
+    coords 49 8.17157287532 23.82842712494 0
+    coords 50 19.4852813742 18.1715728753 0
+    coords 51 4.17157287500341 23.8284271249966 0
+    coords 52 4.17157287551658 18.1715728755166 0
+    coords 53 13.8284271247 29.4852813742 0
+    coords 54 8.17157287525 29.4852813742 0
+    coords 55 11 32.31370849898 0
+    coords 56 3 13 0
+    coords 57 7 13 0
+    coords 58 3 17 0
+    coords 59 13.8284271247293 27.8284271247293 0
+    coords 6 11 17 0
+    coords 60 8.1715728752705 27.8284271247295 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 49 36 37
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 56 41 42
+    line 57 43 44
+    line 6 6 7
+    line 60 42 43
+    line 61 47 48
+    line 62 45 49
+    line 63 48 46
+    line 64 50 45
+    line 65 50 47
+    line 66 49 44
+    line 67 46 41
+    line 7 8 9
+    line 70 53 46
+    line 71 15 23
+    line 72 54 55
+    line 73 55 53
+    line 74 56 57
+    line 75 20 6
+    line 76 57 6
+    line 77 58 23
+    line 78 58 56
+    line 79 49 54
+rule    rule_3
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3_rule_1_12_rule_3_8
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 41 8.17157287524 18.17157287546 0
+    coords 42 2.51471862576 18.17157287554 0
+    coords 43 -0.313708498940002 21.00000000032 0
+    coords 44 2.51471862584 23.82842712502 0
+    coords 45 13.82842712472 18.17157287538 0
+    coords 46 13.8284271248 23.82842712486 0
+    coords 47 22.31370849898 21 0
+    coords 48 19.48528137428 23.82842712478 0
+    coords 49 8.17157287532 23.82842712494 0
+    coords 50 19.4852813742 18.1715728753 0
+    coords 51 4.17157287500341 23.8284271249966 0
+    coords 52 4.17157287551658 18.1715728755166 0
+    coords 53 13.8284271247 29.4852813742 0
+    coords 54 8.17157287525 29.4852813742 0
+    coords 55 11 32.31370849898 0
+    coords 56 3 13 0
+    coords 57 7 13 0
+    coords 58 3 17 0
+    coords 59 13.8284271247293 27.8284271247293 0
+    coords 6 11 17 0
+    coords 60 8.1715728752705 27.8284271247295 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 49 36 37
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 56 41 42
+    line 57 43 44
+    line 6 6 7
+    line 60 42 43
+    line 61 47 48
+    line 62 45 49
+    line 63 48 46
+    line 64 50 45
+    line 65 50 47
+    line 66 49 44
+    line 67 46 41
+    line 7 8 9
+    line 70 53 46
+    line 71 15 23
+    line 72 54 55
+    line 73 55 53
+    line 74 56 57
+    line 75 20 6
+    line 76 57 6
+    line 77 58 23
+    line 78 58 56
+    line 79 49 54
+rule    rule_3
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3_rule_1_12_rule_3_8
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 28 19 29 0
+    coords 29 15 29 0
+    coords 30 19 25 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 41 8.17157287524 18.17157287546 0
+    coords 42 2.51471862576 18.17157287554 0
+    coords 43 -0.313708498940002 21.00000000032 0
+    coords 44 2.51471862584 23.82842712502 0
+    coords 45 13.82842712472 18.17157287538 0
+    coords 46 13.8284271248 23.82842712486 0
+    coords 47 22.31370849898 21 0
+    coords 48 19.48528137428 23.82842712478 0
+    coords 49 8.17157287532 23.82842712494 0
+    coords 50 19.4852813742 18.1715728753 0
+    coords 51 4.17157287500341 23.8284271249966 0
+    coords 52 4.17157287551658 18.1715728755166 0
+    coords 53 13.8284271247 29.4852813742 0
+    coords 54 8.17157287525 29.4852813742 0
+    coords 55 11 32.31370849898 0
+    coords 56 3 13 0
+    coords 57 7 13 0
+    coords 58 3 17 0
+    coords 59 13.8284271247293 27.8284271247293 0
+    coords 6 11 17 0
+    coords 60 8.1715728752705 27.8284271247295 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 37 28 29
+    line 38 29 20
+    line 39 30 15
+    line 40 30 28
+    line 49 36 37
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 56 41 42
+    line 57 43 44
+    line 6 6 7
+    line 60 42 43
+    line 61 47 48
+    line 62 45 49
+    line 63 48 46
+    line 64 50 45
+    line 65 50 47
+    line 66 49 44
+    line 67 46 41
+    line 7 8 9
+    line 70 53 46
+    line 71 15 23
+    line 72 54 55
+    line 73 55 53
+    line 74 56 57
+    line 75 20 6
+    line 76 57 6
+    line 77 58 23
+    line 78 58 56
+    line 79 49 54
+rule    rule_3
+shape    initial_shape_1_rule_1_1_rule_2_3_rule_1_3_rule_3_3_rule_1_12_rule_3_8_rule_3_8
+    name 
+    coords 11 11 21 0
+    coords 15 15 21 0
+    coords 20 11 25 0
+    coords 23 7 21 0
+    coords 36 3 29 0
+    coords 37 3 25 0
+    coords 38 7 29 0
+    coords 39 17.8284271247 18.1715728753 0
+    coords 40 17.82842712475 23.82842712475 0
+    coords 41 8.17157287524 18.17157287546 0
+    coords 42 2.51471862576 18.17157287554 0
+    coords 43 -0.313708498940002 21.00000000032 0
+    coords 44 2.51471862584 23.82842712502 0
+    coords 45 13.82842712472 18.17157287538 0
+    coords 46 13.8284271248 23.82842712486 0
+    coords 47 22.31370849898 21 0
+    coords 48 19.48528137428 23.82842712478 0
+    coords 49 8.17157287532 23.82842712494 0
+    coords 50 19.4852813742 18.1715728753 0
+    coords 51 4.17157287500341 23.8284271249966 0
+    coords 52 4.17157287551658 18.1715728755166 0
+    coords 53 13.8284271247 29.4852813742 0
+    coords 54 8.17157287525 29.4852813742 0
+    coords 55 11 32.31370849898 0
+    coords 56 3 13 0
+    coords 57 7 13 0
+    coords 58 3 17 0
+    coords 59 13.8284271247293 27.8284271247293 0
+    coords 6 11 17 0
+    coords 60 8.1715728752705 27.8284271247295 0
+    coords 61 8.1715728753 12.5147186258 0
+    coords 62 13.82842712475 12.5147186258 0
+    coords 63 11 9.68629150102 0
+    coords 64 19 29 0
+    coords 65 15 29 0
+    coords 66 19 25 0
+    coords 67 8.17157287528243 14.1715728752824 0
+    coords 68 13.8284271247412 14.1715728752588 0
+    coords 7 15 13 0
+    coords 8 19 13 0
+    coords 9 19 17 0
+
+    line 10 7 8
+    line 16 15 9
+    line 49 36 37
+    line 51 37 23
+    line 52 38 20
+    line 53 38 36
+    line 56 41 42
+    line 57 43 44
+    line 6 6 7
+    line 60 42 43
+    line 61 47 48
+    line 62 45 49
+    line 63 48 46
+    line 64 50 45
+    line 65 50 47
+    line 66 49 44
+    line 67 46 41
+    line 7 8 9
+    line 70 53 46
+    line 72 54 55
+    line 73 55 53
+    line 74 56 57
+    line 76 57 6
+    line 77 58 23
+    line 78 58 56
+    line 79 49 54
+    line 82 61 41
+    line 83 23 15
+    line 84 62 63
+    line 85 63 61
+    line 86 64 65
+    line 87 6 20
+    line 88 65 20
+    line 89 66 15
+    line 90 66 64
+    line 91 45 62

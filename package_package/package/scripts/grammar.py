@@ -120,14 +120,15 @@ class Grammar(object):
         return_value = cls._set_up_rule(layer_name, frame_position)
         return return_value
 
-    @classmethod                                ##  done 08-06
+    @classmethod                                ##  12-12
     def _set_up_rule(cls, layer_name, left_frame_position):
         """Receives:
             layer_name      str. A well-formed and available layer name
             left_frame_position
                             Point3d. The position of the left frame instance
-        Creates a new layer with the specified name. Inserts left frame, right 
-        frame, and arrow instances on the new layer. Returns:
+        Creates a new layer with the specified name. Inserts two frame 
+        instances, an arrow instance, and a name plate on the new layer. 
+        Returns:
             layer_name_out  str. The name of the rule layer
         """
         l.Layer.new(layer_name)
@@ -141,6 +142,127 @@ class Grammar(object):
         arrow_out = a.Arrow.new_instance(layer_name, arrow_position)
         layer_name_out = rs.ObjectLayer(arrow_out)
         return layer_name_out
+
+    @classmethod                                ##  12-09
+    def refresh_element_layer_name_texts(cls):
+        """Draws (or redraws, if already drawn) the name texts of the initial 
+        shape layers and rule layers
+        """
+        initial_shape_layers, rule_layers = cls._get_element_layers()
+        for rule_layer in rule_layers:
+            if cls._rule_layer_has_name_text(rule_layer):   ##  here
+                cls._redraw_rule_layer_name_text(rule_layer)
+            else:
+                cls._draw_new_rule_layer_name_text(rule_layer)
+
+    @classmethod                                ##  12-09
+    def _rule_layer_has_name_text(cls, rule_layer):
+        """Receives:
+            rule_layer      str. The name of a rule layer
+        Returns:
+            value           boolean. True, if the rule layer has a name text. 
+                            False otherwise
+        """
+        rule_layer_objects = rs.ObjectsByLayer(rule_layer)
+        text_objects = cls._extract_text_objects(rule_layer_objects)
+        unframed_text_objects = cls._extract_unframed_text_objects(
+            text_objects)
+                                                ##  12-12 paused
+        if n_unframed_text_objects == 1:
+            value = True
+        else:
+            value = None                        ##  ask user to select?
+            print('Too many possibilities')
+        return value
+
+    @classmethod
+    def _extract_text_objects(cls, rule_layer_objects):
+        """Receives:
+            rule_layer_objects
+                            [guid]. A list of guids
+        Returns:
+            text_objects    [guid]. A list of text objects
+        """
+        text_objects = []
+        for objectt in rule_layer_objects:
+            if rs.IsText(objectt):
+                text_objects.append(objectt)
+        return text_objects
+
+    @classmethod                                ##  11-01 08:03
+    def _redraw_rule_layer_name_text(cls, rule_layer):
+        """Receives:
+            rule_layer      str. The name of a rule layer
+        Redraws the layer name on the name text. Returns:
+            name_text       guid. The guid of the name text
+        """
+        pass
+
+    @classmethod                                ##  done 12-09
+    def _draw_new_rule_layer_name_text(cls, rule_layer):
+        """Receives:
+            rule_layer      str. The name of a rule layer with no name text
+        Draws a name text with the layer name. Returns:
+            name_text       guid. The guid of the name text, if successful. 
+                            None otherwise
+        """
+        rule_position = cls._get_rule_position(rule_layer)
+        name_text_position = rs.PointAdd(
+            rule_position, s.Settings.derivation_rule_name_offset)
+        name_text = rs.AddText(
+            rule_layer, 
+            name_text_position, 
+            s.Settings.rule_name_text_height, 
+            s.Settings.rule_name_text_font, 
+            s.Settings.rule_name_text_font_style, 
+            s.Settings.rule_name_text_justification)
+        return name_text
+
+
+    # @classmethod                                ##  to do
+    # def _draw_initial_shape_layer_name_text(cls, name):
+        # """Receives:
+        #     name            str. The name of an initial shape layer
+        # Draws the initial shape layer name. If there is one already, it is 
+        # overdrawn. Returns:
+        #     name_text       guid. The guid of the name_text annotation
+        # """
+        # pass
+
+    # @classmethod                                ##  in process 10-31
+    # def _draw_rule_layer_name(cls, name):
+        # """Receives:
+        #     name            str. The name of a rule layer
+        # Draws the rule layer name. If there is one already, it is 
+        # overdrawn. Returns:
+        #     name_text       guid. The guid of the name_text annotation
+        # """
+        # if name_plate_exists():
+        #     rewrite_name_plate()
+        # else:
+
+        # rule_position = cls._get_rule_position(name)
+        # name_position = rs.PointAdd(
+        #     rule_position, s.Settings.derivation_rule_name_offset)
+        # height = 2
+        # font = 'Arial'
+        # font_style = 0
+        # justified_center = 2
+        # name_text = rs.AddText(
+        #     name, name_position, height, font, font_style, justified_center)
+        # return name_text
+
+    @classmethod                                ##  done 12-09
+    def _get_rule_position(cls, name):
+        """Receives:
+            name            str. The name of a rule layer
+        Returns:
+            position        Point3D. The position of the left frame
+        """
+        frame_instance_pair = l.Layer.get_frame_instance_pair(name)
+        left_frame = frame_instance_pair[0]
+        position = rs.BlockInstanceInsertPoint(left_frame)
+        return position
 
     ### export
     @classmethod                                ##  done 08-08

@@ -1,0 +1,7949 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    A-0105-1_L
+    name
+    coords 0 15.0 11.0 0.0
+    coords 1 15.0 21.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 11.0 0.0
+    coords 4 17.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0105-1_R
+    name
+    coords 0 15.0 11.0 0.0
+    coords 1 15.0 19.0 0.0
+    coords 2 15.0 21.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 17.0 11.0 0.0
+    coords 6 17.0 19.0 0.0
+    coords 7 17.0 21.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0105-2_L
+    name
+    coords 0 15.0 11.0 0.0
+    coords 1 15.0 21.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 11.0 0.0
+    coords 4 17.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0105-2_R
+    name
+    coords 0 15.0 11.0 0.0
+    coords 1 15.0 17.0 0.0
+    coords 2 15.0 21.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 19.0 0.0
+    coords 5 17.0 11.0 0.0
+    coords 6 17.0 17.0 0.0
+    coords 7 17.0 21.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0107-1_L
+    name
+    coords 0 15.0 9.0 0.0
+    coords 1 15.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 9.0 0.0
+    coords 4 17.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0107-1_R
+    name
+    coords 0 15.0 9.0 0.0
+    coords 1 15.0 21.0 0.0
+    coords 2 15.0 23.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 17.0 9.0 0.0
+    coords 6 17.0 21.0 0.0
+    coords 7 17.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0107-2_L
+    name
+    coords 0 15.0 9.0 0.0
+    coords 1 15.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 9.0 0.0
+    coords 4 17.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0107-2_R
+    name
+    coords 0 15.0 9.0 0.0
+    coords 1 15.0 21.0 0.0
+    coords 2 15.0 23.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 17.0 9.0 0.0
+    coords 6 17.0 21.0 0.0
+    coords 7 17.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0107-3_L
+    name
+    coords 0 15.0 9.0 0.0
+    coords 1 15.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 9.0 0.0
+    coords 4 17.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0107-3_R
+    name
+    coords 0 15.0 9.0 0.0
+    coords 1 15.0 21.0 0.0
+    coords 2 15.0 23.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 17.0 9.0 0.0
+    coords 6 17.0 21.0 0.0
+    coords 7 17.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0108-1_L
+    name
+    coords 0 15.0 8.0 0.0
+    coords 1 15.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 8.0 0.0
+    coords 4 17.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0108-1_R
+    name
+    coords 0 15.0 8.0 0.0
+    coords 1 15.0 22.0 0.0
+    coords 2 15.0 24.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 17.0 8.0 0.0
+    coords 6 17.0 22.0 0.0
+    coords 7 17.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0108-2_L
+    name
+    coords 0 15.0 8.0 0.0
+    coords 1 15.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 8.0 0.0
+    coords 4 17.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0108-2_R
+    name
+    coords 0 15.0 8.0 0.0
+    coords 1 15.0 20.0 0.0
+    coords 2 15.0 24.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 17.0 8.0 0.0
+    coords 6 17.0 20.0 0.0
+    coords 7 17.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0108-3_L
+    name
+    coords 0 15.0 8.0 0.0
+    coords 1 15.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 8.0 0.0
+    coords 4 17.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0108-3_R
+    name
+    coords 0 15.0 8.0 0.0
+    coords 1 15.0 18.0 0.0
+    coords 2 15.0 24.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 17.0 8.0 0.0
+    coords 6 17.0 18.0 0.0
+    coords 7 17.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0108-4_L
+    name
+    coords 0 15.0 8.0 0.0
+    coords 1 15.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 8.0 0.0
+    coords 4 17.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0108-4_R
+    name
+    coords 0 15.0 8.0 0.0
+    coords 1 15.0 16.0 0.0
+    coords 2 15.0 24.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 17.0 8.0 0.0
+    coords 6 17.0 16.0 0.0
+    coords 7 17.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0109-1_L
+    name
+    coords 0 15.0 7.0 0.0
+    coords 1 15.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 7.0 0.0
+    coords 4 17.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0109-1_R
+    name
+    coords 0 15.0 7.0 0.0
+    coords 1 15.0 23.0 0.0
+    coords 2 15.0 25.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 17.0 7.0 0.0
+    coords 6 17.0 23.0 0.0
+    coords 7 17.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0109-2_L
+    name
+    coords 0 15.0 7.0 0.0
+    coords 1 15.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 7.0 0.0
+    coords 4 17.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0109-2_R
+    name
+    coords 0 15.0 7.0 0.0
+    coords 1 15.0 21.0 0.0
+    coords 2 15.0 25.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 17.0 7.0 0.0
+    coords 6 17.0 21.0 0.0
+    coords 7 17.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0109-3_L
+    name
+    coords 0 15.0 7.0 0.0
+    coords 1 15.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 7.0 0.0
+    coords 4 17.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0109-3_R
+    name
+    coords 0 15.0 7.0 0.0
+    coords 1 15.0 19.0 0.0
+    coords 2 15.0 25.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 17.0 7.0 0.0
+    coords 6 17.0 19.0 0.0
+    coords 7 17.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0109-4_L
+    name
+    coords 0 15.0 7.0 0.0
+    coords 1 15.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 7.0 0.0
+    coords 4 17.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0109-4_R
+    name
+    coords 0 15.0 7.0 0.0
+    coords 1 15.0 17.0 0.0
+    coords 2 15.0 25.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 17.0 7.0 0.0
+    coords 6 17.0 17.0 0.0
+    coords 7 17.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0110-1_L
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 6.0 0.0
+    coords 4 17.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0110-1_R
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 24.0 0.0
+    coords 2 15.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 17.0 6.0 0.0
+    coords 6 17.0 24.0 0.0
+    coords 7 17.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0110-2_L
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 6.0 0.0
+    coords 4 17.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0110-2_R
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 22.0 0.0
+    coords 2 15.0 26.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 17.0 6.0 0.0
+    coords 6 17.0 22.0 0.0
+    coords 7 17.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0110-3_L
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 6.0 0.0
+    coords 4 17.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0110-3_R
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 20.0 0.0
+    coords 2 15.0 26.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 17.0 6.0 0.0
+    coords 6 17.0 20.0 0.0
+    coords 7 17.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0110-4_L
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 6.0 0.0
+    coords 4 17.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0110-4_R
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 18.0 0.0
+    coords 2 15.0 26.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 17.0 6.0 0.0
+    coords 6 17.0 18.0 0.0
+    coords 7 17.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0110-5_L
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 6.0 0.0
+    coords 4 17.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0110-5_R
+    name
+    coords 0 15.0 6.0 0.0
+    coords 1 15.0 16.0 0.0
+    coords 2 15.0 26.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 17.0 6.0 0.0
+    coords 6 17.0 16.0 0.0
+    coords 7 17.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0111-1_L
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0111-1_R
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 25.0 0.0
+    coords 2 15.0 27.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 25.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0111-2_L
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0111-2_R
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 23.0 0.0
+    coords 2 15.0 27.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 23.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0111-3_L
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0111-3_R
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 21.0 0.0
+    coords 2 15.0 27.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 21.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0111-4_L
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0111-4_R
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 19.0 0.0
+    coords 2 15.0 27.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 19.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0111-5_L
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0111-5_R
+    name
+    coords 0 15.0 5.0 0.0
+    coords 1 15.0 17.0 0.0
+    coords 2 15.0 27.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 17.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0112-1_L
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 4.0 0.0
+    coords 4 17.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0112-1_R
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 26.0 0.0
+    coords 2 15.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 17.0 4.0 0.0
+    coords 6 17.0 26.0 0.0
+    coords 7 17.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0112-2_L
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 4.0 0.0
+    coords 4 17.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0112-2_R
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 24.0 0.0
+    coords 2 15.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 17.0 4.0 0.0
+    coords 6 17.0 24.0 0.0
+    coords 7 17.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0112-3_L
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 4.0 0.0
+    coords 4 17.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0112-3_R
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 22.0 0.0
+    coords 2 15.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 17.0 4.0 0.0
+    coords 6 17.0 22.0 0.0
+    coords 7 17.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0112-4_L
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 4.0 0.0
+    coords 4 17.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0112-4_R
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 20.0 0.0
+    coords 2 15.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 17.0 4.0 0.0
+    coords 6 17.0 20.0 0.0
+    coords 7 17.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0112-5_L
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 4.0 0.0
+    coords 4 17.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0112-5_R
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 18.0 0.0
+    coords 2 15.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 17.0 4.0 0.0
+    coords 6 17.0 18.0 0.0
+    coords 7 17.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0112-6_L
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 17.0 4.0 0.0
+    coords 4 17.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0112-6_R
+    name
+    coords 0 15.0 4.0 0.0
+    coords 1 15.0 16.0 0.0
+    coords 2 15.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 17.0 4.0 0.0
+    coords 6 17.0 16.0 0.0
+    coords 7 17.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0205-1_L
+    name
+    coords 0 14.0 11.0 0.0
+    coords 1 14.0 21.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 11.0 0.0
+    coords 4 18.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0205-1_R
+    name
+    coords 0 14.0 11.0 0.0
+    coords 1 14.0 19.0 0.0
+    coords 2 14.0 21.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 18.0 11.0 0.0
+    coords 6 18.0 19.0 0.0
+    coords 7 18.0 21.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0205-2_L
+    name
+    coords 0 14.0 11.0 0.0
+    coords 1 14.0 21.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 11.0 0.0
+    coords 4 18.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0205-2_R
+    name
+    coords 0 14.0 11.0 0.0
+    coords 1 14.0 17.0 0.0
+    coords 2 14.0 21.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 19.0 0.0
+    coords 5 18.0 11.0 0.0
+    coords 6 18.0 17.0 0.0
+    coords 7 18.0 21.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0207-1_L
+    name
+    coords 0 14.0 9.0 0.0
+    coords 1 14.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 9.0 0.0
+    coords 4 18.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0207-1_R
+    name
+    coords 0 14.0 9.0 0.0
+    coords 1 14.0 21.0 0.0
+    coords 2 14.0 23.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 18.0 9.0 0.0
+    coords 6 18.0 21.0 0.0
+    coords 7 18.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0207-2_L
+    name
+    coords 0 14.0 9.0 0.0
+    coords 1 14.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 9.0 0.0
+    coords 4 18.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0207-2_R
+    name
+    coords 0 14.0 9.0 0.0
+    coords 1 14.0 19.0 0.0
+    coords 2 14.0 23.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 18.0 9.0 0.0
+    coords 6 18.0 19.0 0.0
+    coords 7 18.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0207-3_L
+    name
+    coords 0 14.0 9.0 0.0
+    coords 1 14.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 9.0 0.0
+    coords 4 18.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0207-3_R
+    name
+    coords 0 14.0 9.0 0.0
+    coords 1 14.0 17.0 0.0
+    coords 2 14.0 23.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 18.0 9.0 0.0
+    coords 6 18.0 17.0 0.0
+    coords 7 18.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0209-1_L
+    name
+    coords 0 14.0 7.0 0.0
+    coords 1 14.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 7.0 0.0
+    coords 4 18.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0209-1_R
+    name
+    coords 0 14.0 7.0 0.0
+    coords 1 14.0 23.0 0.0
+    coords 2 14.0 25.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 18.0 7.0 0.0
+    coords 6 18.0 23.0 0.0
+    coords 7 18.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0209-2_L
+    name
+    coords 0 14.0 7.0 0.0
+    coords 1 14.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 7.0 0.0
+    coords 4 18.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0209-2_R
+    name
+    coords 0 14.0 7.0 0.0
+    coords 1 14.0 21.0 0.0
+    coords 2 14.0 25.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 18.0 7.0 0.0
+    coords 6 18.0 21.0 0.0
+    coords 7 18.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0209-3_L
+    name
+    coords 0 14.0 7.0 0.0
+    coords 1 14.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 7.0 0.0
+    coords 4 18.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0209-3_R
+    name
+    coords 0 14.0 7.0 0.0
+    coords 1 14.0 19.0 0.0
+    coords 2 14.0 25.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 18.0 7.0 0.0
+    coords 6 18.0 19.0 0.0
+    coords 7 18.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0209-4_L
+    name
+    coords 0 14.0 7.0 0.0
+    coords 1 14.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 7.0 0.0
+    coords 4 18.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0209-4_R
+    name
+    coords 0 14.0 7.0 0.0
+    coords 1 14.0 17.0 0.0
+    coords 2 14.0 25.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 18.0 7.0 0.0
+    coords 6 18.0 17.0 0.0
+    coords 7 18.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0210-1_L
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 6.0 0.0
+    coords 4 18.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0210-1_R
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 24.0 0.0
+    coords 2 14.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 18.0 6.0 0.0
+    coords 6 18.0 24.0 0.0
+    coords 7 18.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0210-2_L
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 6.0 0.0
+    coords 4 18.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0210-2_R
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 22.0 0.0
+    coords 2 14.0 26.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 18.0 6.0 0.0
+    coords 6 18.0 22.0 0.0
+    coords 7 18.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0210-3_L
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 6.0 0.0
+    coords 4 18.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0210-3_R
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 20.0 0.0
+    coords 2 14.0 26.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 18.0 6.0 0.0
+    coords 6 18.0 20.0 0.0
+    coords 7 18.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0210-4_L
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 6.0 0.0
+    coords 4 18.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0210-4_R
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 18.0 0.0
+    coords 2 14.0 26.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 18.0 6.0 0.0
+    coords 6 18.0 18.0 0.0
+    coords 7 18.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0210-5_L
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 6.0 0.0
+    coords 4 18.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0210-5_R
+    name
+    coords 0 14.0 6.0 0.0
+    coords 1 14.0 16.0 0.0
+    coords 2 14.0 26.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 18.0 6.0 0.0
+    coords 6 18.0 16.0 0.0
+    coords 7 18.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0211-1_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 15.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0211-1_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 25.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 15.0 15.0 0.0
+    coords 4 15.0 26.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 25.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0211-2_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 15.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0211-2_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 15.0 13.0 0.0
+    coords 4 15.0 24.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 23.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0211-3_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 15.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0211-3_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 21.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 15.0 13.0 0.0
+    coords 4 15.0 24.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 21.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0211-4_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 15.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0211-4_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 19.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 15.0 12.0 0.0
+    coords 4 15.0 23.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 19.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0211-5_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 15.0 16.0 0.0
+    coords 3 17.0 5.0 0.0
+    coords 4 17.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0211-5_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 17.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 15.0 11.0 0.0
+    coords 4 15.0 22.0 0.0
+    coords 5 17.0 5.0 0.0
+    coords 6 17.0 17.0 0.0
+    coords 7 17.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0212-1_L
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 4.0 0.0
+    coords 4 18.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0212-1_R
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 26.0 0.0
+    coords 2 14.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 18.0 4.0 0.0
+    coords 6 18.0 26.0 0.0
+    coords 7 18.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0212-2_L
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 4.0 0.0
+    coords 4 18.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0212-2_R
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 24.0 0.0
+    coords 2 14.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 18.0 4.0 0.0
+    coords 6 18.0 24.0 0.0
+    coords 7 18.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0212-3_L
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 4.0 0.0
+    coords 4 18.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0212-3_R
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 22.0 0.0
+    coords 2 14.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 18.0 4.0 0.0
+    coords 6 18.0 22.0 0.0
+    coords 7 18.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0212-4_L
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 4.0 0.0
+    coords 4 18.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0212-4_R
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 20.0 0.0
+    coords 2 14.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 18.0 4.0 0.0
+    coords 6 18.0 20.0 0.0
+    coords 7 18.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0212-5_L
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 4.0 0.0
+    coords 4 18.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0212-5_R
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 18.0 0.0
+    coords 2 14.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 18.0 4.0 0.0
+    coords 6 18.0 18.0 0.0
+    coords 7 18.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0212-6_L
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 18.0 4.0 0.0
+    coords 4 18.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0212-6_R
+    name
+    coords 0 14.0 4.0 0.0
+    coords 1 14.0 16.0 0.0
+    coords 2 14.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 18.0 4.0 0.0
+    coords 6 18.0 16.0 0.0
+    coords 7 18.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0305-1_L
+    name
+    coords 0 13.0 11.0 0.0
+    coords 1 13.0 21.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 11.0 0.0
+    coords 4 19.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0305-1_R
+    name
+    coords 0 13.0 11.0 0.0
+    coords 1 13.0 19.0 0.0
+    coords 2 13.0 21.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 19.0 11.0 0.0
+    coords 6 19.0 19.0 0.0
+    coords 7 19.0 21.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0305-2_L
+    name
+    coords 0 13.0 11.0 0.0
+    coords 1 13.0 21.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 11.0 0.0
+    coords 4 19.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0305-2_R
+    name
+    coords 0 13.0 11.0 0.0
+    coords 1 13.0 17.0 0.0
+    coords 2 13.0 21.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 19.0 0.0
+    coords 5 19.0 11.0 0.0
+    coords 6 19.0 17.0 0.0
+    coords 7 19.0 21.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0307-1_L
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 9.0 0.0
+    coords 4 19.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0307-1_R
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 21.0 0.0
+    coords 2 13.0 23.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 19.0 9.0 0.0
+    coords 6 19.0 21.0 0.0
+    coords 7 19.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0307-2_L
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 9.0 0.0
+    coords 4 19.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0307-2_R
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 18.0 0.0
+    coords 2 13.0 23.0 0.0
+    coords 3 16.0 13.5 0.0
+    coords 4 16.0 20.5 0.0
+    coords 5 19.0 9.0 0.0
+    coords 6 19.0 18.0 0.0
+    coords 7 19.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0307-3_L
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 9.0 0.0
+    coords 4 19.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0307-3_R
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 16.0 0.0
+    coords 2 13.0 23.0 0.0
+    coords 3 16.0 12.5 0.0
+    coords 4 16.0 19.5 0.0
+    coords 5 19.0 9.0 0.0
+    coords 6 19.0 16.0 0.0
+    coords 7 19.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0308-1_L
+    name
+    coords 0 13.0 8.0 0.0
+    coords 1 13.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 8.0 0.0
+    coords 4 19.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0308-1_R
+    name
+    coords 0 13.0 8.0 32.0
+    coords 1 13.0 22.0 0.0
+    coords 2 13.0 24.0 32.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 19.0 8.0 32.0
+    coords 6 19.0 22.0 0.0
+    coords 7 19.0 24.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0308-2_L
+    name
+    coords 0 13.0 8.0 0.0
+    coords 1 13.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 8.0 0.0
+    coords 4 19.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0308-2_R
+    name
+    coords 0 13.0 8.0 32.0
+    coords 1 13.0 22.0 0.0
+    coords 2 13.0 24.0 32.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 19.0 8.0 32.0
+    coords 6 19.0 22.0 0.0
+    coords 7 19.0 24.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0308-3_L
+    name
+    coords 0 13.0 8.0 0.0
+    coords 1 13.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 8.0 0.0
+    coords 4 19.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0308-3_R
+    name
+    coords 0 13.0 8.0 32.0
+    coords 1 13.0 22.0 0.0
+    coords 2 13.0 24.0 32.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 19.0 8.0 32.0
+    coords 6 19.0 22.0 0.0
+    coords 7 19.0 24.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0308-4_L
+    name
+    coords 0 13.0 8.0 0.0
+    coords 1 13.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 8.0 0.0
+    coords 4 19.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0308-4_R
+    name
+    coords 0 13.0 8.0 32.0
+    coords 1 13.0 22.0 0.0
+    coords 2 13.0 24.0 32.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 19.0 8.0 32.0
+    coords 6 19.0 22.0 0.0
+    coords 7 19.0 24.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0310-1_L
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 6.0 0.0
+    coords 4 19.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0310-1_R
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 24.0 0.0
+    coords 2 13.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 19.0 6.0 0.0
+    coords 6 19.0 24.0 0.0
+    coords 7 19.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0310-2_L
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 6.0 0.0
+    coords 4 19.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0310-2_R
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 22.0 0.0
+    coords 2 13.0 26.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 19.0 6.0 0.0
+    coords 6 19.0 22.0 0.0
+    coords 7 19.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0310-3_L
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 6.0 0.0
+    coords 4 19.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0310-3_R
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 20.0 0.0
+    coords 2 13.0 26.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 19.0 6.0 0.0
+    coords 6 19.0 20.0 0.0
+    coords 7 19.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0310-4_L
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 6.0 0.0
+    coords 4 19.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0310-4_R
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 18.0 0.0
+    coords 2 13.0 26.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 19.0 6.0 0.0
+    coords 6 19.0 18.0 0.0
+    coords 7 19.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0310-5_L
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 6.0 0.0
+    coords 4 19.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0310-5_R
+    name
+    coords 0 13.0 6.0 0.0
+    coords 1 13.0 16.0 0.0
+    coords 2 13.0 26.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 19.0 6.0 0.0
+    coords 6 19.0 16.0 0.0
+    coords 7 19.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0311-1_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 5.0 0.0
+    coords 4 19.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0311-1_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 25.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 19.0 5.0 0.0
+    coords 6 19.0 25.0 0.0
+    coords 7 19.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0311-2_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 5.0 0.0
+    coords 4 19.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0311-2_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 19.0 5.0 0.0
+    coords 6 19.0 23.0 0.0
+    coords 7 19.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0311-3_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 5.0 0.0
+    coords 4 19.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0311-3_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 21.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 19.0 5.0 0.0
+    coords 6 19.0 21.0 0.0
+    coords 7 19.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0311-4_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 5.0 0.0
+    coords 4 19.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0311-4_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 19.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 19.0 5.0 0.0
+    coords 6 19.0 19.0 0.0
+    coords 7 19.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0311-5_L
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 5.0 0.0
+    coords 4 19.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0311-5_R
+    name
+    coords 0 13.0 5.0 0.0
+    coords 1 13.0 17.0 0.0
+    coords 2 13.0 27.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 19.0 5.0 0.0
+    coords 6 19.0 17.0 0.0
+    coords 7 19.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0312-1_L
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 4.0 0.0
+    coords 4 19.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0312-1_R
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 26.0 0.0
+    coords 2 13.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 19.0 4.0 0.0
+    coords 6 19.0 26.0 0.0
+    coords 7 19.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0312-2_L
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 4.0 0.0
+    coords 4 19.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0312-2_R
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 24.0 0.0
+    coords 2 13.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 19.0 4.0 0.0
+    coords 6 19.0 24.0 0.0
+    coords 7 19.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0312-3_L
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 4.0 0.0
+    coords 4 19.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0312-3_R
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 22.0 0.0
+    coords 2 13.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 19.0 4.0 0.0
+    coords 6 19.0 22.0 0.0
+    coords 7 19.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0312-4_L
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 4.0 0.0
+    coords 4 19.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0312-4_R
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 20.0 0.0
+    coords 2 13.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 19.0 4.0 0.0
+    coords 6 19.0 20.0 0.0
+    coords 7 19.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0312-5_L
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 4.0 0.0
+    coords 4 19.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0312-5_R
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 18.0 0.0
+    coords 2 13.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 19.0 4.0 0.0
+    coords 6 19.0 18.0 0.0
+    coords 7 19.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0312-6_L
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 4.0 0.0
+    coords 4 19.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0312-6_R
+    name
+    coords 0 13.0 4.0 0.0
+    coords 1 13.0 16.0 0.0
+    coords 2 13.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 19.0 4.0 0.0
+    coords 6 19.0 16.0 0.0
+    coords 7 19.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0405-1_L
+    name
+    coords 0 12.0 11.0 0.0
+    coords 1 12.0 21.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 11.0 0.0
+    coords 4 20.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0405-1_R
+    name
+    coords 0 12.0 11.0 0.0
+    coords 1 12.0 19.0 0.0
+    coords 2 12.0 21.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 20.0 11.0 0.0
+    coords 6 20.0 19.0 0.0
+    coords 7 20.0 21.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0405-2_L
+    name
+    coords 0 12.0 11.0 0.0
+    coords 1 12.0 21.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 11.0 0.0
+    coords 4 20.0 21.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0405-2_R
+    name
+    coords 0 12.0 11.0 0.0
+    coords 1 12.0 17.0 0.0
+    coords 2 12.0 21.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 19.0 0.0
+    coords 5 20.0 11.0 0.0
+    coords 6 20.0 17.0 0.0
+    coords 7 20.0 21.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0407-1_L
+    name
+    coords 0 12.0 8.0 0.0
+    coords 1 12.0 22.0 0.0
+    coords 2 16.0 15.0 0.0
+    coords 3 20.0 8.0 0.0
+    coords 4 20.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0407-1_R
+    name
+    coords 0 12.0 8.0 0.0
+    coords 1 12.0 20.0 0.0
+    coords 2 12.0 22.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 20.0 8.0 0.0
+    coords 6 20.0 20.0 0.0
+    coords 7 20.0 22.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0407-2_L
+    name
+    coords 0 12.0 8.0 0.0
+    coords 1 12.0 22.0 0.0
+    coords 2 16.0 15.0 0.0
+    coords 3 20.0 8.0 0.0
+    coords 4 20.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0407-2_R
+    name
+    coords 0 12.0 8.0 0.0
+    coords 1 12.0 18.0 0.0
+    coords 2 12.0 22.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 20.0 8.0 0.0
+    coords 6 20.0 18.0 0.0
+    coords 7 20.0 22.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0407-3_L
+    name
+    coords 0 12.0 8.0 0.0
+    coords 1 12.0 22.0 0.0
+    coords 2 16.0 15.0 0.0
+    coords 3 20.0 8.0 0.0
+    coords 4 20.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0407-3_R
+    name
+    coords 0 12.0 8.0 0.0
+    coords 1 12.0 16.0 0.0
+    coords 2 12.0 22.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 19.0 0.0
+    coords 5 20.0 8.0 0.0
+    coords 6 20.0 16.0 0.0
+    coords 7 20.0 22.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0409-1_L
+    name
+    coords 0 12.0 7.0 0.0
+    coords 1 12.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 7.0 0.0
+    coords 4 20.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0409-1_R
+    name
+    coords 0 12.0 7.0 0.0
+    coords 1 12.0 23.0 0.0
+    coords 2 12.0 25.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 20.0 7.0 0.0
+    coords 6 20.0 23.0 0.0
+    coords 7 20.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0409-2_L
+    name
+    coords 0 12.0 7.0 0.0
+    coords 1 12.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 7.0 0.0
+    coords 4 20.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0409-2_R
+    name
+    coords 0 12.0 7.0 0.0
+    coords 1 12.0 21.0 0.0
+    coords 2 12.0 25.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 20.0 7.0 0.0
+    coords 6 20.0 21.0 0.0
+    coords 7 20.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0409-3_L
+    name
+    coords 0 12.0 7.0 0.0
+    coords 1 12.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 7.0 0.0
+    coords 4 20.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0409-3_R
+    name
+    coords 0 12.0 7.0 0.0
+    coords 1 12.0 19.0 0.0
+    coords 2 12.0 25.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 20.0 7.0 0.0
+    coords 6 20.0 19.0 0.0
+    coords 7 20.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0409-4_L
+    name
+    coords 0 12.0 7.0 0.0
+    coords 1 12.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 7.0 0.0
+    coords 4 20.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0409-4_R
+    name
+    coords 0 12.0 7.0 0.0
+    coords 1 12.0 17.0 0.0
+    coords 2 12.0 25.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 20.0 7.0 0.0
+    coords 6 20.0 17.0 0.0
+    coords 7 20.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0410-1_L
+    name
+    coords 0 12.0 6.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 6.0 0.0
+    coords 4 20.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0410-1_R
+    name
+    coords 0 12.0 6.0 0.0
+    coords 1 12.0 24.0 0.0
+    coords 2 12.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 20.0 6.0 0.0
+    coords 6 20.0 24.0 0.0
+    coords 7 20.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0410-2_L
+    name
+    coords 0 12.0 6.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 6.0 0.0
+    coords 4 20.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0410-2_R
+    name
+    coords 0 12.0 6.0 0.0
+    coords 1 12.0 24.0 0.0
+    coords 2 12.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 20.0 6.0 0.0
+    coords 6 20.0 24.0 0.0
+    coords 7 20.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0410-3_L
+    name
+    coords 0 12.0 6.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 6.0 0.0
+    coords 4 20.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0410-3_R
+    name
+    coords 0 12.0 6.0 0.0
+    coords 1 12.0 24.0 0.0
+    coords 2 12.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 20.0 6.0 0.0
+    coords 6 20.0 24.0 0.0
+    coords 7 20.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0410-4_L
+    name
+    coords 0 12.0 6.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 6.0 0.0
+    coords 4 20.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0410-4_R
+    name
+    coords 0 12.0 6.0 0.0
+    coords 1 12.0 24.0 0.0
+    coords 2 12.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 20.0 6.0 0.0
+    coords 6 20.0 24.0 0.0
+    coords 7 20.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0411-1_L
+    name
+    coords 0 12.0 5.0 0.0
+    coords 1 12.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 5.0 0.0
+    coords 4 20.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0411-1_R
+    name
+    coords 0 12.0 5.0 32.0
+    coords 1 12.0 25.0 0.0
+    coords 2 12.0 27.0 32.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 20.0 5.0 32.0
+    coords 6 20.0 25.0 0.0
+    coords 7 20.0 27.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0411-2_L
+    name
+    coords 0 12.0 5.0 0.0
+    coords 1 12.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 5.0 0.0
+    coords 4 20.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0411-2_R
+    name
+    coords 0 12.0 5.0 32.0
+    coords 1 12.0 23.0 0.0
+    coords 2 12.0 27.0 32.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 20.0 5.0 32.0
+    coords 6 20.0 23.0 0.0
+    coords 7 20.0 27.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0411-3_L
+    name
+    coords 0 12.0 5.0 0.0
+    coords 1 12.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 5.0 0.0
+    coords 4 20.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0411-3_R
+    name
+    coords 0 12.0 5.0 32.0
+    coords 1 12.0 21.0 0.0
+    coords 2 12.0 27.0 32.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 20.0 5.0 32.0
+    coords 6 20.0 21.0 0.0
+    coords 7 20.0 27.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0411-4_L
+    name
+    coords 0 12.0 5.0 0.0
+    coords 1 12.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 5.0 0.0
+    coords 4 20.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0411-4_R
+    name
+    coords 0 12.0 5.0 32.0
+    coords 1 12.0 19.0 0.0
+    coords 2 12.0 27.0 32.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 20.0 5.0 32.0
+    coords 6 20.0 19.0 0.0
+    coords 7 20.0 27.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0411-5_L
+    name
+    coords 0 12.0 5.0 0.0
+    coords 1 12.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 5.0 0.0
+    coords 4 20.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0411-5_R
+    name
+    coords 0 12.0 5.0 32.0
+    coords 1 12.0 17.0 32.0
+    coords 2 12.0 27.0 32.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 20.0 5.0 32.0
+    coords 6 20.0 17.0 32.0
+    coords 7 20.0 27.0 32.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0412-1_L
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0412-1_R
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 12.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 20.0 4.0 0.0
+    coords 6 20.0 26.0 0.0
+    coords 7 20.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0412-2_L
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0412-2_R
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 12.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 20.0 4.0 0.0
+    coords 6 20.0 26.0 0.0
+    coords 7 20.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0412-3_L
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0412-3_R
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 12.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 20.0 4.0 0.0
+    coords 6 20.0 26.0 0.0
+    coords 7 20.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0412-4_L
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0412-4_R
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 12.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 20.0 4.0 0.0
+    coords 6 20.0 26.0 0.0
+    coords 7 20.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0412-5_L
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0412-5_R
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 12.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 20.0 4.0 0.0
+    coords 6 20.0 26.0 0.0
+    coords 7 20.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0412-6_L
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0412-6_R
+    name
+    coords 0 12.0 4.0 0.0
+    coords 1 12.0 26.0 0.0
+    coords 2 12.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 20.0 4.0 0.0
+    coords 6 20.0 26.0 0.0
+    coords 7 20.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0506-1_L
+    name
+    coords 0 11.0 10.0 0.0
+    coords 1 11.0 22.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 10.0 0.0
+    coords 4 21.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0506-1_R
+    name
+    coords 0 11.0 10.0 0.0
+    coords 1 11.0 20.0 0.0
+    coords 2 11.0 22.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 21.0 10.0 0.0
+    coords 6 21.0 20.0 0.0
+    coords 7 21.0 22.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0506-2_L
+    name
+    coords 0 11.0 10.0 0.0
+    coords 1 11.0 22.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 10.0 0.0
+    coords 4 21.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0506-2_R
+    name
+    coords 0 11.0 10.0 0.0
+    coords 1 11.0 20.0 0.0
+    coords 2 11.0 22.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 21.0 10.0 0.0
+    coords 6 21.0 20.0 0.0
+    coords 7 21.0 22.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0506-3_L
+    name
+    coords 0 11.0 10.0 0.0
+    coords 1 11.0 22.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 10.0 0.0
+    coords 4 21.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0506-3_R
+    name
+    coords 0 11.0 10.0 0.0
+    coords 1 11.0 20.0 0.0
+    coords 2 11.0 22.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 21.0 10.0 0.0
+    coords 6 21.0 20.0 0.0
+    coords 7 21.0 22.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0507-1_L
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 9.0 0.0
+    coords 4 21.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0507-1_R
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 21.0 0.0
+    coords 2 11.0 23.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 21.0 9.0 0.0
+    coords 6 21.0 21.0 0.0
+    coords 7 21.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0507-2_L
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 9.0 0.0
+    coords 4 21.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0507-2_R
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 19.0 0.0
+    coords 2 11.0 23.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 21.0 9.0 0.0
+    coords 6 21.0 19.0 0.0
+    coords 7 21.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0507-3_L
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 9.0 0.0
+    coords 4 21.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0507-3_R
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 17.0 0.0
+    coords 2 11.0 23.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 21.0 9.0 0.0
+    coords 6 21.0 17.0 0.0
+    coords 7 21.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0508-1_L
+    name
+    coords 0 11.0 8.0 0.0
+    coords 1 11.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 8.0 0.0
+    coords 4 21.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0508-1_R
+    name
+    coords 0 11.0 8.0 0.0
+    coords 1 11.0 22.0 0.0
+    coords 2 11.0 24.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 21.0 8.0 0.0
+    coords 6 21.0 22.0 0.0
+    coords 7 21.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0508-2_L
+    name
+    coords 0 11.0 8.0 0.0
+    coords 1 11.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 8.0 0.0
+    coords 4 21.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0508-2_R
+    name
+    coords 0 11.0 8.0 0.0
+    coords 1 11.0 20.0 0.0
+    coords 2 11.0 24.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 21.0 8.0 0.0
+    coords 6 21.0 20.0 0.0
+    coords 7 21.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0508-3_L
+    name
+    coords 0 11.0 8.0 0.0
+    coords 1 11.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 8.0 0.0
+    coords 4 21.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0508-3_R
+    name
+    coords 0 11.0 8.0 0.0
+    coords 1 11.0 18.0 0.0
+    coords 2 11.0 24.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 21.0 8.0 0.0
+    coords 6 21.0 18.0 0.0
+    coords 7 21.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0508-4_L
+    name
+    coords 0 11.0 8.0 0.0
+    coords 1 11.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 8.0 0.0
+    coords 4 21.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0508-4_R
+    name
+    coords 0 11.0 8.0 0.0
+    coords 1 11.0 16.0 0.0
+    coords 2 11.0 24.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 21.0 8.0 0.0
+    coords 6 21.0 16.0 0.0
+    coords 7 21.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0509-1_L
+    name
+    coords 0 11.0 7.0 0.0
+    coords 1 11.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 7.0 0.0
+    coords 4 21.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0509-1_R
+    name
+    coords 0 11.0 7.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 11.0 25.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 21.0 7.0 0.0
+    coords 6 21.0 23.0 0.0
+    coords 7 21.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0509-2_L
+    name
+    coords 0 11.0 7.0 0.0
+    coords 1 11.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 7.0 0.0
+    coords 4 21.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0509-2_R
+    name
+    coords 0 11.0 7.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 11.0 25.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 21.0 7.0 0.0
+    coords 6 21.0 23.0 0.0
+    coords 7 21.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0509-3_L
+    name
+    coords 0 11.0 7.0 0.0
+    coords 1 11.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 7.0 0.0
+    coords 4 21.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0509-3_R
+    name
+    coords 0 11.0 7.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 11.0 25.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 21.0 7.0 0.0
+    coords 6 21.0 23.0 0.0
+    coords 7 21.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0509-4_L
+    name
+    coords 0 11.0 7.0 0.0
+    coords 1 11.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 7.0 0.0
+    coords 4 21.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0509-4_R
+    name
+    coords 0 11.0 7.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 11.0 25.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 21.0 7.0 0.0
+    coords 6 21.0 23.0 0.0
+    coords 7 21.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0511-1_L
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 5.0 0.0
+    coords 4 21.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0511-1_R
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 25.0 0.0
+    coords 2 11.0 27.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 21.0 5.0 0.0
+    coords 6 21.0 25.0 0.0
+    coords 7 21.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0511-2_L
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 5.0 0.0
+    coords 4 21.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0511-2_R
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 11.0 27.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 21.0 5.0 0.0
+    coords 6 21.0 23.0 0.0
+    coords 7 21.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0511-3_L
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 5.0 0.0
+    coords 4 21.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0511-3_R
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 21.0 0.0
+    coords 2 11.0 27.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 21.0 5.0 0.0
+    coords 6 21.0 21.0 0.0
+    coords 7 21.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0511-4_L
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 5.0 0.0
+    coords 4 21.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0511-4_R
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 19.0 0.0
+    coords 2 11.0 27.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 21.0 5.0 0.0
+    coords 6 21.0 19.0 0.0
+    coords 7 21.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0511-5_L
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 21.0 5.0 0.0
+    coords 4 21.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0511-5_R
+    name
+    coords 0 11.0 5.0 0.0
+    coords 1 11.0 17.0 0.0
+    coords 2 11.0 27.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 21.0 5.0 0.0
+    coords 6 21.0 17.0 0.0
+    coords 7 21.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0512-1_L
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 28.0 0.0
+    coords 2 16.0 17.0 0.0
+    coords 3 21.0 4.0 0.0
+    coords 4 21.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0512-1_R
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 26.0 0.0
+    coords 2 11.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 21.0 4.0 0.0
+    coords 6 21.0 26.0 0.0
+    coords 7 21.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0512-2_L
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 28.0 0.0
+    coords 2 16.0 17.0 0.0
+    coords 3 21.0 4.0 0.0
+    coords 4 21.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0512-2_R
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 24.0 0.0
+    coords 2 11.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 21.0 4.0 0.0
+    coords 6 21.0 24.0 0.0
+    coords 7 21.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0512-3_L
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 28.0 0.0
+    coords 2 16.0 17.0 0.0
+    coords 3 21.0 4.0 0.0
+    coords 4 21.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0512-3_R
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 22.0 0.0
+    coords 2 11.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 21.0 4.0 0.0
+    coords 6 21.0 22.0 0.0
+    coords 7 21.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0512-4_L
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 28.0 0.0
+    coords 2 16.0 17.0 0.0
+    coords 3 21.0 4.0 0.0
+    coords 4 21.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0512-4_R
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 20.0 0.0
+    coords 2 11.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 21.0 4.0 0.0
+    coords 6 21.0 20.0 0.0
+    coords 7 21.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0512-5_L
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 28.0 0.0
+    coords 2 16.0 17.0 0.0
+    coords 3 21.0 4.0 0.0
+    coords 4 21.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0512-5_R
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 18.0 0.0
+    coords 2 11.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 21.0 4.0 0.0
+    coords 6 21.0 18.0 0.0
+    coords 7 21.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0512-6_L
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 28.0 0.0
+    coords 2 16.0 17.0 0.0
+    coords 3 21.0 4.0 0.0
+    coords 4 21.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0512-6_R
+    name
+    coords 0 11.0 4.0 0.0
+    coords 1 11.0 16.0 0.0
+    coords 2 11.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 21.0 4.0 0.0
+    coords 6 21.0 16.0 0.0
+    coords 7 21.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0607-1_L
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 17.0 16.0 0.0
+    coords 3 23.0 9.0 0.0
+    coords 4 23.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0607-1_R
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 21.0 0.0
+    coords 2 11.0 23.0 0.0
+    coords 3 17.0 15.0 0.0
+    coords 4 17.0 22.0 0.0
+    coords 5 23.0 9.0 0.0
+    coords 6 23.0 21.0 0.0
+    coords 7 23.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0607-2_L
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 17.0 16.0 0.0
+    coords 3 23.0 9.0 0.0
+    coords 4 23.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0607-2_R
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 19.0 0.0
+    coords 2 11.0 23.0 0.0
+    coords 3 17.0 14.0 0.0
+    coords 4 17.0 21.0 0.0
+    coords 5 23.0 9.0 0.0
+    coords 6 23.0 19.0 0.0
+    coords 7 23.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0607-3_L
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 23.0 0.0
+    coords 2 17.0 16.0 0.0
+    coords 3 23.0 9.0 0.0
+    coords 4 23.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0607-3_R
+    name
+    coords 0 11.0 9.0 0.0
+    coords 1 11.0 17.0 0.0
+    coords 2 11.0 23.0 0.0
+    coords 3 17.0 13.0 0.0
+    coords 4 17.0 20.0 0.0
+    coords 5 23.0 9.0 0.0
+    coords 6 23.0 17.0 0.0
+    coords 7 23.0 23.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0610-1_L
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 6.0 0.0
+    coords 4 22.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0610-1_R
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 24.0 0.0
+    coords 2 10.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 22.0 6.0 0.0
+    coords 6 22.0 24.0 0.0
+    coords 7 22.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0610-2_L
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 6.0 0.0
+    coords 4 22.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0610-2_R
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 10.0 26.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 22.0 6.0 0.0
+    coords 6 22.0 22.0 0.0
+    coords 7 22.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0610-3_L
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 6.0 0.0
+    coords 4 22.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0610-3_R
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 20.0 0.0
+    coords 2 10.0 26.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 22.0 6.0 0.0
+    coords 6 22.0 20.0 0.0
+    coords 7 22.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0610-4_L
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 6.0 0.0
+    coords 4 22.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0610-4_R
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 18.0 0.0
+    coords 2 10.0 26.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 22.0 6.0 0.0
+    coords 6 22.0 18.0 0.0
+    coords 7 22.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0610-5_L
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 6.0 0.0
+    coords 4 22.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0610-5_R
+    name
+    coords 0 10.0 6.0 0.0
+    coords 1 10.0 16.0 0.0
+    coords 2 10.0 26.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 22.0 6.0 0.0
+    coords 6 22.0 16.0 0.0
+    coords 7 22.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0611-1_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 5.0 0.0
+    coords 4 22.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0611-1_R
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 25.0 0.0
+    coords 2 10.0 27.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 22.0 5.0 0.0
+    coords 6 22.0 25.0 0.0
+    coords 7 22.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0611-2_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 5.0 0.0
+    coords 4 22.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0611-2_R
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 23.0 0.0
+    coords 2 10.0 27.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 22.0 5.0 0.0
+    coords 6 22.0 23.0 0.0
+    coords 7 22.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0611-3_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 5.0 0.0
+    coords 4 22.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0611-3_R
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 21.0 0.0
+    coords 2 10.0 27.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 22.0 5.0 0.0
+    coords 6 22.0 21.0 0.0
+    coords 7 22.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0611-4_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 5.0 0.0
+    coords 4 22.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0611-4_R
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 19.0 0.0
+    coords 2 10.0 27.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 22.0 5.0 0.0
+    coords 6 22.0 19.0 0.0
+    coords 7 22.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0611-5_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 5.0 0.0
+    coords 4 22.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0611-5_R
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 17.0 0.0
+    coords 2 10.0 27.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 22.0 5.0 0.0
+    coords 6 22.0 17.0 0.0
+    coords 7 22.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0612-1_L
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 4.0 0.0
+    coords 4 22.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0612-1_R
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 26.0 0.0
+    coords 2 10.0 28.0 0.0
+    coords 3 16.0 16.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 22.0 4.0 0.0
+    coords 6 22.0 26.0 0.0
+    coords 7 22.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0612-2_L
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 4.0 0.0
+    coords 4 22.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0612-2_R
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 24.0 0.0
+    coords 2 10.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 22.0 4.0 0.0
+    coords 6 22.0 24.0 0.0
+    coords 7 22.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0612-3_L
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 4.0 0.0
+    coords 4 22.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0612-3_R
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 10.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 22.0 4.0 0.0
+    coords 6 22.0 22.0 0.0
+    coords 7 22.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0612-4_L
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 4.0 0.0
+    coords 4 22.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0612-4_R
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 20.0 0.0
+    coords 2 10.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 22.0 4.0 0.0
+    coords 6 22.0 20.0 0.0
+    coords 7 22.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0612-5_L
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 22.0 4.0 0.0
+    coords 4 22.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0612-5_R
+    name
+    coords 0 10.0 4.0 0.0
+    coords 1 10.0 16.0 0.0
+    coords 2 10.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 22.0 4.0 0.0
+    coords 6 22.0 16.0 0.0
+    coords 7 22.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0708-1_L
+    name
+    coords 0 9.0 8.0 0.0
+    coords 1 9.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 8.0 0.0
+    coords 4 23.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0708-1_R
+    name
+    coords 0 9.0 8.0 0.0
+    coords 1 9.0 22.0 0.0
+    coords 2 9.0 24.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 23.0 8.0 0.0
+    coords 6 23.0 22.0 0.0
+    coords 7 23.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0708-2_L
+    name
+    coords 0 9.0 8.0 0.0
+    coords 1 9.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 8.0 0.0
+    coords 4 23.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0708-2_R
+    name
+    coords 0 9.0 8.0 0.0
+    coords 1 9.0 20.0 0.0
+    coords 2 9.0 24.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 23.0 8.0 0.0
+    coords 6 23.0 20.0 0.0
+    coords 7 23.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0708-3_L
+    name
+    coords 0 9.0 8.0 0.0
+    coords 1 9.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 8.0 0.0
+    coords 4 23.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0708-3_R
+    name
+    coords 0 9.0 8.0 0.0
+    coords 1 9.0 18.0 0.0
+    coords 2 9.0 24.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 23.0 8.0 0.0
+    coords 6 23.0 18.0 0.0
+    coords 7 23.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0708-4_L
+    name
+    coords 0 9.0 8.0 0.0
+    coords 1 9.0 24.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 8.0 0.0
+    coords 4 23.0 24.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0708-4_R
+    name
+    coords 0 9.0 8.0 0.0
+    coords 1 9.0 16.0 0.0
+    coords 2 9.0 24.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 20.0 0.0
+    coords 5 23.0 8.0 0.0
+    coords 6 23.0 16.0 0.0
+    coords 7 23.0 24.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0709-1_L
+    name
+    coords 0 9.0 7.0 0.0
+    coords 1 9.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 7.0 0.0
+    coords 4 23.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0709-1_R
+    name
+    coords 0 9.0 7.0 0.0
+    coords 1 9.0 23.0 0.0
+    coords 2 9.0 25.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 23.0 7.0 0.0
+    coords 6 23.0 23.0 0.0
+    coords 7 23.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0709-2_L
+    name
+    coords 0 9.0 7.0 0.0
+    coords 1 9.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 7.0 0.0
+    coords 4 23.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0709-2_R
+    name
+    coords 0 9.0 7.0 0.0
+    coords 1 9.0 21.0 0.0
+    coords 2 9.0 25.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 23.0 7.0 0.0
+    coords 6 23.0 21.0 0.0
+    coords 7 23.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0709-3_L
+    name
+    coords 0 9.0 7.0 0.0
+    coords 1 9.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 7.0 0.0
+    coords 4 23.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0709-3_R
+    name
+    coords 0 9.0 7.0 0.0
+    coords 1 9.0 19.0 0.0
+    coords 2 9.0 25.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 23.0 7.0 0.0
+    coords 6 23.0 19.0 0.0
+    coords 7 23.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0709-4_L
+    name
+    coords 0 9.0 7.0 0.0
+    coords 1 9.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 7.0 0.0
+    coords 4 23.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0709-4_R
+    name
+    coords 0 9.0 7.0 0.0
+    coords 1 9.0 17.0 0.0
+    coords 2 9.0 25.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 23.0 7.0 0.0
+    coords 6 23.0 17.0 0.0
+    coords 7 23.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0710-1_L
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 6.0 0.0
+    coords 4 23.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0710-1_R
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 24.0 0.0
+    coords 2 9.0 26.0 0.0
+    coords 3 16.0 25.0 0.0
+    coords 4 23.0 6.0 0.0
+    coords 5 23.0 24.0 0.0
+    coords 6 23.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 4
+    line 2 1 5
+    line 3 2 6
+    line 4 4 6
+    point 3 o
+shape    A-0710-2_L
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 6.0 0.0
+    coords 4 23.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0710-2_R
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 22.0 0.0
+    coords 2 9.0 26.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 24.0 7.1054273576e-15
+    coords 5 23.0 6.0 0.0
+    coords 6 23.0 22.0 0.0
+    coords 7 23.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0710-3_L
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 6.0 0.0
+    coords 4 23.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0710-3_R
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 20.0 0.0
+    coords 2 9.0 26.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 23.0 7.1054273576e-15
+    coords 5 23.0 6.0 0.0
+    coords 6 23.0 20.0 0.0
+    coords 7 23.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0710-4_L
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 6.0 0.0
+    coords 4 23.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0710-4_R
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 18.0 0.0
+    coords 2 9.0 26.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 22.0 7.1054273576e-15
+    coords 5 23.0 6.0 0.0
+    coords 6 23.0 18.0 0.0
+    coords 7 23.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0710-5_L
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 6.0 0.0
+    coords 4 23.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0710-5_R
+    name
+    coords 0 9.0 6.0 0.0
+    coords 1 9.0 16.0 0.0
+    coords 2 9.0 26.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 21.0 7.1054273576e-15
+    coords 5 23.0 6.0 0.0
+    coords 6 23.0 16.0 0.0
+    coords 7 23.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0711-1_L
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 5.0 0.0
+    coords 4 23.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0711-1_R
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 25.0 0.0
+    coords 2 9.0 27.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 23.0 5.0 0.0
+    coords 6 23.0 25.0 0.0
+    coords 7 23.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0711-2_L
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 5.0 0.0
+    coords 4 23.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0711-2_R
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 23.0 0.0
+    coords 2 9.0 27.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 23.0 5.0 0.0
+    coords 6 23.0 23.0 0.0
+    coords 7 23.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0711-3_L
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 5.0 0.0
+    coords 4 23.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0711-3_R
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 21.0 0.0
+    coords 2 9.0 27.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 23.0 5.0 0.0
+    coords 6 23.0 21.0 0.0
+    coords 7 23.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0711-4_L
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 5.0 0.0
+    coords 4 23.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0711-4_R
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 19.0 0.0
+    coords 2 9.0 27.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 23.0 5.0 0.0
+    coords 6 23.0 19.0 0.0
+    coords 7 23.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0711-5_L
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 5.0 0.0
+    coords 4 23.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0711-5_R
+    name
+    coords 0 9.0 5.0 0.0
+    coords 1 9.0 17.0 0.0
+    coords 2 9.0 27.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 23.0 5.0 0.0
+    coords 6 23.0 17.0 0.0
+    coords 7 23.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0712-1_L
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 4.0 0.0
+    coords 4 23.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0712-1_R
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 26.0 0.0
+    coords 2 9.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 23.0 4.0 0.0
+    coords 6 23.0 26.0 0.0
+    coords 7 23.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0712-2_L
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 4.0 0.0
+    coords 4 23.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0712-2_R
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 24.0 0.0
+    coords 2 9.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 23.0 4.0 0.0
+    coords 6 23.0 24.0 0.0
+    coords 7 23.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0712-3_L
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 4.0 0.0
+    coords 4 23.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0712-3_R
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 22.0 0.0
+    coords 2 9.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 23.0 4.0 0.0
+    coords 6 23.0 22.0 0.0
+    coords 7 23.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0712-4_L
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 4.0 0.0
+    coords 4 23.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0712-4_R
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 20.0 0.0
+    coords 2 9.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 23.0 4.0 0.0
+    coords 6 23.0 20.0 0.0
+    coords 7 23.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0712-5_L
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 4.0 0.0
+    coords 4 23.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0712-5_R
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 18.0 0.0
+    coords 2 9.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 23.0 4.0 0.0
+    coords 6 23.0 18.0 0.0
+    coords 7 23.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0712-6_L
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 23.0 4.0 0.0
+    coords 4 23.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0712-6_R
+    name
+    coords 0 9.0 4.0 0.0
+    coords 1 9.0 16.0 0.0
+    coords 2 9.0 28.0 0.0
+    coords 3 16.0 22.0 0.0
+    coords 4 23.0 4.0 0.0
+    coords 5 23.0 16.0 0.0
+    coords 6 23.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 4
+    line 2 1 5
+    line 3 2 6
+    line 4 4 6
+    point 3 o
+shape    A-0809-1_L
+    name
+    coords 0 8.0 7.0 0.0
+    coords 1 8.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 7.0 0.0
+    coords 4 24.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0809-1_R
+    name
+    coords 0 8.0 7.0 0.0
+    coords 1 8.0 23.0 0.0
+    coords 2 8.0 25.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 24.0 7.0 0.0
+    coords 6 24.0 23.0 0.0
+    coords 7 24.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0809-2_L
+    name
+    coords 0 8.0 7.0 0.0
+    coords 1 8.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 7.0 0.0
+    coords 4 24.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0809-2_R
+    name
+    coords 0 8.0 7.0 0.0
+    coords 1 8.0 21.0 0.0
+    coords 2 8.0 25.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 24.0 7.0 0.0
+    coords 6 24.0 21.0 0.0
+    coords 7 24.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0809-3_L
+    name
+    coords 0 8.0 7.0 0.0
+    coords 1 8.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 7.0 0.0
+    coords 4 24.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0809-3_R
+    name
+    coords 0 8.0 7.0 0.0
+    coords 1 8.0 19.0 0.0
+    coords 2 8.0 25.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 7.0 0.0
+    coords 6 24.0 19.0 0.0
+    coords 7 24.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0809-4_L
+    name
+    coords 0 8.0 7.0 0.0
+    coords 1 8.0 25.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 7.0 0.0
+    coords 4 24.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0809-4_R
+    name
+    coords 0 8.0 7.0 0.0
+    coords 1 8.0 17.0 0.0
+    coords 2 8.0 25.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 24.0 7.0 0.0
+    coords 6 24.0 17.0 0.0
+    coords 7 24.0 25.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0810-1_L
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 6.0 0.0
+    coords 4 24.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0810-1_R
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 24.0 0.0
+    coords 2 8.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 24.0 6.0 0.0
+    coords 6 24.0 24.0 0.0
+    coords 7 24.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0810-2_L
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 6.0 0.0
+    coords 4 24.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0810-2_R
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 22.0 0.0
+    coords 2 8.0 26.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 24.0 6.0 0.0
+    coords 6 24.0 22.0 0.0
+    coords 7 24.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0810-3_L
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 6.0 0.0
+    coords 4 24.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0810-3_R
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 20.0 0.0
+    coords 2 8.0 26.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 24.0 6.0 0.0
+    coords 6 24.0 20.0 0.0
+    coords 7 24.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0810-4_L
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 6.0 0.0
+    coords 4 24.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0810-4_R
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 18.0 0.0
+    coords 2 8.0 26.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 6.0 0.0
+    coords 6 24.0 18.0 0.0
+    coords 7 24.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0810-5_L
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 6.0 0.0
+    coords 4 24.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0810-5_R
+    name
+    coords 0 8.0 6.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 26.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 24.0 6.0 0.0
+    coords 6 24.0 16.0 0.0
+    coords 7 24.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0811-1_L
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 5.0 0.0
+    coords 4 24.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0811-1_R
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 25.0 0.0
+    coords 2 8.0 27.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 24.0 5.0 0.0
+    coords 6 24.0 25.0 0.0
+    coords 7 24.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0811-2_L
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 5.0 0.0
+    coords 4 24.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0811-2_R
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 23.0 0.0
+    coords 2 8.0 27.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 24.0 5.0 0.0
+    coords 6 24.0 23.0 0.0
+    coords 7 24.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0811-3_L
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 5.0 0.0
+    coords 4 24.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0811-3_R
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 21.0 0.0
+    coords 2 8.0 27.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 24.0 5.0 0.0
+    coords 6 24.0 21.0 0.0
+    coords 7 24.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0811-4_L
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 5.0 0.0
+    coords 4 24.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0811-4_R
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 19.0 0.0
+    coords 2 8.0 27.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 24.0 5.0 0.0
+    coords 6 24.0 19.0 0.0
+    coords 7 24.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0811-5_L
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 5.0 0.0
+    coords 4 24.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0811-5_R
+    name
+    coords 0 8.0 5.0 0.0
+    coords 1 8.0 17.0 0.0
+    coords 2 8.0 27.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 5.0 0.0
+    coords 6 24.0 17.0 0.0
+    coords 7 24.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0812-1_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0812-1_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 26.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.8 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 26.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0812-2_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0812-2_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 24.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 24.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0812-3_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0812-3_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 22.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 22.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0812-4_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0812-4_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 20.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 20.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0812-5_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0812-5_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 18.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 18.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0812-6_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0812-6_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 16.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0910-1_L
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 6.0 0.0
+    coords 4 25.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0910-1_R
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 24.0 0.0
+    coords 2 7.0 26.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 25.0 6.0 0.0
+    coords 6 25.0 24.0 0.0
+    coords 7 25.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0910-2_L
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 6.0 0.0
+    coords 4 25.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0910-2_R
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 22.0 0.0
+    coords 2 7.0 26.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 25.0 6.0 0.0
+    coords 6 25.0 22.0 0.0
+    coords 7 25.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0910-3_L
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 6.0 0.0
+    coords 4 25.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0910-3_R
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 20.0 0.0
+    coords 2 7.0 26.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 25.0 6.0 0.0
+    coords 6 25.0 20.0 0.0
+    coords 7 25.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0910-4_L
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 6.0 0.0
+    coords 4 25.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0910-4_R
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 18.0 0.0
+    coords 2 7.0 26.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 25.0 6.0 0.0
+    coords 6 25.0 18.0 0.0
+    coords 7 25.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0910-5_L
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 26.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 6.0 0.0
+    coords 4 25.0 26.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0910-5_R
+    name
+    coords 0 7.0 6.0 0.0
+    coords 1 7.0 16.0 0.0
+    coords 2 7.0 26.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 21.0 0.0
+    coords 5 25.0 6.0 0.0
+    coords 6 25.0 16.0 0.0
+    coords 7 25.0 26.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0911-1_L
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 5.0 0.0
+    coords 4 25.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0911-1_R
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 25.0 0.0
+    coords 2 7.0 27.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 25.0 5.0 0.0
+    coords 6 25.0 25.0 0.0
+    coords 7 25.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0911-2_L
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 5.0 0.0
+    coords 4 25.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0911-2_R
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 23.0 0.0
+    coords 2 7.0 27.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 25.0 5.0 0.0
+    coords 6 25.0 23.0 0.0
+    coords 7 25.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0911-3_L
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 5.0 0.0
+    coords 4 25.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0911-3_R
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 21.0 0.0
+    coords 2 7.0 27.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 25.0 5.0 0.0
+    coords 6 25.0 21.0 0.0
+    coords 7 25.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0911-4_L
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 5.0 0.0
+    coords 4 25.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0911-4_R
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 19.0 0.0
+    coords 2 7.0 27.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 25.0 5.0 0.0
+    coords 6 25.0 19.0 0.0
+    coords 7 25.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0911-5_L
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 5.0 0.0
+    coords 4 25.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0911-5_R
+    name
+    coords 0 7.0 5.0 0.0
+    coords 1 7.0 17.0 0.0
+    coords 2 7.0 27.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 25.0 5.0 0.0
+    coords 6 25.0 17.0 0.0
+    coords 7 25.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0912-1_L
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 4.0 0.0
+    coords 4 25.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0912-1_R
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 26.0 0.0
+    coords 2 7.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 25.0 4.0 0.0
+    coords 6 25.0 26.0 0.0
+    coords 7 25.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0912-2_L
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 4.0 0.0
+    coords 4 25.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0912-2_R
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 24.0 0.0
+    coords 2 7.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 25.0 4.0 0.0
+    coords 6 25.0 24.0 0.0
+    coords 7 25.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0912-3_L
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 4.0 0.0
+    coords 4 25.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0912-3_R
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 22.0 0.0
+    coords 2 7.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 25.0 4.0 0.0
+    coords 6 25.0 22.0 0.0
+    coords 7 25.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0912-4_L
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 4.0 0.0
+    coords 4 25.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0912-4_R
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 20.0 0.0
+    coords 2 7.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 25.0 4.0 0.0
+    coords 6 25.0 20.0 0.0
+    coords 7 25.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0912-5_L
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 4.0 0.0
+    coords 4 25.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0912-5_R
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 18.0 0.0
+    coords 2 7.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 25.0 4.0 0.0
+    coords 6 25.0 18.0 0.0
+    coords 7 25.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-0912-6_L
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 25.0 4.0 0.0
+    coords 4 25.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-0912-6_R
+    name
+    coords 0 7.0 4.0 0.0
+    coords 1 7.0 16.0 0.0
+    coords 2 7.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 25.0 4.0 0.0
+    coords 6 25.0 16.0 0.0
+    coords 7 25.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1011-1_L
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 5.0 0.0
+    coords 4 26.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1011-1_R
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 25.0 0.0
+    coords 2 6.0 27.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 26.0 5.0 0.0
+    coords 6 26.0 25.0 0.0
+    coords 7 26.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1011-2_L
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 5.0 0.0
+    coords 4 26.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1011-2_R
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 23.0 0.0
+    coords 2 6.0 27.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 26.0 5.0 0.0
+    coords 6 26.0 23.0 0.0
+    coords 7 26.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1011-3_L
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 5.0 0.0
+    coords 4 26.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1011-3_R
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 21.0 0.0
+    coords 2 6.0 27.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 26.0 5.0 0.0
+    coords 6 26.0 21.0 0.0
+    coords 7 26.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1011-4_L
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 5.0 0.0
+    coords 4 26.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1011-4_R
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 19.0 0.0
+    coords 2 6.0 27.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 26.0 5.0 0.0
+    coords 6 26.0 19.0 0.0
+    coords 7 26.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1011-5_L
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 27.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 5.0 0.0
+    coords 4 26.0 27.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1011-5_R
+    name
+    coords 0 6.0 5.0 0.0
+    coords 1 6.0 17.0 0.0
+    coords 2 6.0 27.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 26.0 5.0 0.0
+    coords 6 26.0 17.0 0.0
+    coords 7 26.0 27.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1012-1_L
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 4.0 0.0
+    coords 4 26.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1012-1_R
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 26.0 0.0
+    coords 2 6.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 26.0 4.0 0.0
+    coords 6 26.0 26.0 0.0
+    coords 7 26.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1012-2_L
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 4.0 0.0
+    coords 4 26.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1012-2_R
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 24.0 0.0
+    coords 2 6.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 26.0 4.0 0.0
+    coords 6 26.0 24.0 0.0
+    coords 7 26.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1012-3_L
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 4.0 0.0
+    coords 4 26.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1012-3_R
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 22.0 0.0
+    coords 2 6.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 26.0 4.0 0.0
+    coords 6 26.0 22.0 0.0
+    coords 7 26.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1012-4_L
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 4.0 0.0
+    coords 4 26.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1012-4_R
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 20.0 0.0
+    coords 2 6.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 26.0 4.0 0.0
+    coords 6 26.0 20.0 0.0
+    coords 7 26.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1012-5_L
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 4.0 0.0
+    coords 4 26.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1012-5_R
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 18.0 0.0
+    coords 2 6.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 26.0 4.0 0.0
+    coords 6 26.0 18.0 0.0
+    coords 7 26.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1012-6_L
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 26.0 4.0 0.0
+    coords 4 26.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1012-6_R
+    name
+    coords 0 6.0 4.0 0.0
+    coords 1 6.0 16.0 0.0
+    coords 2 6.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 26.0 4.0 0.0
+    coords 6 26.0 16.0 0.0
+    coords 7 26.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1112-1_L
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 27.0 4.0 0.0
+    coords 4 27.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1112-1_R
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 26.0 0.0
+    coords 2 5.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 27.0 4.0 0.0
+    coords 6 27.0 26.0 0.0
+    coords 7 27.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1112-2_L
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 27.0 4.0 0.0
+    coords 4 27.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1112-2_R
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 24.0 0.0
+    coords 2 5.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 27.0 4.0 0.0
+    coords 6 27.0 24.0 0.0
+    coords 7 27.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1112-3_L
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 27.0 4.0 0.0
+    coords 4 27.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1112-3_R
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 22.0 0.0
+    coords 2 5.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 27.0 4.0 0.0
+    coords 6 27.0 22.0 0.0
+    coords 7 27.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1112-4_L
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 27.0 4.0 0.0
+    coords 4 27.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1112-4_R
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 20.0 0.0
+    coords 2 5.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 27.0 4.0 0.0
+    coords 6 27.0 20.0 0.0
+    coords 7 27.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1112-5_L
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 27.0 4.0 0.0
+    coords 4 27.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1112-5_R
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 18.0 0.0
+    coords 2 5.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 27.0 4.0 0.0
+    coords 6 27.0 18.0 0.0
+    coords 7 27.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1112-6_L
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 27.0 4.0 0.0
+    coords 4 27.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1112-6_R
+    name
+    coords 0 5.0 4.0 0.0
+    coords 1 5.0 16.0 0.0
+    coords 2 5.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 27.0 4.0 0.0
+    coords 6 27.0 16.0 0.0
+    coords 7 27.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1212-1_L
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 28.0 4.0 0.0
+    coords 4 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1212-1_R
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 26.0 0.0
+    coords 2 4.0 28.0 0.0
+    coords 3 16.0 15.0 0.0
+    coords 4 16.0 27.0 0.0
+    coords 5 28.0 4.0 0.0
+    coords 6 28.0 26.0 0.0
+    coords 7 28.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1212-2_L
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 28.0 4.0 0.0
+    coords 4 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1212-2_R
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 24.0 0.0
+    coords 2 4.0 28.0 0.0
+    coords 3 16.0 14.0 0.0
+    coords 4 16.0 26.0 0.0
+    coords 5 28.0 4.0 0.0
+    coords 6 28.0 24.0 0.0
+    coords 7 28.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1212-3_L
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 28.0 4.0 0.0
+    coords 4 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1212-3_R
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 22.0 0.0
+    coords 2 4.0 28.0 0.0
+    coords 3 16.0 13.0 0.0
+    coords 4 16.0 25.0 0.0
+    coords 5 28.0 4.0 0.0
+    coords 6 28.0 22.0 0.0
+    coords 7 28.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1212-4_L
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 28.0 4.0 0.0
+    coords 4 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1212-4_R
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 20.0 0.0
+    coords 2 4.0 28.0 0.0
+    coords 3 16.0 12.0 0.0
+    coords 4 16.0 24.0 0.0
+    coords 5 28.0 4.0 0.0
+    coords 6 28.0 20.0 0.0
+    coords 7 28.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1212-5_L
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 28.0 4.0 0.0
+    coords 4 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1212-5_R
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 18.0 0.0
+    coords 2 4.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 16.0 23.0 0.0
+    coords 5 28.0 4.0 0.0
+    coords 6 28.0 18.0 0.0
+    coords 7 28.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    A-1212-6_L
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 28.0 4.0 0.0
+    coords 4 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    A-1212-6_R
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 16.0 0.0
+    coords 2 4.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 28.0 4.0 0.0
+    coords 6 28.0 16.0 0.0
+    coords 7 28.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 3 o
+    point 4 o
+shape    B-0812-5_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    B-0812-5_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 18.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 11.0 0.0
+    coords 4 24.0 4.0 0.0
+    coords 5 24.0 18.0 0.0
+    coords 6 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 4
+    line 2 1 5
+    line 3 2 6
+    line 4 4 6
+    point 3 o
+shape    B-0812-6_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    B-0812-6_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 24.0 4.0 0.0
+    coords 5 24.0 16.0 0.0
+    coords 6 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 4
+    line 2 1 5
+    line 3 2 6
+    line 4 4 6
+    point 3 o
+shape    C-0307-1_L
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 9.0 0.0
+    coords 4 19.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0307-1_R
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 14.0 16.0 0.0
+    coords 3 15.0 9.0 0.0
+    coords 4 15.0 23.0 0.0
+    coords 5 17.0 16.0 0.0
+    coords 6 19.0 9.0 0.0
+    coords 7 19.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 o
+    point 5 o
+shape    C-0307-2_L
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 19.0 9.0 0.0
+    coords 4 19.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0307-2_R
+    name
+    coords 0 13.0 9.0 0.0
+    coords 1 13.0 23.0 0.0
+    coords 2 15.0 16.0 0.0
+    coords 3 17.0 9.0 0.0
+    coords 4 17.0 23.0 0.0
+    coords 5 17.25 23.0 0.0
+    coords 6 18.0 16.0 0.0
+    coords 7 19.0 9.0 0.0
+    coords 8 19.0 23.0 0.0
+
+    line 0 0 1
+    line 1 0 7
+    line 2 1 5
+    line 3 1 8
+    line 4 3 4
+    line 5 5 8
+    line 6 7 8
+    point 2 o
+    point 6 o
+shape    C-0812-1_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0812-1_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 9.0 16.0 0.0
+    coords 3 10.0 4.0 0.0
+    coords 4 10.0 28.0 0.0
+    coords 5 17.0 16.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 o
+    point 5 o
+shape    C-0812-2_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0812-2_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 10.0 16.0 0.0
+    coords 3 12.0 4.0 0.0
+    coords 4 12.0 28.0 0.0
+    coords 5 18.0 16.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 o
+    point 5 o
+shape    C-0812-3_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0812-3_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 11.0 16.0 0.0
+    coords 3 14.0 4.0 0.0
+    coords 4 14.0 28.0 0.0
+    coords 5 19.0 16.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 o
+    point 5 o
+shape    C-0812-4_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0812-4_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 12.0 16.0 0.0
+    coords 3 16.0 4.0 0.0
+    coords 4 16.0 28.0 0.0
+    coords 5 20.0 16.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 o
+    point 5 o
+shape    C-0812-5_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0812-5_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 13.0 16.0 0.0
+    coords 3 18.0 4.0 0.0
+    coords 4 18.0 28.0 0.0
+    coords 5 20.7 16.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 o
+    point 5 o
+shape    C-0812-6_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0812-6_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 14.0 16.0 0.0
+    coords 3 20.0 4.0 0.0
+    coords 4 20.0 28.0 0.0
+    coords 5 22.0 16.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 o
+    point 5 o
+shape    C-0812-7_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    C-0812-7_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 15.5 16.0 0.0
+    coords 3 22.0 4.0 0.0
+    coords 4 22.0 28.0 0.0
+    coords 5 23.0 16.0 0.0
+    coords 6 24.0 4.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 o
+    point 5 o
+shape    D_L
+    name
+    coords 0 16.0 16.0 0.0
+
+    point 0 o
+shape    D_R
+    name
+shape    E_L
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 20.0 4.0 0.0
+    coords 3 20.0 16.0 0.0
+    coords 4 20.0 28.0 0.0
+    coords 5 28.0 16.0 0.0
+    coords 6 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 6
+    line 3 2 4
+    line 4 3 5
+    line 5 5 6
+shape    E_R
+    name
+    coords 0 4.0 4.0 0.0
+    coords 1 4.0 28.0 0.0
+    coords 2 20.0 4.0 0.0
+    coords 3 20.0 16.0 0.0
+    coords 4 28.0 16.0 0.0
+    coords 5 28.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 5
+    line 3 2 3
+    line 4 3 4
+    line 5 4 5
+shape    F1_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 16.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    F1_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 24.0 4.0 0.0
+    coords 3 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    F2_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 20.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 20.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    F2_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 24.0 4.0 0.0
+    coords 3 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    F3_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 20.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 20.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    F3_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 24.0 4.0 0.0
+    coords 3 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    F_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 16.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    F_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 24.0 4.0 0.0
+    coords 3 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 3
+    line 3 2 3
+shape    G1_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 16.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    G1_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 20.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 20.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    G_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 16.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    G_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 20.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 20.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+shape    H1_L
+    name
+    coords 0 16.0 16.0 0.0
+
+    point 0 f
+shape    H1_R
+    name
+    coords 0 16.0 16.0 0.0
+
+    point 0 f2
+shape    H_L
+    name
+    coords 0 16.0 16.0 0.0
+
+    point 0 f
+shape    H_R
+    name
+    coords 0 16.0 16.0 0.0
+
+    point 0 f1
+shape    IS-1
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 28.0 0.0
+    coords 2 16.0 16.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 28.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 o
+shape    I_L
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 16.0 10.0 0.0
+    coords 4 16.0 22.0 0.0
+    coords 5 24.0 4.0 0.0
+    coords 6 24.0 16.0 0.0
+    coords 7 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 4 f1
+    point 3 f2
+shape    I_R
+    name
+    coords 0 8.0 4.0 0.0
+    coords 1 8.0 16.0 0.0
+    coords 2 8.0 28.0 0.0
+    coords 3 24.0 4.0 0.0
+    coords 4 24.0 16.0 0.0
+    coords 5 24.0 28.0 0.0
+
+    line 0 0 2
+    line 1 0 3
+    line 2 1 4
+    line 3 2 5
+    line 4 3 5
+
+initial    IS-1
+rule    A-0105-1    A-0105-1_L -> A-0105-1_R
+rule    A-0105-2    A-0105-2_L -> A-0105-2_R
+rule    A-0107-1    A-0107-1_L -> A-0107-1_R
+rule    A-0107-2    A-0107-2_L -> A-0107-2_R
+rule    A-0107-3    A-0107-3_L -> A-0107-3_R
+rule    A-0108-1    A-0108-1_L -> A-0108-1_R
+rule    A-0108-2    A-0108-2_L -> A-0108-2_R
+rule    A-0108-3    A-0108-3_L -> A-0108-3_R
+rule    A-0108-4    A-0108-4_L -> A-0108-4_R
+rule    A-0109-1    A-0109-1_L -> A-0109-1_R
+rule    A-0109-2    A-0109-2_L -> A-0109-2_R
+rule    A-0109-3    A-0109-3_L -> A-0109-3_R
+rule    A-0109-4    A-0109-4_L -> A-0109-4_R
+rule    A-0110-1    A-0110-1_L -> A-0110-1_R
+rule    A-0110-2    A-0110-2_L -> A-0110-2_R
+rule    A-0110-3    A-0110-3_L -> A-0110-3_R
+rule    A-0110-4    A-0110-4_L -> A-0110-4_R
+rule    A-0110-5    A-0110-5_L -> A-0110-5_R
+rule    A-0111-1    A-0111-1_L -> A-0111-1_R
+rule    A-0111-2    A-0111-2_L -> A-0111-2_R
+rule    A-0111-3    A-0111-3_L -> A-0111-3_R
+rule    A-0111-4    A-0111-4_L -> A-0111-4_R
+rule    A-0111-5    A-0111-5_L -> A-0111-5_R
+rule    A-0112-1    A-0112-1_L -> A-0112-1_R
+rule    A-0112-2    A-0112-2_L -> A-0112-2_R
+rule    A-0112-3    A-0112-3_L -> A-0112-3_R
+rule    A-0112-4    A-0112-4_L -> A-0112-4_R
+rule    A-0112-5    A-0112-5_L -> A-0112-5_R
+rule    A-0112-6    A-0112-6_L -> A-0112-6_R
+rule    A-0205-1    A-0205-1_L -> A-0205-1_R
+rule    A-0205-2    A-0205-2_L -> A-0205-2_R
+rule    A-0207-1    A-0207-1_L -> A-0207-1_R
+rule    A-0207-2    A-0207-2_L -> A-0207-2_R
+rule    A-0207-3    A-0207-3_L -> A-0207-3_R
+rule    A-0209-1    A-0209-1_L -> A-0209-1_R
+rule    A-0209-2    A-0209-2_L -> A-0209-2_R
+rule    A-0209-3    A-0209-3_L -> A-0209-3_R
+rule    A-0209-4    A-0209-4_L -> A-0209-4_R
+rule    A-0210-1    A-0210-1_L -> A-0210-1_R
+rule    A-0210-2    A-0210-2_L -> A-0210-2_R
+rule    A-0210-3    A-0210-3_L -> A-0210-3_R
+rule    A-0210-4    A-0210-4_L -> A-0210-4_R
+rule    A-0210-5    A-0210-5_L -> A-0210-5_R
+rule    A-0211-1    A-0211-1_L -> A-0211-1_R
+rule    A-0211-2    A-0211-2_L -> A-0211-2_R
+rule    A-0211-3    A-0211-3_L -> A-0211-3_R
+rule    A-0211-4    A-0211-4_L -> A-0211-4_R
+rule    A-0211-5    A-0211-5_L -> A-0211-5_R
+rule    A-0212-1    A-0212-1_L -> A-0212-1_R
+rule    A-0212-2    A-0212-2_L -> A-0212-2_R
+rule    A-0212-3    A-0212-3_L -> A-0212-3_R
+rule    A-0212-4    A-0212-4_L -> A-0212-4_R
+rule    A-0212-5    A-0212-5_L -> A-0212-5_R
+rule    A-0212-6    A-0212-6_L -> A-0212-6_R
+rule    A-0305-1    A-0305-1_L -> A-0305-1_R
+rule    A-0305-2    A-0305-2_L -> A-0305-2_R
+rule    A-0307-1    A-0307-1_L -> A-0307-1_R
+rule    A-0307-2    A-0307-2_L -> A-0307-2_R
+rule    A-0307-3    A-0307-3_L -> A-0307-3_R
+rule    A-0308-1    A-0308-1_L -> A-0308-1_R
+rule    A-0308-2    A-0308-2_L -> A-0308-2_R
+rule    A-0308-3    A-0308-3_L -> A-0308-3_R
+rule    A-0308-4    A-0308-4_L -> A-0308-4_R
+rule    A-0310-1    A-0310-1_L -> A-0310-1_R
+rule    A-0310-2    A-0310-2_L -> A-0310-2_R
+rule    A-0310-3    A-0310-3_L -> A-0310-3_R
+rule    A-0310-4    A-0310-4_L -> A-0310-4_R
+rule    A-0310-5    A-0310-5_L -> A-0310-5_R
+rule    A-0311-1    A-0311-1_L -> A-0311-1_R
+rule    A-0311-2    A-0311-2_L -> A-0311-2_R
+rule    A-0311-3    A-0311-3_L -> A-0311-3_R
+rule    A-0311-4    A-0311-4_L -> A-0311-4_R
+rule    A-0311-5    A-0311-5_L -> A-0311-5_R
+rule    A-0312-1    A-0312-1_L -> A-0312-1_R
+rule    A-0312-2    A-0312-2_L -> A-0312-2_R
+rule    A-0312-3    A-0312-3_L -> A-0312-3_R
+rule    A-0312-4    A-0312-4_L -> A-0312-4_R
+rule    A-0312-5    A-0312-5_L -> A-0312-5_R
+rule    A-0312-6    A-0312-6_L -> A-0312-6_R
+rule    A-0405-1    A-0405-1_L -> A-0405-1_R
+rule    A-0405-2    A-0405-2_L -> A-0405-2_R
+rule    A-0407-1    A-0407-1_L -> A-0407-1_R
+rule    A-0407-2    A-0407-2_L -> A-0407-2_R
+rule    A-0407-3    A-0407-3_L -> A-0407-3_R
+rule    A-0409-1    A-0409-1_L -> A-0409-1_R
+rule    A-0409-2    A-0409-2_L -> A-0409-2_R
+rule    A-0409-3    A-0409-3_L -> A-0409-3_R
+rule    A-0409-4    A-0409-4_L -> A-0409-4_R
+rule    A-0410-1    A-0410-1_L -> A-0410-1_R
+rule    A-0410-2    A-0410-2_L -> A-0410-2_R
+rule    A-0410-3    A-0410-3_L -> A-0410-3_R
+rule    A-0410-4    A-0410-4_L -> A-0410-4_R
+rule    A-0411-1    A-0411-1_L -> A-0411-1_R
+rule    A-0411-2    A-0411-2_L -> A-0411-2_R
+rule    A-0411-3    A-0411-3_L -> A-0411-3_R
+rule    A-0411-4    A-0411-4_L -> A-0411-4_R
+rule    A-0411-5    A-0411-5_L -> A-0411-5_R
+rule    A-0412-1    A-0412-1_L -> A-0412-1_R
+rule    A-0412-2    A-0412-2_L -> A-0412-2_R
+rule    A-0412-3    A-0412-3_L -> A-0412-3_R
+rule    A-0412-4    A-0412-4_L -> A-0412-4_R
+rule    A-0412-5    A-0412-5_L -> A-0412-5_R
+rule    A-0412-6    A-0412-6_L -> A-0412-6_R
+rule    A-0506-1    A-0506-1_L -> A-0506-1_R
+rule    A-0506-2    A-0506-2_L -> A-0506-2_R
+rule    A-0506-3    A-0506-3_L -> A-0506-3_R
+rule    A-0507-1    A-0507-1_L -> A-0507-1_R
+rule    A-0507-2    A-0507-2_L -> A-0507-2_R
+rule    A-0507-3    A-0507-3_L -> A-0507-3_R
+rule    A-0508-1    A-0508-1_L -> A-0508-1_R
+rule    A-0508-2    A-0508-2_L -> A-0508-2_R
+rule    A-0508-3    A-0508-3_L -> A-0508-3_R
+rule    A-0508-4    A-0508-4_L -> A-0508-4_R
+rule    A-0509-1    A-0509-1_L -> A-0509-1_R
+rule    A-0509-2    A-0509-2_L -> A-0509-2_R
+rule    A-0509-3    A-0509-3_L -> A-0509-3_R
+rule    A-0509-4    A-0509-4_L -> A-0509-4_R
+rule    A-0511-1    A-0511-1_L -> A-0511-1_R
+rule    A-0511-2    A-0511-2_L -> A-0511-2_R
+rule    A-0511-3    A-0511-3_L -> A-0511-3_R
+rule    A-0511-4    A-0511-4_L -> A-0511-4_R
+rule    A-0511-5    A-0511-5_L -> A-0511-5_R
+rule    A-0512-1    A-0512-1_L -> A-0512-1_R
+rule    A-0512-2    A-0512-2_L -> A-0512-2_R
+rule    A-0512-3    A-0512-3_L -> A-0512-3_R
+rule    A-0512-4    A-0512-4_L -> A-0512-4_R
+rule    A-0512-5    A-0512-5_L -> A-0512-5_R
+rule    A-0512-6    A-0512-6_L -> A-0512-6_R
+rule    A-0607-1    A-0607-1_L -> A-0607-1_R
+rule    A-0607-2    A-0607-2_L -> A-0607-2_R
+rule    A-0607-3    A-0607-3_L -> A-0607-3_R
+rule    A-0610-1    A-0610-1_L -> A-0610-1_R
+rule    A-0610-2    A-0610-2_L -> A-0610-2_R
+rule    A-0610-3    A-0610-3_L -> A-0610-3_R
+rule    A-0610-4    A-0610-4_L -> A-0610-4_R
+rule    A-0610-5    A-0610-5_L -> A-0610-5_R
+rule    A-0611-1    A-0611-1_L -> A-0611-1_R
+rule    A-0611-2    A-0611-2_L -> A-0611-2_R
+rule    A-0611-3    A-0611-3_L -> A-0611-3_R
+rule    A-0611-4    A-0611-4_L -> A-0611-4_R
+rule    A-0611-5    A-0611-5_L -> A-0611-5_R
+rule    A-0612-1    A-0612-1_L -> A-0612-1_R
+rule    A-0612-2    A-0612-2_L -> A-0612-2_R
+rule    A-0612-3    A-0612-3_L -> A-0612-3_R
+rule    A-0612-4    A-0612-4_L -> A-0612-4_R
+rule    A-0612-5    A-0612-5_L -> A-0612-5_R
+rule    A-0708-1    A-0708-1_L -> A-0708-1_R
+rule    A-0708-2    A-0708-2_L -> A-0708-2_R
+rule    A-0708-3    A-0708-3_L -> A-0708-3_R
+rule    A-0708-4    A-0708-4_L -> A-0708-4_R
+rule    A-0709-1    A-0709-1_L -> A-0709-1_R
+rule    A-0709-2    A-0709-2_L -> A-0709-2_R
+rule    A-0709-3    A-0709-3_L -> A-0709-3_R
+rule    A-0709-4    A-0709-4_L -> A-0709-4_R
+rule    A-0710-1    A-0710-1_L -> A-0710-1_R
+rule    A-0710-2    A-0710-2_L -> A-0710-2_R
+rule    A-0710-3    A-0710-3_L -> A-0710-3_R
+rule    A-0710-4    A-0710-4_L -> A-0710-4_R
+rule    A-0710-5    A-0710-5_L -> A-0710-5_R
+rule    A-0711-1    A-0711-1_L -> A-0711-1_R
+rule    A-0711-2    A-0711-2_L -> A-0711-2_R
+rule    A-0711-3    A-0711-3_L -> A-0711-3_R
+rule    A-0711-4    A-0711-4_L -> A-0711-4_R
+rule    A-0711-5    A-0711-5_L -> A-0711-5_R
+rule    A-0712-1    A-0712-1_L -> A-0712-1_R
+rule    A-0712-2    A-0712-2_L -> A-0712-2_R
+rule    A-0712-3    A-0712-3_L -> A-0712-3_R
+rule    A-0712-4    A-0712-4_L -> A-0712-4_R
+rule    A-0712-5    A-0712-5_L -> A-0712-5_R
+rule    A-0712-6    A-0712-6_L -> A-0712-6_R
+rule    A-0809-1    A-0809-1_L -> A-0809-1_R
+rule    A-0809-2    A-0809-2_L -> A-0809-2_R
+rule    A-0809-3    A-0809-3_L -> A-0809-3_R
+rule    A-0809-4    A-0809-4_L -> A-0809-4_R
+rule    A-0810-1    A-0810-1_L -> A-0810-1_R
+rule    A-0810-2    A-0810-2_L -> A-0810-2_R
+rule    A-0810-3    A-0810-3_L -> A-0810-3_R
+rule    A-0810-4    A-0810-4_L -> A-0810-4_R
+rule    A-0810-5    A-0810-5_L -> A-0810-5_R
+rule    A-0811-1    A-0811-1_L -> A-0811-1_R
+rule    A-0811-2    A-0811-2_L -> A-0811-2_R
+rule    A-0811-3    A-0811-3_L -> A-0811-3_R
+rule    A-0811-4    A-0811-4_L -> A-0811-4_R
+rule    A-0811-5    A-0811-5_L -> A-0811-5_R
+rule    A-0812-1    A-0812-1_L -> A-0812-1_R
+rule    A-0812-2    A-0812-2_L -> A-0812-2_R
+rule    A-0812-3    A-0812-3_L -> A-0812-3_R
+rule    A-0812-4    A-0812-4_L -> A-0812-4_R
+rule    A-0812-5    A-0812-5_L -> A-0812-5_R
+rule    A-0812-6    A-0812-6_L -> A-0812-6_R
+rule    A-0910-1    A-0910-1_L -> A-0910-1_R
+rule    A-0910-2    A-0910-2_L -> A-0910-2_R
+rule    A-0910-3    A-0910-3_L -> A-0910-3_R
+rule    A-0910-4    A-0910-4_L -> A-0910-4_R
+rule    A-0910-5    A-0910-5_L -> A-0910-5_R
+rule    A-0911-1    A-0911-1_L -> A-0911-1_R
+rule    A-0911-2    A-0911-2_L -> A-0911-2_R
+rule    A-0911-3    A-0911-3_L -> A-0911-3_R
+rule    A-0911-4    A-0911-4_L -> A-0911-4_R
+rule    A-0911-5    A-0911-5_L -> A-0911-5_R
+rule    A-0912-1    A-0912-1_L -> A-0912-1_R
+rule    A-0912-2    A-0912-2_L -> A-0912-2_R
+rule    A-0912-3    A-0912-3_L -> A-0912-3_R
+rule    A-0912-4    A-0912-4_L -> A-0912-4_R
+rule    A-0912-5    A-0912-5_L -> A-0912-5_R
+rule    A-0912-6    A-0912-6_L -> A-0912-6_R
+rule    A-1011-1    A-1011-1_L -> A-1011-1_R
+rule    A-1011-2    A-1011-2_L -> A-1011-2_R
+rule    A-1011-3    A-1011-3_L -> A-1011-3_R
+rule    A-1011-4    A-1011-4_L -> A-1011-4_R
+rule    A-1011-5    A-1011-5_L -> A-1011-5_R
+rule    A-1012-1    A-1012-1_L -> A-1012-1_R
+rule    A-1012-2    A-1012-2_L -> A-1012-2_R
+rule    A-1012-3    A-1012-3_L -> A-1012-3_R
+rule    A-1012-4    A-1012-4_L -> A-1012-4_R
+rule    A-1012-5    A-1012-5_L -> A-1012-5_R
+rule    A-1012-6    A-1012-6_L -> A-1012-6_R
+rule    A-1112-1    A-1112-1_L -> A-1112-1_R
+rule    A-1112-2    A-1112-2_L -> A-1112-2_R
+rule    A-1112-3    A-1112-3_L -> A-1112-3_R
+rule    A-1112-4    A-1112-4_L -> A-1112-4_R
+rule    A-1112-5    A-1112-5_L -> A-1112-5_R
+rule    A-1112-6    A-1112-6_L -> A-1112-6_R
+rule    A-1212-1    A-1212-1_L -> A-1212-1_R
+rule    A-1212-2    A-1212-2_L -> A-1212-2_R
+rule    A-1212-3    A-1212-3_L -> A-1212-3_R
+rule    A-1212-4    A-1212-4_L -> A-1212-4_R
+rule    A-1212-5    A-1212-5_L -> A-1212-5_R
+rule    A-1212-6    A-1212-6_L -> A-1212-6_R
+rule    B-0812-5    B-0812-5_L -> B-0812-5_R
+rule    B-0812-6    B-0812-6_L -> B-0812-6_R
+rule    C-0307-1    C-0307-1_L -> C-0307-1_R
+rule    C-0307-2    C-0307-2_L -> C-0307-2_R
+rule    C-0812-1    C-0812-1_L -> C-0812-1_R
+rule    C-0812-2    C-0812-2_L -> C-0812-2_R
+rule    C-0812-3    C-0812-3_L -> C-0812-3_R
+rule    C-0812-4    C-0812-4_L -> C-0812-4_R
+rule    C-0812-5    C-0812-5_L -> C-0812-5_R
+rule    C-0812-6    C-0812-6_L -> C-0812-6_R
+rule    C-0812-7    C-0812-7_L -> C-0812-7_R
+rule    D    D_L -> D_R
+rule    E    E_L -> E_R
+rule    F    F_L -> F_R
+rule    F1    F1_L -> F1_R
+rule    F2    F2_L -> F2_R
+rule    F3    F3_L -> F3_R
+rule    G    G_L -> G_R
+rule    G1    G1_L -> G1_R
+rule    H    H_L -> H_R
+rule    H1    H1_L -> H1_R
+rule    I    I_L -> I_R

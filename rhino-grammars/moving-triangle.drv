@@ -1,0 +1,153 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    initial_shape_1
+    name
+    coords 0 10.0 10.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 22.0 10.0 0.0
+    coords 3 22.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 2
+    line 3 2 3
+shape    rule_1_L
+    name
+    coords 0 10.0 10.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 16.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 2
+shape    rule_1_R
+    name
+    coords 0 16.0 10.0 0.0
+    coords 1 16.0 22.0 0.0
+    coords 2 22.0 16.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 2
+
+initial    initial_shape_1
+rule    rule_1    rule_1_L -> rule_1_R
+# derivation record
+shape    initial_shape_1
+    name 
+    coords 0 10 10 0
+    coords 1 10 22 0
+    coords 2 22 10 0
+    coords 3 22 22 0
+    coords 4 16 16 0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 2
+    line 3 2 3
+rule    rule_1
+shape    initial_shape_1_rule_1_1
+    name 
+    coords 2 22 10 0
+    coords 3 22 22 0
+    coords 4 16 16 0
+    coords 5 16 10 0
+    coords 6 22 16 0
+    coords 7 16 22 0
+    coords 8 19 13 0
+    coords 9 19 19 0
+
+    line 3 2 3
+    line 4 3 4
+    line 5 2 4
+    line 6 5 6
+    line 7 5 7
+    line 8 7 6
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1
+    name 
+    coords 10 10 16 0
+    coords 4 16 16 0
+    coords 5 16 10 0
+    coords 6 22 16 0
+    coords 7 16 22 0
+    coords 8 19 13 0
+    coords 9 19 19 0
+
+    line 10 7 10
+    line 6 5 6
+    line 7 5 7
+    line 8 7 6
+    line 9 5 10
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_1_2
+    name 
+    coords 10 10 16 0
+    coords 11 22 10 0
+    coords 12 28 16 0
+    coords 13 22 22 0
+    coords 4 16 16 0
+    coords 5 16 10 0
+    coords 7 16 22 0
+    coords 8 19 13 0
+    coords 9 19 19 0
+
+    line 10 7 10
+    line 11 11 12
+    line 12 11 13
+    line 13 13 12
+    line 9 5 10
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_1_2_rule_1_1
+    name 
+    coords 10 10 16 0
+    coords 14 28 10 0
+    coords 15 34 16 0
+    coords 16 28 22 0
+    coords 4 16 16 0
+    coords 5 16 10 0
+    coords 7 16 22 0
+    coords 8 19 13 0
+    coords 9 19 19 0
+
+    line 10 7 10
+    line 14 14 15
+    line 15 14 16
+    line 16 16 15
+    line 9 5 10
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_1_2_rule_1_1_rule_1_1
+    name 
+    coords 10 10 16 0
+    coords 17 34 10 0
+    coords 18 40 16 0
+    coords 19 34 22 0
+    coords 4 16 16 0
+    coords 5 16 10 0
+    coords 7 16 22 0
+    coords 8 19 13 0
+    coords 9 19 19 0
+
+    line 10 7 10
+    line 17 17 18
+    line 18 17 19
+    line 19 19 18
+    line 9 5 10
+rule    rule_1
+shape    initial_shape_1_rule_1_1_rule_1_1_rule_1_2_rule_1_1_rule_1_1_rule_1_1
+    name 
+    coords 10 10 16 0
+    coords 20 40 10 0
+    coords 21 46 16 0
+    coords 22 40 22 0
+    coords 4 16 16 0
+    coords 5 16 10 0
+    coords 7 16 22 0
+    coords 8 19 13 0
+    coords 9 19 19 0
+
+    line 10 7 10
+    line 20 20 21
+    line 21 20 22
+    line 22 22 21
+    line 9 5 10

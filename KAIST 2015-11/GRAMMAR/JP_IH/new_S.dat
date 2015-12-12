@@ -1,0 +1,187 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    initial_shape_1
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 10.0 0.0
+    coords 2 10.0 15.0 0.0
+    coords 3 15.0 5.0 0.0
+    coords 4 15.0 10.0 0.0
+    coords 5 15.0 15.0 0.0
+
+    line 0 0 3
+    line 1 1 2
+    line 2 1 4
+    line 3 2 5
+    line 4 3 4
+    point 2 F
+shape    rule_1_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 10.0 0.0
+    coords 2 10.0 15.0 0.0
+    coords 3 15.0 5.0 0.0
+    coords 4 15.0 10.0 0.0
+    coords 5 15.0 15.0 0.0
+
+    line 0 0 3
+    line 1 1 2
+    line 2 1 4
+    line 3 2 5
+    line 4 3 4
+    point 2 F
+shape    rule_1_R
+    name
+    coords 0 9.92893218813 14.0 0.0
+    coords 1 10.0 5.0 0.0
+    coords 2 10.0 10.0 0.0
+    coords 3 10.0 15.0 0.0
+    coords 4 13.4644660941 10.4644660941 0.0
+    coords 5 13.4644660941 17.5355339059 0.0
+    coords 6 15.0 5.0 0.0
+    coords 7 15.0 10.0 0.0
+    coords 8 15.0 15.0 0.0
+    coords 9 17.0 14.0 0.0
+    coords 10 17.0 21.0710678119 0.0
+    coords 11 20.5355339059 17.5355339059 0.0
+
+    line 0 0 4
+    line 1 1 6
+    line 2 2 3
+    line 3 2 7
+    line 4 3 8
+    line 5 4 9
+    line 6 5 9
+    line 7 5 10
+    line 8 6 7
+    line 9 10 11
+    point 10 F
+shape    rule_2_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 10.0 0.0
+    coords 2 10.0 15.0 0.0
+    coords 3 15.0 5.0 0.0
+    coords 4 15.0 10.0 0.0
+    coords 5 15.0 15.0 0.0
+
+    line 0 0 3
+    line 1 1 2
+    line 2 1 4
+    line 3 2 5
+    line 4 3 4
+    point 2 F
+shape    rule_2_R
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 10.0 0.0
+    coords 2 10.0 15.0 0.0
+    coords 3 10.4644660941 11.4644660941 0.0
+    coords 4 14.0 7.92893218813 0.0
+    coords 5 14.0 15.0 0.0
+    coords 6 15.0 5.0 0.0
+    coords 7 15.0 10.0 0.0
+    coords 8 15.0 15.0 0.0
+    coords 9 17.5355339059 4.39339828220 0.0
+    coords 10 17.5355339059 11.4644660941 0.0
+    coords 11 21.0710678119 7.92893218813 0.0
+
+    line 0 0 6
+    line 1 1 2
+    line 2 1 7
+    line 3 2 8
+    line 4 3 4
+    line 5 3 5
+    line 6 4 10
+    line 7 6 7
+    line 8 9 11
+    line 9 10 11
+    point 3 F
+shape    rule_3_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 10.0 0.0
+    coords 2 10.0 15.0 0.0
+    coords 3 15.0 5.0 0.0
+    coords 4 15.0 10.0 0.0
+    coords 5 15.0 15.0 0.0
+
+    line 0 0 3
+    line 1 1 2
+    line 2 1 4
+    line 3 2 5
+    line 4 3 4
+    point 2 F
+shape    rule_3_R
+    name
+    coords 0 3.92893218813 8.0 0.0
+    coords 1 7.46446609407 4.46446609407 0.0
+    coords 2 7.46446609407 11.5355339059 0.0
+    coords 3 10.0 5.0 0.0
+    coords 4 10.0 10.0 0.0
+    coords 5 10.0 15.0 0.0
+    coords 6 11.0 8.0 0.0
+    coords 7 11.0 15.0710678119 0.0
+    coords 8 14.5355339059 11.5355339059 0.0
+    coords 9 15.0 5.0 0.0
+    coords 10 15.0 10.0 0.0
+    coords 11 15.0 15.0 0.0
+
+    line 0 0 1
+    line 1 1 6
+    line 2 2 6
+    line 3 2 7
+    line 4 3 9
+    line 5 4 5
+    line 6 4 10
+    line 7 5 11
+    line 8 7 8
+    line 9 9 10
+    point 7 F
+shape    rule_4_L
+    name
+    coords 0 10.0 5.0 0.0
+    coords 1 10.0 10.0 0.0
+    coords 2 10.0 15.0 0.0
+    coords 3 15.0 5.0 0.0
+    coords 4 15.0 10.0 0.0
+    coords 5 15.0 15.0 0.0
+
+    line 0 0 3
+    line 1 1 2
+    line 2 1 4
+    line 3 2 5
+    line 4 3 4
+    point 2 F
+shape    rule_4_R
+    name
+    coords 0 3.92893218813 17.0 0.0
+    coords 1 7.46446609407 13.4644660941 0.0
+    coords 2 7.46446609407 20.5355339059 0.0
+    coords 3 10.0 5.0 0.0
+    coords 4 10.0 10.0 0.0
+    coords 5 10.0 15.0 0.0
+    coords 6 11.0 9.92893218813 0.0
+    coords 7 11.0 17.0 0.0
+    coords 8 14.5355339059 13.4644660941 0.0
+    coords 9 15.0 5.0 0.0
+    coords 10 15.0 10.0 0.0
+    coords 11 15.0 15.0 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 7
+    line 3 3 9
+    line 4 4 5
+    line 5 4 10
+    line 6 5 11
+    line 7 6 8
+    line 8 7 8
+    line 9 9 10
+    point 0 F
+
+initial    initial_shape_1
+rule    rule_1    rule_1_L -> rule_1_R
+rule    rule_2    rule_2_L -> rule_2_R
+rule    rule_3    rule_3_L -> rule_3_R
+rule    rule_4    rule_4_L -> rule_4_R
