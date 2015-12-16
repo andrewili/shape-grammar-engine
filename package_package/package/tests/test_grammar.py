@@ -113,15 +113,12 @@ def test_set_up_subsequent_rule():              ##  done 08-06
     method_name = 'set_up_subsequent_rule'
     try_good_state()
 
-def test__set_up_rule():                        ##  done 08-06
+def test__set_up_rule():                        ##  done 12-16
     def try_good_args():
         try_name = 'good_args'
         g.Grammar.clear_all()
-        (   good_name, 
-            position
-        ) = (
-            'bock',
-            (20, 20, 0))
+        good_name = 'bock'
+        position = (20, 20, 0)
         actual_value = g.Grammar._set_up_rule(good_name, position)
         expected_value = good_name
         if not actual_value == expected_value:
@@ -449,7 +446,7 @@ def test_get_labeled_shape_names():
 # test__set_up_initial_shape()                    ##  done 08-06
 # test__set_up_first_rule()                       ##  done 08-06
 # test_set_up_subsequent_rule()                   ##  done 08-06 / manual
-# test__set_up_rule()                             ##  done 08-06
+# test__set_up_rule()                             ##  done 12-16
 # test_refresh_element_layer_names()
 # test__draw_initial_shape_layer_name()
 # test__extract_text_objects()                    ##  done 12-12
