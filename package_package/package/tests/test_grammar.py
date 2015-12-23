@@ -141,114 +141,28 @@ def set_up_grammar_3_shapes_3_rules():          ##  done 08-07
     method_name = 'set_up_grammar_3_shapes_3_rules'
     try_good_state()
 
-def test__extract_text_objects():               ##  12-12
-    def try_objects_yes_text():
-        try_name = 'try_objects_yes_text'
-        g.Grammar.set_up_grammar()
-        rs.AddText('text', (0,0,0))
-        objects = _get_objects()
-        text_objects = _get_text_objects()
-        actual_value = g.Grammar._extract_text_objects(objects)
-        expected_value = text_objects
+def test_change_dots_to_annotation_groups():          ##  here 12-20
+    def try_no_dots():
+        try_name = 'no_dots'
+        g.Grammar.clear_all()
+        actual_value = g.Grammar.change_dots_to_annotation_groups()
+        expected_value = 0
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_objects_no_text():
-        try_name = 'try_objects_no_text'
-        g.Grammar.set_up_grammar()
-        objects = _get_objects()
-        text_objects = []
-        actual_value = g.Grammar._extract_text_objects(objects)
-        expected_value = text_objects
+    def try_yes_dots():
+        try_name = 'yes_dots'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        actual_value = g.Grammar.change_dots_to_annotation_groups()
+        expected_value = 17
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    def try_no_objects():
-        try_name = 'try_no_objects'
-        g.Grammar.set_up_grammar()
-        objects = []
-        actual_value = g.Grammar._extract_text_objects(objects)
-        expected_value = []
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def _get_objects():
-        message = 'Select all objects'
-        objects = rs.GetObjects(message)
-        return objects
-
-    def _get_text_objects():
-        message = 'Select all text objects'
-        text_objects = rs.GetObjects(message)
-        if text_objects == None:
-            text_objects = []
-        return text_objects
-
-    method_name = '_extract_text_objects'
-    try_objects_yes_text()
-    try_objects_no_text()
-    try_no_objects()
-
-def test__rule_layer_has_name_text():
-    def try_no_name_text():
-        try_name = 'try_yes_name_text'
-        g.Grammar.set_up_grammar()
-        message = 'Enter the name of a rule with no name text'
-        rule_layer_name = rs.GetString(message)
-        actual_value = g.Grammar._rule_layer_has_name_text(rule_layer_name)
-        expected_value = False
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_yes_name_text():
-        try_name = 'try_yes_name_text'
-        
-    method_name = '_rule_layer_has_name_text'
-    try_no_name_text()
-    # try_yes_name_text()
-
-def test__rewrite_layer_name_text():            ##  11-01 08:09
-    method_name = ''
-
-def test__write_new_layer_name_text():          ##  11-01 08:10
-    method_name = ''
-
-def test__draw_new_rule_layer_name_text():      ##  done 12-09
-    def try_good_value_name():
-        try_name = 'good_value_name'
-        g.Grammar.set_up_grammar()
-        message = 'Enter a rule layer name'
-        good_value_name = rs.GetString(message)
-        actual_value = g.Grammar._draw_new_rule_layer_name_text(
-            good_value_name)
-        actual_value_text = rs.TextObjectText(actual_value)
-        expected_value_text = good_value_name
-        if not actual_value_text == expected_value_text:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value_text, actual_value_text)
-
-    method_name = '_draw_new_rule_layer_name'
-    try_good_value_name()
-
-def test__get_rule_position():                  ##  done 12-09
-    def try_good_value_name():
-        g.Grammar.set_up_grammar()
-        name_message = 'Enter the name of a rule layer'
-        try_name = rs.GetString(name_message)
-        actual_value = g.Grammar._get_rule_position(try_name)
-        point_message = (
-            'Select the insertion point of the left frame instance')
-        expected_value = rs.GetPoint(point_message)
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_get_rule_position'
-    try_good_value_name()
+    method_name = 'change_dots_to_annotation_groups'
+    # try_no_dots()
+    try_yes_dots()
 
 ####
 
@@ -447,14 +361,7 @@ def test_get_labeled_shape_names():
 # test__set_up_first_rule()                       ##  done 08-06
 # test_set_up_subsequent_rule()                   ##  done 08-06 / manual
 # test__set_up_rule()                             ##  done 12-16
-# test_refresh_element_layer_names()
-# test__draw_initial_shape_layer_name()
-# test__extract_text_objects()                    ##  done 12-12
-# test__rule_layer_has_name_text()
-# test__rewrite_layer_name_text()
-# test__write_new_layer_name_text()               ##  Here?
-# test__draw_new_rule_layer_name_text()           ##  done 12-09
-# test__get_rule_position()                       ##  done 12-09
+test_change_dots_to_annotation_groups()
 
 # test_export()                                   ##  done / manual
 # test__get_element_layers()                      ##  done

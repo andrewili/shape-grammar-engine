@@ -147,6 +147,63 @@ class Grammar(object):
             return_value = layer_name
         return return_value
 
+    @classmethod                                ##  12-20
+    def change_dots_to_annotation_groups(cls):
+        """Changes text dots to annotation groups. Returns:
+            n_changes       int. The number of changes made
+        """
+        text_dots = cls._get_text_dots()
+        n = 0
+        for text_dot in text_dots:
+            cls._change_dot_to_annotation(text_dot)
+            n = n + 1
+        return n
+
+    @classmethod
+    def _get_text_dots(cls):
+        text_dot_filter = s.Settings.text_dot_filter
+        text_dots = rs.ObjectsByType(text_dot_filter)
+        return text_dots
+
+    @classmethod
+    def _change_dot_to_annotation(cls, text_dot):
+        text, point = cls._get_text_and_position_from_text_dot(text_dot)
+        cls._delete_text_dot(text_dot)
+        cls._add_hatch_annotation(text, point)
+
+    @classmethod
+    def _get_text_and_position_from_text_dot(cls, text_dot):
+        text = rs.TextDotText(text_dot)
+        point = rs.TextDotPoint(text_dot)
+        return (text, point)
+
+    @classmethod
+    def _delete_text_dot(cls, text_dot):
+        rs.DeleteObject(text_dot)
+
+    @classmethod                                ##  12-21
+    def _add_hatch_annotation(cls, text, point):
+        annotation = cls._add_annotation(text, point)
+        circle, hatch = cls._add_hatch(point)
+        group = rs.AddGroup()
+        objects = [circle, hatch, annotation]
+        n_objects = rs.AddObjectsToGroup(objects, group)
+
+    @classmethod
+    def _add_annotation(cls, text, point):
+        text_offset = s.Settings.hatch_annotation_text_offset
+        position = rs.PointAdd(point, text_offset)
+        height = s.Settings.hatch_annotation_text_height
+        annotation = rs.AddText(text, position, height)
+        return(annotation)
+
+    @classmethod
+    def _add_hatch(cls, point):
+        radius = s.Settings.hatch_radius
+        circle = rs.AddCircle(point, radius)
+        hatch = rs.AddHatch(circle, 'Solid')
+        return(circle, hatch)
+
     ### export
     @classmethod                                ##  done 08-08
     def export(cls):                            ##  cf import deriv

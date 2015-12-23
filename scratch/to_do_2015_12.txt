@@ -3,7 +3,9 @@ to_do_2015_12
 
 2-part set-up (external interpreter): finish
 
-  • Rule name plates: implement
+  • Implement SG toolbar
+  • Convert text dots to hatch annotations
+  • Revise export mechanism to recognize hatch annotations
   • Package: wrap up 
       • Menu items
       • Plug-in 
