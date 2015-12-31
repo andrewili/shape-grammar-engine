@@ -141,11 +141,11 @@ def set_up_grammar_3_shapes_3_rules():          ##  done 08-07
     method_name = 'set_up_grammar_3_shapes_3_rules'
     try_good_state()
 
-def test_change_dots_to_annotation_groups():          ##  here 12-20
+def test_change_text_dots_to_annotation_groups():   ## 12-29
     def try_no_dots():
         try_name = 'no_dots'
         g.Grammar.clear_all()
-        actual_value = g.Grammar.change_dots_to_annotation_groups()
+        actual_value = g.Grammar.change_text_dots_to_annotation_groups()
         expected_value = 0
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
@@ -154,15 +154,33 @@ def test_change_dots_to_annotation_groups():          ##  here 12-20
     def try_yes_dots():
         try_name = 'yes_dots'
         u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        actual_value = g.Grammar.change_dots_to_annotation_groups()
-        expected_value = 17
+        actual_value = g.Grammar.change_text_dots_to_annotation_groups()
+        n_dots_in_grammar = 17
+        expected_value = n_dots_in_grammar
         if not actual_value == expected_value:
             u.Utilities.print_test_error_message(
                 method_name, try_name, expected_value, actual_value)
 
-    method_name = 'change_dots_to_annotation_groups'
+    method_name = 'change_text_dots_to_annotation_groups'
     # try_no_dots()
     try_yes_dots()
+
+def test_show_text_dots():                      ##  12-29
+    def try_no_dots():
+        try_name = 'no_dots'
+
+    def try_yes_dots():
+        try_name = 'yes_dots'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        expected_value = g.Grammar.change_text_dots_to_annotation_groups()
+        actual_value = g.Grammar.show_text_dots()
+        if not actual_value == expected_value:
+            method_name, try_name, expected_value, actual_value
+
+    method_name = 'show_text_dots'
+    try_no_dots()
+    try_yes_dots()
+
 
 ####
 
@@ -353,6 +371,30 @@ def test_get_labeled_shape_names():
     try_3_ishapes_0_rules()
     try_3_ishapes_3_rules()
 
+def test__show_hidden_text_dots():              ##  12-30
+    def try_no_hidden_text_dots():
+        try_name = 'no_hidden_text_dots'
+        g.Grammar.clear_all()
+        actual_value = g.Grammar._show_hidden_text_dots()
+        expected_value = 0
+        if not actual_value == expected_value:
+            method_name, try_name, expected_value, actual_value
+
+    def try_yes_hidden_text_dots():
+        try_name = 'yes_hidden_text_dots'
+        u.Utilities.make_grammar_3_initial_shapes_4_rules()
+        g.Grammar._change_text_dots_to_annotation_groups()
+        actual_value = g.Grammar._show_hidden_text_dots()
+        n_hidden_text_dots = 17
+        expected_value = n_hidden_text_dots
+        if not actual_value == expected_value:
+            method_name, try_name, expected_value, actual_value
+
+    method_name = '_show_hidden_text_dots'
+    try_no_hidden_text_dots()
+    try_yes_hidden_text_dots()
+
+
 # set_up_grammar_3_shapes_3_rules()               ##  done 08-07 / manual
 # test_set_up_grammar()                           ##  done 08-06 / manual
 # test__set_up_first_initial_shape()              ##  done 08-06
@@ -361,11 +403,11 @@ def test_get_labeled_shape_names():
 # test__set_up_first_rule()                       ##  done 08-06
 # test_set_up_subsequent_rule()                   ##  done 08-06 / manual
 # test__set_up_rule()                             ##  done 12-16
-test_change_dots_to_annotation_groups()
-
+# test_change_text_dots_to_annotation_groups()
+# test_show_text_dots()
 # test_export()                                   ##  done / manual
 # test__get_element_layers()                      ##  done
 # test_get_name()                                 ##  done
 
 # test_get_labeled_shape_names()                  ##  done / for tests
-
+test__show_hidden_text_dots()

@@ -207,13 +207,15 @@ class GuidsToDat(object):
                 elements_in_frame.append(element_guid)
         return elements_in_frame
 
-    @classmethod                                ##  called
+    @classmethod                                ##  12-23
     def _is_element(cls, object_guid):
         """Receives:
             object_guid     guid. The guid of an object
         Returns:
             value           boolean. True, if the object is a line or a 
                             textdot. False, otherwise
+
+                            ## Identify hatch annotation ##
         """
         curve_type = 4
         textdot_type = 8192

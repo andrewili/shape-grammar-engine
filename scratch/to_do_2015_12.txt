@@ -3,11 +3,28 @@ to_do_2015_12
 
 2-part set-up (external interpreter): finish
 
+  • Labeled points: text dots or hatch annotations?
+    • Desiderata
+      • Should embody point and text information
+      • Should be transparent to the user: creating, editing, printing
+    • Commands
+      • Show labeled points as 'hatch annotations'
+          • Hide text dots for system use
+          • Add hatch annotations 
+      • Show labeled points as text dots
+        • Hide hatch annotations
+        • Show text dots
+      • New labeled point (as hatch annotation)
+        • Script
+        • Add and hide text dot
+      • Edit hatch annotation
+      • Update hatch annotations (after changing text dots)
+
   • Implement SG toolbar
-  • Convert text dots to hatch annotations
   • Revise export mechanism to recognize hatch annotations
   • Package: wrap up 
-      • Menu items
+      • Tool bar
+      • Menu items. See Workspace editor
       • Plug-in 
   • Documentation: 
       • Website
