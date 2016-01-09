@@ -76,4 +76,6 @@ HideGroup
     Objects in group remain shown until some further action is taken
 ShowGroup
     Objects in group remain hidden until some further action is taken
+Further action 
+    Drag the cursor. Change the view port. Add and delete a point
 """

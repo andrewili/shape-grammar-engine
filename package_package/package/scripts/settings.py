@@ -31,6 +31,7 @@ class Settings(object):
     hatch_annotation_text_height = 1.5
     hatch_annotation_text_offset = (0.5, 0.5, 0)
     hatch_radius = 0.25
+    hidden_text_dot_group = 'hidden text dot group'
     right_frame_offset_factor = 1.5
     rule_name_text_height = 2
     rule_name_text_font = 'Arial'

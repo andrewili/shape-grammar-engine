@@ -776,3 +776,5 @@ class Utilities(object):
             method_name, try_name, expected_value, actual_value)
         print(message)
 
+u = Utilities()
+u.make_grammar_3_initial_shapes_4_rules()

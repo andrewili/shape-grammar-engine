@@ -21,8 +21,8 @@ class Grammar(object):
     def _set_up_first_initial_shape(cls):
         """Required state:
             There must be no layer with the first initial shape layer name
-        Adds a new layer with the first initial shape layer name and one frame 
-        instance. Should be executed only once. Returns:
+        Adds a new layer with the first initial shape layer name and one 
+        frame instance. Should be executed only once. Returns:
             layer_name      str. The name of the layer, if successful. None, 
                             otherwise
         """
@@ -147,23 +147,37 @@ class Grammar(object):
             return_value = layer_name
         return return_value
 
-    @classmethod                                ##  12-30
+    @classmethod                                ##  01-03
     def change_text_dots_to_annotation_groups(cls):
         """Changes the display of labeled points from text dots to annotation 
-        groups. Returns:
+        groups. 
+            Hides text dots and shows / creates annotation groups
+        Returns:
             n_changes       int. The number of changes made
         Alternate names: 
             show_hatch_annotations
             show_annotation_groups
             show_annotation_dots
         """
-        # create_hidden_text_dots_group()
+        n_dots_shown = cls._show_text_dots()    ##  or create
+        n_groups_hidden = cls._hide_annotation_groups()
+
+        hidden_group = cls._create_hidden_text_dot_group()
         text_dots = cls._get_text_dots()
-        n = 0
         for text_dot in text_dots:
-            cls._change_text_dot_to_annotation(text_dot)
-            n = n + 1
-        return n
+            cls._change_text_dot_to_annotation_group(text_dot)
+        n_changes = rs.HideGroup(hidden_group)
+        cls._update_display()
+        return n_changes
+
+    @classmethod
+    def _create_hidden_text_dot_group(cls):
+        """Returns:
+            group           str. The name of the group
+        """
+        group_in = s.Settings.hidden_text_dot_group
+        group = rs.AddGroup(group_in)
+        return group
 
     @classmethod
     def _get_text_dots(cls):
@@ -174,18 +188,19 @@ class Grammar(object):
         text_dots = rs.ObjectsByType(text_dot_filter)
         return text_dots
 
-    @classmethod                                ##  12-30
-    def _change_text_dot_to_annotation(cls, text_dot):
+    @classmethod
+    def _change_text_dot_to_annotation_group(cls, text_dot):
         """Receives:
             text_dot        guid
-        Adds a text_dot to the hidden_text_dot group. Adds a hatch annotation. 
+        Adds text_dot to the hidden text dot group. Adds an annotation group. 
         Returns:
-            ?
+            value           boolean. True if successful; False otherwise
         """
         text, point = cls._get_text_and_position_from_text_dot(text_dot)
-        cls._hide_text_dot(text_dot)
-        # cls._delete_text_dot(text_dot)
-        cls._add_annotation_group(text, point)
+        value_hide = cls._add_text_dot_to_hidden_group(text_dot)
+        value_show = cls._add_annotation_group(text, point)
+        value = value_hide and value_show
+        return value
 
     @classmethod
     def _get_text_and_position_from_text_dot(cls, text_dot):
@@ -194,13 +209,15 @@ class Grammar(object):
         return (text, point)
 
     @classmethod
-    def _hide_text_dot(cls, text_dot):
-        n_objects = rs.HideObject(text_dot)
-        return n_objects
-
-    # @classmethod
-    # def _delete_text_dot(cls, text_dot):
-        # rs.DeleteObject(text_dot)
+    def _add_text_dot_to_hidden_group(cls, text_dot):
+        """Receives:
+            text_dot        guid
+        Adds text_dot to the hidden text dot group. Returns:
+            value           boolean. True if successful; False if not
+        """
+        hidden_group = s.Settings.hidden_text_dot_group
+        value = rs.AddObjectToGroup(text_dot, hidden_group)
+        return value
 
     @classmethod
     def _add_annotation_group(cls, text, point):
@@ -234,10 +251,47 @@ class Grammar(object):
         hatch = rs.AddHatch(circle, 'Solid')
         return(circle, hatch)
 
+    @classmethod
+    def _update_display(cls):
+        """Forces the display to update itself. Returns:
+            value           boolean. True if successful; False otherwise
+        """
+        dummy_point = rs.AddPoint(0, 0, 0)
+        value = rs.DeleteObject(dummy_point)
+        return value
+
     @classmethod                                ##  12-30
-    def show_text_dots(cls):
-        """Hides annotation groups and shows text dots. Returns:
-            n_changes       int. The number of changes made
+    def change_annotation_groups_to_text_dots(cls):
+        """Changes the display of labeled points from annotation groups to 
+        text dots. 
+        Required state: 
+            There must be both annotation groups and hidden text dots
+        Hides / deletes annotation groups and shows text dots. 
+        Returns:
+            n_dots_shown    int. The number of dots shown, if n > 0; None 
+                            otherwise
+        """
+        n_groups_hidden = cls._hide_annotation_groups()
+        n_dots_shown = cls._show_text_dots()
+        if n_dots_shown > 0:
+            value = n_dots_shown
+        else:
+            value = None
+        return value
+
+    @classmethod                                ##  01-03 10:46
+    def _hide_annotation_groups(cls):
+        """Hides annotation groups. Returns:
+            n               int. The number of annotation groups hidden, if 
+                            n > 0; None otherwise
+        """
+        pass
+
+    @classmethod                                ##  01-03 10:47
+    def _show_text_dots(cls):
+        """Shows hidden text dots. Returns:
+            n               int. The number of hidden text dots shown, if 
+                            n > 0; None
         """
         pass
 
@@ -355,30 +409,33 @@ class Grammar(object):
         cls._clear_groups()
         cls._clear_data()
 
-    @classmethod                                ##  12-30
+    @classmethod
     def _clear_objects(cls):
-        """Unlocks and deletes all drawn objects, including hidden objects. 
-        Returns:
+        """Deletes all drawn objects, including locked and hidden objects, if 
+        any. Returns:
             n_objects       int. The number of objects deleted, if successful
         """
+        cls._show_hidden_text_dots()
+        dummy_point = rs.AddPoint(0, 0, 0)
+        value = rs.DeleteObject(dummy_point)
         include_lights = True
         include_grips = True
-        cls._show_hidden_text_dots()
         objects = rs.AllObjects(include_lights, include_grips)
         n_objects = rs.DeleteObjects(objects)
         remaining_objects = rs.AllObjects(include_lights, include_grips)
         rs.UnlockObjects(remaining_objects)
         m_objects = rs.DeleteObjects(remaining_objects)
-        # print('m_objects: %i' % m_objects)
         return n_objects + m_objects
 
-    @classmethod                                ##  12-30
+    @classmethod
     def _show_hidden_text_dots(cls):
-        """Finds and shows hidden text dots. Returns:
-            text_dots       [guid]. A list of text dot guids
+        """Shows hidden text dots. Returns:
+            n_text_dots     int. The number of text dots shown
         """
-        text_dots = []
-        return text_dots
+        hidden_group = s.Settings.hidden_text_dot_group
+        n_text_dots = rs.ShowGroup(hidden_group)
+        cls._update_display()
+        return n_text_dots
 
     @classmethod                                ##  called
     def _clear_blocks(cls):
@@ -412,4 +469,3 @@ class Grammar(object):
     @classmethod                                ##  called
     def _clear_data(cls):
         rs.DeleteDocumentData()
-
