@@ -1,0 +1,36 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    initial_shape_1
+    name
+    coords 0 12.0 23.9705627485 0.0
+    coords 1 12.0 7.0 0.0
+    coords 2 20.4852813742 15.4852813742 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 2
+shape    rule_1_L
+    name
+    coords 0 10.0 25.0 0.0
+    coords 1 10.0 8.02943725152 0.0
+    coords 2 18.4852813742 16.5147186258 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 2
+shape    rule_1_R
+    name
+    coords 0 10.0 25.0 0.0
+    coords 1 10.0 8.02943725152 0.0
+    coords 2 18.4852813742 16.5147186258 0.0
+    coords 3 22.0 13.0 0.0
+    coords 4 22.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 0 4
+    line 3 1 2
+    line 4 3 4
+
+initial    initial_shape_1
+rule    rule_1    rule_1_L -> rule_1_R

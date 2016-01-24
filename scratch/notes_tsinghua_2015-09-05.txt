@@ -11,7 +11,7 @@ Setting up
     c.  Documentation. 
     d.  Sample grammars. 
     e.  Readings (maybe)
-3.  Put the interpreter and the scripts folder in folders with English names only. Do not use names like '文法', 'グラマー', or even 'grámmar'. This naming restriction  also applies to all folders that contain these folders. (In more technical terms, the path names may contain ASCII characters only.) Be careful to use the English input method. A Chinese input method can input what looks like, say, an 'L', but it will have a different ASCII code from an 'L' input by the English input method.
+3.  Put the interpreter and the scripts folder in folders with English names only. Do not use names like '文法', 'グラマー', or even 'grámmar'. This naming restriction also applies to all folders that contain these folders. (In more technical terms, the path names may contain ASCII characters only.) Be careful to use the English input method. Chinese and Japanese input methods can input what looks like, say, an 'L', but it will have a different ASCII code from an 'L' input by the English input method.
 4.  Set the Python module search path. In Rhino, open the Python script editor (Tools / PythonScript / Edit). In the Python script editor, select Tools / Options / Files. Press '+'; navigate to the folder containing the folder 'package'. Restart Rhino.
 
 Creating a grammar (Rhino)
@@ -35,7 +35,7 @@ Tips on drawing shapes (Rhino)
 Pre-export checklist (Rhino)
 
 1.  Check that your shapes consist of only lines and textdots. 
-2.  Check that the frames are block instances. If you exploded a frame, delete its lines and instantiate a new frame block on the appropriate layer. 
+2.  Check that the frames are block instances. If you exploded a frame, delete its lines and insert a new frame block on the appropriate layer. 
 3.  Use the top, front, and right views to check for any elements that lie outside a frame. 
 4.  Use the perspective view to check that lines are what you think they are. For instance, a line that in the top view appears parallel to the xy-plane may not be. 
 5.  Set the current layer to 'Default'. Turn the initial shape and rule layers off one at a time to check that lines and textdots are in the correct layer.
@@ -60,10 +60,11 @@ Drawing a final shape (Rhino)
 
 Things that could go wrong 
 
-1.  A shape is not maximal. A maximal shape has no overlapping lines or abutting colinear lines.
+1.  A shape is not maximal. A maximal shape has no overlapping lines or abutting colinear lines. When importing the file into the interpreter, the console says something like 'died'.
 2.  A shape is in the wrong layer
 3.  A 2d shape is not completely in the xy plane
-4.  The pathname contains non-ASCII characters. Don't forget English input with Chinese or Japanese input methods
+4.  The pathname contains non-ASCII characters. Don't forget to check English that may have been input with Chinese or Japanese input methods (layer names, label names).
+5.  Objects input without snap are not what they look like. 
 
 Other tips 
 
@@ -91,3 +92,19 @@ To myself
 18. How to add a new rule in mid-process? I don't want to abandon the process; just add a rule. 
 19. Use shape grammar to design something (e.g., Nakata jigsaw puzzle) and execute it in Grasshopper. 
 20. Actually we don't need the SG definition of shapes anywhere in these scripts. Because we're using only the Rhino shape and the dat specification. The only possible exception is to maximize shapes. It could be a Shape class method. 
+21. For schemas: draw the table of assignments (by script, possibly); script assembles into rules.
+
+Maximization
+
+We need this when exporting a grammar. Or it might be called with every new component layer. 
+
+Error message
+
+Message: The process cannot access the file '\\vmware-host\Shared Folders\Documents\shape-grammar-engine\rhino-grammars\woodbury-2015-11.3dm' because it is being used by another process.
+
+Traceback:
+  line 312, in _write_to_file, "\\vmware-host\Shared Folders\Documents\shape-grammar-engine\package_package\package\scripts\grammar.py"
+  line 279, in export, "\\vmware-host\Shared Folders\Documents\shape-grammar-engine\package_package\package\scripts\grammar.py"
+  line 3, in <module>, "\\vmware-host\Shared Folders\Documents\websites-temp\andrew-li\deploy\downloads\interpreter-package-2015-11\python-scripts\commands\export_grammar.py"
+
+Solution: save or resave the Rhino document

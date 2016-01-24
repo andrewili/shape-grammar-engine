@@ -4,12 +4,12 @@ import rhinoscriptsyntax as rs
 from package.scripts import settings as s
 from package.tests import utilities as u
 
-def test_set_up_grammar():                      ##  done 08-06
+def test_set_up_grammar():
     method_name = 'set_up_grammar'
     g.Grammar.clear_all()
     g.Grammar.set_up_grammar()
 
-def test__set_up_first_initial_shape():         ##  done 08-06
+def test__set_up_first_initial_shape():
     def try_bad_state_layer_exists():
         try_name = 'bad_state_layer_exists'
         g.Grammar.clear_all()
@@ -33,7 +33,7 @@ def test__set_up_first_initial_shape():         ##  done 08-06
     try_bad_state_layer_exists()
     try_good_state()
 
-def test_set_up_subsequent_initial_shape():     ##  done 08-06
+def test_set_up_subsequent_initial_shape():
     def try_good_state():
         try_name = 'good_state'
         g.Grammar.clear_all()
@@ -52,7 +52,7 @@ def test_set_up_subsequent_initial_shape():     ##  done 08-06
     method_name = 'set_up_subsequent_initial_shape'
     try_good_state()
 
-def test__set_up_initial_shape():               ##  done 08-06
+def test__set_up_initial_shape():
     def try_good_args():
         try_name = 'good_args'
         g.Grammar.clear_all()
@@ -70,7 +70,7 @@ def test__set_up_initial_shape():               ##  done 08-06
     method_name = '_set_up_initial_shape'
     try_good_args()
 
-def test__set_up_first_rule():                  ##  done 08-06
+def test__set_up_first_rule():
     def try_bad_state_layer_exists():
         try_name = 'bad_state_layer_exists'
         g.Grammar.clear_all()
@@ -94,7 +94,7 @@ def test__set_up_first_rule():                  ##  done 08-06
     try_bad_state_layer_exists()
     try_good_state()
 
-def test_set_up_subsequent_rule():              ##  done 08-06
+def test_set_up_subsequent_rule():
     def try_good_state():
         try_name = 'good_state'
         g.Grammar.clear_all()
@@ -113,15 +113,12 @@ def test_set_up_subsequent_rule():              ##  done 08-06
     method_name = 'set_up_subsequent_rule'
     try_good_state()
 
-def test__set_up_rule():                        ##  done 08-06
+def test__set_up_rule():
     def try_good_args():
         try_name = 'good_args'
         g.Grammar.clear_all()
-        (   good_name, 
-            position
-        ) = (
-            'bock',
-            (20, 20, 0))
+        good_name = 'bock'
+        position = (20, 20, 0)
         actual_value = g.Grammar._set_up_rule(good_name, position)
         expected_value = good_name
         if not actual_value == expected_value:
@@ -131,7 +128,7 @@ def test__set_up_rule():                        ##  done 08-06
     method_name = '_set_up_rule'
     try_good_args()
 
-def set_up_grammar_3_shapes_3_rules():          ##  done 08-07
+def set_up_grammar_3_shapes_3_rules():
     def try_good_state():
         try_name = 'good_state'
         g.Grammar.set_up_grammar()
@@ -146,7 +143,7 @@ def set_up_grammar_3_shapes_3_rules():          ##  done 08-07
 
 ####
 
-def test_export():                              ##  done 08-08
+def test_export():
     def try_0_initial_shapes_0_rules():
         try_name = '0_initial_shapes_0_rules'
         u.Utilities.make_grammar_0_initial_shapes_0_rules()
@@ -189,7 +186,7 @@ def test_export():                              ##  done 08-08
     try_3_initial_shapes_0_rules()
     try_3_initial_shapes_4_rules()              ##  manual
 
-def test__get_element_layers():                 ##  done 08-08
+def test__get_element_layers():
     def try_0_ishapes_0_rules():
         try_name = '0_ishapes_0_rules'
         g.Grammar.clear_all()
@@ -333,6 +330,34 @@ def test_get_labeled_shape_names():
     try_3_ishapes_0_rules()
     try_3_ishapes_3_rules()
 
+##  Utilities  ##
+
+def _draw_lines():
+    p11, p12 = (10, 10, 0), (10, 20, 0)
+    p21, p22 = (20, 10, 0), (20, 20, 0)
+    line_1 = rs.AddLine(p11, p12)
+    line_2 = rs.AddLine(p21, p22)
+    if line_1 and line_2:
+        message = 'Drew 2 lines'
+    else:
+        message = 'Did not draw 2 lines'
+    print(message)
+    lines = [line_1, line_2]
+    return lines
+
+def _draw_text_dots():
+    text_1, text_2 = '1', '2'
+    dot_1, dot_2 = (10, 0, 0), (20, 0, 0)
+    text_dot_1 = rs.AddTextDot(text_1, dot_1)
+    text_dot_2 = rs.AddTextDot(text_2, dot_2)
+    if text_dot_1 and text_dot_2:
+        message = 'Drew 2 visible text dots'
+    else:
+        message = 'Did not draw 2 visible text dots'
+    print(message)
+    text_dots = [text_dot_1, text_dot_2]
+    return text_dots
+
 # set_up_grammar_3_shapes_3_rules()               ##  done 08-07 / manual
 # test_set_up_grammar()                           ##  done 08-06 / manual
 # test__set_up_first_initial_shape()              ##  done 08-06
@@ -340,11 +365,10 @@ def test_get_labeled_shape_names():
 # test__set_up_initial_shape()                    ##  done 08-06
 # test__set_up_first_rule()                       ##  done 08-06
 # test_set_up_subsequent_rule()                   ##  done 08-06 / manual
-# test__set_up_rule()                             ##  done 08-06
+# test__set_up_rule()                             ##  done 12-16
 
-test_export()                                   ##  done / manual
+# test_export()                                   ##  done / manual
 # test__get_element_layers()                      ##  done
 # test_get_name()                                 ##  done
 
 # test_get_labeled_shape_names()                  ##  done / for tests
-

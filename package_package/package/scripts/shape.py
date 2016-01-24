@@ -158,6 +158,29 @@ class Shape(object):
 
     ###
     @classmethod
+    def maximize_from_specs(cls, line_specs, lpoint_specs):
+        """Receives:
+            line_specs      [line_spec]. A list of line specs, each of the 
+                            form
+                                (point_spec, point_spec),
+                            where point_spec is of the form
+                                (num, num, num)
+            lpoint_specs    [lpoint_spec]. A list of labeled point specs, each 
+                            of the form
+                                (point_spec, label),
+                            where
+                                point_spec  (num, num, num)
+                                label       str
+        Returns:
+            maximal_element_specs
+                            ([line_spec], [lpoint_spec]). A list of maximal 
+                            line specs and a list of maximal labeled point 
+                            specs
+        """
+        return maximal_element_specs
+
+    ###
+    @classmethod
     def new_from_is_text_lines(cls, text_lines):
         """Receives the text lines of a file in .is format:
             [str, ...]

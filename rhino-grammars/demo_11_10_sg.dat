@@ -1,0 +1,113 @@
+# shape data version 6.00
+unit  mm  # mm - millimetre, cm - centimetre, m - metre
+shape    i-ls_L
+    name
+    coords 0 10.0 18.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 14.0 20.0 0.0
+    coords 3 18.0 18.0 0.0
+    coords 4 18.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 i
+shape    i-ls_R
+    name
+    coords 0 10.0 18.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 12.0 20.0 0.0
+    coords 3 14.0 18.0 0.0
+    coords 4 14.0 22.0 0.0
+    coords 5 16.0 20.0 0.0
+    coords 6 18.0 18.0 0.0
+    coords 7 18.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 l
+    point 5 sv
+shape    i-lsv2_L
+    name
+    coords 0 10.0 18.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 14.0 20.0 0.0
+    coords 3 18.0 18.0 0.0
+    coords 4 18.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 i
+shape    i-lsv2_R
+    name
+    coords 0 10.0 18.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 12.5 20.0 0.0
+    coords 3 15.0 18.0 0.0
+    coords 4 15.0 22.0 0.0
+    coords 5 16.5 20.0 0.0
+    coords 6 18.0 18.0 0.0
+    coords 7 18.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 6
+    line 2 1 7
+    line 3 3 4
+    line 4 6 7
+    point 2 l
+    point 5 sv
+shape    initial_shape_1
+    name
+    coords 0 10.0 10.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 14.0 16.0 0.0
+    coords 3 18.0 10.0 0.0
+    coords 4 18.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 p
+shape    rule_1_L
+    name
+    coords 0 10.0 10.0 0.0
+    coords 1 10.0 22.0 0.0
+    coords 2 14.0 16.0 0.0
+    coords 3 18.0 10.0 0.0
+    coords 4 18.0 22.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 1 4
+    line 3 3 4
+    point 2 p
+shape    rule_1_R
+    name
+    coords 0 10.0 10.0 0.0
+    coords 1 10.0 18.0 0.0
+    coords 2 10.0 22.0 0.0
+    coords 3 14.0 14.0 0.0
+    coords 4 14.0 20.0 0.0
+    coords 5 18.0 10.0 0.0
+    coords 6 18.0 18.0 0.0
+    coords 7 18.0 22.0 0.0
+
+    line 0 0 2
+    line 1 0 5
+    line 2 1 6
+    line 3 2 7
+    line 4 5 7
+    point 4 i
+    point 3 o
+
+initial    initial_shape_1
+rule    i-ls    i-ls_L -> i-ls_R
+rule    i-lsv2    i-lsv2_L -> i-lsv2_R
+rule    rule_1    rule_1_L -> rule_1_R

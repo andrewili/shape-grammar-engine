@@ -4,9 +4,12 @@ import rhinoscriptsyntax as rs
 class Settings(object):
     dark_gray = Color.FromArgb(105, 105, 105)
     frame_size = (32, 32, 32)
+    font_style_normal = 0
+    justified_center = 2
 
     arrow_base_point = (0, 0, 0)
     arrow_color_name = dark_gray
+    arrow_label_offset_from_arrow = (0, 4, 0)   ##  rethink
     arrow_length = frame_size[0] / 4
     arrow_name = 'arrow'    
     block_instance_filter = 4096    
@@ -26,6 +29,10 @@ class Settings(object):
     frame_layer_name = 'frames'
     frame_name = 'frame block'
     right_frame_offset_factor = 1.5
+    rule_name_text_height = 2
+    rule_name_text_font = 'Arial'
+    rule_name_text_font_style = font_style_normal
+    rule_name_text_justification = justified_center
     text_dot_filter = 8192
 
     derivation_array_position = (0, 0, 0)

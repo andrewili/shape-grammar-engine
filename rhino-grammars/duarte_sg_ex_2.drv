@@ -1,0 +1,151 @@
+# derivation file version 1.00                           --chen liang 2007/08/06
+
+shape    initial_shape_1
+    name
+    coords 0 12.0 23.9705627485 0.0
+    coords 1 12.0 7.0 0.0
+    coords 2 20.4852813742 15.4852813742 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 2
+shape    rule_1_L
+    name
+    coords 0 10.0 25.0 0.0
+    coords 1 10.0 8.02943725152 0.0
+    coords 2 18.4852813742 16.5147186258 0.0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 2
+shape    rule_1_R
+    name
+    coords 0 10.0 25.0 0.0
+    coords 1 10.0 8.02943725152 0.0
+    coords 2 18.4852813742 16.5147186258 0.0
+    coords 3 22.0 13.0 0.0
+    coords 4 22.0 25.0 0.0
+
+    line 0 0 1
+    line 1 0 3
+    line 2 0 4
+    line 3 1 2
+    line 4 3 4
+
+initial    initial_shape_1
+rule    rule_1    rule_1_L -> rule_1_R
+# derivation record
+shape    initial_shape_1
+    name 
+    coords 0 12 23.9705627485 0
+    coords 1 12 7 0
+    coords 2 20.4852813742 15.4852813742 0
+
+    line 0 0 1
+    line 1 0 2
+    line 2 1 2
+rule    rule_1
+shape    initial_shape_1_rule_1_2
+    name 
+    coords 3 12 7 0
+    coords 4 24.0000000000141 19.0000000000141 0
+    coords 5 24.0000000000141 7 0
+    coords 6 12 23.9705627485 0
+    coords 7 20.48528137421 15.48528137421 0
+
+    line 3 3 4
+    line 4 4 5
+    line 5 3 6
+    line 6 6 7
+    line 7 3 5
+rule    rule_1
+shape    initial_shape_1_rule_1_2_rule_1_4
+    name 
+    coords 10 24.0000000000141 23.9705627485 0
+    coords 3 12 7 0
+    coords 4 24.0000000000141 19.0000000000141 0
+    coords 5 24.0000000000141 7 0
+    coords 7 20.48528137421 15.48528137421 0
+    coords 8 12 23.9705627485 0
+    coords 9 24.0000000000141 11.9705627484859 0
+
+    line 10 5 10
+    line 11 8 3
+    line 12 4 3
+    line 13 8 10
+    line 7 3 5
+    line 9 8 9
+rule    rule_1
+shape    initial_shape_1_rule_1_2_rule_1_4_rule_1_3
+    name 
+    coords 10 24.0000000000141 23.9705627485 0
+    coords 11 24.0000000000141 2.02943725151987 0
+    coords 12 32.4852813742613 10.514718625767 0
+    coords 13 24.0000000000141 7.00000000005658 0
+    coords 3 12 7 0
+    coords 4 24.0000000000141 19.0000000000141 0
+    coords 7 20.48528137421 15.48528137421 0
+    coords 8 12 23.9705627485 0
+    coords 9 24.0000000000141 11.9705627484859 0
+
+    line 11 8 3
+    line 13 8 10
+    line 15 10 11
+    line 16 11 12
+    line 17 4 3
+    line 18 3 13
+    line 19 4 12
+    line 9 8 9
+rule    rule_1
+shape    initial_shape_1_rule_1_2_rule_1_4_rule_1_3_rule_1_4
+    name 
+    coords 10 24.0000000000141 23.9705627485 0
+    coords 13 24.0000000000141 7.00000000005658 0
+    coords 14 36.0000000000242 7.00000000000405 0
+    coords 15 36.0000000000242 19.0000000000141 0
+    coords 16 24.0000000000141 2.02943725151987 0
+    coords 17 32.4852813742213 10.514718625807 0
+    coords 3 12 7 0
+    coords 4 24.0000000000141 19.0000000000141 0
+    coords 7 20.48528137421 15.48528137421 0
+    coords 8 12 23.9705627485 0
+    coords 9 24.0000000000141 11.9705627484859 0
+
+    line 11 8 3
+    line 13 8 10
+    line 17 4 3
+    line 18 3 13
+    line 21 4 14
+    line 22 14 15
+    line 23 10 16
+    line 24 16 17
+    line 25 4 15
+    line 9 8 9
+rule    rule_1
+shape    initial_shape_1_rule_1_2_rule_1_4_rule_1_3_rule_1_4_rule_1_2
+    name 
+    coords 10 24.0000000000141 23.9705627485 0
+    coords 13 24.0000000000141 7.00000000005658 0
+    coords 14 36.0000000000242 7.00000000000405 0
+    coords 15 36.0000000000242 19.0000000000141 0
+    coords 17 32.4852813742213 10.514718625807 0
+    coords 18 24.0000000000141 2.02943725151987 0
+    coords 19 36.0000000000242 14.02943725153 0
+    coords 20 36.0000000000242 2.02943725151987 0
+    coords 3 12 7 0
+    coords 4 24.0000000000141 19.0000000000141 0
+    coords 7 20.48528137421 15.48528137421 0
+    coords 8 12 23.9705627485 0
+    coords 9 24.0000000000141 11.9705627484859 0
+
+    line 11 8 3
+    line 13 8 10
+    line 17 4 3
+    line 18 3 13
+    line 25 4 15
+    line 28 18 19
+    line 29 15 20
+    line 30 10 18
+    line 31 14 4
+    line 32 18 20
+    line 9 8 9

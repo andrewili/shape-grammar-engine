@@ -2,6 +2,7 @@ from package.scripts import arrow as a
 from package.scripts import frame as f
 from package.controller import guids_to_dat as gd
 from package.scripts import layer as l
+from package.scripts import labeled_arrow as la
 import rhinoscriptsyntax as rs
 from package.scripts import settings as s
 
@@ -20,8 +21,8 @@ class Grammar(object):
     def _set_up_first_initial_shape(cls):
         """Required state:
             There must be no layer with the first initial shape layer name
-        Adds a new layer with the first initial shape layer name and one frame 
-        instance. Should be executed only once. Returns:
+        Adds a new layer with the first initial shape layer name and one 
+        frame instance. Should be executed only once. Returns:
             layer_name      str. The name of the layer, if successful. None, 
                             otherwise
         """
@@ -120,27 +121,31 @@ class Grammar(object):
         return_value = cls._set_up_rule(layer_name, frame_position)
         return return_value
 
-    @classmethod                                ##  done 08-06
+    @classmethod
     def _set_up_rule(cls, layer_name, left_frame_position):
         """Receives:
             layer_name      str. A well-formed and available layer name
             left_frame_position
                             Point3d. The position of the left frame instance
-        Creates a new layer with the specified name. Inserts left frame, right 
-        frame, and arrow instances on the new layer. Returns:
+        Creates a new layer with the specified name. Inserts two frame 
+        instances and a labeled arrow group on the new layer. Returns:
             layer_name_out  str. The name of the rule layer
         """
         l.Layer.new(layer_name)
-        (   right_frame_position,
-            arrow_position
-        ) = (   
-            s.Settings.get_right_frame_position(left_frame_position),
-            s.Settings.get_arrow_position(left_frame_position))
-        f.Frame.new_instance(layer_name, left_frame_position)
-        f.Frame.new_instance(layer_name, right_frame_position)
-        arrow_out = a.Arrow.new_instance(layer_name, arrow_position)
-        layer_name_out = rs.ObjectLayer(arrow_out)
-        return layer_name_out
+        right_frame_position = s.Settings.get_right_frame_position(
+            left_frame_position)
+        arrow_position = s.Settings.get_arrow_position(left_frame_position)
+        left_frame_out = f.Frame.new_instance(layer_name, left_frame_position)
+        right_frame_out = f.Frame.new_instance(
+            layer_name, right_frame_position)
+        labeled_arrow_out = la.LabeledArrow.new(layer_name, arrow_position)
+        return_value = False
+        if (left_frame_out and
+            right_frame_out and
+            labeled_arrow_out
+        ):
+            return_value = layer_name
+        return return_value
 
     ### export
     @classmethod                                ##  done 08-08
@@ -237,33 +242,41 @@ class Grammar(object):
     ### import 
     # @classmethod
     # def import(cls):                            ##  can't use this word
-    #     pass
+        # pass
 
     # @classmethod
     # def import_derivation(cls):
-    #     """Prompts the user for a drv file. Draws the derivation
-    #     Put this in dats_to_guid?
-    #     """
-    #     draw_derivation(shape_specs, rules)
+        # """Prompts the user for a drv file. Draws the derivation
+        # Put this in dats_to_guid?
+        # """
+        # draw_derivation(shape_specs, rules)
 
     ### utilities
     @classmethod                                ##  called
-    def clear_all(cls):                         ##  system-created blocks only?
+    def clear_all(cls):                         ##  system-created blocks 
+                                                ##  only?
         cls._clear_objects()
         cls._clear_blocks()
         cls._clear_layers()
+        cls._clear_groups()
         cls._clear_data()
 
-    @classmethod                                ##  called
+    @classmethod
     def _clear_objects(cls):
-        """Deletes all drawn objects. Returns:
+        """Deletes all drawn objects, including locked objects, if any. 
+        Returns:
             n_objects       int. The number of objects deleted, if successful
         """
+        dummy_point = rs.AddPoint(0, 0, 0)
+        value = rs.DeleteObject(dummy_point)
         include_lights = True
         include_grips = True
         objects = rs.AllObjects(include_lights, include_grips)
         n_objects = rs.DeleteObjects(objects)
-        return n_objects
+        remaining_objects = rs.AllObjects(include_lights, include_grips)
+        rs.UnlockObjects(remaining_objects)
+        m_objects = rs.DeleteObjects(remaining_objects)
+        return n_objects + m_objects
 
     @classmethod                                ##  called
     def _clear_blocks(cls):
@@ -282,9 +295,18 @@ class Grammar(object):
         rs.CurrentLayer(default_layer_name)
         for layer_name in layer_names:
             if not layer_name == default_layer_name:
-                rs.DeleteLayer(layer_name)
+                value = rs.DeleteLayer(layer_name)
+                print('Cleared layer %s: %s' % (layer_name, value))
+
+    @classmethod
+    def _clear_groups(cls):
+        """Deletes all groups 
+        """
+        groups = rs.GroupNames()
+        if groups:
+            for group in groups:
+                rs.DeleteGroup(group)
 
     @classmethod                                ##  called
     def _clear_data(cls):
         rs.DeleteDocumentData()
-
