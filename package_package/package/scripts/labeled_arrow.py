@@ -21,8 +21,10 @@ class LabeledArrow(object):
         text_position = rs.PointAdd(
             position,
             s.Settings.arrow_label_offset_from_arrow)
+        rs.CurrentLayer(layer)
         arrow_text = rs.AddText(
             layer, text_position, height=2, justification=2)
+        rs.CurrentLayer(s.Settings.default_layer_name)
         group_out = rs.AddGroup(group)
         n_objects_added = rs.AddObjectsToGroup(
             [arrow_instance, arrow_text], 

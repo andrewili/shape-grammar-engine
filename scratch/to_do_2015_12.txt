@@ -67,3 +67,4 @@ Applying a rule
       • Else:
           • System says: No next shape
 
+In: grammar vs. controller
