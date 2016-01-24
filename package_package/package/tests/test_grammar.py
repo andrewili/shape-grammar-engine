@@ -141,90 +141,6 @@ def set_up_grammar_3_shapes_3_rules():
     method_name = 'set_up_grammar_3_shapes_3_rules'
     try_good_state()
 
-def test_change_text_dots_to_annotation_groups():   ##  01-04
-    def try_no_dots():
-        try_name = 'no_dots'
-        g.Grammar.clear_all()
-        actual_value = g.Grammar.change_text_dots_to_annotation_groups()
-        expected_value = 0
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_yes_dots():
-        try_name = 'yes_dots'
-        u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        actual_value = g.Grammar.change_text_dots_to_annotation_groups()
-        n_dots_in_grammar = 17
-        expected_value = n_dots_in_grammar
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = 'change_text_dots_to_annotation_groups'
-    try_no_dots()
-    try_yes_dots()
-
-    try_no_visible_dots_no_hidden_dots_no_groups()
-        ##  do nothing
-    try_no_visible_dots_no_hidden_dots_yes_groups()
-        ##  do nothing
-    try_no_visible_dots_yes_hidden_dots_no_groups()
-        ##  make groups
-    try_no_visible_dots_yes_hidden_dots_yes_groups()
-        ##  overwrite groups
-    try_yes_visible_dots_no_hidden_dots_no_groups()
-        ##  hide dots, make groups
-    try_yes_visible_dots_no_hidden_dots_yes_groups()
-        ##  hide dots, overwrite groups
-    try_yes_visible_dots_yes_hidden_dots_no_groups()
-        ##  hide dots, make groups
-    try_yes_visible_dots_yes_hidden_dots_yes_groups()
-        ##  hide dots, overwrite groups
-
-def test_change_annotation_groups_to_text_dots():   ##  01-03
-    def try_no_dots():
-        try_name = 'no_dots'
-        g.Grammar.clear_all()
-        _draw_lines()
-        _draw_text_dots()
-        actual_value = g.Grammar.change_annotation_groups_to_text_dots()
-        expected_value = 0
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_yes_dots():
-        try_name = 'yes_dots'
-        u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        expected_value = g.Grammar.change_text_dots_to_annotation_groups()
-        actual_value = g.Grammar.change_annotation_groups_to_text_dots()
-        if not actual_value == expected_value:
-            method_name, try_name, expected_value, actual_value
-
-    method_name = 'change_annotation_groups_to_text_dots'
-    try_no_dots()
-    # try_yes_dots()
-
-    try_no_visible_dots_no_hidden_dots_no_groups()
-        ##  do nothing
-    try_no_visible_dots_no_hidden_dots_yes_groups()
-        ##  hide / delete groups, make visible dots
-    try_no_visible_dots_yes_hidden_dots_no_groups()
-        ##  do nothing
-    try_no_visible_dots_yes_hidden_dots_yes_groups()
-        ##  hide / delete groups, show hidden dots, make visible dots
-    try_yes_visible_dots_no_hidden_dots_no_groups()
-        ##  do nothing
-    try_yes_visible_dots_no_hidden_dots_yes_groups()
-        ##  hide / delete groups, overwrite? / add to? dots
-    try_yes_visible_dots_yes_hidden_dots_no_groups()
-        ##  do nothing
-    try_yes_visible_dots_yes_hidden_dots_yes_groups()
-        ##  hide / delete groups, show hidden dots, make visible dots
-    # different numbers of groups and dots
-    # groups and dots don't match 
-
 ####
 
 def test_export():
@@ -414,58 +330,6 @@ def test_get_labeled_shape_names():
     try_3_ishapes_0_rules()
     try_3_ishapes_3_rules()
 
-def test__clear_objects():
-    def try_no_hidden_text_dots():
-        try_name = 'no_hidden_text_dots'
-        lines = _draw_lines()
-        text_dots = _draw_text_dots()
-        n_objects_drawn = len(lines) + len(text_dots)
-        actual_value = g.Grammar._clear_objects()
-        expected_value = n_objects_drawn
-        if not actual_value == expected_value:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    def try_yes_hidden_text_dots():
-        try_name = 'yes_hidden_text_dots'
-        lines = _draw_lines()
-        text_dots = _draw_text_dots()
-        hidden_text_dots = _draw_hidden_text_dots()
-        rs.GetString("Drew 2 lines, 2 visible dots, 2 hidden dots")
-        n_objects_drawn = len(lines) + len(text_dots) + len(hidden_text_dots)
-        actual_value = g.Grammar._clear_objects()
-        expected_value = n_objects_drawn
-        if not actual_value == n_objects_drawn:
-            u.Utilities.print_test_error_message(
-                method_name, try_name, expected_value, actual_value)
-
-    method_name = '_clear_objects'
-    try_no_hidden_text_dots()
-    # try_yes_hidden_text_dots()
-
-def test__show_hidden_text_dots():
-    def try_no_hidden_text_dots():
-        try_name = 'no_hidden_text_dots'
-        g.Grammar.clear_all()
-        actual_value = g.Grammar._show_hidden_text_dots()
-        expected_value = 0
-        if not actual_value == expected_value:
-            method_name, try_name, expected_value, actual_value
-
-    def try_yes_hidden_text_dots():
-        try_name = 'yes_hidden_text_dots'
-        u.Utilities.make_grammar_3_initial_shapes_4_rules()
-        g.Grammar.change_text_dots_to_annotation_groups()
-        actual_value = g.Grammar._show_hidden_text_dots()
-        n_hidden_text_dots = 17
-        expected_value = n_hidden_text_dots
-        if not actual_value == expected_value:
-            method_name, try_name, expected_value, actual_value
-
-    method_name = '_show_hidden_text_dots'
-    try_no_hidden_text_dots()
-    try_yes_hidden_text_dots()
-
 ##  Utilities  ##
 
 def _draw_lines():
@@ -494,25 +358,6 @@ def _draw_text_dots():
     text_dots = [text_dot_1, text_dot_2]
     return text_dots
 
-def _draw_hidden_text_dots():
-    text_3, text_4 = 'x3', 'x4'
-    dot_3, dot_4 = (30, 0, 0), (40, 0, 0)
-    text_dot_3 = rs.AddTextDot(text_3, dot_3)
-    text_dot_4 = rs.AddTextDot(text_4, dot_4)
-    hidden_text_dots = [text_dot_3, text_dot_4]
-    hidden_group = s.Settings.hidden_text_dot_group
-    rs.AddGroup(hidden_group)
-    n_objects = rs.AddObjectsToGroup(hidden_text_dots, hidden_group)
-    if n_objects:
-        message = 'Added %i text dots to hidden group' % n_objects
-    else:
-        message = 'Did not add text dots to hidden group'
-    rs.HideGroup(hidden_group)
-    g.Grammar._update_display()
-    rs.GetString('Updated display')
-    return hidden_text_dots
-
-
 # set_up_grammar_3_shapes_3_rules()               ##  done 08-07 / manual
 # test_set_up_grammar()                           ##  done 08-06 / manual
 # test__set_up_first_initial_shape()              ##  done 08-06
@@ -521,13 +366,9 @@ def _draw_hidden_text_dots():
 # test__set_up_first_rule()                       ##  done 08-06
 # test_set_up_subsequent_rule()                   ##  done 08-06 / manual
 # test__set_up_rule()                             ##  done 12-16
-# test_change_text_dots_to_annotation_groups()    ##  done 01-03
-test_change_annotation_groups_to_text_dots()    ##  
 
 # test_export()                                   ##  done / manual
 # test__get_element_layers()                      ##  done
 # test_get_name()                                 ##  done
 
 # test_get_labeled_shape_names()                  ##  done / for tests
-# test__clear_objects()                           ##  done
-# test__show_hidden_text_dots()                   ##  done

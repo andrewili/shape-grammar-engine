@@ -28,10 +28,6 @@ class Settings(object):
     frame_color_name = dark_gray
     frame_layer_name = 'frames'
     frame_name = 'frame block'
-    hatch_annotation_text_height = 1.5
-    hatch_annotation_text_offset = (0.5, 0.5, 0)
-    hatch_radius = 0.25
-    hidden_text_dot_group = 'hidden text dot group'
     right_frame_offset_factor = 1.5
     rule_name_text_height = 2
     rule_name_text_font = 'Arial'
