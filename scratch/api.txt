@@ -1,0 +1,129 @@
+API 
+v1.0.0
+2016-01-25
+
+    clear_all
+        Synopsis
+            Clears the Rhino document
+        Required state
+        Receives
+            nil
+        Description
+            Deletes all drawn objects, including locked objects
+            Deletes all blocks
+            Deletes all layers, except Default
+            Deletes all groups
+            Deletes all document data
+        Returns
+            nil
+
+    export_grammar
+        Synopsis
+            Exports the grammar
+        Required state
+        Prompts for
+            The name of the dat file (string)
+        Description
+            Writes the grammar's dat string to a file, proposing the Rhino 
+            document name as the file name
+        Returns
+            The dat string (string)
+
+    import_derivation
+        Synopsis
+            Imports a grammar
+        Required state
+        Prompts for
+            The name of a drv file (string)
+        Description
+            Creates a layer named 'Derivation', if it does not already exist
+            Draws the derivation on that layer
+        Returns
+            nil
+
+    import_final_shape
+        Synopsis
+            Imports a final shape
+        Required state
+        Prompts for
+            The name of a drv file (string)
+        Description
+            Draws the final shape in the derivation
+        Returns
+            nil
+
+    new_grammar
+        Synopsis
+            Sets up the infrastructure for a grammar, plus a minimal blank 
+            grammar 
+        Required state
+        Receives
+            nil
+        Description
+            Clears objects, blocks, layers, groups, and data
+            Creates a frame block and an arrow block
+            Sets up a blank initial shape and a blank rule
+
+    new_initial_shape
+        Synopsis
+            Creates the infrastructure of a new initial shape
+        Required state
+        Prompts for
+            The name (string) of the new initial shape
+            The position (point3d) of the new initial shape frame
+        Description
+            Creates a new layer with the specified name. Inserts a frame 
+            instance on the new layer at the specified position
+        Returns
+            The name of the new layer (string)
+
+    new_rule
+        Synopsis
+            Creates the infrastructure of a new rule
+        Required state
+        Prompts for
+            The name (string) of the new rule
+            The position (point3d) of the new rule frame (left)
+        Description
+            Creates a new layer with the specified name. Inserts two frame 
+            instances on the new layer at the specified position
+        Returns
+            The name of the new layer (string)
+
+API v2-alpha
+2016-02-03
+
+        System displays the grammar
+    Select current shape and rule(s). 'Show next shapes'
+        System displays all distinct next shapes
+    Delete unwanted next shapes. Repeat
+
+    show_next_shapes
+        Synopsis
+            Calculates and displays all distinct next shapes, based on the 
+            selected current shape and rules
+        Required state
+            The grammar contains at least one initial shape and one rule
+            Selected initial shape
+                None
+                One partial
+                One whole
+                More than one
+        Prompts for
+            Current shape (or part thereof)
+            Rule(s)
+        Description
+        Returns
+
+Shape arithmetic v2-alpha 
+
+    Apply a rule 
+        If t(A) ≤ C, then C' = [C - t(A)] + t(B)
+
+    We want: ti(Aj) ≤ Ck
+        
+        0 < j ≤ n(selected rules)
+        0 < k ≤ n(valid current shapes)
+
+        
+
