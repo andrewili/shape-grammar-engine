@@ -1,5 +1,13 @@
 to_do_2015_12
 
+Structure of the Rhino document
+
+  • Grammar: initial shapes, rules
+  • Shapes (i.e., initial shapes and newly created shapes; design space; nodes 
+    on the derivation tree). Distinguish only shapes and rules! 
+  • Big question: Should the design space (collection of shapes) be 
+    structured? This would probably mean that each shape would have a pointer 
+    to its predecessor in the derivation tree
 
 2-part set-up (external interpreter): finish
 
