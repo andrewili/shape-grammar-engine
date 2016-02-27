@@ -1,3 +1,3 @@
-from package.scripts import grammar as g
+from package.controller import controller_main as cm
 
-g.Grammar.find_and_display_next_shapes_all_rules()
+cm.CMain.find_and_display_next_shapes_all_rules()
