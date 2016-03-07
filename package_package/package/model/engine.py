@@ -156,8 +156,8 @@ class Engine(object):
             transformation  Matrix, if there is a transformation. Otherwise 
                             None
         """
-        tri1    = Triangle.new(triple_1)
-        tri2    = Triangle.new(triple_2)
+        tri1    = Triad.new(triple_1)
+        tri2    = Triad.new(triple_2)
 
         if not tri1.is_similar_to(tri2):
             return_value = None
@@ -167,15 +167,15 @@ class Engine(object):
         return return_value
 
     @classmethod
-    def _find_transformation(cls, triangle_1, triangle_2):
+    def _find_transformation(cls, triad_1, triad_2):
         """Receives:
-            triangle_1      Triangle. The source triangle
-            triangle_2      Triangle. The target triangle
-        Finds the transformation that takes triangle_1 to triangle_2. Returns:
+            triad_1         Triad. The source triad
+            triad_2         Triad. The target triad
+        Finds the transformation that takes triad_1 to triad_2. Returns:
             transformation  Matrix
         """
-        tri1    = triangle_1
-        tri2    = triangle_2
+        tri1    = triad_1
+        tri2    = triad_2
         t1      = cls._find_translation_to_origin(tri1)
         t2      = cls._find_translation_to_origin(tri2)
         t2_inv  = t2.inverse()
@@ -188,7 +188,7 @@ class Engine(object):
     @classmethod
     def _find_translation_to_origin(cls, tri1):
         """Receives:
-            tri1        Triangle
+            tri1        Triad
         Finds the translation of the reference vertex to the origin. Returns:
             translation Matrix
         """
@@ -201,8 +201,8 @@ class Engine(object):
     @classmethod
     def _find_rotation(cls, tri1, tri2):
         """Receives:
-            tri1            Triangle
-            tri2            Triangle
+            tri1            Triad
+            tri2            Triad
         Finds the rotation that takes the reference vector of tri1 to the 
         reference vector of tri2. Clockwise positive. Returns:
             rotation        Matrix
@@ -219,8 +219,8 @@ class Engine(object):
     @classmethod
     def _find_scaling(cls, tri1, tri2):
         """Receives:
-            tri1            Triangle
-            tri2            Triangle
+            tri1            Triad
+            tri2            Triad
         Finds the scaling that takes tri1 to tri2, using the reference vertex 
         as the origin. Returns:
             scaling         Matrix

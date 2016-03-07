@@ -1,7 +1,10 @@
+import numpy as np
+import vector
+
 class Point(object):
 
     ### construct
-    def __init__(self, spec):
+    def __init__(self, spec):                   ##  2016-03-06 07:29
         """Receives:
             spec            (num, num, num=0)
         Immutable
@@ -136,6 +139,26 @@ class Point(object):
                 print '%s %s %s' % "We shouldn't have gotten here"
             formatted_coord = format % coord
             return formatted_coord
+
+    ### operations                              ##  2016-03-02 10:06
+    def __sub__(self, other):
+        """Receives:
+            other           Point
+        Subtracts other from self. Returns:
+            diff_vector     np.ndarray
+        """
+        method_name = '__sub__'
+        try:
+            if not type(other) == Point:
+                raise TypeError
+        except TypeError:
+            message = 'The argument must be a Point object'
+            self._print_error_message(method_name, message)
+        else:
+            self_matrix = np.array([self.x, self.y, self.z])
+            other_matrix = np.array([other.x, other.y, other.z])
+            vector = self_matrix - other_matrix
+            return vector
 
     ### relations
     def __eq__(self, other):

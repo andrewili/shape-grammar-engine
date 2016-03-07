@@ -1,0 +1,150 @@
+    >>> import math
+    >>> import point
+    >>> import triad
+
+### construct
+    ### bad type
+    >>> x = 7
+    >>> p1 = point.Point.from_coords(0, 0)
+    >>> p2 = point.Point.from_coords(0, 5)
+    >>> p3 = point.Point.from_coords(5, 0)
+    >>> t_from_bad_type = triad.Triad(x, p2, p3)
+    Triad.__init__:
+        The arguments must all be Point objects
+    >>> t_from_bad_type = triad.Triad(p1, x, p3)
+    Triad.__init__:
+        The arguments must all be Point objects
+    >>> t_from_bad_type = triad.Triad(p1, p2, x)
+    Triad.__init__:
+        The arguments must all be Point objects
+
+    ### bad value
+    >>> p01 = point.Point.from_coords(0, 1)
+    >>> p02 = point.Point.from_coords(0, 2)
+    >>> p05 = point.Point.from_coords(0, 5)
+    >>> tri_from_bad_value = triad.Triad(p01, p02, p05)
+    Triad.__init__:
+        The points must not be collinear
+
+### _order_points_clockwise                     ##  2016-03-07 08:35
+    ### 2d, 1 smallest vertex
+    >>> p00 = point.Point.from_coords(0, 0)
+    >>> p03 = point.Point.from_coords(0, 3)
+    >>> p40 = point.Point.from_coords(4, 0)
+    >>> clockwise_points = triad.Triad._order_points_clockwise(p00, p03, p40)
+    >>> print(clockwise_points)
+    ((4, 0, 0), (0, 0, 0), (0, 3, 0))
+
+    ### 2d, 2 smallest vertices
+    >>> p00 = (0, 0, 0)
+    >>> p05 = (0, 5, 0)
+    >>> p50 = (5, 0, 0)
+    >>> clockwise_points = triad.Triad._order_points_clockwise(p50, p05, p00)
+    >>> print(clockwise_points)
+    ((0, 0, 0), (0, 5, 0), (5, 0, 0))
+
+    ### 2d, 2 smallest vertices, -/- quadrant
+    >>> print(clockwise_points)
+    >>> p00 = (0, 0, 0)
+    >>> p05 = (0, -5, 0)
+    >>> p50 = (-5, 0, 0)
+    >>> clockwise_points = triad.Triad._order_points_clockwise(p50, p05, p00)
+    >>> print(clockwise_points)
+    ((0, 0, 0), (0, -5, 0), (-5, 0, 0))
+
+### _find_smallest_vertex
+    ### 2d, 1 smallest vertex
+    >>> p00 = point.Point.from_coords(0, 0)
+    >>> p03 = point.Point.from_coords(0, 3)
+    >>> p40 = point.Point.from_coords(4, 0)
+    >>> smallest_vertex = triad.Triad._find_smallest_vertex(p00, p03, p40)
+    >>> smallest_vertex
+    (4, 0, 0)
+
+    ### 2d, 2 smallest vertices
+    >>> p00 = point.Point.from_coords(0, 0)
+    >>> p04 = point.Point.from_coords(0, 4)
+    >>> p40 = point.Point.from_coords(4, 0)
+    >>> smallest_vertex = triad.Triad._find_smallest_vertex(p00, p04, p40)
+    >>> smallest_vertex
+    (0, 4, 0)
+
+    ### 2d, 3 smallest vertices
+    >>> ax = math.cos(math.radians(60)) + 1
+    >>> ay = math.sin(math.radians(60)) + 1
+    >>> bx = math.cos(math.radians(0)) + 1
+    >>> by = math.sin(math.radians(0)) + 1
+    >>> a = (ax, ay)
+    >>> b = (bx, by)
+    >>> p0 = point.Point.from_coords(1, 1)
+    >>> pa = point.Point.from_coords(ax, ay)
+    >>> pb = point.Point.from_coords(bx, by)
+    >>> smallest_vertex = triad.Triad._find_smallest_vertex(p0, pa, pb)
+    >>> smallest_vertex
+    (1, 1, 0)
+
+    ### 2d, 3 smallest vertices, -/- quadrant
+    >>> ax = math.cos(math.radians(150)) - 1
+    >>> ay = math.sin(math.radians(150)) - 1
+    >>> bx = math.cos(math.radians(180)) - 1
+    >>> by = math.sin(math.radians(180)) - 1
+    >>> a = (ax, ay)
+    >>> b = (bx, by)
+    >>> p0 = point.Point.from_coords(-1, -1)
+    >>> pa = point.Point.from_coords(ax, ay)
+    >>> pb = point.Point.from_coords(bx, by)
+    >>> smallest_vertex = triad.Triad._find_smallest_vertex(p0, pa, pb)
+    >>> smallest_vertex
+    (-1, -1, 0)
+
+### _find_angle                                  ##  disabled: inaccurate
+    ??? p00 = point.Point.from_coords(0, 0)
+    ??? p01 = point.Point.from_coords(0, 1)
+    ??? p10 = point.Point.from_coords(1, 0)
+
+    ??? triad.Triad._find_angle(p00, p01, p10)
+    90.0
+    ??? triad.Triad._find_angle(p01, p10, p00)
+    45.0
+    ??? triad.Triad._find_angle(p10, p00, p01)
+    45.0
+
+    ??? p00 = point.Point.from_coords(0, 0)
+    ??? p03 = point.Point.from_coords(0, 3)
+    ??? p40 = point.Point.from_coords(4, 0)
+
+    ??? triad.Triad._find_angle(p40, p00, p03)
+    36.86989764584401
+    ??? triad.Triad._find_angle(p00, p03, p40)
+    90.0
+    ??? triad.Triad._find_angle(p03, p40, p00)
+    53.13010235415599
+
+    ??? cos30 = math.cos(math.radians(30))
+    ??? cos30 == 0.8660254037844387
+    True
+    ??? sin30 = math.sin(math.radians(30))
+
+    ??? sin30
+    0.5
+    ??? p00 = point.Point.from_coords(0, 0, 0)
+    ??? pc0 = point.Point.from_coords(cos30, 0, 0)
+    ??? pcs = point.Point.from_coords(cos30, sin30, 0)
+
+    ??? triad.Triad._find_angle(p00, pcs, pc0)
+    30.0
+    ??? triad.Triad._find_angle(pc0, p00, pcs)
+    90.0
+    ??? triad.Triad._find_angle(pcs, pc0, p00)
+    60.0
+
+### find clockwise angles, 2d, 1 smallest
+    ??? p00 = point.Point.from_coords(0, 0)
+    ??? p03 = point.Point.from_coords(0, 3)
+    ??? p40 = point.Point.from_coords(4, 0)
+    ??? tri = triad.Triad(p00, p03, p40)
+    ??? tri._find_clockwise_angles()
+    ()
+
+### find clockwise angles, 2d, 1 smallest
+

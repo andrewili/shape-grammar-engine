@@ -1,4 +1,6 @@
+    >>> import numpy as np
     >>> import point
+    >>> import vector
 
 ### construct
 #   __init__
@@ -122,6 +124,20 @@
     2
     >>> print p234.get_formatted_coord('y')
     3
+
+### operations
+#   __sub__
+    >>> p123 = point.Point((1, 2, 3))
+    >>> p234 = point.Point((2, 3, 4))
+    >>> non_point = 37
+
+    >>> p123 - non_point
+    Point.__sub__:
+        The argument must be a Point object
+    >>> p123 - p123
+    array([0, 0, 0])
+    >>> p234 - p123
+    array([1, 1, 1])
 
 ### relations
 #   __eq__
