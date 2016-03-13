@@ -1,0 +1,136 @@
+    >>> import fuzzy_number as fn
+    >>> import math
+    >>> import numpy as np
+    >>> almost_equal = np.allclose
+    >>> tau = math.pi * 2
+
+### construct
+    ### bad type
+    >>> fuz_num_bad_type = fn.FuzzyNumber('x')
+    FuzzyNumber.__init__:
+        The argument must be a number
+
+    ### bad value: none
+
+    ### good value
+    >>> fn0 = fn.FuzzyNumber(0)
+    >>> print(fn0)
+    0
+
+### relations
+    >>> cos30 = math.cos(tau / 12)
+    >>> cos60 = math.cos(tau / 6)
+    >>> sin60 = math.sin(tau / 6)
+    >>> cos30 == 0.8660254037844387
+    True
+    >>> cos60 == 0.5000000000000001
+    True
+    >>> sin60 == 0.8660254037844386
+    True
+    >>> fn_cos30 = fn.FuzzyNumber(cos30)
+    >>> fn_cos60 = fn.FuzzyNumber(cos60)
+    >>> fn_sin60 = fn.FuzzyNumber(sin60)
+    >>> fn_05 = fn.FuzzyNumber(0.5)
+
+    ### __eq__
+    >>> fn_cos30.value == fn_sin60.value
+    False
+    >>> fn_cos30 == fn_sin60
+    True
+    >>> fn_cos60.value == fn_05.value
+    False
+    >>> fn_cos60 == fn_05
+    True
+
+    ### __ge__
+    >>> fn_cos30.value >= fn_sin60.value
+    True
+    >>> fn_cos30 >= fn_sin60
+    True
+    >>> fn_sin60.value >= fn_cos30.value
+    False
+    >>> fn_sin60 >= fn_cos30
+    True
+    >>> fn_cos30.value >= fn_cos60.value
+    True
+    >>> fn_cos30 >= fn_cos60
+    True
+    >>> fn_cos60.value >= fn_cos30.value
+    False
+    >>> fn_cos60 >= fn_cos30
+    False
+
+    ### __gt__
+    >>> fn_cos30.value > fn_sin60.value
+    True
+    >>> fn_cos30 > fn_sin60
+    False
+    >>> fn_sin60.value > fn_cos30.value
+    False
+    >>> fn_sin60 > fn_cos30
+    False
+    >>> fn_cos30.value > fn_cos60.value
+    True
+    >>> fn_cos30 > fn_cos60
+    True
+    >>> fn_cos60.value > fn_cos30.value
+    False
+    >>> fn_cos60 > fn_cos30
+    False
+
+    ### __le__
+    >>> fn_cos30.value <= fn_sin60.value
+    False
+    >>> fn_cos30 <= fn_sin60
+    True
+    >>> fn_sin60.value <= fn_cos30.value
+    True
+    >>> fn_sin60 <= fn_cos30
+    True
+    >>> fn_cos30.value <= fn_cos60.value
+    False
+    >>> fn_cos30 <= fn_cos60
+    False
+    >>> fn_cos60.value <= fn_cos30.value
+    True
+    >>> fn_cos60 <= fn_cos30
+    True
+
+    ### __lt__
+    >>> fn_cos30.value < fn_sin60.value
+    False
+    >>> fn_cos30 < fn_sin60
+    False
+    >>> fn_sin60.value < fn_cos30.value
+    True
+    >>> fn_sin60 < fn_cos30
+    False
+    >>> fn_cos30.value < fn_cos60.value
+    False
+    >>> fn_cos30 < fn_cos60
+    False
+    >>> fn_cos60.value < fn_cos30.value
+    True
+    >>> fn_cos60 < fn_cos30
+    True
+
+    ### __ne__
+    >>> fn_cos30.value != fn_sin60.value
+    True
+    >>> fn_cos30 != fn_sin60
+    False
+    >>> fn_sin60.value != fn_cos30.value
+    True
+    >>> fn_sin60 != fn_cos30
+    False
+    >>> fn_cos30.value != fn_cos60.value
+    True
+    >>> fn_cos30 != fn_cos60
+    True
+    >>> fn_cos60.value != fn_cos30.value
+    True
+    >>> fn_cos60 != fn_cos30
+    True
+
+
+

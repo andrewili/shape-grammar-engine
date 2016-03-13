@@ -106,14 +106,14 @@ class Triad(object):
         angle_vertex_pairs = []
         for triple in vertex_triples:
             vertex, p1, p2 = triple
-            angle = cls._find_angle_from_points(vertex, p1, p2)
-            pair = (angle, vertex)
+            ang = cls._find_angle_from_points(vertex, p1, p2)
+            pair = (ang, vertex)
             angle_vertex_pairs.append(pair)
-        print('sorted angle_vertex_pairs: %s' % sorted(angle_vertex_pairs))
+        # print('sorted angle_vertex_pairs: %s' % sorted(angle_vertex_pairs))
         points = []
         for pair in sorted(angle_vertex_pairs):
             points.append(pair[1])
-        print('points: %s' % points)
+        # print('points: %s' % points)
         return points
 
     @classmethod
@@ -125,11 +125,13 @@ class Triad(object):
             p2              Point. z = 0
         Finds the angle p1p0p2 in radians. Returns:
             angle_in_radians
-                            float. 0 < angle_in_radians < tau / 2
+                            Angle. 0 < angle_in_radians < tau / 2
+            # angle_in_radians
+                            # float. 0 < angle_in_radians < tau / 2
         """
         v01 = p1 - p0
         v02 = p2 - p0
-        angle_in_radians = abs(v02.bearing - v01.bearing)
+        angle_in_radians = abs(v02.bearing - v01.bearing) # Angle
         return angle_in_radians
 
     @classmethod

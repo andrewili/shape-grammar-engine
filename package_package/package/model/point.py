@@ -1,5 +1,6 @@
 import numpy as np
 import vector
+almost_equal = np.allclose
 
 class Point(object):
 
@@ -162,22 +163,44 @@ class Point(object):
 
     ### relations
     def __eq__(self, other):
-        return self.spec == other.spec
+        return almost_equal(self.spec, other.spec)
+        # return self.spec == other.spec
 
     def __ge__(self, other):
-        return self.spec >= other.spec
+        return (
+            almost_equal(self.spec, other.spec) or
+            self.spec > other.spec)
+        # return self.spec >= other.spec
 
     def __gt__(self, other):
-        return self.spec > other.spec
+        if almost_equal(self.spec, other.spec):
+            value = False
+        elif self.spec > other.spec:
+            value = True
+        else:
+            value = False
+        return value
+        # return self.spec > other.spec
 
     def __le__(self, other):
-        return self.spec <= other.spec
+        return (
+            almost_equal(self.spec, other.spec) or
+            self.spec < other.spec)
+        # return self.spec <= other.spec
 
     def __lt__(self, other):
-        return self.spec < other.spec
+        if almost_equal(self.spec, other.spec):
+            value = False
+        elif self.spec < other.spec:
+            value = True
+        else:
+            value = False
+        return value
+        # return self.spec < other.spec
 
     def __ne__(self, other):
-        return self.spec != other.spec
+        return not almost_equal(self.spec, other.spec)
+        # return self.spec != other.spec
 
     ### other
     @classmethod

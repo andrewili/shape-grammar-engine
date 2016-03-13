@@ -36,14 +36,15 @@ class Vector(object):
         """Receives:
             x               object
         Returns:
-            value           boolean. True if x is a float, an np.int64 or an 
-                            int. False otherwise
+            value           boolean. True if x is an int, a float, an 
+                            np.int64, or an np.float64. False otherwise
         """
         value = False
-        if (type(x) == float or
+        if (
+            type(x) == int or
+            type(x) == float or
             type(x) == np.int64 or
-            type(x) == np.float64 or
-            type(x) == int
+            type(x) == np.float64
         ):
             value = True    
         return value

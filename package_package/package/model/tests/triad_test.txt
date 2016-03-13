@@ -4,7 +4,7 @@
     >>> import triad
     >>> import vector
     >>> almost_equal = np.allclose
-    >>> tau = 2 * math.pi
+    >>> tau = math.pi * 2
 
 ### construct
     ### bad type
