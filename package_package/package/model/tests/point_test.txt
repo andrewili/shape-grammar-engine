@@ -134,10 +134,20 @@
     >>> p123 - non_point
     Point.__sub__:
         The argument must be a Point object
-    >>> p123 - p123
-    array([0, 0, 0])
-    >>> p234 - p123
-    array([1, 1, 1])
+
+    >>> v111 = p234 - p123
+    >>> type(v111) == vector.Vector
+    True
+    >>> print(v111)
+    [1 1 1]
+    >>> v_111 = p123 - p234
+    >>> type(v_111) == vector.Vector
+    True
+    >>> print(v_111)
+    [-1 -1 -1]
+    >>> v000 = p123 - p123
+    >>> v000.matrix == np.array([0, 0, 0])
+    array([ True,  True,  True], dtype=bool)
 
 ### relations
 #   __eq__

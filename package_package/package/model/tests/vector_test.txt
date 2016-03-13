@@ -1,7 +1,8 @@
+    >>> from numpy import linalg as la
     >>> import math
     >>> import numpy as np
-    >>> from numpy import linalg as la
     >>> import vector
+    >>> almost_equal = np.allclose
 
 ### construct
 #   __init__
@@ -21,151 +22,131 @@
     Vector.__init__:
         The arguments must be numbers
 
+    ### good value 0
+    >>> v0 = vector.Vector(0, 0)
+    >>> v0.matrix == np.array([0, 0, 0])
+    array([ True,  True,  True], dtype=bool)
+    >>> v0.length == 0.0
+    True
+    >>> v0.unit_matrix == None
+    True
+
     ### good value 2d
-    >>> v2d = vector.Vector(x, y)
-    >>> v2d_matrix = np.array([[3], [4], [0], [0]])     ##  3 elements!
-    >>> v2d.matrix == v2d_matrix
-    array([[ True],
-           [ True],
-           [ True],
-           [ True]], dtype=bool)
-    >>> v2d.length == 5
+    >>> v030400 = vector.Vector(3, 4)
+    >>> v030400_matrix = np.array([3, 4, 0])
+    >>> v030400.matrix == v030400_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> v030400.length
+    5.0
+    >>> v051200 = vector.Vector(5, 12)
+    >>> v051200_matrix = np.array([5, 12, 0])
+    >>> v051200.matrix == v051200_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> v051200.length
+    13.0
+
+    >>> v050500 = vector.Vector(5, 5, 0)
+    >>> v050500_matrix = np.array([5, 5, 0])
+    >>> v050500.matrix == v050500_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> v050500.length == math.cos(math.radians(45)) * 10
+    True
+    >>> almost_equal(v050500.bearing_in_degrees, 45.0)
+    True
+    >>> cos30 = math.cos(math.radians(30))
+    >>> sin30 = math.sin(math.radians(30))
+    >>> v30deg = vector.Vector(cos30, sin30, 0)
+    >>> v30deg_matrix = np.array([cos30, sin30, 0])
+    >>> v30deg.matrix == v30deg_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> almost_equal(v30deg.bearing_in_degrees, 60.0)
     True
 
     ### good value 3d
     >>> vector_3d = vector.Vector(x, 0, y)
-    >>> vector_3d_matrix = np.array([[3], [0], [4], [0]])
-    >>> vector_3d.matrix == vector_3d_matrix
-    array([[ True],
-           [ True],
-           [ True],
-           [ True]], dtype=bool)
+    >>> vector_3d_matrix = np.array([3, 0, 4])
+    >>> almost_equal(vector_3d.matrix, vector_3d_matrix)
+    True
     >>> vector_3d.length == 5
     True
 
-#   _find_bearing: practise                     ##  2016-03-05 18:10
-    >>> k_866 = 0.8660254037844387
-    >>> k_707 = 0.7071067811865476
-
-    ### Given angle (positive clockwise from north, find direction vector
-    ###   0 deg -> ( 0    ,  1    )
-    ###  30 deg -> ( 0.5  ,  k_866)
-    ###  45 deg -> ( k_707,  k_707)
-    ###  60 deg -> ( k_866,  0.5  )
-    ###  90 deg -> ( 1    ,  0    )
-    ### 120 deg -> ( k_866, -0.5  )
-    ### 135 deg -> ( k_707, -k_707)
-    ### 150 deg -> ( 0.5  , -k_866)
-    ### 180 deg -> ( 0    , -1    )
-    ### 210 deg -> (-0.5  , -k_866)
-    ### 225 deg -> (-k_707, -k_707)
-    ### 240 deg -> (-k_866, -0.5  )
-    ### 270 deg -> (-1    ,  0    )
-    ### 300 deg -> (-k_866,  0.5  )
-    ### 315 deg -> (-k_707,  k_707)
-    ### 330 deg -> (-0.5  ,  k_866)
-
-    >>> north_dir_mx = np.array([[0], [1], [0]])
-    >>> def t(angle):
-    ...     t = np.array(
-    ...         [   [   math.cos(math.radians(angle)),
-    ...                 math.sin(math.radians(angle)), 
-    ...                 0],
-    ...             [   math.sin(math.radians(angle)),
-    ...                 math.cos(math.radians(angle)),
-    ...                 0],
-    ...             [   0,
-    ...                 0,
-    ...                 0]])
-    ...     return t
-    >>> np.cross(t(0), north_dir_mx)
-    array[[0]
-          [1]
-          [0]]
-
-#   _find_bearing
-    >>> v = vector.Vector(1, 1)
-    >>> val_45 = math.cos(math.radians(45))
-    >>> print(val_45)
-    0.707106781187
-
-    >>> dir_mx_0 = np.array([[0], [1], [0]])
-    >>> v._find_bearing(dir_mx_0)
-    0.0
-
-    >>> dir_mx_45 = np.array([[val_45], [val_45], [0]])
-    >>> v._find_bearing(dir_mx_45)
-    45.0
-
-    >>> dir_mx_90 = np.array([[1], [0], [0]])
-    >>> v._find_bearing(dir_mx_90)
-    90.0
-
-    >>> dir_mx_135 = np.array([[val_45], [-val_45], [0]])
-    >>> v._find_bearing(dir_mx_135)
-    135.0 # 45.0
-
-    >>> dir_mx_180 = np.array([[0], [-1], [0]])
-    >>> v._find_bearing(dir_mx_180)
-    180.0 # 0.0
-
-    >>> dir_mx_225 = np.array([[-val_45], [-val_45], [0]])
-    >>> v._find_bearing(dir_mx_225)
-    225.0 # 45.0
-
-    >>> dir_mx_270 = np.array([[-1], [0], [0]])
-    >>> v._find_bearing(dir_mx_270)
-    270.0 # 90.0
-
-    >>> dir_mx_315 = np.array([[-val_45], [val_45], [0]])
-    >>> v._find_bearing(dir_mx_315)
-    315.0 # -45.0
-
-
 #   from_matrix
+    ### type error
     >>> non_matrix = 37
     >>> vector_from_non_matrix = vector.Vector.from_matrix(non_matrix)
     Vector.from_matrix:
         The argument must be a matrix
 
-    >>> matrix_bad_shape = np.array([[x], [y], [z]])
-    >>> vector_from_matrix_bad_shape = (
-    ...     vector.Vector.from_matrix(matrix_bad_shape))
+    ### value error
+    >>> matrix_bad_shape_2 = np.array([x, y])
+    >>> vector_from_matrix_bad_shape_2 = (
+    ...     vector.Vector.from_matrix(matrix_bad_shape_2))
     Vector.from_matrix:
-        The matrix must have shape (4, 1) and the final element must be array([0])
-
-    >>> matrix_bad_last_element = np.array([[x], [y], [z], [1]])
-    >>> vector_from_matrix_bad_last_element = (
-    ...     vector.Vector.from_matrix(matrix_bad_last_element))
+        The matrix must have shape (3, )
+    >>> matrix_bad_shape_4 = np.array([x, y, z, 0])
+    >>> vector_from_matrix_bad_shape_4 = (
+    ...     vector.Vector.from_matrix(matrix_bad_shape_4))
     Vector.from_matrix:
-        The matrix must have shape (4, 1) and the final element must be array([0])
+        The matrix must have shape (3, )
 
-    >>> good_matrix = np.array([[x], [y], [z], [0]])
+    ### good value
+    >>> good_matrix = np.array([x, y, z])
     >>> vector_from_good_matrix = vector.Vector.from_matrix(good_matrix)
     >>> type(vector_from_good_matrix) == vector.Vector
     True
     >>> print(vector_from_good_matrix)
-    [[3]
-     [4]
-     [5]
-     [0]]
-
-    ??? non_vector_matrix = np.array([[x], [y], [z]])
-
-    ??? matrix = np.array([[x], [y], [z], [0]])
-    ??? vector_from_matrix = vector.Vector(matrix)
-    ??? vector_from_matrix
-    array([[3],
-           [4],
-           [5], 
-           [0], dtype=int])
-
+    [3 4 5]
 
 ### represent
-    ??? matrix
+    #   __str__
+    >>> v = vector.Vector(1, 2)
+    >>> print(v)
+    [1 2 0]
+    >>> v = vector.Vector(1, 1, 0)
+    >>> print(v)
+    [1 1 0]
 
 ### operations
 
 ### relations
 
 ### other
+
+### length practise
+    ??? m34 = np.array([3, 4, 0])
+    ??? m34_length = la.norm(m34)
+    ??? m34_length
+    5.0
+
+    ??? m0512 = np.array([-5, -12, 0])
+    ??? m0512_length = la.norm(m0512)
+    ??? m0512_length
+    13.0
+
+    ??? m11 = np.array([-1, 1, 0])
+    ??? m11_length = la.norm(m11)
+    ??? m11_length
+    1.414
+
+### direction matrix practise
+    ??? m01 = np.array([0, 1, 0])
+    ??? m01_bearing = math.acos(np.dot(m01, m01))
+    ??? m01_bearing
+    0.0
+    ??? m45 = np.array([1, 1, 0])
+    ??? m45_length = la.norm(m45)
+    ??? m45_unit = m45 / m45_length
+    ??? m45_bearing_a = math.degrees(math.acos(np.dot(m01, m45_unit)))
+    ??? m45_bearing_a
+    45.0
+    ??? m45_bearing_b = math.degrees(math.acos(np.dot(m45_unit, m01)))
+    ??? m45_bearing_b
+    45.0
+    ??? m90 = np.array([1, 0, 0])
+    ??? m90_bearing_a = math.degrees(math.acos(np.dot(m01, m90)))
+    ??? m90_bearing_a
+    90.0
+    ??? m90_bearing_b = math.degrees(math.acos(np.dot(m90, m01)))
+    ??? m90_bearing_b
+    90.0
+

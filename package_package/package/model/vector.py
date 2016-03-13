@@ -3,7 +3,7 @@ import math
 import numpy as np
 
 class Vector(object):
-    def __init__(self, x_in, y_in, z_in=0):     ##  2016-03-06 06:47
+    def __init__(self, x_in, y_in, z_in=0):
         method_name = '__init__'
         try:
             if not (
@@ -13,28 +13,24 @@ class Vector(object):
             ):
                 raise TypeError
         except TypeError:
-            message = 'The arguments must be numbers'
+            message = "The arguments must be numbers"
             self.__class__._print_error_message(method_name, message)
         else:
-            self.matrix = np.array([x_in], [y_in], [z_in])
-            # self.matrix = np.array([[x_in], [y_in], [z_in], [0]])
-            self.x = self.matrix[0][0]
-            self.y = self.matrix[1][0]
-            self.z = self.matrix[2][0]
+            num = north_unit_matrix = np.array([0, 1, 0])
+            self.x = x_in
+            self.y = y_in
+            self.z = z_in
+            self.matrix = np.array([x_in, y_in, z_in])
             self.length = la.norm(self.matrix)
-            self.dir = self.direction_matrix = self.matrix / self.length
-            self.bearing_from_x = self._find_bearing(self.dir)
-            # self.bearing_from_y = self._find_bearing_from_y(self.dir)
-            
-            # self.bearing_from_x = math.degrees(math.acos(self.dir[0]))
-            # self.bearing_from_y = math.degrees(math.asin(self.dir[1]))
-            # print('(x, y, z) = (%s, %s, %s)' % (self.x, self.y, self.z))
-            # print('length = s' % self.length)
-            # print('dir =\n%s' % self.dir)
-            # print('bearing from x = ' % self.bearing_from_x)
-            # print('bearing from y = ' % self.bearing_from_y)
-            # self.bearing = math.degrees(math.asin(self.y / self.length))
+            if self.length == 0:
+                self.unit_matrix = None
+                self.bearing = None
+                self.bearing_in_degrees = None
+            else:
+                self.unit_matrix = self.matrix / self.length
+                self.bearing = math.acos(np.dot(num, self.unit_matrix))
                 #   clockwise from north
+                self.bearing_in_degrees = math.degrees(self.bearing)
 
     def _is_a_number(self, x):
         """Receives:
@@ -46,30 +42,16 @@ class Vector(object):
         value = False
         if (type(x) == float or
             type(x) == np.int64 or
+            type(x) == np.float64 or
             type(x) == int
         ):
             value = True    
         return value
 
-    def _find_bearing(self, dir_matrix):        ##  2016-03-05 15:23
-        """Receives:
-            dir_matrix      np.ndarray. A direction matrix
-        Finds the bearing in degrees (clockwise positive from north), using 
-        the mean of both the x- and the y-elements. Returns:
-            angle           float. 
-        """
-        x = dir_matrix[0]
-        y = dir_matrix[1]
-        angle_x = math.degrees(math.asin(x))
-        angle_y = math.degrees(math.acos(y))
-        angle = (angle_x + angle_y) / 2.0
-        return angle
-
-    @classmethod                                ##  2016-03-03 11:41
+    @classmethod
     def from_matrix(cls, matrix_in):
         """Receives:
-            matrix_in       array. The array contains 4 x 1 elements, and the 
-                            final element is 0
+            matrix_in       array([num, num, num])
         Returns:
             vector_out      Vector
         """
@@ -78,21 +60,20 @@ class Vector(object):
             if not type(matrix_in) == np.ndarray:
                 raise TypeError
             elif not (
-                matrix_in.shape == (4, 1) and
-                matrix_in[3] == np.array([0])
+                matrix_in.shape == (3, )
             ):
                 raise ValueError
         except TypeError:
             message = 'The argument must be a matrix'
             cls._print_error_message(method_name, message)
         except ValueError:
-            message = '%s %s' % (
-                "The matrix must have shape (4, 1)", 
-                "and the final element must be array([0])"
-            )
+            message = "The matrix must have shape (3, )"
             cls._print_error_message(method_name, message)
         else:
-            x, y, z = matrix_in[0][0], matrix_in[1][0], matrix_in[2][0]
+            x, y, z = matrix_in[0], matrix_in[1], matrix_in[2]
+            # print('type(x): %s' % type(x))
+            # print('type(y): %s' % type(y))
+            # print('type(z): %s' % type(z))
             vector_out = Vector(x, y, z)
             return vector_out
 

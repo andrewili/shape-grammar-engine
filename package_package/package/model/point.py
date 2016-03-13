@@ -4,7 +4,7 @@ import vector
 class Point(object):
 
     ### construct
-    def __init__(self, spec):                   ##  2016-03-06 07:29
+    def __init__(self, spec):
         """Receives:
             spec            (num, num, num=0)
         Immutable
@@ -23,6 +23,7 @@ class Point(object):
             else:
                 self.x, self.y, self.z = spec
             self.spec = (self.x, self.y, self.z)
+            self.matrix = np.array([self.x, self.y, self.z])
 
     def _is_point_spec(self, item):
         """Receives:
@@ -140,12 +141,12 @@ class Point(object):
             formatted_coord = format % coord
             return formatted_coord
 
-    ### operations                              ##  2016-03-02 10:06
+    ### operations
     def __sub__(self, other):
         """Receives:
             other           Point
         Subtracts other from self. Returns:
-            diff_vector     np.ndarray
+            diff_vector     Vector
         """
         method_name = '__sub__'
         try:
@@ -155,10 +156,9 @@ class Point(object):
             message = 'The argument must be a Point object'
             self._print_error_message(method_name, message)
         else:
-            self_matrix = np.array([self.x, self.y, self.z])
-            other_matrix = np.array([other.x, other.y, other.z])
-            vector = self_matrix - other_matrix
-            return vector
+            diff_matrix = self.matrix - other.matrix
+            diff_vector = vector.Vector.from_matrix(diff_matrix)
+            return diff_vector
 
     ### relations
     def __eq__(self, other):
