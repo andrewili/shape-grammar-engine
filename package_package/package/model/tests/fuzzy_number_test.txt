@@ -2,7 +2,7 @@
     >>> import math
     >>> import numpy as np
     >>> almost_equal = np.allclose
-    >>> tau = math.pi * 2
+    >>> TAU = math.pi * 2
 
 ### construct
     ### bad type
@@ -18,9 +18,9 @@
     0
 
 ### relations
-    >>> cos30 = math.cos(tau / 12)
-    >>> cos60 = math.cos(tau / 6)
-    >>> sin60 = math.sin(tau / 6)
+    >>> cos30 = math.cos(TAU / 12)
+    >>> cos60 = math.cos(TAU / 6)
+    >>> sin60 = math.sin(TAU / 6)
     >>> cos30 == 0.8660254037844387
     True
     >>> cos60 == 0.5000000000000001

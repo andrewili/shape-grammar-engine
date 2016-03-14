@@ -1,7 +1,5 @@
-import math
 import numpy as np
 almost_equal = np.allclose
-tau = math.pi * 2
 
 class FuzzyNumber(object):
     def __init__(self, number_in):

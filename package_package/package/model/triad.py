@@ -1,8 +1,11 @@
+import fuzzy_number as fn
 from numpy import linalg as la
 import math
 import numpy as np
 # from package.model import point
 import point
+
+TAU = math.pi * 2
 
 class Triad(object):
     ### construct
@@ -72,8 +75,8 @@ class Triad(object):
             value = False
         return value
 
-    @classmethod                                ##  2016-03-07 08:23
-    def _get_clockwise_points(cls, pa, pb, pc):
+    @classmethod                                # A OK
+    def _get_clockwise_points(cls, pa, pb, pc): 
         """FOR NOW: the points are in the xy-plane
         Receives non-collinear points:
             pa              Point. z = 0
@@ -85,11 +88,12 @@ class Triad(object):
                             clockwise; and p2 is the remaining point
         """
         points_ordered_by_angle = cls._order_points_by_angle(pa, pb, pc)
+                                                                    # A.1
         p0, p1, p2 = clockwise_points = cls._order_remaining_points_clockwise(
-            points_ordered_by_angle)
+            points_ordered_by_angle)                                # A.2
         return clockwise_points
 
-    @classmethod
+    @classmethod                                # A.1 OK
     def _order_points_by_angle(cls, pa, pb, pc):
         """Receives non-collinear points:
             pa              Point. z = 0
@@ -103,38 +107,41 @@ class Triad(object):
             (pa, pb, pc),
             (pb, pc, pa),
             (pc, pa, pb)]
-        angle_vertex_pairs = []
+        fuzzy_angle_vertex_pairs = []
         for triple in vertex_triples:
             vertex, p1, p2 = triple
-            ang = cls._find_angle_from_points(vertex, p1, p2)
-            pair = (ang, vertex)
-            angle_vertex_pairs.append(pair)
-        # print('sorted angle_vertex_pairs: %s' % sorted(angle_vertex_pairs))
+            angle = cls._find_interior_angle_from_points(vertex, p1, p2)
+                                                # A.1.a
+            fuzzy_angle = fn.FuzzyNumber(angle)
+            pair = (fuzzy_angle, vertex)
+            fuzzy_angle_vertex_pairs.append(pair)
         points = []
-        for pair in sorted(angle_vertex_pairs):
+        for pair in sorted(fuzzy_angle_vertex_pairs):
             points.append(pair[1])
-        # print('points: %s' % points)
         return points
 
-    @classmethod
-    def _find_angle_from_points(cls, p0, p1, p2):
+    @classmethod                                # A.1.a OK
+    def _find_interior_angle_from_points(cls, p0, p1, p2):
         """FOR NOW: the points are all in the xy-plane
-        Receives non-collinear points:
+        Receives:
             p0              Point. z = 0
             p1              Point. z = 0
             p2              Point. z = 0
-        Finds the angle p1p0p2 in radians. Returns:
-            angle_in_radians
-                            Angle. 0 < angle_in_radians < tau / 2
-            # angle_in_radians
-                            # float. 0 < angle_in_radians < tau / 2
+        Finds the interior angle p1p0p2 in radians. Returns:
+            angle           float. 0 <= angle < tau / 2
         """
         v01 = p1 - p0
         v02 = p2 - p0
-        angle_in_radians = abs(v02.bearing - v01.bearing) # Angle
-        return angle_in_radians
+        directed_angle = abs(v02.bearing - v01.bearing)
+        fuzzy_directed_angle = fn.FuzzyNumber(directed_angle)
+        fuzzy_tau_2 = fn.FuzzyNumber(TAU / 2)
+        if fuzzy_directed_angle > fuzzy_tau_2:
+            angle = TAU - directed_angle
+        else:
+            angle = directed_angle
+        return angle
 
-    @classmethod
+    @classmethod                                # A.2 OK
     def _order_remaining_points_clockwise(cls, points_in):
         """Receives 3 non-collinear points:
             points_in       [Point]. z = 0. The first has the smallest angle 
@@ -160,16 +167,6 @@ class Triad(object):
             triad           Triad
         """
         pass
-
-    ###
-    def _find_clockwise_angles(self):
-        """FOR NOW: For points in the xy-plane
-        Finds the angle at each vertex. Returns:
-            (a0, a1, a2)    (float). a0 is the smallest angle at the least 
-                            point (by point ordering). a1 and a2 follow 
-                            clockwise
-        """
-        return angles
 
     ### utility
     @classmethod

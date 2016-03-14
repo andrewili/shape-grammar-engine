@@ -3,6 +3,7 @@
     >>> import numpy as np
     >>> import vector
     >>> almost_equal = np.allclose
+    >>> TAU = math.pi * 2
 
 ### construct
 #   __init__
@@ -30,6 +31,8 @@
     True
     >>> v0.unit_matrix == None
     True
+    >>> v0.bearing == None
+    True
 
     ### good value 2d
     >>> v030400 = vector.Vector(3, 4)
@@ -45,21 +48,70 @@
     >>> v051200.length
     13.0
 
+    >>> v000100 = vector.Vector(0, 1, 0)
+    >>> v000100_matrix = np.array([0, 1, 0])
+    >>> v000100.matrix == v000100_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> almost_equal(v000100.bearing, 0)
+    True
+
+    >>> v00_100 = vector.Vector(0, -1, 0)
+    >>> v00_100_matrix = np.array([0, -1, 0])
+    >>> v00_100.matrix == v00_100_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> almost_equal(v00_100.bearing, TAU / 2)
+    True
+
+    >>> v010000 = vector.Vector(1, 0, 0)
+    >>> v010000_matrix = np.array([1, 0, 0])
+    >>> v010000.matrix == v010000_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> almost_equal(v010000.bearing, TAU / 4)
+    True
+
+    >>> v_10000 = vector.Vector(-1, 0, 0)
+    >>> v_10000_matrix = np.array([-1, 0, 0])
+    >>> v_10000.matrix == v_10000_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> almost_equal(v_10000.bearing, TAU * 3 / 4)
+    True
+
     >>> v050500 = vector.Vector(5, 5, 0)
     >>> v050500_matrix = np.array([5, 5, 0])
     >>> v050500.matrix == v050500_matrix
     array([ True,  True,  True], dtype=bool)
-    >>> v050500.length == math.cos(math.radians(45)) * 10
+    >>> almost_equal(v050500.bearing, TAU / 8)
     True
-    >>> almost_equal(v050500.bearing_in_degrees, 45.0)
+
+    >>> v05_500 = vector.Vector(5, -5, 0)
+    >>> v05_500_matrix = np.array([5, -5, 0])
+    >>> v05_500.matrix == v05_500_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> almost_equal(v05_500.bearing, TAU * 3 / 8)
     True
+
+    >>> v_50500 = vector.Vector(-5, 5, 0)
+    >>> v_50500_matrix = np.array([-5, 5, 0])
+    >>> v_50500.matrix == v_50500_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> almost_equal(v_50500.bearing, TAU * 7 / 8)
+    True
+
+    >>> v_5_500 = vector.Vector(-5, -5, 0)
+    >>> v_5_500_matrix = np.array([-5, -5, 0])
+    >>> v_5_500.matrix == v_5_500_matrix
+    array([ True,  True,  True], dtype=bool)
+    >>> almost_equal(v_5_500.bearing, TAU * 5 / 8)
+    True
+
     >>> cos30 = math.cos(math.radians(30))
     >>> sin30 = math.sin(math.radians(30))
     >>> v30deg = vector.Vector(cos30, sin30, 0)
     >>> v30deg_matrix = np.array([cos30, sin30, 0])
     >>> v30deg.matrix == v30deg_matrix
     array([ True,  True,  True], dtype=bool)
-    >>> almost_equal(v30deg.bearing_in_degrees, 60.0)
+
+    >>> almost_equal(v30deg.bearing, TAU / 6)
     True
 
     ### good value 3d
@@ -68,6 +120,96 @@
     >>> almost_equal(vector_3d.matrix, vector_3d_matrix)
     True
     >>> vector_3d.length == 5
+    True
+
+#   _find_bearing
+    >>> bearing000_by_hand =             0
+    >>> bearing030_by_hand = TAU *  1 / 12
+    >>> bearing045_by_hand = TAU *  1 /  8
+    >>> bearing060_by_hand = TAU *  1 /  6
+    >>> bearing090_by_hand = TAU *  1 /  4
+    >>> bearing120_by_hand = TAU *  1 /  3
+    >>> bearing135_by_hand = TAU *  3 /  8
+    >>> bearing150_by_hand = TAU *  5 / 12
+    >>> bearing180_by_hand = TAU *  1 /  2
+    >>> bearing210_by_hand = TAU *  7 / 12
+    >>> bearing225_by_hand = TAU *  5 /  8
+    >>> bearing240_by_hand = TAU *  2 /  3
+    >>> bearing270_by_hand = TAU *  3 /  4
+    >>> bearing300_by_hand = TAU *  5 /  6
+    >>> bearing315_by_hand = TAU *  7 /  8
+    >>> bearing330_by_hand = TAU * 11 / 12
+    >>> bearing360_by_hand =             0
+
+    >>> mx000 = np.array([(math.cos(TAU *  1/ 4)), (math.sin(TAU *  1/ 4)), 0])
+    >>> mx030 = np.array([(math.cos(TAU *  1/ 6)), (math.sin(TAU *  1/ 6)), 0])
+    >>> mx045 = np.array([(math.cos(TAU *  1/ 8)), (math.sin(TAU *  1/ 8)), 0])
+    >>> mx060 = np.array([(math.cos(TAU *  1/12)), (math.sin(TAU *  1/12)), 0])
+    >>> mx090 = np.array([(math.cos(          0)), (math.sin(          0)), 0])
+    >>> mx120 = np.array([(math.cos(TAU * 11/12)), (math.sin(TAU * 11/12)), 0])
+    >>> mx135 = np.array([(math.cos(TAU *  7/ 8)), (math.sin(TAU *  7/ 8)), 0])
+    >>> mx150 = np.array([(math.cos(TAU *  5/ 6)), (math.sin(TAU *  5/ 6)), 0])
+    >>> mx180 = np.array([(math.cos(TAU *  3/ 4)), (math.sin(TAU *  3/ 4)), 0])
+    >>> mx210 = np.array([(math.cos(TAU *  2/ 3)), (math.sin(TAU *  2/ 3)), 0])
+    >>> mx225 = np.array([(math.cos(TAU *  5/ 8)), (math.sin(TAU *  5/ 8)), 0])
+    >>> mx240 = np.array([(math.cos(TAU *  7/12)), (math.sin(TAU *  7/12)), 0])
+    >>> mx270 = np.array([(math.cos(TAU *  1/ 2)), (math.sin(TAU *  1/ 2)), 0])
+    >>> mx300 = np.array([(math.cos(TAU *  5/12)), (math.sin(TAU *  5/12)), 0])
+    >>> mx315 = np.array([(math.cos(TAU *  3/ 8)), (math.sin(TAU *  3/ 8)), 0])
+    >>> mx330 = np.array([(math.cos(TAU *  1/ 3)), (math.sin(TAU *  1/ 3)), 0])
+    >>> mx360 = np.array([(math.cos(TAU *  1/ 4)), (math.sin(TAU *  1/ 4)), 0])
+
+    >>> bearing000_by_method = vector.Vector._find_bearing(mx000)
+    >>> bearing030_by_method = vector.Vector._find_bearing(mx030)
+    >>> bearing045_by_method = vector.Vector._find_bearing(mx045)
+    >>> bearing060_by_method = vector.Vector._find_bearing(mx060)
+    >>> bearing090_by_method = vector.Vector._find_bearing(mx090)
+    >>> bearing120_by_method = vector.Vector._find_bearing(mx120)
+    >>> bearing135_by_method = vector.Vector._find_bearing(mx135)
+    >>> bearing150_by_method = vector.Vector._find_bearing(mx150)
+    >>> bearing180_by_method = vector.Vector._find_bearing(mx180)
+    >>> bearing210_by_method = vector.Vector._find_bearing(mx210)
+    >>> bearing225_by_method = vector.Vector._find_bearing(mx225)
+    >>> bearing240_by_method = vector.Vector._find_bearing(mx240)
+    >>> bearing270_by_method = vector.Vector._find_bearing(mx270)
+    >>> bearing300_by_method = vector.Vector._find_bearing(mx300)
+    >>> bearing315_by_method = vector.Vector._find_bearing(mx315)
+    >>> bearing330_by_method = vector.Vector._find_bearing(mx330)
+    >>> bearing360_by_method = vector.Vector._find_bearing(mx360)
+
+    >>> almost_equal(bearing000_by_method, bearing000_by_hand)
+    True
+    >>> almost_equal(bearing030_by_method, bearing030_by_hand)
+    True
+    >>> almost_equal(bearing045_by_method, bearing045_by_hand)
+    True
+    >>> almost_equal(bearing060_by_method, bearing060_by_hand)
+    True
+    >>> almost_equal(bearing090_by_method, bearing090_by_hand)
+    True
+    >>> almost_equal(bearing120_by_method, bearing120_by_hand)
+    True
+    >>> almost_equal(bearing135_by_method, bearing135_by_hand)
+    True
+    >>> almost_equal(bearing150_by_method, bearing150_by_hand)
+    True
+    >>> almost_equal(bearing180_by_method, bearing180_by_hand)
+    True
+    >>> almost_equal(bearing210_by_method, bearing210_by_hand)
+    True
+    >>> almost_equal(bearing225_by_method, bearing225_by_hand)
+    True
+    >>> almost_equal(bearing240_by_method, bearing240_by_hand)
+    True
+    >>> almost_equal(bearing270_by_method, bearing270_by_hand)
+    True
+    >>> almost_equal(bearing300_by_method, bearing300_by_hand)
+    True
+    >>> almost_equal(bearing315_by_method, bearing315_by_hand)
+    True
+    >>> almost_equal(bearing330_by_method, bearing330_by_hand)
+    True
+    >>> almost_equal(bearing360_by_method, bearing360_by_hand)
     True
 
 #   from_matrix

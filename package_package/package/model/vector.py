@@ -2,6 +2,9 @@ from numpy import linalg as la
 import math
 import numpy as np
 
+almost_equal = np.allclose
+TAU = math.pi * 2
+
 class Vector(object):
     def __init__(self, x_in, y_in, z_in=0):
         method_name = '__init__'
@@ -28,8 +31,7 @@ class Vector(object):
                 self.bearing_in_degrees = None
             else:
                 self.unit_matrix = self.matrix / self.length
-                self.bearing = math.acos(np.dot(num, self.unit_matrix))
-                #   clockwise from north
+                self.bearing = self.__class__._find_bearing(self.unit_matrix)
                 self.bearing_in_degrees = math.degrees(self.bearing)
 
     def _is_a_number(self, x):
@@ -48,6 +50,47 @@ class Vector(object):
         ):
             value = True    
         return value
+
+    @classmethod
+    def _find_bearing(cls, unit_matrix):
+        """Receives:
+            unit_matrix     np.array, shape = (3, ), norm = 1
+        Finds the angle (in radians) from north. Clockwise is positive. 
+        Returns:
+            bearing         num. 0 <= num < TAU
+        """
+        method_name = '_find_bearing'
+        num = north_unit_matrix = np.array([0, 1, 0])
+        try:
+            if not type(unit_matrix) == np.ndarray:
+                raise TypeError
+        except TypeError:
+            message = "The argument must be an np.array"
+            cls._print_error_message(method_name, message)
+        else:
+            absolute_bearing = math.acos(np.dot(num, unit_matrix))
+            x, y = unit_matrix[0], unit_matrix[1]
+            if (almost_equal(x, 0) and
+                almost_equal(y, 0)
+            ):
+                bearing = None
+            elif (
+                almost_equal(x, 0) and
+                almost_equal(y, -1)
+            ):
+                bearing = TAU / 2
+            elif (
+                almost_equal(x, 0) and
+                almost_equal(y, 1)
+            ):
+                bearing = 0
+            elif x < 0:
+                bearing = TAU - absolute_bearing
+            elif x > 0:
+                bearing = absolute_bearing
+            else:
+                bearing = None
+            return bearing
 
     @classmethod
     def from_matrix(cls, matrix_in):
@@ -72,9 +115,6 @@ class Vector(object):
             cls._print_error_message(method_name, message)
         else:
             x, y, z = matrix_in[0], matrix_in[1], matrix_in[2]
-            # print('type(x): %s' % type(x))
-            # print('type(y): %s' % type(y))
-            # print('type(z): %s' % type(z))
             vector_out = Vector(x, y, z)
             return vector_out
 
