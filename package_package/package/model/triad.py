@@ -9,21 +9,21 @@ TAU = math.pi * 2
 
 class Triad(object):
     ### construct
-    def __init__(self, p1_in, p2_in, p3_in):    ##  2016-03-03 19:42
+    def __init__(self, pa, pb, pc):
         """Receives non-collinear points:
-            p1_in           Point
-            p2_in           Point
-            p3_in           Point
+            pa              Point
+            pb              Point
+            pc              Point
         """
         method_name = '__init__'
         try:
             if not (
-                type(p1_in) == point.Point and
-                type(p2_in) == point.Point and
-                type(p3_in) == point.Point
+                type(pa) == point.Point and
+                type(pb) == point.Point and
+                type(pc) == point.Point
             ):
                 raise TypeError
-            elif self.__class__._points_are_collinear(p1_in, p2_in, p3_in):
+            elif self.__class__._points_are_collinear(pa, pb, pc):
                 raise ValueError
             else:
                 pass
@@ -34,13 +34,12 @@ class Triad(object):
             message = "The points must not be collinear"
             self.__class__._print_error_message(method_name, message)
         else:
-            pass
-            # self.clockwise_points = self.__class__._get_clockwise_points(
-            #     p1_in, p2_in, p3_in)
+            self.clockwise_points = self.__class__._get_clockwise_points(
+                pa, pb, pc)
+            self.p0 = self.clockwise_points[0]
+            self.p1 = self.clockwise_points[1]
+            self.p2 = self.clockwise_points[2]
 
-            # self.p0 = self.clockwise_points[0]
-            # self.p1 = self.clockwise_points[1]
-            # self.p2 = self.clockwise_points[2]
             # self.clockwise_angles = self._find_clockwise_angles()
             # self.p0 = smallest_vertex = self._find_smallest_vertex()
             # a0: smallest angle: float
@@ -75,8 +74,8 @@ class Triad(object):
             value = False
         return value
 
-    @classmethod                                # A OK
-    def _get_clockwise_points(cls, pa, pb, pc): 
+    @classmethod
+    def _get_clockwise_points(cls, pa, pb, pc):
         """FOR NOW: the points are in the xy-plane
         Receives non-collinear points:
             pa              Point. z = 0
@@ -87,21 +86,25 @@ class Triad(object):
                             with the smallest angle; p1 is the next point 
                             clockwise; and p2 is the remaining point
         """
-        points_ordered_by_angle = cls._order_points_by_angle(pa, pb, pc)
-                                                                    # A.1
-        p0, p1, p2 = clockwise_points = cls._order_remaining_points_clockwise(
-            points_ordered_by_angle)                                # A.2
-        return clockwise_points
+        points_smallest_first = (
+            cls._order_points_smallest_first(pa, pb, pc))           # A.1
+        points_smallest_then_farthest = (
+            cls._order_remaining_points_farthest_first(
+                points_smallest_first))                             # A.3
+        return points_smallest_then_farthest
+        # p0, p1, p2 = clockwise_points = cls._order_remaining_points_clockwise(
+        #     points_smallest_first)                                # A.2
+        # return clockwise_points
 
-    @classmethod                                # A.1 OK
-    def _order_points_by_angle(cls, pa, pb, pc):
+    @classmethod
+    def _order_points_smallest_first(cls, pa, pb, pc):
         """Receives non-collinear points:
             pa              Point. z = 0
             pb              Point. z = 0
             pc              Point. z = 0
         Orders the points by the angle at each: from smallest to largest. In 
         case of a tie, the lesser point (by point ordering) is taken. Returns:
-            points          [Point, Point, Point]
+            points          [Point]
         """
         vertex_triples = [
             (pa, pb, pc),
@@ -120,7 +123,7 @@ class Triad(object):
             points.append(pair[1])
         return points
 
-    @classmethod                                # A.1.a OK
+    @classmethod
     def _find_interior_angle_from_points(cls, p0, p1, p2):
         """FOR NOW: the points are all in the xy-plane
         Receives:
@@ -141,23 +144,36 @@ class Triad(object):
             angle = directed_angle
         return angle
 
-    @classmethod                                # A.2 OK
-    def _order_remaining_points_clockwise(cls, points_in):
-        """Receives 3 non-collinear points:
-            points_in       [Point]. z = 0. The first has the smallest angle 
-                            and, if there is more than one, the lesser
-        Orders the points clockwise. Returns:
-            clockwise_points
+    @classmethod                                # A.3
+    def _order_remaining_points_farthest_first(cls, points_smallest_first):
+        """Receives a list of non-collinear points [p0, pb, pc), where p0 has 
+        the smallest angle and is the least (by point ordering):
+            points_smallest_first
                             [Point]
+        Orders the points as follows: p0, the point of the smallest angle; p1, 
+        the point farthest from p0 (and the lesser, in case of a tie); p2, the 
+        remaining point. Returns:
+            points          [Point]
         """
-        pa, pb, pc = points_in
-        vab = pb - pa
-        vac = pc - pa
-        if vab.bearing < vac.bearing:
-            clockwise_points = [pa, pb, pc]
-        else:
-            clockwise_points = [pa, pc, pb]
-        return clockwise_points
+        return points
+
+    # @classmethod                                # A.2
+    # def _order_remaining_points_clockwise(cls, points_in):
+        # """Receives 3 non-collinear points:
+        #     points_in       [Point]. z = 0. The first has the smallest angle 
+        #                     and, if there is more than one, the lesser
+        # Orders the points clockwise. Returns:
+        #     clockwise_points
+        #                     [Point]
+        # """
+        # pa, pb, pc = points_in
+        # vab = pb - pa
+        # vac = pc - pa
+        # if vab.bearing < vac.bearing:
+        #     clockwise_points = [pa, pb, pc]
+        # else:
+        #     clockwise_points = [pa, pc, pb]
+        # return clockwise_points
 
     @classmethod
     def new(cls, point_triple):
@@ -168,6 +184,11 @@ class Triad(object):
         """
         pass
 
+    ### represent
+    def __str__(self):
+        string = '(%s, %s, %s)' % (self.p0, self.p1, self.p2)
+        return string
+        
     ### utility
     @classmethod
     def _print_error_message(cls, method_name, message):

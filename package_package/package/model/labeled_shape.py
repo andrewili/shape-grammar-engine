@@ -29,6 +29,15 @@ class LabeledShape(object):
         else:
             self.the_shape = shape_in
             self.lpoint_part = lpoint_partition_in
+            self.best_triad = self.__class__._find_best_triad()
+
+    @classmethod                                ##  2016-03-15 08:46
+    def _find_best_triad(cls):
+        """
+        Receives:
+            best_triad      Triad
+        """
+        return best_triad
 
     @classmethod
     def new_from_specs(cls, line_specs, lpoint_specs):

@@ -37,6 +37,33 @@
     Triad.__init__:
         The points must not be collinear
 
+    ### good value
+    >>> p00 = point.Point.from_coords(0, 0)
+    >>> p04 = point.Point.from_coords(0, 4)
+    >>> p40 = point.Point.from_coords(4, 0)
+    >>> t = triad.Triad(p00, p04, p40)
+    >>> t.p0 == p04
+    True
+    >>> t.p1 == p40
+    True
+    >>> t.p2 == p00
+    True
+    >>> print(t)
+    ((0, 4, 0), (4, 0, 0), (0, 0, 0))
+
+    >>> p00 = point.Point.from_coords(0, 0)
+    >>> p04 = point.Point.from_coords(0, -4)
+    >>> p40 = point.Point.from_coords(4, 0)
+    >>> t = triad.Triad(p00, p04, p40)
+    >>> t.p0 == p04
+    True
+    >>> t.p1 == p00
+    True
+    >>> t.p2 == p40
+    True
+    >>> print(t)
+    ((0, -4, 0), (0, 0, 0), (4, 0, 0))
+
     ### _points_are_collinear
     >>> p10 = point.Point.from_coords(1, 0, 0)
     >>> p20 = point.Point.from_coords(2, 0, 0)
@@ -62,7 +89,7 @@
     >>> triad.Triad._points_are_collinear(p00, p02, p20)
     False
 
-### _get_clockwise_points                       # A OK
+### _get_clockwise_points
     ### 2d, 1 smallest vertex
     >>> p00 = point.Point.from_coords(0, 0)
     >>> p03 = point.Point.from_coords(0, 3)
@@ -131,7 +158,7 @@
     >>> clockwise_points == [p80, p4y, p00]
     True
 
-### _order_points_by_angle                      # A.1 OK
+### _order_points_by_angle
     ### 2d, 1 smallest point
     >>> p00 = point.Point.from_coords(0, 0)
     >>> p03 = point.Point.from_coords(0, 3)
@@ -190,7 +217,7 @@
     >>> points == [p60, p3y, p00]
     True
 
-### _find_interior_angle_from_points            # A.1.a OK
+### _find_interior_angle_from_points
     ### test angles > 180
     >>> p00 = point.Point.from_coords(0, 0)
     >>> p001 = point.Point.from_coords(0, 1)
@@ -274,50 +301,54 @@
     >>> almost_equal(pcs_angle_from_method, pcs_angle_by_calc)
     True
 
-### _order_remaining_points_clockwise           # A.2 OK
+### _order_remaining_points_farthest_first
+    #   2d, remaining points equidistant
+    #   2d, remaining points not equidistant
+
+### _order_remaining_points_clockwise
     ### 2d, 3 angles different
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p03 = point.Point.from_coords(0, 3, 0)
-    >>> p40 = point.Point.from_coords(4, 0, 0)
-    >>> ordered_points = triad.Triad._order_remaining_points_clockwise(
+    ??? p00 = point.Point.from_coords(0, 0, 0)
+    ??? p03 = point.Point.from_coords(0, 3, 0)
+    ??? p40 = point.Point.from_coords(4, 0, 0)
+    ??? ordered_points = triad.Triad._order_remaining_points_clockwise(
     ...     [p40, p00, p03])
-    >>> ordered_points == [p40, p00, p03]
+    ??? ordered_points == [p40, p00, p03]
     True
 
     ### 2d, 2 angles same
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p04 = point.Point.from_coords(0, 4, 0)
-    >>> p40 = point.Point.from_coords(4, 0, 0)
-    >>> ordered_points = triad.Triad._order_remaining_points_clockwise(
+    ??? p00 = point.Point.from_coords(0, 0, 0)
+    ??? p04 = point.Point.from_coords(0, 4, 0)
+    ??? p40 = point.Point.from_coords(4, 0, 0)
+    ??? ordered_points = triad.Triad._order_remaining_points_clockwise(
     ...     [p04, p00, p40])
-    >>> ordered_points == [p04, p40, p00]
+    ??? ordered_points == [p04, p40, p00]
     True
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p03 = point.Point.from_coords(0, -3, 0)
-    >>> p30 = point.Point.from_coords(-3, 0, 0)
-    >>> ordered_points = triad.Triad._order_remaining_points_clockwise(
+    ??? p00 = point.Point.from_coords(0, 0, 0)
+    ??? p03 = point.Point.from_coords(0, -3, 0)
+    ??? p30 = point.Point.from_coords(-3, 0, 0)
+    ??? ordered_points = triad.Triad._order_remaining_points_clockwise(
     ...     [p30, p00, p03])
-    >>> ordered_points == [p30, p00, p03]
+    ??? ordered_points == [p30, p00, p03]
     True
 
     ### 2d, 3 angles same
-    >>> y = math.sin(TAU / 6)
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p60 = point.Point.from_coords(6, 0)
-    >>> p3y = point.Point.from_coords(3, y)
-    >>> clockwise_points = triad.Triad._order_remaining_points_clockwise(
+    ??? y = math.sin(TAU / 6)
+    ??? p00 = point.Point.from_coords(0, 0)
+    ??? p60 = point.Point.from_coords(6, 0)
+    ??? p3y = point.Point.from_coords(3, y)
+    ??? clockwise_points = triad.Triad._order_remaining_points_clockwise(
     ...     [p00, p60, p3y])
-    >>> clockwise_points == [p00, p3y, p60]
+    ??? clockwise_points == [p00, p3y, p60]
     True
 
     ### 2d, 3 angles same, -/+ quadrant
-    >>> y = math.sin(TAU / 6)
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p60 = point.Point.from_coords(-6, 0)
-    >>> p3y = point.Point.from_coords(-3, y)
-    >>> clockwise_points = triad.Triad._order_remaining_points_clockwise(
+    ??? y = math.sin(TAU / 6)
+    ??? p00 = point.Point.from_coords(0, 0)
+    ??? p60 = point.Point.from_coords(-6, 0)
+    ??? p3y = point.Point.from_coords(-3, y)
+    ??? clockwise_points = triad.Triad._order_remaining_points_clockwise(
     ...     [p60, p00, p3y])
-    >>> clockwise_points == [p60, p3y, p00]
+    ??? clockwise_points == [p60, p3y, p00]
     True
 
 ### find clockwise angles, 2d, 1 smallest
@@ -328,34 +359,4 @@
     ??? tri._find_clockwise_angles()
     
 ### find clockwise angles, 2d, 1 smallest
-
-### scratch
-    ??? cos45 = math.cos(TAU / 8)
-    ??? sin45 = math.sin(TAU / 8)
-    ??? cos45 == 0.7071067811865476
-    True
-    ??? sin45 == 0.7071067811865475
-    True
-    ??? fn_cos45 = fn.FuzzyNumber(cos45)
-    ??? fn_sin45 = fn.FuzzyNumber(sin45)
-    ??? fn_0 = fn.FuzzyNumber(0)
-    ??? fn_cos45 == fn_sin45
-    True
-
-    ??? p00 = point.Point.from_coords(0, 0)
-    ??? p07 = point.Point.from_coords(0, 7)
-    ??? p70 = point.Point.from_coords(7, 0)
-    ??? a07 = triad.Triad._find_angle_from_points(p07, p00, p70)
-    ??? fn_a07 = fn.FuzzyNumber(a07)
-    ??? fn_a07 == fn_cos45
-    True
-    ??? a00 = triad.Triad._find_angle_from_points(p00, p07, p70)
-    ??? fn_a00 = fn.FuzzyNumber(a00)
-    ??? fn_a00 == fn_0
-    True
-    ??? a70 = triad.Triad._find_angle_from_points(p70, p00, p07)
-    ??? fn_a70 = fn.FuzzyNumber(a70)
-    ??? fn_a70 == fn_sin45
-    True
-
 

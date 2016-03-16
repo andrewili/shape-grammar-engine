@@ -1,3 +1,5 @@
+import numpy as np
+
 class Engine(object):
     def __init__(self):
         pass
@@ -120,9 +122,7 @@ class Engine(object):
         return translation
 
     @classmethod
-    def _find_transformations_by_point_triple(
-        cls, lshape_1, lshape_2
-    ):
+    def _find_transformations_by_point_triple(cls, lshape_1, lshape_2):
         """Receives:
             lshape_1        LabeledShape. The source shape. Contains a 
                             noncollinear point triple
@@ -130,7 +130,7 @@ class Engine(object):
                             noncollinear point triple
         Calculates the transformations under which shape 1 is a part of 
         shape 2. Returns:
-            transformations [Matrix]. A list of matrices. May be empty
+            transformations [np.ndarray]. A list of matrices. May be empty
         """
         trp_1   = lshape_1.best_point_triple
         trp_2   = point_triple_in_lshape_2 = None
@@ -146,13 +146,13 @@ class Engine(object):
         transformations = tt
         return transformations
 
-    @classmethod
+    @classmethod                                ##  2016-03-15 13:22
     def _find_transformation_if_any(cls, triple_1, triple_2):
         """Receives:
             triple_1        (Point, Point, Point). The source triple
             triple_2        (Point, Point, Point). The target triple
-        Calculates the transformation, if any, that takes triple_1 to 
-        triple_2. Returns:
+        Finds the transformation, if any, that maps triple_1 to triple_2. 
+        Returns:
             transformation  Matrix, if there is a transformation. Otherwise 
                             None
         """
@@ -162,7 +162,7 @@ class Engine(object):
         if not tri1.is_similar_to(tri2):
             return_value = None
         else:
-            transformation = cls._find_transformation(cls, tri1, tri2)
+            transformation = cls._find_transformation(tri1, tri2)
             return_value = transformation
         return return_value
 
@@ -171,8 +171,9 @@ class Engine(object):
         """Receives:
             triad_1         Triad. The source triad
             triad_2         Triad. The target triad
-        Finds the transformation that takes triad_1 to triad_2. Returns:
-            transformation  Matrix
+        Finds the transformation, if any, that takes triad_1 to triad_2. 
+        Returns:
+            transformation  np.ndarray if successful. None otherwise
         """
         tri1    = triad_1
         tri2    = triad_2
@@ -260,3 +261,7 @@ class Engine(object):
         
         next_shape = d
         return next_shape
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testfile('tests/engine_test.txt')
