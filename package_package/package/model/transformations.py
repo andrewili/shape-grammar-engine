@@ -1,28 +1,39 @@
 import math
 import numpy as np
+import point
 from numpy import linalg as la
 
 almost_equal = np.allclose
 
 TAU = math.pi * 2
-p00 = np.array([0, 0, 0, 1])
-p01 = np.array([0, 1, 0, 1])
+p00 = point.Point(0, 0, 0)
 
-def test2():
-    def make_x(tri, destination):
+class Transformations(object):
+    def __init__(self):
+        pass
+
+    @classmethod        
+    def make_x(cls, tri, destination):
+        """Receives:
+            tri             [Point, Point, Point]
+            destination     Point
+        Finds the transformation that translates the root point of tri to the 
+        destination. Returns:
+            array           np.ndarray
+        """
         p1 = destination
         p0 = tri[0]
-        vx = p1[0] - p0[0]
-        vy = p1[1] - p0[1]
-        vz = p1[2] - p0[2]
+        v01 = p1 - p0
+        x, y, z = v01.x, v01.y, v01.z
         array = np.array([
-            [1, 0, 0, vx],
-            [0, 1, 0, vy],
-            [0, 0, 1, vz],
-            [0, 0, 0,  1]])
+            [1, 0, 0, x],
+            [0, 1, 0, y],
+            [0, 0, 1, z],
+            [0, 0, 0, 1]])
         return array
 
-    def make_r(angle):
+    @classmethod
+    def make_r(cls, angle):
         """Angle clockwise in radians
         """
         cos_a = math.cos(angle)
@@ -34,21 +45,13 @@ def test2():
             [     0,     0, 0, 1]])
         return array
 
-    def make_s(tri1, tri2):
-        def find_length(p1, p2):
-            x1, y1 = p1[0], p1[1]
-            x2, y2 = p2[0], p2[1]
-            length = pow(
-                (   pow(x2 - x1, 2) +
-                    pow(y2 - y1, 2)),
-                0.5)
-            return length
-
+    @classmethod
+    def make_s(cls, tri1, tri2):
         p10, p11, p12 = tri1
         p20, p21, p22 = tri2
-        p10p11_length = find_length(p10, p11)
-        p20p21_length = find_length(p20, p21)
-        s = p20p21_length / p10p11_length
+        v1011 = p11 - p10
+        v2021 = p21 - p20
+        s = v2021.length / v1011.length
         array = np.array([
             [s, 0, 0, 0],
             [0, s, 0, 0],
@@ -56,7 +59,8 @@ def test2():
             [0, 0, 0, 1]])
         return array
 
-    def make_f():
+    @classmethod
+    def make_f(cls):
         array = np.array([
             [-1, 0, 0, 0],
             [ 0, 1, 0, 0],
@@ -64,6 +68,15 @@ def test2():
             [ 0, 0, 0, 1]])
         return array
 
+    @classmethod
+    def transform_tri(cls, t, tri1):
+        tri2 = []
+        for p1 in tri1:
+            p2 = np.cross(t, p1)
+            tri2.append(p2)
+        return tri2
+
+def test2():
     def print_t(transformation, name):
         string = '    %s:\n%s' % (name, str(transformation))
         print(string)
@@ -75,14 +88,14 @@ def test2():
             tri_out.append(tp)
         return tri_out
 
-    p10 = np.array([-3,  8, 0, 1])
-    p11 = np.array([-6,  4 ,0, 1])
-    p12 = np.array([-3,  4, 0, 1])
-    p20 = np.array([12, 14, 0, 1])
-    p21 = np.array([ 4,  8, 0, 1])
-    p22 = np.array([ 4, 14, 0, 1])
-    tri1 = [p10, p11, p12]
-    tri2 = [p20, p21, p22]
+    # p10 = np.array([-3,  8, 0, 1])
+    # p11 = np.array([-6,  4 ,0, 1])
+    # p12 = np.array([-3,  4, 0, 1])
+    # p20 = np.array([12, 14, 0, 1])
+    # p21 = np.array([ 4,  8, 0, 1])
+    # p22 = np.array([ 4, 14, 0, 1])
+    # tri1 = [p10, p11, p12]
+    # tri2 = [p20, p21, p22]
 
     x1 = make_x(tri1, p00)
     x2 = make_x(tri2, p00)
@@ -344,28 +357,7 @@ def report(name, expected, got):
 # scale_point_2d()
 # translate_point_2d()
 # test1()
-test2()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if __name__ == '__main__':
+    import doctest
+    doctest.testfile('tests/transformations_test.txt')

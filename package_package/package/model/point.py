@@ -5,66 +5,146 @@ almost_equal = np.allclose
 class Point(object):
 
     ### construct
-    def __init__(self, spec):
+    def __init__(self, x_in, y_in, z_in=0):
         """Receives:
-            spec            (num, num, num=0)
+            x_in            num
+            y_in            num
+            z_in            num
         Immutable
         """
         method_name = '__init__'
         try:
-            if not self._is_point_spec(spec):
+            if not (
+                self._is_number(x_in) and
+                self._is_number(y_in) and
+                self._is_number(z_in)
+            ):
                 raise TypeError
         except TypeError:
-            message = 'The argument must be a 2- or 3-tuple of numbers'
-            self.__class__._print_error_message(method_name, message)
+            message = 'The arguments must all be numbers'
+            self._print_error_message(method_name, message)
         else:
-            if len(spec) == 2:
-                self.x, self.y = spec
-                self.z = 0
-            else:
-                self.x, self.y, self.z = spec
+            self.x = x_in
+            self.y = y_in
+            self.z = z_in
+            self.matrix = np.array([self.x, self.y, self.z, 1])
             self.spec = (self.x, self.y, self.z)
-            self.matrix = np.array([self.x, self.y, self.z])
 
-    def _is_point_spec(self, item):
+    @classmethod
+    def from_spec(cls, spec):
+        """Receives:
+            spec            (num, num), [num, num], (num, num, num), or 
+                            [num, num, num]
+        Constructs a 3d Point with z = 0 as default. Returns:
+            point           Point
+        """
+        method_name = 'from_spec'
+        try:
+            if not cls._is_a_spec(spec):
+                raise TypeError
+        except TypeError:
+            message = (
+                'The argument must be a tuple or a list of 2 or 3 numbers')
+            cls._print_error_message(method_name, message)
+        else:
+            x = spec[0]
+            y = spec[1]
+            if len(spec) == 2:
+                z = 0
+            else:
+                z = spec[2]
+            point = Point(x, y, z)
+            return point
+
+    @classmethod
+    def _is_a_spec(cls, item):
         """Receives:
             item            any type
         Returns:
-            boolean         True, if item is of the form (num, num) or
-                            (num, num, num)
+            boolean         True, if item is of the form (num, num), 
+                            (num, num, num), [num, num], or [num, num, num].
                             False, otherwise
         """
-        if not (
-            len(item) == 2 or
-            len(item) == 3
+        if (cls._is_an_iterable(item) and
+            cls._contains_2_or_3_elements(item) and
+            cls._contains_only_numbers(item)
         ):
-            value = False
-        elif not self._contains_only_numbers(item):
-            value = False
-        else:
             value = True
+        else:
+            value = False
         return value
 
-    def _contains_only_numbers(self, elements):
+    @classmethod
+    def _is_an_iterable(cls, item):
+        value = (
+            type(item) == tuple or
+            type(item) == list)
+        return value
+
+    @classmethod
+    def _contains_2_or_3_elements(cls, item):
+        value = (
+            len(item) == 2 or
+            len(item) == 3)
+        return value
+
+    @classmethod
+    def _contains_only_numbers(cls, elements):
         value = True
         for element in elements:
-            if not self._is_number(element):
+            if not cls._is_number(element):
                 value = False
                 break
         return value
 
-    def _is_number(self, item):
+    @classmethod
+    def _is_number(cls, item):
         value = (
-            item.__class__ == int or
-            item.__class__ == float)
+            type(item) == int or
+            type(item) == float or
+            type(item) == np.int64 or
+            type(item) == np.float64)
         return value
 
     @classmethod
-    def from_coords(cls, x, y, z=0):
-        method_name = 'from_coords'
-        new_spec = (x, y, z)
-        new_point = Point(new_spec)
-        return new_point
+    def from_matrix(cls, matrix_in):
+        """Receives:
+            matrix_in       np.ndarray
+        Returns:
+            point           Point
+        """
+        method_name = 'from_matrix'
+        try:
+            if not (
+                cls._is_an_array(matrix_in) and
+                cls._contains_only_numbers(matrix_in) and
+                cls._contains_4_elements(matrix_in)
+            ):
+                raise TypeError
+            elif not matrix_in[3] == 1:
+                raise ValueError
+        except TypeError:
+            message = "The argument must be a matrix of shape (4, )"
+            cls._print_error_message(method_name, message)
+        except ValueError:
+            message = "The final element of the matrix must be 0"
+            cls._print_error_message(method_name, message)
+        else:
+            x = matrix_in[0]
+            y = matrix_in[1]
+            z = matrix_in[2]
+            point = Point(x, y, z)
+            return point
+
+    @classmethod
+    def _is_an_array(cls, item):
+        value = (type(item) == np.ndarray)
+        return value
+
+    @classmethod
+    def _contains_4_elements(cls, matrix):
+        value = (len(matrix) == 4)
+        return value
 
     ### represent
     def __str__(self):
@@ -84,16 +164,16 @@ class Point(object):
         """
         method_name = 'listing'
         try:
-            if not decimal_places.__class__ == int:
+            if not type(decimal_places) == int:
                 raise TypeError
             elif not decimal_places >= 0:
                 raise ValueError
         except TypeError:
             message = 'The argument must be an integer'
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         except ValueError:
             message = 'The argument must be non-negative'
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
             x_formatted = self.get_formatted_coord('x', decimal_places)
             y_formatted = self.get_formatted_coord('y', decimal_places)
@@ -111,7 +191,7 @@ class Point(object):
         """
         method_name = 'get_formatted_coord'
         try:
-            if not dimension.__class__ == str:
+            if not type(dimension) == str:
                 raise TypeError
             elif not (
                 dimension == 'x' or
@@ -121,10 +201,10 @@ class Point(object):
                 raise ValueError
         except TypeError:
             message = "The dimension must be a string ('x', 'y', or 'z')"
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         except ValueError:
             message = "The dimension must be either 'x', 'y', or 'z'"
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
             if decimal_places < 0:
                 n = 0
@@ -163,14 +243,14 @@ class Point(object):
 
     ### relations
     def __eq__(self, other):
-        return almost_equal(self.spec, other.spec)
-        # return self.spec == other.spec
+        value = almost_equal(self.spec, other.spec)
+        return value
 
     def __ge__(self, other):
-        return (
+        value = (
             almost_equal(self.spec, other.spec) or
             self.spec > other.spec)
-        # return self.spec >= other.spec
+        return value
 
     def __gt__(self, other):
         if almost_equal(self.spec, other.spec):
@@ -180,13 +260,12 @@ class Point(object):
         else:
             value = False
         return value
-        # return self.spec > other.spec
 
     def __le__(self, other):
-        return (
+        value = (
             almost_equal(self.spec, other.spec) or
             self.spec < other.spec)
-        # return self.spec <= other.spec
+        return value
 
     def __lt__(self, other):
         if almost_equal(self.spec, other.spec):
@@ -196,45 +275,9 @@ class Point(object):
         else:
             value = False
         return value
-        # return self.spec < other.spec
 
     def __ne__(self, other):
-        return not almost_equal(self.spec, other.spec)
-        # return self.spec != other.spec
-
-    ### other
-    @classmethod
-    def is_point_spec(cls, item):
-        """Receives:
-            item
-        Returns:
-            boolean             True, if item is a point spec
-                                False, otherwise
-        """
-        value = (
-            type(item) == tuple and
-            len(item) == 3 and
-            cls._elements_are_numbers(item)
-        )
-        return value
-
-    @classmethod
-    def _elements_are_numbers(cls, elements):
-        """Receives:
-            elements        3-tuple
-        Returns:
-            boolean         True, if each element in elements is a float or 
-                            integer
-                            False, otherwise
-        """
-        value = True
-        for element in elements:
-            if not (
-                type(element) == int or
-                type(element) == float 
-            ):
-                value = False
-                break
+        value = not almost_equal(self.spec, other.spec)
         return value
 
     @classmethod

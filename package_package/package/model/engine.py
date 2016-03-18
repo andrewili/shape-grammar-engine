@@ -33,8 +33,8 @@ class Engine(object):
         """Receives:
             shape           LabeledShape
             rule            Rule
-        Finds the labeled shapes gotten by applying all transformations of the 
-        rule to the current shape. Returns:
+        Finds the labeled shapes created by applying all transformations of 
+        the rule to the current shape. Returns:
             next_shapes     [LabeledShape]. May be empty
         """
         c       = shape
@@ -171,20 +171,21 @@ class Engine(object):
         """Receives:
             triad_1         Triad. The source triad
             triad_2         Triad. The target triad
-        Finds the transformation, if any, that takes triad_1 to triad_2. 
+        Finds the composition of transformations that maps triad_1 to triad_2. 
         Returns:
-            transformation  np.ndarray if successful. None otherwise
+            t_comp          [np.ndarray] if successful. None otherwise
         """
         tri1    = triad_1
         tri2    = triad_2
         t1      = cls._find_translation_to_origin(tri1)
         t2      = cls._find_translation_to_origin(tri2)
         t2_inv  = t2.inverse()
-        r       = cls._find_rotation(tri1, tri2)
-        s       = cls._find_scaling(tri1, tri2)
+        r       = cls._find_rotation_to_positive_y_axis(tri1, tri2)
+        s1      = cls._find_scaling_to_match_long_side(tri1, tri2)
+        s2      = cls._find_scaling_to_match_3rd_point
 
-        transformation = t2_inv * s * r * t1
-        return transformation
+        t_comp = [t2_inv, s2, s1, r, t1]
+        return t_comp
 
     @classmethod
     def _find_translation_to_origin(cls, tri1):

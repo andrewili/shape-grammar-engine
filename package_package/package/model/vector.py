@@ -19,11 +19,11 @@ class Vector(object):
             message = "The arguments must be numbers"
             self.__class__._print_error_message(method_name, message)
         else:
-            num = north_unit_matrix = np.array([0, 1, 0])
+            num = north_unit_matrix = np.array([0, 1, 0, 0])
             self.x = x_in
             self.y = y_in
             self.z = z_in
-            self.matrix = np.array([x_in, y_in, z_in])
+            self.matrix = np.array([x_in, y_in, z_in, 0])
             self.length = la.norm(self.matrix)
             if self.length == 0:
                 self.unit_matrix = None
@@ -31,7 +31,7 @@ class Vector(object):
                 self.bearing_in_degrees = None
             else:
                 self.unit_matrix = self.matrix / self.length
-                self.bearing = self.__class__._find_bearing(self.unit_matrix)
+                self.bearing = self._find_bearing(self.unit_matrix)
                 self.bearing_in_degrees = math.degrees(self.bearing)
 
     def _is_a_number(self, x):
@@ -60,7 +60,7 @@ class Vector(object):
             bearing         num. 0 <= num < TAU
         """
         method_name = '_find_bearing'
-        num = north_unit_matrix = np.array([0, 1, 0])
+        num = north_unit_matrix = np.array([0, 1, 0, 0])
         try:
             if not type(unit_matrix) == np.ndarray:
                 raise TypeError
@@ -95,23 +95,24 @@ class Vector(object):
     @classmethod
     def from_matrix(cls, matrix_in):
         """Receives:
-            matrix_in       array([num, num, num])
+            matrix_in       array([num, num, num, 0])
         Returns:
             vector_out      Vector
         """
         method_name = 'from_matrix'
         try:
-            if not type(matrix_in) == np.ndarray:
-                raise TypeError
-            elif not (
-                matrix_in.shape == (3, )
+            if not (
+                type(matrix_in) == np.ndarray and
+                matrix_in.shape == (4, )
             ):
+                raise TypeError
+            elif not matrix_in[3] == 0:
                 raise ValueError
         except TypeError:
-            message = 'The argument must be a matrix'
+            message = 'The argument must be a matrix of shape (4, )'
             cls._print_error_message(method_name, message)
         except ValueError:
-            message = "The matrix must have shape (3, )"
+            message = "The final element of the matrix must be 0"
             cls._print_error_message(method_name, message)
         else:
             x, y, z = matrix_in[0], matrix_in[1], matrix_in[2]
@@ -133,3 +134,33 @@ class Vector(object):
 if __name__ == '__main__':
     import doctest
     doctest.testfile('tests/vector_test.txt')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

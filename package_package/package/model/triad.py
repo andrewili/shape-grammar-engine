@@ -23,22 +23,22 @@ class Triad(object):
                 type(pc) == point.Point
             ):
                 raise TypeError
-            elif self.__class__._points_are_collinear(pa, pb, pc):
+            elif self._points_are_collinear(pa, pb, pc):
                 raise ValueError
             else:
                 pass
         except TypeError:
             message = "The arguments must all be Point objects"
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         except ValueError:
             message = "The points must not be collinear"
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
-            self.clockwise_points = self.__class__._get_clockwise_points(
+            self.ordered_points = self._get_ordered_points(
                 pa, pb, pc)
-            self.p0 = self.clockwise_points[0]
-            self.p1 = self.clockwise_points[1]
-            self.p2 = self.clockwise_points[2]
+            self.p0 = self.ordered_points[0]
+            self.p1 = self.ordered_points[1]
+            self.p2 = self.ordered_points[2]
 
             # self.clockwise_angles = self._find_clockwise_angles()
             # self.p0 = smallest_vertex = self._find_smallest_vertex()
@@ -75,16 +75,18 @@ class Triad(object):
         return value
 
     @classmethod
-    def _get_clockwise_points(cls, pa, pb, pc):
+    def _get_ordered_points(cls, pa, pb, pc):
         """FOR NOW: the points are in the xy-plane
         Receives non-collinear points:
             pa              Point. z = 0
             pb              Point. z = 0
             pc              Point. z = 0
         Returns:
-            (p0, p1, p2)    (Point). p0 is the least point (by point ordering) 
-                            with the smallest angle; p1 is the next point 
-                            clockwise; and p2 is the remaining point
+            points_smallest_then_farthest
+                            (p0, p1, p2), (Point, Point, Point). p0 is the 
+                            least point (by point ordering) with the smallest 
+                            angle; p1 is the further point from p0; and p2 is 
+                            the remaining point
         """
         points_smallest_first = (
             cls._order_points_smallest_first(pa, pb, pc))           # A.1
@@ -92,9 +94,6 @@ class Triad(object):
             cls._order_remaining_points_farthest_first(
                 points_smallest_first))                             # A.3
         return points_smallest_then_farthest
-        # p0, p1, p2 = clockwise_points = cls._order_remaining_points_clockwise(
-        #     points_smallest_first)                                # A.2
-        # return clockwise_points
 
     @classmethod
     def _order_points_smallest_first(cls, pa, pb, pc):
@@ -146,43 +145,33 @@ class Triad(object):
 
     @classmethod                                # A.3
     def _order_remaining_points_farthest_first(cls, points_smallest_first):
-        """Receives a list of non-collinear points [p0, pb, pc), where p0 has 
+        """Receives a list of non-collinear points [p0, pb, pc], where p0 has 
         the smallest angle and is the least (by point ordering):
             points_smallest_first
                             [Point]
         Orders the points as follows: p0, the point of the smallest angle; p1, 
-        the point farthest from p0 (and the lesser, in case of a tie); p2, the 
-        remaining point. Returns:
-            points          [Point]
+        the point farthest from p0 (and, in case of a tie, the head of the 
+        vector with the smaller bearing); p2, the remaining point. Returns:
+            points          [Point, Point, Point] if successful. None 
+                            otherwise
         """
+        p0, pb, pc = points_smallest_first
+        v0b = pb - p0
+        v0c = pc - p0
+        v0b_length_fz = fn.FuzzyNumber(v0b.length)
+        v0c_length_fz = fn.FuzzyNumber(v0c.length)
+        if v0b_length_fz < v0c_length_fz:
+            points = [p0, pc, pb]
+        elif v0b_length_fz > v0c_length_fz:
+            points = [p0, pb, pc]
+        elif v0b_length_fz == v0c_length_fz:
+            if v0b.bearing < v0c.bearing:
+                points = [p0, pb, pc]
+            elif v0c.bearing < v0b.bearing:
+                points = [p0, pc, pb]
+            else:
+                points = None
         return points
-
-    # @classmethod                                # A.2
-    # def _order_remaining_points_clockwise(cls, points_in):
-        # """Receives 3 non-collinear points:
-        #     points_in       [Point]. z = 0. The first has the smallest angle 
-        #                     and, if there is more than one, the lesser
-        # Orders the points clockwise. Returns:
-        #     clockwise_points
-        #                     [Point]
-        # """
-        # pa, pb, pc = points_in
-        # vab = pb - pa
-        # vac = pc - pa
-        # if vab.bearing < vac.bearing:
-        #     clockwise_points = [pa, pb, pc]
-        # else:
-        #     clockwise_points = [pa, pc, pb]
-        # return clockwise_points
-
-    @classmethod
-    def new(cls, point_triple):
-        """Receives:
-            point_triple    (Point, Point, Point)
-        Returns:
-            triad           Triad
-        """
-        pass
 
     ### represent
     def __str__(self):

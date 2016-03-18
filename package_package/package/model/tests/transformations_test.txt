@@ -1,0 +1,102 @@
+>>> import transformations as tf
+>>> import math
+>>> import numpy as np
+>>> import point
+>>> from numpy import linalg as la
+>>> import vector
+
+>>> almost_equal = np.allclose
+>>> TAU = math.pi * 2
+>>> cos90 = math.cos(TAU/4)
+>>> sin90 = math.sin(TAU/4)
+
+>>> p00 = point.Point(0, 0, 0)
+>>> p10 = point.Point(-3,  8, 0)
+>>> p11 = point.Point(-6,  4 ,0)
+>>> p12 = point.Point(-3,  4, 0)
+>>> p20 = point.Point(12, 14, 0)
+>>> p21 = point.Point( 4,  8, 0)
+>>> p22 = point.Point( 4, 14, 0)
+>>> tri1 = [p10, p11, p12]
+>>> tri2 = [p20, p21, p22]
+
+>>> x1_manual = np.array([
+...     [1, 0, 0,  3],
+...     [0, 1, 0, -8],
+...     [0, 0, 1,  0],
+...     [0, 0, 0,  1]])
+>>> x2_manual = np.array([
+...     [1, 0, 0, -12],
+...     [0, 1, 0, -14],
+...     [0, 0, 1,   0],
+...     [0, 0, 0,   1]])
+>>> r_manual = np.array([
+...     [ cos90, sin90, 0, 0],
+...     [-sin90, cos90, 0, 0],
+...     [     0,     0, 1, 0],
+...     [     0,     0, 0, 1]])
+>>> s_manual = np.array([
+...     [2, 0, 0, 0],
+...     [0, 2, 0, 0],
+...     [0, 0, 2, 0],
+...     [0, 0, 0, 1]])
+>>> f_manual = np.array([
+...     [-1, 0, 0, 0],
+...     [ 0, 1, 0, 0],
+...     [ 0, 0, 1, 0],
+...     [ 0, 0, 0, 1]])
+>>> x2i_manual = np.array([
+...     [1, 0, 0, 12],
+...     [0, 1, 0, 14],
+...     [0, 0, 1,  0],
+...     [0, 0, 0,  1]])
+
+>>> x1 = tf.Transformations.make_x(tri1, p00)
+>>> x1 == x1_manual
+array([[ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True]], dtype=bool)
+>>> x2 = tf.Transformations.make_x(tri2, p00)
+>>> x2 == x2_manual
+array([[ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True]], dtype=bool)
+>>> r = tf.Transformations.make_r(TAU/4)
+>>> r == r_manual
+array([[ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True]], dtype=bool)
+>>> s = tf.Transformations.make_s(tri1, tri2)
+>>> s == s_manual
+array([[ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True]], dtype=bool)
+>>> f = tf.Transformations.make_f()
+>>> f == f_manual
+array([[ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True]], dtype=bool)
+>>> x2i = la.inv(x2)
+>>> x2i == x2i_manual
+array([[ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True]], dtype=bool)
+
+>>> x1_tri1 = tf.Transformations.transform_tri(x1, tri1)
+
+??? rx1_tri1 = transform_tri(r, x1_tri1)
+??? srx1_tri1 = transform_tri(s, rx1_tri1)
+??? fsrx1_tri1 = transform_tri(f, srx1_tri1)
+??? t_tri1 = x2ifsrx1_tri1 = transform_tri(x2i, fsrx1_tri1)
+??? t_tr1 == tri2
+array([[ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True],
+       [ True,  True,  True,  True]], dtype=bool)
+

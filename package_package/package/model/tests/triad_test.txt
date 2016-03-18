@@ -10,9 +10,9 @@
 ### construct
     ### bad type
     >>> x = 7
-    >>> p1 = point.Point.from_coords(0, 0)
-    >>> p2 = point.Point.from_coords(0, 5)
-    >>> p3 = point.Point.from_coords(5, 0)
+    >>> p1 = point.Point(0, 0)
+    >>> p2 = point.Point(0, 5)
+    >>> p3 = point.Point(5, 0)
     >>> t_from_bad_type = triad.Triad(x, p2, p3)
     Triad.__init__:
         The arguments must all be Point objects
@@ -24,204 +24,145 @@
         The arguments must all be Point objects
 
     ### bad value
-    >>> p01 = point.Point.from_coords(0, 1)
+    >>> p01 = point.Point(0, 1)
     >>> type(p01) == point.Point
     True
-    >>> p02 = point.Point.from_coords(0, 2)
+    >>> p02 = point.Point(0, 2)
     >>> type(p02) == point.Point
     True
-    >>> p05 = point.Point.from_coords(0, 5)
+    >>> p05 = point.Point(0, 5)
     >>> type(p05) == point.Point
     True
     >>> tri_from_bad_value = triad.Triad(p01, p02, p05)
     Triad.__init__:
         The points must not be collinear
 
-    ### good value
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p04 = point.Point.from_coords(0, 4)
-    >>> p40 = point.Point.from_coords(4, 0)
+    ### good arg
+    >>> p00 = point.Point(0, 0)
+    >>> p04 = point.Point(0, 4)
+    >>> p40 = point.Point(4, 0)
     >>> t = triad.Triad(p00, p04, p40)
+    >>> print(t)
+    ((0, 4, 0), (4, 0, 0), (0, 0, 0))
     >>> t.p0 == p04
     True
     >>> t.p1 == p40
     True
     >>> t.p2 == p00
     True
-    >>> print(t)
-    ((0, 4, 0), (4, 0, 0), (0, 0, 0))
 
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p04 = point.Point.from_coords(0, -4)
-    >>> p40 = point.Point.from_coords(4, 0)
+    >>> p00 = point.Point(0, 0)
+    >>> p04 = point.Point(0, -4)
+    >>> p40 = point.Point(4, 0)
     >>> t = triad.Triad(p00, p04, p40)
+    >>> print(t)
+    ((0, -4, 0), (4, 0, 0), (0, 0, 0))
     >>> t.p0 == p04
     True
-    >>> t.p1 == p00
+    >>> t.p1 == p40
     True
-    >>> t.p2 == p40
+    >>> t.p2 == p00
     True
-    >>> print(t)
-    ((0, -4, 0), (0, 0, 0), (4, 0, 0))
 
     ### _points_are_collinear
-    >>> p10 = point.Point.from_coords(1, 0, 0)
-    >>> p20 = point.Point.from_coords(2, 0, 0)
-    >>> p50 = point.Point.from_coords(5, 0, 0)
+    >>> p10 = point.Point(1, 0, 0)
+    >>> p20 = point.Point(2, 0, 0)
+    >>> p50 = point.Point(5, 0, 0)
     >>> triad.Triad._points_are_collinear(p10, p20, p50)
     True
     
-    >>> p111 = point.Point.from_coords(1, 1, 1)
-    >>> p222 = point.Point.from_coords(-2, -2, -2)
-    >>> p333 = point.Point.from_coords(3, 3, 3)
+    >>> p111 = point.Point(1, 1, 1)
+    >>> p222 = point.Point(-2, -2, -2)
+    >>> p333 = point.Point(3, 3, 3)
     >>> triad.Triad._points_are_collinear(p111, p222, p333)
     True
 
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p02 = point.Point.from_coords(0, 2, 0)
-    >>> p20 = point.Point.from_coords(2, 0, 0)
+    >>> p00 = point.Point(0, 0, 0)
+    >>> p02 = point.Point(0, 2, 0)
+    >>> p20 = point.Point(2, 0, 0)
     >>> triad.Triad._points_are_collinear(p00, p02, p20)
     False
 
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p02 = point.Point.from_coords(0, -2, 0)
-    >>> p20 = point.Point.from_coords(2, 0, 0)
+    >>> p00 = point.Point(0, 0, 0)
+    >>> p02 = point.Point(0, -2, 0)
+    >>> p20 = point.Point(2, 0, 0)
     >>> triad.Triad._points_are_collinear(p00, p02, p20)
     False
 
-### _get_clockwise_points
+### _get_ordered_points
     ### 2d, 1 smallest vertex
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p03 = point.Point.from_coords(0, 3)
-    >>> p40 = point.Point.from_coords(4, 0)
-    >>> clockwise_points = triad.Triad._get_clockwise_points(p00, p03, p40)
-    >>> clockwise_points == [p40, p00, p03]
+    >>> p00 = point.Point(0, 0)
+    >>> p03 = point.Point(0, 3)
+    >>> p40 = point.Point(4, 0)
+    >>> ordered_points = triad.Triad._get_ordered_points(p00, p03, p40)
+    >>> ordered_points == [p40, p03, p00]
     True
-    >>> print(clockwise_points)
-    [(4, 0, 0), (0, 0, 0), (0, 3, 0)]
+    >>> print(ordered_points)
+    [(4, 0, 0), (0, 3, 0), (0, 0, 0)]
 
     ### 2d, 1 smallest vertex, -/+ quadrant
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p03 = point.Point.from_coords(0, 3)
-    >>> p40 = point.Point.from_coords(-4, 0)
-    >>> clockwise_points = triad.Triad._get_clockwise_points(p00, p03, p40)
-    >>> clockwise_points == [p40, p03, p00]
+    >>> p00 = point.Point(0, 0)
+    >>> p03 = point.Point(0, 3)
+    >>> p40 = point.Point(-4, 0)
+    >>> ordered_points = triad.Triad._get_ordered_points(p00, p03, p40)
+    >>> ordered_points == [p40, p03, p00]
     True
-    >>> print(clockwise_points)
+    >>> print(ordered_points)
     [(-4, 0, 0), (0, 3, 0), (0, 0, 0)]
 
     ### 2d, 2 smallest vertices
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p05 = point.Point.from_coords(0, 5, 0)
-    >>> p50 = point.Point.from_coords(5, 0, 0)
-    >>> clockwise_points = triad.Triad._get_clockwise_points(p00, p05, p50)
-    >>> clockwise_points == [p05, p50, p00]
+    >>> p00 = point.Point(0, 0, 0)
+    >>> p05 = point.Point(0, 5, 0)
+    >>> p50 = point.Point(5, 0, 0)
+    >>> ordered_points = triad.Triad._get_ordered_points(p00, p05, p50)
+    >>> ordered_points == [p05, p50, p00]
     True
-    >>> print(clockwise_points)
+    >>> print(ordered_points)
     [(0, 5, 0), (5, 0, 0), (0, 0, 0)]
 
     ### 2d, 2 smallest vertices, -/+ quadrant
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p05 = point.Point.from_coords(0, 5, 0)
-    >>> p50 = point.Point.from_coords(-5, 0, 0)
-    >>> clockwise_points = triad.Triad._get_clockwise_points(p00, p05, p50)
-    >>> clockwise_points == [p50, p05, p00]
+    >>> p00 = point.Point(0, 0, 0)
+    >>> p05 = point.Point(0, 5, 0)
+    >>> p50 = point.Point(-5, 0, 0)
+    >>> ordered_points = triad.Triad._get_ordered_points(p00, p05, p50)
+    >>> ordered_points == [p50, p05, p00]
     True
-    >>> print(clockwise_points)
+    >>> print(ordered_points)
     [(-5, 0, 0), (0, 5, 0), (0, 0, 0)]
 
     ### 2d, 2 smallest vertices, -/- quadrant
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p05 = point.Point.from_coords(0, -5, 0)
-    >>> p50 = point.Point.from_coords(-5, 0, 0)
-    >>> clockwise_points = triad.Triad._get_clockwise_points(p00, p05, p50)
-    >>> clockwise_points == [p50, p00, p05]
+    >>> p00 = point.Point(0, 0, 0)
+    >>> p05 = point.Point(0, -5, 0)
+    >>> p50 = point.Point(-5, 0, 0)
+    >>> ordered_points = triad.Triad._get_ordered_points(p00, p05, p50)
+    >>> ordered_points == [p50, p05, p00]
     True
-    >>> print(clockwise_points)
-    [(-5, 0, 0), (0, 0, 0), (0, -5, 0)]
+    >>> print(ordered_points)
+    [(-5, 0, 0), (0, -5, 0), (0, 0, 0)]
 
     ### 2d, 3 equal vertices
     >>> y = math.sin(TAU / 6) * 8
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p4y = point.Point.from_coords(4, y)
-    >>> p80 = point.Point.from_coords(8, 0)
-    >>> clockwise_points = triad.Triad._get_clockwise_points(p00, p4y, p80)
-    >>> clockwise_points == [p00, p4y, p80]
+    >>> p00 = point.Point(0, 0)
+    >>> p4y = point.Point(4, y)
+    >>> p80 = point.Point(8, 0)
+    >>> ordered_points = triad.Triad._get_ordered_points(p00, p4y, p80)
+    >>> ordered_points == [p00, p4y, p80]
     True
 
     ### 2d, 3 equal vertices, -/+ quadrant
     >>> y = math.sin(TAU / 6) * 8
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p4y = point.Point.from_coords(-4, y)
-    >>> p80 = point.Point.from_coords(-8, 0)
-    >>> clockwise_points = triad.Triad._get_clockwise_points(p00, p4y, p80)
-    >>> clockwise_points == [p80, p4y, p00]
-    True
-
-### _order_points_by_angle
-    ### 2d, 1 smallest point
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p03 = point.Point.from_coords(0, 3)
-    >>> p40 = point.Point.from_coords(4, 0)
-    >>> points = triad.Triad._order_points_by_angle(p00, p03, p40)
-    >>> points == [p40, p03, p00]
-    True
-    >>> print(points)
-    [(4, 0, 0), (0, 3, 0), (0, 0, 0)]
-
-    ### 2d, 1 smallest point, -/+ quadrant
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p03 = point.Point.from_coords(0, 3)
-    >>> p40 = point.Point.from_coords(-4, 0)
-    >>> points = triad.Triad._order_points_by_angle(p00, p03, p40)
-    >>> points == [p40, p03, p00]
-    True
-    >>> print(points)
-    [(-4, 0, 0), (0, 3, 0), (0, 0, 0)]
-
-    ### 2d, 2 smallest points
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p05 = point.Point.from_coords(0, 5)
-    >>> p50 = point.Point.from_coords(5, 0)
-    >>> points = triad.Triad._order_points_by_angle(p00, p05, p50)
-    >>> points == [p05, p50, p00]
-    True
-    >>> print(points)
-    [(0, 5, 0), (5, 0, 0), (0, 0, 0)]
-
-    ### 2d, 2 smallest points, -/- quadrant
-    >>> p0000 = point.Point.from_coords(0, 0)
-    >>> p00_5 = point.Point.from_coords(0, -5)
-    >>> p_500 = point.Point.from_coords(-5, 0)
-    >>> points = triad.Triad._order_points_by_angle(p0000, p_500, p00_5)
-    >>> points == [p_500, p00_5, p0000]
-    True
-    >>> print(points)
-    [(-5, 0, 0), (0, -5, 0), (0, 0, 0)]
-
-    ### 2d, 3 equal points
-    >>> y = math.sin(TAU / 6) * 6
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p3y = point.Point.from_coords(3, y)
-    >>> p60 = point.Point.from_coords(6, 0)
-    >>> points = triad.Triad._order_points_by_angle(p00, p3y, p60)
-    >>> points == [p00, p3y, p60]
-    True
-
-    ### 2d, 3 equal points, -/+ quadrant
-    >>> y = math.sin(TAU / 6) * 6
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p3y = point.Point.from_coords(-3, y)
-    >>> p60 = point.Point.from_coords(-6, 0)
-    >>> points = triad.Triad._order_points_by_angle(p00, p3y, p60)
-    >>> points == [p60, p3y, p00]
+    >>> p00 = point.Point(0, 0)
+    >>> p4y = point.Point(-4, y)
+    >>> p80 = point.Point(-8, 0)
+    >>> ordered_points = triad.Triad._get_ordered_points(p00, p4y, p80)
+    >>> ordered_points == [p80, p4y, p00]
     True
 
 ### _find_interior_angle_from_points
     ### test angles > 180
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p001 = point.Point.from_coords(0, 1)
-    >>> p0_1 = point.Point.from_coords(0, -1)
+    >>> p00 = point.Point(0, 0)
+    >>> p001 = point.Point(0, 1)
+    >>> p0_1 = point.Point(0, -1)
     >>> almost_equal(
     ...     triad.Triad._find_interior_angle_from_points(p00, p001, p0_1),
     ...     TAU / 2)
@@ -231,9 +172,9 @@
     ...     0)
     True
 
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p01 = point.Point.from_coords(0, 1)
-    >>> p10 = point.Point.from_coords(1, 0)
+    >>> p00 = point.Point(0, 0)
+    >>> p01 = point.Point(0, 1)
+    >>> p10 = point.Point(1, 0)
     >>> almost_equal(
     ...     triad.Triad._find_interior_angle_from_points(p00, p01, p10), 
     ...     TAU / 4)
@@ -247,17 +188,17 @@
     ...     TAU / 8)
     True
 
-    >>> p0000 = point.Point.from_coords(0, 0)
-    >>> p0001 = point.Point.from_coords(0, 1)
-    >>> p_100 = point.Point.from_coords(-1, 0)
+    >>> p0000 = point.Point(0, 0)
+    >>> p0001 = point.Point(0, 1)
+    >>> p_100 = point.Point(-1, 0)
     >>> almost_equal(
     ...     triad.Triad._find_interior_angle_from_points(p0000, p0001, p_100),
     ...     TAU / 4)
     True
 
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> p03 = point.Point.from_coords(0, 3)
-    >>> p40 = point.Point.from_coords(4, 0)
+    >>> p00 = point.Point(0, 0)
+    >>> p03 = point.Point(0, 3)
+    >>> p40 = point.Point(4, 0)
     >>> almost_equal(
     ...     triad.Triad._find_interior_angle_from_points(p40, p00, p03),
     ...     math.acos(0.8))
@@ -273,9 +214,9 @@
 
     >>> cos30 = math.cos(TAU / 12)
     >>> sin30 = math.sin(TAU / 12)
-    >>> p00 = point.Point.from_coords(0, 0)
-    >>> pc0 = point.Point.from_coords(cos30, 0)
-    >>> pcs = point.Point.from_coords(cos30, sin30)
+    >>> p00 = point.Point(0, 0)
+    >>> pc0 = point.Point(cos30, 0)
+    >>> pcs = point.Point(cos30, sin30)
 
     >>> p00_angle_from_method = triad.Triad._find_interior_angle_from_points(
     ...     p00, pc0, pcs)
@@ -302,61 +243,68 @@
     True
 
 ### _order_remaining_points_farthest_first
-    #   2d, remaining points equidistant
     #   2d, remaining points not equidistant
-
-### _order_remaining_points_clockwise
-    ### 2d, 3 angles different
-    ??? p00 = point.Point.from_coords(0, 0, 0)
-    ??? p03 = point.Point.from_coords(0, 3, 0)
-    ??? p40 = point.Point.from_coords(4, 0, 0)
-    ??? ordered_points = triad.Triad._order_remaining_points_clockwise(
-    ...     [p40, p00, p03])
-    ??? ordered_points == [p40, p00, p03]
+    >>> p00 = point.Point(0, 0)
+    >>> p03 = point.Point(0, 3)
+    >>> p40 = point.Point(4, 0)
+    >>> points_smallest_first = [p40, p00, p03]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p40, p03, p00]
     True
 
-    ### 2d, 2 angles same
-    ??? p00 = point.Point.from_coords(0, 0, 0)
-    ??? p04 = point.Point.from_coords(0, 4, 0)
-    ??? p40 = point.Point.from_coords(4, 0, 0)
-    ??? ordered_points = triad.Triad._order_remaining_points_clockwise(
-    ...     [p04, p00, p40])
-    ??? ordered_points == [p04, p40, p00]
+    >>> p00 = point.Point(0, 0)
+    >>> p03 = point.Point(0, -3)
+    >>> p40 = point.Point(-4, 0)
+    >>> points_smallest_first = [p40, p00, p03]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p40, p03, p00]
     True
-    ??? p00 = point.Point.from_coords(0, 0, 0)
-    ??? p03 = point.Point.from_coords(0, -3, 0)
-    ??? p30 = point.Point.from_coords(-3, 0, 0)
-    ??? ordered_points = triad.Triad._order_remaining_points_clockwise(
-    ...     [p30, p00, p03])
-    ??? ordered_points == [p30, p00, p03]
+    >>> points_smallest_first = [p40, p03, p00]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p40, p03, p00]
     True
 
-    ### 2d, 3 angles same
-    ??? y = math.sin(TAU / 6)
-    ??? p00 = point.Point.from_coords(0, 0)
-    ??? p60 = point.Point.from_coords(6, 0)
-    ??? p3y = point.Point.from_coords(3, y)
-    ??? clockwise_points = triad.Triad._order_remaining_points_clockwise(
-    ...     [p00, p60, p3y])
-    ??? clockwise_points == [p00, p3y, p60]
+    #   2d, remaining points equidistant
+    >>> p00 = point.Point(0, 0)
+    >>> p14 = point.Point(1, 4)
+    >>> p20 = point.Point(2, 0)
+    >>> points_smallest_first = [p14, p00, p20]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p14, p20, p00]
+    True
+    >>> points_smallest_first = [p14, p20, p00]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p14, p20, p00]
     True
 
-    ### 2d, 3 angles same, -/+ quadrant
-    ??? y = math.sin(TAU / 6)
-    ??? p00 = point.Point.from_coords(0, 0)
-    ??? p60 = point.Point.from_coords(-6, 0)
-    ??? p3y = point.Point.from_coords(-3, y)
-    ??? clockwise_points = triad.Triad._order_remaining_points_clockwise(
-    ...     [p60, p00, p3y])
-    ??? clockwise_points == [p60, p3y, p00]
-    True
 
-### find clockwise angles, 2d, 1 smallest
-    ??? p00 = point.Point.from_coords(0, 0)
-    ??? p03 = point.Point.from_coords(0, 3)
-    ??? p40 = point.Point.from_coords(4, 0)
-    ??? tri = triad.Triad(p00, p03, p40)
-    ??? tri._find_clockwise_angles()
-    
-### find clockwise angles, 2d, 1 smallest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
