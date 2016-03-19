@@ -26,8 +26,8 @@
     True
     >>> good_arg_xy.z == 0
     True
-    >>> good_arg_xy.matrix == np.array([1, 2, 0, 1])
-    array([ True,  True,  True,  True], dtype=bool)
+    >>> good_arg_xy.matrix == np.array([1, 2, 0])
+    array([ True,  True,  True], dtype=bool)
 
     >>> good_arg_xyz = point.Point(1, 2, 3)
     >>> good_arg_xyz.x == 1
@@ -36,8 +36,8 @@
     True
     >>> good_arg_xyz.z == 3
     True
-    >>> good_arg_xyz.matrix == np.array([1, 2, 3, 1])
-    array([ True,  True,  True,  True], dtype=bool)
+    >>> good_arg_xyz.matrix == np.array([1, 2, 3])
+    array([ True,  True,  True], dtype=bool)
     
     >>> good_arg_xyz_float = point.Point(1.1, 2.2, 3.3)
     >>> good_arg_xyz_float.x == 1.1
@@ -46,8 +46,8 @@
     True
     >>> good_arg_xyz_float.z == 3.3
     True
-    >>> good_arg_xyz_float.matrix == np.array([1.1, 2.2, 3.3, 1])
-    array([ True,  True,  True,  True], dtype=bool)
+    >>> good_arg_xyz_float.matrix == np.array([1.1, 2.2, 3.3])
+    array([ True,  True,  True], dtype=bool)
 
 #   _is_number
     >>> p000._is_number('a')
@@ -83,13 +83,13 @@
     ### good arg
     >>> good_arg_2 = (2.2, 1.1)
     >>> p = point.Point.from_spec(good_arg_2)
-    >>> p.matrix == np.array([2.2, 1.1, 0, 1])
-    array([ True,  True,  True,  True], dtype=bool)
+    >>> p.matrix == np.array([2.2, 1.1, 0])
+    array([ True,  True,  True], dtype=bool)
 
     >>> good_arg_3 = [3.3, 2.2, 1.1]
     >>> p = point.Point.from_spec(good_arg_3)
-    >>> p.matrix == np.array([3.3, 2.2, 1.1, 1])
-    array([ True,  True,  True,  True], dtype=bool)
+    >>> p.matrix == np.array([3.3, 2.2, 1.1])
+    array([ True,  True,  True], dtype=bool)
 
 #   _is_a_spec
     >>> bad_type_container = 7
@@ -124,25 +124,21 @@
     >>> matrix_bad_type = 17
     >>> p = point.Point.from_matrix(matrix_bad_type)
     Point.from_matrix:
-        The argument must be a matrix of shape (4, )
-    >>> matrix_bad_shape = np.array([1, 2, 3])
-    >>> p = point.Point.from_matrix(matrix_bad_shape)
-    Point.from_matrix:
-        The argument must be a matrix of shape (4, )
+        The argument must be a matrix of numbers
 
     ### bad value
-    >>> matrix_bad_value = np.array([1, 2, 3, 0])
+    >>> matrix_bad_value = np.array([1, 2, 3, 4])
     >>> p = point.Point.from_matrix(matrix_bad_value)
     Point.from_matrix:
-        The final element of the matrix must be 0
+        The matrix must have shape (3, )
 
     ### good arg
-    >>> good_arg = np.array([3.3, 2.2, 1.1, 1])
+    >>> good_arg = np.array([3.3, 2.2, 1.1])
     >>> p = point.Point.from_matrix(good_arg)
     >>> print(p)
     (3.3, 2.2, 1.1)
     >>> p.matrix == good_arg
-    array([ True,  True,  True,  True], dtype=bool)
+    array([ True,  True,  True], dtype=bool)
 
 ### represent
     >>> p234 = point.Point(2, 3, 4)
@@ -201,6 +197,13 @@
     3
 
 ### operations
+#   __add__
+    >>> p1 = point.Point(1, 2, 3)
+    >>> v = vector.Vector(2, 2, 2)
+    >>> p2 = p1 + v
+    >>> p2.matrix == np.array([3, 4, 5])
+    array([ True,  True,  True], dtype=bool)
+
 #   __sub__
     >>> p123 = point.Point(1, 2, 3)
     >>> p234 = point.Point(2, 3, 4)
@@ -210,14 +213,14 @@
     Point.__sub__:
         The argument must be a Point object
     >>> v111 = p234 - p123
-    >>> v111.matrix == np.array([1, 1, 1, 0])
-    array([ True,  True,  True,  True], dtype=bool)
+    >>> v111.matrix == np.array([1, 1, 1])
+    array([ True,  True,  True], dtype=bool)
     >>> v_111 = p123 - p234
-    >>> v_111.matrix == np.array([-1, -1, -1, 0])
-    array([ True,  True,  True,  True], dtype=bool)
+    >>> v_111.matrix == np.array([-1, -1, -1])
+    array([ True,  True,  True], dtype=bool)
     >>> v000 = p123 - p123
-    >>> v000.matrix == np.array([0, 0, 0, 0])
-    array([ True,  True,  True,  True], dtype=bool)
+    >>> v000.matrix == np.array([0, 0, 0])
+    array([ True,  True,  True], dtype=bool)
 
 ### relations
     >>> cos45 = math.cos(TAU/8) # 0.7071067811865476

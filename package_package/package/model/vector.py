@@ -19,11 +19,11 @@ class Vector(object):
             message = "The arguments must be numbers"
             self.__class__._print_error_message(method_name, message)
         else:
-            num = north_unit_matrix = np.array([0, 1, 0, 0])
+            num = north_unit_matrix = np.array([0, 1, 0])
             self.x = x_in
             self.y = y_in
             self.z = z_in
-            self.matrix = np.array([x_in, y_in, z_in, 0])
+            self.matrix = np.array([x_in, y_in, z_in])
             self.length = la.norm(self.matrix)
             if self.length == 0:
                 self.unit_matrix = None
@@ -60,7 +60,7 @@ class Vector(object):
             bearing         num. 0 <= num < TAU
         """
         method_name = '_find_bearing'
-        num = north_unit_matrix = np.array([0, 1, 0, 0])
+        num = north_unit_matrix = np.array([0, 1, 0])
         try:
             if not type(unit_matrix) == np.ndarray:
                 raise TypeError
@@ -95,7 +95,7 @@ class Vector(object):
     @classmethod
     def from_matrix(cls, matrix_in):
         """Receives:
-            matrix_in       array([num, num, num, 0])
+            matrix_in       array([num, num, num])
         Returns:
             vector_out      Vector
         """
@@ -103,16 +103,11 @@ class Vector(object):
         try:
             if not (
                 type(matrix_in) == np.ndarray and
-                matrix_in.shape == (4, )
+                matrix_in.shape == (3, )
             ):
                 raise TypeError
-            elif not matrix_in[3] == 0:
-                raise ValueError
         except TypeError:
-            message = 'The argument must be a matrix of shape (4, )'
-            cls._print_error_message(method_name, message)
-        except ValueError:
-            message = "The final element of the matrix must be 0"
+            message = 'The argument must be a matrix of shape (3, )'
             cls._print_error_message(method_name, message)
         else:
             x, y, z = matrix_in[0], matrix_in[1], matrix_in[2]
@@ -120,6 +115,19 @@ class Vector(object):
             return vector_out
 
     ### operations and relations
+    def __mul__(self, num):
+        """Receives:
+            num             number
+        Finds the product of self * num. Returns:
+            v2              Vector
+        """
+        m2 = self.matrix * num
+        v2 = Vector.from_matrix(m2)
+        return v2
+
+    def __eq__(self, other):
+        value = almost_equal(self.matrix, other.matrix)
+        return value
 
     ### utility
     @classmethod

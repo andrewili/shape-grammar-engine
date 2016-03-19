@@ -8,41 +8,50 @@ almost_equal = np.allclose
 TAU = math.pi * 2
 p00 = point.Point(0, 0, 0)
 
-class Transformations(object):
+class Transformation(object):
     def __init__(self):
         pass
 
     @classmethod        
-    def make_x(cls, tri, destination):
+    def make_v(cls, tri, destination):
         """Receives:
             tri             [Point, Point, Point]
             destination     Point
-        Finds the transformation that translates the root point of tri to the 
+        Finds the vector that maps the root point of tri to the 
         destination. Returns:
-            array           np.ndarray
+            v               Vector
         """
-        p1 = destination
-        p0 = tri[0]
-        v01 = p1 - p0
-        x, y, z = v01.x, v01.y, v01.z
-        array = np.array([
-            [1, 0, 0, x],
-            [0, 1, 0, y],
-            [0, 0, 1, z],
-            [0, 0, 0, 1]])
-        return array
+        v = destination - tri[0]
+        return v
+
+        # p1 = destination
+        # p0 = tri[0]
+        # v01 = p1 - p0
+        # x, y, z = v01.x, v01.y, v01.z
+        # array = np.array([
+        #     [1, 0, 0, x],
+        #     [0, 1, 0, y],
+        #     [0, 0, 1, z],
+        #     [0, 0, 0, 1]])
+        # return array
 
     @classmethod
-    def make_r(cls, angle):
-        """Angle clockwise in radians
+    def make_r(cls, tri):
+        """Receives:
+            tri             [Point, Point, Point]
+        Finds the matrix for the rotation (counterclockwise) to the positive 
+        y-axis. The negative of the bearing of the long side. Returns:
+            array           np.array
         """
+        p0, p1, p2 = tri
+        v01 = long_side = p1 - p0
+        angle = v01.bearing
         cos_a = math.cos(angle)
         sin_a = math.sin(angle)
         array = np.array([
-            [ cos_a, sin_a, 0, 0],
-            [-sin_a, cos_a, 0, 0],
-            [     0,     0, 1, 0],
-            [     0,     0, 0, 1]])
+            [cos_a, -sin_a, 0],
+            [sin_a,  cos_a, 0],
+            [     0,     0, 1]])
         return array
 
     @classmethod
@@ -53,28 +62,75 @@ class Transformations(object):
         v2021 = p21 - p20
         s = v2021.length / v1011.length
         array = np.array([
-            [s, 0, 0, 0],
-            [0, s, 0, 0],
-            [0, 0, s, 0],
-            [0, 0, 0, 1]])
+            [s, 0, 0],
+            [0, s, 0],
+            [0, 0, s]])
         return array
 
     @classmethod
-    def make_f(cls):
+    def make_f(cls, tri1, tri2):
+        if cls._long_side_is_downstream(tri1) == (
+            cls._long_side_is_downstream(tri2)
+        ):
+            x = 1
+        else:
+            x = -1
         array = np.array([
-            [-1, 0, 0, 0],
-            [ 0, 1, 0, 0],
-            [ 0, 0, 1, 0],
-            [ 0, 0, 0, 1]])
+            [x, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1]])
         return array
+
+    @classmethod
+    def _long_side_is_downstream(cls, tri):
+        p0, p1, p2 = tri
+        v01 = p1 - p0
+        v02 = p2 - p0
+        value = (v01.bearing < v02.bearing)
+        return value
+
+    @classmethod
+    def translate_tri(cls, v, tri1):
+        """Receives:
+            v               Vector. Contains the translation
+            tri1            [Point, Point, Point]
+        Returns:
+            tri2            [Point, Point, Point]
+        """
+        tri2 = []
+        for p1 in tri1:
+            p2 = p1 + v
+            tri2.append(p2)
+        return tri2
 
     @classmethod
     def transform_tri(cls, t, tri1):
+        """Receives:
+            t               np.array. The transformation to be applied
+            tri1            [Point, Point, Point]
+        Returns:
+            tri2            [Point, Point, Point]
+        """
         tri2 = []
         for p1 in tri1:
-            p2 = np.cross(t, p1)
+            p2 = cls._transform_point(t, p1)
             tri2.append(p2)
         return tri2
+
+    @classmethod
+    def _transform_point(cls, t, p1):
+        """Receives:
+            t               np.array. The transformation to be applied
+            p1              Point. The point before transformation
+        Returns:
+            p2              Point. The point after transformation
+        """
+        matrix2 = np.dot(t, p1.matrix)
+        # print('t      : %s' % t)
+        # print('matrix1: %s' % p1.matrix)
+        # print('matrix2: %s' % matrix2)
+        p2 = point.Point.from_matrix(matrix2)
+        return p2
 
 def test2():
     def print_t(transformation, name):
@@ -97,8 +153,8 @@ def test2():
     # tri1 = [p10, p11, p12]
     # tri2 = [p20, p21, p22]
 
-    x1 = make_x(tri1, p00)
-    x2 = make_x(tri2, p00)
+    x1 = make_v(tri1, p00)
+    x2 = make_v(tri2, p00)
     r = make_r(TAU/4)
     s = make_s(tri1, tri2)
     f = make_f()

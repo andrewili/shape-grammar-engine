@@ -27,7 +27,7 @@ class Point(object):
             self.x = x_in
             self.y = y_in
             self.z = z_in
-            self.matrix = np.array([self.x, self.y, self.z, 1])
+            self.matrix = np.array([self.x, self.y, self.z])
             self.spec = (self.x, self.y, self.z)
 
     @classmethod
@@ -117,17 +117,16 @@ class Point(object):
         try:
             if not (
                 cls._is_an_array(matrix_in) and
-                cls._contains_only_numbers(matrix_in) and
-                cls._contains_4_elements(matrix_in)
+                cls._contains_only_numbers(matrix_in)
             ):
                 raise TypeError
-            elif not matrix_in[3] == 1:
+            elif not cls._contains_3_elements(matrix_in):
                 raise ValueError
         except TypeError:
-            message = "The argument must be a matrix of shape (4, )"
+            message = "The argument must be a matrix of numbers"
             cls._print_error_message(method_name, message)
         except ValueError:
-            message = "The final element of the matrix must be 0"
+            message = "The matrix must have shape (3, )"
             cls._print_error_message(method_name, message)
         else:
             x = matrix_in[0]
@@ -142,8 +141,8 @@ class Point(object):
         return value
 
     @classmethod
-    def _contains_4_elements(cls, matrix):
-        value = (len(matrix) == 4)
+    def _contains_3_elements(cls, matrix):
+        value = (len(matrix) == 3)
         return value
 
     ### represent
@@ -223,6 +222,24 @@ class Point(object):
             return formatted_coord
 
     ### operations
+    def __add__(self, v):
+        """Receives:
+            v               Vector
+        Finds self + v. Returns:
+            p2              Point
+        """
+        method_name = '__add__'
+        try:
+            if not type(v) == vector.Vector:
+                raise TypeError
+        except TypeError:
+            message = "The argument must be a Vector"
+            self._print_error_message(method_name, message)
+        else:
+            matrix2 = self.matrix + v.matrix
+            p2 = Point.from_matrix(matrix2)
+            return p2
+
     def __sub__(self, other):
         """Receives:
             other           Point
