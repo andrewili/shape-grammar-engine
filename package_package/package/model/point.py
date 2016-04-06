@@ -3,7 +3,6 @@ import vector
 almost_equal = np.allclose
 
 class Point(object):
-
     ### construct
     def __init__(self, x_in, y_in, z_in=0):
         """Receives:

@@ -20,24 +20,22 @@ class Engine(object):
         rr      = rules
         dd_r    = next_shapes_one_rule = None
         dd_rr   = next_shapes_multiple_rules = []
-
         for r in rr:
             dd_r = cls.find_next_shapes_one_rule(c, r)
             dd_rr.extend(dd_r)
-
         next_shapes_multiple_rules = dd_rr
         return next_shapes_multiple_rules
 
     @classmethod
-    def find_next_shapes_one_rule(cls, shape, rule):
+    def find_next_shapes_one_rule(cls, current_shape, rule):
         """Receives:
-            shape           LabeledShape
+            current_shape   LabeledShape
             rule            Rule
         Finds the labeled shapes created by applying all transformations of 
         the rule to the current shape. Returns:
             next_shapes     [LabeledShape]. May be empty
         """
-        c       = shape
+        c       = current_shape
         r       = rule
         a       = rule.left_shape
         b       = rule.right_shape
@@ -45,38 +43,32 @@ class Engine(object):
         dd      = next_shapes = None
         t       = transformation = None
         tt      = transformations = None
-
         tt = cls._find_transformations(c, a)
         dd = []
         for t in tt:
             d = cls._find_next_shape(c, r, t)
             dd.append(d)
-
-        next_shapes = dd
-        return next_shapes
+        return dd
 
     @classmethod
     def _find_transformations(cls, current_shape, left_shape):
         """Receives:
             current_shape   LabeledShape
             left_shape      LabeledShape
-        Calculates the transformations under which the left shape is a part of 
-        the current shape. Returns:
+        Finds the transformations, if any, under which the left shape is a 
+        part of the current shape. Returns:
             transformations [Matrix]. A list of transformations. May be empty
         """
         a       = left_shape
         c       = current_shape
         tt      = transformations = None
-
         if a.is_labeled_point():
             tt = cls._find_transformations_of_labeled_point(a, c)
-        else if a.contains_a_noncollinear_triple():
+        elif a.contains_a_noncollinear_triple():
             tt = cls._find_transformations_by_point_triple(a, c)
         else:
             tt = []
-
-        transformations = tt
-        return transformations
+        return tt
 
     @classmethod
     def _find_transformations_of_labeled_point(
@@ -137,14 +129,11 @@ class Engine(object):
         trpp_2  = lshape_2.point_triples
         t       = transformation = None
         tt      = transformations = []
-
         for trp_2 in trpp_2:
             t = cls._find_transformation_if_any(trp_1, trp_2)
             if t:
                 tt.append(t)
-
-        transformations = tt
-        return transformations
+        return tt
 
     @classmethod                                ##  2016-03-15 13:22
     def _find_transformation_if_any(cls, triple_1, triple_2):
@@ -153,8 +142,10 @@ class Engine(object):
             triple_2        (Point, Point, Point). The target triple
         Finds the transformation, if any, that maps triple_1 to triple_2. 
         Returns:
-            transformation  Matrix, if there is a transformation. Otherwise 
-                            None
+            transformation  np.ndarray, if there is a transformation. 
+                            Otherwise None
+
+            t_comp          [Vector, np.ndarray, np.ndarray, Vector]
         """
         tri1    = Triad.new(triple_1)
         tri2    = Triad.new(triple_2)
@@ -166,25 +157,42 @@ class Engine(object):
             return_value = transformation
         return return_value
 
+    @classmethod                                ##  2016-03-19 18:00
+    def is_similar_to(cls, tri1, tri2):
+        """Receives:
+            tri1            Triad
+            tri2            Triad
+        Returns:
+            value           boolean. True if tri1 and tri2 are similar 
+                            (including under scaling and reflection). False 
+                            otherwise
+        """
+        value = (tri1.ordered_angles == tri2.ordered_angles)
+        return value
+
     @classmethod                                ##  2016-03-19 16:48
     def _find_transformation(cls, triad_1, triad_2):
         """Receives:
             triad_1         Triad. The source triad
             triad_2         Triad. The target triad
-        Finds the composition of transformations that maps triad_1 to triad_2. 
-        Returns:
+        Finds the composition of transformations that maps triad_1 to triad_2, 
+        in order of application. Returns:
             t_comp          [np.ndarray] if successful. None otherwise
+
+            t_comp          [Vector, np.ndarray, np.ndarray, Vector]
         """
         tri1    = triad_1
         tri2    = triad_2
-        t1      = cls._find_translation_to_origin(tri1)
-        t2      = cls._find_translation_to_origin(tri2)
-        t2_inv  = t2.inverse()
-        r       = cls._find_rotation_to_positive_y_axis(tri1, tri2)
-        s1      = cls._find_scaling_to_match_long_side(tri1, tri2)
-        s2      = cls._find_scaling_to_match_3rd_point
+        t1      = tri1.translation_to_origin
+        t2      = tri2.translation_to_origin
+        t2i     = t2.inverse
+        r1      = tri1.rotation_to_positive_y_axis
+        r2      = tri2.rotation_to_positive_y_axis
+        r2i     = r2i.inverse
+        s       = tri1.scaling_to_match_long_sides(tri2)
+        f       = tri1.reflection_to_match_3rd_point(tri2)
 
-        t_comp = [t2_inv, s2, s1, r, t1]
+        t_comp = [t1, r1, s, f, r2i, t2i]
         return t_comp
 
     @classmethod

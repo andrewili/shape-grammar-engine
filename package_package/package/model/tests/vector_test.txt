@@ -233,6 +233,15 @@
     >>> almost_equal(bearing360_by_method, bearing360_by_hand)
     True
 
+#   find_additive_inverse
+    >>> v = vector.Vector(1, -2, 3)
+    >>> v_inv = vector.Vector.inv(v)
+    >>> v000 = vector.Vector(0, 0, 0)
+    >>> v + v_inv == v000
+    True
+    >>> v_inv + v == v000
+    True
+
 #   from_matrix
     ### type error
     >>> non_matrix = 37
@@ -263,7 +272,37 @@
     [1 1 0]
 
 ### operations
-    #   __mult__
+    #   __add__
+    >>> def set_up___add___1():
+    ...     v1      = vector.Vector(1, 2, 3)
+    ...     v2      = vector.Vector(2, 2, 2)
+    ...     v12_man = vector.Vector(3, 4, 5)
+    ...     return (v1, v2, v12_man)
+    >>> v1, v2, v12_man = set_up___add___1()
+    >>> v12 = v1 + v2
+    >>> v12.x == v12_man.x
+    True
+    >>> v12.y == v12_man.y
+    True
+    >>> v12.z == v12_man.z
+    True
+
+    #   __sub__
+    >>> def set_up___sub___1():
+    ...     v2      = vector.Vector(5, -3, 1)
+    ...     v1      = vector.Vector(3,  2, 1)
+    ...     v21_man = vector.Vector(2, -5, 0)
+    ...     return (v1, v2, v21_man)
+    >>> v1, v2, v21_man = set_up___sub___1()
+    >>> v21 = v2 - v1
+    >>> v21.x == v21_man.x
+    True
+    >>> v21.y == v21_man.y
+    True
+    >>> v21.z == v21_man.z
+    True
+
+    #   __mul__
     >>> a = vector.Vector(1, 2, 3)
     >>> a2 = a * 2
     >>> print(a2)

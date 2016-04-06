@@ -93,6 +93,19 @@ class Vector(object):
             return bearing
 
     @classmethod
+    def find_additive_inverse(cls, v):
+        """Receives:
+            v               Vector
+        Returns:
+            v_inv           Vector. The inverse of v
+        """
+        v000 = Vector(0, 0, 0)
+        v_inv = v000 - v
+        return v_inv
+
+    inv = find_additive_inverse
+
+    @classmethod
     def from_matrix(cls, matrix_in):
         """Receives:
             matrix_in       array([num, num, num])
@@ -115,6 +128,30 @@ class Vector(object):
             return vector_out
 
     ### operations and relations
+    def __add__(self, other):
+        """Receives:
+            other           Vector
+        Returns:
+            v_sum           Vector. The sum of self and other
+        """
+        x_sum = self.x + other.x
+        y_sum = self.y + other.y
+        z_sum = self.z + other.z
+        v_sum = Vector(x_sum, y_sum, z_sum)
+        return v_sum
+
+    def __sub__(self, other):
+        """Receives:
+            other           Vector
+        Returns:
+            v_diff          Vector. The difference other - self
+        """
+        x_diff = self.x - other.x
+        y_diff = self.y - other.y
+        z_diff = self.z - other.z
+        v_diff = Vector(x_diff, y_diff, z_diff)
+        return v_diff
+
     def __mul__(self, num):
         """Receives:
             num             number
