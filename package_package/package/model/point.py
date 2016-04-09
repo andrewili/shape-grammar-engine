@@ -1,5 +1,6 @@
 import numpy as np
 import vector
+
 almost_equal = np.allclose
 
 class Point(object):
@@ -14,9 +15,9 @@ class Point(object):
         method_name = '__init__'
         try:
             if not (
-                self._is_number(x_in) and
-                self._is_number(y_in) and
-                self._is_number(z_in)
+                self._is_a_number(x_in) and
+                self._is_a_number(y_in) and
+                self._is_a_number(z_in)
             ):
                 raise TypeError
         except TypeError:
@@ -32,8 +33,7 @@ class Point(object):
     @classmethod
     def from_spec(cls, spec):
         """Receives:
-            spec            (num, num), [num, num], (num, num, num), or 
-                            [num, num, num]
+            spec            (num) or [num], 2 <= length <= 3
         Constructs a 3d Point with z = 0 as default. Returns:
             point           Point
         """
@@ -91,13 +91,13 @@ class Point(object):
     def _contains_only_numbers(cls, elements):
         value = True
         for element in elements:
-            if not cls._is_number(element):
+            if not cls._is_a_number(element):
                 value = False
                 break
         return value
 
     @classmethod
-    def _is_number(cls, item):
+    def _is_a_number(cls, item):
         value = (
             type(item) == int or
             type(item) == float or
@@ -108,7 +108,7 @@ class Point(object):
     @classmethod
     def from_matrix(cls, matrix_in):
         """Receives:
-            matrix_in       np.ndarray
+            matrix_in       np.ndarray. Length = 3
         Returns:
             point           Point
         """
@@ -155,10 +155,10 @@ class Point(object):
 
     def listing(self, decimal_places=0):
         """Receives:
-            decimal_places  int >= 0
+            decimal_places  int. n >= 0
         Returns:
-            string          (x, y, z), where x, y, and z have the specified 
-                            number of decimal places
+            string          String. x, y, and z have the specified number of 
+                            decimal places
         """
         method_name = 'listing'
         try:
@@ -180,12 +180,12 @@ class Point(object):
             return string
 
     def get_formatted_coord(self, dimension, decimal_places=0):
-        """Receives the dimension (i.e., x, y, or z) of the coordinate and the 
-        number of decimal places:
-            String
-            number
-        Returns the specified coordinate formatted as specified
-            String
+        """Receives: 
+            dimension       String. 'x', 'y', or 'z'
+            decimal_places  int. The number of decimal places to include
+        Returns: 
+            formatted_coord String. A number with the specified number of 
+                            decimal places
         """
         method_name = 'get_formatted_coord'
         try:
@@ -242,7 +242,7 @@ class Point(object):
     def __sub__(self, other):
         """Receives:
             other           Point
-        Subtracts other from self. Returns:
+        Finds self - other. Returns:
             diff_vector     Vector
         """
         method_name = '__sub__'

@@ -57,7 +57,7 @@ class Vector(object):
             unit_matrix     np.array, shape = (3, ), norm = 1
         Finds the angle (in radians) from north. Clockwise is positive. 
         Returns:
-            bearing         num. 0 <= num < TAU
+            bearing         num. 0 <= bearing < TAU
         """
         method_name = '_find_bearing'
         num = north_unit_matrix = np.array([0, 1, 0])

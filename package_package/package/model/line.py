@@ -1,9 +1,13 @@
 import math
+import numpy as np
 import point
+import vector
+
+almost_equal = np.allclose
 
 class Line(object):
     ### construct
-    def __init__(self, p1, p2):                 ##  04-17 17:06
+    def __init__(self, p1, p2):
         """Receives:
             p1              Point
             p2              Point != p1
@@ -24,7 +28,7 @@ class Line(object):
             message = 'The arguments must both be points'
             self.__class__._print_error_message(method_name, message)
         except ValueError:
-            message = 'The arguments must be different points'
+            message = 'The points must be different'
             self.__class__._print_error_message(method_name, message)
         else:
             if p1 < p2:
@@ -40,22 +44,71 @@ class Line(object):
             self.y2 = self.head.y
             self.z2 = self.head.z
             self.spec = (self.tail.spec, self.head.spec)
-            # self.spec = (self.x1, self.y1, self.x2, self.y2)
-            self.carrier = self._compute_carrier_from(self.spec)
+            self.carrier = self._find_carrier_from(self.spec)
+            # self.carrier = cls._find_carrier(self.tail, self.head)
             self.bearing, self.intercept = self.carrier
+            # self.direction, self.intercept = self.carrier
             self.length = self._compute_length()
 
-    def _compute_carrier_from(self, line_spec):
-        """Receives line_spec:
-            ((num, num, num), (num, num, num))
-                            a duple of point specs
-        Returns carrier:
-            (bearing, intercept)
+    @classmethod
+    def _find_carrier(cls, tail, head):         ##  2016-04-07
+        """Receives:
+            tail            Point
+            head            Point
+        Returns:
+            direction       Vector. Length = 1
+            intercept       Point. In the yz-plane or on the x-axis
         """
-        x1, y1, x2, y2 = line_spec
+        v = head - tail
+        direction = v.unit
+        if cls._line_is_parallel_to_yz_plane(direction):
+            intercept = tail.x
+        else:
+            intercept = cls._find_yz_intercept(tail, head)
+        return (direction, intercept)
+
+    @classmethod
+    def _line_is_parallel_to_yz_plane(cls, direction):
+        """Receives:
+            direction       Vector. Length = 1
+        Returns:
+            value           boolean
+        """
+        value = almost_equal(direction[0], 0)
+        return value
+
+    @classmethod
+    def _find_yz_intercept(cls, vector_in, point): # 2016-04-08
+        """Receives:
+            vector_in       Vector. Not parallel to the yz-plane
+            point           Point
+        Returns:
+            yz_intercept    Point. (0, y, z)
+        """
+        p = point
+        v = vector_in
+        t = p.x / v.x
+        y = p.y - (v.y * t)
+        z = p.z - (v.z * t)
+        yz_intercept = vector.Vector(0, y, z)
+        return yz_intercept
+
+    ### to be deprecated
+    def _find_carrier_from(self, line_spec):    ##  2016-04-06
+        #   2D method!
+        """Receives:
+            line_spec       ((num, num, num), (num, num, num))
+        Returns:
+            bearing         num. 
+            intercept       Point
+        """
+        p1_spec, p2_spec = line_spec
+        x1, y1, z1 = p1_spec
+        x2, y2, z2 = p2_spec
         dy = y2 - y1
         dx = x2 - x1
         #   0 <= bearing < 180, 0 = north, increasing clockwise
+        #   bearing as vector
         if dx == 0:
             bearing = 0.0
             intercept = x1
@@ -92,16 +145,20 @@ class Line(object):
 
     ### represent
     def __str__(self):
-        return '(%s, %s, %s, %s)' % (
-            self.x1, self.y1, self.x2, self.y2)
+        string = '((%s, %s, %s), (%s, %s, %s))' % (
+            self.x1, self.y1, self.z1, self.x2, self.y2, self.z2)
+        return string
 
     def listing(self, decimal_places=0):
         x1_formatted = self.tail.get_formatted_coord('x', decimal_places)
         y1_formatted = self.tail.get_formatted_coord('y', decimal_places)
+        z1_formatted = self.tail.get_formatted_coord('z', decimal_places)
         x2_formatted = self.head.get_formatted_coord('x', decimal_places)
         y2_formatted = self.head.get_formatted_coord('y', decimal_places)
-        string = '(%s, %s, %s, %s)' % (
-            x1_formatted, y1_formatted, x2_formatted, y2_formatted)
+        z2_formatted = self.head.get_formatted_coord('z', decimal_places)
+        string = '((%s, %s, %s), (%s, %s, %s))' % (
+            x1_formatted, y1_formatted, z1_formatted,
+            x2_formatted, y2_formatted, z2_formatted)
         return string
 
     ### relations

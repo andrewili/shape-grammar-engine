@@ -1,33 +1,34 @@
     >>> import colineation
     >>> import line
     >>> import point
+    >>> import vector
 
-    ??? drone_line = line.Line.from_spec(0, 0, 10, 10)
+    >>> drone_line = line.Line.from_spec(0, 0, 10, 10)
     
 ### construct
-#   __init__(), __str__()                       ##  04-17 17:07
-    >>> p0 = point.Point.from_coords(0, 0, 0)
-    >>> p00 = point.Point.from_coords(0, 0, 0)
-    >>> p1 = point.Point.from_coords(1, 1, 1)
+#   __init__(), __str__()
+    >>> p0 = point.Point(0, 0, 0)
+    >>> p00 = point.Point(0, 0, 0)
+    >>> p1 = point.Point(1, 1, 1)
     >>> line_from_non_points = line.Line(p0, 'x')
     Line.__init__:
         The arguments must both be points
     >>> zero_length_line = line.Line(p0, p00)
     Line.__init__:
-        The arguments must be different points
+        The points must be different
     
-    ??? line_01 = line.Line(p0, p1)
-    ??? print line_01.tail
+    >>> line_01 = line.Line(p0, p1)
+    >>> print line_01.tail
     (0, 0, 0)
-    ??? print line_01.head
+    >>> print line_01.head
     (1, 1, 1)
-    ??? line_01.spec
+    >>> line_01.spec
     ((0, 0, 0), (1, 1, 1))
-    ??? line_01.carrier
+    >>> line_01.carrier
     (45.0, 0)
-    ??? line_01.length
+    >>> line_01.length
     1.4142135623730951
-    ??? print line_01
+    >>> print line_01
     ((0, 0, 0), (1, 1, 1))
     
     ??? line_w_big_tail = line.Line.from_spec(1, 1, 0, 0)
@@ -61,32 +62,48 @@
     ??? print line.Line.from_spec(1, 1, 1, 0).carrier
     (0.0, 1)
 
-#   _compute_carrier_from(line_spec)            ##  04-17 17:35 
+#   _find_carrier                               ##  2016-04-07
+    ### cases: direction parallel to yz-plane
+
+#   _find_yz_intercept                          ##  2016-04-08
+    >>> def set_up_find_yz_intercept():
+    ...     v = vector.Vector(3, 4, 0)
+    ...     p = point.Point(3, 5, 1)
+    ...     p_yz = line.Line._find_yz_intercept(v, p)
+    ...     p_yz_man = point.Point(0, 1, 1)
+    ...     return (p_yz, p_yz_man)
+    >>> p_yz, p_yz_man = set_up_find_yz_intercept()
+    >>> p_yz == p_yz_man
+    True
+
+#   _find_carrier_from(line_spec)               ##  04-17 17:35 
     >>> line_spec_000110 = ((0, 0, 0), (1, 1, 0))
-    >>> drone_line._compute_carrier_from(line_spec_000110)
+    >>> drone_line._find_carrier_from(line_spec_000110)
     (45.0, 0)
+
     ??? line_spec_0010 = (0, 0, 1, 0)
-    ??? drone_line._compute_carrier_from(line_spec_0010)
+    ??? drone_line._find_carrier_from(line_spec_0010)
     (90.0, 0)
     ??? line_spec_0001 = (0, 0, 0, 1)
-    ??? drone_line._compute_carrier_from(line_spec_0001)
+    ??? drone_line._find_carrier_from(line_spec_0001)
     (0.0, 0)
 
 #   from_spec(x1, y1, x2, y2)
     >>> line_from_identical_points = line.Line.from_spec(0, 0, 0, 0)
-    Line.__init__(): The arguments must be different points
+    Line.__init__:
+        The points must be different
 
     ??? line_from_non_numbers = line.Line.from_spec(1, 2, [], 4)
     Point.__init__(): The arguments must both be numbers
 
     >>> line_from_spec = line.Line.from_spec(0, 0, 1, 1)
     >>> print line_from_spec
-    (0, 0, 1, 1)
+    ((0, 0, 0), (1, 1, 0))
 
 #   from_short_spec(x1, x2)
     >>> line_from_short_spec = line.Line.from_short_spec(1, 2)
     >>> print line_from_short_spec
-    (1, 1, 2, 2)
+    ((1, 1, 0), (2, 2, 0))
 
 #   from_points(p1,p2)
     >>> p1 = point.Point(1, 1)
@@ -95,18 +112,18 @@
     >>> line_from_points = line.Line.from_points(p1, p2)
     
     >>> print line_from_points
-    (1, 1, 2, 2)
+    ((1, 1, 0), (2, 2, 0))
 
     >>> print line.Line.from_spec(1, 1, 2, 2)
-    (1, 1, 2, 2)
+    ((1, 1, 0), (2, 2, 0))
 
 #   listing(decimal_places)
     >>> print line_01.listing()
-    (0, 0, 1, 1)
+    ((0, 0, 0), (1, 1, 1))
     >>> print line_01.listing(0)
-    (0, 0, 1, 1)
+    ((0, 0, 0), (1, 1, 1))
     >>> print line_01.listing(1)
-    (0.0, 0.0, 1.0, 1.0)
+    ((0.0, 0.0, 0.0), (1.0, 1.0, 1.0))
 
     ??? print line_01.listing(1.3)
     Point.listing(): The argument must be an integer
@@ -492,19 +509,19 @@
     >>> line_68 = line.Line.from_short_spec(6, 8) #         --
     
     >>> print line_k.merge(line_03)
-    (0, 0, 6, 6)
+    ((0, 0, 0), (6, 6, 0))
     >>> print line_k.merge(line_06)
-    (0, 0, 6, 6)
+    ((0, 0, 0), (6, 6, 0))
     >>> print line_k.merge(line_08)
-    (0, 0, 8, 8)
+    ((0, 0, 0), (8, 8, 0))
     >>> print line_k.merge(line_34)
-    (0, 0, 6, 6)
+    ((0, 0, 0), (6, 6, 0))
     >>> print line_k.merge(line_36)
-    (0, 0, 6, 6)
+    ((0, 0, 0), (6, 6, 0))
     >>> print line_k.merge(line_38)
-    (0, 0, 8, 8)
+    ((0, 0, 0), (8, 8, 0))
     >>> print line_k.merge(line_68)
-    (0, 0, 8, 8)
+    ((0, 0, 0), (8, 8, 0))
 
 ### subtract
 #   subtract_line_tail(line)
@@ -515,7 +532,7 @@
     >>> differences_1 = minuend.subtract_line_tail(subtrahend_1)
     >>> for a_line in differences_1:
     ...     print a_line
-    (3, 3, 5, 5)
+    ((3, 3, 0), (5, 5, 0))
     >>> differences_2 = minuend.subtract_line_tail(subtrahend_2)
     The subtrahend does not overlap the tail of the minuend
 
@@ -526,8 +543,8 @@
     >>> line_differences = minuend.subtract_line_middle(subtrahend)
     >>> for difference in line_differences:
     ...     print difference
-    (2, 2, 3, 3)
-    (4, 4, 5, 5)
+    ((2, 2, 0), (3, 3, 0))
+    ((4, 4, 0), (5, 5, 0))
 
 #   subtract_line_head(other)
     >>> minuend = line.Line.from_spec(2, 2, 5, 5)
@@ -535,6 +552,6 @@
     >>> line_differences = minuend.subtract_line_head(subtrahend)
     >>> for a_line in line_differences:
     ...     print a_line
-    (2, 2, 4, 4)
+    ((2, 2, 0), (4, 4, 0))
 
     

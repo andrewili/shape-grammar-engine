@@ -49,14 +49,14 @@
     >>> good_arg_xyz_float.matrix == np.array([1.1, 2.2, 3.3])
     array([ True,  True,  True], dtype=bool)
 
-#   _is_number
-    >>> p000._is_number('a')
+#   _is_a_number
+    >>> p000._is_a_number('a')
     False
-    >>> p000._is_number([1])
+    >>> p000._is_a_number([1])
     False
-    >>> p000._is_number(1)
+    >>> p000._is_a_number(1)
     True
-    >>> p000._is_number(1.1)
+    >>> p000._is_a_number(1.1)
     True
 
 #   from_spec
@@ -234,11 +234,6 @@
     False
 
 #   __eq__
-    ### (0, 0)
-    ### (0, 1)
-    ### (1, 0)
-    ### (1, 1)
-
     >>> point_eq =  point.Point(cos45, cos45, 0)
     >>> point_eq == point.Point(cos45, sin45, 0)
     True
@@ -248,11 +243,10 @@
     False
 
 #   __ge__
-    >>> 
     >>> point_ge  = point.Point(sin45, sin45, 0)
     >>> point_ge >= point.Point(sin45, cos45, 0)
     True
-    >>> point_ge >= point.Point(sin45, o0707,  0)
+    >>> point_ge >= point.Point(sin45, o0707, 0)
     True
 
 #   __gt__
