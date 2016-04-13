@@ -31,8 +31,11 @@ class Vector(object):
                 self.bearing_in_degrees = None
             else:
                 self.unit_matrix = self.matrix / self.length
+                #   bearing for 2d only
                 self.bearing = self._find_bearing(self.unit_matrix)
-                self.bearing_in_degrees = math.degrees(self.bearing)
+                self.bearing_in_degrees = None
+                if self.bearing:
+                    self.bearing_in_degrees = math.degrees(self.bearing)
 
     def _is_a_number(self, x):
         """Receives:
@@ -54,10 +57,11 @@ class Vector(object):
     @classmethod
     def _find_bearing(cls, unit_matrix):
         """Receives:
-            unit_matrix     np.array, shape = (3, ), norm = 1
+            unit_matrix     np.array, shape = (3, ), z = 0, norm = 1
         Finds the angle (in radians) from north. Clockwise is positive. 
         Returns:
-            bearing         num. 0 <= bearing < TAU
+            bearing         num. 0 <= bearing < TAU, if successful. None, if 
+                            z != 0
         """
         method_name = '_find_bearing'
         num = north_unit_matrix = np.array([0, 1, 0])
@@ -70,7 +74,9 @@ class Vector(object):
         else:
             absolute_bearing = math.acos(np.dot(num, unit_matrix))
             x, y = unit_matrix[0], unit_matrix[1]
-            if (almost_equal(x, 0) and
+            if not unit_matrix[2] == 0:
+                bearing = None
+            elif (almost_equal(x, 0) and
                 almost_equal(y, 0)
             ):
                 bearing = None
@@ -126,6 +132,16 @@ class Vector(object):
             x, y, z = matrix_in[0], matrix_in[1], matrix_in[2]
             vector_out = Vector(x, y, z)
             return vector_out
+
+    @classmethod
+    def find_unit_vector(cls, v):
+        """Receives:
+            v               Vector
+        Returns:
+            v_unit          The unit vector of v
+        """
+        v_unit = Vector.from_matrix(v.unit_matrix)
+        return v_unit
 
     ### operations and relations
     def __add__(self, other):

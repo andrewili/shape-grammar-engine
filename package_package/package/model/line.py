@@ -44,104 +44,129 @@ class Line(object):
             self.y2 = self.head.y
             self.z2 = self.head.z
             self.spec = (self.tail.spec, self.head.spec)
-            self.carrier = self._find_carrier_from(self.spec)
-            # self.carrier = cls._find_carrier(self.tail, self.head)
-            self.bearing, self.intercept = self.carrier
+            self.v = self.head - self.tail
+            self.length = self.v.length
+            self.carrier = self._find_carrier(self.tail, self.head)
+            self.unit_vector, self.intercept = self.carrier
+            # self.carrier = self._find_carrier_from(self.spec)
             # self.direction, self.intercept = self.carrier
-            self.length = self._compute_length()
 
     @classmethod
-    def _find_carrier(cls, tail, head):         ##  2016-04-07
+    def _find_carrier(cls, tail, head):
         """Receives:
             tail            Point
-            head            Point
+            head            Point. head > tail
         Returns:
-            direction       Vector. Length = 1
-            intercept       Point. In the yz-plane or on the x-axis
+            unit_vector     Vector. Indicating the direction
+            intercept       Point. In the yz-, xz-, or xy-plane
         """
         v = head - tail
-        direction = v.unit
-        if cls._line_is_parallel_to_yz_plane(direction):
-            intercept = tail.x
+        unit_vector = vector.Vector.find_unit_vector(v)
+        if cls._unit_vector_is_parallel_to_z_axis(unit_vector):
+            x, y = tail.x, tail.y
+            intercept = point.Point(x, y, 0)
+        elif cls._unit_vector_is_parallel_to_yz_plane(unit_vector):
+            intercept = cls._find_xz_intercept(unit_vector, tail)
         else:
-            intercept = cls._find_yz_intercept(tail, head)
-        return (direction, intercept)
+            intercept = cls._find_yz_intercept(unit_vector, tail)
+        return (unit_vector, intercept)
 
     @classmethod
-    def _line_is_parallel_to_yz_plane(cls, direction):
+    def _unit_vector_is_parallel_to_z_axis(cls, direction):
+        """Receives:
+            direction       Vector. Length = 1
+        Returns:
+            value           boolean. True if direction is parallel to the 
+                            z-axis. False otherwise
+        """
+        value = (
+            almost_equal(direction.x, 0) and
+            almost_equal(direction.y, 0) and
+            almost_equal(direction.z, 1))
+        return value
+
+    @classmethod
+    def _unit_vector_is_parallel_to_yz_plane(cls, direction):
         """Receives:
             direction       Vector. Length = 1
         Returns:
             value           boolean
         """
-        value = almost_equal(direction[0], 0)
+        value = almost_equal(direction.x, 0)
         return value
 
     @classmethod
-    def _find_yz_intercept(cls, vector_in, point): # 2016-04-08
+    def _find_xz_intercept(cls, v, p1):
         """Receives:
-            vector_in       Vector. Not parallel to the yz-plane
-            point           Point
-        Returns:
-            yz_intercept    Point. (0, y, z)
+            v               Vector. Length = 1. x = 0
+            p1              Point
+        Finds the xz-intercept of a line parallel to the yz-plane. Returns:
+            p0              Point. The xz-intercept (x, 0, z)
         """
-        p = point
-        v = vector_in
-        t = p.x / v.x
-        y = p.y - (v.y * t)
-        z = p.z - (v.z * t)
-        yz_intercept = vector.Vector(0, y, z)
-        return yz_intercept
+        p0_y = 0
+        t = (p0_y - p1.y) / v.y
+        p0 = p1 + (v * t)
+        return p0
 
-    ### to be deprecated
-    def _find_carrier_from(self, line_spec):    ##  2016-04-06
-        #   2D method!
+    @classmethod
+    def _find_yz_intercept(cls, v, p1):
         """Receives:
-            line_spec       ((num, num, num), (num, num, num))
+            v               Vector. Not parallel to the yz-plane
+            p1              Point
         Returns:
-            bearing         num. 
-            intercept       Point
+            p0              Point. The yz-intercept (0, y, z)
         """
-        p1_spec, p2_spec = line_spec
-        x1, y1, z1 = p1_spec
-        x2, y2, z2 = p2_spec
-        dy = y2 - y1
-        dx = x2 - x1
-        #   0 <= bearing < 180, 0 = north, increasing clockwise
-        #   bearing as vector
-        if dx == 0:
-            bearing = 0.0
-            intercept = x1
+        p0_x = 0
+        t = (p0_x - p1.x) / v.x
+        p0 = p1 + (v * t)
+        return p0
+
+    @classmethod
+    def from_spec(cls, x1, y1, z1, x2, y2, z2):
+        method_name = 'from_spec'
+        try:
+            if not (
+                point.Point._is_a_number(x1) and
+                point.Point._is_a_number(y1) and
+                point.Point._is_a_number(z1) and
+                point.Point._is_a_number(x2) and
+                point.Point._is_a_number(y2) and
+                point.Point._is_a_number(z2)
+            ):
+                raise TypeError
+        except TypeError:
+            message = "The arguments must all be numbers"
+            cls._print_error_message(method_name, message)
         else:
-            slope = dy / dx
-            bearing = 90 - math.degrees(math.atan(slope))
-            #   y = mx + b
-            #   b = y - mx
-            intercept = self.y1 - (slope * self.x1)
-        return (bearing, intercept)
-
-    def _compute_length(self):
-        dx = self.head.x - self.tail.x
-        dy = self.head.y - self.tail.y
-        length_squared = math.pow(dx, 2) + math.pow(dy, 2)
-        length = math.sqrt(length_squared)
-        return length
+            p1 = point.Point(x1, y1, z1)
+            p2 = point.Point(x2, y2, z2)
+            new_line = Line(p1, p2)
+            return new_line
 
     @classmethod
-    def from_spec(cls, x1, y1, x2, y2):
-        p1 = point.Point(x1, y1)
-        p2 = point.Point(x2, y2)
-        new_line = Line(p1, p2)
+    def from_spec_4(cls, x1, y1, x2, y2):
+        method_name = 'from_spec_4'
+        try:
+            if not (
+                point.Point._is_a_number(x1) and
+                point.Point._is_a_number(y1) and
+                point.Point._is_a_number(x2) and
+                point.Point._is_a_number(y2)
+            ):
+                raise TypeError
+        except TypeError:
+            message = "The arguments must all be numbers"
+            cls._print_error_message(method_name, message)
+        else:
+            p1 = point.Point(x1, y1)
+            p2 = point.Point(x2, y2)
+            new_line = Line(p1, p2)
+            return new_line
+
+    @classmethod
+    def from_spec_2(cls, x1, x2):
+        new_line = Line.from_spec_4(x1, x1, x2, x2)
         return new_line
-
-    @classmethod
-    def from_short_spec(cls, x1, x2):
-        new_line = Line.from_spec(x1, x1, x2, x2)
-        return new_line
-
-    @classmethod
-    def from_points(cls, p1, p2):
-        return Line(p1, p2)
 
     ### represent
     def __str__(self):

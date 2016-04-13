@@ -91,7 +91,7 @@
     >>> p.matrix == np.array([3.3, 2.2, 1.1])
     array([ True,  True,  True], dtype=bool)
 
-#   _is_a_spec
+#   is_a_spec
     >>> bad_type_container = 7
     >>> point.Point.from_spec(bad_type_container)
     Point.from_spec:
@@ -113,10 +113,10 @@
         The argument must be a tuple or a list of 2 or 3 numbers
 
     >>> good_arg_2 = (1.1, 2.2)
-    >>> point.Point._is_a_spec(good_arg_2)
+    >>> point.Point.is_a_spec(good_arg_2)
     True
     >>> good_arg_3 = [1.1, 2.2, 3.3]
-    >>> point.Point._is_a_spec(good_arg_3)
+    >>> point.Point.is_a_spec(good_arg_3)
     True
 
 #   from_matrix

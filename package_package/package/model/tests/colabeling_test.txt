@@ -11,13 +11,13 @@
     >>> colabeling_drone = make_colabeling_drone()
 
 ### construct, represent
-#   __init__(), __str__(), listing()
+#   __init__, __str__, listing
     >>> def make_non_list():
     ...     non_list = (1, 2, 3)
     ...     return non_list
     >>> non_list = make_non_list()
     >>> colabeling_non_list = colabeling.Colabeling(non_list)
-    Colabeling.__init__(): The argument must be a list of labeled points
+    Colabeling.__init__: The argument must be a list of labeled points
 
     >>> def make_non_lpoints():
     ...     line_01 = line.Line.from_short_spec(0, 1)
@@ -25,7 +25,7 @@
     ...     return non_lpoints
     >>> non_lpoints = make_non_lpoints()
     >>> colabeling_non_lpoints = colabeling.Colabeling(non_lpoints)
-    Colabeling.__init__(): The argument must be a list of labeled points
+    Colabeling.__init__: The argument must be a list of labeled points
 
     >>> def make_lpoints_diff_labels():
     ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
@@ -35,7 +35,7 @@
     ...     return lpoints_diff_labels
     >>> lpoints_diff_labels = make_lpoints_diff_labels()
     >>> colabeling_diff_labels = colabeling.Colabeling(lpoints_diff_labels)
-    Colabeling.__init__(): The labeled points must have the same label
+    Colabeling.__init__: The labeled points must have the same label
 
     >>> colabeling_empty_list = colabeling.Colabeling([])
     >>> print colabeling_empty_list
@@ -66,13 +66,13 @@
         (3, 3)
 
     ??? print colabeling_1.listing(0.1)
-    Point.listing(): The argument must be an integer
+    Point.listing: The argument must be an integer
     ??? print colabeling_1.listing(-1)
-    Point.listing(): The argument must be non-negative
+    Point.listing: The argument must be non-negative
     ??? print colabeling_1.listing(0, -1)
-    Point.listing(): The argument must be non-negative
+    Point.listing: The argument must be non-negative
     ??? print colabeling_1.listing(0, 1.1)
-    Point.listing(): The argument must be an integer
+    Point.listing: The argument must be an integer
 
 #   _contains_only_lpoints(elements)
     >>> lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
@@ -113,7 +113,7 @@
 
     >>> specs_empty_label = [(1, 2, 'a'), (3, 4, '')]
     >>> colabeling_from_spec_empty_label = colabeling.Colabeling.from_lpoint_specs_list(specs_empty_label)
-    Colabeling.__init__(): The labeled points must have the same label
+    Colabeling.__init__: The labeled points must have the same label
 
     >>> lpoint_specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'a')]
     >>> colabeling_from_lpoint_specs = colabeling.Colabeling.from_lpoint_specs_list(lpoint_specs)

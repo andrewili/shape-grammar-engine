@@ -191,7 +191,7 @@ class LabeledPoint(object):
         """
         value = (
             len(item) == 2 and
-            point.Point.is_point_spec(item[0]) and
+            point.Point.is_a_spec(item[0]) and
             type(item[1]) == str)
         return value
 

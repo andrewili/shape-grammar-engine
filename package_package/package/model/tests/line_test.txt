@@ -1,9 +1,12 @@
     >>> import colineation
     >>> import line
+    >>> import math
     >>> import point
     >>> import vector
 
-    >>> drone_line = line.Line.from_spec(0, 0, 10, 10)
+    >>> cos, sin = math.cos, math.sin
+    >>> TAU = math.pi * 2
+    >>> drone_line = line.Line.from_spec_4(0, 0, 10, 10)
     
 ### construct
 #   __init__(), __str__()
@@ -24,97 +27,312 @@
     (1, 1, 1)
     >>> line_01.spec
     ((0, 0, 0), (1, 1, 1))
-    >>> line_01.carrier
-    (45.0, 0)
+    >>> uv, p0 = line_01.carrier
+    >>> uv == vector.Vector(0.57735027, 0.57735027, 0.57735027)
+    True
+    >>> p0 == p00
+    True
     >>> line_01.length
-    1.4142135623730951
+    1.7320508075688772
     >>> print line_01
     ((0, 0, 0), (1, 1, 1))
-    
-    ??? line_w_big_tail = line.Line.from_spec(1, 1, 0, 0)
-    ??? print line_w_big_tail.tail
-    (0, 0)
-    ??? print line_w_big_tail.head
-    (1, 1)
-    
-    ??? print line.Line.from_spec(0, 0, 0, 1).carrier
-    (0.0, 0)
-    ??? print line.Line.from_spec(0, 0, 1, 0).carrier
-    (90.0, 0)
-    ??? print line.Line.from_spec(0, 0, 1, 1).carrier
-    (45.0, 0)
-    ??? print line.Line.from_spec(0, 1, 0, 0).carrier
-    (0.0, 0)
-    ??? print line.Line.from_spec(0, 1, 1, 0).carrier
-    (135.0, 1)
-    ??? print line.Line.from_spec(0, 1, 1, 1).carrier
-    (90.0, 1)
-    ??? print line.Line.from_spec(1, 0, 0, 0).carrier
-    (90.0, 0)
-    ??? print line.Line.from_spec(1, 0, 0, 1).carrier
-    (135.0, 1)
-    ??? print line.Line.from_spec(1, 0, 1, 1).carrier
-    (0.0, 1)
-    ??? print line.Line.from_spec(1, 1, 0, 0).carrier
-    (45.0, 0)
-    ??? print line.Line.from_spec(1, 1, 0, 1).carrier
-    (90.0, 1)
-    ??? print line.Line.from_spec(1, 1, 1, 0).carrier
-    (0.0, 1)
 
-#   _find_carrier                               ##  2016-04-07
-    ### cases: direction parallel to yz-plane
+#   carrier    
+    >>> p000 = point.Point(0, 0, 0)
 
-#   _find_yz_intercept                          ##  2016-04-08
-    >>> def set_up_find_yz_intercept():
-    ...     v = vector.Vector(3, 4, 0)
-    ...     p = point.Point(3, 5, 1)
-    ...     p_yz = line.Line._find_yz_intercept(v, p)
-    ...     p_yz_man = point.Point(0, 1, 1)
-    ...     return (p_yz, p_yz_man)
-    >>> p_yz, p_yz_man = set_up_find_yz_intercept()
-    >>> p_yz == p_yz_man
+    >>> def set_up_carrier_001():
+    ...     p001 = point.Point(0, 0, 1)
+    ...     p002 = point.Point(0, 0, 2)
+    ...     l001002 = line.Line(p001, p002)
+    ...     uv_got, int_got = l001002.carrier
+    ...     v_exp = vector.Vector(0, 0, 1)
+    ...     uv_exp = vector.Vector.find_unit_vector(v_exp)
+    ...     int_exp = p000
+    ...     return (uv_got, uv_exp, int_got, int_exp)
+    >>> uv_got, uv_exp, int_got, int_exp = set_up_carrier_001()
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
     True
 
-#   _find_carrier_from(line_spec)               ##  04-17 17:35 
-    >>> line_spec_000110 = ((0, 0, 0), (1, 1, 0))
-    >>> drone_line._find_carrier_from(line_spec_000110)
-    (45.0, 0)
+    >>> def set_up_carrier_010():
+    ...     p010 = point.Point(0, 1, 0)
+    ...     p020 = point.Point(0, 2, 0)
+    ...     l010020 = line.Line(p010, p020)
+    ...     uv_got, int_got = l010020.carrier
+    ...     v_exp = vector.Vector(0, 1, 0)
+    ...     uv_exp = vector.Vector.find_unit_vector(v_exp)
+    ...     int_exp = p000
+    ...     return (uv_got, uv_exp, int_got, int_exp)
+    >>> uv_got, uv_exp, int_got, int_exp = set_up_carrier_010()
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
 
-    ??? line_spec_0010 = (0, 0, 1, 0)
-    ??? drone_line._find_carrier_from(line_spec_0010)
-    (90.0, 0)
-    ??? line_spec_0001 = (0, 0, 0, 1)
-    ??? drone_line._find_carrier_from(line_spec_0001)
-    (0.0, 0)
+    >>> def set_up_carrier_011():
+    ...     p011 = point.Point(0, 1, 1)
+    ...     p022 = point.Point(0, 2, 2)
+    ...     l011022 = line.Line(p011, p022)
+    ...     uv_got, int_got = l011022.carrier
+    ...     v_exp = vector.Vector(0, 1, 1)
+    ...     uv_exp = vector.Vector.find_unit_vector(v_exp)
+    ...     int_exp = p000
+    ...     return (uv_got, uv_exp, int_got, int_exp)
+    >>> uv_got, uv_exp, int_got, int_exp = set_up_carrier_011()
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
 
-#   from_spec(x1, y1, x2, y2)
-    >>> line_from_identical_points = line.Line.from_spec(0, 0, 0, 0)
+    >>> def set_up_carrier_100():
+    ...     p100 = point.Point(1, 0, 0)
+    ...     p200 = point.Point(2, 0, 0)
+    ...     l100200 = line.Line(p100, p200)
+    ...     uv_got, int_got = l100200.carrier
+    ...     v_exp = vector.Vector(1, 0, 0)
+    ...     uv_exp = vector.Vector.find_unit_vector(v_exp)
+    ...     int_exp = p000
+    ...     return (uv_got, uv_exp, int_got, int_exp)
+    >>> uv_got, uv_exp, int_got, int_exp = set_up_carrier_100()
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+    >>> def set_up_carrier_101():
+    ...     p101 = point.Point(1, 0, 1)
+    ...     p202 = point.Point(2, 0, 2)
+    ...     l101202 = line.Line(p101, p202)
+    ...     uv_got, int_got = l101202.carrier
+    ...     v_exp = vector.Vector(1, 0, 1)
+    ...     uv_exp = vector.Vector.find_unit_vector(v_exp)
+    ...     int_exp = p000
+    ...     return (uv_got, uv_exp, int_got, int_exp)
+    >>> uv_got, uv_exp, int_got, int_exp = set_up_carrier_101()
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+    >>> def set_up_carrier_110():
+    ...     p110 = point.Point(1, 1, 0)
+    ...     p220 = point.Point(2, 2, 0)
+    ...     l110220 = line.Line(p110, p220)
+    ...     uv_got, int_got = l110220.carrier
+    ...     v_exp = vector.Vector(1, 1, 0)
+    ...     uv_exp = vector.Vector.find_unit_vector(v_exp)
+    ...     int_exp = p000
+    ...     return (uv_got, uv_exp, int_got, int_exp)
+    >>> uv_got, uv_exp, int_got, int_exp = set_up_carrier_110()
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+    >>> def set_up_carrier_111():
+    ...     p111 = point.Point(1, 1, 1)
+    ...     p222 = point.Point(2, 2, 2)
+    ...     l111222 = line.Line(p111, p222)
+    ...     uv_got, int_got = l111222.carrier
+    ...     v_exp = vector.Vector(1, 1, 1)
+    ...     uv_exp = vector.Vector.find_unit_vector(v_exp)
+    ...     int_exp = p000
+    ...     return (uv_got, uv_exp, int_got, int_exp)
+    >>> uv_got, uv_exp, int_got, int_exp = set_up_carrier_111()
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+#   _find_carrier
+    ### Case 1. Parallel to z-axis: xy-intercept
+    >>> def set_up_find_carrier_parallel_to_z_axis():
+    ...     tail = point.Point(2, 4, 2)
+    ...     head = point.Point(2, 4, 6)
+    ...     unit_vector_got, intercept_got = (
+    ...         line.Line._find_carrier(tail, head))
+    ...     unit_vector_exp = vector.Vector(0, 0, 1)
+    ...     intercept_exp = point.Point(2, 4, 0)
+    ...     return (
+    ...         unit_vector_got, intercept_got,
+    ...         unit_vector_exp, intercept_exp)
+    >>> uv_got, int_got, uv_exp, int_exp = (
+    ...     set_up_find_carrier_parallel_to_z_axis())
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+    
+    ### Case 2. Parallel to yz-plane: xz-intercept
+    >>> def set_up_find_carrier_parallel_to_y_axis():
+    ...     tail = point.Point(2, 1, 2)
+    ...     head = point.Point(2, 2, 2)
+    ...     unit_vector_got, intercept_got = (
+    ...         line.Line._find_carrier(tail, head))
+    ...     unit_vector_exp = vector.Vector(0, 1, 0)
+    ...     intercept_exp = point.Point(2, 0, 2)
+    ...     return (
+    ...         unit_vector_got, intercept_got,
+    ...         unit_vector_exp, intercept_exp)
+    >>> uv_got, int_got, uv_exp, int_exp = (
+    ...     set_up_find_carrier_parallel_to_y_axis())
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+    >>> def set_up_find_carrier_parallel_to_yz_plane_1():
+    ...     tail = point.Point(2, 2, 2)
+    ...     head = point.Point(2, 6, 6)
+    ...     unit_vector_got, intercept_got = (
+    ...         line.Line._find_carrier(tail, head))
+    ...     a45 = TAU / 8
+    ...     cos45 = cos(a45)
+    ...     sin45 = sin(a45)
+    ...     unit_vector_exp = vector.Vector(0, cos45, sin45)
+    ...     intercept_exp = point.Point(2, 0, 0)
+    ...     return (
+    ...         unit_vector_got, intercept_got,
+    ...         unit_vector_exp, intercept_exp)
+    >>> uv_got, int_got, uv_exp, int_exp = (
+    ...     set_up_find_carrier_parallel_to_yz_plane_1())
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+    >>> def set_up_find_carrier_parallel_to_yz_plane_2():
+    ...     tail = point.Point(2, 4, 4)
+    ...     head = point.Point(2, 8, 7)
+    ...     unit_vector_got, intercept_got = (
+    ...         line.Line._find_carrier(tail, head))
+    ...     unit_vector_exp = vector.Vector(0, 0.8, 0.6)
+    ...     intercept_exp = point.Point(2, 0, 1)
+    ...     return (
+    ...         unit_vector_got, intercept_got,
+    ...         unit_vector_exp, intercept_exp)
+    >>> uv_got, int_got, uv_exp, int_exp = (
+    ...     set_up_find_carrier_parallel_to_yz_plane_2())
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+    
+    ### Case 3. Other: yz-intercept
+    >>> def set_up_find_carrier_other_parallel_to_x_axis():
+    ...     tail = point.Point(2, 2, 2)
+    ...     head = point.Point(4, 2, 2)
+    ...     unit_vector_got, intercept_got = (
+    ...         line.Line._find_carrier(tail, head))
+    ...     unit_vector_exp = vector.Vector(1, 0, 0)
+    ...     intercept_exp = point.Point(0, 2, 2)
+    ...     return (
+    ...         unit_vector_got, intercept_got,
+    ...         unit_vector_exp, intercept_exp)
+    >>> uv_got, int_got, uv_exp, int_exp = (
+    ...     set_up_find_carrier_other_parallel_to_x_axis())
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+    >>> def set_up_find_carrier_other_parallel_to_xy_plane():
+    ...     tail = point.Point(2, 2, 2)
+    ...     head = point.Point(4, 4, 2)
+    ...     unit_vector_got, intercept_got = (
+    ...         line.Line._find_carrier(tail, head))
+    ...     cos45 = cos(TAU / 8)
+    ...     sin45 = sin(TAU / 8)
+    ...     unit_vector_exp = vector.Vector(cos45, sin45, 0)
+    ...     intercept_exp = point.Point(0, 0, 2)
+    ...     return (
+    ...         unit_vector_got, intercept_got,
+    ...         unit_vector_exp, intercept_exp)
+    >>> uv_got, int_got, uv_exp, int_exp = (
+    ...     set_up_find_carrier_other_parallel_to_xy_plane())
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+    >>> def set_up_find_carrier_other():
+    ...     tail = point.Point(2, 2, 2)
+    ...     head = point.Point(6, 2, 6)
+    ...     unit_vector_got, intercept_got = (
+    ...         line.Line._find_carrier(tail, head))
+    ...     a45 = TAU / 8
+    ...     cos45 = cos(a45)
+    ...     sin45 = sin(a45)
+    ...     unit_vector_exp = vector.Vector(cos45, 0, sin45)
+    ...     intercept_exp = point.Point(0, 2, 0)
+    ...     return (
+    ...         unit_vector_got, intercept_got,
+    ...         unit_vector_exp, intercept_exp)
+    >>> uv_got, int_got, uv_exp, int_exp = set_up_find_carrier_other()
+    >>> uv_got == uv_exp
+    True
+    >>> int_got == int_exp
+    True
+
+#   _find_xz_intercept
+    >>> def set_up_find_xz_intercept_parallel_to_y_axis():
+    ...     v = vector.Vector(0, 1, 0)
+    ...     p1 = point.Point(2, 2, 2)
+    ...     p0_got = line.Line._find_xz_intercept(v, p1)
+    ...     po_exp = point.Point(2, 0, 2)
+    ...     return (p0_got, po_exp)
+    >>> p0_got, p0_exp = set_up_find_xz_intercept_parallel_to_y_axis()
+    >>> p0_got == p0_exp
+    True
+
+    >>> def set_up_find_xz_intercept_parallel_to_yz_plane():
+    ...     v = vector.Vector(0, 0.8, 0.6)
+    ...     p1 = point.Point(2, 4, 4)
+    ...     p0_got = line.Line._find_xz_intercept(v, p1)
+    ...     p0_exp = point.Point(2, 0, 1)
+    ...     return (p0_got, p0_exp)
+    >>> p0_got, p0_exp = set_up_find_xz_intercept_parallel_to_yz_plane()
+    >>> p0_got == p0_exp
+    True
+
+#   _find_yz_intercept
+    >>> def set_up_find_yz_intercept_parallel_to_x_axis():
+    ...     v = vector.Vector(1, 0, 0)
+    ...     p1 = point.Point(2, 2, 2)
+    ...     p0_got = line.Line._find_yz_intercept(v, p1)
+    ...     p0_exp = point.Point(0, 2, 2)
+    ...     return (p0_got, p0_exp)
+    >>> p0_got, p0_exp = set_up_find_yz_intercept_parallel_to_x_axis()
+    >>> p0_got == p0_exp
+    True
+
+    >>> def set_up_find_yz_intercept():
+    ...     v = vector.Vector(0.33333, 0.33333, 0.33333)
+    ...     p1 = point.Point(2, 2, 3)
+    ...     p0_got = line.Line._find_yz_intercept(v, p1)
+    ...     p0_exp = point.Point(0, 0, 1)
+    ...     return (p0_got, p0_exp)
+    >>> p0_got, p0_exp = set_up_find_yz_intercept()
+    >>> p0_got == p0_exp
+    True
+
+#   from_spec_4(x1, y1, x2, y2)
+    >>> line_from_identical_points = line.Line.from_spec_4(0, 0, 0, 0)
     Line.__init__:
         The points must be different
 
-    ??? line_from_non_numbers = line.Line.from_spec(1, 2, [], 4)
-    Point.__init__(): The arguments must both be numbers
+    >>> line_from_non_numbers = line.Line.from_spec_4(1, 2, [], 4)
+    Line.from_spec_4:
+        The arguments must all be numbers
 
-    >>> line_from_spec = line.Line.from_spec(0, 0, 1, 1)
-    >>> print line_from_spec
+    >>> line_from_spec_4 = line.Line.from_spec_4(0, 0, 1, 1)
+    >>> print line_from_spec_4
     ((0, 0, 0), (1, 1, 0))
 
-#   from_short_spec(x1, x2)
-    >>> line_from_short_spec = line.Line.from_short_spec(1, 2)
-    >>> print line_from_short_spec
-    ((1, 1, 0), (2, 2, 0))
-
-#   from_points(p1,p2)
-    >>> p1 = point.Point(1, 1)
-    >>> p2 = point.Point(2, 2)
-    
-    >>> line_from_points = line.Line.from_points(p1, p2)
-    
-    >>> print line_from_points
-    ((1, 1, 0), (2, 2, 0))
-
-    >>> print line.Line.from_spec(1, 1, 2, 2)
+#   from_spec_2(x1, x2)
+    >>> line_from_spec_2 = line.Line.from_spec_2(1, 2)
+    >>> print line_from_spec_2
     ((1, 1, 0), (2, 2, 0))
 
 #   listing(decimal_places)
@@ -125,101 +343,101 @@
     >>> print line_01.listing(1)
     ((0.0, 0.0, 0.0), (1.0, 1.0, 1.0))
 
-    ??? print line_01.listing(1.3)
-    Point.listing(): The argument must be an integer
-    ??? print line_01.listing(-2.4)
-    Point.listing(): The argument must be an integer
-    ??? print line_01.listing(-2)
-    Point,listing(): The argument must be non-negative
+    >>> print line_01.listing(1.3)
+    ((0.0, 0.0, 0.0), (1.0, 1.0, 1.0))
+    >>> print line_01.listing(-2.4)
+    ((0, 0, 0), (1, 1, 1))
+    >>> print line_01.listing(-2)
+    ((0, 0, 0), (1, 1, 1))
 
 ### ordering relations
 #   __eq__(other)
-    >>> line_eq =  line.Line.from_spec(4, 4, 6, 6)
+    >>> line_eq =  line.Line.from_spec_4(4, 4, 6, 6)
     
-    >>> line_eq == line.Line.from_spec(5, 5, 6, 6)
+    >>> line_eq == line.Line.from_spec_4(5, 5, 6, 6)
     False
-    >>> line_eq == line.Line.from_spec(4, 4, 5, 5)
+    >>> line_eq == line.Line.from_spec_4(4, 4, 5, 5)
     False
-    >>> line_eq == line.Line.from_spec(4, 4, 6, 6)
+    >>> line_eq == line.Line.from_spec_4(4, 4, 6, 6)
     True
 
 #   __ge__(other)
-    >>> line_ge  = line.Line.from_spec(4, 4, 6, 6)
+    >>> line_ge  = line.Line.from_spec_4(4, 4, 6, 6)
     
-    >>> line_ge >= line.Line.from_spec(3, 3, 5, 5)
+    >>> line_ge >= line.Line.from_spec_4(3, 3, 5, 5)
     True
-    >>> line_ge >= line.Line.from_spec(4, 4, 5, 5)
+    >>> line_ge >= line.Line.from_spec_4(4, 4, 5, 5)
     True
-    >>> line_ge >= line.Line.from_spec(4, 4, 6, 6)
+    >>> line_ge >= line.Line.from_spec_4(4, 4, 6, 6)
     True
-    >>> line_ge >= line.Line.from_spec(4, 4, 7, 7)
+    >>> line_ge >= line.Line.from_spec_4(4, 4, 7, 7)
     False
-    >>> line_ge >= line.Line.from_spec(6, 6, 7, 7)
+    >>> line_ge >= line.Line.from_spec_4(6, 6, 7, 7)
     False
 
 #   __gt__(other)
-    >>> line_gt = line.Line.from_spec(4, 4, 6, 6)
+    >>> line_gt = line.Line.from_spec_4(4, 4, 6, 6)
     
-    >>> line_gt > line.Line.from_spec(3, 3, 9, 9)
+    >>> line_gt > line.Line.from_spec_4(3, 3, 9, 9)
     True
-    >>> line_gt > line.Line.from_spec(4, 4, 5, 5)
+    >>> line_gt > line.Line.from_spec_4(4, 4, 5, 5)
     True
-    >>> line_gt > line.Line.from_spec(4, 4, 6, 6)
+    >>> line_gt > line.Line.from_spec_4(4, 4, 6, 6)
     False
-    >>> line_gt > line.Line.from_spec(4, 4, 7, 7)
+    >>> line_gt > line.Line.from_spec_4(4, 4, 7, 7)
     False
-    >>> line_gt > line.Line.from_spec(5, 5, 6, 6)
+    >>> line_gt > line.Line.from_spec_4(5, 5, 6, 6)
     False
 
 #   __le__(other)
-    >>> line_le  = line.Line.from_spec(4, 4, 6, 6)
+    >>> line_le  = line.Line.from_spec_4(4, 4, 6, 6)
     
-    >>> line_le <= line.Line.from_spec(5, 5, 9, 9)
+    >>> line_le <= line.Line.from_spec_4(5, 5, 9, 9)
     True
-    >>> line_le <= line.Line.from_spec(4, 4, 7, 7)
+    >>> line_le <= line.Line.from_spec_4(4, 4, 7, 7)
     True
-    >>> line_le <= line.Line.from_spec(4, 4, 6, 6)
+    >>> line_le <= line.Line.from_spec_4(4, 4, 6, 6)
     True
-    >>> line_le <= line.Line.from_spec(4, 4, 5, 5)
+    >>> line_le <= line.Line.from_spec_4(4, 4, 5, 5)
     False
-    >>> line_le <= line.Line.from_spec(1, 1, 9, 9)
+    >>> line_le <= line.Line.from_spec_4(1, 1, 9, 9)
     False
 
 #   __lt__(other)
-    >>> line_lt = line.Line.from_spec(4, 4, 6, 6)
+    >>> line_lt = line.Line.from_spec_4(4, 4, 6, 6)
     
-    >>> line_lt < line.Line.from_spec(5, 5, 6, 6)
+    >>> line_lt < line.Line.from_spec_4(5, 5, 6, 6)
     True
-    >>> line_lt < line.Line.from_spec(4, 4, 7, 7)
+    >>> line_lt < line.Line.from_spec_4(4, 4, 7, 7)
     True
-    >>> line_lt < line.Line.from_spec(4, 4, 6, 6)
+    >>> line_lt < line.Line.from_spec_4(4, 4, 6, 6)
     False
-    >>> line_lt < line.Line.from_spec(4, 4, 5, 5)
+    >>> line_lt < line.Line.from_spec_4(4, 4, 5, 5)
     False
-    >>> line_lt < line.Line.from_spec(1, 1, 7, 7)
+    >>> line_lt < line.Line.from_spec_4(1, 1, 7, 7)
     False
 
 #   __ne__(other)
-    >>> line_ne  = line.Line.from_spec(4, 4, 6, 6)
+    >>> line_ne  = line.Line.from_spec_4(4, 4, 6, 6)
     
-    >>> line_ne != line.Line.from_spec(5, 5, 6, 6)
+    >>> line_ne != line.Line.from_spec_4(5, 5, 6, 6)
     True
-    >>> line_ne != line.Line.from_spec(4, 4, 5, 5)
+    >>> line_ne != line.Line.from_spec_4(4, 4, 5, 5)
     True
-    >>> line_ne != line.Line.from_spec(4, 4, 6, 6)
+    >>> line_ne != line.Line.from_spec_4(4, 4, 6, 6)
     False
 
 ### part relations
 #   is_a_subline_in_colineation(colineation)
     
-    >>> line_control = line.Line.from_spec(1, 1, 2, 2)
-    >>> line_01 = line.Line.from_spec(0, 0, 1, 1)
-    >>> line_02 = line.Line.from_spec(0, 0, 2, 2)
-    >>> line_03 = line.Line.from_spec(0, 0, 3, 3)
-    >>> line_12 = line.Line.from_spec(1, 1, 2, 2)
-    >>> line_13 = line.Line.from_spec(1, 1, 3, 3)
-    >>> line_23 = line.Line.from_spec(2, 2, 3, 3)
-    >>> line_45 = line.Line.from_spec(4, 4, 5, 5)
+    >>> line_control = line.Line.from_spec_4(1, 1, 2, 2)
+    >>> line_01 = line.Line.from_spec_4(0, 0, 1, 1)
+    >>> line_02 = line.Line.from_spec_4(0, 0, 2, 2)
+    >>> line_03 = line.Line.from_spec_4(0, 0, 3, 3)
+    >>> line_12 = line.Line.from_spec_4(1, 1, 2, 2)
+    >>> line_13 = line.Line.from_spec_4(1, 1, 3, 3)
+    >>> line_23 = line.Line.from_spec_4(2, 2, 3, 3)
+    >>> line_45 = line.Line.from_spec_4(4, 4, 5, 5)
 
     >>> colineation_01 = colineation.Colineation([line_01])
     >>> colineation_02 = colineation.Colineation([line_02])
@@ -263,13 +481,13 @@
     False
 
 #   is_a_subline_of(other)
-    >>> line_12 = line.Line.from_spec(1, 1, 2, 2)
+    >>> line_12 = line.Line.from_spec_4(1, 1, 2, 2)
     
-    >>> line_12.is_a_subline_of(line.Line.from_spec(0, 0, 1, 1))
+    >>> line_12.is_a_subline_of(line.Line.from_spec_4(0, 0, 1, 1))
     False
-    >>> line_12.is_a_subline_of(line.Line.from_spec(0, 0, 2, 2))
+    >>> line_12.is_a_subline_of(line.Line.from_spec_4(0, 0, 2, 2))
     True
-    >>> line_12.is_a_subline_of(line.Line.from_spec(1, 1, 2, 2))
+    >>> line_12.is_a_subline_of(line.Line.from_spec_4(1, 1, 2, 2))
     True
 
 ### overlap relations
@@ -277,20 +495,20 @@
     overlaps_all_of(other), overlaps_middle_of(other), 
     overlaps_head_of(other), is_disjoint_right_of(other)
 
-    >>> this    = line.Line.from_spec(2, 2, 5, 5)
-    >>> that_01 = line.Line.from_spec(0, 0, 1, 1)
-    >>> that_02 = line.Line.from_spec(0, 0, 2, 2)
-    >>> that_03 = line.Line.from_spec(0, 0, 3, 3)
-    >>> that_05 = line.Line.from_spec(0, 0, 5, 5)
-    >>> that_07 = line.Line.from_spec(0, 0, 7, 7)
-    >>> that_23 = line.Line.from_spec(2, 2, 3, 3)
-    >>> that_25 = line.Line.from_spec(2, 2, 5, 5)
-    >>> that_27 = line.Line.from_spec(2, 2, 7, 7)
-    >>> that_34 = line.Line.from_spec(3, 3, 4, 4)
-    >>> that_35 = line.Line.from_spec(3, 3, 5, 5)
-    >>> that_37 = line.Line.from_spec(3, 3, 7, 7)
-    >>> that_57 = line.Line.from_spec(5, 5, 7, 7)
-    >>> that_67 = line.Line.from_spec(6, 6, 7, 7)
+    >>> this    = line.Line.from_spec_4(2, 2, 5, 5)
+    >>> that_01 = line.Line.from_spec_4(0, 0, 1, 1)
+    >>> that_02 = line.Line.from_spec_4(0, 0, 2, 2)
+    >>> that_03 = line.Line.from_spec_4(0, 0, 3, 3)
+    >>> that_05 = line.Line.from_spec_4(0, 0, 5, 5)
+    >>> that_07 = line.Line.from_spec_4(0, 0, 7, 7)
+    >>> that_23 = line.Line.from_spec_4(2, 2, 3, 3)
+    >>> that_25 = line.Line.from_spec_4(2, 2, 5, 5)
+    >>> that_27 = line.Line.from_spec_4(2, 2, 7, 7)
+    >>> that_34 = line.Line.from_spec_4(3, 3, 4, 4)
+    >>> that_35 = line.Line.from_spec_4(3, 3, 5, 5)
+    >>> that_37 = line.Line.from_spec_4(3, 3, 7, 7)
+    >>> that_57 = line.Line.from_spec_4(5, 5, 7, 7)
+    >>> that_67 = line.Line.from_spec_4(6, 6, 7, 7)
 
     >>> this.is_disjoint_left_of(that_01)
     False
@@ -457,21 +675,21 @@
 ### add
 #   can_be_merged_with(other)
 #   test for non-collinear lines
-    >>> line_0001 = line.Line.from_spec(0, 0, 0, 1)
-    >>> line_26 = line.Line.from_short_spec(2, 6) #     ====
-    >>> line_01 = line.Line.from_short_spec(0, 1) #   -
-    >>> line_02 = line.Line.from_short_spec(0, 2) #   --
-    >>> line_13 = line.Line.from_short_spec(1, 3) #    --
-    >>> line_17 = line.Line.from_short_spec(1, 7) #    ------
-    >>> line_24 = line.Line.from_short_spec(2, 4) #     --
+    >>> line_0001 = line.Line.from_spec_4(0, 0, 0, 1)
+    >>> line_26 = line.Line.from_spec_2(2, 6) #     ====
+    >>> line_01 = line.Line.from_spec_2(0, 1) #   -
+    >>> line_02 = line.Line.from_spec_2(0, 2) #   --
+    >>> line_13 = line.Line.from_spec_2(1, 3) #    --
+    >>> line_17 = line.Line.from_spec_2(1, 7) #    ------
+    >>> line_24 = line.Line.from_spec_2(2, 4) #     --
     
                                                        #     ====
     
-    >>> line_35 = line.Line.from_short_spec(3, 5) #      --
-    >>> line_46 = line.Line.from_short_spec(4, 6) #       --
-    >>> line_57 = line.Line.from_short_spec(5, 7) #        --
-    >>> line_68 = line.Line.from_short_spec(6, 8) #         --
-    >>> line_78 = line.Line.from_short_spec(7, 8) #          -
+    >>> line_35 = line.Line.from_spec_2(3, 5) #      --
+    >>> line_46 = line.Line.from_spec_2(4, 6) #       --
+    >>> line_57 = line.Line.from_spec_2(5, 7) #        --
+    >>> line_68 = line.Line.from_spec_2(6, 8) #         --
+    >>> line_78 = line.Line.from_spec_2(7, 8) #          -
     
                                                        #     ====
 
@@ -499,14 +717,14 @@
     False
 
 #   merge(other)
-    >>> line_k  = line.Line.from_short_spec(0, 6) #   ======
-    >>> line_03 = line.Line.from_short_spec(0, 3) #   ---
-    >>> line_06 = line.Line.from_short_spec(0, 6) #   ------
-    >>> line_08 = line.Line.from_short_spec(0, 8) #   --------
-    >>> line_34 = line.Line.from_short_spec(3, 4) #      -
-    >>> line_36 = line.Line.from_short_spec(3, 6) #      ---
-    >>> line_38 = line.Line.from_short_spec(3, 8) #      -----
-    >>> line_68 = line.Line.from_short_spec(6, 8) #         --
+    >>> line_k  = line.Line.from_spec_2(0, 6) #   ======
+    >>> line_03 = line.Line.from_spec_2(0, 3) #   ---
+    >>> line_06 = line.Line.from_spec_2(0, 6) #   ------
+    >>> line_08 = line.Line.from_spec_2(0, 8) #   --------
+    >>> line_34 = line.Line.from_spec_2(3, 4) #      -
+    >>> line_36 = line.Line.from_spec_2(3, 6) #      ---
+    >>> line_38 = line.Line.from_spec_2(3, 8) #      -----
+    >>> line_68 = line.Line.from_spec_2(6, 8) #         --
     
     >>> print line_k.merge(line_03)
     ((0, 0, 0), (6, 6, 0))
@@ -525,9 +743,9 @@
 
 ### subtract
 #   subtract_line_tail(line)
-    >>> minuend      = line.Line.from_spec(2, 2, 5, 5)
-    >>> subtrahend_1 = line.Line.from_spec(1, 1, 3, 3)
-    >>> subtrahend_2 = line.Line.from_spec(1, 1, 2, 2)
+    >>> minuend      = line.Line.from_spec_4(2, 2, 5, 5)
+    >>> subtrahend_1 = line.Line.from_spec_4(1, 1, 3, 3)
+    >>> subtrahend_2 = line.Line.from_spec_4(1, 1, 2, 2)
     
     >>> differences_1 = minuend.subtract_line_tail(subtrahend_1)
     >>> for a_line in differences_1:
@@ -537,8 +755,8 @@
     The subtrahend does not overlap the tail of the minuend
 
 #   subtract_line_middle(other)
-    >>> minuend = line.Line.from_spec(2, 2, 5, 5)
-    >>> subtrahend = line.Line.from_spec(3, 3, 4, 4)
+    >>> minuend = line.Line.from_spec_4(2, 2, 5, 5)
+    >>> subtrahend = line.Line.from_spec_4(3, 3, 4, 4)
     
     >>> line_differences = minuend.subtract_line_middle(subtrahend)
     >>> for difference in line_differences:
@@ -547,8 +765,8 @@
     ((4, 4, 0), (5, 5, 0))
 
 #   subtract_line_head(other)
-    >>> minuend = line.Line.from_spec(2, 2, 5, 5)
-    >>> subtrahend = line.Line.from_spec(4, 4, 6, 6)
+    >>> minuend = line.Line.from_spec_4(2, 2, 5, 5)
+    >>> subtrahend = line.Line.from_spec_4(4, 4, 6, 6)
     >>> line_differences = minuend.subtract_line_head(subtrahend)
     >>> for a_line in line_differences:
     ...     print a_line

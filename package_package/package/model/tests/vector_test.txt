@@ -127,6 +127,11 @@
     True
 
 #   _find_bearing
+    >>> mx_3d = np.array([0, 0, 1])
+    >>> bearing_3d = vector.Vector._find_bearing(mx_3d)
+    >>> bearing_3d == None
+    True
+    
     >>> bearing000_by_hand =             0
     >>> bearing030_by_hand = TAU *  1 / 12
     >>> bearing045_by_hand = TAU *  1 /  8

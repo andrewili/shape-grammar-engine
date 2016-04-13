@@ -39,7 +39,7 @@ class Point(object):
         """
         method_name = 'from_spec'
         try:
-            if not cls._is_a_spec(spec):
+            if not cls.is_a_spec(spec):
                 raise TypeError
         except TypeError:
             message = (
@@ -56,7 +56,7 @@ class Point(object):
             return point
 
     @classmethod
-    def _is_a_spec(cls, item):
+    def is_a_spec(cls, item):
         """Receives:
             item            any type
         Returns:
@@ -182,7 +182,7 @@ class Point(object):
     def get_formatted_coord(self, dimension, decimal_places=0):
         """Receives: 
             dimension       String. 'x', 'y', or 'z'
-            decimal_places  int. The number of decimal places to include
+            decimal_places  num. The number of decimal places to include
         Returns: 
             formatted_coord String. A number with the specified number of 
                             decimal places
