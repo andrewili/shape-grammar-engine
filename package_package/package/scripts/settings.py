@@ -29,6 +29,7 @@ class Settings(object):
     frame_layer_name = 'frames'
     frame_name = 'frame block'
     right_frame_offset_factor = 1.5
+    rounding = 14
     rule_name_text_height = 2
     rule_name_text_font = 'Arial'
     rule_name_text_font_style = font_style_normal

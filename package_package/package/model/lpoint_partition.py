@@ -1,40 +1,49 @@
-#   lpoint_partition.py
-
 import colabeling
 import labeled_point
 import lpoint_partition
 
 class LPointPartition(object):
     def __init__(self, lpoints):
-        """Receives a (possibly unordered) list of labeled points:
-            [LabeledPoint, ...], n >= 0
+        """Receives:
+            lpoints         [LabeledPoint]. A list of labeled points
         """
-        method_name = '__init__()'
+        method_name = '__init__'
         try:
             if not (
-                lpoints.__class__ == list and
+                type(lpoints) == list and
                 self._are_lpoints(lpoints)
             ):
                 raise TypeError
         except TypeError:
             message = 'The argument must be a list of labeled points'
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
             self.dictionary = self._make_dictionary(lpoints)
 
-    def _are_lpoints(self, elements):
+    @classmethod
+    def _are_lpoints(cls, items):
+        """Receives:
+            items           [item]. A list of items
+        Returns:
+            value           boolean. True if every item is a labeled point. 
+                            False otherwise
+        """
         value = True
-        for element in elements:
-            if element.__class__ != labeled_point.LabeledPoint:
+        for item in items:
+            if type(item) != labeled_point.LabeledPoint:
                 value = False
                 break
         return value
 
-    def _make_dictionary(self, lpoints):
-        """Receives a list of labeled points:
-            [LabeledPoint, ...], n >= 0
-        Returns a dictionary of label-colabeling entries:
-            {str: Colabeling, ...}
+    @classmethod
+    def _make_dictionary(cls, lpoints):
+        ##  Do we need Colabelings? Or just sets?
+        """Receives:
+            lpoints         [LabeledPoint]. A possibly empty list of labeled 
+                            points
+        Creates a partition of points by label. Returns:
+            dictionary      dict. Label-colabeling entries in the form:
+                            {str: Colabeling, ...}
         """
         dictionary = {}
         for lpoint in lpoints:
@@ -78,21 +87,50 @@ class LPointPartition(object):
 
         ### represent
     def __str__(self):
-        """Returns an ordered string in the form:
-            [(x, y, label), ...]
+        ##  More like a dictionary? {label: {point, ...}, ...}
+        """Returns: 
+            lpp_string      str. In the ordered form 
+                            {   <label>: {(<x>, <y>, <z>), ...},
+                                ...}
         """
-        lpoint_specs = []
-        for label_i in self.dictionary:
-            colabeling_i = self.dictionary[label_i]
-            lpoint_specs.extend(colabeling_i.specs_set)
         entry_strings = []
-        for lpoint_spec in sorted(lpoint_specs):
-            lpoint_spec_string = self._get_lpoint_spec_string_from(
-                lpoint_spec)
-            entry_strings.append(lpoint_spec_string)
+        for label_i in sorted(self.dictionary):
+            colabeling_i = self.dictionary[label_i]
+            clpoints_set_i = colabeling_i.lpoints
+            ordered_colabeling_i_string = self._get_ordered_points_string(
+                clpoints_set_i)
+            entry_string = '%s: %s' % (label_i, ordered_colabeling_i_string)
+            entry_strings.append(entry_string)
         entries_string = ', '.join(entry_strings)
-        lpoint_part_string = '[%s]' % entries_string
-        return lpoint_part_string
+        lpp_string = '{%s}' % entries_string
+        return lpp_string
+
+        # lpoint_specs = []
+        # for label_i in self.dictionary:
+        #     colabeling_i = self.dictionary[label_i]
+        #     lpoint_specs.extend(colabeling_i.specs_set)
+        # entry_strings = []
+        # for lpoint_spec in sorted(lpoint_specs):
+        #     lpoint_spec_string = self._get_lpoint_spec_string_from(
+        #         lpoint_spec)
+        #     entry_strings.append(lpoint_spec_string)
+        # entries_string = ', '.join(entry_strings)
+        # lpoint_part_string = '[%s]' % entries_string
+        # return lpoint_part_string
+
+    @classmethod
+    def _get_ordered_points_string(self, points):
+        """Receives:
+            points          {Point}. A set of points
+        Returns:
+            ordered_points_string
+                            str. An ordered string of point strings:
+                            {p_string}, p_string: '(<x>, <y>, <z>)'
+        """
+        ordered_point_strings = [str(p) for p in sorted(points)]
+        ordered_points_string = ', '.join(ordered_point_strings)
+        ordered_points_string = '{%s}' % ordered_points_string
+        return ordered_points_string
 
     def _get_lpoint_spec_string_from(self, lpoint_spec):
         """Receives labeled point spec:
@@ -145,7 +183,8 @@ class LPointPartition(object):
         return self.dictionary != other.dictionary
         
     def is_empty(self):
-        return self.dictionary == {}
+        value = (self.dictionary == {})
+        return value
 
     def is_a_sub_lpoint_partition_of(self, other):
         self_label_set = set(self.dictionary.keys())
@@ -219,7 +258,7 @@ class LPointPartition(object):
 
     @classmethod
     def _print_error_message(cls, method_name, message):
-        print '%s.%s: %s' % (cls.__name__, method_name, message)
+        print '%s.%s:\n    %s' % (cls.__name__, method_name, message)
 
         ###
 if __name__ == '__main__':

@@ -13,7 +13,7 @@ class LabeledShape(object):
             Shape
             LPointPartition
         """
-        method_name = '__init__()'
+        method_name = '__init__'
         try:
             if not (
                 shape_in.__class__ == shape.Shape and
@@ -22,7 +22,7 @@ class LabeledShape(object):
             ):
                 raise TypeError
         except TypeError:
-            message = '%s %s' % (
+            message = '%s\n    %s' % (
                 'The arguments must be a shape',
                 'and a labeled point partition')
             self.__class__._print_error_message(method_name, message)
@@ -38,6 +38,20 @@ class LabeledShape(object):
             best_triad      Triad
         """
         return best_triad
+
+    @classmethod
+    def from_parts(cls, x, y, z, label):
+        """Receives:
+            x               num
+            y               num
+            z               num
+            label           Str
+        Returns:
+            new_lshape      LabeledShape
+        """
+        p = point.Point(x, y, z)
+        new_lshape = LabeledShape(p, label)
+        return new_lshape
 
     @classmethod
     def new_from_specs(cls, line_specs, lpoint_specs):

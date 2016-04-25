@@ -1,5 +1,6 @@
 import numpy as np
 import vector
+# from package.scripts import settings
 
 almost_equal = np.allclose
 
@@ -39,7 +40,7 @@ class Point(object):
         """
         method_name = 'from_spec'
         try:
-            if not cls.is_a_spec(spec):
+            if not cls.is_a_spec_in(spec):
                 raise TypeError
         except TypeError:
             message = (
@@ -56,21 +57,35 @@ class Point(object):
             return point
 
     @classmethod
-    def is_a_spec(cls, item):
+    def is_a_spec_in(cls, item):
         """Receives:
             item            any type
         Returns:
-            boolean         True, if item is of the form (num, num), 
-                            (num, num, num), [num, num], or [num, num, num].
-                            False, otherwise
+            value           boolean. True, if item is a list or tuple of 2 or 
+                            3 numbers
         """
+        value = False
         if (cls._is_an_iterable(item) and
             cls._contains_2_or_3_elements(item) and
             cls._contains_only_numbers(item)
         ):
             value = True
-        else:
-            value = False
+        return value
+
+    @classmethod
+    def is_a_spec(cls, item):
+        """Receives:
+            item            any type
+        Returns:
+            boolean         True, if item is a list or tuple of 3 numbers. 
+                            False, otherwise
+        """
+        value = False
+        if (cls._is_an_iterable(item) and
+            len(item) == 3 and
+            cls._contains_only_numbers(item)
+        ):
+            value = True
         return value
 
     @classmethod
@@ -153,31 +168,36 @@ class Point(object):
         string = "(%s, %s, %s)" % (self.x, self.y, self.z)
         return string
 
-    def listing(self, decimal_places=0):
+    def sublisting(self, decimal_places=0):
         """Receives:
-            decimal_places  int. n >= 0
+            decimal_places  num. n >= 0
         Returns:
-            string          String. x, y, and z have the specified number of 
-                            decimal places
+            string          str. In the form '<x>, <y>, <z>'; x, y, and z 
+                            have the specified number of decimal places
         """
-        method_name = 'listing'
+        method_name = 'sublisting'
         try:
-            if not type(decimal_places) == int:
+            if not self._is_a_number(decimal_places):
                 raise TypeError
-            elif not decimal_places >= 0:
-                raise ValueError
         except TypeError:
-            message = 'The argument must be an integer'
-            self._print_error_message(method_name, message)
-        except ValueError:
-            message = 'The argument must be non-negative'
+            message = 'The argument must be a number'
             self._print_error_message(method_name, message)
         else:
             x_formatted = self.get_formatted_coord('x', decimal_places)
             y_formatted = self.get_formatted_coord('y', decimal_places)
             z_formatted = self.get_formatted_coord('z', decimal_places)
-            string = '(%s, %s, %s)' % (x_formatted, y_formatted, z_formatted)
+            string = '%s, %s, %s' % (x_formatted, y_formatted, z_formatted)
             return string
+
+    def listing(self, decimal_places=0):
+        """Receives:
+            decimal_places  int. n >= 0
+        Returns:
+            string          String. In the form '(<x>, <y>, <z>)'; x, y, and 
+                            z have the specified number of decimal places
+        """
+        string = '(%s)' % self.sublisting(decimal_places)
+        return string
 
     def get_formatted_coord(self, dimension, decimal_places=0):
         """Receives: 
@@ -294,6 +314,16 @@ class Point(object):
 
     def __ne__(self, other):
         value = not almost_equal(self.spec, other.spec)
+        return value
+
+    def __hash__(self):
+        """Returns:
+            value           int
+        """
+        n_digits = 14                           ##  relocate to settings
+        list_rounded = [round(coord, n_digits) for coord in self.spec]
+        triple_rounded = tuple(list_rounded)
+        value = hash(triple_rounded)
         return value
 
     @classmethod

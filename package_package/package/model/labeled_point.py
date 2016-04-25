@@ -20,32 +20,31 @@ class LabeledPoint(object):
                 raise TypeError
         except TypeError:
             message = 'The arguments must be a Point and a string'
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
-            self.point = point_in
+            self.p = point_in
             self.label = label
-            self.x = self.point.x
-            self.y = self.point.y
-            self.z = self.point.z
-            self.spec = (point_in.spec, label)  ##  != repr
+            self.x = self.p.x
+            self.y = self.p.y
+            self.z = self.p.z
+            self.spec = (self.x, self.y, self.z, self.label)
 
     @classmethod
-    def new_from_parts(cls, x, y, z=0, label=''):
+    def from_parts(cls, x, y, z, label=''):
         """Receives:
             x               num
             y               num
             z               num
             label           str
         Returns:
-            LabeledPoint    ((x, y, z), label) if successful
-            None            otherwise
+            new_lpoint      LabeledPoint. If successful. Otherwise None
         """
-        method_name = 'new_from_parts'
+        method_name = 'from_parts'
         try:
             if not (
-                cls._is_number(x) and
-                cls._is_number(y) and
-                cls._is_number(z) and
+                cls._is_a_number(x) and
+                cls._is_a_number(y) and
+                cls._is_a_number(z) and
                 type(label) == str
             ):
                 raise TypeError
@@ -62,42 +61,48 @@ class LabeledPoint(object):
 
         ### represent
     def __str__(self):
+        """Returns:
+            sring           str. In the form "(0, 0, 0, 'a')"
+        """
         label_str = self._get_label_string()
-        string = "(%s, %s)" % (self.point, label_str)
+        string = '(%s, %s, %s, %s)' % (self.x, self.y, self.z, label_str)
         return string
 
     def __repr__(self):
-        point_str = str(self.point)
+        """Returns:
+            string          str. In the form "((0, 0, 0), 'a')"
+        """
+        point_str = str(self.p)
         label_str = self._get_label_string()
         string = "(%s, %s)" % (point_str, label_str)
         return string
 
-    def _get_label_string(self):
-        if self.label == '':
-            label_str = "''"
-        else:
-            label_str = self.label
-        return label_str
-
     def listing(self, decimal_places=0):
-        point_listing = self.point.listing(decimal_places)
-        if self.label == '':
-            label_listing = "''"
-        else:
-            label_listing = str(self.label)
-        string = '(%s, %s)' % (point_listing, label_listing)
+        """Returns:
+            string          str. In the form "(0.0, 0.0, 0.0, 'a')"
+        """
+        point_listing = self.p.sublisting(decimal_places)
+        label_str = self._get_label_string()
+        string = '(%s, %s)' % (point_listing, label_str)
+        return string
+
+    def _get_label_string(self):
+        """Returns:
+            string          str. In the form 'a'
+        """
+        string = "'%s'" % self.label
         return string
 
     ### relations
     @classmethod
-    def _is_number(cls, item):
+    def _is_a_number(cls, item):
         value = (
             item.__class__ == int or
             item.__class__ == float)
         return value
 
     def __eq__(self, other):
-        if (self.point == other.point and
+        if (self.p == other.p and
             self.label == other.label
         ):
             return True
@@ -105,9 +110,9 @@ class LabeledPoint(object):
             return False
 
     def __ge__(self, other):
-        if self.point > other.point:
+        if self.p > other.p:
             return True
-        elif self.point == other.point:
+        elif self.p == other.p:
             if self.label > other.label:
                 return True
             elif self.label == other.label:
@@ -118,9 +123,9 @@ class LabeledPoint(object):
             return False
 
     def __gt__(self, other):
-        if self.point > other.point:
+        if self.p > other.p:
             return True
-        elif self.point == other.point:
+        elif self.p == other.p:
             if self.label > other.label:
                 return True
             else:
@@ -129,9 +134,9 @@ class LabeledPoint(object):
             return False
 
     def __le__(self, other):
-        if self.point < other.point:
+        if self.p < other.p:
             return True
-        elif self.point == other.point:
+        elif self.p == other.p:
             if self.label < other.label:
                 return True
             if self.label == other.label:
@@ -142,9 +147,9 @@ class LabeledPoint(object):
             return False
 
     def __lt__(self, other):
-        if self.point < other.point:
+        if self.p < other.p:
             return True
-        elif self.point == other.point:
+        elif self.p == other.p:
             if self.label < other.label:
                 return True
             else:
@@ -153,18 +158,28 @@ class LabeledPoint(object):
             return False
 
     def __ne__(self, other):
-        if (self.point != other.point or
+        if (self.p != other.p or
             self.label != other.label
         ):
             return True
         else:
             return False
 
+    def __hash__(self):
+        """Returns:
+            value           int
+        """
+        p_hash = hash(self.p)
+        label_hash = hash(self.label)
+        duple = (p_hash, label_hash)
+        value = hash(duple)
+        return value
+
     ### other
     @classmethod
     def are_lpoint_specs(cls, items):
         """Receives:
-            [item, ...]
+            items           [item]. A non-empty list of elements of any type
         Returns:
             boolean         True, if each item is a labeled point spec
                             False, otherwise
@@ -172,27 +187,30 @@ class LabeledPoint(object):
         value = True
         if not type(items) == list:
             value = False
-        elif len(items) == 0:
+        elif items == []:
             value = False
         else:
             for item in items:
-                if not cls.is_lpoint_spec(item):
+                if not cls.is_an_lpoint_spec(item):
                     value = False
                     break
         return value
 
     @classmethod
-    def is_lpoint_spec(cls, item):
+    def is_an_lpoint_spec(cls, item):
         """Receives:
-            item
+            item            any type
         Returns:
             boolean         True, if item is an lpoint spec
                             False, otherwise
         """
         value = (
-            len(item) == 2 and
-            point.Point.is_a_spec(item[0]) and
-            type(item[1]) == str)
+            type(item) == tuple and
+            len(item) == 4 and
+            cls._is_a_number(item[0]) and
+            cls._is_a_number(item[1]) and
+            cls._is_a_number(item[2]) and
+            type(item[3]) == str)
         return value
 
     @classmethod
