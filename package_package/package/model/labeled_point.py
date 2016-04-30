@@ -9,7 +9,7 @@ class LabeledPoint(object):
             point_in        Point
             label           str. May be empty. Assume interpreter restrictions 
                             are enforced elsewhere
-        Immutable
+        Immutable?
         """
         method_name = '__init__'
         try:
@@ -32,9 +32,7 @@ class LabeledPoint(object):
     @classmethod
     def from_parts(cls, x, y, z, label=''):
         """Receives:
-            x               num
-            y               num
-            z               num
+            x, y, z         num
             label           str
         Returns:
             new_lpoint      LabeledPoint. If successful. Otherwise None
@@ -62,7 +60,7 @@ class LabeledPoint(object):
         ### represent
     def __str__(self):
         """Returns:
-            sring           str. In the form "(0, 0, 0, 'a')"
+            string          str. In the form "(0, 0, 0, 'a')"
         """
         label_str = self._get_label_string()
         string = '(%s, %s, %s, %s)' % (self.x, self.y, self.z, label_str)
@@ -74,17 +72,18 @@ class LabeledPoint(object):
         """
         point_str = str(self.p)
         label_str = self._get_label_string()
-        string = "(%s, %s)" % (point_str, label_str)
+        string = '(%s, %s)' % (point_str, label_str)
         return string
 
     def listing(self, decimal_places=0):
-        """Returns:
-            string          str. In the form "(0.0, 0.0, 0.0, 'a')"
+        """Creates a formatted string. The label is in single quotes. Returns:
+            lp_listing      str. In the form "(0.0, 0.0, 0.0, 'a')"
         """
-        point_listing = self.p.sublisting(decimal_places)
-        label_str = self._get_label_string()
-        string = '(%s, %s)' % (point_listing, label_str)
-        return string
+        p_listing = self.p.listing(decimal_places)
+        coords_listing = p_listing[1:-1]
+        label_listing = self._get_label_string()
+        lp_listing = "(%s, %s)" % (coords_listing, label_listing)
+        return lp_listing
 
     def _get_label_string(self):
         """Returns:
@@ -97,8 +96,8 @@ class LabeledPoint(object):
     @classmethod
     def _is_a_number(cls, item):
         value = (
-            item.__class__ == int or
-            item.__class__ == float)
+            type(item) == int or
+            type(item) == float)
         return value
 
     def __eq__(self, other):

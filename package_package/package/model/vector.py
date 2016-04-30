@@ -7,6 +7,9 @@ TAU = math.pi * 2
 
 class Vector(object):
     def __init__(self, x_in, y_in, z_in=0):
+        """Receives:
+        Mutable? Immutable?
+        """
         method_name = '__init__'
         try:
             if not (

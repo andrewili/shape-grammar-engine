@@ -5,7 +5,9 @@ import lpoint_partition
 class LPointPartition(object):
     def __init__(self, lpoints):
         """Receives:
-            lpoints         [LabeledPoint]. A list of labeled points
+            lpoints         [LabeledPoint, ...]. A list of labeled points, 
+                            possibly duplicated or empty
+        Mutable?
         """
         method_name = '__init__'
         try:
@@ -23,10 +25,11 @@ class LPointPartition(object):
     @classmethod
     def _are_lpoints(cls, items):
         """Receives:
-            items           [item]. A list of items
+            items           [item, ...]. A list of items, possibly duplicated 
+                            or empty
         Returns:
-            value           boolean. True if every item is a labeled point. 
-                            False otherwise
+            value           boolean. True if every item is a labeled point or 
+                            if the list is empty. False otherwise
         """
         value = True
         for item in items:
@@ -37,39 +40,42 @@ class LPointPartition(object):
 
     @classmethod
     def _make_dictionary(cls, lpoints):
-        ##  Do we need Colabelings? Or just sets?
         """Receives:
-            lpoints         [LabeledPoint]. A possibly empty list of labeled 
-                            points
+            lpoints         [LabeledPoint, ...]. A possibly empty list of labeled 
+                            points. Guaranteed by the calling function
         Creates a partition of points by label. Returns:
-            dictionary      dict. Label-colabeling entries in the form:
-                            {str: Colabeling, ...}
+            dictionary      dict. Label-point-set entries in the form:
+                            {label: point_set, ...}, where:
+                label       str
+                point_set   set([Point, ...]). A set of (unlabeled) points
         """
         dictionary = {}
         for lpoint in lpoints:
             label = lpoint.label
             if label in dictionary:
-                new_colabeling = dictionary[label]
-                new_colabeling.add(lpoint)
+                points_set = dictionary[label]
+                points_set.add(lpoint.p)
             else:
-                new_colabeling = colabeling.Colabeling([lpoint])
-                dictionary[label] = new_colabeling
+                dictionary[label] = set([lpoint.p])
         return dictionary
 
     @classmethod
     def new_empty(cls):
-        new_lpoint_part = LPointPartition([])
-        return new_lpoint_part
+        new_lpp = LPointPartition([])
+        return new_lpp
 
     @classmethod
     def from_specs(cls, specs):
-        """Receives a list of labeled point specs in the form:
-            [(x, y, label), ...]
+        """Receives:
+            specs           [lp_spec, ...], where:
+                lp_spec     (num, num, num, str)
+        Returns:
+            lpp             LPointPartition
         """
-        method_name = 'from_specs()'
+        method_name = 'from_specs'
         try:
             if not (
-                specs.__class__ == list and
+                type(specs) == list and
                 labeled_point.LabeledPoint.are_lpoint_specs(specs)
             ):
                 raise TypeError
@@ -79,182 +85,229 @@ class LPointPartition(object):
         else:
             lpoints = []
             for spec in specs:
-                x, y, label = spec
-                lpoint = labeled_point.LabeledPoint(x, y, label)
+                x, y, z, label = spec
+                lpoint = labeled_point.LabeledPoint.from_parts(x, y, z, label)
                 lpoints.append(lpoint)
             new_lpoint_part = LPointPartition(lpoints)
             return new_lpoint_part
 
         ### represent
     def __str__(self):
-        ##  More like a dictionary? {label: {point, ...}, ...}
-        """Returns: 
-            lpp_string      str. In the ordered form 
-                            {   <label>: {(<x>, <y>, <z>), ...},
-                                ...}
+        """The empty label is shown as ''. Returns:
+            lpp_string      str. Ordered by label and point in the form:
+                            {<label>: [(<x>, <y>, <z>), ...], ...}
         """
         entry_strings = []
-        for label_i in sorted(self.dictionary):
-            colabeling_i = self.dictionary[label_i]
-            clpoints_set_i = colabeling_i.lpoints
-            ordered_colabeling_i_string = self._get_ordered_points_string(
-                clpoints_set_i)
-            entry_string = '%s: %s' % (label_i, ordered_colabeling_i_string)
+        for label in sorted(self.dictionary):
+            points = self.dictionary[label]
+            label_string = "'%s'" % label
+            ordered_points_string = self._get_ordered_points_string(
+                points)
+            entry_string = '%s: %s' % (label_string, ordered_points_string)
             entry_strings.append(entry_string)
         entries_string = ', '.join(entry_strings)
         lpp_string = '{%s}' % entries_string
         return lpp_string
 
-        # lpoint_specs = []
-        # for label_i in self.dictionary:
-        #     colabeling_i = self.dictionary[label_i]
-        #     lpoint_specs.extend(colabeling_i.specs_set)
-        # entry_strings = []
-        # for lpoint_spec in sorted(lpoint_specs):
-        #     lpoint_spec_string = self._get_lpoint_spec_string_from(
-        #         lpoint_spec)
-        #     entry_strings.append(lpoint_spec_string)
-        # entries_string = ', '.join(entry_strings)
-        # lpoint_part_string = '[%s]' % entries_string
-        # return lpoint_part_string
+    def __repr__(self):
+        """Returns:
+            string          str. Ordered in the form 
+                            "{<label>: [(<x>, <y>, <z>), ...], ...}"
+        """
+        item_reprs = []
+        for label in sorted(self.dictionary):
+            label_repr = label
+            points = self.dictionary[label]
+            points_repr = self._get_points_repr(points)
+            item_repr = "'%s': [%s]" % (label_repr, points_repr)
+            item_reprs.append(item_repr)
+        items_repr = ', '.join(item_reprs)
+        string = '{%s}' % items_repr
+        return string
+
+    def _get_points_repr(self, points):
+        """Receives:
+            points          set([Point, ...])
+        Returns:
+            pp_repr         str. An ordered string of point reprs in the form 
+                            "(<x>, <y>, <z>), ..."
+        """
+        p_reprs = []
+        for p in sorted(points):
+            p_repr = repr(p)
+            p_reprs.append(p_repr)
+        pp_repr = ', '.join(p_reprs)
+        return pp_repr
 
     @classmethod
     def _get_ordered_points_string(self, points):
         """Receives:
-            points          {Point}. A set of points
+            points          set([Point]). A set of points
         Returns:
             ordered_points_string
                             str. An ordered string of point strings:
-                            {p_string}, p_string: '(<x>, <y>, <z>)'
+                            'p_string, ...', where:
+                p_string    '(<x>, <y>, <z>)'
         """
         ordered_point_strings = [str(p) for p in sorted(points)]
         ordered_points_string = ', '.join(ordered_point_strings)
-        ordered_points_string = '{%s}' % ordered_points_string
+        ordered_points_string = '[%s]' % ordered_points_string
         return ordered_points_string
 
-    def _get_lpoint_spec_string_from(self, lpoint_spec):
-        """Receives labeled point spec:
-            (x, y, label)
-        Returns a string in the form:
-            (<x>, <y>, <label>)
-        """
-        lpoint_spec_string = '(%s, %s, %s)' % lpoint_spec
-        return lpoint_spec_string
-
     def listing(self, decimal_places=0):
-        """Returns a formatted, multi-line string in the form:
-            label:
-                (x, y)
-                ...
-            ...
+        """Receives:
+            decimal_places  int. The number of decimal places, n >= 0
+        Creates an ordered, formatted, multi-line string. Returns:
+            lpp_listing     str. In the form:
+                                <label>:
+                                    (<x>, <y>, <z>)
+                                    ...
+                                ...
         """
         if self.is_empty():
-            lpoint_part_listing = '<no labeled points>'
+            lpp_listing = '<no labeled points>'
         else:
             entry_listings = []
             for label_i in sorted(self.dictionary):
-                colabeling_i = self.dictionary[label_i]
+                points_set_i = self.dictionary[label_i]
                 indent_level = 1
-                colabeling_listing_i = colabeling_i.listing(
-                    decimal_places, indent_level)
-                entry_listing_i = '%s:\n%s' % (
-                    label_i, colabeling_listing_i)
+                points_listing_i = self._get_points_listing(
+                    points_set_i, decimal_places, indent_level)
+                entry_listing_i = "'%s':\n%s" % (
+                    label_i, points_listing_i)
                 entry_listings.append(entry_listing_i)
-            lpoint_part_listing = '\n'.join(entry_listings)
-        return lpoint_part_listing
+            lpp_listing = '\n'.join(entry_listings)
+        return lpp_listing
+
+    def _get_points_listing(self, points, decimal_places, indent_level):
+        """Receives:
+            points          set([Point, ...])
+            decimal_places  num
+            indent_level    int
+        Creates an ordered, formatted, multi-line string. Returns:
+            points_listing  str. In the form:
+                                (<x>, <y>, <z>)
+                                ...
+        """
+        point_listings = []
+        for p in sorted(points):
+            p_listing = p.listing(decimal_places)
+            indent = '    ' * indent_level
+            indented_p_listing = '%s%s' % (indent, p_listing)
+            point_listings.append(indented_p_listing)
+        points_listing = '\n'.join(point_listings)
+        return points_listing
 
         ### get
-    def specs(self):
-        """Returns an ordered list of specs:
-            [(x, y, label), ...]
+    def get_specs(self):
+        """Returns: 
+            lp_specs        [lp_spec, ...]. An ordered list of lpoint specs 
+                            (x, y, z, label), where:
+                x, y, z     num
+                label       str
         """
-        specs = []
-        for label_i in self.dictionary:
-            colabeling_i = self.dictionary[label_i]
-            specs_i = colabeling_i.get_lpoint_specs()
-            specs.extend(specs_i)
-        return sorted(specs)
+        lp_specs = []
+        for label in self.dictionary:
+            points = self.dictionary[label]
+            for p in sorted(points):
+                lp_spec = (p.x, p.y, p.z, label)
+                lp_specs.append(lp_spec)
+        return lp_specs
 
         ### compare
     def __eq__(self, other):
-        return self.dictionary == other.dictionary
+        value = (self.dictionary == other.dictionary)
+        return value
 
     def __ne__(self, other):
-        return self.dictionary != other.dictionary
+        value = self.dictionary != other.dictionary
+        return value
         
     def is_empty(self):
         value = (self.dictionary == {})
         return value
 
-    def is_a_sub_lpoint_partition_of(self, other):
-        self_label_set = set(self.dictionary.keys())
-        other_label_set = set(other.dictionary.keys())
-        if not self_label_set.issubset(other_label_set):
-            return False
-        else:
-            return self._colabelings_are_sub_colabelings_in(other)
-
-    def _colabelings_are_sub_colabelings_in(self, other):
+    def is_an_lpoint_subpartition_of(self, other):
         """Receives:
-            LPointPartition
-        Returns whether each colabeling is a subcolabeling in the other 
-        partition:
-            boolean
+            other           LPointPartition
+        Returns:
+            value           boolean. True if every lpoint set in self is a 
+                            subset of an lpoint set in other
         """
+        self_label = set(self.dictionary.keys())
+        other_labels = set(other.dictionary.keys())
+        if self_label.issubset(other_labels):
+            value = self._point_sets_are_subsets_in(other)
+        else:
+            value = False
+        return value
+
+    def _point_sets_are_subsets_in(self, other):
+        """Receives:
+            other           LPointPartition. Every label in self is a label 
+                            in other
+        Returns:
+            value           boolean. True if each colabeled point set in self 
+                            is a subset of a colabeled point set in other. 
+                            False otherwise
+        """
+        value = True
         for label in self.dictionary:
-            if label not in other.dictionary:
-                return False
-            else:
-                self_colabeling = self.dictionary[label]
-                other_colabeling = other.dictionary[label]
-                if not self_colabeling.is_a_subcolabeling_of(other_colabeling):
-                    return False
-        return True
+            self_points = self.dictionary[label]
+            other_points = other.dictionary[label]
+            if not self_points.issubset(other_points):
+                value = False
+                break
+        return value
 
-    ### operate
-
+        ### operate
     def __add__(self, other):
         """Receives:
-            LPointPartition
-        Returns the sum of the two labeled point partitions:
-            LPointPartition
+            other           LPointPartition
+        Returns: 
+            lpp_sum         LPointPartition. Contains items consisting of (1) 
+                            every label in self or other or both and (2) the 
+                            union of the corresponding colabeled point sets 
         """
-        new_dictionary = self.dictionary.copy()
+        dict_sum = self.dictionary.copy()
         for label in other.dictionary:
-            other_colabeling = other.dictionary[label]
-            if label in new_dictionary:
-                new_colabeling = new_dictionary[label]
-                new_dictionary[label] = new_colabeling.union(other_colabeling)
+            other_points = other.dictionary[label]
+            if label in dict_sum:
+                points_sum = dict_sum[label]
+                dict_sum[label] = points_sum.union(other_points)
             else:
-                new_dictionary[label] = other_colabeling
-        new_lpoint_part = LPointPartition([])
-        new_lpoint_part.dictionary = new_dictionary
-        return new_lpoint_part
+                dict_sum[label] = other_points
+        lpp_sum = LPointPartition([])
+        lpp_sum.dictionary = dict_sum
+        return lpp_sum
 
     def __sub__(self, other):
         """Receives:
-            LPointPartition
+            other           LPointPartition
         Returns the difference self - other:
-            LPointPartition
+            lpp_diff        LPointPartition. Contains items consisting of (1) 
+                            every label in other not in self and (2) the 
+                            difference (self - other) of the corresponding 
+                            colabeled point sets
         """
         if self.is_empty():
-            new_lpoint_part = LPointPartition.new_empty()
+            lpp_diff = LPointPartition.new_empty()
         elif other.is_empty():
-            new_lpoint_part = self
+            lpp_diff = self
         else:
-            new_lpoint_specs = []
+            lpoints_diff = []
             for label in self.dictionary:
-                self_colabeling = self.dictionary[label] 
-                if label in other.dictionary:               #   copy?
-                    other_colabeling = other.dictionary[label]
-                    new_colabeling = self_colabeling - other_colabeling
+                self_points = self.dictionary[label] 
+                if label in other.dictionary:
+                    other_points = other.dictionary[label]
+                    points_diff = self_points - other_points
                 else:
-                    new_colabeling = self_colabeling
-                new_lpoint_spec_set = new_colabeling.specs_set
-                for spec in new_lpoint_spec_set:
-                    new_lpoint_specs.append(spec)
-            new_lpoint_part = LPointPartition.from_specs(new_lpoint_specs)
-        return new_lpoint_part
+                    points_diff = self_points
+                for p in points_diff:
+                    lp = labeled_point.LabeledPoint(p, label)
+                    lpoints_diff.append(lp)
+            lpp_diff = LPointPartition(lpoints_diff)
+        return lpp_diff
 
     @classmethod
     def _print_error_message(cls, method_name, message):

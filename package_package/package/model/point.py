@@ -11,7 +11,7 @@ class Point(object):
             x_in            num
             y_in            num
             z_in            num
-        Immutable
+        Immutable?
         """
         method_name = '__init__'
         try:
@@ -34,7 +34,7 @@ class Point(object):
     @classmethod
     def from_spec(cls, spec):
         """Receives:
-            spec            (num) or [num], 2 <= length <= 3
+            spec            (num, ...) or [num, ...], 2 <= length <= 3
         Constructs a 3d Point with z = 0 as default. Returns:
             point           Point
         """
@@ -165,80 +165,61 @@ class Point(object):
         return string
 
     def __repr__(self):
-        string = "(%s, %s, %s)" % (self.x, self.y, self.z)
+        string = '(%s, %s, %s)' % (self.x, self.y, self.z)
         return string
-
-    def sublisting(self, decimal_places=0):
-        """Receives:
-            decimal_places  num. n >= 0
-        Returns:
-            string          str. In the form '<x>, <y>, <z>'; x, y, and z 
-                            have the specified number of decimal places
-        """
-        method_name = 'sublisting'
-        try:
-            if not self._is_a_number(decimal_places):
-                raise TypeError
-        except TypeError:
-            message = 'The argument must be a number'
-            self._print_error_message(method_name, message)
-        else:
-            x_formatted = self.get_formatted_coord('x', decimal_places)
-            y_formatted = self.get_formatted_coord('y', decimal_places)
-            z_formatted = self.get_formatted_coord('z', decimal_places)
-            string = '%s, %s, %s' % (x_formatted, y_formatted, z_formatted)
-            return string
 
     def listing(self, decimal_places=0):
         """Receives:
-            decimal_places  int. n >= 0
+            decimal_places  int. An integer >= 0
         Returns:
-            string          String. In the form '(<x>, <y>, <z>)'; x, y, and 
-                            z have the specified number of decimal places
+            listing         str. In the form '(<x>, <y>, <z>)', where x, y, 
+                            and z have the specified number of decimal 
+                            places, if successful. None otherwise
         """
-        string = '(%s)' % self.sublisting(decimal_places)
-        return string
-
-    def get_formatted_coord(self, dimension, decimal_places=0):
-        """Receives: 
-            dimension       String. 'x', 'y', or 'z'
-            decimal_places  num. The number of decimal places to include
-        Returns: 
-            formatted_coord String. A number with the specified number of 
-                            decimal places
-        """
-        method_name = 'get_formatted_coord'
+        method_name = 'listing'
         try:
-            if not type(dimension) == str:
+            if not type(decimal_places) == int:
                 raise TypeError
-            elif not (
-                dimension == 'x' or
-                dimension == 'y' or
-                dimension == 'z'
-            ):
+            elif not decimal_places >= 0:
                 raise ValueError
         except TypeError:
-            message = "The dimension must be a string ('x', 'y', or 'z')"
+            message = "The argument must be an integer"
             self._print_error_message(method_name, message)
+            value = None
         except ValueError:
-            message = "The dimension must be either 'x', 'y', or 'z'"
+            message = "The argument must be non-negative"
             self._print_error_message(method_name, message)
+            value = None
         else:
-            if decimal_places < 0:
-                n = 0
-            else:
-                n = int(decimal_places)
-            format = '%1.' + str(n) + 'f'
-            if dimension == 'x':
-                coord = self.x
-            elif dimension == 'y':
-                coord = self.y
-            elif dimension == 'z':
-                coord = self.z
-            else:
-                print '%s %s %s' % "We shouldn't have gotten here"
-            formatted_coord = format % coord
-            return formatted_coord
+            n = decimal_places
+            x_listing = self.get_coord_listing('x', n)
+            y_listing = self.get_coord_listing('y', n)
+            z_listing = self.get_coord_listing('z', n)
+            listing = '(%s, %s, %s)' % (x_listing, y_listing, z_listing)
+            value = listing
+        finally:
+            return value
+
+    def get_coord_listing(self, dimension, decimal_places=0):
+        """Receives: 
+            dimension       str. 'x', 'y', or 'z'
+            decimal_places  int. The number of decimal places to include
+        Types are guaranteed by the calling method. Returns:
+            coord_listing   str. A number with the specified number of 
+                            decimal places
+        """
+        n = decimal_places
+        format = '%1.' + str(n) + 'f'
+        if dimension == 'x':
+            coord = self.x
+        elif dimension == 'y':
+            coord = self.y
+        elif dimension == 'z':
+            coord = self.z
+        else:
+            print("We shouldn't have gotten here")
+        coord_listing = format % coord
+        return coord_listing
 
     ### operations
     def __add__(self, v):

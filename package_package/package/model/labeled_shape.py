@@ -180,7 +180,7 @@ class LabeledShape(object):
 
     @classmethod
     def _print_error_message(cls, method_name, message):
-        print '%s.%s: %s' % (cls.__name__, method_name, message)
+        print '%s.%s:\n    %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest

@@ -174,6 +174,9 @@ class Line(object):
             self.x1, self.y1, self.z1, self.x2, self.y2, self.z2)
         return string
 
+    def __repr__(self):
+        pass
+        
     def listing(self, decimal_places=0):
         x1_formatted = self.tail.get_formatted_coord('x', decimal_places)
         y1_formatted = self.tail.get_formatted_coord('y', decimal_places)
