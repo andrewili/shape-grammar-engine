@@ -43,7 +43,7 @@ class Line(object):
             self.x2 = self.head.x
             self.y2 = self.head.y
             self.z2 = self.head.z
-            self.spec = (self.tail.spec, self.head.spec)
+            self.spec = (self.x1, self.y1, self.z1, self.x2, self.y2, self.z2)
             self.v = self.head - self.tail
             self.length = self.v.length
             self.carrier = self._find_carrier(self.tail, self.head)
@@ -57,68 +57,74 @@ class Line(object):
             tail            Point
             head            Point. head > tail
         Returns:
-            unit_vector     Vector. Indicating the direction
-            intercept       Point. In the yz-, xz-, or xy-plane
+            uv              = unit vector. Vector. Indicating the direction 
+                            of the line
+            int             = intercept. Point 
+                                In the xy-plane, if parallel to the z-axis
+                                In the xz-plane, if parallel to the yz-plane
+                                In the yz-plane, otherwise
         """
         v = head - tail
-        unit_vector = vector.Vector.find_unit_vector(v)
-        if cls._unit_vector_is_parallel_to_z_axis(unit_vector):
+        uv = v.uv()
+        if cls._unit_vector_is_parallel_to_z_axis(uv):
             x, y = tail.x, tail.y
-            intercept = point.Point(x, y, 0)
-        elif cls._unit_vector_is_parallel_to_yz_plane(unit_vector):
-            intercept = cls._find_xz_intercept(unit_vector, tail)
+            int = point.Point(x, y, 0)
+        elif cls._unit_vector_is_parallel_to_yz_plane(uv):
+            int = cls._find_xz_intercept(uv, tail)
         else:
-            intercept = cls._find_yz_intercept(unit_vector, tail)
-        return (unit_vector, intercept)
+            int = cls._find_yz_intercept(uv, tail)
+        return (uv, int)
 
     @classmethod
-    def _unit_vector_is_parallel_to_z_axis(cls, direction):
+    def _unit_vector_is_parallel_to_z_axis(cls, unit_vector):
         """Receives:
-            direction       Vector. Length = 1
+            unit_vector     Vector. Length = 1
         Returns:
-            value           boolean. True if direction is parallel to the 
-                            z-axis. False otherwise
+            value           boolean. True if the unit vector is parallel to 
+                            the z-axis. False otherwise
         """
         value = (
-            almost_equal(direction.x, 0) and
-            almost_equal(direction.y, 0) and
-            almost_equal(direction.z, 1))
+            almost_equal(unit_vector.x, 0) and
+            almost_equal(unit_vector.y, 0) and
+            almost_equal(unit_vector.z, 1))
         return value
 
     @classmethod
-    def _unit_vector_is_parallel_to_yz_plane(cls, direction):
+    def _unit_vector_is_parallel_to_yz_plane(cls, unit_vector):
         """Receives:
-            direction       Vector. Length = 1
+            unit_vector     Vector. Length = 1
         Returns:
             value           boolean
         """
-        value = almost_equal(direction.x, 0)
+        value = almost_equal(unit_vector.x, 0)
         return value
 
     @classmethod
-    def _find_xz_intercept(cls, v, p1):
+    def _find_xz_intercept(cls, uv, p1):
         """Receives:
-            v               Vector. Length = 1. x = 0
-            p1              Point
+            uv              Vector. Unit vector, x = 0. The direction of a 
+                            line 
+            p1              Point. A point on the line
         Finds the xz-intercept of a line parallel to the yz-plane. Returns:
             p0              Point. The xz-intercept (x, 0, z)
         """
         p0_y = 0
-        t = (p0_y - p1.y) / v.y
-        p0 = p1 + (v * t)
+        t = (p0_y - p1.y) / uv.y
+        p0 = p1 + (uv * t)
         return p0
 
     @classmethod
-    def _find_yz_intercept(cls, v, p1):
+    def _find_yz_intercept(cls, uv, p1):
         """Receives:
-            v               Vector. Not parallel to the yz-plane
-            p1              Point
+            uv              Vector. Unit vector, not parallel to the 
+                            yz-plane. The direction of a line
+            p1              Point. A point on the line
         Returns:
             p0              Point. The yz-intercept (0, y, z)
         """
         p0_x = 0
-        t = (p0_x - p1.x) / v.x
-        p0 = p1 + (v * t)
+        t = (p0_x - p1.x) / uv.x
+        p0 = p1 + (uv * t)
         return p0
 
     @classmethod
@@ -175,15 +181,24 @@ class Line(object):
         return string
 
     def __repr__(self):
-        pass
+        """Returns:
+            string          str. In the form 
+                            'line.Line.from_spec(
+                                <x1>, <y1>, <z1>, <x2>, <y2>, <z2>)'
+        """
+        string = 'line.%s.from_spec(%s, %s, %s, %s, %s, %s)' % (
+            self.__class__.__name__,
+            self.x1, self.y1, self.z1,
+            self.x2, self.y2, self.z2)
+        return string
         
     def listing(self, decimal_places=0):
-        x1_formatted = self.tail.get_formatted_coord('x', decimal_places)
-        y1_formatted = self.tail.get_formatted_coord('y', decimal_places)
-        z1_formatted = self.tail.get_formatted_coord('z', decimal_places)
-        x2_formatted = self.head.get_formatted_coord('x', decimal_places)
-        y2_formatted = self.head.get_formatted_coord('y', decimal_places)
-        z2_formatted = self.head.get_formatted_coord('z', decimal_places)
+        x1_formatted = self.tail.get_coord_listing('x', decimal_places)
+        y1_formatted = self.tail.get_coord_listing('y', decimal_places)
+        z1_formatted = self.tail.get_coord_listing('z', decimal_places)
+        x2_formatted = self.head.get_coord_listing('x', decimal_places)
+        y2_formatted = self.head.get_coord_listing('y', decimal_places)
+        z2_formatted = self.head.get_coord_listing('z', decimal_places)
         string = '((%s, %s, %s), (%s, %s, %s))' % (
             x1_formatted, y1_formatted, z1_formatted,
             x2_formatted, y2_formatted, z2_formatted)
@@ -260,6 +275,7 @@ class Line(object):
     def is_collinear_with(self, other):
         return self.carrier == other.carrier
 
+    ### part relations
     def is_a_subline_in_colineation(self, colineation):
         """Receives a colineation:
             SGColumn

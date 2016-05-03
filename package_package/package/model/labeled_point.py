@@ -68,11 +68,16 @@ class LabeledPoint(object):
 
     def __repr__(self):
         """Returns:
-            string          str. In the form "((0, 0, 0), 'a')"
+            string          str. In the form
+                            "labeled_point.LabeledPoint.from_parts(
+                                <x>, <y>, <z>, '<label>')"
         """
-        point_str = str(self.p)
-        label_str = self._get_label_string()
-        string = '(%s, %s)' % (point_str, label_str)
+        string = "labeled_point.%s.from_parts(%s, %s, %s, '%s')" % (
+            self.__class__.__name__,
+            self.x,
+            self.y,
+            self.z,
+            self.label)
         return string
 
     def listing(self, decimal_places=0):

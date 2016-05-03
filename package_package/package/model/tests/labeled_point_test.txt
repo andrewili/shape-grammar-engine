@@ -95,10 +95,16 @@
     "(0.866025403784, 0.707106781187, 0.5, 'trig')"
 
 #   __repr__
-    >>> repr(lpoint_empty_label)
-    "((3, 4, 5), '')"
-    >>> repr(lpoint_long_coords)
-    "((0.866025403784, 0.707106781187, 0.5), 'trig')"
+    >>> r_empty = repr(lpoint_empty_label)
+    >>> r_empty
+    "labeled_point.LabeledPoint.from_parts(3, 4, 5, '')"
+    >>> eval(r_empty) == lpoint_empty_label
+    True
+    >>> r_long = repr(lpoint_long_coords)
+    >>> r_long
+    "labeled_point.LabeledPoint.from_parts(0.866025403784, 0.707106781187, 0.5, 'trig')"
+    >>> eval(r_long) == lpoint_long_coords
+    True
 
 #   listing
     >>> print(lpoint_empty_label.listing(1))
@@ -133,15 +139,11 @@
     >>> labeled_point.LabeledPoint.are_lpoint_specs(good_elems)
     True
 
-    >>> labeled_point.LabeledPoint.are_lpoint_specs([1, 2, 3])
+    >>> labeled_point.LabeledPoint.are_lpoint_specs((1, 2, 3))
     False
-    >>> l1 = line.Line.from_spec_4(1, 1, 2, 2)
-    >>> l2 = line.Line.from_spec_4(2, 2, 3, 3)
-    >>> labeled_point.LabeledPoint.are_lpoint_specs([l1, l2])
-    False
-    >>> labeled_point.LabeledPoint.are_lpoint_specs([(1, 1, 'a'), (2, 2, 2)])
-    False
-    >>> labeled_point.LabeledPoint.are_lpoint_specs([(1, 1, 'a'), (2, 2, 'b')])
+    >>> pspec_1 = point.Point(1, 1, 1)
+    >>> pspec_2 = point.Point(2, 2, 2)
+    >>> labeled_point.LabeledPoint.are_lpoint_specs([pspec_1, pspec_2])
     False
     >>> labeled_point.LabeledPoint.are_lpoint_specs(
     ...     [(1, 1, 1, 'a'), (2, 2, 2, 'b')])

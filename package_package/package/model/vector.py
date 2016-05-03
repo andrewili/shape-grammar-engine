@@ -8,6 +8,9 @@ TAU = math.pi * 2
 class Vector(object):
     def __init__(self, x_in, y_in, z_in=0):
         """Receives:
+            x_in            num
+            y_in            num
+            z_in            num
         Mutable? Immutable?
         """
         method_name = '__init__'
@@ -20,25 +23,19 @@ class Vector(object):
                 raise TypeError
         except TypeError:
             message = "The arguments must be numbers"
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
             num = north_unit_matrix = np.array([0, 1, 0])
             self.x = x_in
             self.y = y_in
             self.z = z_in
-            self.matrix = np.array([x_in, y_in, z_in])
-            self.length = la.norm(self.matrix)
-            if self.length == 0:
-                self.unit_matrix = None
-                self.bearing = None
-                self.bearing_in_degrees = None
+            self.m = self.matrix = np.array([x_in, y_in, z_in])
+            self.l = self.length = la.norm(self.m)
+            if self.l == 0:
+                self.um = self.unit_matrix = None
             else:
-                self.unit_matrix = self.matrix / self.length
-                #   bearing for 2d only
-                self.bearing = self._find_bearing(self.unit_matrix)
-                self.bearing_in_degrees = None
-                if self.bearing:
-                    self.bearing_in_degrees = math.degrees(self.bearing)
+                self.um = self.unit_matrix = self.m / self.l
+                #   creating a unit vector starts an infinite regress
 
     def _is_a_number(self, x):
         """Receives:
@@ -56,63 +53,6 @@ class Vector(object):
         ):
             value = True    
         return value
-
-    @classmethod
-    def _find_bearing(cls, unit_matrix):
-        """Receives:
-            unit_matrix     np.array, shape = (3, ), z = 0, norm = 1
-        Finds the angle (in radians) from north. Clockwise is positive. 
-        Returns:
-            bearing         num. 0 <= bearing < TAU, if successful. None, if 
-                            z != 0
-        """
-        method_name = '_find_bearing'
-        num = north_unit_matrix = np.array([0, 1, 0])
-        try:
-            if not type(unit_matrix) == np.ndarray:
-                raise TypeError
-        except TypeError:
-            message = "The argument must be an np.array"
-            cls._print_error_message(method_name, message)
-        else:
-            absolute_bearing = math.acos(np.dot(num, unit_matrix))
-            x, y = unit_matrix[0], unit_matrix[1]
-            if not unit_matrix[2] == 0:
-                bearing = None
-            elif (almost_equal(x, 0) and
-                almost_equal(y, 0)
-            ):
-                bearing = None
-            elif (
-                almost_equal(x, 0) and
-                almost_equal(y, -1)
-            ):
-                bearing = TAU / 2
-            elif (
-                almost_equal(x, 0) and
-                almost_equal(y, 1)
-            ):
-                bearing = 0
-            elif x < 0:
-                bearing = TAU - absolute_bearing
-            elif x > 0:
-                bearing = absolute_bearing
-            else:
-                bearing = None
-            return bearing
-
-    @classmethod
-    def find_additive_inverse(cls, v):
-        """Receives:
-            v               Vector
-        Returns:
-            v_inv           Vector. The inverse of v
-        """
-        v000 = Vector(0, 0, 0)
-        v_inv = v000 - v
-        return v_inv
-
-    inv = find_additive_inverse
 
     @classmethod
     def from_matrix(cls, matrix_in):
@@ -136,17 +76,46 @@ class Vector(object):
             vector_out = Vector(x, y, z)
             return vector_out
 
-    @classmethod
-    def find_unit_vector(cls, v):
-        """Receives:
-            v               Vector
-        Returns:
-            v_unit          The unit vector of v
+    ### represent
+    def __str__(self):
+        string = str(self.matrix)
+        return string
+
+    def __repr__(self):
+        """Returns:
+            string          str. In the form '[<x>, <y>, <z>]'
         """
-        v_unit = Vector.from_matrix(v.unit_matrix)
-        return v_unit
+        string = 'vector.%s(%s, %s, %s)' % (
+            self.__class__.__name__,
+            self.x,
+            self.y,
+            self.z)
+        return string
 
     ### operations and relations
+    def find_unit_vector(self):
+        """Returns:
+            uv              Vector. The unit vector of v, if length > 0. None 
+                            otherwise
+        """
+        if self.l == 0:
+            uv = None
+        else:
+            uv = Vector.from_matrix(self.um)
+        return uv
+
+    uv = find_unit_vector
+
+    def find_additive_inverse(self):
+        """Returns:
+            v_inv           Vector. The inverse of v
+        """
+        v000 = Vector(0, 0, 0)
+        v_inv = v000 - self
+        return v_inv
+
+    inv = find_additive_inverse
+
     def __add__(self, other):
         """Receives:
             other           Vector
@@ -185,46 +154,15 @@ class Vector(object):
         value = almost_equal(self.matrix, other.matrix)
         return value
 
+    def __ne__(self, other):
+        value = not almost_equal(self.matrix, other.matrix)
+        return value
+
     ### utility
     @classmethod
     def _print_error_message(cls, method_name, message):
         print '%s.%s:\n    %s' % (cls.__name__, method_name, message)
 
-    ### represent
-    def __str__(self):
-        string = str(self.matrix)
-        return string
-
 if __name__ == '__main__':
     import doctest
     doctest.testfile('tests/vector_test.txt')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
