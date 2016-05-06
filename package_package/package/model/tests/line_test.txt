@@ -7,8 +7,6 @@
     >>> cos, sin = math.cos, math.sin
     >>> TAU = math.pi * 2
 
-    ??? drone_line = line.Line.from_spec_4(0, 0, 10, 10)
-    
 ### construct
 #   __init__
     >>> def set_up_init():
@@ -225,22 +223,20 @@
     True
 
 #   from_spec_4(x1, y1, x2, y2)
-    ??? line_from_identical_points = line.Line.from_spec_4(0, 0, 0, 0)
+    >>> line_from_identical_points = line.Line.from_spec_4(0, 0, 0, 0)
     Line.__init__:
         The points must be different
-
-    ??? line_from_non_numbers = line.Line.from_spec_4(1, 2, [], 4)
+    >>> line_from_non_numbers = line.Line.from_spec_4(1, 2, [], 4)
     Line.from_spec_4:
         The arguments must all be numbers
-
-    ??? line_from_spec_4 = line.Line.from_spec_4(0, 0, 1, 1)
-    ??? print line_from_spec_4
+    >>> line_from_spec_4 = line.Line.from_spec_4(0, 0, 1, 1)
+    >>> print line_from_spec_4
     ((0, 0, 0), (1, 1, 0))
 
 #   from_spec_2(x1, x2)
-    ??? line_from_spec_2 = line.Line.from_spec_2(1, 2)
-    ??? print line_from_spec_2
-    ((1, 1, 0), (2, 2, 0))
+    >>> line_from_spec_2 = line.Line.from_spec_2(1, 2)
+    >>> print line_from_spec_2
+    ((1, 1, 1), (2, 2, 2))
 
 ### represent
 #   __str__
@@ -333,9 +329,54 @@
     >>> line_ne != line.Line.from_spec_4(4, 4, 6, 6)
     False
 
-#   is_collinear_with
+#   is_colinear_with
+    >>> def set_up_colinear():
+    ...     p000 = point.Point(0, 0, 0)
+    ...     p001 = point.Point(0, 0, 1)
+    ...     p111 = point.Point(1, 1, 1)
+    ...     p123 = point.Point(1, 2, 3)
+    ...     p222 = point.Point(2, 2, 2)
+    ...     p223 = point.Point(2, 2, 3)
+    ...     p333 = point.Point(3, 3, 3)
+    ...     p531 = point.Point(5, 3, 1)
+    ...     p555 = point.Point(5, 5, 5)
+    ...     line_ref = line.Line(p000, p222)
+    ...     line_diff_uv = line.Line(p000, p123)
+    ...     line_diff_int = line.Line(p001, p223)
+    ...     line_diff_uv_int = line.Line(p123, p531)
+    ...     line_colinear_overlapping = line.Line(p111, p333)
+    ...     line_colinear_disjoint = line.Line(p333, p555)
+    ...     line_same = line.Line(p000, p222)
+    ...     return (
+    ...         line_ref, line_diff_uv, line_diff_int, line_diff_uv_int, 
+    ...         line_colinear_overlapping, line_colinear_disjoint, line_same)
+    >>> (   line_ref, line_diff_uv, line_diff_int, line_diff_uv_int, 
+    ...     line_colinear_overlapping, line_colinear_disjoint, line_same
+    ... ) = set_up_colinear()
+    >>> line_ref.is_colinear_with(line_diff_uv)
+    False
+    >>> line_ref.is_colinear_with(line_diff_int)
+    False
+    >>> line_ref.is_colinear_with(line_diff_uv_int)
+    False
+    >>> line_ref.is_colinear_with(line_colinear_overlapping)
+    True
+    >>> line_ref.is_colinear_with(line_colinear_disjoint)
+    True
+    >>> line_ref.is_colinear_with(line_same)
+    True
 
-### part relations
+#   __hash__
+    >>> cos45 = cos(TAU / 8)
+    >>> sin45 = sin(TAU / 8)
+    >>> cos45 == sin45
+    False
+    >>> l_cos = line.Line.from_spec(0, 0, 0, cos45, cos45, cos45)
+    >>> l_sin = line.Line.from_spec(0, 0, 0, sin45, sin45, sin45)
+    >>> hash(l_cos) == hash(l_sin)
+    True
+
+### part relations (deprecated?)
 #   is_a_subline_in_colineation(colineation)    # no more colineation!
     ??? line_control = line.Line.from_spec_4(1, 1, 2, 2)
     ??? line_01 = line.Line.from_spec_4(0, 0, 1, 1)
@@ -387,196 +428,305 @@
     ??? line_control.is_a_subline_in_colineation(colineation_23_45)
     False
 
-#   is_a_subline_of(other)
-    ??? line_12 = line.Line.from_spec_4(1, 1, 2, 2)
+### part relations
+    >>> def set_up_subline():
+    ...     px = point.Point(1, 2, 3)
+    ...     p0 = point.Point(0, 0, 0)
+    ...     p1 = point.Point(1, 1, 1)
+    ...     p2 = point.Point(2, 2, 2)
+    ...     p3 = point.Point(3, 3, 3)
+    ...     p4 = point.Point(4, 4, 4)
+    ...     p5 = point.Point(5, 5, 5)
+    ...     p6 = point.Point(6, 6, 6)
+    ...     p7 = point.Point(7, 7, 7)
+    ...     lx = line.Line(p0, px)
+    ...     l01 = line.Line(p0, p1)
+    ...     l02 = line.Line(p0, p2)
+    ...     l03 = line.Line(p0, p3)
+    ...     l04 = line.Line(p0, p4)
+    ...     l05 = line.Line(p0, p5)
+    ...     l23 = line.Line(p2, p3)
+    ...     l24 = line.Line(p2, p4)
+    ...     l25 = line.Line(p2, p5)
+    ...     l46 = line.Line(p4, p6)
+    ...     l57 = line.Line(p5, p7)
+    ...     return (lx, l01, l02, l03, l04, l05, l23, l24, l25, l46, l57)
+    >>> lx, l01, l02, l03, l04, l05, l23, l24, l25, l46, l57 = (
+    ...     set_up_subline())
+
+#   is_a_subline_in_colines
+    >>> def set_up_colines():
+    ...     clines_empty = []
+    ...     clines_no_match = [lx, l01, l02, l03, l23, l46, l57]
+    ...     clines_1_match = [lx, l01, l02, l03, l23, l25, l46, l57]
+    ...     clines_2_matches = [lx, l05, l01, l02, l03, l23, l25, l46, l57]
+    ...     return (
+    ...         clines_empty, 
+    ...         clines_no_match, 
+    ...         clines_1_match, 
+    ...         clines_2_matches)
+    >>> clines_no_match = [lx, l01, l02, l03, l23, l25]
+    >>> clines_empty, clines_no_match, clines_1_match, clines_2_matches = (
+    ...     set_up_colines())
+    >>> l24.is_a_subline_in_colines(clines_empty)
+    False
+    >>> l24.is_a_subline_in_colines(clines_no_match)
+    False
+    >>> l24.is_a_subline_in_colines(clines_1_match)
+    True
+    >>> l24.is_a_subline_in_colines(clines_2_matches)
+    True
+
+#   is_a_subline_of
+    >>> l24.is_a_subline_of(lx)
+    False
+    >>> l24.is_a_subline_of(l01)
+    False
+    >>> l24.is_a_subline_of(l02)
+    False
+    >>> l24.is_a_subline_of(l03)
+    False
+    >>> l24.is_a_subline_of(l04)
+    True
+    >>> l24.is_a_subline_of(l05)
+    True
+    >>> l24.is_a_subline_of(l23)
+    False
+    >>> l24.is_a_subline_of(l24)
+    True
+    >>> l24.is_a_subline_of(l25)
+    True
+    >>> l24.is_a_subline_of(l46)
+    False
+    >>> l24.is_a_subline_of(l57)
+    False
+
+    >>> line_12 = line.Line.from_spec_4(1, 1, 2, 2)
     
-    ??? line_12.is_a_subline_of(line.Line.from_spec_4(0, 0, 1, 1))
+    >>> line_12.is_a_subline_of(line.Line.from_spec_4(0, 0, 1, 1))
     False
-    ??? line_12.is_a_subline_of(line.Line.from_spec_4(0, 0, 2, 2))
+    >>> line_12.is_a_subline_of(line.Line.from_spec_4(0, 0, 2, 2))
     True
-    ??? line_12.is_a_subline_of(line.Line.from_spec_4(1, 1, 2, 2))
-    True
-
-### overlap relations
-#   is_disjoint_left_of(other), overlaps_tail_of(other), 
-    overlaps_all_of(other), overlaps_middle_of(other), 
-    overlaps_head_of(other), is_disjoint_right_of(other)
-
-    ??? this    = line.Line.from_spec_4(2, 2, 5, 5)
-    ??? that_01 = line.Line.from_spec_4(0, 0, 1, 1)
-    ??? that_02 = line.Line.from_spec_4(0, 0, 2, 2)
-    ??? that_03 = line.Line.from_spec_4(0, 0, 3, 3)
-    ??? that_05 = line.Line.from_spec_4(0, 0, 5, 5)
-    ??? that_07 = line.Line.from_spec_4(0, 0, 7, 7)
-    ??? that_23 = line.Line.from_spec_4(2, 2, 3, 3)
-    ??? that_25 = line.Line.from_spec_4(2, 2, 5, 5)
-    ??? that_27 = line.Line.from_spec_4(2, 2, 7, 7)
-    ??? that_34 = line.Line.from_spec_4(3, 3, 4, 4)
-    ??? that_35 = line.Line.from_spec_4(3, 3, 5, 5)
-    ??? that_37 = line.Line.from_spec_4(3, 3, 7, 7)
-    ??? that_57 = line.Line.from_spec_4(5, 5, 7, 7)
-    ??? that_67 = line.Line.from_spec_4(6, 6, 7, 7)
-
-    ??? this.is_disjoint_left_of(that_01)
-    False
-    ??? this.is_disjoint_left_of(that_02)
-    False
-    ??? this.is_disjoint_left_of(that_03)
-    False
-    ??? this.is_disjoint_left_of(that_05)
-    False
-    ??? this.is_disjoint_left_of(that_07)
-    False
-    ??? this.is_disjoint_left_of(that_23)
-    False
-    ??? this.is_disjoint_left_of(that_25)
-    False
-    ??? this.is_disjoint_left_of(that_27)
-    False
-    ??? this.is_disjoint_left_of(that_34)
-    False
-    ??? this.is_disjoint_left_of(that_35)
-    False
-    ??? this.is_disjoint_left_of(that_37)
-    False
-    ??? this.is_disjoint_left_of(that_57)
-    True
-    ??? this.is_disjoint_left_of(that_67)
+    >>> line_12.is_a_subline_of(line.Line.from_spec_4(1, 1, 2, 2))
     True
 
-    ??? this.overlaps_tail_of(that_01)
+### overlap relations   #   Test non-colinear lines...
+    >>> def set_up_overlap_relations():
+    ...     this    = line.Line.from_spec_2(2, 5)
+    ...     that_01 = line.Line.from_spec_2(0, 1)
+    ...     that_02 = line.Line.from_spec_2(0, 2)
+    ...     that_03 = line.Line.from_spec_2(0, 3)
+    ...     that_05 = line.Line.from_spec_2(0, 5)
+    ...     that_07 = line.Line.from_spec_2(0, 7)
+    ...     that_23 = line.Line.from_spec_2(2, 3)
+    ...     that_25 = line.Line.from_spec_2(2, 5)
+    ...     that_27 = line.Line.from_spec_2(2, 7)
+    ...     that_34 = line.Line.from_spec_2(3, 4)
+    ...     that_35 = line.Line.from_spec_2(3, 5)
+    ...     that_37 = line.Line.from_spec_2(3, 7)
+    ...     that_57 = line.Line.from_spec_2(5, 7)
+    ...     that_67 = line.Line.from_spec_2(6, 7)
+    ...     return (
+    ...         this, that_01, that_02, that_03, that_05, that_07, that_23, 
+    ...         that_25, that_27, that_34, that_35, that_37, that_57, that_67)
+    >>> (   this, that_01, that_02, that_03, that_05, that_07, that_23, 
+    ...     that_25, that_27, that_34, that_35, that_37, that_57, that_67
+    ... ) = set_up_overlap_relations()
+
+#   is_disjoint_less_than
+    >>> this.is_disjoint_less_than(that_01)
     False
-    ??? this.overlaps_tail_of(that_02)
+    >>> this.is_disjoint_less_than(that_02)
     False
-    ??? this.overlaps_tail_of(that_03)
+    >>> this.is_disjoint_less_than(that_03)
     False
-    ??? this.overlaps_tail_of(that_05)
+    >>> this.is_disjoint_less_than(that_05)
     False
-    ??? this.overlaps_tail_of(that_07)
+    >>> this.is_disjoint_less_than(that_07)
     False
-    ??? this.overlaps_tail_of(that_23)
+    >>> this.is_disjoint_less_than(that_23)
     False
-    ??? this.overlaps_tail_of(that_25)
+    >>> this.is_disjoint_less_than(that_25)
     False
-    ??? this.overlaps_tail_of(that_27)
+    >>> this.is_disjoint_less_than(that_27)
+    False
+    >>> this.is_disjoint_less_than(that_34)
+    False
+    >>> this.is_disjoint_less_than(that_35)
+    False
+    >>> this.is_disjoint_less_than(that_37)
+    False
+    >>> this.is_disjoint_less_than(that_57)
     True
-    ??? this.overlaps_tail_of(that_34)
-    False
-    ??? this.overlaps_tail_of(that_35)
-    False
-    ??? this.overlaps_tail_of(that_37)
+    >>> this.is_disjoint_less_than(that_67)
     True
-    ??? this.overlaps_tail_of(that_57)
+
+#   overlaps_tail_of
+    >>> this.overlaps_tail_of(that_01)
     False
-    ??? this.overlaps_tail_of(that_67)
+    >>> this.overlaps_tail_of(that_02)
+    False
+    >>> this.overlaps_tail_of(that_03)
+    False
+    >>> this.overlaps_tail_of(that_05)
+    False
+    >>> this.overlaps_tail_of(that_07)
+    False
+    >>> this.overlaps_tail_of(that_23)
+    False
+    >>> this.overlaps_tail_of(that_25)
+    False
+    >>> this.overlaps_tail_of(that_27)
+    True
+    >>> this.overlaps_tail_of(that_34)
+    False
+    >>> this.overlaps_tail_of(that_35)
+    False
+    >>> this.overlaps_tail_of(that_37)
+    True
+    >>> this.overlaps_tail_of(that_57)
+    False
+    >>> this.overlaps_tail_of(that_67)
     False
 
-    ??? this.overlaps_all_of(that_01)
+#   overlaps_all_of
+    >>> this.overlaps_all_of(that_01)
     False
-    ??? this.overlaps_all_of(that_02)
+    >>> this.overlaps_all_of(that_02)
     False
-    ??? this.overlaps_all_of(that_03)
+    >>> this.overlaps_all_of(that_03)
     False
-    ??? this.overlaps_all_of(that_05)
+    >>> this.overlaps_all_of(that_05)
     False
-    ??? this.overlaps_all_of(that_07)
+    >>> this.overlaps_all_of(that_07)
     False
-    ??? this.overlaps_all_of(that_23)
+    >>> this.overlaps_all_of(that_23)
     True
-    ??? this.overlaps_all_of(that_25)
+    >>> this.overlaps_all_of(that_25)
     True
-    ??? this.overlaps_all_of(that_27)
+    >>> this.overlaps_all_of(that_27)
     False
-    ??? this.overlaps_all_of(that_34)
+    >>> this.overlaps_all_of(that_34)
     True
-    ??? this.overlaps_all_of(that_35)
+    >>> this.overlaps_all_of(that_35)
     True
-    ??? this.overlaps_all_of(that_37)
+    >>> this.overlaps_all_of(that_37)
     False
-    ??? this.overlaps_all_of(that_57)
+    >>> this.overlaps_all_of(that_57)
     False
-    ??? this.overlaps_all_of(that_67)
+    >>> this.overlaps_all_of(that_67)
     False
 
-    ??? this.overlaps_middle_of(that_01)
+#   overlaps_exactly
+    >>> this.overlaps_exactly(that_01)
     False
-    ??? this.overlaps_middle_of(that_02)
+    >>> this.overlaps_exactly(that_02)
     False
-    ??? this.overlaps_middle_of(that_03)
+    >>> this.overlaps_exactly(that_03)
     False
-    ??? this.overlaps_middle_of(that_05)
+    >>> this.overlaps_exactly(that_05)
     False
-    ??? this.overlaps_middle_of(that_07)
+    >>> this.overlaps_exactly(that_07)
+    False
+    >>> this.overlaps_exactly(that_23)
+    False
+    >>> this.overlaps_exactly(that_25)
     True
-    ??? this.overlaps_middle_of(that_23)
+    >>> this.overlaps_exactly(that_27)
     False
-    ??? this.overlaps_middle_of(that_25)
+    >>> this.overlaps_exactly(that_34)
     False
-    ??? this.overlaps_middle_of(that_27)
+    >>> this.overlaps_exactly(that_35)
     False
-    ??? this.overlaps_middle_of(that_34)
+    >>> this.overlaps_exactly(that_37)
     False
-    ??? this.overlaps_middle_of(that_35)
+    >>> this.overlaps_exactly(that_57)
     False
-    ??? this.overlaps_middle_of(that_37)
-    False
-    ??? this.overlaps_middle_of(that_57)
-    False
-    ??? this.overlaps_middle_of(that_67)
+    >>> this.overlaps_exactly(that_67)
     False
 
-    ??? this.overlaps_head_of(that_01)
+#   overlaps_middle_of
+    >>> this.overlaps_middle_of(that_01)
     False
-    ??? this.overlaps_head_of(that_02)
+    >>> this.overlaps_middle_of(that_02)
     False
-    ??? this.overlaps_head_of(that_03)
+    >>> this.overlaps_middle_of(that_03)
+    False
+    >>> this.overlaps_middle_of(that_05)
+    False
+    >>> this.overlaps_middle_of(that_07)
     True
-    ??? this.overlaps_head_of(that_05)
-    True
-    ??? this.overlaps_head_of(that_07)
+    >>> this.overlaps_middle_of(that_23)
     False
-    ??? this.overlaps_head_of(that_23)
+    >>> this.overlaps_middle_of(that_25)
     False
-    ??? this.overlaps_head_of(that_25)
+    >>> this.overlaps_middle_of(that_27)
     False
-    ??? this.overlaps_head_of(that_27)
+    >>> this.overlaps_middle_of(that_34)
     False
-    ??? this.overlaps_head_of(that_34)
+    >>> this.overlaps_middle_of(that_35)
     False
-    ??? this.overlaps_head_of(that_35)
+    >>> this.overlaps_middle_of(that_37)
     False
-    ??? this.overlaps_head_of(that_37)
+    >>> this.overlaps_middle_of(that_57)
     False
-    ??? this.overlaps_head_of(that_57)
-    False
-    ??? this.overlaps_head_of(that_67)
+    >>> this.overlaps_middle_of(that_67)
     False
 
-    ??? this.is_disjoint_right_of(that_01)
+#   overlaps_head_of
+    >>> this.overlaps_head_of(that_01)
+    False
+    >>> this.overlaps_head_of(that_02)
+    False
+    >>> this.overlaps_head_of(that_03)
     True
-    ??? this.is_disjoint_right_of(that_02)
+    >>> this.overlaps_head_of(that_05)
     True
-    ??? this.is_disjoint_right_of(that_03)
+    >>> this.overlaps_head_of(that_07)
     False
-    ??? this.is_disjoint_right_of(that_05)
+    >>> this.overlaps_head_of(that_23)
     False
-    ??? this.is_disjoint_right_of(that_07)
+    >>> this.overlaps_head_of(that_25)
     False
-    ??? this.is_disjoint_right_of(that_23)
+    >>> this.overlaps_head_of(that_27)
     False
-    ??? this.is_disjoint_right_of(that_25)
+    >>> this.overlaps_head_of(that_34)
     False
-    ??? this.is_disjoint_right_of(that_27)
+    >>> this.overlaps_head_of(that_35)
     False
-    ??? this.is_disjoint_right_of(that_34)
+    >>> this.overlaps_head_of(that_37)
     False
-    ??? this.is_disjoint_right_of(that_35)
+    >>> this.overlaps_head_of(that_57)
     False
-    ??? this.is_disjoint_right_of(that_37)
+    >>> this.overlaps_head_of(that_67)
     False
-    ??? this.is_disjoint_right_of(that_57)
+
+#   is_disjoint_greater_than
+    >>> this.is_disjoint_greater_than(that_01)
+    True
+    >>> this.is_disjoint_greater_than(that_02)
+    True
+    >>> this.is_disjoint_greater_than(that_03)
     False
-    ??? this.is_disjoint_right_of(that_67)
+    >>> this.is_disjoint_greater_than(that_05)
+    False
+    >>> this.is_disjoint_greater_than(that_07)
+    False
+    >>> this.is_disjoint_greater_than(that_23)
+    False
+    >>> this.is_disjoint_greater_than(that_25)
+    False
+    >>> this.is_disjoint_greater_than(that_27)
+    False
+    >>> this.is_disjoint_greater_than(that_34)
+    False
+    >>> this.is_disjoint_greater_than(that_35)
+    False
+    >>> this.is_disjoint_greater_than(that_37)
+    False
+    >>> this.is_disjoint_greater_than(that_57)
+    False
+    >>> this.is_disjoint_greater_than(that_67)
     False
 
 ### add
@@ -650,33 +800,38 @@
 
 ### subtract
 #   subtract_line_tail(line)
-    ??? minuend      = line.Line.from_spec_4(2, 2, 5, 5)
-    ??? subtrahend_1 = line.Line.from_spec_4(1, 1, 3, 3)
-    ??? subtrahend_2 = line.Line.from_spec_4(1, 1, 2, 2)
+    >>> min  = minuend      = line.Line.from_spec_2(2, 5)
+    >>> sub1 = subtrahend_1 = line.Line.from_spec_2(1, 3)
+    >>> sub2 = subtrahend_2 = line.Line.from_spec_2(1, 2)
     
-    ??? differences_1 = minuend.subtract_line_tail(subtrahend_1)
-    ??? for a_line in differences_1:
-    ...     print a_line
-    ((3, 3, 0), (5, 5, 0))
-    ??? differences_2 = minuend.subtract_line_tail(subtrahend_2)
-    The subtrahend does not overlap the tail of the minuend
+    >>> diffs1 = min.subtract_line_tail(sub1)
+    >>> for l in diffs1:
+    ...     print(l)
+    ((3, 3, 3), (5, 5, 5))
+    >>> diffs2 = min.subtract_line_tail(sub2)
+    Line.subtract_line_tail:
+        The subtrahend does not overlap the tail of the minuend
 
 #   subtract_line_middle(other)
-    ??? minuend = line.Line.from_spec_4(2, 2, 5, 5)
-    ??? subtrahend = line.Line.from_spec_4(3, 3, 4, 4)
+    >>> minuend = line.Line.from_spec_2(2, 5)
+    >>> subtrahend = line.Line.from_spec_2(3, 4)
     
-    ??? line_differences = minuend.subtract_line_middle(subtrahend)
-    ??? for difference in line_differences:
+    >>> line_differences = minuend.subtract_line_middle(subtrahend)
+    >>> for difference in line_differences:
     ...     print difference
-    ((2, 2, 0), (3, 3, 0))
-    ((4, 4, 0), (5, 5, 0))
+    ((2, 2, 2), (3, 3, 3))
+    ((4, 4, 4), (5, 5, 5))
 
 #   subtract_line_head(other)
-    ??? minuend = line.Line.from_spec_4(2, 2, 5, 5)
-    ??? subtrahend = line.Line.from_spec_4(4, 4, 6, 6)
-    ??? line_differences = minuend.subtract_line_head(subtrahend)
-    ??? for a_line in line_differences:
-    ...     print a_line
-    ((2, 2, 0), (4, 4, 0))
+    >>> min = minuend = line.Line.from_spec_2(2, 5)
+    >>> sub1 = subtrahend1 = line.Line.from_spec_2(4, 6)
+    >>> sub2 = subtrahend2 = line.Line.from_spec_2(2, 3)
+    >>> l_diffs1 = min.subtract_line_head(sub1)
+    >>> for l in l_diffs1:
+    ...     print(l)
+    ((2, 2, 2), (4, 4, 4))
+    >>> l_diffs2 = min.subtract_line_head(sub2)
+    Line.subtract_line_head:
+        The subtrahend does not overlap the head of the minuend
 
     

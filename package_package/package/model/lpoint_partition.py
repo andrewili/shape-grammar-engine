@@ -111,26 +111,50 @@ class LPointPartition(object):
 
     def __repr__(self):
         """Returns:
-            string          str. Ordered in the form 
-                            "{<label>: [(<x>, <y>, <z>), ...], ...}"
+            string          str. In the form:
+                            'lpoint_partition.LPointPartition([<lp1_repr>, ...])'
         """
-        item_reprs = []
+        lpoint_reprs = []
         for label in sorted(self.dictionary):
-            label_repr = label
-            points = self.dictionary[label]
-            points_repr = self._get_points_repr(points)
-            item_repr = "'%s': [%s]" % (label_repr, points_repr)
-            item_reprs.append(item_repr)
-        items_repr = ', '.join(item_reprs)
-        string = '{%s}' % items_repr
+            clpoint_reprs = self._get_clpoint_reprs(label)
+            lpoint_reprs.extend(clpoint_reprs)
+        lpoints_repr = '[%s]' % (', '.join(lpoint_reprs))
+        string = 'lpoint_partition.%s(%s)' % (
+            self.__class__.__name__,
+            lpoints_repr)
+
+        # item_reprs = []
+        # for label in sorted(self.dictionary):
+        #     label_repr = label
+        #     points = self.dictionary[label]
+        #     points_repr = self._get_points_repr(points)
+        #     item_repr = "'%s': set([%s])" % (label_repr, points_repr)
+        #     item_reprs.append(item_repr)
+        # items_repr = ', '.join(item_reprs)
+        # string = '{%s}' % items_repr
         return string
+
+    def _get_clpoint_reprs(self, label):
+        """Receives:
+            label           str
+        Returns:
+            reprs           [lp_repr, ...]. An ordered list of colabeled 
+                            point reprs, where
+                lp_repr     str. A labeled point repr
+        """
+        reprs = []
+        for p in sorted(self.dictionary[label]):
+            lpoint = labeled_point.LabeledPoint(p, label)
+            lpoint_repr = repr(lpoint)
+            reprs.append(lpoint_repr)
+        return reprs
 
     def _get_points_repr(self, points):
         """Receives:
             points          set([Point, ...])
         Returns:
             pp_repr         str. An ordered string of point reprs in the form 
-                            "(<x>, <y>, <z>), ..."
+                            "point.Point(<x>, <y>, <z>), ..."
         """
         p_reprs = []
         for p in sorted(points):
