@@ -1,5 +1,3 @@
-#   line_partition.py
-
 import colineation
 import copy
 import line
@@ -8,9 +6,10 @@ class LinePartition(object):                ##  rename MaximalColineations?
     
     ### construct
     def __init__(self, lines):
-        """Receives a list of colinear lines:
-            [Line, ...], n >= 0
-        Consists of a dictionary of carrier : maximal colineation entries
+        """Receives:
+            lines           [Line, ...]. A list of colinear lines (possibly 
+                            empty, possibly overlapping)
+        Has a dictionary of carrier : colineation entries
         """
         method_name = '__init__()'
         try:
@@ -25,7 +24,7 @@ class LinePartition(object):                ##  rename MaximalColineations?
             message = 'The argument must be a list of lines'
             self.__class__._print_error_message(method_name, message)
         else:
-            self.dictionary = self.make_dictionary(lines)
+            self.dictionary = self._make_dictionary(lines)
 
     def _are_lines(self, lines):
         value = True
@@ -35,11 +34,19 @@ class LinePartition(object):                ##  rename MaximalColineations?
                 break
         return value
 
-    def make_dictionary(self, lines):
-        """Receives a list of lines:
-            [Line, ...], n >= 0
-        Returns a dictionary partitioned by carrier:
-            {(num, num): Colineation, ...}
+    @classmethod
+    def _make_dictionary(cls, lines):
+        """Receives:
+            lines           [Line, ...]. A non-empty list of lines, 
+                            possibly overlapping. Guaranteed by the calling 
+                            function
+        Returns:
+            dictionary      {carrier: colineation, ...}, a dictionary 
+                            partitioned by carrier, where:
+                carrier     (unit_vector, intercept)
+                unit_vector Vector
+                intercept   Point
+                colineation Colineation
         """
         dictionary = {}
         for line_i in lines:

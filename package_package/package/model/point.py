@@ -165,8 +165,7 @@ class Point(object):
         return string
 
     def __repr__(self):
-        string = 'point.%s(%s, %s, %s)' % (
-            self.__class__.__name__,
+        string = 'point.Point(%s, %s, %s)' % (
             self.x,
             self.y,
             self.z)

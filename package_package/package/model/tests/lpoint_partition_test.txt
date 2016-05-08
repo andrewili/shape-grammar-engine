@@ -139,7 +139,7 @@
 #   __repr__
     >>> good_lpp_repr = repr(good_lpp)
     >>> good_lpp_repr
-    "lpoint_partition.LPointPartition([labeled_point.LabeledPoint.from_parts(0, 0, 0, ''), labeled_point.LabeledPoint.from_parts(1, 1, 1, 'a'), labeled_point.LabeledPoint.from_parts(2, 2, 2, 'a'), labeled_point.LabeledPoint.from_parts(3, 3, 3, 'b'), labeled_point.LabeledPoint.from_parts(4, 4, 4, 'b'), labeled_point.LabeledPoint.from_parts(5, 5, 5, 'c'), labeled_point.LabeledPoint.from_parts(6, 6, 6, 'c')])"
+    "lpoint_partition.LPointPartition([labeled_point.LabeledPoint(point.Point(0, 0, 0), ''), labeled_point.LabeledPoint(point.Point(1, 1, 1), 'a'), labeled_point.LabeledPoint(point.Point(2, 2, 2), 'a'), labeled_point.LabeledPoint(point.Point(3, 3, 3), 'b'), labeled_point.LabeledPoint(point.Point(4, 4, 4), 'b'), labeled_point.LabeledPoint(point.Point(5, 5, 5), 'c'), labeled_point.LabeledPoint(point.Point(6, 6, 6), 'c')])"
 
     >>> eval(good_lpp_repr) == good_lpp
     True
@@ -147,22 +147,22 @@
 #   _get_clpoint_reprs
     >>> clp___reprs = good_lpp._get_clpoint_reprs('')
     >>> clp___reprs == [
-    ...     "labeled_point.LabeledPoint.from_parts(0, 0, 0, '')"]
+    ...     "labeled_point.LabeledPoint(point.Point(0, 0, 0), '')"]
     True
     >>> clp_a_reprs = good_lpp._get_clpoint_reprs('a')
     >>> clp_a_reprs == [
-    ...     "labeled_point.LabeledPoint.from_parts(1, 1, 1, 'a')",
-    ...     "labeled_point.LabeledPoint.from_parts(2, 2, 2, 'a')"]
+    ...     "labeled_point.LabeledPoint(point.Point(1, 1, 1), 'a')",
+    ...     "labeled_point.LabeledPoint(point.Point(2, 2, 2), 'a')"]
     True
     >>> clp_b_reprs = good_lpp._get_clpoint_reprs('b')
     >>> clp_b_reprs == [
-    ...     "labeled_point.LabeledPoint.from_parts(3, 3, 3, 'b')",
-    ...     "labeled_point.LabeledPoint.from_parts(4, 4, 4, 'b')"]
+    ...     "labeled_point.LabeledPoint(point.Point(3, 3, 3), 'b')",
+    ...     "labeled_point.LabeledPoint(point.Point(4, 4, 4), 'b')"]
     True
     >>> clp_c_reprs = good_lpp._get_clpoint_reprs('c')
     >>> clp_c_reprs == [
-    ...     "labeled_point.LabeledPoint.from_parts(5, 5, 5, 'c')",
-    ...     "labeled_point.LabeledPoint.from_parts(6, 6, 6, 'c')"]
+    ...     "labeled_point.LabeledPoint(point.Point(5, 5, 5), 'c')",
+    ...     "labeled_point.LabeledPoint(point.Point(6, 6, 6), 'c')"]
     True
 
 #   _get_points_repr

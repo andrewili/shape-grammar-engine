@@ -182,13 +182,13 @@ class Line(object):
     def __repr__(self):
         """Returns:
             string          str. In the form 
-                            'line.Line.from_spec(
-                                <x1>, <y1>, <z1>, <x2>, <y2>, <z2>)'
+                            'line.Line(
+                                point.Point(<x1>, <y1>, <z1>), 
+                                point.Point(<x2>, <y2>, <z2>))'
         """
-        string = 'line.%s.from_spec(%s, %s, %s, %s, %s, %s)' % (
-            self.__class__.__name__,
-            self.x1, self.y1, self.z1,
-            self.x2, self.y2, self.z2)
+        string = 'line.Line(%s, %s)' % (
+            'point.Point(%s, %s, %s)' % (self.x1, self.y1, self.z1),
+            'point.Point(%s, %s, %s)' % (self.x2, self.y2, self.z2))
         return string
         
     def listing(self, decimal_places=0):
@@ -282,18 +282,24 @@ class Line(object):
         return value
 
     ### part relations
-
-    # def is_a_subline_in_colineation(self, colineation):
-        # """Receives a colineation:
-        #     SGColumn
-        # Returns whether self is a subline of a line in the colineation
-        # """
+    def is_a_subline_in_colineation(self, colineation):
+        """Receives:
+            colineation     Colineation. Colinear with self. Guaranteed by 
+                            the calling function 
+                            (Colineation.is_a_subcolineation_of)
+        Returns:
+            value           boolean. True if self is a subline of a line in 
+                            maximized colineation. False otherwise
+        """
+        value = False
+        max_colines = self.maximal(self.lines)
+        for other_line in max_colines:
         # for other_line in colineation.lines:
-        #     if self.is_a_subline_of(other_line):
-        #         return True
-        # return False
+            if self.is_a_subline_of(other_line):
+                value = True
+        return value
 
-    def is_a_subline_in_colines(self, colines):
+    def is_a_subline_in_colines(self, colines):     #   Looks redundant
         """Receives:
             colines         [Line, ...]. A list of colinear, possibly non-
                             maximal, lines. Colinearity guaranteed by calling 

@@ -122,16 +122,6 @@ class LPointPartition(object):
         string = 'lpoint_partition.%s(%s)' % (
             self.__class__.__name__,
             lpoints_repr)
-
-        # item_reprs = []
-        # for label in sorted(self.dictionary):
-        #     label_repr = label
-        #     points = self.dictionary[label]
-        #     points_repr = self._get_points_repr(points)
-        #     item_repr = "'%s': set([%s])" % (label_repr, points_repr)
-        #     item_reprs.append(item_repr)
-        # items_repr = ', '.join(item_reprs)
-        # string = '{%s}' % items_repr
         return string
 
     def _get_clpoint_reprs(self, label):
@@ -139,7 +129,7 @@ class LPointPartition(object):
             label           str
         Returns:
             reprs           [lp_repr, ...]. An ordered list of colabeled 
-                            point reprs, where
+                            point reprs, where:
                 lp_repr     str. A labeled point repr
         """
         reprs = []

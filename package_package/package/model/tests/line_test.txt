@@ -246,7 +246,7 @@
 #   __repr__
     >>> r_01 = repr(l01)
     >>> r_01
-    'line.Line.from_spec(0, 0, 0, 1, 1, 1)'
+    'line.Line(point.Point(0, 0, 0), point.Point(1, 1, 1))'
     >>> eval(r_01) == l01
     True
 
@@ -376,60 +376,66 @@
     >>> hash(l_cos) == hash(l_sin)
     True
 
-### part relations (deprecated?)
-#   is_a_subline_in_colineation(colineation)    # no more colineation!
-    ??? line_control = line.Line.from_spec_4(1, 1, 2, 2)
-    ??? line_01 = line.Line.from_spec_4(0, 0, 1, 1)
-    ??? line_02 = line.Line.from_spec_4(0, 0, 2, 2)
-    ??? line_03 = line.Line.from_spec_4(0, 0, 3, 3)
-    ??? line_12 = line.Line.from_spec_4(1, 1, 2, 2)
-    ??? line_13 = line.Line.from_spec_4(1, 1, 3, 3)
-    ??? line_23 = line.Line.from_spec_4(2, 2, 3, 3)
-    ??? line_45 = line.Line.from_spec_4(4, 4, 5, 5)
-
-    ??? colineation_01 = colineation.Colineation([line_01])
-    ??? colineation_02 = colineation.Colineation([line_02])
-    ??? colineation_03 = colineation.Colineation([line_03])
-    ??? colineation_12 = colineation.Colineation([line_12])
-    ??? colineation_13 = colineation.Colineation([line_13])
-    ??? colineation_23 = colineation.Colineation([line_23])
-    ??? colineation_01_23 = colineation.Colineation([line_01, line_23])
-    ??? colineation_01_45 = colineation.Colineation([line_01, line_45])
-    ??? colineation_02_45 = colineation.Colineation([line_02, line_45])
-    ??? colineation_03_45 = colineation.Colineation([line_03, line_45])
-    ??? colineation_12_45 = colineation.Colineation([line_12, line_45])
-    ??? colineation_13_45 = colineation.Colineation([line_13, line_45])
-    ??? colineation_23_45 = colineation.Colineation([line_23, line_45])
-
-    ??? line_control.is_a_subline_in_colineation(colineation_01)
-    False
-    ??? line_control.is_a_subline_in_colineation(colineation_02)
-    True
-    ??? line_control.is_a_subline_in_colineation(colineation_03)
-    True
-    ??? line_control.is_a_subline_in_colineation(colineation_12)
-    True
-    ??? line_control.is_a_subline_in_colineation(colineation_13)
-    True
-    ??? line_control.is_a_subline_in_colineation(colineation_23)
-    False
-    ??? line_control.is_a_subline_in_colineation(colineation_01_23)
-    False
-    ??? line_control.is_a_subline_in_colineation(colineation_01_45)
-    False
-    ??? line_control.is_a_subline_in_colineation(colineation_02_45)
-    True
-    ??? line_control.is_a_subline_in_colineation(colineation_03_45)
-    True
-    ??? line_control.is_a_subline_in_colineation(colineation_12_45)
-    True
-    ??? line_control.is_a_subline_in_colineation(colineation_13_45)
-    True
-    ??? line_control.is_a_subline_in_colineation(colineation_23_45)
-    False
-
 ### part relations
-    >>> def set_up_subline():
+#   is_a_subline_in_colineation                 #   test non-maximal colins
+    ??? def set_up_is_a_subline_in_colineation():
+    ...     l12 = line.Line.from_spec_2(1, 2)
+    ...     l01 = line.Line.from_spec_2(0, 1)
+    ...     l02 = line.Line.from_spec_2(0, 2)
+    ...     l03 = line.Line.from_spec_2(0, 3)
+    ...     l12 = line.Line.from_spec_2(1, 2)
+    ...     l13 = line.Line.from_spec_2(1, 3)
+    ...     l23 = line.Line.from_spec_2(2, 3)
+    ...     l45 = line.Line.from_spec_2(4, 5)
+    ...     colin_01 = colineation.Colineation([l01])
+    ...     colin_02 = colineation.Colineation([l02])
+    ...     colin_03 = colineation.Colineation([l03])
+    ...     colin_12 = colineation.Colineation([l12])
+    ...     colin_13 = colineation.Colineation([l13])
+    ...     colin_23 = colineation.Colineation([l23])
+    ...     colin_01_23 = colineation.Colineation([l23, l01])
+    ...     colin_01_45 = colineation.Colineation([l45, l01])
+    ...     colin_02_45 = colineation.Colineation([l45, l02])
+    ...     colin_03_45 = colineation.Colineation([l45, l03])
+    ...     colin_12_45 = colineation.Colineation([l45, l12])
+    ...     colin_13_45 = colineation.Colineation([l45, l13])
+    ...     colin_23_45 = colineation.Colineation([l45, l23])
+    ...     return (
+    ...         l12, colin_01, colin_02, colin_03, colin_12, colin_13, 
+    ...         colin_23, colin_01_23, colin_01_45, colin_02_45, colin_03_45, 
+    ...         colin_12_45, colin_13_45, colin_23_45)
+    ??? (   l12, colin_01, colin_02, colin_03, colin_12, colin_13, 
+    ...     colin_23, colin_01_23, colin_01_45, colin_02_45, colin_03_45, 
+    ...     colin_12_45, colin_13_45, colin_23_45
+    ... ) = set_up_is_a_subline_in_colineation()
+    ??? l12.is_a_subline_in_colineation(colin_01)
+    False
+    ??? l12.is_a_subline_in_colineation(colin_02)
+    True
+    ??? l12.is_a_subline_in_colineation(colin_03)
+    True
+    ??? l12.is_a_subline_in_colineation(colin_12)
+    True
+    ??? l12.is_a_subline_in_colineation(colin_13)
+    True
+    ??? l12.is_a_subline_in_colineation(colin_23)
+    False
+    ??? l12.is_a_subline_in_colineation(colin_01_23)
+    False
+    ??? l12.is_a_subline_in_colineation(colin_01_45)
+    False
+    ??? l12.is_a_subline_in_colineation(colin_02_45)
+    True
+    ??? l12.is_a_subline_in_colineation(colin_03_45)
+    True
+    ??? l12.is_a_subline_in_colineation(colin_12_45)
+    True
+    ??? l12.is_a_subline_in_colineation(colin_13_45)
+    True
+    ??? l12.is_a_subline_in_colineation(colin_23_45)
+    False
+
+    ??? def set_up_subline():
     ...     px = point.Point(1, 2, 3)
     ...     p0 = point.Point(0, 0, 0)
     ...     p1 = point.Point(1, 1, 1)
@@ -451,11 +457,11 @@
     ...     l46 = line.Line(p4, p6)
     ...     l57 = line.Line(p5, p7)
     ...     return (lx, l01, l02, l03, l04, l05, l23, l24, l25, l46, l57)
-    >>> lx, l01, l02, l03, l04, l05, l23, l24, l25, l46, l57 = (
+    ??? lx, l01, l02, l03, l04, l05, l23, l24, l25, l46, l57 = (
     ...     set_up_subline())
 
 #   is_a_subline_in_colines
-    >>> def set_up_colines():
+    ??? def set_up_colines():
     ...     clines_empty = []
     ...     clines_no_match = [lx, l01, l02, l03, l23, l46, l57]
     ...     clines_1_match = [lx, l01, l02, l03, l23, l25, l46, l57]
@@ -465,16 +471,16 @@
     ...         clines_no_match, 
     ...         clines_1_match, 
     ...         clines_2_matches)
-    >>> clines_no_match = [lx, l01, l02, l03, l23, l25]
-    >>> clines_empty, clines_no_match, clines_1_match, clines_2_matches = (
+    ??? clines_no_match = [lx, l01, l02, l03, l23, l25]
+    ??? clines_empty, clines_no_match, clines_1_match, clines_2_matches = (
     ...     set_up_colines())
-    >>> l24.is_a_subline_in_colines(clines_empty)
+    ??? l24.is_a_subline_in_colines(clines_empty)
     False
-    >>> l24.is_a_subline_in_colines(clines_no_match)
+    ??? l24.is_a_subline_in_colines(clines_no_match)
     False
-    >>> l24.is_a_subline_in_colines(clines_1_match)
+    ??? l24.is_a_subline_in_colines(clines_1_match)
     True
-    >>> l24.is_a_subline_in_colines(clines_2_matches)
+    ??? l24.is_a_subline_in_colines(clines_2_matches)
     True
 
 #   is_a_subline_of
