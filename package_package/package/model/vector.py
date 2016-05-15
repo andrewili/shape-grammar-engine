@@ -92,7 +92,10 @@ class Vector(object):
             self.z)
         return string
 
-    ### operations and relations
+    def listing(self):
+        pass
+
+    ### operations
     def find_unit_vector(self):
         """Returns:
             uv              Vector. The unit vector of v, if length > 0. None 
@@ -150,12 +153,60 @@ class Vector(object):
         v2 = Vector.from_matrix(m2)
         return v2
 
+    ### relations
     def __eq__(self, other):
         value = almost_equal(self.matrix, other.matrix)
         return value
 
+    def __ge__(self, other):
+        value = False
+        self_tuple = (self.x, self.y, self.z)
+        other_tuple = (other.x, other.y, other.z)
+        if (almost_equal(self_tuple, other_tuple) or
+            self_tuple > other_tuple
+        ):
+            value = True
+        return value
+
+    def __gt__(self, other):
+        value = False
+        self_tuple = (self.x, self.y, self.z)
+        other_tuple = (other.x, other.y, other.z)
+        if (not almost_equal(self_tuple, other_tuple) and
+            self_tuple > other_tuple
+        ):
+            value = True
+        return value
+
+    def __le__(self, other):
+        value = False
+        self_tuple = (self.x, self.y, self.z)
+        other_tuple = (other.x, other.y, other.z)
+        if (almost_equal(self_tuple, other_tuple) or
+            self_tuple < other_tuple
+        ):
+            value = True
+        return value
+
+    def __lt__(self, other):
+        value = False
+        self_tuple = (self.x, self.y, self.z)
+        other_tuple = (other.x, other.y, other.z)
+        if (not almost_equal(self_tuple, other_tuple) and
+            self_tuple < other_tuple
+        ):
+            value = True
+        return value
+
     def __ne__(self, other):
         value = not almost_equal(self.matrix, other.matrix)
+        return value
+
+    def __hash__(self):
+        hash_x = hash(self.x)
+        hash_y = hash(self.y)
+        hash_z = hash(self.z)
+        value = hash((hash_x, hash_y, hash_z))
         return value
 
     ### utility

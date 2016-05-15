@@ -43,7 +43,7 @@ class Line(object):
             self.x2 = self.head.x
             self.y2 = self.head.y
             self.z2 = self.head.z
-            self.spec = (self.x1, self.y1, self.z1, self.x2, self.y2, self.z2)
+            self.spec = (self.tail.spec, self.head.spec)
             self.v = self.head - self.tail
             self.l = self.length = self.v.length
             self.carrier = self._find_carrier(self.tail, self.head)
@@ -275,6 +275,43 @@ class Line(object):
         value = (self.carrier == other.carrier)
         return value
 
+    def can_be_merged_with(self, other):
+        """Receives:
+            other           Line. Colinear with self. Guaranteed [Test?]
+        Returns:
+            value           boolean. True if 
+                            a. self <= other, and 
+                            b. self and other overlap
+                            False otherwise
+        See Krishnamurti (1980), 465.
+        """
+        if self.tail == other.head:
+            value = True
+        elif other.tail == self.head:
+            value = True
+        elif (
+            self.tail < other.head and
+            other.tail < self.head
+        ):
+            value = True
+        elif self.tail > other.tail:
+            value = False
+        else:
+            value = False
+        return value
+
+    def merge_with(self, other):
+        """Receives:
+            other           Line. Colinear and mergeable with self. 
+                            self.tail <= other.tail. Guaranteed
+        Returns:
+            line_sum        Line. The merged line of self and other
+        """
+        new_tail = min(self.tail, other.tail)
+        new_head = max(self.head, other.head)
+        line_sum = Line(new_tail, new_head)
+        return line_sum
+
     def __hash__(self):
         value = hash((
             hash(self.tail), 
@@ -283,37 +320,35 @@ class Line(object):
 
     ### part relations
     def is_a_subline_in_colineation(self, colineation):
-        """Receives:
+        """Is called by:    Colineation.is_a_subcolineation_of
+        Receives:
             colineation     Colineation. Colinear with self. Guaranteed by 
-                            the calling function 
-                            (Colineation.is_a_subcolineation_of)
+                            the calling function
         Returns:
             value           boolean. True if self is a subline of a line in 
                             maximized colineation. False otherwise
         """
         value = False
-        max_colines = self.maximal(self.lines)
-        for other_line in max_colines:
-        # for other_line in colineation.lines:
+        for other_line in colineation.lines:
             if self.is_a_subline_of(other_line):
                 value = True
         return value
 
-    def is_a_subline_in_colines(self, colines):     #   Looks redundant
-        """Receives:
-            colines         [Line, ...]. A list of colinear, possibly non-
-                            maximal, lines. Colinearity guaranteed by calling 
-                            function
-        Returns:
-            value           boolean. True if the line is a subline of some 
-                            line in colines. False otherwise
-        """
-        value = False
-        for line_i in colines:
-            if self.is_a_subline_of(line_i):
-                value = True
-                break
-        return value
+    # def is_a_subline_in_colines(self, colines):     #   Looks redundant
+        # """Receives:
+        #     colines         [Line, ...]. A list of colinear, possibly non-
+        #                     maximal, lines. Colinearity guaranteed by calling 
+        #                     function
+        # Returns:
+        #     value           boolean. True if the line is a subline of some 
+        #                     line in colines. False otherwise
+        # """
+        # value = False
+        # for line_i in colines:
+        #     if self.is_a_subline_of(line_i):
+        #         value = True
+        #         break
+        # return value
 
     def is_a_subline_of(self, other):
         """Receives:
@@ -331,9 +366,10 @@ class Line(object):
         return value
 
     ### overlap relations
-    def is_disjoint_less_than(self, other):     ##  called by Colineation as
-                                                ##  is_disjoint_left_of
-        """Receives:
+    def is_disjoint_less_than(self, other):
+        """Is called by:    Colineation.subtract_line_colineation as 
+                            is_disjoint_left_of
+        Receives:
             other           Line. Colinear. Guaranteed by the calling function
         Returns:
             value           boolean. True if all of self is less than all of 
@@ -342,8 +378,9 @@ class Line(object):
         value = (self.head <= other.tail)
         return value
 
-    def overlaps_tail_of(self, other):          ##  called by Colineation
-        """Receives:
+    def overlaps_tail_of(self, other):
+        """Is called by:    Colineation.subtract_line_colineation
+        Receives:
             other           Line. Colinear. Guaranteed by the calling function
         Returns:
             value           boolean. True if self overlaps the the tail of 
@@ -355,8 +392,9 @@ class Line(object):
             self.head <  other.head)
         return value
 
-    def overlaps_all_of(self, other):           ##  called by Colineation
-        """Receives:
+    def overlaps_all_of(self, other):
+        """Is called by:    Colineation.subtract_line_colineation
+        Receives:
             other           Line. Colinear. Guaranteed by the calling function
         Returns:
             value           boolean. True if self overlaps all of (and is 
@@ -367,9 +405,9 @@ class Line(object):
             self.head >= other.head)
         return value
 
-    def overlaps_exactly(self, other):          ##  new; not called by 
-                                                ##  Colineation
-        """Receives:
+    def overlaps_exactly(self, other):
+        """Is called by:    Not yet. Colineation?
+        Receives:
             other           Line. Colinear. Guaranteed by the calling function 
         Returns:
             value           boolean. True if self is coterminous with other. 
@@ -378,8 +416,9 @@ class Line(object):
         value = (self == other)
         return value
 
-    def overlaps_middle_of(self, other):        ##  called by Colineation
-        """Receives:
+    def overlaps_middle_of(self, other):
+        """Is called by:    Colineation.subtract_line_colineation
+        Receives:
             other           Line. Colinear. Guaranteed by the calling function
         Returns:
             value           boolean. True if self overlaps other, but not 
@@ -390,8 +429,9 @@ class Line(object):
             self.head <  other.head)
         return value
 
-    def overlaps_head_of(self, other):          ##  called by Colineation
-        """Receives:
+    def overlaps_head_of(self, other):
+        """Is called by:    Colineation.subtract_line_colineation
+        Receives:
             other           Line. Colinear. Guaranteed by the calling function 
         Returns:
             value           boolean. True if self overlaps the head of other. 
@@ -403,9 +443,9 @@ class Line(object):
             self.head >= other.head)
         return value
 
-    def is_disjoint_greater_than(self, other):  ##  called by Colineation as
-                                                ##  is_disjoint_right_of
-        """Receives:
+    def is_disjoint_greater_than(self, other):
+        """Is called by:    Colineation.subtract_line_colineation
+        Receives:
             other           Line. Colinear. Guaranteed by the calling function 
         Returns:
             value           boolean. True if all of self is greater than all 
@@ -450,8 +490,9 @@ class Line(object):
         # new_line = Line(new_tail, new_head)
         # return new_line
 
-    def subtract_line_tail(self, other):        ##  called by Colineation
-        """Receives:
+    def subtract_line_tail(self, other):
+        """Is called by:    Colineation.subtract_line_colineation
+        Receives:
             other           Line. Colinear. Overlaps the tail of self. 
                             Guaranteed by the calling function
         Returns: 

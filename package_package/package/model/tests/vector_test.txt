@@ -167,6 +167,9 @@
     >>> eval(r_cos) == v_cos
     True
 
+#   listing
+    >>> print('listing?')
+    
 ### operations and relations
 #   uv = find_unit_vector
     >>> v0 = vector.Vector(0, 0, 0)
@@ -256,14 +259,80 @@
     >>> v123_0 == vector.Vector(0, 0, 0)
     True
 
-#   __eq__, __ne__
-    >>> cos45 = cos(TAU/8)
-    >>> sin45 = sin(TAU/8)
-    >>> cos45 == sin45
+### relations
+    >>> def set_up_relations():
+    ...     cos45 = cos(TAU / 8)
+    ...     sin45 = sin(TAU / 8)
+    ...     v_000 = vector.Vector(0, 0, 0)
+    ...     v_cs0 = vector.Vector(cos45, sin45, 0)
+    ...     v_sc0 = vector.Vector(sin45, cos45, 0)
+    ...     v_100 = vector.Vector(1, 0, 0)
+    ...     return (v_000, v_cs0, v_sc0, v_100)
+    >>> v_000, v_cs0, v_sc0, v_100 = set_up_relations()
+
+#   __eq__
+    >>> v_cs0 == v_000
     False
-    >>> v1 = vector.Vector(cos45, sin45, 0)
-    >>> v2 = vector.Vector(sin45, cos45, 0)
-    >>> v1 == v2
+    >>> v_cs0 == v_sc0
     True
-    >>> v1 != v2
+    >>> v_sc0 == v_cs0
+    True
+    >>> v_cs0 == v_100
     False
+
+#   __ge__
+    >>> v_cs0 >= v_000
+    True
+    >>> v_cs0 >= v_sc0
+    True
+    >>> v_sc0 >= v_cs0
+    True
+    >>> v_cs0 >= v_100
+    False
+
+#   __gt__
+    >>> v_cs0 >  v_000
+    True
+    >>> v_cs0 >  v_sc0
+    False
+    >>> v_sc0 >  v_cs0
+    False
+    >>> v_cs0 >  v_100
+    False
+
+#   __le__
+    >>> v_cs0 <= v_000
+    False
+    >>> v_cs0 <= v_sc0
+    True
+    >>> v_sc0 <= v_cs0
+    True
+    >>> v_cs0 <= v_100
+    True
+
+#   __lt__
+    >>> v_cs0 <  v_000
+    False
+    >>> v_cs0 <  v_sc0
+    False
+    >>> v_sc0 <  v_cs0
+    False
+    >>> v_cs0 <  v_100
+    True
+
+#   __ne__
+    >>> v_cs0 != v_000
+    True
+    >>> v_cs0 != v_sc0
+    False
+    >>> v_sc0 != v_cs0
+    False
+    >>> v_cs0 != v_100
+    True
+
+#   __hash__
+    >>> v1_exp = hash(v1)
+    >>> v1_got = hash((hash(v1.x), hash(v1.y), hash(v1.z)))
+    >>> v1_exp == v1_got
+    True
+

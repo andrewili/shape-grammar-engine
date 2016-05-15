@@ -7,11 +7,10 @@ class LinePartition(object):                ##  rename MaximalColineations?
     ### construct
     def __init__(self, lines):
         """Receives:
-            lines           [Line, ...]. A list of colinear lines (possibly 
-                            empty, possibly overlapping)
+            lines           [Line, ...]. A list of lines
         Has a dictionary of carrier : colineation entries
         """
-        method_name = '__init__()'
+        method_name = '__init__'
         try:
             if not (
                 lines.__class__ == list and 
@@ -22,48 +21,79 @@ class LinePartition(object):                ##  rename MaximalColineations?
                 raise TypeError
         except TypeError:
             message = 'The argument must be a list of lines'
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
             self.dictionary = self._make_dictionary(lines)
 
-    def _are_lines(self, lines):
+    @classmethod
+    def _are_lines(cls, lines):
         value = True
         for line_i in lines:
-            if line_i.__class__ != line.Line:
+            if type(line_i) != line.Line:
                 value = False
                 break
         return value
 
     @classmethod
-    def _make_dictionary(cls, lines):
+    def _make_dictionary(cls, lines):           ##  inst meth? cf lpt-part
         """Receives:
-            lines           [Line, ...]. A non-empty list of lines, 
-                            possibly overlapping. Guaranteed by the calling 
-                            function
+            lines           [Line, ...]. A non-empty list of lines
         Returns:
-            dictionary      {carrier: colineation, ...}, a dictionary 
+            dict_of_colineations
+                            {carrier : colineation, ...}, a dictionary 
                             partitioned by carrier, where:
                 carrier     (unit_vector, intercept)
                 unit_vector Vector
                 intercept   Point
                 colineation Colineation
         """
-        dictionary = {}
-        for line_i in lines:
-            if line_i.carrier in dictionary:
-                lines_by_carrier = dictionary[line_i.carrier]
-                lines_by_carrier.append(line_i)
+        dict_of_colines = cls._make_dict_of_colines(lines)
+        dict_of_colineations = cls._make_dict_of_colineations(dict_of_colines)
+        return dict_of_colineations
+
+    @classmethod
+    def _make_dict_of_colines(cls, lines):
+        """Receives:
+            lines           [Line, ...]. A non-empty list of lines
+        Returns:
+            dict_of_colines {carrier : colines, ...}, where:
+                carrier     (unit_vector, intercept)
+                unit_vector Vector
+                intercept   Point
+                colines     [Line, ...]. A non-empty list of colinear lines
+        """
+        d = {}
+        for l in lines:
+            if l.carrier in d:
+                colines = d[l.carrier]
+                colines.append(l)
             else:
-                lines_by_carrier = [line_i]
-                dictionary[line_i.carrier] = lines_by_carrier
-        for carrier in dictionary:
-            lines_by_carrier = dictionary[carrier]
-            maximal_lines_by_carrier = colineation.Colineation.maximal(
-                lines_by_carrier)
-            new_colineation = colineation.Colineation(
-                maximal_lines_by_carrier)
-            dictionary[carrier] = new_colineation
-        return dictionary
+                colines = [l]
+                d[l.carrier] = colines
+        return d
+
+    @classmethod
+    def _make_dict_of_colineations(cls, dict_of_colines):
+        """Receives:
+            dict_of_colines {carrier : colines, ...}. A non-empty dictionary 
+                            of colines, where:
+                carrier     (unit_vector, intercept)
+                unit_vector Vector
+                intercept   Point
+                colines     [Line, ...]. A non-empty list of colinear lines
+        Converts the colines lists to colineations. Returns:
+            new_dict        {carrier : colineation, ...}. A non-empty 
+                            dictionary of colineations, where:
+                carrier     as above
+                colineation Colineation. With a non-empty ordered list of 
+                            colinear lines
+        """
+        new_dict = {}
+        for carrier in dict_of_colines:
+            colines = dict_of_colines[carrier]
+            new_colin = colineation.Colineation(colines)
+            new_dict[carrier] = new_colin
+        return new_dict
 
     @classmethod
     def from_dictionary(cls, dictionary):
@@ -253,7 +283,7 @@ class LinePartition(object):                ##  rename MaximalColineations?
 
     @classmethod
     def _print_error_message(cls, method_name, message):
-        print '%s.%s: %s' % (cls.__name__, method_name, message)
+        print '%s.%s:\n    %s' % (cls.__name__, method_name, message)
 
     ###
 if __name__ == '__main__':

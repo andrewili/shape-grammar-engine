@@ -2,69 +2,78 @@ import copy
 import line
 
 class Colineation(object):
-    """Has an ordered list of maximal colinear lines. Immutable
+    """Has an ordered, possibly empty, list of (unique) maximal colinear lines 
+    Immutable
     """
     ### construct
     def __init__(self, lines):
         """Receives:
-            lines           [Line, ...]. An unordered list of colinear lines, 
-                            possibly overlapping
+            lines           [Line, ...]. An unordered list of non-unique 
+                            colinear lines
         """
         method_name = '__init__'
         try:
             if not (
                 type(lines) == list and 
-                (   lines == [] or
-                    self._are_lines(lines))
+                self._are_lines(lines)
             ):
                 raise TypeError
-            elif not self._are_colinear(lines):
+            elif not (
+                lines == [] or
+                self._are_colinear(lines)
+            ):
                 raise ValueError
         except TypeError:
             message = (
                 "The argument must be a list of colinear lines")
             self._print_error_message(method_name, message)
+            print('type(lines): %s' % type(lines))
         except ValueError:
-            message = "The lines must be colinear"
+            message = (
+                "The list must be non-empty and the lines must be colinear")
             self._print_error_message(method_name, message)
         else:
-            self.lines = sorted(lines) # maximize
-            self.lines = self.maximal()
+            if lines == []:
+                self.lines = []
+            else:
+                first_line = lines[0]
+                self.carrier = first_line.carrier
+                self.uv = first_line.uv
+                self.int = first_line.int
+                self.lines = self.maximize(lines)
 
-    def _are_lines(self, lines):
+    def _are_lines(self, items):
         """Receives:
-            lines           [Line, ...]. A list (guaranteed) of lines
+            items           [item, ...]. A list of items
         Returns:
-            value           boolean. True if all the items in lines are lines.
-                            False otherwise
+            value           boolean. True if all the items in the list are 
+                            lines. False otherwise
         """
         value = True
-        for l in lines:
-            if not type(l) == line.Line:
+        for item in items:
+            if not type(item) == line.Line:
                 value = False
                 break
         return value
 
     def _are_colinear(self, lines):
         """Receives:
-            lines           [Line, ...]. A list, possibly empty, of lines. 
+            lines           [Line, ...]. A non_empty list of lines. 
                             Guaranteed by the calling function
         Returns:
             value           boolean. True if the list is empty or if the 
                             lines are colinear. False otherwise
         """
-        if lines == []:
-            value = True
-        else:
-            value = True
-            carrier = lines[0].carrier
-            for line_i in lines:
-                if line_i.carrier != carrier:
-                    value = False
+        value = True
+        carrier = lines[0].carrier
+        for line_i in lines:
+            if line_i.carrier != carrier:
+                value = False
         return value
 
     @classmethod
-    def new_empty(cls):
+    def new_empty(cls):                         ##  used for LinePartition 
+                                                ##  test only
         new_colineation = Colineation([])
         return new_colineation
 
@@ -166,48 +175,29 @@ class Colineation(object):
                 colineation_listing = '\n'.join(line_listings)
             return colineation_listing
 
-    def listing_unordered(self, indent_level=0):
-        """Receives indent_level:
-            int >= 0
-        Returns an unordered, formatted, multi-line string in the form:
-            (bearing, intercept):
-                (x1, y1, x2, y2)
-                ...
-        """
-        indent_increment = 4
-        if indent_level < 0:
-            indent_level = 0
-        indent_string = ' ' * indent_level * indent_increment
-        if self.lines == []:
-            colineation_listing = '%s<empty colineation>' % indent_string
-        else:
-            line_listings = []
-            for line_i in self.lines:
-                line_listings.append(indent_string + line_i.listing())
-            colineation_listing = '\n'.join(line_listings)
-        return colineation_listing
-
-    def lines_str(self, lines):                 ##  used by trace
-        """Receives a list of lines:
-            [Line, ...]
-        Returns a string: 
-            [(x1, y1, x2, y2), ...]
-        """
-        line_strings = []
-        for line_i in lines:
-            line_string = line_i.__str__()
-            line_strings.append(line_string)
-        lines_string = ', '.join(line_strings)
-        return '[%s]' % lines_string
+    # def lines_str(self, lines):                 ##  used by trace
+        # """Receives a list of lines:
+        #     [Line, ...]
+        # Returns a string: 
+        #     [(x1, y1, x2, y2), ...]
+        # """
+        # line_strings = []
+        # for line_i in lines:
+        #     line_string = line_i.__str__()
+        #     line_strings.append(line_string)
+        # lines_string = ', '.join(line_strings)
+        # return '[%s]' % lines_string
 
     def specs(self):
-        """Returns an ordered list of line specs:
-            [(x1, y1, x2, y2), ...]
+        """Returns:
+            line_specs      [line_spec, ...]. An ordered list of line specs, 
+                            where:
+                line_spec   (<x1>, <y1>, <z1>, <x2>, <y2>, <z2>)
         """
-        specs = []
-        for line_i in self.lines:
-            specs.append(line_i.spec)
-        return sorted(specs)
+        line_specs = []
+        for l in self.lines:
+            line_specs.append(l.spec)
+        return sorted(line_specs)
 
     ### relations
     def __eq__(self, other):
@@ -238,63 +228,86 @@ class Colineation(object):
     def is_empty(self):
         return len(self.lines) == 0
 
-    def is_a_subcolineation_of(self, other):    #   called by LinePartition
-        """Receives:
-            other           Colineation. Self and other are colinear
+    def is_a_subcolineation_of(self, other):
+        """Is called by:    LinePartition.colineations_are_subcolineations_in
+        Receives:
+            other           Colineation. Self and other are colinear. 
+                            Guaranteed by the calling function 
         Returns:
             value           boolean. True if each line in self is a subline 
                             in other. False otherwise
         """
         value = True
-        for line_i in self.lines:               #   maximal lines!
+        for line_i in self.lines:
             if not line_i.is_a_subline_in_colineation(other):
                 value = False
                 break
         return value
 
     ### add
-    def __add__(self, other):
-        """Receives a colineation of the same carrier:
-            Colineation
-        Returns the sum (in maximal lines):
-            Colineation
+    def __add__(self, other):                     ##  formerly merge
+        """Receives:
+            other           Colineation. Colinear with self
+        Returns:
+            new_colin       Colineation. Has a set of merged lines from 
+                            self.lines and other.lines
         """
-        new_lines = Colineation._get_maximal_lines_from(self.lines, other.lines)
-        new_colineation = Colineation(new_lines)
-        return new_colineation
+        method_name = '__add__'
+        try:
+            if not type(other) == Colineation:
+                value = None
+                raise TypeError
+            if not self.carrier == other.carrier:
+                value = None
+                raise ValueError
+        except TypeError:
+            message = 'The argument must be a colineation'
+            self._print_error_message(method_name, message)
+        except ValueError:
+            message = 'The colineations must be colinear'
+            self._print_error_message(method_name, message)
+        else:
+            new_lines = copy.copy(self.lines)
+            new_lines.extend(other.lines)
+            self.maximize(new_lines)
+            value = colin_sum = Colineation(new_lines)
+        finally:
+            return value
 
-    @classmethod
-    def _get_maximal_lines_from(cls, maximal_lines_1, maximal_lines_2):
-        """Receives 2 ordered lists of maximal colinear lines:
-            [Line, ...], n >= 1
-        Returns an ordered list of maximal colinear lines:
-            [Line, ...], n >= 1, should not contain duplicates
+    def _get_maximal_lines_from(self, maximal_lines_1, maximal_lines_2):
+        """Receives:
+            maximal_lines_1 [Line, ...]. A non-empty ordered list of unique 
+                            maximal lines
+            maximal_lines_2 [Line, ...]. As for maximal_lines_1
+        Returns:
+            new_maximal_lines 
+                            [Line, ...]. A list of the maximal lines obtained 
+                            by merging max_lines_1 and max_lines_2
         """
         non_maximal_unsorted_lines = []
         non_maximal_unsorted_lines.extend(maximal_lines_1)
         non_maximal_unsorted_lines.extend(maximal_lines_2)
         sorted_non_maximal_lines = sorted(non_maximal_unsorted_lines)
-        new_maximal_lines = Colineation.maximal(sorted_non_maximal_lines)
+        new_maximal_lines = self.maximize(sorted_non_maximal_lines)
         return new_maximal_lines
 
-    @classmethod
-    def maximal(cls, lines):                    #   revert to instance meth?
-        #   Called by Colineation and LinePartition.__init__
-        """Receives: 
+    def maximize(self, lines):
+        """Is called by:    self and LinePartition.__init__
+        Receives: 
             lines           [Line, ...]. A list, possibly empty, of colinear 
-                            lines. Guaranteed (esp. if instance meth)
+                            lines
         Returns:
-            max_lines       [Line, ...]. An ordered list of maximal lines
+            ordered_max_lines
+                            [Line, ...]. An ordered list of maximal lines
         """
         ordered_lines = sorted(lines)
-        max_lines = []
+        ordered_max_lines = []
         while len(ordered_lines) >= 1:
-            max_line = cls._get_least_maximal_line_from(ordered_lines)
-            max_lines.append(max_line)
-        return max_lines
+            max_line = self._get_least_maximal_line_from(ordered_lines)
+            ordered_max_lines.append(max_line)
+        return ordered_max_lines
 
-    @classmethod
-    def _get_least_maximal_line_from(cls, lines):
+    def _get_least_maximal_line_from(self, lines):
         """Receives:
             lines           [Line, ...]. An ordered (non-empty) list of 
                             colinear lines. Guaranteed
@@ -302,13 +315,12 @@ class Colineation(object):
             least_max_line  Line. The least maximal line in lines
         """
         if len(lines) == 1:
-            least_max_line = cls._get_singleton_line_from(lines)
+            least_max_line = self._get_singleton_line_from(lines)
         else:
-            least_max_line = cls._get_least_max_line_from_non_singleton(lines)
+            least_max_line = self._get_least_max_line_from_non_singleton(lines)
         return least_max_line
 
-    @classmethod
-    def _get_singleton_line_from(cls, singleton_list):
+    def _get_singleton_line_from(self, singleton_list):
         """Receives:
             singleton_list  [Line]. A list containing a single line
         Returns:
@@ -317,8 +329,7 @@ class Colineation(object):
         singleton_line = singleton_list.pop(0)
         return singleton_line
 
-    @classmethod
-    def _get_least_max_line_from_non_singleton(cls, lines):
+    def _get_least_max_line_from_non_singleton(self, lines):
         """Receives:
             lines           [Line, ...]. An ordered list, n >= 2, of colinear 
                             lines
@@ -326,101 +337,82 @@ class Colineation(object):
         """
         working_line = lines.pop(0)
         while len(lines) >= 1:
-            other_line = lines[0]
-            if cls._lines_can_be_merged(working_line, other_line):
-                working_line = cls._merge_lines(working_line, other_line)
+            least_line = lines[0]
+            if working_line.can_be_merged_with(least_line):
+                working_line = working_line.merge_with(least_line)
                 lines.pop(0)
             else:
                 break
         least_max_line = working_line
         return least_max_line
 
-    @classmethod
-    def _lines_can_be_merged(cls, line_1, line_2):
-        """Receives:
-            line_1          Line
-            line_2          Line. Lines are colinear and can be merged. 
-                            Guaranteed
-        Returns:
-            value           boolean. True if the lines can be merged. False 
-                            otherwise
-        See Krishnamurti (1980), 465.
-        """
-        if line_1.tail == line_2.head:
-            value = True
-        elif line_2.tail == line_1.head:
-            value = True
-        elif (
-            line_1.tail < line_2.head and
-            line_2.tail < line_1.head
-        ):
-            value = True
-        else:
-            value = False
-        return value
-
-    @classmethod
-    def _merge_lines(cls, line_1, line_2):
-        """Receives:
-            line_1          Line
-            line_2          Line. The lines are colinear and can be merged.
-                            line_1.tail <= line_2.tail
-        Returns:
-            line_sum        Line. The sum of line_1 and line_2
-        """
-        new_tail = min(line_1.tail, line_2.tail)
-        new_head = max(line_1.head, line_2.head)
-        line_sum = line.Line(new_tail, new_head)
-        return line_sum
-
     ### subtract
     def __sub__(self, other):
-        """Receives 2 (colinear) colineations:
-            Colineation, n(lines) >= 0
-        Returns a colineation, possibly empty, of the lines in self and not in 
-        other:
-            Colineation, n(lines) >= 0
+        """Receives:
+            other           Colineation. Colinear with self
+        Returns:
+            new_colineation Colineation. Has a non-empty list of the lines 
+                            obtained by subtracting all the lines in other 
+                            from all the lines in self. If there are no lines, 
+                            returns None
         """
         trace_on = False
-        if trace_on:
-            method_name = 'Colineation.__sub__()'
-            print '||| %s' % method_name
-            print 'self\n%s' % self.listing()
-            print 'other\n%s' % other.listing()
-        col_col_diffs = []
-        for line_i in self.lines:
+        method_name = '__sub__'
+        try:
+            if not type(other) == Colineation:
+                raise TypeError
+            elif not self.carrier == other.carrier:
+                raise ValueError
+        except TypeError:
+            message = "The argument must be a colineation"
+            self._print_error_message(method_name, message)
+            new_colineation = None
+        except ValueError:
+            message = "The subtrahend and the minuend must be colinear"
+            self._print_error_message(method_name, message)
+            new_colineation = None
+        else:
             if trace_on:
                 print '||| %s' % method_name
-                print 'line_i:\n%s' % line_i
-            if other.is_empty():
-                col_col_diffs.append(line_i)
-            else:
-                other_disposable = copy.deepcopy(other)
-                line_col_diffs = self._subtract_line_colineation(
-                    line_i, other_disposable)
-                col_col_diffs.extend(line_col_diffs)
+                print 'self\n%s' % self.listing()
+                print 'other\n%s' % other.listing()
+            col_col_diffs = []
+            for line_i in self.lines:
                 if trace_on:
                     print '||| %s' % method_name
-                    print 'line_col_diffs:\n%s' % self.lines_str(line_col_diffs)
-                    print 'col_col_diffs:\n%s' % self.lines_str(col_col_diffs)
-        new_colineation = Colineation(col_col_diffs)
-        return new_colineation
+                    print 'line_i:\n%s' % line_i
+                if other.is_empty():
+                    col_col_diffs.append(line_i)
+                else:
+                    other_disposable = copy.deepcopy(other)
+                    line_col_diffs = self._subtract_line_colineation(
+                        line_i, other_disposable)
+                    col_col_diffs.extend(line_col_diffs)
+                    if trace_on:
+                        print '||| %s' % method_name
+                        print 'line_col_diffs:\n%s' % (
+                            self.lines_str(line_col_diffs))
+                        print 'col_col_diffs:\n%s' % (
+                            self.lines_str(col_col_diffs))
+            new_colineation = Colineation(col_col_diffs)
+        finally:
+            return new_colineation
 
-    def _subtract_line_colineation(
-        self, line_minuend, colineation_subtrahend
-    ):
-        """Receives a line minuend and a (non-empty) colineation of colinear 
-        working line subtrahends:
-            line_minuend: Line
-            colineation_subtrahend: Colineation, len(lines) >= 1
-        Returns an ordered list of the line differences obtained by subtracting
-        the line subtrahends from the (single) line minuend:
-            [Line, ...], n >= 0
-        Removes from the working colineation 1) the line subtrahends that lie to 
-        the left of the line minuend's tail and 2) those that have been 
-        subtracted and leave the line minuend's head unchanged. (The remaining 
-        line subtrahends will be subtracted from subsequent line minuends, if 
-        any.)
+    def _subtract_line_colineation(self, line_min, colin_sub):
+        """Receives:
+            line_min        Line. The minuend
+            colin_sub       Colineation. The subtrahend. By definition 
+                            non-empty, ordered, unique, maximal
+        Returns:
+            lines_diff      [Line, ...]. An ordered, possibly empty, list of 
+                            the line differences obtained by subtracting
+                            the line subtrahend(s) from the (single) line 
+                            minuend
+        Removes from the working colineation 1) the line subtrahends that lie 
+        to the left of the line minuend's tail and 2) those that have been 
+        subtracted and leave the line minuend's head unchanged. (The 
+        remaining line subtrahends will be subtracted from subsequent line 
+        minuends, if any.)
         """
         # Discard the disjoint line subtrahends (if any) on the left of the line
         # minuend
@@ -430,9 +422,9 @@ class Colineation(object):
         # Subtract and retain the line subtrahend that overlaps the head of the
         # line minuend
         trace_on = False
-        line_diffs = []
-        working_min = line_minuend
-        working_col = colineation_subtrahend
+        lines_diff = []
+        working_min = line_min
+        working_col = colin_sub
         last_line_line_diff_list = []
         if trace_on:
             method_name = 'Colineation._subtract_line_colineation'
@@ -448,7 +440,7 @@ class Colineation(object):
             #     for i in range(len(working_col.lines)):
             #         print 'working_col.lines[%i]: %s' % (
             #             i, working_col.lines[i].listing())
-            if line_sub.is_disjoint_left_of(working_min):
+            if line_sub.is_disjoint_less_than(working_min):
                 # difference = empty line
                 # discard subtrahend and try with next, if any
                 last_line_line_diff_list = [working_min]
@@ -470,7 +462,7 @@ class Colineation(object):
                 # subtract; discard subtrahend and try with next, if any
                 line_line_diffs = working_min.subtract_line_middle(
                     line_sub)
-                line_diffs.append(line_line_diffs[0])
+                lines_diff.append(line_line_diffs[0])
                 working_min = line_line_diffs[1]
                 last_line_line_diff_list = [line_line_diffs[1]]
                 working_col.lines.pop(0)
@@ -478,7 +470,7 @@ class Colineation(object):
                 # subtract; retain subtrahend and try with next minuend
                 line_line_diffs = working_min.subtract_line_head(
                     line_sub)
-                line_diffs.append(line_line_diffs[0])
+                lines_diff.append(line_line_diffs[0])
                 last_line_line_diff_list = []
                 if trace_on:
                     print '||| %s' % method_name
@@ -488,11 +480,11 @@ class Colineation(object):
                     print 'line_line_diffs:\n%s' % line_line_diffs_listing
                     line_diffs_listing = (
                         self.get_colineation_listing(
-                            line_diffs))
-                    print 'line_diffs:\n%s' % line_diffs_listing
+                            lines_diff))
+                    print 'lines_diff:\n%s' % line_diffs_listing
                     print 'last_line_line_diff: %s' % last_line_line_diff_list
                 break
-            elif line_sub.is_disjoint_right_of(working_min):
+            elif line_sub.is_disjoint_greater_than(working_min):
                 # difference = empty line
                 # retain subtrahend and try with next minuend
                 last_line_line_diff_list = [working_min]
@@ -500,8 +492,8 @@ class Colineation(object):
             else:
                 print "Shape._subtract_line_colineation"
                 print "    Oops. This subtrahend is supposed to be impossible"
-        line_diffs.extend(last_line_line_diff_list)
-        return line_diffs
+        lines_diff.extend(last_line_line_diff_list)
+        return lines_diff
 
     @classmethod
     def _print_error_message(cls, method_name, message):
