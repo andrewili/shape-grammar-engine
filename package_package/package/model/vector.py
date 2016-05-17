@@ -92,8 +92,23 @@ class Vector(object):
             self.z)
         return string
 
-    def listing(self):
-        pass
+    def listing(self, decimal_places=0):
+        """Returns:
+            string          str. In the form 
+                            [<x_listing> <y_listing> <z_listing>]
+        """
+        n = decimal_places
+        x_listing = self._get_element_listing(self.x, n)
+        y_listing = self._get_element_listing(self.y, n)
+        z_listing = self._get_element_listing(self.z, n)
+        string = '[%s %s %s]' % (x_listing, y_listing, z_listing)
+        return string
+
+    def _get_element_listing(self, element, decimal_places=0):
+        n = decimal_places
+        format = '%1.' + str(n) + 'f'
+        string = format % element
+        return string
 
     ### operations
     def find_unit_vector(self):

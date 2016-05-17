@@ -168,8 +168,20 @@
     True
 
 #   listing
-    >>> print('listing?')
-    
+    >>> v_12.listing()
+    '[1 2 0]'
+    >>> v_12.listing(1)
+    '[1.0 2.0 0.0]'
+    >>> v_12.listing(2)
+    '[1.00 2.00 0.00]'
+    >>> v_cos.listing()
+    '[1 1 1]'
+    >>> v_cos.listing(2)
+    '[0.87 0.71 0.50]'
+    >>> v_cos.listing(12)
+    '[0.866025403784 0.707106781187 0.500000000000]'
+
+
 ### operations and relations
 #   uv = find_unit_vector
     >>> v0 = vector.Vector(0, 0, 0)

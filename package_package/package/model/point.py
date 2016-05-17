@@ -32,13 +32,13 @@ class Point(object):
             self.spec = (self.x, self.y, self.z)
 
     @classmethod
-    def from_spec(cls, spec):
+    def from_specs(cls, spec):
         """Receives:
             spec            (num, ...) or [num, ...], 2 <= length <= 3
         Constructs a 3d Point with z = 0 as default. Returns:
             point           Point
         """
-        method_name = 'from_spec'
+        method_name = 'from_specs'
         try:
             if not cls.is_a_spec_in(spec):
                 raise TypeError
@@ -161,8 +161,20 @@ class Point(object):
 
     ### represent
     def __str__(self):
-        string = '(%s, %s, %s)' % (self.x, self.y, self.z)
+        """Returns:
+            string          str. Zero fractions are removed
+        """
+        x_str = self._finish_coord(self.x)
+        y_str = self._finish_coord(self.y)
+        z_str = self._finish_coord(self.z)
+        string = '(%s, %s, %s)' % (x_str, y_str, z_str)
         return string
+
+    def _finish_coord(self, raw_coord):
+        finished_coord = raw_coord
+        if str(raw_coord)[-2:] == '.0':
+            finished_coord = str(raw_coord)[:-2]
+        return finished_coord
 
     def __repr__(self):
         string = 'point.Point(%s, %s, %s)' % (

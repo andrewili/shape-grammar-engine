@@ -127,8 +127,8 @@ class Line(object):
         return p0
 
     @classmethod
-    def from_spec(cls, x1, y1, z1, x2, y2, z2):
-        method_name = 'from_spec'
+    def from_specs(cls, x1, y1, z1, x2, y2, z2):
+        method_name = 'from_specs'
         try:
             if not (
                 point.Point._is_a_number(x1) and
@@ -149,8 +149,8 @@ class Line(object):
             return new_line
 
     @classmethod
-    def from_spec_4(cls, x1, y1, x2, y2):
-        method_name = 'from_spec_4'
+    def from_specs_4(cls, x1, y1, x2, y2):
+        method_name = 'from_specs_4'
         try:
             if not (
                 point.Point._is_a_number(x1) and
@@ -169,8 +169,8 @@ class Line(object):
             return new_line
 
     @classmethod
-    def from_spec_2(cls, x1, x2):
-        new_line = Line.from_spec(x1, x1, x1, x2, x2, x2)
+    def from_specs_2(cls, x1, x2):
+        new_line = Line.from_specs(x1, x1, x1, x2, x2, x2)
         return new_line
 
     ### represent

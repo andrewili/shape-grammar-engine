@@ -41,7 +41,7 @@ class Shape(object):
         lines = []
         for spec in specs:
             x1, y1, x2, y2 = spec
-            line_i = line.Line.from_spec(x1, y1, x2, y2)
+            line_i = line.Line.from_specs(x1, y1, x2, y2)
             lines.append(line_i)
         new_line_part = line_partition.LinePartition(lines)
         new_shape = Shape(new_line_part)

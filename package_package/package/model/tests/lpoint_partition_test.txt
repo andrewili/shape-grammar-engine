@@ -289,16 +289,16 @@
     True
 
 ### get
-#   get_specs
-    >>> def set_up_get_specs():
+#   get_specs                                   #   suspended
+    ??? def set_up_get_specs():
     ...     lpp_0 = lpoint_partition.LPointPartition.new_empty()
     ...     specs = [(1, 1, 1, 'a'), (2, 2, 2, 'a'), (3, 3, 3, 'b')]
     ...     lpp_1 = lpoint_partition.LPointPartition.from_specs(specs)
     ...     return [lpp_0, lpp_1]
-    >>> lpp_0, lpp_1 = set_up_get_specs()
-    >>> print lpp_0.get_specs()
+    ??? lpp_0, lpp_1 = set_up_get_specs()
+    ??? print lpp_0.get_specs()
     []
-    >>> print lpp_1.get_specs()
+    ??? print lpp_1.get_specs()
     [(1, 1, 1, 'a'), (2, 2, 2, 'a'), (3, 3, 3, 'b')]
 
 ### compare

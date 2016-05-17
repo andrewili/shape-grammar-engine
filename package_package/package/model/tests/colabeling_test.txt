@@ -21,7 +21,7 @@
         The argument must be a list or set of labeled points
 
     >>> def make_non_lpoints():
-    ...     line_01 = line.Line.from_spec_2(0, 1)
+    ...     line_01 = line.Line.from_specs_2(0, 1)
     ...     non_lpoints = [line_01]
     ...     return non_lpoints
     >>> non_lpoints = make_non_lpoints()

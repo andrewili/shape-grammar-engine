@@ -213,20 +213,20 @@ class LPointPartition(object):
         return points_listing
 
         ### get
-    def get_specs(self):
-        """Returns: 
-            lp_specs        [lp_spec, ...]. An ordered list of lpoint specs 
-                            (x, y, z, label), where:
-                x, y, z     num
-                label       str
-        """
-        lp_specs = []
-        for label in self.dictionary:
-            points = self.dictionary[label]
-            for p in sorted(points):
-                lp_spec = (p.x, p.y, p.z, label)
-                lp_specs.append(lp_spec)
-        return lp_specs
+    # def get_specs(self):                        ##  suspended
+        # """Returns: 
+        #     lp_specs        [lp_spec, ...]. An ordered list of lpoint specs 
+        #                     (x, y, z, label), where:
+        #         x, y, z     num
+        #         label       str
+        # """
+        # lp_specs = []
+        # for label in self.dictionary:
+        #     points = self.dictionary[label]
+        #     for p in sorted(points):
+        #         lp_spec = (p.x, p.y, p.z, label)
+        #         lp_specs.append(lp_spec)
+        # return lp_specs
 
         ### compare
     def __eq__(self, other):

@@ -27,7 +27,6 @@ class Colineation(object):
             message = (
                 "The argument must be a list of colinear lines")
             self._print_error_message(method_name, message)
-            print('type(lines): %s' % type(lines))
         except ValueError:
             message = (
                 "The list must be non-empty and the lines must be colinear")
@@ -95,7 +94,7 @@ class Colineation(object):
             new_lines = []
             for spec in specs:
                 x, y = spec
-                new_line = line.Line.from_spec_2(x, y)
+                new_line = line.Line.from_specs_2(x, y)
                 new_lines.append(new_line)
             new_colineation = Colineation(new_lines)
             return new_colineation
@@ -188,16 +187,16 @@ class Colineation(object):
         # lines_string = ', '.join(line_strings)
         # return '[%s]' % lines_string
 
-    def specs(self):
-        """Returns:
-            line_specs      [line_spec, ...]. An ordered list of line specs, 
-                            where:
-                line_spec   (<x1>, <y1>, <z1>, <x2>, <y2>, <z2>)
-        """
-        line_specs = []
-        for l in self.lines:
-            line_specs.append(l.spec)
-        return sorted(line_specs)
+    # def specs(self):                          ##  suspended
+        # """Returns:
+        #     line_specs      [line_spec, ...]. An ordered list of line specs, 
+        #                     where:
+        #         line_spec   (<x1>, <y1>, <z1>, <x2>, <y2>, <z2>)
+        # """
+        # line_specs = []
+        # for l in self.lines:
+        #     line_specs.append(l.spec)
+        # return sorted(line_specs)
 
     ### relations
     def __eq__(self, other):

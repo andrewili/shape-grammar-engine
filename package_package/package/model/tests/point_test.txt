@@ -59,57 +59,57 @@
     >>> p000._is_a_number(1.1)
     True
 
-#   from_spec
+#   from_specs
     ### bad type
     >>> non_tuple = 1
-    >>> point.Point.from_spec(non_tuple)
-    Point.from_spec:
+    >>> point.Point.from_specs(non_tuple)
+    Point.from_specs:
         The argument must be a tuple or a list of 2 or 3 numbers
     >>> tuple_with_1_bad_type = ('x', 2, 3)
-    >>> point.Point.from_spec(tuple_with_1_bad_type)
-    Point.from_spec:
+    >>> point.Point.from_specs(tuple_with_1_bad_type)
+    Point.from_specs:
         The argument must be a tuple or a list of 2 or 3 numbers
 
     ### bad value
     >>> bad_val_1_el = [1]
     >>> bad_val_4_el = (1, 2, 3, 4)
-    >>> point.Point.from_spec(bad_val_1_el)
-    Point.from_spec:
+    >>> point.Point.from_specs(bad_val_1_el)
+    Point.from_specs:
         The argument must be a tuple or a list of 2 or 3 numbers
-    >>> point.Point.from_spec(bad_val_4_el)
-    Point.from_spec:
+    >>> point.Point.from_specs(bad_val_4_el)
+    Point.from_specs:
         The argument must be a tuple or a list of 2 or 3 numbers
 
     ### good arg
     >>> good_arg_2 = (2.2, 1.1)
-    >>> p = point.Point.from_spec(good_arg_2)
+    >>> p = point.Point.from_specs(good_arg_2)
     >>> p.matrix == np.array([2.2, 1.1, 0])
     array([ True,  True,  True], dtype=bool)
 
     >>> good_arg_3 = [3.3, 2.2, 1.1]
-    >>> p = point.Point.from_spec(good_arg_3)
+    >>> p = point.Point.from_specs(good_arg_3)
     >>> p.matrix == np.array([3.3, 2.2, 1.1])
     array([ True,  True,  True], dtype=bool)
 
 #   is_a_spec_in
     >>> bad_type_container = 7
-    >>> point.Point.from_spec(bad_type_container)
-    Point.from_spec:
+    >>> point.Point.from_specs(bad_type_container)
+    Point.from_specs:
         The argument must be a tuple or a list of 2 or 3 numbers
 
     >>> bad_type_length_short = [1.1]
-    >>> point.Point.from_spec(bad_type_length_short)
-    Point.from_spec:
+    >>> point.Point.from_specs(bad_type_length_short)
+    Point.from_specs:
         The argument must be a tuple or a list of 2 or 3 numbers
 
     >>> bad_type_length_long = [1.1, 2.2, 3.3, 4.4]
-    >>> point.Point.from_spec(bad_type_length_long)
-    Point.from_spec:
+    >>> point.Point.from_specs(bad_type_length_long)
+    Point.from_specs:
         The argument must be a tuple or a list of 2 or 3 numbers
 
     >>> bad_type_element = ['x', 2.2, 3.3]
-    >>> point.Point.from_spec(bad_type_element)
-    Point.from_spec:
+    >>> point.Point.from_specs(bad_type_element)
+    Point.from_specs:
         The argument must be a tuple or a list of 2 or 3 numbers
 
     >>> good_arg_2 = (1.1, 2.2)
@@ -142,10 +142,13 @@
 
 ### represent
     >>> p234 = point.Point(2, 3, 4)
+    >>> p203040 = point.Point(2.0, 3.0, 4.0)
     >>> p123456 = point.Point(1.2, 3.4, 5.6)
 
 #   __str__
     >>> str(p234)
+    '(2, 3, 4)'
+    >>> str(p203040)
     '(2, 3, 4)'
     >>> str(p123456)
     '(1.2, 3.4, 5.6)'
