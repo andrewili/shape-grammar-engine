@@ -8,28 +8,27 @@ import shape
 
 class LabeledShape(object):
     ### construct
-    def __init__(self, shape_in, lpoint_partition_in):
+    def __init__(self, shape_in, lpoint_part_in):
         """Receives:
-            Shape
-            LPointPartition
+            shape_in        Shape
+            lpoint_part_in  LPointPartition
         """
         method_name = '__init__'
         try:
             if not (
-                shape_in.__class__ == shape.Shape and
-                lpoint_partition_in.__class__ == (
-                    lpoint_partition.LPointPartition)
+                type(shape_in) == shape.Shape and
+                type(lpoint_part_in) == (lpoint_partition.LPointPartition)
             ):
                 raise TypeError
         except TypeError:
-            message = '%s\n    %s' % (
+            message = '%s %s' % (
                 'The arguments must be a shape',
                 'and a labeled point partition')
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
-            self.the_shape = shape_in
-            self.lpoint_part = lpoint_partition_in
-            self.best_triad = self.__class__._find_best_triad()
+            self.shape = shape_in
+            self.lpoint_part = lpoint_part_in
+            self.best_triad = self._find_best_triad()
 
     @classmethod                                ##  2016-03-15 08:46
     def _find_best_triad(cls):
@@ -37,6 +36,7 @@ class LabeledShape(object):
         Receives:
             best_triad      Triad
         """
+        best_triad = None
         return best_triad
 
     @classmethod
@@ -75,86 +75,151 @@ class LabeledShape(object):
 
     ### represent
     def __str__(self):
-        """Returns a string of a duple of ordered line specs and ordered 
-        labeled point specs:
-            ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
-        """
-        return '(%s, %s)' % (self.the_shape, self.lpoint_part)
+        """Returns:
+            string          str. In the form (shape_str, lpoint_part):
+                shape_str   Ordered by carrier and line in the form 
+                            {<carrier>: <colineation>}
+                carrier     (<unit_vector>, <intercept>)
+                unit_vector Vector. In the form [<x> <y> <z>]
+                intercept   Point. In the form (<x>, <y>, <z>)
+                colineation Colineation. In the form [<line>, ...]
+                line        Line. In the form 
+                            ((<x1>, <y1>, <z1>), (<x2>, <y2>, <z2>))
+                lpp_string  Ordered by label and point in the form 
+                            {<label>: [(<x>, <y>, <z>), ...]}
 
-    def listing(self, decimal_places=0):
-        """An ordered string in the form:
-            (bearing, intercept):
-                (x1, y1, x2, y2)
-                ...
-            ...
-            label:
-                (x, y)
-                ...
+            string          str. In the form of ordered lists 
+                            ([line, ...], [lpoint, ...]):
+                line        (point, point)
+                point       (x, y, z)
+                lpoint      (x, y, z, label)
         """
         if self.is_empty():
-            listing = '<empty labeled shape>'
+            string = ''
         else:
-            shape_listing = self.the_shape.listing(decimal_places)
+            shape_str = str(self.shape)
+            lpoint_part_str = str(self.lpoint_part)
+            string = '(%s, %s)' % (shape_str, lpoint_part_str)
+        return string
+
+    def listing(self, decimal_places=0):
+        """Returns:
+            string          str. Ordered in the form:
+                            (<uv>, <intercept>)
+                                <line>
+                                ...
+                            ...
+                            <label>
+                                <point>
+                                ...
+                            ...
+                uv          [<x> <y> <z>]
+                intercept   (<x>, <y>, <z>)
+        """
+        if self.is_empty():
+            listing = ''
+        else:
+            shape_listing = self.shape.listing(decimal_places)
             lpoint_part_listing = self.lpoint_part.listing(decimal_places)
             listing = '%s\n%s' % (shape_listing, lpoint_part_listing)
         return listing
 
     ### compare
-    def __eq__(self, other):                    #   no test
+    def __hash__(self):
+        shape_hash = hash(self.shape)
+        lpoints_hash = hash(self.lpoint_part)
+        value = hash((shape_hash, lpoints_hash))
+        return value
+
+    def __eq__(self, other):
         value = (
-            self.the_shape == other.the_shape and
+            self.shape == other.shape and
             self.lpoint_part == other.lpoint_part)
         return value
 
-    def __ne__(self, other):                    #   no test
+    def __ne__(self, other):
         value = (
-            self.the_shape != other.the_shape or
+            self.shape != other.shape or
             self.lpoint_part != other.lpoint_part)
         return value
 
     def is_empty(self):                         #   no test
         value = (
-            self.the_shape.is_empty() and
+            self.shape.is_empty() and
             self.lpoint_part.is_empty())
         return value
 
     def is_a_sub_labeled_shape_of(self, other):
+        """Receives:
+            other           LabeledPoint
+        Returns:
+            value           boolean
+        """
         value = (
-            self.the_shape.is_a_subshape_of(other.the_shape) and
+            self.shape.is_a_subshape_of(other.shape) and
             self.lpoint_part.is_a_sub_lpoint_partition_of(other.lpoint_part))
         return value
 
     ### operations
     def __add__(self, other):
-        new_shape = self.the_shape + other.the_shape
-        new_lpoint_part = self.lpoint_part + other.lpoint_part
-        new_lshape = LabeledShape(new_shape, new_lpoint_part)
-        return new_lshape
+        """Receives:
+            other           LabeledShape
+        Returns:
+            lshape_sum      LabeledShape. The sum of self and other
+        """
+        shape_sum = self.shape + other.shape
+        lpoint_part_sum = self.lpoint_part + other.lpoint_part
+        lshape_sum = LabeledShape(shape_sum, lpoint_part_sum)
+        return lshape_sum
 
     def __sub__(self, other):
+        """Receives:
+            other           LabeledShape
+        Returns:
+            lshape_diff     LabeledShape. The difference self - other
+        """
         trace_on = False
         if trace_on:
             method_name = 'LabeledShape.__sub__()'
             print '||| %s' % method_name
-            print 'self.the_shape'
-            print self.the_shape.listing()
-            print 'other.the_shape'
-            print other.the_shape.listing()
-        new_shape = self.the_shape - other.the_shape
+            print 'self.shape'
+            print self.shape.listing()
+            print 'other.shape'
+            print other.shape.listing()
+        shape_diff = self.shape - other.shape
         if trace_on:
             print '||| %s' % method_name
-            print 'new_shape'
-            print new_shape.listing()
-        new_lpoint_part = self.lpoint_part - other.lpoint_part
-        new_lshape = LabeledShape(new_shape, new_lpoint_part)
-        return new_lshape
+            print 'shape_diff'
+            print shape_diff.listing()
+        lpoint_part_diff = self.lpoint_part - other.lpoint_part
+        lshape_diff = LabeledShape(shape_diff, lpoint_part_diff)
+        return  lshape_diff
 
-    def __and__(self, other):                   #   not called, no test
-                                                #   Intersection &
-                                                #   not implemented
-        new_shape = self.the_shape & other.the_shape
-        new_lpoint_part = self.lpoint_part & other.lpoint_part
-        return LabeledShape(new_shape, new_lpoint_part)
+    def intersection(self, other):
+        """Receives:
+            other           LabeledShape
+        Returns:
+            lshape_intersection
+                            LabeledShape. The intersection of self and other
+        """
+        shape_intersection = self.shape.intersection(other.shape)
+        lpoints_intersection = (
+            self.lpoint_part.intersection(other.lpoint_part))
+        lshape_intersection = labeled_shape.LabeledShape(
+            shape_intersection, lpoints_intersection)
+        return lshape_intersection
+
+    def union(self, other):
+        """Receives:
+            other           LabeledShape
+        Returns:
+            lshape_union    LabeledShape. The union of self and other
+        """
+        shape_union = self.shape.union(other.shape)
+        lpoints_union = (
+            self.lpoint_part.union(other.lpoint_part))
+        lshape_union = labeled_shape.LabeledShape(shape_union, lpoints_union)
+        return lshape_union
 
     ### other
     @classmethod
@@ -174,7 +239,7 @@ class LabeledShape(object):
         """Returns a 2-tuple of lists of element specs:
             ([(x1, y1, x2, y2), ...], [(x, y, label), ...])
         """
-        line_specs = self.the_shape.line_specs()
+        line_specs = self.shape.line_specs()
         lpoint_specs = self.lpoint_part.specs()
         return (line_specs, lpoint_specs)
 

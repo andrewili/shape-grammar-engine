@@ -78,19 +78,37 @@ class Vector(object):
 
     ### represent
     def __str__(self):
-        string = str(self.matrix)
+        x_trimmed = self._trim_coord(self.x)
+        y_trimmed = self._trim_coord(self.y)
+        z_trimmed = self._trim_coord(self.z)
+        string = '[%s %s %s]' % (x_trimmed, y_trimmed, z_trimmed)
+        # string = str(self.matrix)
         return string
 
     def __repr__(self):
         """Returns:
-            string          str. In the form '[<x>, <y>, <z>]'
+            string          str. In the form 'vector.Vector(<x>, <y>, <z>)'
         """
-        string = 'vector.%s(%s, %s, %s)' % (
-            self.__class__.__name__,
-            self.x,
-            self.y,
-            self.z)
+
+        x_trimmed = self._trim_coord(self.x)
+        y_trimmed = self._trim_coord(self.y)
+        z_trimmed = self._trim_coord(self.z)
+        string = 'vector.Vector(%s, %s, %s)' % (
+            x_trimmed, y_trimmed, z_trimmed)
+        # string = 'vector.Vector(%s, %s, %s)' % (self.x, self.y, self.z)
         return string
+
+    def _trim_coord(self, raw_coord):
+        """Receives:
+            raw_coord       num
+        Returns:
+            trimmed_coord   int, if raw_coord has a fraction equal to 0; 
+                            float, otherwise
+        """
+        trimmed_coord = raw_coord
+        if str(raw_coord)[-2:] == '.0':
+            trimmed_coord = str(raw_coord)[:-2]
+        return trimmed_coord
 
     def listing(self, decimal_places=0):
         """Returns:

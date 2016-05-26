@@ -3,101 +3,223 @@
     >>> import line
     >>> import line_partition
     >>> import lpoint_partition
+    >>> import point
     >>> import shape
 
 ### construct, represent
-#   __init__(), new_empty(), __str__(), listing()
+#   __init__
+    >>> def set_up_init_bad():
+    ...     empty_shape = shape.Shape.new_empty()
+    ...     empty_part = lpoint_partition.LPointPartition.new_empty()
+    ...     non_shape = 37
+    ...     non_part = 'kilroy'
+    ...     return (empty_shape, empty_part, non_shape, non_part)
+    >>> empty_shape, empty_part, non_shape, non_part = set_up_init_bad()
+    >>> lshape_non_shape = labeled_shape.LabeledShape(non_shape, empty_part)
+    LabeledShape.__init__:
+        The arguments must be a shape and a labeled point partition
+    >>> lshape_non_shape = labeled_shape.LabeledShape(empty_shape, non_part)
+    LabeledShape.__init__:
+        The arguments must be a shape and a labeled point partition
 
-    ??? def make_non_empty_shape():
-    ...     line_0001 = line.Line.from_specs(0, 0, 0, 1)
-    ...     line_0010 = line.Line.from_specs(0, 0, 1, 0)
-    ...     new_shape = shape.Shape.from_lines([line_0010, line_0001])
-    ...     return new_shape
-    ??? def make_non_empty_lpoint_partition():
-    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
-    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
-    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
-    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
-    ...     new_lpoint_part = lpoint_partition.LPointPartition([lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a])
-    ...     return new_lpoint_part
-    ??? def make_lshape_components():
-    ...     empty_line_partition = line_partition.LinePartition([])
-    ...     empty_shape = shape.Shape(empty_line_partition)
-    ...     empty_lpoint_partition = lpoint_partition.LPointPartition([])
-    ...     non_empty_shape = make_non_empty_shape()
-    ...     non_empty_lpoint_partition = make_non_empty_lpoint_partition()
-    ...     return [empty_line_partition, empty_shape, empty_lpoint_partition, non_empty_shape, non_empty_lpoint_partition]
-    ??? empty_line_partition, empty_shape, empty_lpoint_partition, non_empty_shape, non_empty_lpoint_partition = make_lshape_components()
+    >>> def set_up_init():
+    ...     def make_cube():
+    ...         #   points
+    ...         p_033 = point.Point(  0,  30,  30)
+    ...         p_037 = point.Point(  0,  30,  70)
+    ...         p_073 = point.Point(  0,  70,  30)
+    ...         p_077 = point.Point(  0,  70,  70)
+    ...         p_303 = point.Point( 30,   0,  30)
+    ...         p_307 = point.Point( 30,   0,  70)
+    ...         p_330 = point.Point( 30,  30,   0)
+    ...         p_333 = point.Point( 30,  30,  30)
+    ...         p_337 = point.Point( 30,  30,  70)
+    ...         p_33a = point.Point( 30,  30, 100)
+    ...         p_370 = point.Point( 30,  70,   0)
+    ...         p_373 = point.Point( 30,  70,  30)
+    ...         p_377 = point.Point( 30,  70,  70)
+    ...         p_37a = point.Point( 30,  70, 100)
+    ...         p_3a3 = point.Point( 30, 100,  30)
+    ...         p_3a7 = point.Point( 30, 100,  70)
+    ...         p_703 = point.Point( 70,   0,  30)
+    ...         p_707 = point.Point( 70,   0,  70)
+    ...         p_730 = point.Point( 70,  30,   0)
+    ...         p_733 = point.Point( 70,  30,  30)
+    ...         p_737 = point.Point( 70,  30,  70)
+    ...         p_73a = point.Point( 70,  30, 100)
+    ...         p_770 = point.Point( 70,  70,   0)
+    ...         p_773 = point.Point( 70,  70,  30)
+    ...         p_777 = point.Point( 70,  70,  70)
+    ...         p_77a = point.Point( 70,  70, 100)
+    ...         p_7a3 = point.Point( 70, 100,  30)
+    ...         p_7a7 = point.Point( 70, 100,  70)
+    ...         p_a33 = point.Point(100,  30,  30)
+    ...         p_a37 = point.Point(100,  30,  70)
+    ...         p_a73 = point.Point(100,  70,  30)
+    ...         p_a77 = point.Point(100,  70,  70)
+    ...         #   lines for cube
+    ...         l_333_733 = line.Line(p_333, p_733)
+    ...         l_337_737 = line.Line(p_337, p_737)
+    ...         l_373_773 = line.Line(p_373, p_773)
+    ...         l_377_777 = line.Line(p_377, p_777)
+    ...         l_333_373 = line.Line(p_333, p_373)
+    ...         l_337_377 = line.Line(p_337, p_377)
+    ...         l_733_773 = line.Line(p_733, p_773)
+    ...         l_737_777 = line.Line(p_737, p_777)
+    ...         l_333_337 = line.Line(p_333, p_337)
+    ...         l_373_377 = line.Line(p_373, p_377)
+    ...         l_733_737 = line.Line(p_733, p_737)
+    ...         l_773_777 = line.Line(p_773, p_777)
+    ...         lines_cube = [
+    ...             l_333_733, l_337_737, l_373_773, l_377_777,
+    ...             l_333_373, l_337_377, l_733_773, l_737_777,
+    ...             l_333_337, l_373_377, l_733_737, l_773_777]
+    ...         line_part_cube = line_partition.LinePartition(lines_cube)
+    ...         cube = shape.Shape(line_part_cube)
+    ...         return cube
+    ...     def make_labels():
+    ...         lp_355x = labeled_point.LabeledPoint.from_parts(
+    ...             30, 50, 50, 'x')
+    ...         lp_755x = labeled_point.LabeledPoint.from_parts(
+    ...             70, 50, 50, 'x')
+    ...         lp_535y = labeled_point.LabeledPoint.from_parts(
+    ...             50, 30, 50, 'y')
+    ...         lp_575y = labeled_point.LabeledPoint.from_parts(
+    ...             50, 70, 50, 'y')
+    ...         lp_553z = labeled_point.LabeledPoint.from_parts(
+    ...             50, 50, 30, 'z')
+    ...         lp_557z = labeled_point.LabeledPoint.from_parts(
+    ...             50, 50, 70, 'z')
+    ...         lpoints = [
+    ...             lp_355x, lp_755x, 
+    ...             lp_535y, lp_575y, 
+    ...             lp_553z, lp_557z]
+    ...         labels = lpoint_partition.LPointPartition(lpoints)
+    ...         return labels
+    ...     cube = make_cube()
+    ...     labels = make_labels()
+    ...     return (cube, labels)
+    >>> cube, labels = set_up_init()
+    >>> labeled_cube = labeled_shape.LabeledShape(cube, labels)
+    >>> labeled_cube.is_empty()
+    False
+    >>> print(labeled_cube.shape.line_part.listing())
+    ([0 0 1], (30, 30, 0))
+        ((30, 30, 30), (30, 30, 70))
+    ([0 0 1], (30, 70, 0))
+        ((30, 70, 30), (30, 70, 70))
+    ([0 0 1], (70, 30, 0))
+        ((70, 30, 30), (70, 30, 70))
+    ([0 0 1], (70, 70, 0))
+        ((70, 70, 30), (70, 70, 70))
+    ([0 1 0], (30, 0, 30))
+        ((30, 30, 30), (30, 70, 30))
+    ([0 1 0], (30, 0, 70))
+        ((30, 30, 70), (30, 70, 70))
+    ([0 1 0], (70, 0, 30))
+        ((70, 30, 30), (70, 70, 30))
+    ([0 1 0], (70, 0, 70))
+        ((70, 30, 70), (70, 70, 70))
+    ([1 0 0], (0, 30, 30))
+        ((30, 30, 30), (70, 30, 30))
+    ([1 0 0], (0, 30, 70))
+        ((30, 30, 70), (70, 30, 70))
+    ([1 0 0], (0, 70, 30))
+        ((30, 70, 30), (70, 70, 30))
+    ([1 0 0], (0, 70, 70))
+        ((30, 70, 70), (70, 70, 70))
+    >>> print(labeled_cube.lpoint_part.listing())
+    'x'
+        (30, 50, 50)
+        (70, 50, 50)
+    'y'
+        (50, 30, 50)
+        (50, 70, 50)
+    'z'
+        (50, 50, 30)
+        (50, 50, 70)
 
-    ??? lshape_non_shape = labeled_shape.LabeledShape('x', empty_lpoint_partition)
-    LabeledShape.__init__(): The arguments must be a shape and a labeled point partition
-    ??? lshape_non_shape = labeled_shape.LabeledShape(empty_shape, 'x')
-    LabeledShape.__init__(): The arguments must be a shape and a labeled point partition
-    ??? def make_lshapes_for_init():
-    ...     lshape_empty = labeled_shape.LabeledShape(empty_shape, empty_lpoint_partition)
-    ...     lshape_shape = labeled_shape.LabeledShape(non_empty_shape, empty_lpoint_partition)
-    ...     lshape_lpoints = labeled_shape.LabeledShape(empty_shape, non_empty_lpoint_partition)
-    ...     lshape_lines_lpoints = labeled_shape.LabeledShape(non_empty_shape, non_empty_lpoint_partition)
-    ...     return [lshape_empty, lshape_shape, lshape_lpoints, lshape_lines_lpoints]
-    ??? lshape_empty, lshape_shape, lshape_lpoints, lshape_lines_lpoints = make_lshapes_for_init()
+#   _find_best_triad
 
-    ??? lshape_empty.is_empty()
+#   new_empty
+    >>> empty_lshape = labeled_shape.LabeledShape.new_empty()
+    >>> empty_lshape.is_empty()
     True
-    ??? print lshape_empty
-    ([], [])
-    ??? print lshape_empty.listing()
-    <empty labeled shape>
 
-    ??? lshape_shape.is_empty()
-    False
-    ??? print lshape_shape
-    ([(0, 0, 0, 1), (0, 0, 1, 0)], [])
-    ??? print lshape_shape.listing(1)
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 1.0, 0.0)
-    <no labeled points>
+#   __str__
+    >>> str(empty_lshape)
+    ''
+    >>> str(labeled_cube)
+    "({([0 0 1], (30, 30, 0)): [((30, 30, 30), (30, 30, 70))], ([0 0 1], (30, 70, 0)): [((30, 70, 30), (30, 70, 70))], ([0 0 1], (70, 30, 0)): [((70, 30, 30), (70, 30, 70))], ([0 0 1], (70, 70, 0)): [((70, 70, 30), (70, 70, 70))], ([0 1 0], (30, 0, 30)): [((30, 30, 30), (30, 70, 30))], ([0 1 0], (30, 0, 70)): [((30, 30, 70), (30, 70, 70))], ([0 1 0], (70, 0, 30)): [((70, 30, 30), (70, 70, 30))], ([0 1 0], (70, 0, 70)): [((70, 30, 70), (70, 70, 70))], ([1 0 0], (0, 30, 30)): [((30, 30, 30), (70, 30, 30))], ([1 0 0], (0, 30, 70)): [((30, 30, 70), (70, 30, 70))], ([1 0 0], (0, 70, 30)): [((30, 70, 30), (70, 70, 30))], ([1 0 0], (0, 70, 70)): [((30, 70, 70), (70, 70, 70))]}, {'x': [(30, 50, 50), (70, 50, 50)], 'y': [(50, 30, 50), (50, 70, 50)], 'z': [(50, 50, 30), (50, 50, 70)]})"
 
-    ??? lshape_lpoints.is_empty()
-    False
-    ??? print lshape_lpoints
-    ([], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
-
-    ??? print lshape_lpoints.listing()
-    <empty shape>
-    a:
-        (0, 0)
-        (1, 1)
-    b:
-        (2, 2)
-        (3, 3)
-
-    ??? lshape_lines_lpoints.is_empty()
-    False
-    ??? print lshape_lines_lpoints
-    ([(0, 0, 0, 1), (0, 0, 1, 0)], [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)])
-
-    ??? print lshape_lines_lpoints.listing()
-    (0, 0):
-        (0, 0, 0, 1)
-    (90, 0):
-        (0, 0, 1, 0)
-    a:
-        (0, 0)
-        (1, 1)
-    b:
-        (2, 2)
-        (3, 3)
-
-    ??? empty_lshape = labeled_shape.LabeledShape.new_empty()
-    ??? empty_lshape.is_empty()
-    True
-    ??? print empty_lshape
-    ([], [])
+#   listing
+    >>> print(empty_lshape.listing())
+    <BLANKLINE>
+    >>> print(labeled_cube.listing())
+    ([0 0 1], (30, 30, 0))
+        ((30, 30, 30), (30, 30, 70))
+    ([0 0 1], (30, 70, 0))
+        ((30, 70, 30), (30, 70, 70))
+    ([0 0 1], (70, 30, 0))
+        ((70, 30, 30), (70, 30, 70))
+    ([0 0 1], (70, 70, 0))
+        ((70, 70, 30), (70, 70, 70))
+    ([0 1 0], (30, 0, 30))
+        ((30, 30, 30), (30, 70, 30))
+    ([0 1 0], (30, 0, 70))
+        ((30, 30, 70), (30, 70, 70))
+    ([0 1 0], (70, 0, 30))
+        ((70, 30, 30), (70, 70, 30))
+    ([0 1 0], (70, 0, 70))
+        ((70, 30, 70), (70, 70, 70))
+    ([1 0 0], (0, 30, 30))
+        ((30, 30, 30), (70, 30, 30))
+    ([1 0 0], (0, 30, 70))
+        ((30, 30, 70), (70, 30, 70))
+    ([1 0 0], (0, 70, 30))
+        ((30, 70, 30), (70, 70, 30))
+    ([1 0 0], (0, 70, 70))
+        ((30, 70, 70), (70, 70, 70))
+    'x'
+        (30, 50, 50)
+        (70, 50, 50)
+    'y'
+        (50, 30, 50)
+        (50, 70, 50)
+    'z'
+        (50, 50, 30)
+        (50, 50, 70)
 
 ### compare
-#   __eq__(other), __ne__(other)
+#   __hash__
+
+#   __eq__, __ne__
+    >>> def set_up_eq():
+    ...     lp_555w = labeled_point.LabeledPoint.from_parts(50, 50, 50, 'w')
+    ...     lp_355x = labeled_point.LabeledPoint.from_parts(30, 50, 50, 'x')
+    ...     lp_755x = labeled_point.LabeledPoint.from_parts(70, 50, 50, 'x')
+    ...     lp_535y = labeled_point.LabeledPoint.from_parts(50, 30, 50, 'y')
+    ...     lp_575y = labeled_point.LabeledPoint.from_parts(50, 70, 50, 'y')
+    ...     lp_553z = labeled_point.LabeledPoint.from_parts(50, 50, 30, 'z')
+    ...     lp_557z = labeled_point.LabeledPoint.from_parts(50, 50, 70, 'z')
+    ...     lpoints_xyz = [
+    ...         lp_355x, lp_755x, lp_535y, lp_575y, lp_553z, lp_557z]
+    ...     lpoints_wxyz = [
+    ...         lp_555w, lp_355x, lp_755x, lp_535y, lp_575y, lp_553z, lp_557z]
+    ...     lp_part_xyz = lpoint_partition.LPointPartition(lpoints_xyz)
+    ...     lp_part_wxyz = lpoint_partition.LPointPartition(lpoints_wxyz)
+    ...     cube_xyz = labeled_shape.LabeledShape(cube, lp_part_xyz)
+    ...     cube_wxyz = labeled_shape.LabeledShape(cube, lp_part_wxyz)
+    ...     return (cube_xyz, cube_wxyz)
+    >>> cube_xyz, cube_wxyz = set_up_eq()
+    >>> labeled_cube == cube_xyz
+    True
+    >>> labeled_cube == cube_wxyz
+    False
+    >>> labeled_cube != cube_xyz
+    False
+    >>> labeled_cube != cube_wxyz
+    True
 
     ??? def make_lshape_test():
     ...     line_specs = [(0, 0, 1, 0), (0, 0, 1, 1), (0, 0, 0, 1)]
@@ -168,42 +290,208 @@
     ??? lshape_test != lshape_equal
     False
 
-#   is_a_sub_labeled_shape_of(other)
-
-    ??? def make_lshapes_for_sub_lshape():
+#   is_a_sub_labeled_shape_of
+    >>> def make_lshapes_for_sub_lshape():
     ...     shape_0 = shape.Shape.new_empty()
-    ...     shape_1 = shape.Shape.from_specs([(0, 0, 0, 1)])
-    ...     shape_2 = shape.Shape.from_specs([(0, 0, 0, 1), (0 ,0, 1, 0)])
+    ...     shape_1 = shape.Shape.from_specs([((0, 0, 0), (0, 1, 0))])
+    ...     shape_2 = shape.Shape.from_specs(
+    ...         [((0, 0, 0), (0, 1, 0)), ((0, 0, 0), (1, 0, 0))])
     ...     lppart_0 = lpoint_partition.LPointPartition.new_empty()
-    ...     lppart_1 = lpoint_partition.LPointPartition.from_specs([(1, 1, 'a')])
-    ...     lppart_2 = lpoint_partition.LPointPartition.from_specs([(1, 1, 'a'), (2, 2, 'a')])
+    ...     lppart_1 = lpoint_partition.LPointPartition.from_specs(
+    ...         [(1, 1, 0, 'a')])
+    ...     lppart_2 = lpoint_partition.LPointPartition.from_specs(
+    ...         [(1, 1, 0, 'a'), (2, 2, 0, 'a')])
     ...     lshape_0 = labeled_shape.LabeledShape(shape_0, lppart_0)
     ...     lshape_1 = labeled_shape.LabeledShape(shape_1, lppart_1)
     ...     lshape_2 = labeled_shape.LabeledShape(shape_2, lppart_2)
     ...     return [lshape_0, lshape_1, lshape_2]
-    ??? lshape_0, lshape_1, lshape_2 = make_lshapes_for_sub_lshape()
+    >>> lshape_0, lshape_1, lshape_2 = make_lshapes_for_sub_lshape()
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_0)
+    True
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_1)
+    True
+    >>> lshape_0.is_a_sub_labeled_shape_of(lshape_2)
+    True
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_0)
+    False
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_1)
+    True
+    >>> lshape_1.is_a_sub_labeled_shape_of(lshape_2)
+    True
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_0)
+    False
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_1)
+    False
+    >>> lshape_2.is_a_sub_labeled_shape_of(lshape_2)
+    True
 
-    ??? lshape_0.is_a_sub_labeled_shape_of(lshape_0)
-    True
-    ??? lshape_0.is_a_sub_labeled_shape_of(lshape_1)
-    True
-    ??? lshape_0.is_a_sub_labeled_shape_of(lshape_2)
-    True
-    ??? lshape_1.is_a_sub_labeled_shape_of(lshape_0)
+    >>> def set_up_shapes_for_sub_labeled_shape():
+    ...     bad_type_non_part = 'kilroy'
+    ...     empty_line_part = line_partition.LinePartition.new_empty()
+    ...     #   points
+    ...     p_033 = point.Point(  0,  30,  30)
+    ...     p_037 = point.Point(  0,  30,  70)
+    ...     p_073 = point.Point(  0,  70,  30)
+    ...     p_077 = point.Point(  0,  70,  70)
+    ...     p_303 = point.Point( 30,   0,  30)
+    ...     p_307 = point.Point( 30,   0,  70)
+    ...     p_330 = point.Point( 30,  30,   0)
+    ...     p_333 = point.Point( 30,  30,  30)
+    ...     p_337 = point.Point( 30,  30,  70)
+    ...     p_33a = point.Point( 30,  30, 100)
+    ...     p_370 = point.Point( 30,  70,   0)
+    ...     p_373 = point.Point( 30,  70,  30)
+    ...     p_377 = point.Point( 30,  70,  70)
+    ...     p_37a = point.Point( 30,  70, 100)
+    ...     p_3a3 = point.Point( 30, 100,  30)
+    ...     p_3a7 = point.Point( 30, 100,  70)
+    ...     p_703 = point.Point( 70,   0,  30)
+    ...     p_707 = point.Point( 70,   0,  70)
+    ...     p_730 = point.Point( 70,  30,   0)
+    ...     p_733 = point.Point( 70,  30,  30)
+    ...     p_737 = point.Point( 70,  30,  70)
+    ...     p_73a = point.Point( 70,  30, 100)
+    ...     p_770 = point.Point( 70,  70,   0)
+    ...     p_773 = point.Point( 70,  70,  30)
+    ...     p_777 = point.Point( 70,  70,  70)
+    ...     p_77a = point.Point( 70,  70, 100)
+    ...     p_7a3 = point.Point( 70, 100,  30)
+    ...     p_7a7 = point.Point( 70, 100,  70)
+    ...     p_a33 = point.Point(100,  30,  30)
+    ...     p_a37 = point.Point(100,  30,  70)
+    ...     p_a73 = point.Point(100,  70,  30)
+    ...     p_a77 = point.Point(100,  70,  70)
+    ...     #   lines for hash3d
+    ...     l_033_a33 = line.Line(p_033, p_a33)
+    ...     l_037_a37 = line.Line(p_037, p_a37)
+    ...     l_073_a73 = line.Line(p_073, p_a73)
+    ...     l_077_a77 = line.Line(p_077, p_a77)
+    ...     l_303_3a3 = line.Line(p_303, p_3a3)
+    ...     l_307_3a7 = line.Line(p_307, p_3a7)
+    ...     l_330_33a = line.Line(p_330, p_33a)
+    ...     l_370_37a = line.Line(p_370, p_37a)
+    ...     l_703_7a3 = line.Line(p_703, p_7a3)
+    ...     l_707_7a7 = line.Line(p_707, p_7a7)
+    ...     l_730_73a = line.Line(p_730, p_73a)
+    ...     l_770_77a = line.Line(p_770, p_77a)
+    ...     #   lines for cube
+    ...     l_333_733 = line.Line(p_333, p_733)
+    ...     l_337_737 = line.Line(p_337, p_737)
+    ...     l_373_773 = line.Line(p_373, p_773)
+    ...     l_377_777 = line.Line(p_377, p_777)
+    ...     l_333_373 = line.Line(p_333, p_373)
+    ...     l_337_377 = line.Line(p_337, p_377)
+    ...     l_733_773 = line.Line(p_733, p_773)
+    ...     l_737_777 = line.Line(p_737, p_777)
+    ...     l_333_337 = line.Line(p_333, p_337)
+    ...     l_373_377 = line.Line(p_373, p_377)
+    ...     l_733_737 = line.Line(p_733, p_737)
+    ...     l_773_777 = line.Line(p_773, p_777)
+    ...     #   lines for ells3d
+    ...     l_033_333 = line.Line(p_033, p_333)
+    ...     l_037_337 = line.Line(p_037, p_337)
+    ...     l_073_373 = line.Line(p_073, p_373)
+    ...     l_077_377 = line.Line(p_077, p_377)
+    ...     l_303_333 = line.Line(p_303, p_333)
+    ...     l_307_337 = line.Line(p_307, p_337)
+    ...     l_330_333 = line.Line(p_330, p_333)
+    ...     l_337_33a = line.Line(p_337, p_33a)
+    ...     l_370_373 = line.Line(p_370, p_373)
+    ...     l_373_3a3 = line.Line(p_373, p_3a3)
+    ...     l_377_37a = line.Line(p_377, p_37a)
+    ...     l_377_3a7 = line.Line(p_377, p_3a7)
+    ...     l_703_733 = line.Line(p_703, p_733)
+    ...     l_707_737 = line.Line(p_707, p_737)
+    ...     l_730_733 = line.Line(p_730, p_733)
+    ...     l_770_773 = line.Line(p_770, p_773)
+    ...     l_733_a33 = line.Line(p_733, p_a33)
+    ...     l_737_73a = line.Line(p_737, p_73a)
+    ...     l_737_a37 = line.Line(p_737, p_a37)
+    ...     l_773_7a3 = line.Line(p_773, p_7a3)
+    ...     l_773_a73 = line.Line(p_773, p_a73)
+    ...     l_777_77a = line.Line(p_777, p_77a)
+    ...     l_777_7a7 = line.Line(p_777, p_7a7)
+    ...     l_777_a77 = line.Line(p_777, p_a77)
+    ...     lines_hash3d = [
+    ...         l_330_33a, l_370_37a, l_730_73a, l_770_77a, 
+    ...         l_303_3a3, l_307_3a7, l_703_7a3, l_707_7a7, 
+    ...         l_033_a33, l_037_a37, l_073_a73, l_077_a77]
+    ...     line_part_hash3d = line_partition.LinePartition(lines_hash3d)
+    ...     lines_cube = [
+    ...         l_333_733, l_337_737, l_373_773, l_377_777,
+    ...         l_333_373, l_337_377, l_733_773, l_737_777,
+    ...         l_333_337, l_373_377, l_733_737, l_773_777]
+    ...     line_part_cube = line_partition.LinePartition(lines_cube)
+    ...     lines_ells3d = [
+    ...         l_033_333, l_733_a33, l_037_337, l_737_a37, 
+    ...         l_073_373, l_773_a73, l_077_377, l_777_a77, 
+    ...         l_303_333, l_373_3a3, l_307_337, l_377_3a7, 
+    ...         l_703_733, l_773_7a3, l_707_737, l_777_7a7, 
+    ...         l_330_333, l_337_33a, l_370_373, l_377_37a, 
+    ...         l_730_733, l_737_73a, l_770_773, l_777_77a]
+    ...     line_part_ells3d = line_partition.LinePartition(lines_ells3d)
+    ...     hash3d = shape.Shape(line_part_hash3d)
+    ...     cube = shape.Shape(line_part_cube)
+    ...     ells3d = shape.Shape(line_part_ells3d)
+    ...     return (hash3d, cube, ells3d)
+    >>> hash3d, cube, ells3d = set_up_shapes_for_sub_labeled_shape()
+
+    >>> def set_up_lpt_parts_for_sub_labeled_shape():
+    ...     lpt_355x = labeled_point.LabeledPoint.from_parts(30, 50, 50, 'x')
+    ...     lpt_535y = labeled_point.LabeledPoint.from_parts(50, 30, 30, 'y')
+    ...     lpt_553z = labeled_point.LabeledPoint.from_parts(50, 50, 30, 'z')
+    ...     lpt_557z = labeled_point.LabeledPoint.from_parts(50, 50, 70, 'z')
+    ...     lpt_575y = labeled_point.LabeledPoint.from_parts(50, 70, 50, 'y')
+    ...     lpt_755x = labeled_point.LabeledPoint.from_parts(70, 50, 50, 'x')
+    ...     lpt_part_x = lpoint_partition.LPointPartition([
+    ...         lpt_355x, lpt_755x])
+    ...     lpt_part_y = lpoint_partition.LPointPartition([
+    ...         lpt_535y, lpt_575y])
+    ...     lpt_part_z = lpoint_partition.LPointPartition([
+    ...         lpt_553z, lpt_557z])
+    ...     lpt_part_xy = lpoint_partition.LPointPartition([
+    ...         lpt_355x, lpt_755x, 
+    ...         lpt_535y, lpt_575y])
+    ...     lpt_part_xz = lpoint_partition.LPointPartition([
+    ...         lpt_355x, lpt_755x, 
+    ...         lpt_553z, lpt_557z])
+    ...     lpt_part_yz = lpoint_partition.LPointPartition([
+    ...         lpt_535y, lpt_575y, 
+    ...         lpt_553z, lpt_557z])
+    ...     lpt_part_xyz = lpoint_partition.LPointPartition([
+    ...         lpt_355x, lpt_755x, 
+    ...         lpt_535y, lpt_575y, 
+    ...         lpt_553z, lpt_557z])
+    ...     return (
+    ...         lpt_part_x, lpt_part_y, lpt_part_z, 
+    ...         lpt_part_xy, lpt_part_xz, lpt_part_yz, lpt_part_xyz)
+    >>> (   lpt_part_x, lpt_part_y, lpt_part_z, 
+    ...     lpt_part_xy, lpt_part_xz, lpt_part_yz, lpt_part_xyz) = (
+    ...     set_up_lpt_parts_for_sub_labeled_shape())
+    
+    >>> def set_up_labeled_shapes_for_sub_labeled_shape():
+    ...     hash_xyz = labeled_shape.LabeledShape(hash3d, lpt_part_xyz)
+    ...     cube_xy = labeled_shape.LabeledShape(cube, lpt_part_xy)
+    ...     ells_z = labeled_shape.LabeledShape(ells3d, lpt_part_z)
+    ...     return (hash_xyz, cube_xy, ells_z)
+    >>> hash_xyz, cube_xy, ells_z = (
+    ...     set_up_labeled_shapes_for_sub_labeled_shape())
+
+    >>> hash_xyz.is_a_sub_labeled_shape_of(cube_xy)
     False
-    ??? lshape_1.is_a_sub_labeled_shape_of(lshape_1)
-    True
-    ??? lshape_1.is_a_sub_labeled_shape_of(lshape_2)
-    True
-    ??? lshape_2.is_a_sub_labeled_shape_of(lshape_0)
+    >>> hash_xyz.is_a_sub_labeled_shape_of(ells_z)
     False
-    ??? lshape_2.is_a_sub_labeled_shape_of(lshape_1)
+    >>> cube_xy.is_a_sub_labeled_shape_of(ells_z)
     False
-    ??? lshape_2.is_a_sub_labeled_shape_of(lshape_2)
+    >>> cube_xy.is_a_sub_labeled_shape_of(hash_xyz)
     True
+    >>> ells_z.is_a_sub_labeled_shape_of(hash_xyz)
+    True
+    >>> ells_z.is_a_sub_labeled_shape_of(cube_xy)
+    False
 
 ### operate
-#   __add__(other)
+#   __add__
     
     _|   |_       ___       _|___|_
                  |   |       |   |
@@ -211,51 +499,59 @@
     _     _      |___|      _|___|_
      |   |                   |   |
     
-    ??? def make_ells_for_add_test():
-    ...     line0414 = line.Line.from_specs(0, 4, 1, 4)
-    ...     line0111 = line.Line.from_specs(0, 1, 1, 1)
-    ...     line1011 = line.Line.from_specs(1, 0, 1, 1)
-    ...     line1415 = line.Line.from_specs(1, 4, 1, 5)
-    ...     line4041 = line.Line.from_specs(4, 0, 4, 1)
-    ...     line4151 = line.Line.from_specs(4, 1, 5, 1)
-    ...     line4445 = line.Line.from_specs(4, 4, 4, 5)
-    ...     line4454 = line.Line.from_specs(4, 4, 5, 4)
+    >>> def make_ells_for_add_test():
+    ...     line0414 = line.Line.from_specs_4(0, 4, 1, 4)
+    ...     line0111 = line.Line.from_specs_4(0, 1, 1, 1)
+    ...     line1011 = line.Line.from_specs_4(1, 0, 1, 1)
+    ...     line1415 = line.Line.from_specs_4(1, 4, 1, 5)
+    ...     line4041 = line.Line.from_specs_4(4, 0, 4, 1)
+    ...     line4151 = line.Line.from_specs_4(4, 1, 5, 1)
+    ...     line4445 = line.Line.from_specs_4(4, 4, 4, 5)
+    ...     line4454 = line.Line.from_specs_4(4, 4, 5, 4)
     ...     lines = [line1011, line1415, line4041, line4445, line0111, line4151, line0414, line4454]
     ...     return shape.Shape.from_lines(lines)
-    ??? def make_labeled_ells_for_add_test():
+    >>> def make_labeled_ells_for_add_test():
     ...     ells = make_ells_for_add_test()
-    ...     lpoint = labeled_point.LabeledPoint(3, 3, 'X')
+    ...     lpoint = labeled_point.LabeledPoint.from_parts(3, 3, 0, 'X')
     ...     new_lpoint_part = lpoint_partition.LPointPartition([lpoint])
     ...     return labeled_shape.LabeledShape(ells, new_lpoint_part)
-    ??? def make_square_for_add_test():
-    ...     line1114 = line.Line.from_specs(1, 1, 1, 4)
-    ...     line1141 = line.Line.from_specs(1, 1, 4, 1)
-    ...     line1444 = line.Line.from_specs(1, 4, 4, 4)
-    ...     line4144 = line.Line.from_specs(4, 1, 4, 4)
+    >>> def make_square_for_add_test():
+    ...     line1114 = line.Line.from_specs_4(1, 1, 1, 4)
+    ...     line1141 = line.Line.from_specs_4(1, 1, 4, 1)
+    ...     line1444 = line.Line.from_specs_4(1, 4, 4, 4)
+    ...     line4144 = line.Line.from_specs_4(4, 1, 4, 4)
     ...     lines = [line1114, line1141, line1444, line4144]
     ...     return shape.Shape.from_lines(lines)
-    ??? def make_labeled_square_for_add_test():
+    >>> def make_labeled_square_for_add_test():
     ...     square = make_square_for_add_test()
-    ...     lpoint = labeled_point.LabeledPoint(3, 3, 'X')
+    ...     lpoint = labeled_point.LabeledPoint.from_parts(3, 3, 0, 'X')
     ...     new_lpoint_part = lpoint_partition.LPointPartition([lpoint])
     ...     return labeled_shape.LabeledShape(square, new_lpoint_part)
-    ??? labeled_ells = make_labeled_ells_for_add_test()
-    ??? labeled_square = make_labeled_square_for_add_test()
-    ??? hash = labeled_ells + labeled_square
-    
-    ??? print hash.listing()
-    (0, 1):
-        (1, 0, 1, 5)
-    (0, 4):
-        (4, 0, 4, 5)
-    (90, 1):
-        (0, 1, 5, 1)
-    (90, 4):
-        (0, 4, 5, 4)
-    X:
-        (3, 3)
+    >>> labeled_ells = make_labeled_ells_for_add_test()
+    >>> labeled_square = make_labeled_square_for_add_test()
+    >>> hash2d = labeled_ells + labeled_square
+    >>> print(hash2d.listing())
+    ([0 1 0], (1, 0, 0))
+        ((1, 0, 0), (1, 5, 0))
+    ([0 1 0], (4, 0, 0))
+        ((4, 0, 0), (4, 5, 0))
+    ([1 0 0], (0, 1, 0))
+        ((0, 1, 0), (5, 1, 0))
+    ([1 0 0], (0, 4, 0))
+        ((0, 4, 0), (5, 4, 0))
+    'X'
+        (3, 3, 0)
 
-#   __sub__(other)
+    >>> hash_xyz + hash_xyz == hash_xyz
+    True
+    >>> hash_xyz + cube_xy == hash_xyz
+    True
+    >>> hash_xyz + ells_z == hash_xyz
+    True
+    >>> cube_xy + ells_z == hash_xyz
+    True
+
+#   __sub__
 
      ___      _|___|_     _|   |_
     |   |      |   |
@@ -263,114 +559,170 @@
     |___|     _|___|_     _     _
                |   |       |   |
 
-    ??? def make_lshapes_for_sub():    
-    ...     med_shape = shape.Shape.from_specs([(40, 40, 40, 60), (40, 40, 60, 40), (40, 60, 60, 60), (60, 40, 60, 60)])
-    ...     med_lpoint_part = lpoint_partition.LPointPartition.from_specs([(50, 50, 'a')])
-    ...     med_lshape = labeled_shape.LabeledShape(med_shape, med_lpoint_part)
-    ...     big_shape = shape.Shape.from_specs([(20, 40, 80, 40), (20, 60, 80, 60), (40, 20, 40, 80), (60, 20, 60, 80)])
-    ...     big_lpoint_part = lpoint_partition.LPointPartition.from_specs([(30, 50, 'a'), (50, 50, 'a')])
-    ...     big_lshape = labeled_shape.LabeledShape(big_shape, big_lpoint_part)
-    ...     return [med_lshape, big_lshape]
-    ??? med_lshape, big_lshape = make_lshapes_for_sub()
+    >>> def make_lshapes_for_sub():    
+    ...     med_shape = shape.Shape.from_specs([
+    ...         ((40, 40, 0), (40, 60, 0)), 
+    ...         ((40, 40, 0), (60, 40, 0)), 
+    ...         ((40, 60, 0), (60, 60, 0)), 
+    ...         ((60, 40, 0), (60, 60, 0))])
+    ...     med_lpoint_part = lpoint_partition.LPointPartition.from_specs([
+    ...         (50, 50, 0, 'a')])
+    ...     med_lshape = labeled_shape.LabeledShape(
+    ...         med_shape, med_lpoint_part)
+    ...     big_shape = shape.Shape.from_specs([
+    ...         ((20, 40, 0), (80, 40, 0)), 
+    ...         ((20, 60, 0), (80, 60, 0)), 
+    ...         ((40, 20, 0), (40, 80, 0)), 
+    ...         ((60, 20, 0), (60, 80, 0))])
+    ...     big_lpoint_part = lpoint_partition.LPointPartition.from_specs([
+    ...         (30, 50, 0, 'a'), 
+    ...         (50, 50, 0, 'a')])
+    ...     big_lshape = labeled_shape.LabeledShape(
+    ...         big_shape, big_lpoint_part)
+    ...     return (med_lshape, big_lshape)
+    >>> med_lshape, big_lshape = make_lshapes_for_sub()
     
-    ??? diff_med_big = med_lshape - big_lshape
-    ??? print diff_med_big.listing()
-    <empty labeled shape>
-    ??? print med_lshape.listing()
-    (0, 40):
-        (40, 40, 40, 60)
-    (0, 60):
-        (60, 40, 60, 60)
-    (90, 40):
-        (40, 40, 60, 40)
-    (90, 60):
-        (40, 60, 60, 60)
-    a:
-        (50, 50)
+    >>> diff_med_big = med_lshape - big_lshape
+    >>> print(diff_med_big.listing())
+    <BLANKLINE>
+    >>> print(med_lshape.listing())
+    ([0 1 0], (40, 0, 0))
+        ((40, 40, 0), (40, 60, 0))
+    ([0 1 0], (60, 0, 0))
+        ((60, 40, 0), (60, 60, 0))
+    ([1 0 0], (0, 40, 0))
+        ((40, 40, 0), (60, 40, 0))
+    ([1 0 0], (0, 60, 0))
+        ((40, 60, 0), (60, 60, 0))
+    'a'
+        (50, 50, 0)
+    >>> diff_big_med = big_lshape - med_lshape
+    >>> print(med_lshape.listing())
+    ([0 1 0], (40, 0, 0))
+        ((40, 40, 0), (40, 60, 0))
+    ([0 1 0], (60, 0, 0))
+        ((60, 40, 0), (60, 60, 0))
+    ([1 0 0], (0, 40, 0))
+        ((40, 40, 0), (60, 40, 0))
+    ([1 0 0], (0, 60, 0))
+        ((40, 60, 0), (60, 60, 0))
+    'a'
+        (50, 50, 0)
+    >>> print(diff_big_med.listing())
+    ([0 1 0], (40, 0, 0))
+        ((40, 20, 0), (40, 40, 0))
+        ((40, 60, 0), (40, 80, 0))
+    ([0 1 0], (60, 0, 0))
+        ((60, 20, 0), (60, 40, 0))
+        ((60, 60, 0), (60, 80, 0))
+    ([1 0 0], (0, 40, 0))
+        ((20, 40, 0), (40, 40, 0))
+        ((60, 40, 0), (80, 40, 0))
+    ([1 0 0], (0, 60, 0))
+        ((20, 60, 0), (40, 60, 0))
+        ((60, 60, 0), (80, 60, 0))
+    'a'
+        (30, 50, 0)
+    >>> diff_med_med = med_lshape - med_lshape
+    >>> print(diff_med_med.listing())
+    <BLANKLINE>
+    >>> print(med_lshape.listing())
+    ([0 1 0], (40, 0, 0))
+        ((40, 40, 0), (40, 60, 0))
+    ([0 1 0], (60, 0, 0))
+        ((60, 40, 0), (60, 60, 0))
+    ([1 0 0], (0, 40, 0))
+        ((40, 40, 0), (60, 40, 0))
+    ([1 0 0], (0, 60, 0))
+        ((40, 60, 0), (60, 60, 0))
+    'a'
+        (50, 50, 0)
+    >>> diff_med_empty = med_lshape - empty_lshape
+    >>> print(diff_med_empty.listing())
+    ([0 1 0], (40, 0, 0))
+        ((40, 40, 0), (40, 60, 0))
+    ([0 1 0], (60, 0, 0))
+        ((60, 40, 0), (60, 60, 0))
+    ([1 0 0], (0, 40, 0))
+        ((40, 40, 0), (60, 40, 0))
+    ([1 0 0], (0, 60, 0))
+        ((40, 60, 0), (60, 60, 0))
+    'a'
+        (50, 50, 0)
+    >>> print(med_lshape.listing())
+    ([0 1 0], (40, 0, 0))
+        ((40, 40, 0), (40, 60, 0))
+    ([0 1 0], (60, 0, 0))
+        ((60, 40, 0), (60, 60, 0))
+    ([1 0 0], (0, 40, 0))
+        ((40, 40, 0), (60, 40, 0))
+    ([1 0 0], (0, 60, 0))
+        ((40, 60, 0), (60, 60, 0))
+    'a'
+        (50, 50, 0)
+    >>> diff_empty_med = empty_lshape - med_lshape
+    >>> print(diff_empty_med.listing())
+    <BLANKLINE>
+    >>> print med_lshape.listing()
+    ([0 1 0], (40, 0, 0))
+        ((40, 40, 0), (40, 60, 0))
+    ([0 1 0], (60, 0, 0))
+        ((60, 40, 0), (60, 60, 0))
+    ([1 0 0], (0, 40, 0))
+        ((40, 40, 0), (60, 40, 0))
+    ([1 0 0], (0, 60, 0))
+        ((40, 60, 0), (60, 60, 0))
+    'a'
+        (50, 50, 0)
 
-    ??? diff_big_med = big_lshape - med_lshape
-    ??? print med_lshape.listing()
-    (0, 40):
-        (40, 40, 40, 60)
-    (0, 60):
-        (60, 40, 60, 60)
-    (90, 40):
-        (40, 40, 60, 40)
-    (90, 60):
-        (40, 60, 60, 60)
-    a:
-        (50, 50)
-    ??? print diff_big_med.listing()
-    (0, 40):
-        (40, 20, 40, 40)
-        (40, 60, 40, 80)
-    (0, 60):
-        (60, 20, 60, 40)
-        (60, 60, 60, 80)
-    (90, 40):
-        (20, 40, 40, 40)
-        (60, 40, 80, 40)
-    (90, 60):
-        (20, 60, 40, 60)
-        (60, 60, 80, 60)
-    a:
-        (30, 50)
+    >>> empty_lshape = labeled_shape.LabeledShape.new_empty()
+    >>> hash_xyz - hash_xyz == empty_lshape
+    True
+    >>> hash_xyz - cube_xy == ells_z
+    True
+    >>> hash_xyz - ells_z == cube_xy
+    True
+    >>> hash_xyz - empty_lshape == hash_xyz
+    True
+    >>> cube_xy - hash_xyz == empty_lshape
+    True
+    >>> cube_xy - cube_xy == empty_lshape
+    True
+    >>> cube_xy - ells_z == cube_xy
+    True
+    >>> cube_xy - empty_lshape == cube_xy
+    True
+    >>> ells_z - hash_xyz == empty_lshape
+    True
+    >>> ells_z - cube_xy == ells_z
+    True
+    >>> ells_z - ells_z == empty_lshape
+    True
+    >>> ells_z - empty_lshape == ells_z
+    True
+    >>> empty_lshape - hash_xyz == empty_lshape
+    True
+    >>> empty_lshape - cube_xy == empty_lshape
+    True
+    >>> empty_lshape - ells_z == empty_lshape
+    True
+    >>> empty_lshape - empty_lshape == empty_lshape
+    True
 
-    ??? diff_med_med = med_lshape - med_lshape
-    ??? print diff_med_med.listing()
-    <empty labeled shape>
-    ??? print med_lshape.listing()
-    (0, 40):
-        (40, 40, 40, 60)
-    (0, 60):
-        (60, 40, 60, 60)
-    (90, 40):
-        (40, 40, 60, 40)
-    (90, 60):
-        (40, 60, 60, 60)
-    a:
-        (50, 50)
+#   intersection
+    >>> print('Test intersection')
+    
+    ??? hash_xyz.intersection(hash_xyz) == hash_xyz
+    True
+    ??? hash_xyz.intersection(hash_xyz) == hash_xyz
+    ??? hash_xyz.intersection(cube_xy) == cube_xy
+    ??? hash_xyz.intersection(ells_z) == ells_z
+    ??? cube_xy.intersection(hash_xyz) == cube_xy
+    ??? cube_xy.intersection(cube_xy) == cube_xy
+    ??? cube_xy.intersection(ells_z) == empty_shape
 
-    ??? diff_med_empty = med_lshape - empty_lshape
-    ??? print diff_med_empty.listing()
-    (0, 40):
-        (40, 40, 40, 60)
-    (0, 60):
-        (60, 40, 60, 60)
-    (90, 40):
-        (40, 40, 60, 40)
-    (90, 60):
-        (40, 60, 60, 60)
-    a:
-        (50, 50)
-    ??? print med_lshape.listing()
-    (0, 40):
-        (40, 40, 40, 60)
-    (0, 60):
-        (60, 40, 60, 60)
-    (90, 40):
-        (40, 40, 60, 40)
-    (90, 60):
-        (40, 60, 60, 60)
-    a:
-        (50, 50)
-
-    ??? diff_empty_med = empty_lshape - med_lshape
-    ??? print diff_empty_med.listing()
-    <empty labeled shape>
-    ??? print med_lshape.listing()
-    (0, 40):
-        (40, 40, 40, 60)
-    (0, 60):
-        (60, 40, 60, 60)
-    (90, 40):
-        (40, 40, 60, 40)
-    (90, 60):
-        (40, 60, 60, 60)
-    a:
-        (50, 50)
-
-#   __and__(other)                                          #   no test
+#   union
+    >>> print('Test union')
 
 #   make_lshape_from()                                      #   no test, controller
 

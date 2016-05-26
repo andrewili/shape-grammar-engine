@@ -135,8 +135,8 @@
 
 #   __str__
     >>> def set_up_str():
-    ...     v_12 = vector.Vector(1, 2)
-    ...     v_110 = vector.Vector(1, 1, 0)
+    ...     v_12 = vector.Vector(1.0, 2.0)
+    ...     v_110 = vector.Vector(1.0, 1.0, 0.0)
     ...     cos30 = cos(TAU / 12)
     ...     cos45 = cos(TAU / 8)
     ...     cos60 = cos(TAU / 6)
@@ -148,7 +148,7 @@
     >>> str(v_110)
     '[1 1 0]'
     >>> str(v_cos)
-    '[ 0.8660254   0.70710678  0.5       ]'
+    '[0.866025403784 0.707106781187 0.5]'
 
 #   __repr__
     >>> r_12 = repr(v_12)

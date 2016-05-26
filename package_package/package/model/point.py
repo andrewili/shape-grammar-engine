@@ -164,13 +164,13 @@ class Point(object):
         """Returns:
             string          str. Zero fractions are removed
         """
-        x_str = self._finish_coord(self.x)
-        y_str = self._finish_coord(self.y)
-        z_str = self._finish_coord(self.z)
+        x_str = self._trim_coord(self.x)
+        y_str = self._trim_coord(self.y)
+        z_str = self._trim_coord(self.z)
         string = '(%s, %s, %s)' % (x_str, y_str, z_str)
         return string
 
-    def _finish_coord(self, raw_coord):
+    def _trim_coord(self, raw_coord):
         finished_coord = raw_coord
         if str(raw_coord)[-2:] == '.0':
             finished_coord = str(raw_coord)[:-2]

@@ -248,7 +248,7 @@ class Colineation(object):
         """Receives:
             other           Colineation. Colinear with self
         Returns:
-            new_colin       Colineation. Has a set of merged lines from 
+            new_colin       Colineation. Has a list of merged lines from 
                             self.lines and other.lines
         """
         method_name = '__add__'
@@ -493,6 +493,25 @@ class Colineation(object):
                 print "    Oops. This subtrahend is supposed to be impossible"
         lines_diff.extend(last_line_line_diff_list)
         return lines_diff
+
+    def intersection(self, other):
+        """Receives:
+            other           Colineation
+        Returns:
+            colin_intersect Colineation. Has an (ordered) list of (maximal) 
+                            lines such that each is a part both of a line in 
+                            self.lines and a line in other.lines 
+        """
+        pass
+
+    def union(self, other):                     ##  same as __add__?
+        """Receives:
+            other           Colineation
+        Returns:
+            colin_union     Colineation. Has an (ordered) list of (maximal) 
+                            merged lines from self.lines and other.lines
+        """
+        pass
 
     @classmethod
     def _print_error_message(cls, method_name, message):

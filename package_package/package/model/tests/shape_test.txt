@@ -3,109 +3,346 @@
     >>> import colineation
     >>> import line
     >>> import line_partition
+    >>> import point
     >>> import shape
+    >>> import vector
 
-    >>> def make_lines_from_short_specs(short_specs):
-    ...     new_lines = []
-    ...     for spec in short_specs:
-    ...         xy1, xy2 = (spec)
-    ...         new_line = line.Line.from_specs(xy1, xy1, xy2, xy2)
-    ...         new_lines.append(new_line)
-    ...     return new_lines
-
-    >>> empty_shape = shape.Shape.new_empty()
-
-### construct, represent
-#   __init__(), from_lines(lines), from_specs(), listing(), __str__()
-    
-    >>> non_part = 'x'
-    >>> shape_from_non_part = shape.Shape(non_part)
-    Shape.__init__(): The argument must be a line partition
-
-    empty shape
-    
-    >>> print empty_shape
-    []
-    >>> print empty_shape.line_part
-    []
-    >>> print empty_shape.__str__()
-    []
-    >>> print empty_shape.listing()
-    <empty shape>
-    >>> empty_shape.is_empty()
+### construct
+#   __init__
+    >>> def set_up_init():
+    ...     bad_type_non_part = 'kilroy'
+    ...     empty_line_part = line_partition.LinePartition.new_empty()
+    ...     #   points
+    ...     p_033 = point.Point(  0,  30,  30)
+    ...     p_037 = point.Point(  0,  30,  70)
+    ...     p_073 = point.Point(  0,  70,  30)
+    ...     p_077 = point.Point(  0,  70,  70)
+    ...     p_303 = point.Point( 30,   0,  30)
+    ...     p_307 = point.Point( 30,   0,  70)
+    ...     p_330 = point.Point( 30,  30,   0)
+    ...     p_333 = point.Point( 30,  30,  30)
+    ...     p_337 = point.Point( 30,  30,  70)
+    ...     p_33a = point.Point( 30,  30, 100)
+    ...     p_370 = point.Point( 30,  70,   0)
+    ...     p_373 = point.Point( 30,  70,  30)
+    ...     p_377 = point.Point( 30,  70,  70)
+    ...     p_37a = point.Point( 30,  70, 100)
+    ...     p_3a3 = point.Point( 30, 100,  30)
+    ...     p_3a7 = point.Point( 30, 100,  70)
+    ...     p_703 = point.Point( 70,   0,  30)
+    ...     p_707 = point.Point( 70,   0,  70)
+    ...     p_730 = point.Point( 70,  30,   0)
+    ...     p_733 = point.Point( 70,  30,  30)
+    ...     p_737 = point.Point( 70,  30,  70)
+    ...     p_73a = point.Point( 70,  30, 100)
+    ...     p_770 = point.Point( 70,  70,   0)
+    ...     p_773 = point.Point( 70,  70,  30)
+    ...     p_777 = point.Point( 70,  70,  70)
+    ...     p_77a = point.Point( 70,  70, 100)
+    ...     p_7a3 = point.Point( 70, 100,  30)
+    ...     p_7a7 = point.Point( 70, 100,  70)
+    ...     p_a33 = point.Point(100,  30,  30)
+    ...     p_a37 = point.Point(100,  30,  70)
+    ...     p_a73 = point.Point(100,  70,  30)
+    ...     p_a77 = point.Point(100,  70,  70)
+    ...     #   lines for hash3d
+    ...     l_033_a33 = line.Line(p_033, p_a33)
+    ...     l_037_a37 = line.Line(p_037, p_a37)
+    ...     l_073_a73 = line.Line(p_073, p_a73)
+    ...     l_077_a77 = line.Line(p_077, p_a77)
+    ...     l_303_3a3 = line.Line(p_303, p_3a3)
+    ...     l_307_3a7 = line.Line(p_307, p_3a7)
+    ...     l_330_33a = line.Line(p_330, p_33a)
+    ...     l_370_37a = line.Line(p_370, p_37a)
+    ...     l_703_7a3 = line.Line(p_703, p_7a3)
+    ...     l_707_7a7 = line.Line(p_707, p_7a7)
+    ...     l_730_73a = line.Line(p_730, p_73a)
+    ...     l_770_77a = line.Line(p_770, p_77a)
+    ...     #   lines for cube
+    ...     l_333_733 = line.Line(p_333, p_733)
+    ...     l_337_737 = line.Line(p_337, p_737)
+    ...     l_373_773 = line.Line(p_373, p_773)
+    ...     l_377_777 = line.Line(p_377, p_777)
+    ...     l_333_373 = line.Line(p_333, p_373)
+    ...     l_337_377 = line.Line(p_337, p_377)
+    ...     l_733_773 = line.Line(p_733, p_773)
+    ...     l_737_777 = line.Line(p_737, p_777)
+    ...     l_333_337 = line.Line(p_333, p_337)
+    ...     l_373_377 = line.Line(p_373, p_377)
+    ...     l_733_737 = line.Line(p_733, p_737)
+    ...     l_773_777 = line.Line(p_773, p_777)
+    ...     #   lines for ells3d
+    ...     l_033_333 = line.Line(p_033, p_333)
+    ...     l_037_337 = line.Line(p_037, p_337)
+    ...     l_073_373 = line.Line(p_073, p_373)
+    ...     l_077_377 = line.Line(p_077, p_377)
+    ...     l_303_333 = line.Line(p_303, p_333)
+    ...     l_307_337 = line.Line(p_307, p_337)
+    ...     l_330_333 = line.Line(p_330, p_333)
+    ...     l_337_33a = line.Line(p_337, p_33a)
+    ...     l_370_373 = line.Line(p_370, p_373)
+    ...     l_373_3a3 = line.Line(p_373, p_3a3)
+    ...     l_377_37a = line.Line(p_377, p_37a)
+    ...     l_377_3a7 = line.Line(p_377, p_3a7)
+    ...     l_703_733 = line.Line(p_703, p_733)
+    ...     l_707_737 = line.Line(p_707, p_737)
+    ...     l_730_733 = line.Line(p_730, p_733)
+    ...     l_770_773 = line.Line(p_770, p_773)
+    ...     l_733_a33 = line.Line(p_733, p_a33)
+    ...     l_737_73a = line.Line(p_737, p_73a)
+    ...     l_737_a37 = line.Line(p_737, p_a37)
+    ...     l_773_7a3 = line.Line(p_773, p_7a3)
+    ...     l_773_a73 = line.Line(p_773, p_a73)
+    ...     l_777_77a = line.Line(p_777, p_77a)
+    ...     l_777_7a7 = line.Line(p_777, p_7a7)
+    ...     l_777_a77 = line.Line(p_777, p_a77)
+    ...     lines_hash3d = [
+    ...         l_330_33a, l_370_37a, l_730_73a, l_770_77a, 
+    ...         l_303_3a3, l_307_3a7, l_703_7a3, l_707_7a7, 
+    ...         l_033_a33, l_037_a37, l_073_a73, l_077_a77]
+    ...     line_part_hash3d = line_partition.LinePartition(lines_hash3d)
+    ...     lines_cube = [
+    ...         l_333_733, l_337_737, l_373_773, l_377_777,
+    ...         l_333_373, l_337_377, l_733_773, l_737_777,
+    ...         l_333_337, l_373_377, l_733_737, l_773_777]
+    ...     line_part_cube = line_partition.LinePartition(lines_cube)
+    ...     lines_ells3d = [
+    ...         l_033_333, l_733_a33, l_037_337, l_737_a37, 
+    ...         l_073_373, l_773_a73, l_077_377, l_777_a77, 
+    ...         l_303_333, l_373_3a3, l_307_337, l_377_3a7, 
+    ...         l_703_733, l_773_7a3, l_707_737, l_777_7a7, 
+    ...         l_330_333, l_337_33a, l_370_373, l_377_37a, 
+    ...         l_730_733, l_737_73a, l_770_773, l_777_77a]
+    ...     line_part_ells3d = line_partition.LinePartition(lines_ells3d)
+    ...     return (
+    ...         lines_cube, bad_type_non_part, empty_line_part, 
+    ...         line_part_hash3d, line_part_cube, line_part_ells3d)
+    >>> (   lines_cube, bad_type_non_part, empty_line_part, 
+    ...     line_part_hash3d, line_part_cube, line_part_ells3d) = set_up_init()
+    >>> shape_non_part = shape.Shape(bad_type_non_part)
+    Shape.__init__:
+        The argument must be a line partition
+    >>> empty_shape = shape.Shape(empty_line_part)
+    >>> empty_shape.line_part.dictionary == {}
     True
 
-    non-empty shape
+    >>> hash3d = shape.Shape(line_part_hash3d)
+    >>> print(hash3d.line_part.listing())
+    ([0 0 1], (30, 30, 0))
+        ((30, 30, 0), (30, 30, 100))
+    ([0 0 1], (30, 70, 0))
+        ((30, 70, 0), (30, 70, 100))
+    ([0 0 1], (70, 30, 0))
+        ((70, 30, 0), (70, 30, 100))
+    ([0 0 1], (70, 70, 0))
+        ((70, 70, 0), (70, 70, 100))
+    ([0 1 0], (30, 0, 30))
+        ((30, 0, 30), (30, 100, 30))
+    ([0 1 0], (30, 0, 70))
+        ((30, 0, 70), (30, 100, 70))
+    ([0 1 0], (70, 0, 30))
+        ((70, 0, 30), (70, 100, 30))
+    ([0 1 0], (70, 0, 70))
+        ((70, 0, 70), (70, 100, 70))
+    ([1 0 0], (0, 30, 30))
+        ((0, 30, 30), (100, 30, 30))
+    ([1 0 0], (0, 30, 70))
+        ((0, 30, 70), (100, 30, 70))
+    ([1 0 0], (0, 70, 30))
+        ((0, 70, 30), (100, 70, 30))
+    ([1 0 0], (0, 70, 70))
+        ((0, 70, 70), (100, 70, 70))
     
-    >>> def non_empty_shape_for_init():
-    ...     line_01 = line.Line.from_specs(0, 0, 1, 1)
-    ...     line_23 = line.Line.from_specs(2, 2, 3, 3)
-    ...     line_h  = line.Line.from_specs(0, 0, 1, 0)
-    ...     line_v  = line.Line.from_specs(0, 0, 0, 1)
-    ...     lines = [line_01, line_23, line_h, line_v]
-    ...     new_line_partition = line_partition.LinePartition(lines)
-    ...     return shape.Shape(new_line_partition)
-    >>> non_empty_shape = non_empty_shape_for_init()
+    >>> cube = shape.Shape(line_part_cube)
+    >>> print(cube.listing())
+    ([0 0 1], (30, 30, 0))
+        ((30, 30, 30), (30, 30, 70))
+    ([0 0 1], (30, 70, 0))
+        ((30, 70, 30), (30, 70, 70))
+    ([0 0 1], (70, 30, 0))
+        ((70, 30, 30), (70, 30, 70))
+    ([0 0 1], (70, 70, 0))
+        ((70, 70, 30), (70, 70, 70))
+    ([0 1 0], (30, 0, 30))
+        ((30, 30, 30), (30, 70, 30))
+    ([0 1 0], (30, 0, 70))
+        ((30, 30, 70), (30, 70, 70))
+    ([0 1 0], (70, 0, 30))
+        ((70, 30, 30), (70, 70, 30))
+    ([0 1 0], (70, 0, 70))
+        ((70, 30, 70), (70, 70, 70))
+    ([1 0 0], (0, 30, 30))
+        ((30, 30, 30), (70, 30, 30))
+    ([1 0 0], (0, 30, 70))
+        ((30, 30, 70), (70, 30, 70))
+    ([1 0 0], (0, 70, 30))
+        ((30, 70, 30), (70, 70, 30))
+    ([1 0 0], (0, 70, 70))
+        ((30, 70, 70), (70, 70, 70))
 
-    >>> print non_empty_shape
-    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
-    >>> print non_empty_shape.listing(1)
-    (0.0, 0.0):
-        (0.0, 0.0, 0.0, 1.0)
-    (45.0, 0.0):
-        (0.0, 0.0, 1.0, 1.0)
-        (2.0, 2.0, 3.0, 3.0)
-    (90.0, 0.0):
-        (0.0, 0.0, 1.0, 0.0)
-
-    2 disjoint collinear horizontal lines, 1 vertical line: _ | _
+    >>> ells3d = shape.Shape(line_part_ells3d)
+    >>> print(ells3d.listing())
+    ([0 0 1], (30, 30, 0))
+        ((30, 30, 0), (30, 30, 30))
+        ((30, 30, 70), (30, 30, 100))
+    ([0 0 1], (30, 70, 0))
+        ((30, 70, 0), (30, 70, 30))
+        ((30, 70, 70), (30, 70, 100))
+    ([0 0 1], (70, 30, 0))
+        ((70, 30, 0), (70, 30, 30))
+        ((70, 30, 70), (70, 30, 100))
+    ([0 0 1], (70, 70, 0))
+        ((70, 70, 0), (70, 70, 30))
+        ((70, 70, 70), (70, 70, 100))
+    ([0 1 0], (30, 0, 30))
+        ((30, 0, 30), (30, 30, 30))
+        ((30, 70, 30), (30, 100, 30))
+    ([0 1 0], (30, 0, 70))
+        ((30, 0, 70), (30, 30, 70))
+        ((30, 70, 70), (30, 100, 70))
+    ([0 1 0], (70, 0, 30))
+        ((70, 0, 30), (70, 30, 30))
+        ((70, 70, 30), (70, 100, 30))
+    ([0 1 0], (70, 0, 70))
+        ((70, 0, 70), (70, 30, 70))
+        ((70, 70, 70), (70, 100, 70))
+    ([1 0 0], (0, 30, 30))
+        ((0, 30, 30), (30, 30, 30))
+        ((70, 30, 30), (100, 30, 30))
+    ([1 0 0], (0, 30, 70))
+        ((0, 30, 70), (30, 30, 70))
+        ((70, 30, 70), (100, 30, 70))
+    ([1 0 0], (0, 70, 30))
+        ((0, 70, 30), (30, 70, 30))
+        ((70, 70, 30), (100, 70, 30))
+    ([1 0 0], (0, 70, 70))
+        ((0, 70, 70), (30, 70, 70))
+        ((70, 70, 70), (100, 70, 70))
     
-    >>> def shape_for_disjoint_collinear_lines_test():
-    ...     h0010 = line.Line.from_specs(0, 0, 1, 0)
-    ...     h3040 = line.Line.from_specs(3, 0, 4, 0)
-    ...     v2022 = line.Line.from_specs(2, 0, 2, 2)
-    ...     lines = [h0010, h3040, v2022]
-    ...     new_line_partition = line_partition.LinePartition(lines)
-    ...     return shape.Shape(new_line_partition)
-    
-    >>> shape_for_disjoint_collinear_lines = shape_for_disjoint_collinear_lines_test()
-    >>> print shape_for_disjoint_collinear_lines
-    [(0, 0, 1, 0), (2, 0, 2, 2), (3, 0, 4, 0)]
-    >>> print shape_for_disjoint_collinear_lines.listing()
-    (0, 2):
-        (2, 0, 2, 2)
-    (90, 0):
-        (0, 0, 1, 0)
-        (3, 0, 4, 0)
+#   from_lines
+    >>> shape_from_lines = shape.Shape.from_lines(lines_cube)
+    >>> print(shape_from_lines.listing())
+    ([0 0 1], (30, 30, 0))
+        ((30, 30, 30), (30, 30, 70))
+    ([0 0 1], (30, 70, 0))
+        ((30, 70, 30), (30, 70, 70))
+    ([0 0 1], (70, 30, 0))
+        ((70, 30, 30), (70, 30, 70))
+    ([0 0 1], (70, 70, 0))
+        ((70, 70, 30), (70, 70, 70))
+    ([0 1 0], (30, 0, 30))
+        ((30, 30, 30), (30, 70, 30))
+    ([0 1 0], (30, 0, 70))
+        ((30, 30, 70), (30, 70, 70))
+    ([0 1 0], (70, 0, 30))
+        ((70, 30, 30), (70, 70, 30))
+    ([0 1 0], (70, 0, 70))
+        ((70, 30, 70), (70, 70, 70))
+    ([1 0 0], (0, 30, 30))
+        ((30, 30, 30), (70, 30, 30))
+    ([1 0 0], (0, 30, 70))
+        ((30, 30, 70), (70, 30, 70))
+    ([1 0 0], (0, 70, 30))
+        ((30, 70, 30), (70, 70, 30))
+    ([1 0 0], (0, 70, 70))
+        ((30, 70, 70), (70, 70, 70))
 
-    from_lines
-
-    >>> def lines_for_shape_from_lines_test():
-    ...     line_0001 = line.Line.from_specs(0, 0, 0, 1)
-    ...     line_0010 = line.Line.from_specs(0, 0, 1, 0)
-    ...     lines = [line_0010, line_0001]
-    ...     return lines
-    >>> lines = lines_for_shape_from_lines_test()
-
-    >>> shape_from_lines = shape.Shape.from_lines(lines)
-    >>> print shape_from_lines
-    [(0, 0, 0, 1), (0, 0, 1, 0)]
-
-    from_lines
-    
-    >>> spec_n = (0, 0, 0, 1)
-    >>> spec_ne = (0, 0, 1, 1)
-    >>> spec_e = (0, 0, 1, 0)
-    >>> specs = [spec_n, spec_ne, spec_e]
-    
+#   from_specs
+    >>> specs = [
+    ...     ((30, 30, 30), (30, 30, 70)), 
+    ...     ((30, 70, 30), (30, 70, 70)), 
+    ...     ((70, 30, 30), (70, 30, 70)), 
+    ...     ((70, 70, 30), (70, 70, 70)), 
+    ...     ((30, 30, 30), (30, 70, 30)), 
+    ...     ((30, 30, 70), (30, 70, 70)), 
+    ...     ((70, 30, 30), (70, 70, 30)), 
+    ...     ((70, 30, 70), (70, 70, 70)), 
+    ...     ((30, 30, 30), (70, 30, 30)), 
+    ...     ((30, 30, 70), (70, 30, 70)), 
+    ...     ((30, 70, 30), (70, 70, 30)), 
+    ...     ((30, 70, 70), (70, 70, 70))]
     >>> shape_from_specs = shape.Shape.from_specs(specs)
-    >>> print shape_from_specs
-    [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1)]
+    >>> print(shape_from_specs.listing())
+    ([0 0 1], (30, 30, 0))
+        ((30, 30, 30), (30, 30, 70))
+    ([0 0 1], (30, 70, 0))
+        ((30, 70, 30), (30, 70, 70))
+    ([0 0 1], (70, 30, 0))
+        ((70, 30, 30), (70, 30, 70))
+    ([0 0 1], (70, 70, 0))
+        ((70, 70, 30), (70, 70, 70))
+    ([0 1 0], (30, 0, 30))
+        ((30, 30, 30), (30, 70, 30))
+    ([0 1 0], (30, 0, 70))
+        ((30, 30, 70), (30, 70, 70))
+    ([0 1 0], (70, 0, 30))
+        ((70, 30, 30), (70, 70, 30))
+    ([0 1 0], (70, 0, 70))
+        ((70, 30, 70), (70, 70, 70))
+    ([1 0 0], (0, 30, 30))
+        ((30, 30, 30), (70, 30, 30))
+    ([1 0 0], (0, 30, 70))
+        ((30, 30, 70), (70, 30, 70))
+    ([1 0 0], (0, 70, 30))
+        ((30, 70, 30), (70, 70, 30))
+    ([1 0 0], (0, 70, 70))
+        ((30, 70, 70), (70, 70, 70))
+
+### represent
+#   __str__
+    >>> str(ells3d)
+    '{([0 0 1], (30, 30, 0)): [((30, 30, 0), (30, 30, 30)), ((30, 30, 70), (30, 30, 100))], ([0 0 1], (30, 70, 0)): [((30, 70, 0), (30, 70, 30)), ((30, 70, 70), (30, 70, 100))], ([0 0 1], (70, 30, 0)): [((70, 30, 0), (70, 30, 30)), ((70, 30, 70), (70, 30, 100))], ([0 0 1], (70, 70, 0)): [((70, 70, 0), (70, 70, 30)), ((70, 70, 70), (70, 70, 100))], ([0 1 0], (30, 0, 30)): [((30, 0, 30), (30, 30, 30)), ((30, 70, 30), (30, 100, 30))], ([0 1 0], (30, 0, 70)): [((30, 0, 70), (30, 30, 70)), ((30, 70, 70), (30, 100, 70))], ([0 1 0], (70, 0, 30)): [((70, 0, 30), (70, 30, 30)), ((70, 70, 30), (70, 100, 30))], ([0 1 0], (70, 0, 70)): [((70, 0, 70), (70, 30, 70)), ((70, 70, 70), (70, 100, 70))], ([1 0 0], (0, 30, 30)): [((0, 30, 30), (30, 30, 30)), ((70, 30, 30), (100, 30, 30))], ([1 0 0], (0, 30, 70)): [((0, 30, 70), (30, 30, 70)), ((70, 30, 70), (100, 30, 70))], ([1 0 0], (0, 70, 30)): [((0, 70, 30), (30, 70, 30)), ((70, 70, 30), (100, 70, 30))], ([1 0 0], (0, 70, 70)): [((0, 70, 70), (30, 70, 70)), ((70, 70, 70), (100, 70, 70))]}'
+
+#   __repr__
+    >>> ells3d_repr = repr(ells3d)
+    >>> eval(ells3d_repr) == ells3d
+    True
+
+#   listing
+    >>> print(empty_shape.listing())
+    <BLANKLINE>
+    >>> print(ells3d.listing())
+    ([0 0 1], (30, 30, 0))
+        ((30, 30, 0), (30, 30, 30))
+        ((30, 30, 70), (30, 30, 100))
+    ([0 0 1], (30, 70, 0))
+        ((30, 70, 0), (30, 70, 30))
+        ((30, 70, 70), (30, 70, 100))
+    ([0 0 1], (70, 30, 0))
+        ((70, 30, 0), (70, 30, 30))
+        ((70, 30, 70), (70, 30, 100))
+    ([0 0 1], (70, 70, 0))
+        ((70, 70, 0), (70, 70, 30))
+        ((70, 70, 70), (70, 70, 100))
+    ([0 1 0], (30, 0, 30))
+        ((30, 0, 30), (30, 30, 30))
+        ((30, 70, 30), (30, 100, 30))
+    ([0 1 0], (30, 0, 70))
+        ((30, 0, 70), (30, 30, 70))
+        ((30, 70, 70), (30, 100, 70))
+    ([0 1 0], (70, 0, 30))
+        ((70, 0, 30), (70, 30, 30))
+        ((70, 70, 30), (70, 100, 30))
+    ([0 1 0], (70, 0, 70))
+        ((70, 0, 70), (70, 30, 70))
+        ((70, 70, 70), (70, 100, 70))
+    ([1 0 0], (0, 30, 30))
+        ((0, 30, 30), (30, 30, 30))
+        ((70, 30, 30), (100, 30, 30))
+    ([1 0 0], (0, 30, 70))
+        ((0, 30, 70), (30, 30, 70))
+        ((70, 30, 70), (100, 30, 70))
+    ([1 0 0], (0, 70, 30))
+        ((0, 70, 30), (30, 70, 30))
+        ((70, 70, 30), (100, 70, 30))
+    ([1 0 0], (0, 70, 70))
+        ((0, 70, 70), (30, 70, 70))
+        ((70, 70, 70), (100, 70, 70))
 
 ### get
-#   line_specs()
+#   line_specs()                                #   suspended
 
-    >>> def make_shapes_for_specs():
+    ??? def make_shapes_for_specs():
     ...     shape_0 = shape.Shape.new_empty()
     ...     line_0001 = line.Line.from_specs(0, 0, 0, 1)
     ...     line_0010 = line.Line.from_specs(0, 0, 1, 0)
@@ -114,37 +351,51 @@
     ...     lines = [line_0001, line_0010, line_0011, line_2233]
     ...     shape_1 = shape.Shape.from_lines(lines)
     ...     return [shape_0, shape_1]
-    >>> shape_0, shape_1 = make_shapes_for_specs()
-    >>> print shape_0.line_specs()
+    ??? shape_0, shape_1 = make_shapes_for_specs()
+    ??? print shape_0.line_specs()
     []
-    >>> print shape_1.line_specs()
+    ??? print shape_1.line_specs()
     [(0, 0, 0, 1), (0, 0, 1, 0), (0, 0, 1, 1), (2, 2, 3, 3)]
 
 ### relations
-#   __eq__(other), line_parts_are_equal(line_part_1, line_part_2)
+#   __hash__
+    >>> l0033a = line.Line.from_specs_4(0, 0, 3, 3)
+    >>> l0033b = line.Line.from_specs_4(0, 0, 3, 3)
+    >>> l0330a = line.Line.from_specs_4(0, 3, 3, 0)
+    >>> l0330b = line.Line.from_specs_4(0, 3, 3, 0)
+    >>> l0331b = line.Line.from_specs_4(0, 3, 3, 1)
+    >>> sq_a = shape.Shape.from_lines([l0033a, l0330a])
+    >>> sq_b = shape.Shape.from_lines([l0033b, l0330b])
+    >>> sq_c = shape.Shape.from_lines([l0033b, l0331b])
+    >>> hash(sq_a) == hash(sq_b)
+    True
+    >>> hash(sq_a) == hash(sq_c)
+    False
+    >>> hash(sq_a) == hash(sq_a.line_part)
+    True
 
+#   __eq__
     >>> def make_shapes_for_eq():
-    ...     line_0010 = line.Line.from_specs(0, 0, 1, 0)
-    ...     line_0011 = line.Line.from_specs(0, 0, 1, 1)
-    ...     line_0001 = line.Line.from_specs(0, 0, 0, 1)
-    ...     lines_3 = [line_0010, line_0011, line_0001]
-    ...     lines_2 = [line_0010, line_0011]
+    ...     l_0010 = line.Line.from_specs_4(0, 0, 1, 0)
+    ...     l_0011 = line.Line.from_specs_4(0, 0, 1, 1)
+    ...     l_0001 = line.Line.from_specs_4(0, 0, 0, 1)
+    ...     lines_3 = [l_0010, l_0011, l_0001]
+    ...     lines_2 = [l_0010, l_0011]
     ...     lines_0 = []
-    ...     line_0010a = line.Line.from_specs(0, 0, 1, 0)
-    ...     line_0011a = line.Line.from_specs(0, 0, 1, 1)
-    ...     lines_test = [line_0010a, line_0011a]
-    ...     line_partition_test = line_partition.LinePartition(lines_test)
-    ...     line_partition_3 = line_partition.LinePartition(lines_3)
-    ...     line_partition_2 = line_partition.LinePartition(lines_2)
-    ...     line_partition_0 = line_partition.LinePartition(lines_0)
-    ...     line_partition_00 = line_partition.LinePartition(lines_0)
-    ...     shape_test = shape.Shape(line_partition_test)
-    ...     shape_0 = shape.Shape(line_partition_0)
-    ...     shape_2 = shape.Shape(line_partition_2)
-    ...     shape_3 = shape.Shape(line_partition_3)
-    ...     shape_00 = shape.Shape(line_partition_00)
+    ...     l_0010a = line.Line.from_specs_4(0, 0, 1, 0)
+    ...     l_0011a = line.Line.from_specs_4(0, 0, 1, 1)
+    ...     lines_test = [l_0010a, l_0011a]
+    ...     line_part_test = line_partition.LinePartition(lines_test)
+    ...     line_part_3 = line_partition.LinePartition(lines_3)
+    ...     line_part_2 = line_partition.LinePartition(lines_2)
+    ...     line_part_0 = line_partition.LinePartition(lines_0)
+    ...     line_part_00 = line_partition.LinePartition(lines_0)
+    ...     shape_test = shape.Shape(line_part_test)
+    ...     shape_0 = shape.Shape(line_part_0)
+    ...     shape_2 = shape.Shape(line_part_2)
+    ...     shape_3 = shape.Shape(line_part_3)
+    ...     shape_00 = shape.Shape(line_part_00)
     ...     return (shape_test, shape_0, shape_2, shape_3, shape_00)
-    
     >>> shape_test, shape_0, shape_2, shape_3, shape_00 = make_shapes_for_eq()
     >>> shape_test == shape_0
     False
@@ -155,24 +406,23 @@
     >>> shape_0 == shape_00
     True
 
-#   __ne__(other)
+#   __ne__
     >>> def make_shapes_for_ne():
-    ...     base_line_0001 = line.Line.from_specs(0, 0, 0, 1)
-    ...     base_line_0010 = line.Line.from_specs(0, 0, 1, 0)
-    ...     base_shape = shape.Shape.from_lines([base_line_0001, base_line_0010])
+    ...     base_line_0001 = line.Line.from_specs_4(0, 0, 0, 1)
+    ...     base_line_0010 = line.Line.from_specs_4(0, 0, 1, 0)
+    ...     base_shape = shape.Shape.from_lines(
+    ...         [base_line_0001, base_line_0010])
     ...     empty_partition = line_partition.LinePartition([])
     ...     empty_shape = shape.Shape(empty_partition)
-    ...     line_0001 = line.Line.from_specs(0, 0, 0, 1)
-    ...     line_0002 = line.Line.from_specs(0, 0, 0, 2)
-    ...     line_0010 = line.Line.from_specs(0, 0, 1, 0)
-    ...     line_0020 = line.Line.from_specs(0, 0, 2, 0)
+    ...     line_0001 = line.Line.from_specs_4(0, 0, 0, 1)
+    ...     line_0002 = line.Line.from_specs_4(0, 0, 0, 2)
+    ...     line_0010 = line.Line.from_specs_4(0, 0, 1, 0)
+    ...     line_0020 = line.Line.from_specs_4(0, 0, 2, 0)
     ...     shape_0001_0010 = shape.Shape.from_lines([line_0001, line_0010])
     ...     shape_0001_0020 = shape.Shape.from_lines([line_0001, line_0020])
     ...     shape_0002_0010 = shape.Shape.from_lines([line_0002, line_0010])
     ...     return [base_shape, empty_shape, shape_0001_0010, shape_0001_0020, shape_0002_0010]
-    
     >>> base_shape, empty_shape, shape_0001_0010, shape_0001_0020, shape_0002_0010 = make_shapes_for_ne()
-
     >>> base_shape != empty_shape
     True
     >>> base_shape != shape_0002_0010
@@ -183,37 +433,72 @@
     False
 
 #   is_a_subshape_of(other)
-    >>> def make_shapes_for_part():
-    ...     line_0001 = line.Line.from_specs(0, 0, 0, 1)
-    ...     line_0002 = line.Line.from_specs(0, 0, 0, 2)
-    ...     line_0003 = line.Line.from_specs(0, 0, 0, 3)
-    ...     line_0010 = line.Line.from_specs(0, 0, 1, 0)
-    ...     line_0020 = line.Line.from_specs(0, 0, 2, 0)
-    ...     line_0030 = line.Line.from_specs(0, 0, 3, 0)
-    ...     base_shape = shape.Shape.from_lines([line_0002, line_0020])
-    ...     empty_shape = shape.Shape.from_lines([])
-    ...     shape_0002_0010 = shape.Shape.from_lines([line_0002, line_0010])
-    ...     shape_0001_0020 = shape.Shape.from_lines([line_0001, line_0020])
-    ...     shape_0002_0020 = shape.Shape.from_lines([line_0002, line_0020])
-    ...     shape_0003_0030 = shape.Shape.from_lines([line_0003, line_0030])
-    ...     return [base_shape, empty_shape, shape_0002_0010, shape_0001_0020, shape_0002_0020, shape_0003_0030]
+    >>> def set_up_is_a_subshape_of():
+    ...     l_0001 = line.Line.from_specs_4(0, 0, 0, 1)
+    ...     l_0002 = line.Line.from_specs_4(0, 0, 0, 2)
+    ...     l_0003 = line.Line.from_specs_4(0, 0, 0, 3)
+    ...     l_0010 = line.Line.from_specs_4(0, 0, 1, 0)
+    ...     l_0020 = line.Line.from_specs_4(0, 0, 2, 0)
+    ...     l_0030 = line.Line.from_specs_4(0, 0, 3, 0)
+    ...     s_base = shape.Shape.from_lines([l_0002, l_0020])
+    ...     s_empty = shape.Shape.from_lines([])
+    ...     s_0002_0010 = shape.Shape.from_lines([l_0002, l_0010])
+    ...     s_0001_0020 = shape.Shape.from_lines([l_0001, l_0020])
+    ...     s_0002_0020 = shape.Shape.from_lines([l_0002, l_0020])
+    ...     s_0003_0030 = shape.Shape.from_lines([l_0003, l_0030])
+    ...     return [
+    ...         s_base, s_empty, s_0002_0010, s_0001_0020, 
+    ...         s_0002_0020, s_0003_0030]
+    >>> s_base, s_empty, s_0002_0010, s_0001_0020, s_0002_0020, s_0003_0030 = (
+    ...     set_up_is_a_subshape_of())
+    >>> s_empty.is_a_subshape_of(s_base)
+    True
+    >>> s_base.is_a_subshape_of(s_empty)
+    False
+    >>> s_base.is_a_subshape_of(s_0002_0010)
+    False
+    >>> s_base.is_a_subshape_of(s_0001_0020)
+    False
+    >>> s_base.is_a_subshape_of(s_0002_0020)
+    True
+    >>> s_base.is_a_subshape_of(s_0003_0030)
+    True
 
-    >>> base_shape, empty_shape, shape_0002_0010, shape_0001_0020, shape_0002_0020, shape_0003_0030 = make_shapes_for_part()
-    >>> empty_shape.is_a_subshape_of(base_shape)
+    >>> s_empty.is_a_subshape_of(s_empty)
     True
-    >>> base_shape.is_a_subshape_of(empty_shape)
-    False
-    >>> base_shape.is_a_subshape_of(shape_0002_0010)
-    False
-    >>> base_shape.is_a_subshape_of(shape_0001_0020)
-    False
-    >>> base_shape.is_a_subshape_of(shape_0002_0020)
+    >>> s_empty.is_a_subshape_of(ells3d)
     True
-    >>> base_shape.is_a_subshape_of(shape_0003_0030)
+    >>> s_empty.is_a_subshape_of(cube)
+    True
+    >>> s_empty.is_a_subshape_of(hash3d)
+    True
+    >>> ells3d.is_a_subshape_of(s_empty)
+    False
+    >>> ells3d.is_a_subshape_of(ells3d)
+    True
+    >>> ells3d.is_a_subshape_of(cube)
+    False
+    >>> ells3d.is_a_subshape_of(hash3d)
+    True
+    >>> cube.is_a_subshape_of(s_empty)
+    False
+    >>> cube.is_a_subshape_of(ells3d)
+    False
+    >>> cube.is_a_subshape_of(cube)
+    True
+    >>> cube.is_a_subshape_of(hash3d)
+    True
+    >>> hash3d.is_a_subshape_of(s_empty)
+    False
+    >>> hash3d.is_a_subshape_of(ells3d)
+    False
+    >>> hash3d.is_a_subshape_of(cube)
+    False
+    >>> hash3d.is_a_subshape_of(hash3d)
     True
 
 ### add
-#   __add__(other)
+#   __add__
     
     _|   |_       ___       _|___|_
                  |   |       |   |
@@ -222,113 +507,134 @@
      |   |                   |   |
     
     >>> def make_ells_for_add():
-    ...     line0414 = line.Line.from_specs(0, 4, 1, 4)
-    ...     line0111 = line.Line.from_specs(0, 1, 1, 1)
-    ...     line1011 = line.Line.from_specs(1, 0, 1, 1)
-    ...     line1415 = line.Line.from_specs(1, 4, 1, 5)
-    ...     line4041 = line.Line.from_specs(4, 0, 4, 1)
-    ...     line4151 = line.Line.from_specs(4, 1, 5, 1)
-    ...     line4445 = line.Line.from_specs(4, 4, 4, 5)
-    ...     line4454 = line.Line.from_specs(4, 4, 5, 4)
-    ...     ells_lines = [line1011, line1415, line4041, line4445, line0111, line4151, line0414, line4454]
+    ...     l_0414 = line.Line.from_specs_4(0, 4, 1, 4)
+    ...     l_0111 = line.Line.from_specs_4(0, 1, 1, 1)
+    ...     l_1011 = line.Line.from_specs_4(1, 0, 1, 1)
+    ...     l_1415 = line.Line.from_specs_4(1, 4, 1, 5)
+    ...     l_4041 = line.Line.from_specs_4(4, 0, 4, 1)
+    ...     l_4151 = line.Line.from_specs_4(4, 1, 5, 1)
+    ...     l_4445 = line.Line.from_specs_4(4, 4, 4, 5)
+    ...     l_4454 = line.Line.from_specs_4(4, 4, 5, 4)
+    ...     ells_lines = [l_1011, l_1415, l_4041, l_4445, l_0111, l_4151, l_0414, l_4454]
     ...     return shape.Shape.from_lines(ells_lines)
     >>> def make_square_for_add():
-    ...     line1114 = line.Line.from_specs(1, 1, 1, 4)
-    ...     line1141 = line.Line.from_specs(1, 1, 4, 1)
-    ...     line1444 = line.Line.from_specs(1, 4, 4, 4)
-    ...     line4144 = line.Line.from_specs(4, 1, 4, 4)
-    ...     square_lines = [line1114, line1141, line1444, line4144]
+    ...     l_1114 = line.Line.from_specs_4(1, 1, 1, 4)
+    ...     l_1141 = line.Line.from_specs_4(1, 1, 4, 1)
+    ...     l_1444 = line.Line.from_specs_4(1, 4, 4, 4)
+    ...     l_4144 = line.Line.from_specs_4(4, 1, 4, 4)
+    ...     square_lines = [l_1114, l_1141, l_1444, l_4144]
     ...     return shape.Shape.from_lines(square_lines)
     >>> ells = make_ells_for_add()
     >>> square = make_square_for_add()
     
-    >>> hash = ells + square
-    >>> print hash
-    [(0, 1, 5, 1), (0, 4, 5, 4), (1, 0, 1, 5), (4, 0, 4, 5)]
-    >>> print hash.listing()
-    (0, 1):
-        (1, 0, 1, 5)
-    (0, 4):
-        (4, 0, 4, 5)
-    (90, 1):
-        (0, 1, 5, 1)
-    (90, 4):
-        (0, 4, 5, 4)
+    >>> hash2d = ells + square
+    >>> print(hash2d)
+    {([0 1 0], (1, 0, 0)): [((1, 0, 0), (1, 5, 0))], ([0 1 0], (4, 0, 0)): [((4, 0, 0), (4, 5, 0))], ([1 0 0], (0, 1, 0)): [((0, 1, 0), (5, 1, 0))], ([1 0 0], (0, 4, 0)): [((0, 4, 0), (5, 4, 0))]}
+    >>> print(hash2d.listing())
+    ([0 1 0], (1, 0, 0))
+        ((1, 0, 0), (1, 5, 0))
+    ([0 1 0], (4, 0, 0))
+        ((4, 0, 0), (4, 5, 0))
+    ([1 0 0], (0, 1, 0))
+        ((0, 1, 0), (5, 1, 0))
+    ([1 0 0], (0, 4, 0))
+        ((0, 4, 0), (5, 4, 0))
 
 ### subtract
-#   __sub__(other)                                                          #   back to LShape.__sub__
-
+#   __sub__
     >>> def make_shapes_for_sub():
-    ...     shape_01 = shape.Shape.new_empty()
-    ...     shape_02 = shape.Shape.new_empty()
-    ...     shape_11 = shape.Shape.from_specs([(2, 2, 7, 7)])
-    ...     shape_12 = shape.Shape.from_specs([(3, 3, 4, 4)])
-    ...     return [shape_01, shape_02, shape_11, shape_12]
-    >>> shape_01, shape_02, shape_11, shape_12 = make_shapes_for_sub()
+    ...     s_01 = shape.Shape.new_empty()
+    ...     s_02 = shape.Shape.new_empty()
+    ...     l_27 = line.Line.from_specs_4(2, 2, 7, 7)
+    ...     l_34 = line.Line.from_specs_4(3, 3, 4, 4)
+    ...     s_11 = shape.Shape.from_lines([l_27])
+    ...     s_12 = shape.Shape.from_lines([l_34])
+    ...     return [s_01, s_02, s_11, s_12]
+    >>> s_01, s_02, s_11, s_12 = make_shapes_for_sub()
 
-    >>> print shape_11.listing()
-    (45, 0):
-        (2, 2, 7, 7)
-    >>> print shape_12.listing()
-    (45, 0):
-        (3, 3, 4, 4)
+    >>> print(s_11.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((2.0, 2.0, 0.0), (7.0, 7.0, 0.0))
+    >>> print(s_12.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((3.0, 3.0, 0.0), (4.0, 4.0, 0.0))
+    >>> diff_0102 = s_01 - s_02
+    >>> print(s_11.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((2.0, 2.0, 0.0), (7.0, 7.0, 0.0))
+    >>> print(s_12.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((3.0, 3.0, 0.0), (4.0, 4.0, 0.0))
+    >>> diff_0111 = s_01 - s_11
+    >>> print(s_11.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((2.0, 2.0, 0.0), (7.0, 7.0, 0.0))
+    >>> print(s_12.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((3.0, 3.0, 0.0), (4.0, 4.0, 0.0))
+    >>> diff_1101 = s_11 - s_01
+    >>> print(s_11.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((2.0, 2.0, 0.0), (7.0, 7.0, 0.0))
+    >>> print(s_12.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((3.0, 3.0, 0.0), (4.0, 4.0, 0.0))
+    >>> print(diff_1101.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((2.0, 2.0, 0.0), (7.0, 7.0, 0.0))
+    >>> diff_1112 = s_11 - s_12
+    >>> print(s_11.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((2.0, 2.0, 0.0), (7.0, 7.0, 0.0))
+    >>> print(s_12.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((3.0, 3.0, 0.0), (4.0, 4.0, 0.0))
+    >>> print(diff_1112.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((2.0, 2.0, 0.0), (3.0, 3.0, 0.0))
+        ((4.0, 4.0, 0.0), (7.0, 7.0, 0.0))
+    >>> diff_1211 = s_12 - s_11
+    >>> print(s_11.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((2.0, 2.0, 0.0), (7.0, 7.0, 0.0))
+    >>> print(s_12.listing(1))
+    ([0.7 0.7 0.0], (0.0, 0.0, 0.0))
+        ((3.0, 3.0, 0.0), (4.0, 4.0, 0.0))
 
-    >>> diff_0102 = shape_01 - shape_02
-    >>> print shape_11.listing()
-    (45, 0):
-        (2, 2, 7, 7)
-    >>> print shape_12.listing()
-    (45, 0):
-        (3, 3, 4, 4)
-    >>>
-    <empty shape>
+    >>> hash3d - hash3d == empty_shape
+    True
+    >>> hash3d - cube == ells3d
+    True
+    >>> hash3d - ells3d == cube
+    True
+    >>> hash3d - empty_shape == hash3d
+    True
+    >>> cube - hash3d == empty_shape
+    True
+    >>> cube - cube == empty_shape
+    True
+    >>> cube - ells3d == cube
+    True
+    >>> cube - empty_shape == cube
+    True
+    >>> ells3d - hash3d == empty_shape
+    True
+    >>> ells3d - cube == ells3d
+    True
+    >>> ells3d - ells3d == empty_shape
+    True
+    >>> ells3d - empty_shape == ells3d
+    True
 
-    >>> diff_0111 = shape_01 - shape_11
-    >>> print shape_11.listing()
-    (45, 0):
-        (2, 2, 7, 7)
-    >>> print shape_12.listing()
-    (45, 0):
-        (3, 3, 4, 4)
-    >>>
-    <empty shape>
-
-    >>> diff_1101 = shape_11 - shape_01
-    >>> print shape_11.listing()
-    (45, 0):
-        (2, 2, 7, 7)
-    >>> print shape_12.listing()
-    (45, 0):
-        (3, 3, 4, 4)
-    >>> print diff_1101.listing()
-    (45, 0):
-        (2, 2, 7, 7)
-
-    >>> diff_1112 = shape_11 - shape_12
-    >>> print shape_11.listing()
-    (45, 0):
-        (2, 2, 7, 7)
-    >>> print shape_12.listing()
-    (45, 0):
-        (3, 3, 4, 4)
-    >>> print diff_1112.listing()
-    (45, 0):
-        (2, 2, 3, 3)
-        (4, 4, 7, 7)
-
-    >>> diff_1211 = shape_12 - shape_11
-    >>> print shape_11.listing()
-    (45, 0):
-        (2, 2, 7, 7)
-    >>> print shape_12.listing()
-    (45, 0):
-        (3, 3, 4, 4)
-    >>>
-    <empty shape>
+#   intersection
+    >>> print('Test intersection')
+    
+#   union
 
 ### other
 #   _print_error_message()
-    >>> test_method_name = 'test_method()'
+    >>> test_method_name = 'test_method'
     >>> test_message = 'This is a test'
     >>> shape.Shape._print_error_message(test_method_name, test_message)
-    Shape.test_method(): This is a test
+    Shape.test_method:
+        This is a test

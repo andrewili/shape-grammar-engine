@@ -52,7 +52,7 @@
     >>> colin_good_arg.lines == sorted(good_arg)
     True
     >>> print(colin_good_arg.uv)
-    [ 0.57735027  0.57735027  0.57735027]
+    [0.57735026919 0.57735026919 0.57735026919]
     >>> print(colin_good_arg.int)
     (0, 0, 0)
     
@@ -3754,6 +3754,11 @@
     >>> for line_difference in line_differences_67_89:
     ...     print line_difference
     ((2, 2, 2), (6, 6, 6))
+
+#   intersection
+    >>> print('Test intersection')
+    
+#   union
 
 ### other
 #   _print_error_message()

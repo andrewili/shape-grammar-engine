@@ -192,15 +192,15 @@
 
 #   listing
     >>> print(good_lpp.listing(1))
-    '':
+    ''
         (0.0, 0.0, 0.0)
-    'a':
+    'a'
         (1.0, 1.0, 1.0)
         (2.0, 2.0, 2.0)
-    'b':
+    'b'
         (3.0, 3.0, 3.0)
         (4.0, 4.0, 4.0)
-    'c':
+    'c'
         (5.0, 5.0, 5.0)
         (6.0, 6.0, 6.0)
 
@@ -302,6 +302,9 @@
     [(1, 1, 1, 'a'), (2, 2, 2, 'a'), (3, 3, 3, 'b')]
 
 ### compare
+#   __hash__
+    ??? hash(good_lpp)
+
 #   __eq__, __ne__
 
     >>> def set_up_eq():
@@ -333,8 +336,8 @@
     >>> lpp_test != lpp_empty
     True
     
-#   is_an_lpoint_subpartition_of(other_partition)
-    >>> def set_up_is_an_lpoint_subpartition_of():
+#   is_a_sub_lpoint_partition_of(other_partition)
+    >>> def set_up_is_a_sub_lpoint_partition_of():
     ...     lp_4c = labeled_point.LabeledPoint.from_parts(4, 4, 4, 'c')
     ...     lp_3b = labeled_point.LabeledPoint.from_parts(3, 3, 3, 'b')
     ...     lp_2b = labeled_point.LabeledPoint.from_parts(2, 2, 2, 'b')
@@ -348,16 +351,16 @@
     ...         [lp_2b, lp_1a, lp_0a])
     ...     return (lpp_empty, lpp_empty_b, lpp_bigger, lpp_smaller)
     >>> lpp_empty, lpp_empty_b, lpp_bigger, lpp_smaller = (
-    ...     set_up_is_an_lpoint_subpartition_of())
-    >>> lpp_empty.is_an_lpoint_subpartition_of(lpp_empty_b)
+    ...     set_up_is_a_sub_lpoint_partition_of())
+    >>> lpp_empty.is_a_sub_lpoint_partition_of(lpp_empty_b)
     True
-    >>> lpp_empty.is_an_lpoint_subpartition_of(lpp_test)
+    >>> lpp_empty.is_a_sub_lpoint_partition_of(lpp_test)
     True
-    >>> lpp_test.is_an_lpoint_subpartition_of(lpp_bigger)
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_bigger)
     True
-    >>> lpp_test.is_an_lpoint_subpartition_of(lpp_smaller)
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_smaller)
     False
-    >>> lpp_test.is_an_lpoint_subpartition_of(lpp_empty)
+    >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_empty)
     False
 
 #   _point_sets_are_subsets_in
@@ -403,26 +406,26 @@
     <no labeled points>
     >>> new_lpp_01 = lpp_0a + lpp_1
     >>> print new_lpp_01.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
     >>> new_lpp_20 = lpp_2 + lpp_0a
     >>> print new_lpp_20.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (3, 3, 3)
-    'c':
+    'c'
         (4, 4, 4)
     >>> new_lpp_12 = lpp_1 + lpp_2
     >>> print new_lpp_12.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
         (3, 3, 3)
-    'c':
+    'c'
         (4, 4, 4)
 
 #   __sub__
@@ -438,20 +441,20 @@
     ...     return (lpp_01, lpp_02, lpp_11, lpp_12)
     >>> lpp_01, lpp_02, lpp_11, lpp_12 = make_lpps_for_sub_test()
     >>> print lpp_11.listing()
-    'a':
+    'a'
         (1, 1, 1)
         (3, 3, 3)
-    'b':
+    'b'
         (2, 2, 2)
-    'd':
+    'd'
         (5, 5, 5)
     >>> print lpp_12.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
         (4, 4, 4)
-    'e':
+    'e'
         (6, 6, 6)
     >>> diff_0102 = lpp_01 - lpp_02
     >>> print diff_0102.listing()
@@ -463,123 +466,220 @@
     >>> print diff_0111.listing()
     <no labeled points>
     >>> print lpp_11.listing()
-    'a':
+    'a'
         (1, 1, 1)
         (3, 3, 3)
-    'b':
+    'b'
         (2, 2, 2)
-    'd':
+    'd'
         (5, 5, 5)
     >>> print lpp_12.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
         (4, 4, 4)
-    'e':
+    'e'
         (6, 6, 6)
     >>> diff_0112 = lpp_01 - lpp_12
     >>> print diff_0112.listing()
     <no labeled points>
     >>> print lpp_11.listing()
-    'a':
+    'a'
         (1, 1, 1)
         (3, 3, 3)
-    'b':
+    'b'
         (2, 2, 2)
-    'd':
+    'd'
         (5, 5, 5)
     >>> print lpp_12.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
         (4, 4, 4)
-    'e':
+    'e'
         (6, 6, 6)
     >>> diff_1101 = lpp_11 - lpp_01
     >>> print diff_1101.listing()
-    'a':
+    'a'
         (1, 1, 1)
         (3, 3, 3)
-    'b':
+    'b'
         (2, 2, 2)
-    'd':
+    'd'
         (5, 5, 5)
     >>> diff_1111 = lpp_11 - lpp_11
     >>> print diff_1111.listing()
     <no labeled points>
     >>> print lpp_11.listing()
-    'a':
+    'a'
         (1, 1, 1)
         (3, 3, 3)
-    'b':
+    'b'
         (2, 2, 2)
-    'd':
+    'd'
         (5, 5, 5)
     >>> print lpp_12.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
         (4, 4, 4)
-    'e':
+    'e'
         (6, 6, 6)
     >>> diff_1112 = lpp_11 - lpp_12
     >>> type(diff_1112)
     <class 'lpoint_partition.LPointPartition'>
     >>> print diff_1112.listing()
-    'a':
+    'a'
         (3, 3, 3)
-    'd':
+    'd'
         (5, 5, 5)
     >>> print lpp_11.listing()
-    'a':
+    'a'
         (1, 1, 1)
         (3, 3, 3)
-    'b':
+    'b'
         (2, 2, 2)
-    'd':
+    'd'
         (5, 5, 5)
     >>> print lpp_12.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
         (4, 4, 4)
-    'e':
+    'e'
         (6, 6, 6)
     >>> diff_1201 = lpp_12 - lpp_01
     >>> print diff_1201.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
         (4, 4, 4)
-    'e':
+    'e'
         (6, 6, 6)
     >>> diff_1211 = lpp_12 - lpp_11
     >>> print diff_1211.listing()
-    'b':
+    'b'
         (4, 4, 4)
-    'e':
+    'e'
         (6, 6, 6)
     >>> print lpp_11.listing()
-    'a':
+    'a'
         (1, 1, 1)
         (3, 3, 3)
-    'b':
+    'b'
         (2, 2, 2)
-    'd':
+    'd'
         (5, 5, 5)
     >>> print lpp_12.listing()
-    'a':
+    'a'
         (1, 1, 1)
-    'b':
+    'b'
         (2, 2, 2)
         (4, 4, 4)
-    'e':
+    'e'
         (6, 6, 6)
+
+#   intersection, union
+    >>> def set_up_intersection_union():
+    ...     lp_355x = labeled_point.LabeledPoint.from_parts(
+    ...         30, 50, 50, 'x')
+    ...     lp_755x = labeled_point.LabeledPoint.from_parts(
+    ...         70, 50, 50, 'x')
+    ...     lp_535y = labeled_point.LabeledPoint.from_parts(
+    ...         50, 30, 50, 'y')
+    ...     lp_575y = labeled_point.LabeledPoint.from_parts(
+    ...         50, 70, 50, 'y')
+    ...     lp_553z = labeled_point.LabeledPoint.from_parts(
+    ...         50, 50, 30, 'z')
+    ...     lp_557z = labeled_point.LabeledPoint.from_parts(
+    ...         50, 50, 70, 'z')
+    ...     lpp_xyz = lpoint_partition.LPointPartition([
+    ...         lp_355x, lp_755x, 
+    ...         lp_535y, lp_575y, 
+    ...         lp_553z, lp_557z])
+    ...     lpp_xy = lpoint_partition.LPointPartition([
+    ...         lp_355x, lp_755x, 
+    ...         lp_535y, lp_575y])
+    ...     lpp_z = lpoint_partition.LPointPartition([
+    ...         lp_553z, lp_557z])
+    ...     empty_lpp = lpoint_partition.LPointPartition.new_empty()
+    ...     return (lpp_xyz, lpp_xy, lpp_z, empty_lpp)
+    >>> lpp_xyz, lpp_xy, lpp_z, empty_lpp = set_up_intersection_union()
+
+
+#   intersection
+    >>> lpp_xyz.intersection(lpp_xyz) == lpp_xyz
+    True
+    >>> lpp_xyz.intersection(lpp_xy) == lpp_xy
+    True
+    >>> lpp_xyz.intersection(lpp_z) == lpp_z
+    True
+    >>> lpp_xyz.intersection(empty_lpp) == empty_lpp
+    True
+    >>> lpp_xy.intersection(lpp_xyz) == lpp_xy
+    True
+    >>> lpp_xy.intersection(lpp_xy) == lpp_xy
+    True
+    >>> lpp_xy.intersection(lpp_z) == empty_lpp
+    True
+    >>> lpp_xy.intersection(empty_lpp) == empty_lpp
+    True
+    >>> lpp_z.intersection(lpp_xyz) == lpp_z
+    True
+    >>> lpp_z.intersection(lpp_xy) == empty_lpp
+    True
+    >>> lpp_z.intersection(lpp_z) == lpp_z
+    True
+    >>> lpp_z.intersection(empty_lpp) == empty_lpp
+    True
+    >>> empty_lpp.intersection(lpp_xyz) == empty_lpp
+    True
+    >>> empty_lpp.intersection(lpp_xy) == empty_lpp
+    True
+    >>> empty_lpp.intersection(lpp_z) == empty_lpp
+    True
+    >>> empty_lpp.intersection(empty_lpp) == empty_lpp
+    True
+
+#   union
+    >>> lpp_xyz.union(lpp_xyz) == lpp_xyz
+    True
+    >>> lpp_xyz.union(lpp_xy) == lpp_xyz
+    True
+    >>> lpp_xyz.union(lpp_z) == lpp_xyz
+    True
+    >>> lpp_xyz.union(empty_lpp) == lpp_xyz
+    True
+    >>> lpp_xy.union(lpp_xyz) == lpp_xyz
+    True
+    >>> lpp_xy.union(lpp_xy) == lpp_xy
+    True
+    >>> lpp_xy.union(lpp_z) == lpp_xyz
+    True
+    >>> lpp_xy.union(empty_lpp) == lpp_xy
+    True
+    >>> lpp_z.union(lpp_xyz) == lpp_xyz
+    True
+    >>> lpp_z.union(lpp_xy) == lpp_xyz
+    True
+    >>> lpp_z.union(lpp_z) == lpp_z
+    True
+    >>> lpp_z.union(empty_lpp) == lpp_z
+    True
+    >>> empty_lpp.union(lpp_xyz) == lpp_xyz
+    True
+    >>> empty_lpp.union(lpp_xy) == lpp_xy
+    True
+    >>> empty_lpp.union(lpp_z) == lpp_z
+    True
+    >>> empty_lpp.union(empty_lpp) == empty_lpp
+    True
+
 
 ### other
 #   _print_error_message

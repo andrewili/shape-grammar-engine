@@ -13,7 +13,7 @@ class LinePartition(object):                ##  rename MaximalColineations?
         method_name = '__init__'
         try:
             if not (
-                lines.__class__ == list and 
+                type(lines) == list and 
                 (
                     lines == [] or
                     self._are_lines(lines))
@@ -114,12 +114,13 @@ class LinePartition(object):                ##  rename MaximalColineations?
     def __str__(self):
         """Returns:
             string          str. Ordered by carrier and line. In the form 
-                            {carrier: colineation}, where:
+                            {carrier: colineation, ...}, where:
                 carrier     (unit_vector, intercept)
                 unit_vector Vector. In the form [<x> <y> <z>]
                 intercept   Point. In the form (<x>, <y>, <z>)
                 colineation Colineation. In the form [line, ...]
-                line        Line. In the form (<x>, <y>, <z>)
+                line        Line. In the form 
+                            ((<x1>, <y1>, <z1>), (<x2>, <y2>, <z2>))
         """
         item_strs = []
         items = self.dictionary.items()
@@ -134,6 +135,23 @@ class LinePartition(object):                ##  rename MaximalColineations?
         string = '{%s}' % items_str
         return string
 
+    def __repr__(self):
+        entry_reprs = []
+        carriers = self.dictionary.keys()
+        for carrier in sorted(carriers):
+            uv, intercept = carrier
+            carrier_repr = '(%s, %s)' % (repr(uv), repr(intercept))
+            colin = self.dictionary[carrier]
+            colin_repr = repr(colin)
+            entry_repr = '%s: %s' % (carrier_repr, colin_repr)
+            entry_reprs.append(entry_repr)
+        naked_dict_repr = ', '.join(entry_reprs)
+        dict_repr = '{%s}' % naked_dict_repr
+        string = '%s(%s)' % (
+            'line_partition.LinePartition.from_dictionary', 
+            dict_repr)
+        return string
+        
     def listing(self, decimal_places=0):
         """Returns an ordered, formatted, multi-line string in the form:
                             (<unit_vector>, <intercept>)
@@ -204,6 +222,20 @@ class LinePartition(object):                ##  rename MaximalColineations?
         return empty_partition
         
     ### relations
+    def __hash__(self):
+        colins = self.dictionary.values()
+        lines = []
+        for colin in colins:
+            colines = colin.lines
+            lines.extend(colines)
+        line_hashes_list = []
+        for line in sorted(lines):
+            line_hash = hash(line)
+            line_hashes_list.append(line_hash)
+        line_hashes_tuple = tuple(line_hashes_list)
+        value = hash(line_hashes_tuple)
+        return value
+
     def __eq__(self, other):
         return self.dictionary == other.dictionary
 
@@ -305,6 +337,27 @@ class LinePartition(object):                ##  rename MaximalColineations?
             del self.dictionary[carrier]
         if trace_on == True:
             print '||| LinePartition._reduce():\n%s' % self.listing()
+
+    def intersection(self, other):
+        """Receives:
+            other           LinePartition
+        Returns:
+            line_part_intersect
+                            LinePartition. Has a dictionary of lines each of 
+                            which is a part of both a line in self and a line 
+                            in other
+        """
+        pass
+
+    def union(self, other):
+        """Receives:
+            other           LinePartition
+        Returns:
+            line_part_union LinePartition. Has a dictionary of lines each of 
+                            which is a part of either a line in self or a 
+                            line in other
+        """
+        pass
 
     @classmethod
     def _print_error_message(cls, method_name, message):

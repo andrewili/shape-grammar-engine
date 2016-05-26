@@ -41,8 +41,9 @@ class LPointPartition(object):
     @classmethod
     def _make_dictionary(cls, lpoints):
         """Receives:
-            lpoints         [LabeledPoint, ...]. A possibly empty list of labeled 
-                            points. Guaranteed by the calling function
+            lpoints         [LabeledPoint, ...]. A possibly empty list of 
+                            labeled points. Guaranteed by the calling 
+                            function
         Creates a partition of points by label. Returns:
             dictionary      dict. Label-point-set entries in the form:
                             {label: point_set, ...}, where:
@@ -91,11 +92,23 @@ class LPointPartition(object):
             new_lpoint_part = LPointPartition(lpoints)
             return new_lpoint_part
 
+    @classmethod
+    def from_dictionary(cls, dict_in):
+        """Receives:
+            dict_in         dict. A partition of labeled points
+        Returns:
+            new_lpoint_part LPointPartition. Has dict_in
+        """
+        new_lpoint_part = LPointPartition.new_empty()
+        new_lpoint_part.dictionary = dict_in
+        return new_lpoint_part
+
         ### represent
     def __str__(self):
-        """The empty label is shown as ''. Returns:
-            lpp_string      str. Ordered by label and point in the form:
-                            {<label>: [(<x>, <y>, <z>), ...], ...}
+        """Returns:
+            string          str. Ordered by label and point in the form 
+                            {<label>: [(<x>, <y>, <z>), ...], ...}. The empty 
+                            label is shown as ''
         """
         entry_strings = []
         for label in sorted(self.dictionary):
@@ -173,7 +186,7 @@ class LPointPartition(object):
             decimal_places  int. The number of decimal places, n >= 0
         Creates an ordered, formatted, multi-line string. Returns:
             lpp_listing     str. In the form:
-                                <label>:
+                                <label>
                                     (<x>, <y>, <z>)
                                     ...
                                 ...
@@ -187,7 +200,7 @@ class LPointPartition(object):
                 indent_level = 1
                 points_listing_i = self._get_points_listing(
                     points_set_i, decimal_places, indent_level)
-                entry_listing_i = "'%s':\n%s" % (
+                entry_listing_i = "'%s'\n%s" % (
                     label_i, points_listing_i)
                 entry_listings.append(entry_listing_i)
             lpp_listing = '\n'.join(entry_listings)
@@ -229,6 +242,24 @@ class LPointPartition(object):
         # return lp_specs
 
         ### compare
+    def __hash__(self):
+        colab_hashes_list = []
+        labels = self.dictionary.keys()
+        for label in labels:
+            label_hash = hash(label)
+            copoints = self.dictionary[label]
+            copoint_hashes_list = []
+            for copoint in copoints:
+                copoint_hash = hash(copoint)
+                copoint_hashes_list.append(copoint_hash)
+            copoint_hashes_tuple = tuple(copoint_hashes_list)
+            copoints_hash = hash(copoint_hashes_tuple)
+            colab_hash = hash((label_hash, copoints_hash))
+            colab_hashes_list.append(colab_hash)
+        colab_hashes_tuple = tuple(colab_hashes_list)
+        value = hash(colab_hashes_tuple)
+        return value
+        
     def __eq__(self, other):
         value = (self.dictionary == other.dictionary)
         return value
@@ -241,7 +272,7 @@ class LPointPartition(object):
         value = (self.dictionary == {})
         return value
 
-    def is_an_lpoint_subpartition_of(self, other):
+    def is_a_sub_lpoint_partition_of(self, other):
         """Receives:
             other           LPointPartition
         Returns:
@@ -322,6 +353,57 @@ class LPointPartition(object):
                     lpoints_diff.append(lp)
             lpp_diff = LPointPartition(lpoints_diff)
         return lpp_diff
+
+    def intersection(self, other):
+        """Receives:
+            other           LPointPartition
+        Returns:
+            lpp_intersect   LPointPartition. The labeled points that are in 
+                            both self and other
+        """
+        dict_intersect = {}
+        self_labels = self.dictionary.keys()
+        other_labels = other.dictionary.keys()
+        for label in self_labels:
+            if label in other_labels:
+                self_lpoints = self.dictionary[label]
+                other_lpoints = other.dictionary[label]
+                lpoints_intersect = self_lpoints.intersection(other_lpoints)
+                dict_intersect[label] = lpoints_intersect
+        lpp_intersect = (
+            lpoint_partition.LPointPartition.from_dictionary(dict_intersect))
+        return lpp_intersect
+
+    def union(self, other):
+        """Receives:
+            other           LPointPartition
+        Returns:
+            lpp_union       LPointPartition. The labeled points that are in 
+                            either self or other
+        """
+        dict_union = {}
+        self_labels = set(self.dictionary.keys())
+        other_labels = set(other.dictionary.keys())
+        labels_union = self_labels.union(other_labels)
+        for label in labels_union:
+            if (label in self_labels and 
+                label in other_labels
+            ):
+                self_points = self.dictionary[label]
+                other_points = other.dictionary[label]
+                points_union = self_points.union(other_points)
+            elif label in self_labels:
+                self_points = self.dictionary[label]
+                points_union = self_points
+            elif label in other_labels:
+                other_points = other.dictionary[label]
+                points_union = other_points
+            else:
+                print('No such label')
+            dict_union[label] = points_union
+        lpp_union = (
+            lpoint_partition.LPointPartition.from_dictionary(dict_union))
+        return lpp_union
 
     @classmethod
     def _print_error_message(cls, method_name, message):
