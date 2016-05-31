@@ -1,0 +1,1085 @@
+    >>> from math import cos
+    >>> import fuzzy_number as fn
+    >>> from numpy.linalg import inv
+    >>> import math
+    >>> import numpy as np
+    >>> import point
+    >>> from math import sin
+    >>> import triad
+    >>> import vector
+
+    >>> almost_equal = np.allclose
+    >>> TAU = math.pi * 2
+
+### set-up
+    ??? def almost_equal_pair(pair1, pair2):
+    ...     p1, a1 = pair1
+    ...     p2, a2 = pair2
+    ...     value_pair = (
+    ...         p1 == p2 and
+    ...         almost_equal(a1, a2))
+    ...     return value_pair
+    ??? def almost_equal_pairs(pairs1, pairs2):
+    ...     value_pairs = True
+    ...     for i in range(len(pairs1)):
+    ...         if not almost_equal_pair(pairs1[i], pairs2[i]):
+    ...             value_pairs = False
+    ...             break
+    ...     return value_pairs
+    >>> p00 = point.Point(0, 0, 0)
+
+### construct
+    ### bad type
+    >>> x = 7
+    >>> p1 = point.Point(0, 0)
+    >>> p2 = point.Point(0, 5)
+    >>> p3 = point.Point(5, 0)
+    >>> t_from_bad_type = triad.Triad(x, p2, p3)
+    Triad.__init__:
+        The arguments must all be Point objects
+    >>> t_from_bad_type = triad.Triad(p1, x, p3)
+    Triad.__init__:
+        The arguments must all be Point objects
+    >>> t_from_bad_type = triad.Triad(p1, p2, x)
+    Triad.__init__:
+        The arguments must all be Point objects
+
+    ### bad value
+    >>> p01 = point.Point(0, 1)
+    >>> type(p01) == point.Point
+    True
+    >>> p02 = point.Point(0, 2)
+    >>> type(p02) == point.Point
+    True
+    >>> p05 = point.Point(0, 5)
+    >>> type(p05) == point.Point
+    True
+    >>> tri_from_bad_value = triad.Triad(p01, p02, p05)
+    Triad.__init__:
+        The points must not be collinear
+
+    ### good arg
+    >>> def set_up_good_arg_1():
+    ...     p04 = point.Point(0, 4)
+    ...     p40 = point.Point(4, 0)
+    ...     tri = triad.Triad(p00, p04, p40)
+    ...     tri_l_man = vector.Vector(0, 4, 0)
+    ...     a135 = TAU * 0.375
+    ...     cos135 = cos(a135)
+    ...     sin135 = sin(a135)
+    ...     r_man = np.array([
+    ...         [ cos135, sin135, 0],
+    ...         [-sin135, cos135, 0],
+    ...         [      0,      0, 1]])
+    ...     cos45 = cos(TAU / 8)
+    ...     s_man = np.array([
+    ...         [4 / cos45,         0,         0],
+    ...         [        0, 4 / cos45,         0],
+    ...         [        0,         0, 4 / cos45]])
+    ...     f_man = np.array([
+    ...         [1, 0, 0],
+    ...         [0, 1, 0],
+    ...         [0, 0, 1]])
+    ...     sf_man = np.dot(s_man, f_man)
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (tri, tri_l_man, r_man, s_man, f_man, sf_man, rsf_man)
+    >>> tri, l_man, r_man, s_man, f_man, sf_man, rsf_man = (
+    ...     set_up_good_arg_1())
+    >>> print(tri)
+    ((0, 4, 0), (4, 0, 0), (0, 0, 0))
+    >>> tri.p0.spec == (0, 4, 0)
+    True
+    >>> tri.p1.spec == (4, 0, 0)
+    True
+    >>> tri.p2.spec == (0, 0, 0)
+    True
+    >>> tri.l == l_man
+    True
+
+    >>> almost_equal(tri.rsf, rsf_man)
+    True
+
+    >>> def set_up_good_arg_2():
+    ...     p04 = point.Point(0, -4)
+    ...     p40 = point.Point(4, 0)
+    ...     tri = triad.Triad(p00, p04, p40)
+    ...     tri_l_man = vector.Vector(0, -4, 0)
+    ...     return (tri, tri_l_man)
+    >>> tri, tri_l_man = set_up_good_arg_2()
+    >>> print(tri)
+    ((0, -4, 0), (4, 0, 0), (0, 0, 0))
+    >>> tri.p0.spec == (0, -4, 0)
+    True
+    >>> tri.p1.spec == (4, 0, 0)
+    True
+    >>> tri.p2.spec == (0, 0, 0)
+    True
+    >>> tri.l == tri_l_man
+    True
+
+    ### _points_are_collinear
+    >>> p10 = point.Point(1, 0, 0)
+    >>> p20 = point.Point(2, 0, 0)
+    >>> p50 = point.Point(5, 0, 0)
+    >>> triad.Triad._points_are_collinear(p10, p20, p50)
+    True
+    
+    >>> p111 = point.Point( 1,  1,  1)
+    >>> p222 = point.Point(-2, -2, -2)
+    >>> p333 = point.Point( 3,  3,  3)
+    >>> triad.Triad._points_are_collinear(p111, p222, p333)
+    True
+
+    >>> pcos45 = point.Point(  cos(TAU/8) , 0, 0)
+    >>> psin45 = point.Point(-(sin(TAU/8)), 0, 0)
+    >>> pcos45 == psin45
+    False
+
+    >>> p02 = point.Point(0, 2, 0)
+    >>> p20 = point.Point(2, 0, 0)
+    >>> triad.Triad._points_are_collinear(p00, p02, p20)
+    False
+
+    >>> p02 = point.Point(0, -2, 0)
+    >>> p20 = point.Point(2,  0, 0)
+    >>> triad.Triad._points_are_collinear(p00, p02, p20)
+    False
+
+    ### Other attributes
+    ??? def set_up_tri_00_43_40():
+    ...     p00 = point.Point(0, 0, 0)
+    ...     p40 = point.Point(4, 0, 0)
+    ...     p43 = point.Point(4, 3, 0)
+    ...     tri = triad.Triad(p00, p43, p40)
+    ...     return tri
+    ??? def reduce_p0(tri):
+    ...     l_inv = tri.tt_inv[0]
+    ...     p0 = tri.p0
+    ...     transform_point(l_inv, p0)
+    ...     return red_p0
+    ??? tri_a = set_up_tri_00_43_40()
+    ??? red_p0 = reduce_p0(tri_a)
+    ??? red_p0 == p00
+    True
+
+### _find_point_angle_pairs
+    >>> p03 = point.Point(0, 3, 0)
+    >>> p40 = point.Point(4, 0, 0)
+    >>> papp = triad.Triad._find_point_angle_pairs(p00, p03, p40)
+    >>> papp_man = [
+    ...     (p00, TAU / 4),
+    ...     (p03, math.acos(0.6)),
+    ...     (p40, math.acos(0.8))]
+    >>> papp == papp_man
+    True
+
+    >>> p06 = point.Point(0, 6, 0)
+    >>> p60 = point.Point(6, 0, 0)
+    >>> papp = triad.Triad._find_point_angle_pairs(p00, p06, p60)
+    >>> papp_man = [
+    ...     (p00, TAU / 4),
+    ...     (p06, TAU / 8),
+    ...     (p60, TAU / 8)]
+    >>> papp == papp_man
+    True
+    >>> p06 == p60
+    False
+
+    >>> y = sin(TAU / 6) * 6
+    >>> p3y = point.Point(3, y, 0)
+    >>> p60 = point.Point(6, 0, 0)
+    >>> papp = triad.Triad._find_point_angle_pairs(p00, p3y, p60)
+    >>> papp_man = [
+    ...     (p00, TAU / 6),
+    ...     (p3y, TAU / 6),
+    ...     (p60, TAU / 6)]
+
+    ??? papp
+    ??? papp_man
+    ??? papp == papp_man                        ##  OK by inspection
+    True
+    ??? almost_equal_pairs(papp, papp_man)      ##  doesn't work
+    True
+
+### _find_point_length_pairs
+    >>> p03 = point.Point(0, 3, 0)
+    >>> p40 = point.Point(4, 0, 0)
+    >>> plpp = triad.Triad._find_point_length_pairs(p00, p03, p40)
+    >>> plpp_man = [
+    ...     (p00, 5),
+    ...     (p03, 4),
+    ...     (p40, 3)]
+
+    ??? plpp                                    ##  OK by inspection
+    ??? plpp_man
+
+    >>> p04 = point.Point(0, 4, 0)
+    >>> p40 = point.Point(4, 0, 0)
+    >>> plpp = triad.Triad._find_point_length_pairs(p00, p04, p40)
+    >>> plpp_man = [
+    ...     (p00, 4 / cos(TAU / 8)),
+    ...     (p04, 4),
+    ...     (p40, 4)]
+
+    ??? plpp                                    ##  OK by inspection
+    ??? plpp_man
+
+    >>> y = sin(TAU / 6) * 6
+    >>> p3y = point.Point(3, y, 0)
+    >>> p60 = point.Point(6, 0, 0)
+    >>> plpp = triad.Triad._find_point_length_pairs(p00, p3y, p60)
+    >>> plpp_man = [
+    ...     (p00, 6),
+    ...     (p3y, 6),
+    ...     (p60, 6)]
+
+    ??? plpp                                    ##  OK by inspection
+    ??? plpp_man
+
+### _find_translation_vector
+    >>> p40 = point.Point(4, 0, 0)
+    >>> p43 = point.Point(4, 3, 0)
+    >>> tri004340 = triad.Triad(p00, p43, p40)
+    >>> v0000 = tri004340._find_translation_vector(p00)
+    >>> v0040 = tri004340._find_translation_vector(p40)
+    >>> v0043 = tri004340._find_translation_vector(p43)
+    >>> v0000.length == 0
+    True
+    >>> v0040.length == 4
+    True
+    >>> v0043.length == 5
+    True
+
+### _find_pq_points
+    >>> def set_up_find_pq_points_1():
+    ...     p0_4 = point.Point(0, -4, 0)
+    ...     p04  = point.Point(0,  4, 0)
+    ...     p4_4 = point.Point(4, -4, 0)
+    ...     p40  = point.Point(4,  0, 0)
+    ...     p_points = [p04, p40, p00]
+    ...     l_inv = p00 - p04
+    ...     pq_points = triad.Triad._find_pq_points(l_inv, p_points)
+    ...     pq_points_man = [p00, p4_4, p0_4]
+    ...     return (pq_points, pq_points_man)
+    >>> pq_points, pq_points_man = set_up_find_pq_points_1()
+    >>> for i in range(len(pq_points)):
+    ...     pq_points[i] == pq_points_man[i]
+    True
+    True
+    True
+
+    >>> def set_up_find_pq_points_2():
+    ...     p11 = point.Point(1, 1, 0)
+    ...     p40 = point.Point(4, 0, 0)
+    ...     p43 = point.Point(4, 3, 0)
+    ...     p54 = point.Point(5, 4, 0)
+    ...     p51 = point.Point(5, 1, 0)
+    ...     p_points = [p11, p54, p51]
+    ...     l_inv = p00 - p11
+    ...     pq_points = triad.Triad._find_pq_points(l_inv, p_points)
+    ...     pq_points_man = [p00, p43, p40]
+    ...     return (pq_points, pq_points_man)
+    >>> pq_points, pq_points_man = set_up_find_pq_points_2()
+    >>> for i in range(len(pq_points)):
+    ...     pq_points[i] == pq_points_man[i]
+    True
+    True
+    True
+
+    >>> def set_up_find_pq_points_3():
+    ...     p11  = point.Point( 1, 1, 0)
+    ...     p_31 = point.Point(-3, 1, 0)
+    ...     p_34 = point.Point(-3, 4, 0)
+    ...     p_40 = point.Point(-4, 0, 0)
+    ...     p_43 = point.Point(-4, 3, 0)
+    ...     p_points = [p11, p_34, p_31]
+    ...     l_inv = p00 - p11
+    ...     pq_points = triad.Triad._find_pq_points(l_inv, p_points)
+    ...     pq_points_man = [p00, p_43, p_40]
+    ...     return (pq_points, pq_points_man)
+    >>> pq_points, pq_points_man = set_up_find_pq_points_3()
+    >>> for i in range(len(pq_points)):
+    ...     pq_points[i] == pq_points_man[i]
+    True
+    True
+    True
+
+
+### translate_points
+    >>> v01 = vector.Vector(1, 1, 0)
+    >>> p02 = point.Point(0, 2, 0)
+    >>> p13 = point.Point(1, 3, 0)
+    >>> p24 = point.Point(2, 4, 0)
+    >>> p35 = point.Point(3, 5, 0)
+    >>> points = [p02, p13, p24]
+    >>> vpp = triad.Triad.translate_points(v01, points)
+    >>> vpp_man = [p13, p24, p35]
+    >>> for i in range(len(vpp)):
+    ...     vpp[i] == vpp_man[i]
+    True
+    True
+    True
+
+### _find_rotation_scaling_reflection_matrix
+    >>> def set_up_find_rotation_scaling_reflection_matrix_1():
+    ...     p_5000 = point.Point(-5.0, 0.0, 0)
+    ...     p_3224 = point.Point(-3.2, 2.4, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p_5000, p_3224)
+    ...     a270 = TAU * 0.75
+    ...     cos270 = cos(a270)
+    ...     sin270 = sin(a270)
+    ...     r_man = np.array([
+    ...         [ cos270, sin270, 0],
+    ...         [-sin270, cos270, 0],
+    ...         [      0,      0, 1]])
+    ...     sf_man = np.array([
+    ...         [5, 0, 0],
+    ...         [0, 5, 0],
+    ...         [0, 0, 5]])
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf1, rsf1_man = set_up_find_rotation_scaling_reflection_matrix_1()
+    >>> almost_equal(rsf1, rsf1_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_2():
+    ...     p0050 = point.Point( 0, 50, 0)
+    ...     p2432 = point.Point(24, 32, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p0050, p2432)
+    ...     cos0 = cos(0)
+    ...     sin0 = sin(0)
+    ...     r_man = np.array([
+    ...         [ cos0, sin0, 0],
+    ...         [-sin0, cos0, 0],
+    ...         [    0,    0, 1]])
+    ...     fs_man = np.array([
+    ...         [50,  0,  0],
+    ...         [ 0, 50,  0],
+    ...         [ 0,  0, 50]])
+    ...     rsf_man = np.dot(r_man, fs_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf2, rsf2_man = set_up_find_rotation_scaling_reflection_matrix_2()
+    >>> almost_equal(rsf2, rsf2_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_3():
+    ...     p0050  = point.Point(  0, 50, 0)
+    ...     p_2432 = point.Point(-24, 32, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p0050, p_2432)
+    ...     cos0 = cos(0)
+    ...     sin0 = sin(0)
+    ...     r_man = np.array([
+    ...         [ cos0, sin0, 0],
+    ...         [-sin0, cos0, 0],
+    ...         [    0,    0, 1]])
+    ...     sf_man = np.array([
+    ...         [-50,  0,  0],
+    ...         [  0, 50,  0],
+    ...         [  0,  0, 50]])
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf3, rsf3_man = set_up_find_rotation_scaling_reflection_matrix_3()
+    >>> almost_equal(rsf3, rsf3_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_4():
+    ...     p5000  = point.Point(50,   0, 0)
+    ...     p32_24 = point.Point(32, -24, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p5000, p32_24)
+    ...     a90 = TAU / 4
+    ...     cos90 = cos(a90)
+    ...     sin90 = sin(a90)
+    ...     r_man = np.array([
+    ...         [ cos90, sin90, 0],
+    ...         [-sin90, cos90, 0],
+    ...         [     0,     0, 1]])
+    ...     sf_man = np.array([
+    ...         [50,  0,  0],
+    ...         [ 0, 50,  0],
+    ...         [ 0,  0, 50]])
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf4, rsf4_man = set_up_find_rotation_scaling_reflection_matrix_4()
+    >>> almost_equal(rsf4, rsf4_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_5():
+    ...     p5000 = point.Point(50,  0, 0)
+    ...     p3224 = point.Point(32, 24, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p5000, p3224)
+    ...     a90 = TAU / 4
+    ...     cos90 = cos(a90)
+    ...     sin90 = sin(a90)
+    ...     r_man = np.array([
+    ...         [ cos90, sin90, 0],
+    ...         [-sin90, cos90, 0],
+    ...         [     0,     0, 1]])
+    ...     sf_man = np.array([
+    ...         [-50,  0,  0],
+    ...         [  0, 50,  0],
+    ...         [  0,  0, 50]])
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf5, rsf5_man = set_up_find_rotation_scaling_reflection_matrix_5()
+    >>> almost_equal(rsf5, rsf5_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_6():
+    ...     p00_50  = point.Point(  0, -50, 0)
+    ...     p_24_32 = point.Point(-24, -32, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p00_50, p_24_32)
+    ...     a180 = TAU / 2
+    ...     cos180 = cos(a180)
+    ...     sin180 = sin(a180)
+    ...     r_man = np.array([
+    ...         [ cos180, sin180, 0],
+    ...         [-sin180, cos180, 0],
+    ...         [      0,      0, 1]])
+    ...     sf_man = np.array([
+    ...         [50,  0,  0],
+    ...         [ 0, 50,  0],
+    ...         [ 0,  0, 50]])
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf6, rsf6_man = set_up_find_rotation_scaling_reflection_matrix_6()
+    >>> almost_equal(rsf6, rsf6_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_7():
+    ...     p00_50 = point.Point( 0, -50, 0)
+    ...     p24_32 = point.Point(24, -32, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p00_50, p24_32)
+    ...     a180 = TAU / 2
+    ...     cos180 = cos(a180)
+    ...     sin180 = sin(a180)
+    ...     r_man = np.array([
+    ...         [ cos180, sin180, 0],
+    ...         [-sin180, cos180, 0],
+    ...         [      0,      0, 1]])
+    ...     sf_man = np.array([
+    ...         [-50,  0,  0],
+    ...         [  0, 50,  0],
+    ...         [  0,  0, 50]])
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf7, rsf7_man = set_up_find_rotation_scaling_reflection_matrix_7()
+    >>> almost_equal(rsf7, rsf7_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_8():
+    ...     p_5000 = point.Point(-50,  0, 0)
+    ...     p_3224 = point.Point(-32, 24, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p_5000, p_3224)
+    ...     a270 = TAU * 0.75
+    ...     cos270 = cos(a270)
+    ...     sin270 = sin(a270)
+    ...     r_man = np.array([
+    ...         [ cos270, sin270, 0],
+    ...         [-sin270, cos270, 0],
+    ...         [      0,      0, 1]])
+    ...     sf_man = np.array([
+    ...         [50,  0,  0],
+    ...         [ 0, 50,  0],
+    ...         [ 0,  0, 50]])
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf8, rsf8_man = set_up_find_rotation_scaling_reflection_matrix_8()
+    >>> almost_equal(rsf8, rsf8_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_9():
+    ...     p_5000  = point.Point(-50,   0, 0)
+    ...     p_32_24 = point.Point(-32, -24, 0)
+    ...     rsf = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p_5000, p_32_24)
+    ...     a270 = TAU * 0.75
+    ...     cos270 = cos(a270)
+    ...     sin270 = sin(a270)
+    ...     r_man = np.array([
+    ...         [ cos270, sin270, 0],
+    ...         [-sin270, cos270, 0],
+    ...         [      0,      0, 1]])
+    ...     sf_man = np.array([
+    ...         [-50,  0,  0],
+    ...         [  0, 50,  0],
+    ...         [  0,  0, 50]])
+    ...     rsf_man = np.dot(r_man, sf_man)
+    ...     return (rsf, rsf_man)
+    >>> rsf9, rsf9_man = set_up_find_rotation_scaling_reflection_matrix_9()
+    >>> almost_equal(rsf9, rsf9_man)
+    True
+
+    >>> def set_up_find_rotation_scaling_reflection_matrix_10():
+    ...     p0_4 = point.Point(0, -4, 0)
+    ...     p4_4 = point.Point(4, -4, 0)
+    ...     rsf10 = triad.Triad._find_rotation_scaling_reflection_matrix(
+    ...         p4_4, p0_4)
+    ...     a135 = TAU * 0.375
+    ...     cos135 = cos(a135)
+    ...     sin135 = sin(a135)
+    ...     r_man = np.array([
+    ...         [ cos135, sin135, 0],
+    ...         [-sin135, cos135, 0],
+    ...         [      0,      0, 1]])
+    ...     sf_man = np.array([
+    ...         [5.65685, 0      , 0      ],
+    ...         [0      , 5.65685, 0      ],
+    ...         [0      , 0      , 5.65685]])
+    ...     rsf10_man = np.dot(r_man, sf_man)
+    ...     return (rsf10, rsf10_man)
+    >>> rsf10, rsf10_man = set_up_find_rotation_scaling_reflection_matrix_10()
+    >>> almost_equal(rsf10, rsf10_man)
+    True
+
+### _find_rotation_matrix
+    >>> p20 = point.Point(2, 0, 0)
+    >>> r90 = triad.Triad._find_rotation_matrix(p20)
+    >>> r90_man = np.array([
+    ...     [ 0, 1, 0],
+    ...     [-1, 0, 0],
+    ...     [ 0, 0, 1]])
+    >>> almost_equal(r90, r90_man)
+    True
+
+    >>> def set_up_find_rotation_matrix_2():
+    ...     p_20 = point.Point(-2, 0, 0)
+    ...     r270 = triad.Triad._find_rotation_matrix(p_20)
+    ...     r270_man = np.array([
+    ...         [0, -1, 0],
+    ...         [1,  0, 0],
+    ...         [0,  0, 1]])
+    ...     return (r270, r270_man)
+    >>> r270, r270_man = set_up_find_rotation_matrix_2()
+    >>> almost_equal(r270, r270_man)
+    True
+
+    >>> def set_up_find_rotation_matrix_3():
+    ...     p4_4 = point.Point(4, -4, 0)
+    ...     r135 = triad.Triad._find_rotation_matrix(p4_4)
+    ...     a135 = TAU * 0.375
+    ...     cos135 = cos(a135)
+    ...     sin135 = sin(a135)
+    ...     r135_man = np.array([
+    ...         [ cos135, sin135, 0],
+    ...         [-sin135, cos135, 0],
+    ...         [      0,      0, 1]])
+    ...     return (r135, r135_man)
+    >>> r135, r135_man = set_up_find_rotation_matrix_3()
+    >>> almost_equal(r135, r135_man)
+    True
+
+    >>> def set_up_find_rotation_matrix_4():
+    ...     p4_4 = point.Point(4, -4, 0)
+    ...     r135 = triad.Triad._find_rotation_matrix(p4_4)
+    ...     a135 = TAU * 0.375
+    ...     cos135 = cos(a135)
+    ...     sin135 = sin(a135)
+    ...     r135_man = np.array([
+    ...         [ cos135, sin135, 0],
+    ...         [-sin135, cos135, 0],
+    ...         [      0,      0, 1]])
+    ...     return (r135, r135_man)
+    >>> r135, r135_man = set_up_find_rotation_matrix_4()
+    >>> almost_equal(r135, r135_man)
+    True
+
+### _find_scaling_matrix
+    >>> def set_up_find_scaling_matrix_1():
+    ...     p1000 = point.Point(10, 0, 0)
+    ...     s = triad.Triad._find_scaling_matrix(p1000)
+    ...     s_man = np.array([
+    ...         [10,  0,  0],
+    ...         [ 0, 10,  0],
+    ...         [ 0,  0, 10]])
+    ...     return (s, s_man)
+    >>> s, s_man = set_up_find_scaling_matrix_1()
+    >>> almost_equal(s, s_man)
+    True
+    >>> p0205 = point.Point(2, 5, 0)
+    >>> s_p0205 = triad.Triad.transform_point(s, p0205)
+    >>> p2050_man = point.Point(20, 50, 0)
+    >>> s_p0205 == p2050_man
+    True
+
+    >>> def set_up_find_scaling_matrix_2():
+    ...     p_0001 = point.Point(-0.1, 0, 0)
+    ...     s = triad.Triad._find_scaling_matrix(p_0001)
+    ...     s_man = np.array([
+    ...         [0.1, 0.0, 0.0],
+    ...         [0.0, 0.1, 0.0],
+    ...         [0.0, 0.0, 0.1]])
+    ...     return (s, s_man)
+    >>> s, s_man = set_up_find_scaling_matrix_2()
+    >>> almost_equal(s, s_man)
+    True
+    >>> p0205 = point.Point(2, 5, 0)
+    >>> s_p0205 = triad.Triad.transform_point(s, p0205)
+    >>> p002005_man = point.Point(0.2, 0.5, 0)
+    >>> s_p0205 == p002005_man
+    True
+
+    >>> def set_up_find_scaling_matrix_3():
+    ...     p4_4 = point.Point(4, -4, 0)
+    ...     s = triad.Triad._find_scaling_matrix(p4_4)
+    ...     v4_4 = p4_4 - p00
+    ...     length = v4_4.length
+    ...     s_man = np.array([
+    ...         [length,      0,      0],
+    ...         [     0, length,      0],
+    ...         [     0,      0, length]])
+    ...     return (s, s_man)
+    >>> s_p4_4, s_p4_4_man = set_up_find_scaling_matrix_3()
+    >>> almost_equal(s_p4_4, s_p4_4_man)
+    True
+
+### _find_reflection_matrix
+    >>> def set_up_find_reflection_matrix_1():
+    ...     a90 = TAU / 4
+    ...     cos90 = cos(a90)
+    ...     sin90 = sin(a90)
+    ...     r90 = np.array([
+    ...         [ cos90, sin90, 0],
+    ...         [-sin90, cos90, 0],
+    ...         [     0,     0, 1]])
+    ...     p04_1 = point.Point(4, -1, 0)
+    ...     f = triad.Triad._find_reflection_matrix(r90, p04_1)
+    ...     f_man = np.array([
+    ...         [1, 0, 0],
+    ...         [0, 1, 0],
+    ...         [0, 0, 1]])
+    ...     return (f, f_man)
+    >>> f1, f1_man = set_up_find_reflection_matrix_1()
+    >>> almost_equal(f1, f1_man)
+    True
+
+    >>> def set_up_find_reflection_matrix_2():
+    ...     a90 = TAU / 4
+    ...     cos90 = cos(a90)
+    ...     sin90 = sin(a90)
+    ...     r90 = np.array([
+    ...         [ cos90, sin90, 0],
+    ...         [-sin90, cos90, 0],
+    ...         [     0,     0, 1]])
+    ...     p0401 = point.Point(4, 1, 0)
+    ...     f = triad.Triad._find_reflection_matrix(r90, p0401)
+    ...     f_man = np.array([
+    ...         [-1, 0, 0],
+    ...         [ 0, 1, 0],
+    ...         [ 0, 0, 1]])
+    ...     return (f, f_man)
+    >>> f2, f2_man = set_up_find_reflection_matrix_2()
+    >>> almost_equal(f2, f2_man)
+    True
+
+    >>> def set_up_find_reflection_matrix_3():
+    ...     a270 = TAU * 0.75
+    ...     cos270 = cos(a270)
+    ...     sin270 = sin(a270)
+    ...     r270 = np.array([
+    ...         [ cos270, sin270, 0],
+    ...         [-sin270, cos270, 0],
+    ...         [      0,      0, 1]])
+    ...     p_4_1 = point.Point(-4, -1, 0)
+    ...     f = triad.Triad._find_reflection_matrix(r270, p_4_1)
+    ...     f_man = np.array([
+    ...         [-1, 0, 0],
+    ...         [ 0, 1, 0],
+    ...         [ 0, 0, 1]])
+    ...     return (f, f_man)
+    >>> f3, f3_man = set_up_find_reflection_matrix_3()
+    >>> almost_equal(f3, f3_man)
+    True
+
+    >>> def set_up_find_reflection_matrix_4():
+    ...     a270 = TAU * 0.75
+    ...     cos270 = cos(a270)
+    ...     sin270 = sin(a270)
+    ...     r270 = np.array([
+    ...         [ cos270, sin270, 0],
+    ...         [-sin270, cos270, 0],
+    ...         [      0,      0, 1]])
+    ...     p_401 = point.Point(-4, 1, 0)
+    ...     f = triad.Triad._find_reflection_matrix(r270, p_401)
+    ...     f_man = np.array([
+    ...         [1, 0, 0],
+    ...         [0, 1, 0],
+    ...         [0, 0, 1]])
+    ...     return (f, f_man)
+    >>> f4, f4_man = set_up_find_reflection_matrix_4()
+    >>> almost_equal(f4, f4_man)
+    True
+
+    ??? a90 = TAU / 4
+    ??? cos90 = cos(a90)
+    ??? sin90 = sin(a90)
+    ??? r90 = np.array([
+    ...     [ cos90, sin90, 0],
+    ...     [-sin90, cos90, 0],
+    ...     [     0,     0, 0]])
+    ??? p_3224 = point.Point(-3.2, 2.4, 0)
+    ??? f = triad.Triad._find_reflection_matrix(r90, p_3224)
+    ??? f_man = np.array([
+    ...     [1, 0, 0],
+    ...     [0, 1, 0],
+    ...     [0, 0, 1]])
+    ??? almost_equal(f, f_man)
+    True
+    ??? p_32_24 = point.Point(-3.2, -2.4, 0)
+    ??? f = triad.Triad._find_reflection_matrix(r90, p_32_24)
+    ??? f_man = np.array([
+    ...     [-1, 0, 0],
+    ...     [ 0, 1, 0],
+    ...     [ 0, 0, 1]])
+    ??? almost_equal(f, f_man)
+    True
+
+    ??? a270 = TAU * 0.75
+    ??? cos270 = cos(a270)
+    ??? sin270 = sin(a270)
+    ??? r270 = np.array([
+    ...     [ cos270, sin270, 0],
+    ...     [-sin270, cos270, 0],
+    ...     [      0,      0, 0]])
+    ??? p32_24 = point.Point(3.2, -2.4, 0)
+    ??? f = triad.Triad._find_reflection_matrix(r270, p32_24)
+    ??? f_man = np.array([
+    ...     [1, 0, 0],
+    ...     [0, 1, 0],
+    ...     [0, 0, 1]])
+    ??? almost_equal(f, f_man)
+    True
+    ??? p3224 = point.Point(3.2, 2.4, 0)
+    ??? f = triad.Triad._find_reflection_matrix(r270, p3224)
+    ??? f_man = np.array([
+    ...     [-1, 0, 0],
+    ...     [ 0, 1, 0],
+    ...     [ 0, 0, 1]])
+    ??? almost_equal(f, f_man)
+    True
+
+### _find_q2
+    >>> def set_up_find_q2_1():
+    ...     p04 = point.Point(0, 4, 0)
+    ...     p40 = point.Point(4, 0, 0)
+    ...     tri = triad.Triad(p00, p04, p40)
+    ...     rsf_q2 = triad.Triad.transform_point(tri.rsf, tri.q2)
+    ...     l_rsf_q2 = triad.Triad.translate_point(rsf_q2, tri.l)
+    ...     return (l_rsf_q2, tri.p2)
+    >>> l_rsf_q2, p2 = set_up_find_q2_1()
+    >>> l_rsf_q2 == p2
+    True
+
+    >>> def set_up_find_q2_2():
+    ...     p40 = point.Point(4, 0, 0)
+    ...     p43 = point.Point(4, 3, 0)
+    ...     tri = triad.Triad(p00, p40, p43)
+    ...     rsf_q2 = triad.Triad.transform_point(tri.rsf, tri.q2)
+    ...     l_rsf_q2 = triad.Triad.translate_point(rsf_q2, tri.l)
+    ...     return (l_rsf_q2, tri.p2)
+    >>> l_rsf_q2, p2 = set_up_find_q2_2()
+    >>> l_rsf_q2 == p2
+    True
+
+    >>> def set_up_find_q2_3():
+    ...     p_40 = point.Point(-4, 0, 0)
+    ...     p_43 = point.Point(-4, 3, 0)
+    ...     tri = triad.Triad(p00, p_40, p_43)
+    ...     rsf_q2 = triad.Triad.transform_point(tri.rsf, tri.q2)
+    ...     l_rsf_q2 = triad.Triad.translate_point(rsf_q2, tri.l)
+    ...     return (l_rsf_q2, tri.p2)
+    >>> l_rsf_q2, p2 = set_up_find_q2_3()
+    >>> l_rsf_q2 == p2
+    True
+
+### _find_ordered_points
+    ### 2d, 1 smallest vertex
+    >>> p03 = point.Point(0, 3)
+    >>> p40 = point.Point(4, 0)
+    >>> ordered_points = triad.Triad._find_ordered_points(p00, p03, p40)
+    >>> ordered_points == [p40, p03, p00]
+    True
+    >>> print(ordered_points)
+    [(4, 0, 0), (0, 3, 0), (0, 0, 0)]
+
+    ### 2d, 1 smallest vertex, -/+ quadrant
+    >>> p03 = point.Point(0, 3)
+    >>> p40 = point.Point(-4, 0)
+    >>> ordered_points = triad.Triad._find_ordered_points(p00, p03, p40)
+    >>> ordered_points == [p40, p03, p00]
+    True
+    >>> print(ordered_points)
+    [(-4, 0, 0), (0, 3, 0), (0, 0, 0)]
+
+    ### 2d, 2 smallest vertices
+    >>> p05 = point.Point(0, 5, 0)
+    >>> p50 = point.Point(5, 0, 0)
+    >>> ordered_points = triad.Triad._find_ordered_points(p00, p05, p50)
+    >>> ordered_points == [p05, p50, p00]
+    True
+    >>> print(ordered_points)
+    [(0, 5, 0), (5, 0, 0), (0, 0, 0)]
+
+    ### 2d, 2 smallest vertices, -/+ quadrant
+    >>> p05 = point.Point(0, 5, 0)
+    >>> p50 = point.Point(-5, 0, 0)
+    >>> ordered_points = triad.Triad._find_ordered_points(p00, p05, p50)
+    >>> ordered_points == [p50, p05, p00]
+    True
+    >>> print(ordered_points)
+    [(-5, 0, 0), (0, 5, 0), (0, 0, 0)]
+
+    ### 2d, 2 smallest vertices, -/- quadrant
+    >>> p05 = point.Point(0, -5, 0)
+    >>> p50 = point.Point(-5, 0, 0)
+    >>> ordered_points = triad.Triad._find_ordered_points(p00, p05, p50)
+    >>> ordered_points == [p50, p05, p00]
+    True
+    >>> print(ordered_points)
+    [(-5, 0, 0), (0, -5, 0), (0, 0, 0)]
+
+    ### 2d, 3 equal vertices
+    >>> y = sin(TAU / 6) * 8
+    >>> p4y = point.Point(4, y)
+    >>> p80 = point.Point(8, 0)
+    >>> ordered_points = triad.Triad._find_ordered_points(p00, p4y, p80)
+    >>> ordered_points == [p00, p4y, p80]
+    True
+
+    ### 2d, 3 equal vertices, -/+ quadrant
+    >>> y = sin(TAU / 6) * 8
+    >>> p4y = point.Point(-4, y)
+    >>> p80 = point.Point(-8, 0)
+    >>> ordered_points = triad.Triad._find_ordered_points(p00, p4y, p80)
+    >>> ordered_points == [p80, p4y, p00]
+    True
+
+### _find_interior_angle_from_points
+    ### test angles > 180
+    >>> p001 = point.Point(0, 1)
+    >>> p0_1 = point.Point(0, -1)
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p00, p001, p0_1),
+    ...     TAU / 2)
+    True
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p00, p001, p001),
+    ...     0)
+    True
+
+    >>> p01 = point.Point(0, 1)
+    >>> p10 = point.Point(1, 0)
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p00, p01, p10), 
+    ...     TAU / 4)
+    True
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p01, p10, p00),
+    ...     TAU / 8)
+    True
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p10, p00, p01),
+    ...     TAU / 8)
+    True
+
+    >>> p0000 = point.Point(0, 0)
+    >>> p0001 = point.Point(0, 1)
+    >>> p_100 = point.Point(-1, 0)
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p0000, p0001, p_100),
+    ...     TAU / 4)
+    True
+
+    >>> p03 = point.Point(0, 3)
+    >>> p40 = point.Point(4, 0)
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p40, p00, p03),
+    ...     math.acos(0.8))
+    True
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p00, p03, p40),
+    ...     TAU / 4)
+    True
+    >>> almost_equal(
+    ...     triad.Triad._find_interior_angle_from_points(p03, p40, p00),
+    ...     math.asin(0.8))
+    True
+
+    >>> cos30 = cos(TAU / 12)
+    >>> sin30 = sin(TAU / 12)
+    >>> pc0 = point.Point(cos30, 0)
+    >>> pcs = point.Point(cos30, sin30)
+
+    >>> p00_angle_from_method = triad.Triad._find_interior_angle_from_points(
+    ...     p00, pc0, pcs)
+    >>> v_p00_pc0 = pc0 - p00
+    >>> v_p00_pcs = pcs - p00
+    >>> p00_angle_by_calc = TAU / 12
+    >>> almost_equal(p00_angle_from_method, p00_angle_by_calc)
+    True
+
+    >>> pc0_angle_from_method = triad.Triad._find_interior_angle_from_points(
+    ...     pc0, p00, pcs)
+    >>> v_pc0_p00 = p00 - pc0
+    >>> v_pc0_pcs = pcs - pc0
+    >>> pc0_angle_by_calc = TAU / 4
+    >>> almost_equal(pc0_angle_from_method, pc0_angle_by_calc)
+    True
+
+    >>> pcs_angle_from_method = triad.Triad._find_interior_angle_from_points(
+    ...     pcs, p00, pc0)
+    >>> v_pcs_p00 = p00 - pcs
+    >>> v_pcs_pc0 = pc0 - pcs
+    >>> pcs_angle_by_calc = TAU / 6
+    >>> almost_equal(pcs_angle_from_method, pcs_angle_by_calc)
+    True
+
+### _order_remaining_points_farthest_first
+    #   2d, remaining points not equidistant
+    >>> p03 = point.Point(0, 3)
+    >>> p40 = point.Point(4, 0)
+    >>> points_smallest_first = [p40, p00, p03]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p40, p03, p00]
+    True
+
+    >>> p03 = point.Point(0, -3)
+    >>> p40 = point.Point(-4, 0)
+    >>> points_smallest_first = [p40, p00, p03]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p40, p03, p00]
+    True
+    >>> points_smallest_first = [p40, p03, p00]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p40, p03, p00]
+    True
+
+    #   2d, remaining points equidistant
+    >>> p14 = point.Point(1, 4)
+    >>> p20 = point.Point(2, 0)
+    >>> points_smallest_first = [p14, p00, p20]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p14, p20, p00]
+    True
+    >>> points_smallest_first = [p14, p20, p00]
+    >>> points = triad.Triad._order_remaining_points_farthest_first(
+    ...     points_smallest_first)
+    >>> points == [p14, p20, p00]
+    True
+
+### transformation practise
+    >>> p0_4 = point.Point(0, -4, 0)
+    >>> p0_8 = point.Point(0, -8, 0)
+    >>> p3_4 = point.Point(3, -4, 0)
+    >>> p40  = point.Point(4,  0, 0)
+    >>> p43  = point.Point(4,  3, 0)
+    >>> p6_8 = point.Point(6, -8, 0)
+    >>> p80  = point.Point(8,  0, 0)
+    >>> p86  = point.Point(8,  6, 0)
+    >>> points = [p00, p43, p40]
+    >>> cos90 = cos(TAU / 4)
+    >>> sin90 = sin(TAU / 4)
+    >>> r = np.array([
+    ...     [ cos90, sin90, 0],
+    ...     [-sin90, cos90, 0],
+    ...     [     0,     0, 1]])
+    >>> s = np.array([
+    ...     [2, 0, 0],
+    ...     [0, 2, 0],
+    ...     [0, 0, 2]])
+    >>> r_points_man = [p00, p3_4, p0_4]
+    >>> r_points = triad.Triad.transform_points(r, points)
+
+    ??? r_points_man
+    ??? r_points
+    >>> for i in range(len(r_points)):
+    ...     r_points[i] == r_points_man[i]
+    True
+    True
+    True
+
+    >>> s_rpoints_man = [p00, p6_8, p0_8]
+    >>> s_rpoints = triad.Triad.transform_points(s, r_points)
+
+    ??? s_rpoints_man
+    ??? s_rpoints
+    >>> for i in range(len(s_rpoints)):
+    ...     s_rpoints[i] == s_rpoints_man[i]
+    True
+    True
+    True
+    
+    >>> s_points_man = [p00, p86, p80]
+    >>> s_points = triad.Triad.transform_points(s, points)
+
+    ??? s_points_man
+    ??? s_points
+    >>> for i in range(len(s_points)):
+    ...     s_points[i] == s_points_man[i]
+    True
+    True
+    True
+    
+    >>> r_spoints_man = [p00, p6_8, p0_8]
+    >>> r_spoints = triad.Triad.transform_points(r, s_points)
+
+    ??? r_spoints_man
+    ??? r_spoints
+    >>> for i in range(len(r_spoints)):
+    ...     r_spoints[i] == r_spoints_man[i]
+    True
+    True
+    True
+
+    >>> for i in range(len(r_spoints)):
+    ...     r_spoints[i] == s_rpoints[i]
+    True
+    True
+    True
+
+    >>> rs = np.dot(r, s)
+    >>> sr = np.dot(s, r)
+    >>> almost_equal(rs, sr)
+    True
+
+    >>> rs_points = triad.Triad.transform_points(rs, points)
+    >>> sr_points = triad.Triad.transform_points(sr, points)
+    >>> for i in range(len(rs_points)):
+    ...     rs_points[i] == sr_points[i]
+    True
+    True
+    True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

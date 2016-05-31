@@ -1,238 +1,351 @@
+    >>> import math
+    >>> import numpy as np
     >>> import point
+    >>> import vector
+    >>> almost_equal = np.allclose
+    >>> TAU = math.pi * 2
 
 ### construct
 #   __init__
-    >>> x = 2
-    >>> y = 3
-    >>> z = 4
-
-    ### bad type iter
-    >>> point_from_bad_type_iter = point.Point('xyz')
-    Point.__init__:
-        The argument must be a 2- or 3-tuple of numbers
-
-    ### bad type element
-    >>> point_from_bad_type_element = point.Point(('x', y, z))
-    Point.__init__:
-        The argument must be a 2- or 3-tuple of numbers
-    
-    ### bad value one element
-    >>> point_from_bad_value_one_element = point.Point((1))
-    Point.__init__:
-        The argument must be a 2- or 3-tuple of numbers
-
-    ### bad value four elements
-    >>> point_from_bad_value_one_element = point.Point((1, 2, 3, 4))
-    Point.__init__:
-        The argument must be a 2- or 3-tuple of numbers
-
-    ### good type xy
-    >>> point_from_good_type_xy = point.Point((x, y))
-    >>> point_from_good_type_xy.spec
-    (2, 3, 0)
-
-    ### good type xyz
-    >>> point_from_good_type_xyz = point.Point((x, y, z))
-    >>> point_from_good_type_xyz.spec
-    (2, 3, 4)
-
-#   _is_number
-    >>> point_x = point.Point((1, 2, 3))
-    >>> point_x._is_number('a')
-    False
-    >>> point_x._is_number([1])
-    False
-    >>> point_x._is_number(1)
-    True
-    >>> point_x._is_number(1.1)
-    True
-
-#   from_coords(x, y, z)
+    >>> p000 = point.Point(0, 0, 0)
     >>> x = 2
     >>> y = 3
     >>> z = 4
 
     ### bad type
-    >>> point_from_bad_type = point.Point.from_coords('x', y, z)
+    >>> p = point.Point('x', 0, 0)
     Point.__init__:
-        The argument must be a 2- or 3-tuple of numbers
-    
-    ### good type xy
-    >>> point_from_good_type_xy = point.Point.from_coords(x, y)
-    >>> point_from_good_type_xy.spec
-    (2, 3, 0)
+        The arguments must all be numbers
+    >>> p = point.Point(1, 2, 3)
 
-    ### good type xyz
-    >>> point_from_good_type_xyz = point.Point.from_coords(x, y, z)
-    >>> point_from_good_type_xyz.spec
-    (2, 3, 4)
+    ### good arg
+    >>> good_arg_xy = point.Point(1, 2)
+    >>> good_arg_xy.x == 1
+    True
+    >>> good_arg_xy.y == 2
+    True
+    >>> good_arg_xy.z == 0
+    True
+    >>> good_arg_xy.matrix == np.array([1, 2, 0])
+    array([ True,  True,  True], dtype=bool)
+
+    >>> good_arg_xyz = point.Point(1, 2, 3)
+    >>> good_arg_xyz.x == 1
+    True
+    >>> good_arg_xyz.y == 2
+    True
+    >>> good_arg_xyz.z == 3
+    True
+    >>> good_arg_xyz.matrix == np.array([1, 2, 3])
+    array([ True,  True,  True], dtype=bool)
+    
+    >>> good_arg_xyz_float = point.Point(1.1, 2.2, 3.3)
+    >>> good_arg_xyz_float.x == 1.1
+    True
+    >>> good_arg_xyz_float.y == 2.2
+    True
+    >>> good_arg_xyz_float.z == 3.3
+    True
+    >>> good_arg_xyz_float.matrix == np.array([1.1, 2.2, 3.3])
+    array([ True,  True,  True], dtype=bool)
+
+#   _is_a_number
+    >>> p000._is_a_number('a')
+    False
+    >>> p000._is_a_number([1])
+    False
+    >>> p000._is_a_number(1)
+    True
+    >>> p000._is_a_number(1.1)
+    True
+
+#   from_specs
+    ### bad type
+    >>> non_tuple = 1
+    >>> point.Point.from_specs(non_tuple)
+    Point.from_specs:
+        The argument must be a tuple or a list of 2 or 3 numbers
+    >>> tuple_with_1_bad_type = ('x', 2, 3)
+    >>> point.Point.from_specs(tuple_with_1_bad_type)
+    Point.from_specs:
+        The argument must be a tuple or a list of 2 or 3 numbers
+
+    ### bad value
+    >>> bad_val_1_el = [1]
+    >>> bad_val_4_el = (1, 2, 3, 4)
+    >>> point.Point.from_specs(bad_val_1_el)
+    Point.from_specs:
+        The argument must be a tuple or a list of 2 or 3 numbers
+    >>> point.Point.from_specs(bad_val_4_el)
+    Point.from_specs:
+        The argument must be a tuple or a list of 2 or 3 numbers
+
+    ### good arg
+    >>> good_arg_2 = (2.2, 1.1)
+    >>> p = point.Point.from_specs(good_arg_2)
+    >>> p.matrix == np.array([2.2, 1.1, 0])
+    array([ True,  True,  True], dtype=bool)
+
+    >>> good_arg_3 = [3.3, 2.2, 1.1]
+    >>> p = point.Point.from_specs(good_arg_3)
+    >>> p.matrix == np.array([3.3, 2.2, 1.1])
+    array([ True,  True,  True], dtype=bool)
+
+#   is_a_spec_in
+    >>> bad_type_container = 7
+    >>> point.Point.from_specs(bad_type_container)
+    Point.from_specs:
+        The argument must be a tuple or a list of 2 or 3 numbers
+
+    >>> bad_type_length_short = [1.1]
+    >>> point.Point.from_specs(bad_type_length_short)
+    Point.from_specs:
+        The argument must be a tuple or a list of 2 or 3 numbers
+
+    >>> bad_type_length_long = [1.1, 2.2, 3.3, 4.4]
+    >>> point.Point.from_specs(bad_type_length_long)
+    Point.from_specs:
+        The argument must be a tuple or a list of 2 or 3 numbers
+
+    >>> bad_type_element = ['x', 2.2, 3.3]
+    >>> point.Point.from_specs(bad_type_element)
+    Point.from_specs:
+        The argument must be a tuple or a list of 2 or 3 numbers
+
+    >>> good_arg_2 = (1.1, 2.2)
+    >>> point.Point.is_a_spec_in(good_arg_2)
+    True
+    >>> good_arg_3 = [1.1, 2.2, 3.3]
+    >>> point.Point.is_a_spec_in(good_arg_3)
+    True
+
+#   from_matrix
+    ### bad type
+    >>> matrix_bad_type = 17
+    >>> p = point.Point.from_matrix(matrix_bad_type)
+    Point.from_matrix:
+        The argument must be a matrix of numbers
+
+    ### bad value
+    >>> matrix_bad_value = np.array([1, 2, 3, 4])
+    >>> p = point.Point.from_matrix(matrix_bad_value)
+    Point.from_matrix:
+        The matrix must have shape (3, )
+
+    ### good arg
+    >>> good_arg = np.array([3.3, 2.2, 1.1])
+    >>> p = point.Point.from_matrix(good_arg)
+    >>> print(p)
+    (3.3, 2.2, 1.1)
+    >>> p.matrix == good_arg
+    array([ True,  True,  True], dtype=bool)
 
 ### represent
-    >>> p234 = point.Point((2, 3, 4))
-    >>> p123456 = point.Point((1.2, 3.4, 5.6))
+    >>> p234 = point.Point(2, 3, 4)
+    >>> p203040 = point.Point(2.0, 3.0, 4.0)
+    >>> p123456 = point.Point(1.2, 3.4, 5.6)
 
 #   __str__
     >>> str(p234)
     '(2, 3, 4)'
-    >>> repr(p234)
+    >>> str(p203040)
     '(2, 3, 4)'
-
-#   __repr__
     >>> str(p123456)
     '(1.2, 3.4, 5.6)'
-    >>> repr(p123456)
-    '(1.2, 3.4, 5.6)'
+
+#   __repr__
+    >>> r234 = repr(p234)
+    >>> r234
+    'point.Point(2, 3, 4)'
+    >>> eval(r234) == p234
+    True
+    >>> r123456 = repr(p123456)
+    >>> r123456
+    'point.Point(1.2, 3.4, 5.6)'
+    >>> eval(r123456) == p123456
+    True
 
 #   listing
-    >>> print p234.listing()
-    (2, 3, 4)
-    >>> print p234.listing(1)
-    (2.0, 3.0, 4.0)
-    >>> print p234.listing(2.1)
+    >>> print(p234.listing('a'))
     Point.listing:
         The argument must be an integer
     None
-    >>> print p234.listing(-1.3)
+    >>> print(p234.listing(1.2))
     Point.listing:
         The argument must be an integer
     None
-    >>> print p234.listing(-1)
+    >>> print(p234.listing(-1))
     Point.listing:
         The argument must be non-negative
     None
+    >>> print(p234.listing())
+    (2, 3, 4)
+    >>> print(p234.listing(1))
+    (2.0, 3.0, 4.0)
+    >>> print(p234.listing(2))
+    (2.00, 3.00, 4.00)
 
-#   get_formatted_coord
-    >>> print p234.get_formatted_coord(25)
-    Point.get_formatted_coord:
-        The dimension must be a string ('x', 'y', or 'z')
-    None
-    >>> print p234.get_formatted_coord('p')
-    Point.get_formatted_coord:
-        The dimension must be either 'x', 'y', or 'z'
-    None
-    >>> print p234.get_formatted_coord('x')
+#   get_coord_listing
+    >>> print(p234.get_coord_listing('x'))
     2
-    >>> print p234.get_formatted_coord('x', 1)
-    2.0
-    >>> print p234.get_formatted_coord('x', 1.2)
-    2.0
-    >>> print p234.get_formatted_coord('x', -2)
+    >>> print(p234.get_coord_listing('x', 0))
     2
-    >>> print p234.get_formatted_coord('x', -2.3)
-    2
-    >>> print p234.get_formatted_coord('y')
-    3
+    >>> print(p234.get_coord_listing('y', 1))
+    3.0
+    >>> print(p234.get_coord_listing('z', 2))
+    4.00
+
+### operations
+#   __add__
+    >>> p1 = point.Point(1, 2, 3)
+    >>> v = vector.Vector(2, 2, 2)
+    >>> p2 = p1 + v
+    >>> p2.matrix == np.array([3, 4, 5])
+    array([ True,  True,  True], dtype=bool)
+
+#   __sub__
+    >>> p123 = point.Point(1, 2, 3)
+    >>> p234 = point.Point(2, 3, 4)
+    >>> non_point = 37
+
+    >>> p123 - non_point
+    Point.__sub__:
+        The argument must be a Point object
+    >>> v111 = p234 - p123
+    >>> v111.matrix == np.array([1, 1, 1])
+    array([ True,  True,  True], dtype=bool)
+    >>> v_111 = p123 - p234
+    >>> v_111.matrix == np.array([-1, -1, -1])
+    array([ True,  True,  True], dtype=bool)
+    >>> v000 = p123 - p123
+    >>> v000.matrix == np.array([0, 0, 0])
+    array([ True,  True,  True], dtype=bool)
 
 ### relations
-#   __eq__
-    >>> point_eq =  point.Point.from_coords(0, 0, 0)
-    >>> point_eq == point.Point.from_coords(0, 0, 0)
+    >>> cos45 = math.cos(TAU/8) # 0.7071067811865476
+    >>> sin45 = math.sin(TAU/8) # 0.7071067811865475
+    >>> o0707 =                   0.707
+    >>> cos45 > sin45
     True
-    >>> point_eq == point.Point.from_coords(0, 0, 1)
+    >>> cos45 > o0707
+    True
+    >>> almost_equal(cos45, o0707)
     False
-    >>> point_eq == point.Point.from_coords(0, 1, 0)
-    False
-    >>> point_eq == point.Point.from_coords(1, 0, 0)
+
+#   __eq__
+    >>> point_eq =  point.Point(cos45, cos45, 0)
+    >>> point_eq == point.Point(cos45, sin45, 0)
+    True
+    >>> point_eq == point.Point(sin45, cos45, 0)
+    True
+    >>> point_eq == point.Point(cos45, o0707, 0)
     False
 
 #   __ge__
-    >>> point_ge  = point.Point.from_coords( 0,  0,  0)
-
-    >>> point_ge >= point.Point.from_coords(-1,  0,  0)
+    >>> point_ge  = point.Point(sin45, sin45, 0)
+    >>> point_ge >= point.Point(sin45, cos45, 0)
     True
-    >>> point_ge >= point.Point.from_coords( 0, -1,  0)
+    >>> point_ge >= point.Point(sin45, o0707, 0)
     True
-    >>> point_ge >= point.Point.from_coords( 0,  0, -1)
-    True
-    >>> point_ge >= point.Point.from_coords( 0,  0,  0)
-    True
-    >>> point_ge >= point.Point.from_coords( 0,  0,  1)
-    False
-    >>> point_ge >= point.Point.from_coords( 0,  1,  0)
-    False
-    >>> point_ge >= point.Point.from_coords( 1,  0,  0)
-    False
 
 #   __gt__
-    >>> point_gt = point.Point.from_coords( 0,  0,  0)
-    >>> point_gt > point.Point.from_coords(-1,  0,  0)
+    >>> point_gt = point.Point(cos45, cos45, 0)
+    >>> point_gt > point.Point(cos45, o0707, 0)
     True
-    >>> point_gt > point.Point.from_coords( 0, -1,  0)
-    True
-    >>> point_gt > point.Point.from_coords( 0,  0, -1)
-    True
-    >>> point_gt > point.Point.from_coords( 0,  0,  0)
-    False
-    >>> point_gt > point.Point.from_coords( 0,  0,  1)
-    False
-    >>> point_gt > point.Point.from_coords( 0,  1,  0)
-    False
-    >>> point_gt > point.Point.from_coords( 1,  0,  0)
+    >>> point_gt > point.Point(cos45, sin45, 0)
     False
 
 #   __le__
-    >>> point_le  = point.Point.from_coords( 0,  0,  0)
-    >>> point_le <= point.Point.from_coords(-1,  0,  0)
-    False
-    >>> point_le <= point.Point.from_coords( 0, -1,  0)
-    False
-    >>> point_le <= point.Point.from_coords( 0,  0, -1)
-    False
-    >>> point_le <= point.Point.from_coords( 0,  0,  0)
+    >>> point_le  = point.Point(sin45, o0707, 0)
+    >>> point_le <= point.Point(sin45, sin45, 0)
     True
-    >>> point_le <= point.Point.from_coords( 0,  0,  1)
-    True
-    >>> point_le <= point.Point.from_coords( 0,  1,  0)
-    True
-    >>> point_le <= point.Point.from_coords( 1,  0,  0)
+    >>> point_le <= point.Point(cos45, o0707, 0)
     True
 
 #   __lt__
-    >>> point_lt = point.Point.from_coords( 0,  0,  0)
-    >>> point_lt < point.Point.from_coords(-1,  0,  0)
-    False
-    >>> point_lt < point.Point.from_coords( 0, -1,  0)
-    False
-    >>> point_lt < point.Point.from_coords( 0,  0, -1)
-    False
-    >>> point_lt < point.Point.from_coords( 0,  0,  0)
-    False
-    >>> point_lt < point.Point.from_coords( 0,  0,  1)
+    >>> point_lt = point.Point(sin45, o0707, 0)
+    >>> point_lt < point.Point(sin45, sin45, 0)
     True
-    >>> point_lt < point.Point.from_coords( 0,  1,  0)
-    True
-    >>> point_lt < point.Point.from_coords( 1,  0,  0)
+    >>> point_lt < point.Point(sin45, cos45, 0)
     True
 
 #   __ne__
-    >>> point_ne  = point.Point.from_coords(0, 0, 0)
-    >>> point_ne != point.Point.from_coords(0, 0, 0)
+    >>> point_ne  = point.Point(cos45, cos45, 0)
+    >>> point_ne != point.Point(cos45, o0707, 0)
+    True
+    >>> point_ne != point.Point(cos45, sin45, 0)
     False
-    >>> point_ne != point.Point.from_coords(0, 0, 1)
-    True
-    >>> point_ne != point.Point.from_coords(0, 1, 0)
-    True
-    >>> point_ne != point.Point.from_coords(1, 0, 0)
+
+#   __hash__
+    >>> def set_up_hash_p000():
+    ...     n_digits = 14
+    ...     rounded_coords = [round(coord, n_digits) for coord in p000.spec]
+    ...     hash_list = [hash(coord) for coord in rounded_coords]
+    ...     hash_tuple = tuple(hash_list)
+    ...     hash_exp = hash(hash_tuple)
+    ...     hash_got = hash(p000)
+    ...     return (hash_exp, hash_got)
+    >>> p000_exp, p000_got = set_up_hash_p000()
+    >>> p000_exp == p000_got
     True
 
-### other
-#   is_point_spec(cls)
-    >>> bad_type = 37
-    >>> bad_type_element = (1.2, 3.4, 'c')
-    >>> bad_type_length = (1.2, 3.4)
-    >>> good_arg = (1.2, 3.4, 5.6)
-    >>> point.Point.is_point_spec(bad_type)
-    False
-    >>> point.Point.is_point_spec(bad_type_element)
-    False
-    >>> point.Point.is_point_spec(bad_type_length)
-    False
-    >>> point.Point.is_point_spec(good_arg)
+    >>> def set_up_hash_p123():
+    ...     p123 = point.Point(-1.1, 2.2, 3.3)
+    ...     n_digits = 14
+    ...     rounded_coords = [round(coord, n_digits) for coord in p123.spec]
+    ...     hash_list = [hash(coord) for coord in rounded_coords]
+    ...     hash_tuple = tuple(hash_list)
+    ...     hash_exp = hash(hash_tuple)
+    ...     hash_got = hash(p123)
+    ...     return (hash_exp, hash_got)
+    >>> p123_exp, p123_got = set_up_hash_p123()
+    >>> p123_exp == p123_got
     True
 
-#   _print_error_message
-    >>> test_method_name = 'test_method'
-    >>> test_message = 'This is a test'
-    >>> point.Point._print_error_message(test_method_name, test_message)
-    Point.test_method:
-        This is a test
+    >>> def set_up_hash_p369():
+    ...     p369 = point.Point(3.3, 6.6, 9.9)
+    ...     n_digits = 14
+    ...     rounded_coords = [round(coord, n_digits) for coord in p369.spec]
+    ...     hash_list = [hash(coord) for coord in rounded_coords]
+    ...     hash_tuple = tuple(hash_list)
+    ...     hash_exp = hash(hash_tuple)
+    ...     hash_got = hash(p369)
+    ...     return (hash_exp, hash_got)
+    >>> p369_exp, p369_got = set_up_hash_p369()
+    >>> p369_exp == p369_got
+    True
+
+    >>> def set_up_hash_cos_sin():
+    ...     p_cos = point.Point(cos45, cos45, cos45)
+    ...     p_sin = point.Point(sin45, sin45, sin45)
+    ...     hash_cos = hash(p_cos)
+    ...     hash_sin = hash(p_sin)
+    ...     return (hash_cos, hash_sin)
+    >>> hash_cos, hash_sin = set_up_hash_cos_sin()
+    >>> hash_cos == hash_sin
+    True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

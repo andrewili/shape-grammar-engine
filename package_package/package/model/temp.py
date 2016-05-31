@@ -1,27 +1,5 @@
 temp.py
 
-    @classmethod                                ##  2016-02-20 08:02
-    def find_and_display_next_shapes_all_rules(cls):
-        """Required state:
-            One current shape (or a subshape of one current shape) must be 
-            selected. 
-        Applies all rules to the selected shape (or subshape) and draws the 
-        resulting next shapes, if any. Does not retain information about the 
-        rules. Returns:
-            None
-        """
-        c       = _get_current_shape()
-        r       = rule = None
-        rs      = _get_rules()
-        d       = next_shape = None
-        ds_r    = next_shapes_one_rule = None
-        ds_rs   = next_shapes_all_rules = []
-
-        for r in rs:
-            ds_r = _find_next_shapes_one_rule(r, c)
-            ds_rs.extend(ds_r)
-        for d in ds_rs:
-            _display_shape(d)
 
     @classmethod                                ##  2016-02-20 08:58
     def _find_next_shapes_one_rule(rule, current_shape):

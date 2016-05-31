@@ -1,0 +1,350 @@
+    >>> from numpy import linalg as la
+    >>> import math
+    >>> import numpy as np
+    >>> import vector
+    >>> almost_equal = np.allclose
+    >>> cos, sin = math.cos, math.sin
+    >>> TAU = math.pi * 2
+
+### construct
+#   __init__
+    >>> a = 'a'
+    >>> x = 3
+    >>> y = 4
+    >>> z = 5
+    
+    ### bad type
+    >>> vector_bad_type = vector.Vector(a, y, z)
+    Vector.__init__:
+        The arguments must be numbers
+    >>> vector_bad_type = vector.Vector(x, a, z)
+    Vector.__init__:
+        The arguments must be numbers
+    >>> vector_bad_type = vector.Vector(x, y, a)
+    Vector.__init__:
+        The arguments must be numbers
+    
+    ### good value 0
+    >>> v0 = vector.Vector(0, 0)
+    >>> v0.m == np.array([0, 0, 0])
+    array([ True,  True,  True], dtype=bool)
+    >>> v0.l == 0.0
+    True
+    >>> v0.um == None
+    True
+
+    ### good value 2d
+    >>> v030400 = vector.Vector(3, 4)
+    >>> v030400_m = np.array([3, 4, 0])
+    >>> v030400.m == v030400_m
+    array([ True,  True,  True], dtype=bool)
+    >>> v030400.l
+    5.0
+    >>> v030400.um == np.array([0.6, 0.8, 0])
+    array([ True,  True,  True], dtype=bool)
+
+    >>> v051200 = vector.Vector(5, 12)
+    >>> v051200_m = np.array([5, 12, 0])
+    >>> v051200.m == v051200_m
+    array([ True,  True,  True], dtype=bool)
+    >>> v051200.l
+    13.0
+    >>> v051200.um[0] == v051200.x / v051200.l
+    True
+    >>> v051200.um[1] == v051200.y / v051200.l
+    True
+    >>> v051200.um[2] == v051200.z / v051200.l
+    True
+
+    >>> v000100 = vector.Vector(0, 1, 0)
+    >>> v000100_m = np.array([0, 1, 0])
+    >>> v000100.m == v000100_m
+    array([ True,  True,  True], dtype=bool)
+    >>> v000100.l == 1
+    True
+    >>> v000100.um[0] == v000100.x
+    True
+    >>> v000100.um[1] == v000100.y
+    True
+    >>> v000100.um[2] == v000100.z
+    True
+
+    >>> v00_100 = vector.Vector(0, -1, 0)
+    >>> v00_100_m = np.array([0, -1, 0])
+    >>> v00_100.m == v00_100_m
+    array([ True,  True,  True], dtype=bool)
+    >>> v00_100.l == 1
+    True
+    >>> v00_100.um[0] == v00_100.x
+    True
+    >>> v00_100.um[1] == v00_100.y
+    True
+    >>> v00_100.um[2] == v00_100.z
+    True
+
+    >>> cos30 = cos(math.radians(30))
+    >>> sin30 = sin(math.radians(30))
+    >>> v30deg = vector.Vector(cos30, sin30, 0)
+    >>> v30deg_m = np.array([cos30, sin30, 0])
+    >>> v30deg.m == v30deg_m
+    array([ True,  True,  True], dtype=bool)
+    >>> v30deg.l == 1
+    True
+
+    ### good value 3d
+    >>> vector_3d = vector.Vector(x, 0, y)
+    >>> vector_3d_m = np.array([3, 0, 4])
+    >>> almost_equal(vector_3d.m, vector_3d_m)
+    True
+    >>> vector_3d.l == 5
+    True
+    >>> vector_3d.um[0] == vector_3d.x / vector_3d.l
+    True
+    >>> vector_3d.um[1] == vector_3d.y / vector_3d.l
+    True
+    >>> vector_3d.um[2] == vector_3d.z / vector_3d.l
+    True
+
+#   from_matrix
+    ### type error
+    >>> non_matrix = 37
+    >>> v_bad_type = vector.Vector.from_matrix(non_matrix)
+    Vector.from_matrix:
+        The argument must be a matrix of shape (3, )
+    >>> v_bad_shape = np.array([x, y])
+    >>> v_bad_shape = (
+    ...     vector.Vector.from_matrix(v_bad_shape))
+    Vector.from_matrix:
+        The argument must be a matrix of shape (3, )
+
+    ### good value
+    >>> good_arg = np.array([x, y, z])
+    >>> v_good = vector.Vector.from_matrix(good_arg)
+    >>> type(v_good) == vector.Vector
+    True
+    >>> v_good.x == x
+    True
+    >>> v_good.y == y
+    True
+    >>> v_good.z == z
+    True
+
+### represent
+    >>> v_12 = vector.Vector(1, 2)
+    >>> v_110 = vector.Vector(1, 1, 0)
+
+#   __str__
+    >>> def set_up_str():
+    ...     v_12 = vector.Vector(1.0, 2.0)
+    ...     v_110 = vector.Vector(1.0, 1.0, 0.0)
+    ...     cos30 = cos(TAU / 12)
+    ...     cos45 = cos(TAU / 8)
+    ...     cos60 = cos(TAU / 6)
+    ...     v_cos = vector.Vector(cos30, cos45, cos60)
+    ...     return (v_12, v_110, v_cos)
+    >>> v_12, v_110, v_cos = set_up_str()
+    >>> str(v_12)
+    '[1 2 0]'
+    >>> str(v_110)
+    '[1 1 0]'
+    >>> str(v_cos)
+    '[0.866025403784 0.707106781187 0.5]'
+
+#   __repr__
+    >>> r_12 = repr(v_12)
+    >>> r_12
+    'vector.Vector(1, 2, 0)'
+    >>> eval(r_12) == v_12
+    True
+    >>> r_110 = repr(v_110)
+    >>> r_110
+    'vector.Vector(1, 1, 0)'
+    >>> eval(r_110) == v_110
+    True
+    >>> r_cos = repr(v_cos)
+    >>> r_cos
+    'vector.Vector(0.866025403784, 0.707106781187, 0.5)'
+    >>> eval(r_cos) == v_cos
+    True
+
+#   listing
+    >>> v_12.listing()
+    '[1 2 0]'
+    >>> v_12.listing(1)
+    '[1.0 2.0 0.0]'
+    >>> v_12.listing(2)
+    '[1.00 2.00 0.00]'
+    >>> v_cos.listing()
+    '[1 1 1]'
+    >>> v_cos.listing(2)
+    '[0.87 0.71 0.50]'
+    >>> v_cos.listing(12)
+    '[0.866025403784 0.707106781187 0.500000000000]'
+
+
+### operations and relations
+#   uv = find_unit_vector
+    >>> v0 = vector.Vector(0, 0, 0)
+    >>> v0_uv = v0.uv()
+    >>> v0_uv
+    >>> v345 = vector.Vector(3, 4, 0)
+    >>> v345_uv = v345.uv()
+    >>> v345_uv.x = 0.6
+    >>> v345_uv.y = 0.8
+    >>> v345_uv.z = 0
+
+#   inv = find_additive_inverse
+    >>> v000 = vector.Vector(0, 0, 0)
+    >>> v123 = vector.Vector(1, -2, 3)
+    >>> v123_inv = v123.inv()
+    >>> v123 + v123_inv == v000
+    True
+    >>> v123_inv + v123 == v000
+    True
+    >>> v0 = vector.Vector(0, 0, 0)
+    >>> v0_inv = v0.inv()
+    >>> v0 + v0_inv == v000
+    True
+    >>> v0_inv + v0 == v000
+    True
+
+#   __add__
+    >>> def set_up_add():
+    ...     v0      = vector.Vector( 0,  0,  0)
+    ...     v1      = vector.Vector( 1,  2,  3)
+    ...     v2      = vector.Vector( 2,  2,  2)
+    ...     v3      = vector.Vector(-3, -2, -1)
+    ...     return (v0, v1, v2, v3)
+    >>> v0, v1, v2, v3 = set_up_add()
+    >>> v0 + v0 == v0
+    True
+    >>> v0 + v1 == v1
+    True
+    >>> v0 + v2 == v2
+    True
+    >>> v0 + v3 == v3
+    True
+    >>> v1 + v2 == vector.Vector( 3,  4,  5)
+    True
+    >>> v2 + v1 == vector.Vector( 3,  4,  5)
+    True
+    >>> v1 + v2 == v2 + v1
+    True
+    >>> v1 + v3 == vector.Vector(-2,  0,  2)
+    True
+    >>> v2 + v3 == vector.Vector(-1,  0,  1)
+    True
+
+#   __sub__
+    >>> def set_up_sub():
+    ...     v0      = vector.Vector( 0,  0,  0)
+    ...     v1      = vector.Vector( 1,  2,  3)
+    ...     v2      = vector.Vector( 2,  2,  2)
+    ...     v3      = vector.Vector(-3, -2, -1)
+    ...     return (v0, v1, v2, v3)
+    >>> v0, v1, v2, v3 = set_up_sub()
+    >>> v0 - v0 == v0
+    True
+    >>> v1 - v0 == v1
+    True
+    >>> v1 - v1 == v0
+    True
+    >>> v2 - v0 == v2
+    True
+    >>> v2 - v2 == v0
+    True
+    >>> v3 - v0 == v3
+    True
+    >>> v3 - v3 == v0
+    True
+
+#   __mul__
+    >>> v123 = vector.Vector(1, 2, 3)
+    >>> v123_2 = v123 * 2
+    >>> v123_2.x == v123.x * 2
+    True
+    >>> v123_2.y == v123.y * 2
+    True
+    >>> v123_2.z == v123.z * 2
+    True
+    >>> v123_0 = v123 * 0
+    >>> v123_0 == vector.Vector(0, 0, 0)
+    True
+
+### relations
+    >>> def set_up_relations():
+    ...     cos45 = cos(TAU / 8)
+    ...     sin45 = sin(TAU / 8)
+    ...     v_000 = vector.Vector(0, 0, 0)
+    ...     v_cs0 = vector.Vector(cos45, sin45, 0)
+    ...     v_sc0 = vector.Vector(sin45, cos45, 0)
+    ...     v_100 = vector.Vector(1, 0, 0)
+    ...     return (v_000, v_cs0, v_sc0, v_100)
+    >>> v_000, v_cs0, v_sc0, v_100 = set_up_relations()
+
+#   __eq__
+    >>> v_cs0 == v_000
+    False
+    >>> v_cs0 == v_sc0
+    True
+    >>> v_sc0 == v_cs0
+    True
+    >>> v_cs0 == v_100
+    False
+
+#   __ge__
+    >>> v_cs0 >= v_000
+    True
+    >>> v_cs0 >= v_sc0
+    True
+    >>> v_sc0 >= v_cs0
+    True
+    >>> v_cs0 >= v_100
+    False
+
+#   __gt__
+    >>> v_cs0 >  v_000
+    True
+    >>> v_cs0 >  v_sc0
+    False
+    >>> v_sc0 >  v_cs0
+    False
+    >>> v_cs0 >  v_100
+    False
+
+#   __le__
+    >>> v_cs0 <= v_000
+    False
+    >>> v_cs0 <= v_sc0
+    True
+    >>> v_sc0 <= v_cs0
+    True
+    >>> v_cs0 <= v_100
+    True
+
+#   __lt__
+    >>> v_cs0 <  v_000
+    False
+    >>> v_cs0 <  v_sc0
+    False
+    >>> v_sc0 <  v_cs0
+    False
+    >>> v_cs0 <  v_100
+    True
+
+#   __ne__
+    >>> v_cs0 != v_000
+    True
+    >>> v_cs0 != v_sc0
+    False
+    >>> v_sc0 != v_cs0
+    False
+    >>> v_cs0 != v_100
+    True
+
+#   __hash__
+    >>> v1_exp = hash(v1)
+    >>> v1_got = hash((hash(v1.x), hash(v1.y), hash(v1.z)))
+    >>> v1_exp == v1_got
+    True
+

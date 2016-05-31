@@ -2,20 +2,28 @@
 
 import copy
 import labeled_point
+import numpy as np
+import point
+
+##  This may be unnecessary. Maybe we can use a set in the lpoint partition
+##  And why does it have to be empty?
 
 class Colabeling(object):
-    """Contains a set of colabeled point specs:
-        set([(x, y, label), ...]), label = k, n >= 0
+    """Contains a non-empty set of labeled points with the same label
     """
     ### construct
     def __init__(self, lpoints_in):
-        """Receives an unsorted list of colabeled points:
-            [LabeledPoint, ...], label = k, n >= 0
+        """Receives:
+            lpoints_in      [LabeledPoint] or set(LabeledPoint), label = k, 
+                            n >= 0. A non-empty list or set of labeled points 
+                            with the same label
+        Mutable
         """
-        method_name = '__init__()'
+        method_name = '__init__'
         try:
             if not (
-                lpoints_in.__class__ == list and
+                (   type(lpoints_in) == list or
+                    type(lpoints_in) == set) and
                 self._contains_only_lpoints(lpoints_in)
             ):
                 raise TypeError
@@ -25,57 +33,67 @@ class Colabeling(object):
             ):
                 raise ValueError
         except TypeError:
-            message = 'The argument must be a list of labeled points'
-            self.__class__._print_error_message(method_name, message)
+            message = 'The argument must be a list or set of labeled points'
+            self._print_error_message(method_name, message)
         except ValueError:
             message = 'The labeled points must have the same label'
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
-            self.specs_set = self._make_specs_set(lpoints_in)
+            if type(lpoints_in) == set:
+                self.lpoints = lpoints_in
+            else:
+                self.lpoints = set(lpoints_in)
 
-    def _contains_only_lpoints(self, elements_in):
-        """Receives a non-empty list of elements:
-            [element, ...]
-        Returns whether all elements are LabeledPoint objects
+    @classmethod
+    def _contains_only_lpoints(cls, elements_in):
+        """Receives:
+            elements_in     [element] or set(element). A non-empty list or 
+                            set of elements
+        Returns:
+            value           boolean. True if all elements are LabeledPoint 
+                            objects. False otherwise
         """
         value = True
-        for element in elements_in:
-            if not element.__class__ == labeled_point.LabeledPoint:
-                value = False
+        if elements_in == []:
+            value = False
+        else:
+            for element in elements_in:
+                if not type(element) == labeled_point.LabeledPoint:
+                    value = False
+                    break
         return value
 
-    def _are_colabeled(self, lpoints_in):
-        """Receives a non-empty list of labeled points:
-            [LabeledPoint, ...], n >= 1
-        Returns whether the labeled points all have the same label
+    @classmethod
+    def _are_colabeled(cls, lpoints_in):
+        """Receives: 
+            lpoints_in      [LabeledPoint] or set(LabeledPoint). A non-empty 
+                            list or set of labeled points
+        Returns:
+            value           boolean. True, if the labeled points all have the 
+                            same label
         """
-        label = lpoints_in[0].label
+        lpoints_copy = copy.copy(lpoints_in)
+        arbitrary_lpoint = lpoints_copy.pop()
+        label = arbitrary_lpoint.label
         for lpoint in lpoints_in:
             if label != lpoint.label:
                 return False
         return True
 
-    def _make_specs_set(self, lpoints_in):
-        """Receives a list of labeled points:
-            [LabeledPoint, ...]
-        Returns a set of labeled point specs:
-            set([(x, y, label), ...])
-        """
-        specs_set = set()
-        for lpoint in lpoints_in:
-            specs_set.add(lpoint.spec)
-        return specs_set
-
     @classmethod
     def from_lpoint_specs_list(cls, lpoint_specs_list):
         """Receives a list of lpoint specs:
-            [(x, y, label), ...]
-        Returns
-            Colabeling
+            lpoint_specs_list
+                            [lpoint_spec]. A non-empty list of labeled point 
+                            specs (x, y, z, label):
+                x, y, z     num
+                label       str
+        Returns:
+            new_colabeling  Colabeling
         """
-        method_name = 'from_lpoint_specs_list()'
+        method_name = 'from_lpoint_specs_list'
         try:
-            if not lpoint_specs_list.__class__ == list:
+            if not type(lpoint_specs_list) == list:
                 raise TypeError
             elif not labeled_point.LabeledPoint.are_lpoint_specs(
                 lpoint_specs_list
@@ -87,8 +105,9 @@ class Colabeling(object):
         else:
             new_lpoints = []
             for spec in lpoint_specs_list:
-                x, y, label = spec
-                new_lpoint = labeled_point.LabeledPoint(x, y, label)
+                x, y, z, label = spec
+                p = point.Point(x, y, z)
+                new_lpoint = labeled_point.LabeledPoint(p, label)
                 new_lpoints.append(new_lpoint)
             new_colabeling = Colabeling(new_lpoints)
             return new_colabeling
@@ -107,101 +126,136 @@ class Colabeling(object):
 
     ### represent
     def __str__(self):
-        """Returns the string of the ordered list of colabeled points in the 
-        form:
-            [(x, y, label), ...]
+        """Returns:
+            string          str. In the form '[<spec>, ...]'; <spec> is in 
+                            the form '(<x>, <y>, <z>, <label>)'
         """
         spec_strings = []
-        for spec in sorted(self.specs_set):
-            spec_string = self.get_spec_string(spec)
-            spec_strings.append(spec_string)
+        for lpoint in sorted(self.lpoints):
+            spec_strings.append(str(lpoint.spec))
         specs_string = ', '.join(spec_strings)
-        colabeling_string = '[%s]' % specs_string
-        return colabeling_string
+        string = '{%s}' % specs_string
+        return string
 
     def get_spec_string(self, spec):
-        """Receives a labeled point spec:
-            (x, y, label)
-        Returns a string:
-            '(<x>, <y>)'
+        """Receives:
+            spec            (x, y, z, label), (num, num, num, str)
+        Returns:
+            spec_string     str. '(<x>, <y>)'
         """
         x, y = spec[0:2]
         spec_string = '(%s, %s)' % (x, y)
         return spec_string
 
-    def listing(self, decimal_places=0, indent_level=0):
-        """Receives 2 numbers
-        Returns an ordered, formatted, multi-line string in the form:
-            label:
-                (x, y)
-                ...
+    def points_listing(self, decimal_places=0, indent_level=0):
+        """Receives:
+            decimal_places  num
+            indent_level    num
+        Returns: 
+            string          str. Ordered, formatted, multi-line, in the form:
+                            '(0, 0, 0)\n...'
         """
-        indent_increment = 4
-        if indent_level < 0:
-            indent_level = 0
-        indent_string = ' ' * int(indent_level) * indent_increment
-        lpoint_listings = []
-        for lpoint_spec in sorted(self.specs_set):
-            lpoint_listing = self._get_lpoint_listing(
-                lpoint_spec, decimal_places)
-            lpoint_listings.append(indent_string + lpoint_listing)
-        colabeling_listing = '\n'.join(lpoint_listings)
-        return colabeling_listing
-
-    def _get_lpoint_listing(self, lpoint_spec, decimal_places=0):
-        """Receives a labeled point spec:
-            (x, y, label)
-        Returns a string in the form:
-            '(<x>, <y>)'
-        """
-        x, y = lpoint_spec[0:2]
-        if decimal_places < 0:
-            n = 0
+        method_name = 'points_listing'
+        try:
+            if not (
+                self._is_a_number(decimal_places) and
+                self._is_a_number(indent_level)
+            ):
+                raise TypeError
+        except TypeError:
+            message = 'The arguments must be integers'
+            self._print_error_message(method_name, message)
         else:
-            n = int(decimal_places)
-        format = '%1.' + str(n) + 'f'
-        x_formatted = format % x
-        y_formatted = format % y
-        lpoint_listing = '(%s, %s)' % (x_formatted, y_formatted)
-        return lpoint_listing
+            indent_increment = 4
+            if indent_level < 0:
+                indent_level = 0
+            indent_string = ' ' * int(indent_level) * indent_increment
+            point_listings = []
+            for lpoint in sorted(self.lpoints):
+                point_listing = lpoint.p.listing(decimal_places)
+                point_listings.append(indent_string + point_listing)
+            string = '\n'.join(point_listings)
+            return string
+
+    def _is_a_number(self, item):
+        """Receives:
+            item            any type
+        Returns:
+            value           boolean
+        """
+        value = (
+            type(item) == int or
+            type(item) == float or
+            type(item) == np.int64 or
+            type(item) == 64)
+        return value
 
     ### get
-    def get_lpoint_specs(self):                 #   refactor as an attribute?
-        """Returns a list (not a list) of labeled point specs
-            [(x, y, label), ...]
+    def get_lpoint_specs(self):
+        """Returns: 
+            specs           [spec]. A list of labeled point specs in the form 
+                            [(x, y, z, label)]:
+                x, y, z     num
+                label       str
         """
         specs = []
-        for spec_i in self.specs_set:
-            specs.append(spec_i)
+        for lpoint in self.lpoints:
+            spec = lpoint.spec
+            specs.append(spec)
         return specs
 
     ### compare
     def __eq__(self, other):
-        return self.specs_set == other.specs_set
+        value = (self.lpoints == other.lpoints)
+        return value
 
     def __ne__(self, other):
-        return self.specs_set != other.specs_set
+        value = (self.lpoints != other.lpoints)
+        return value
+
+    def __hash__(self):
+        """Returns:
+            value           int
+        """
+        lpoint_hash_list = []
+        for lpoint in sorted(self.lpoints):
+            lpoint_hash_list.append(hash(lpoint))
+        lpoint_hash_tuple = tuple(lpoint_hash_list)
+        value = hash(lpoint_hash_tuple)
+        return value
 
     def is_a_subcolabeling_of(self, other):
-        """Receives a colabeling:
-            Colabeling
+        """Receives:
+            other           Colabeling
+        Returns:
+            value           boolean. True if every lpoint in self is an 
+                            lpoint in other
         """
-        return self.specs_set.issubset(other.specs_set)
+        value = self.lpoints.issubset(other.lpoints)
+        return value
 
     ### operate
-    def __sub__(self, other):
-        """Returns a colabeling with the set difference of specs_set:
-            Colabeling
+    def union(self, other):
+        """Receives:
+            other           Colabeling. Has the same label as self
+        Returns:
+            cl_union        Colabeling. Has lpoints equal to self.lpoints | 
+                            other.lpoints
         """
-        new_lpoint_spec_set = self.specs_set - other.specs_set
-                                                #   messy: too much converting
-        lpoints = []
-        for spec in new_lpoint_spec_set:
-            x, y, label = spec
-            lpoint = labeled_point.LabeledPoint(x, y, label)
-            lpoints.append(lpoint)
-        new_colabeling = Colabeling(lpoints)
+        lpoints_union = self.lpoints | other.lpoints
+        new_colabeling = Colabeling(lpoints_union)
         return new_colabeling
+
+    def difference(self, other):
+        """Receives:
+            other           Colabeling. Has the same label as self
+        Returns:
+            cl_diff         Colabeling. Has lpoints equal to self.lpoints - 
+                            other.lpoints
+        """
+        lpoints_diff = self.lpoints - other.lpoints
+        cl_diff = Colabeling(lpoints_diff)
+        return cl_diff
 
     def add(self, lpoint):
         """Receives a labeled point: 
@@ -210,21 +264,25 @@ class Colabeling(object):
         """
         self.specs_set.add(lpoint.spec)
 
-    def union(self, other):                     #   refactor as __add__ or __or__?
-        """Receives a colabeling:
-            Colabeling
-        Returns the union of the two colabelings:
-            Colabeling
+    def union(self, other):                 #   refactor as __add__ or __or__?
+        """Receives:
+            other           Colabeling
+        Returns:
+            new_colabeling  Colabeling. The colabeling of the union of 
+                            self.lpoints and other.lpoints
         """
-        new_colabeling = copy.copy(self)
-        new_lpoint_specs = new_colabeling.specs_set
-        new_colabeling.specs_set = new_lpoint_specs | other.specs_set
+        new_lpoints = self.lpoints.union(other.lpoints)
+        new_colabeling = Colabeling(new_lpoints)
         return new_colabeling
+        # new_colabeling = copy.copy(self)
+        # new_lpoint_specs = new_colabeling.specs_set
+        # new_colabeling.specs_set = new_lpoint_specs | other.specs_set
+        # return new_colabeling
 
     ### other
     @classmethod
     def _print_error_message(cls, method_name, message):
-        print '%s.%s: %s' % (cls.__name__, method_name, message)
+        print '%s.%s:\n    %s' % (cls.__name__, method_name, message)
 
 if __name__ == '__main__':
     import doctest

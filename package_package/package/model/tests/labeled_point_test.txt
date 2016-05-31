@@ -1,9 +1,13 @@
     >>> import labeled_point
     >>> import line
+    >>> import math
     >>> import point
 
+    >>> cos, sin = math.cos, math.sin
+    >>> TAU = math.pi * 2
+
 ### construct
-#   __init__, __str__, __repr__, listing
+#   __init__
     >>> bad_type_point = 37
     >>> good_point = point.Point(3, 4, 5)
     >>> good_label_empty = ''
@@ -35,13 +39,7 @@
     >>> lpoint_empty_label.label
     ''
     >>> lpoint_empty_label.spec
-    ((3, 4, 5), '')
-    >>> print(lpoint_empty_label)
-    ((3, 4, 5), '')
-    >>> repr(lpoint_empty_label)
-    "((3, 4, 5), '')"
-    >>> print(lpoint_empty_label.listing(1))
-    ((3.0, 4.0, 5.0), '')
+    (3, 4, 5, '')
 
     ### good args
     >>> lpoint_good_args = labeled_point.LabeledPoint(good_point, good_label)
@@ -54,54 +52,76 @@
     >>> lpoint_good_args.label
     'k'
     >>> lpoint_good_args.spec
-    ((3, 4, 5), 'k')
-    >>> print(lpoint_good_args)
-    ((3, 4, 5), k)
-    >>> repr(lpoint_good_args)
-    '((3, 4, 5), k)'
-    >>> print(lpoint_good_args.listing(2))
-    ((3.00, 4.00, 5.00), k)
+    (3, 4, 5, 'k')
 
-#   new_from_parts
+#   from_parts
     >>> bad_type_x = 'x'
     >>> bad_type_label = 37
     >>> x, y, z, label = 1.2, 2.3, 3.4, 'kilroy'
-    >>> lpoint_bad_type_x = labeled_point.LabeledPoint.new_from_parts(
+    >>> lpoint_bad_type_x = labeled_point.LabeledPoint.from_parts(
     ...     bad_type_x, y, z, label)
-    LabeledPoint.new_from_parts:
+    LabeledPoint.from_parts:
         The arguments must be 3 numbers and a string
-    >>> lpoint_bad_label = labeled_point.LabeledPoint.new_from_parts(
+    >>> lpoint_bad_label = labeled_point.LabeledPoint.from_parts(
     ...     x, y, z, bad_type_label)
-    LabeledPoint.new_from_parts:
+    LabeledPoint.from_parts:
         The arguments must be 3 numbers and a string
-    >>> lpoint_empty_label = labeled_point.LabeledPoint.new_from_parts(
+    >>> lpoint_empty_label = labeled_point.LabeledPoint.from_parts(
     ...     x, y, z, '')
-    >>> str(lpoint_empty_label)
-    "((1.2, 2.3, 3.4), '')"
     >>> lpoint_empty_label.spec
-    ((1.2, 2.3, 3.4), '')
-    >>> lpoint_empty_label.listing(0)
-    "((1, 2, 3), '')"
-    >>> repr(lpoint_empty_label)
-    "((1.2, 2.3, 3.4), '')"
-    >>> lpoint_good_args = labeled_point.LabeledPoint.new_from_parts(
+    (1.2, 2.3, 3.4, '')
+    >>> lpoint_good_args = labeled_point.LabeledPoint.from_parts(
     ...     x, y, z, label)
-    >>> str(lpoint_good_args)
-    '((1.2, 2.3, 3.4), kilroy)'
     >>> lpoint_good_args.spec
-    ((1.2, 2.3, 3.4), 'kilroy')
-    >>> lpoint_good_args.listing(2)
-    '((1.20, 2.30, 3.40), kilroy)'
-    >>> repr(lpoint_good_args)
-    '((1.2, 2.3, 3.4), kilroy)'
+    (1.2, 2.3, 3.4, 'kilroy')
 
+### represent
+    >>> lpoint_empty_label = (
+    ...     labeled_point.LabeledPoint.from_parts(3, 4, 5, ''))
+    >>> def set_up_represent():
+    ...     cos30 = cos(TAU / 12)
+    ...     cos45 = cos(TAU / 8)
+    ...     cos60 = cos(TAU / 6)
+    ...     return (cos30, cos45, cos60)
+    >>> cos30, cos45, cos60 = set_up_represent()
+    >>> lpoint_long_coords = (
+    ...     labeled_point.LabeledPoint.from_parts(
+    ...         cos30, cos45, cos60, 'trig'))
+
+#   __str__
+    >>> str(lpoint_empty_label)
+    "(3, 4, 5, '')"
+    >>> str(lpoint_long_coords)
+    "(0.866025403784, 0.707106781187, 0.5, 'trig')"
+
+#   __repr__
+    >>> r_empty = repr(lpoint_empty_label)
+    >>> r_empty
+    "labeled_point.LabeledPoint(point.Point(3, 4, 5), '')"
+    >>> eval(r_empty) == lpoint_empty_label
+    True
+    >>> r_long = repr(lpoint_long_coords)
+    >>> r_long
+    "labeled_point.LabeledPoint(point.Point(0.866025403784, 0.707106781187, 0.5), 'trig')"
+    >>> eval(r_long) == lpoint_long_coords
+    True
+
+#   listing
+    >>> lpoint_empty_label.listing(1)
+    "(3.0, 4.0, 5.0, '')"
+    >>> lpoint_long_coords.listing(6)
+    "(0.866025, 0.707107, 0.500000, 'trig')"
+    >>> lpoint_long_coords.listing(3)
+    "(0.866, 0.707, 0.500, 'trig')"
+    >>> lpoint_long_coords.listing(0)
+    "(1, 1, 1, 'trig')"
 
 ### relations
-#   are_lpoint_specs()    ### Moved from Colabeling
+#   are_lpoint_specs
     >>> bad_type = 37
     >>> bad_type_lpoint_spec = ('x', 'y', 'z')
-    >>> lpoint_spec_1 = ((1.2, 3.4, 5.6), 'a')
-    >>> lpoint_spec_2 = ((2.3, 4.5, 6.7), 'b')
+    >>> lpoint_spec_1 = (1.2, 3.4, 5.6, 'a')
+    >>> lpoint_spec_2 = (2.3, 4.5, 6.7, 'b')
     >>> bad_elems_empty = []
     >>> bad_elem_1 = [lpoint_spec_1, bad_type_lpoint_spec]
     >>> bad_elem_2 = [bad_type_lpoint_spec, lpoint_spec_2]
@@ -119,116 +139,164 @@
     >>> labeled_point.LabeledPoint.are_lpoint_specs(good_elems)
     True
 
-    ??? labeled_point.LabeledPoint.are_lpoint_specs([1, 2, 3])
+    >>> labeled_point.LabeledPoint.are_lpoint_specs((1, 2, 3))
     False
-    ??? l1 = line.Line.from_spec(1, 1, 2, 2)
-    ??? l2 = line.Line.from_spec(2, 2, 3, 3)
-    ??? labeled_point.LabeledPoint.are_lpoint_specs([l1, l2])
+    >>> pspec_1 = point.Point(1, 1, 1)
+    >>> pspec_2 = point.Point(2, 2, 2)
+    >>> labeled_point.LabeledPoint.are_lpoint_specs([pspec_1, pspec_2])
     False
-    ??? labeled_point.LabeledPoint.are_lpoint_specs([(1, 1, 'a'), (2, 2, 2)])
-    False
-    ??? labeled_point.LabeledPoint.are_lpoint_specs([(1, 1, 'a'), (2, 2, 'b')])
+    >>> labeled_point.LabeledPoint.are_lpoint_specs(
+    ...     [(1, 1, 1, 'a'), (2, 2, 2, 'b')])
     True
 
-#   is_lpoint_spec(cls)
-    >>> labeled_point.LabeledPoint.is_lpoint_spec(
-    ...     (('1.2', '3.4', '5.6'), 'a'))
+#   is_an_lpoint_spec(cls)
+    >>> labeled_point.LabeledPoint.is_an_lpoint_spec(
+    ...     ('1.2', '3.4', '5.6', 'a'))
     False
-    >>> labeled_point.LabeledPoint.is_lpoint_spec(((1.2, 3.4), 'a'))
+    >>> labeled_point.LabeledPoint.is_an_lpoint_spec((1.2, 3.4, 'a'))
     False
-    >>> labeled_point.LabeledPoint.is_lpoint_spec(((), 'a'))
+    >>> labeled_point.LabeledPoint.is_an_lpoint_spec(('1.2, 3.4, 5.6', 'a'))
     False
-    >>> labeled_point.LabeledPoint.is_lpoint_spec(('1.2, 3.4, 5.6', 'a'))
+    >>> labeled_point.LabeledPoint.is_an_lpoint_spec((1.2, 3.4, 5.6, 37))
     False
-    >>> labeled_point.LabeledPoint.is_lpoint_spec(((1.2, 3.4, 5.6), 37))
-    False
-    >>> labeled_point.LabeledPoint.is_lpoint_spec(((1.2, 3.4, 5.6), ''))
+    >>> labeled_point.LabeledPoint.is_an_lpoint_spec((1.2, 3.4, 5.6, ''))
     True
-    >>> labeled_point.LabeledPoint.is_lpoint_spec(((1.2, 3.4, 5.6), 'a'))
+    >>> labeled_point.LabeledPoint.is_an_lpoint_spec((1.2, 3.4, 5.6, 'a'))
     True
     
 #   __eq__(other)
-    >>> lpoint_eq =  labeled_point.LabeledPoint.new_from_parts(0, 0, 0, 'o')
+    >>> lpoint_eq =  labeled_point.LabeledPoint.from_parts(0, 0, 0, 'o')
     
-    >>> lpoint_eq == labeled_point.LabeledPoint.new_from_parts(0, 0, 0, 'o')
+    >>> lpoint_eq == labeled_point.LabeledPoint.from_parts(0, 0, 0, 'o')
     True
-    >>> lpoint_eq == labeled_point.LabeledPoint.new_from_parts(0, 0, 0, 'x')
+    >>> lpoint_eq == labeled_point.LabeledPoint.from_parts(0, 0, 0, 'x')
     False
-    >>> lpoint_eq == labeled_point.LabeledPoint.new_from_parts(0, 0, 1, 'o')
+    >>> lpoint_eq == labeled_point.LabeledPoint.from_parts(0, 0, 1, 'o')
     False
-    >>> lpoint_eq == labeled_point.LabeledPoint.new_from_parts(0, 1, 0, 'o')
+    >>> lpoint_eq == labeled_point.LabeledPoint.from_parts(0, 1, 0, 'o')
     False
-    >>> lpoint_eq == labeled_point.LabeledPoint.new_from_parts(1, 0, 0, 'o')
+    >>> lpoint_eq == labeled_point.LabeledPoint.from_parts(1, 0, 0, 'o')
     False
 
 #   __ge__(other)
-    >>> lpoint_ge  = labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'o')
+    >>> lpoint_ge  = labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'o')
     
-    >>> lpoint_ge >= labeled_point.LabeledPoint.new_from_parts(-1, -1, -1, 'z')
+    >>> lpoint_ge >= labeled_point.LabeledPoint.from_parts(-1, -1, -1, 'z')
     True
-    >>> lpoint_ge >= labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'n')
+    >>> lpoint_ge >= labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'n')
     True
-    >>> lpoint_ge >= labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'o')
+    >>> lpoint_ge >= labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'o')
     True
-    >>> lpoint_ge >= labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'z')
+    >>> lpoint_ge >= labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'z')
     False
-    >>> lpoint_ge >= labeled_point.LabeledPoint.new_from_parts( 2,  2,  2, 'z')
+    >>> lpoint_ge >= labeled_point.LabeledPoint.from_parts( 2,  2,  2, 'z')
     False
 
 #   __gt__(other)
-    >>> lpoint_gt  = labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'o')
+    >>> lpoint_gt  = labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'o')
     
-    >>> lpoint_gt  > labeled_point.LabeledPoint.new_from_parts(-1, -1, -1, 'z')
+    >>> lpoint_gt  > labeled_point.LabeledPoint.from_parts(-1, -1, -1, 'z')
     True
-    >>> lpoint_gt  > labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'n')
+    >>> lpoint_gt  > labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'n')
     True
-    >>> lpoint_gt  > labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'o')
+    >>> lpoint_gt  > labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'o')
     False
-    >>> lpoint_gt  > labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'z')
+    >>> lpoint_gt  > labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'z')
     False
-    >>> lpoint_gt  > labeled_point.LabeledPoint.new_from_parts( 2,  2,  2, 'z')
+    >>> lpoint_gt  > labeled_point.LabeledPoint.from_parts( 2,  2,  2, 'z')
     False
 
 #   __le__(other)
-    >>> lpoint_le  = labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'o')
+    >>> lpoint_le  = labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'o')
     
-    >>> lpoint_le <= labeled_point.LabeledPoint.new_from_parts( 1,  1,  1, 'a')
+    >>> lpoint_le <= labeled_point.LabeledPoint.from_parts( 1,  1,  1, 'a')
     True
-    >>> lpoint_le <= labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'p')
+    >>> lpoint_le <= labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'p')
     True
-    >>> lpoint_le <= labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'o')
+    >>> lpoint_le <= labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'o')
     True
-    >>> lpoint_le <= labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'a')
+    >>> lpoint_le <= labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'a')
     False
-    >>> lpoint_le <= labeled_point.LabeledPoint.new_from_parts(-2, -2, -2, 'a')
+    >>> lpoint_le <= labeled_point.LabeledPoint.from_parts(-2, -2, -2, 'a')
     False
 
 #   __lt__(other)
-    >>> lpoint_lt  = labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'o')
+    >>> lpoint_lt  = labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'o')
     
-    >>> lpoint_lt  < labeled_point.LabeledPoint.new_from_parts( 1,  1,  1, 'a')
+    >>> lpoint_lt  < labeled_point.LabeledPoint.from_parts( 1,  1,  1, 'a')
     True
-    >>> lpoint_lt  < labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'p')
+    >>> lpoint_lt  < labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'p')
     True
-    >>> lpoint_lt  < labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'o')
+    >>> lpoint_lt  < labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'o')
     False
-    >>> lpoint_lt  < labeled_point.LabeledPoint.new_from_parts( 0,  0,  0, 'a')
+    >>> lpoint_lt  < labeled_point.LabeledPoint.from_parts( 0,  0,  0, 'a')
     False
-    >>> lpoint_lt  < labeled_point.LabeledPoint.new_from_parts(-2, -2, -2, 'a')
+    >>> lpoint_lt  < labeled_point.LabeledPoint.from_parts(-2, -2, -2, 'a')
     False
 
 #   __ne__(other)
-    >>> lpoint_ne =  labeled_point.LabeledPoint.new_from_parts(0, 0, 0, 'o')
+    >>> lpoint_ne =  labeled_point.LabeledPoint.from_parts(0, 0, 0, 'o')
     
-    >>> lpoint_ne != labeled_point.LabeledPoint.new_from_parts(0, 0, 0, 'o')
+    >>> lpoint_ne != labeled_point.LabeledPoint.from_parts(0, 0, 0, 'o')
     False
-    >>> lpoint_ne != labeled_point.LabeledPoint.new_from_parts(0, 0, 0, 'x')
+    >>> lpoint_ne != labeled_point.LabeledPoint.from_parts(0, 0, 0, 'x')
     True
-    >>> lpoint_ne != labeled_point.LabeledPoint.new_from_parts(0, 0, 1, 'o')
+    >>> lpoint_ne != labeled_point.LabeledPoint.from_parts(0, 0, 1, 'o')
     True
-    >>> lpoint_ne != labeled_point.LabeledPoint.new_from_parts(0, 1, 0, 'o')
+    >>> lpoint_ne != labeled_point.LabeledPoint.from_parts(0, 1, 0, 'o')
     True
-    >>> lpoint_ne != labeled_point.LabeledPoint.new_from_parts(1, 0, 0, 'o')
+    >>> lpoint_ne != labeled_point.LabeledPoint.from_parts(1, 0, 0, 'o')
+    True
+
+#   __hash__
+    >>> def set_up_hash_lp000():
+    ...     lp000 = labeled_point.LabeledPoint.from_parts(0, 0, 0, 'a')
+    ...     p_hash = hash(lp000.p)
+    ...     label_hash = hash(lp000.label)
+    ...     hash_exp = hash(
+    ...         (p_hash, label_hash))
+    ...     hash_got = hash(lp000)
+    ...     return (hash_exp, hash_got)
+    >>> lp000_exp, lp000_got = set_up_hash_lp000()
+    >>> lp000_exp == lp000_got
+    True
+
+    >>> def set_up_hash_lp123():
+    ...     lp123 = labeled_point.LabeledPoint.from_parts(-1.1, 2.2, 3.3, 'b')
+    ...     p_hash = hash(lp123.p)
+    ...     label_hash = hash(lp123.label)
+    ...     hash_exp = hash(
+    ...         (p_hash, label_hash))
+    ...     hash_got = hash(lp123)
+    ...     return (hash_exp, hash_got)
+    >>> lp123_exp, lp123_got = set_up_hash_lp123()
+    >>> lp123_exp == lp123_got
+    True
+
+    >>> def set_up_hash_lp369():
+    ...     lp369 = labeled_point.LabeledPoint.from_parts(3.3, 6.6, 9.9, 'c')
+    ...     p_hash = hash(lp369.p)
+    ...     label_hash = hash(lp369.label)
+    ...     hash_exp = hash(
+    ...         (p_hash, label_hash))
+    ...     hash_got = hash(lp369)
+    ...     return (hash_exp, hash_got)
+    >>> lp369_exp, lp369_got = set_up_hash_lp369()
+    >>> lp369_exp == lp369_got
+    True
+
+    >>> def set_up_hash_cos_sin():
+    ...     cos45 = math.cos(TAU / 8)
+    ...     sin45 = math.sin(TAU / 8)
+    ...     lp_cos = labeled_point.LabeledPoint.from_parts(
+    ...         cos45, cos45, cos45, 'trig')
+    ...     lp_sin = labeled_point.LabeledPoint.from_parts(
+    ...         sin45, sin45, sin45, 'trig')
+    ...     hash_cos = hash(lp_cos)
+    ...     hash_sin = hash(lp_sin)
+    ...     return (hash_cos, hash_sin)
+    >>> hash_cos, hash_sin = set_up_hash_cos_sin()
+    >>> hash_cos == hash_sin
     True
 
 ### other

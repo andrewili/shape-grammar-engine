@@ -1,141 +1,334 @@
-#   lpoint_partition_test.txt
-
     >>> import labeled_point
     >>> import line
     >>> import lpoint_partition
-
-    >>> lp_partition_drone = lpoint_partition.LPointPartition([])
+    >>> import math
+    >>> import point
 
 ### construct, represent
-#   __init__(), __str__(), listing()
+#   __init__
+    >>> def make_lpoints():
+    ...     p0 = point.Point(0, 0, 0)
+    ...     p1 = point.Point(1, 1, 1)
+    ...     p2 = point.Point(2, 2, 2)
+    ...     p3 = point.Point(3, 3, 3)
+    ...     p4 = point.Point(4, 4, 4)
+    ...     p5 = point.Point(5, 5, 5)
+    ...     p6 = point.Point(6, 6, 6)
+    ...     return (p0, p1, p2, p3, p4, p5, p6)
+    >>> p0, p1, p2, p3, p4, p5, p6 = make_lpoints()
+    >>> def set_up_init():
+    ...     lp0_ = labeled_point.LabeledPoint(p0, '')
+    ...     lp00 = labeled_point.LabeledPoint(p0, '')
+    ...     lp1a = labeled_point.LabeledPoint(p1, 'a')
+    ...     lp2a = labeled_point.LabeledPoint(p2, 'a')
+    ...     lp2b = labeled_point.LabeledPoint(p2, 'b')
+    ...     lp3b = labeled_point.LabeledPoint(p3, 'b')
+    ...     lp3c = labeled_point.LabeledPoint(p3, 'c')
+    ...     lp4b = labeled_point.LabeledPoint(p4, 'b')
+    ...     lp5c = labeled_point.LabeledPoint(p5, 'c')
+    ...     lp6c = labeled_point.LabeledPoint(p6, 'c')
+    ...     bad_type_non_list = (lp3c, lp2b, lp1a)
+    ...     bad_type_non_lpoints = [p3, p2, p1]
+    ...     good_arg_empty_list = []
+    ...     good_arg_empty_label = [lp3c, lp2b, lp1a, lp0_]
+    ...     good_arg_duplicate_lpoints = [lp2a, lp1a, lp00, lp0_]
+    ...     good_arg = [lp6c, lp5c, lp4b, lp3b, lp2a, lp1a, lp0_]
+    ...     return (
+    ...         bad_type_non_list,
+    ...         bad_type_non_lpoints,
+    ...         good_arg_empty_list,
+    ...         good_arg_empty_label,
+    ...         good_arg_duplicate_lpoints,
+    ...         good_arg)
+    >>> (   bad_type_non_list,
+    ...     bad_type_non_lpoints,
+    ...     good_arg_empty_list,
+    ...     good_arg_empty_label,
+    ...     good_arg_duplicate_lpoints,
+    ...     good_arg) = set_up_init()
+    >>> non_list_lpp = lpoint_partition.LPointPartition(bad_type_non_list)
+    LPointPartition.__init__:
+        The argument must be a list of labeled points
+    >>> non_lpoints_lpp = lpoint_partition.LPointPartition(
+    ...     bad_type_non_lpoints)
+    LPointPartition.__init__:
+        The argument must be a list of labeled points
+    >>> empty_list_lpp = lpoint_partition.LPointPartition(
+    ...     good_arg_empty_list)
+    >>> empty_list_lpp.dictionary
+    {}
+    >>> empty_label_lpp = lpoint_partition.LPointPartition(
+    ...     good_arg_empty_label)
 
-    >>> non_list = (1, 2, 3)
-    >>> non_list_lpp = lpoint_partition.LPointPartition(non_list)
-    LPointPartition.__init__(): The argument must be a list of labeled points
-    >>> def non_lpoints_for_init_test():
-    ...     line_01 = line.Line.from_short_spec(0, 1)
-    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
-    ...     non_lpoints = [lpoint_00a, line_01]
-    ...     return non_lpoints
-    >>> non_lpoints = non_lpoints_for_init_test()
-    >>> non_lpoint_lpp = lpoint_partition.LPointPartition(non_lpoints)
-    LPointPartition.__init__(): The argument must be a list of labeled points
-
-    >>> empty_lpp_1 = lpoint_partition.LPointPartition.new_empty()
-    >>> print empty_lpp_1
-    []
-    >>> print empty_lpp_1.listing()
-    <no labeled points>
-    >>> empty_lpp_1.is_empty()
+    >>> sorted(empty_label_lpp.dictionary.keys()) == ['', 'a', 'b', 'c']
+    True
+    >>> empty_label_lpp.dictionary[''] == set([p0])
+    True
+    >>> empty_label_lpp.dictionary['a'] == set([p1])
+    True
+    >>> empty_label_lpp.dictionary['b'] == set([p2])
+    True
+    >>> empty_label_lpp.dictionary['c'] == set([p3])
+    True
+    >>> duplicate_lpoints_lpp = lpoint_partition.LPointPartition(
+    ...     good_arg_duplicate_lpoints)
+    >>> sorted(duplicate_lpoints_lpp.dictionary.keys()) == ['', 'a']
+    True
+    >>> duplicate_lpoints_lpp.dictionary[''] == set([p0])
+    True
+    >>> duplicate_lpoints_lpp.dictionary['a'] == set([p1, p2])
     True
 
-    >>> def lpoints_for_init_test():
-    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
-    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
-    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
-    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
-    ...     lpoints = [lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a]
-    ...     return lpoints
-    >>> lpoints = lpoints_for_init_test()
-    >>> lpp = lpoint_partition.LPointPartition(lpoints)
-    
-    >>> print lpp
-    [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
+    >>> good_lpp = lpoint_partition.LPointPartition(good_arg)
+    >>> sorted(good_lpp.dictionary.keys()) == ['', 'a', 'b', 'c']
+    True
+    >>> good_lpp.dictionary[''] == set([p0])
+    True
+    >>> good_lpp.dictionary['a'] == set([p1, p2])
+    True
+    >>> good_lpp.dictionary['b'] == set([p3, p4])
+    True
+    >>> good_lpp.dictionary['c'] == set([p5, p6])
+    True
 
-    >>> print lpp.listing()
-    a:
-        (0, 0)
-        (1, 1)
-    b:
-        (2, 2)
-        (3, 3)
-    >>> print lpp.listing(1)
-    a:
-        (0.0, 0.0)
-        (1.0, 1.0)
-    b:
-        (2.0, 2.0)
-        (3.0, 3.0)
+#   _make_dictionary
+    >>> def set_up_make_dict_close_values():
+    ...     TAU = math.pi * 2
+    ...     cos45 = math.cos(TAU / 8)
+    ...     sin45 = math.sin(TAU / 8)
+    ...     lp_cos = labeled_point.LabeledPoint.from_parts(cos45, 0, 0, 'x')
+    ...     lp_sin = labeled_point.LabeledPoint.from_parts(sin45, 0, 0, 'x')
+    ...     close_values = [lp_cos, lp_sin]
+    ...     return close_values
+    >>> close_values = set_up_make_dict_close_values()
+    >>> good_dict_close_values = (
+    ...     lpoint_partition.LPointPartition._make_dictionary(close_values))
+    >>> for label in good_dict_close_values:
+    ...     points = good_dict_close_values[label]
+    ...     len(points) == 1
+    True
 
-    ??? print lpp.listing(1.1)
-    Point.listing(): The argument must be an integer
-    ??? print lpp.listing(-2.2)
-    Point.listing(): The argument must be an integer
-    ??? print lpp.listing(-2)
-    Point.listing(): The argument must be non-negative
+    >>> def set_up_make_dict():
+    ...     lp0_ = labeled_point.LabeledPoint.from_parts(0, 0, 0, '')
+    ...     lp1a = labeled_point.LabeledPoint.from_parts(1, 1, 1, 'a')
+    ...     lp2a = labeled_point.LabeledPoint.from_parts(2, 2, 2, 'a')
+    ...     lp3b = labeled_point.LabeledPoint.from_parts(3, 3, 3, 'b')
+    ...     lp4b = labeled_point.LabeledPoint.from_parts(4, 4, 4, 'b')
+    ...     lp5c = labeled_point.LabeledPoint.from_parts(5, 5, 5, 'c')
+    ...     lp6c = labeled_point.LabeledPoint.from_parts(6, 6, 6, 'c')
+    ...     good_arg = [lp6c, lp5c, lp4b, lp3b, lp2a, lp1a, lp0_]
+    ...     return good_arg
+    >>> good_arg = set_up_make_dict()
+    >>> good_dict = lpoint_partition.LPointPartition._make_dictionary(
+    ...     good_arg)
+    >>> sorted(good_dict.keys()) == ['', 'a', 'b', 'c']
+    True
+    >>> good_dict[''] == set([p0])
+    True
+    >>> good_dict['a'] == set([p1, p2])
+    True
+    >>> good_dict['b'] == set([p3, p4])
+    True
+    >>> good_dict['c'] == set([p5, p6])
+    True
 
-#   _make_dictionary(lpoints)
+#   __str__
+    >>> str(good_lpp)
+    "{'': [(0, 0, 0)], 'a': [(1, 1, 1), (2, 2, 2)], 'b': [(3, 3, 3), (4, 4, 4)], 'c': [(5, 5, 5), (6, 6, 6)]}"
 
-    >>> def make_lpoints_for_make_dictionary_test():
-    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
-    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
-    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
-    ...     lpoints_1 = [lpoint_00a]
-    ...     lpoints_2 = [lpoint_11a, lpoint_00a]
-    ...     lpoints_3 = [lpoint_22b, lpoint_11a, lpoint_00a]
-    ...     return [lpoints_1, lpoints_2, lpoints_3]
-    >>> lpoints_1, lpoints_2, lpoints_3 = make_lpoints_for_make_dictionary_test()
+#   __repr__
+    >>> good_lpp_repr = repr(good_lpp)
+    >>> good_lpp_repr
+    "lpoint_partition.LPointPartition([labeled_point.LabeledPoint(point.Point(0, 0, 0), ''), labeled_point.LabeledPoint(point.Point(1, 1, 1), 'a'), labeled_point.LabeledPoint(point.Point(2, 2, 2), 'a'), labeled_point.LabeledPoint(point.Point(3, 3, 3), 'b'), labeled_point.LabeledPoint(point.Point(4, 4, 4), 'b'), labeled_point.LabeledPoint(point.Point(5, 5, 5), 'c'), labeled_point.LabeledPoint(point.Point(6, 6, 6), 'c')])"
 
-    >>> dict_0 = lp_partition_drone._make_dictionary([])
-    >>> for label in dict_0:
-    ...     print '%s: %s' % (label, dict_0[label])
-    >>> dict_1 = lp_partition_drone._make_dictionary(lpoints_1)
-    >>> for label in dict_1:
-    ...     print '%s: %s' % (label, dict_1[label])
-    a: [(0, 0)]
-    >>> dict_2 = lp_partition_drone._make_dictionary(lpoints_2)
-    >>> for label in dict_2:
-    ...     print '%s: %s' % (label, dict_2[label])
-    a: [(0, 0), (1, 1)]
-    >>> dict_3 = lp_partition_drone._make_dictionary(lpoints_3)
-    >>> for label in dict_3:
-    ...     print '%s: %s' % (label, dict_3[label])
-    a: [(0, 0), (1, 1)]
-    b: [(2, 2)]
+    >>> eval(good_lpp_repr) == good_lpp
+    True
 
-#   from_specs()
+#   _get_clpoint_reprs
+    >>> clp___reprs = good_lpp._get_clpoint_reprs('')
+    >>> clp___reprs == [
+    ...     "labeled_point.LabeledPoint(point.Point(0, 0, 0), '')"]
+    True
+    >>> clp_a_reprs = good_lpp._get_clpoint_reprs('a')
+    >>> clp_a_reprs == [
+    ...     "labeled_point.LabeledPoint(point.Point(1, 1, 1), 'a')",
+    ...     "labeled_point.LabeledPoint(point.Point(2, 2, 2), 'a')"]
+    True
+    >>> clp_b_reprs = good_lpp._get_clpoint_reprs('b')
+    >>> clp_b_reprs == [
+    ...     "labeled_point.LabeledPoint(point.Point(3, 3, 3), 'b')",
+    ...     "labeled_point.LabeledPoint(point.Point(4, 4, 4), 'b')"]
+    True
+    >>> clp_c_reprs = good_lpp._get_clpoint_reprs('c')
+    >>> clp_c_reprs == [
+    ...     "labeled_point.LabeledPoint(point.Point(5, 5, 5), 'c')",
+    ...     "labeled_point.LabeledPoint(point.Point(6, 6, 6), 'c')"]
+    True
 
-    >>> non_list = {}
-    >>> lpp_from_non_list = lpoint_partition.LPointPartition.from_specs(non_list)
-    LPointPartition.from_specs(): Must be a list of labeled point specs
+#   _get_points_repr
+    >>> def set_up_get_point_reprs_str():
+    ...     p1 = point.Point(1, 1, 1)
+    ...     p2 = point.Point(2, 2, 2)
+    ...     p3 = point.Point(3, 3, 3)
+    ...     points_0 = set([])
+    ...     points_1 = set([p1])
+    ...     points_2 = set([p2, p1])
+    ...     points_3 = set([p3, p2, p1])
+    ...     return (points_0, points_1, points_2, points_3)
+    >>> points_0, points_1, points_2, points_3 = (
+    ...     set_up_get_point_reprs_str())
+    >>> reprs_str_0 = good_lpp._get_points_repr(points_0)
+    >>> reprs_str_0
+    ''
+    >>> reprs_str_1 = good_lpp._get_points_repr(points_1)
+    >>> reprs_str_1
+    'point.Point(1, 1, 1)'
+    >>> reprs_str_2 = good_lpp._get_points_repr(points_2)
+    >>> reprs_str_2
+    'point.Point(1, 1, 1), point.Point(2, 2, 2)'
+    >>> reprs_str_3 = good_lpp._get_points_repr(points_3)
+    >>> reprs_str_3
+    'point.Point(1, 1, 1), point.Point(2, 2, 2), point.Point(3, 3, 3)'
 
-    >>> lp_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
-    >>> lpp_from_specs = lpoint_partition.LPointPartition.from_specs(lp_specs)
-    >>> print lpp_from_specs
-    [(0, 0, a), (1, 1, a), (2, 2, b), (3, 3, b)]
+#   listing
+    >>> print(good_lpp.listing(1))
+    ''
+        (0.0, 0.0, 0.0)
+    'a'
+        (1.0, 1.0, 1.0)
+        (2.0, 2.0, 2.0)
+    'b'
+        (3.0, 3.0, 3.0)
+        (4.0, 4.0, 4.0)
+    'c'
+        (5.0, 5.0, 5.0)
+        (6.0, 6.0, 6.0)
+
+#   _get_ordered_points_string
+    >>> def set_up_get_ordered_colabeling_string():
+    ...     p1 = point.Point(1, 1, 1)
+    ...     p2 = point.Point(2, 2, 2)
+    ...     p3 = point.Point(3, 3, 3)
+    ...     p4 = point.Point(4, 4, 4)
+    ...     p5 = point.Point(5, 5, 5)
+    ...     clp_set_0 = set([])
+    ...     clp_set_1 = set([p1])
+    ...     clp_set_3 = set([p3, p2, p1])
+    ...     clp_set_5 = set([p5, p5, p4, p3, p2, p1])
+    ...     clp_string_0 = (
+    ...         lpoint_partition.LPointPartition._get_ordered_points_string(
+    ...             clp_set_0))
+    ...     clp_string_1 = (
+    ...         lpoint_partition.LPointPartition._get_ordered_points_string(
+    ...             clp_set_1))
+    ...     clp_string_3 = (
+    ...         lpoint_partition.LPointPartition._get_ordered_points_string(
+    ...             clp_set_3))
+    ...     clp_string_5 = (
+    ...         lpoint_partition.LPointPartition._get_ordered_points_string(
+    ...             clp_set_5))
+    ...     return (clp_string_0, clp_string_1, clp_string_3, clp_string_5)
+    >>> clp_string_0, clp_string_1, clp_string_3, clp_string_5 = (
+    ...     set_up_get_ordered_colabeling_string())
+    >>> print(clp_string_0)
+    []
+    >>> print(clp_string_1)
+    [(1, 1, 1)]
+    >>> print(clp_string_3)
+    [(1, 1, 1), (2, 2, 2), (3, 3, 3)]
+    >>> print(clp_string_5)
+    [(1, 1, 1), (2, 2, 2), (3, 3, 3), (4, 4, 4), (5, 5, 5)]
+
+#   from_specs
+    >>> def set_up_from_specs():
+    ...     spec_non_num = ('1', 2, 3, 'x')
+    ...     spec_non_str = (2, 3, 4, 5)
+    ...     spec_0_ = (0, 0, 0, '')
+    ...     spec_1a = (1, 1, 1, 'a')
+    ...     spec_2a = (2, 2, 2, 'a')
+    ...     spec_2b = (2, 2, 2, 'b')
+    ...     specs_bad_type_non_list = (spec_2a, spec_1a, spec_0_)
+    ...     specs_bad_type_non_num = [spec_2a, spec_1a, spec_0_, spec_non_num]
+    ...     specs_bad_type_non_str = [spec_2a, spec_1a, spec_0_, spec_non_str]
+    ...     specs_good_args = [spec_2b, spec_2a, spec_1a, spec_0_]
+    ...     return (
+    ...         specs_bad_type_non_list,
+    ...         specs_bad_type_non_num,
+    ...         specs_bad_type_non_str,
+    ...         specs_good_args)
+    >>> (   specs_bad_type_non_list,
+    ...     specs_bad_type_non_num,
+    ...     specs_bad_type_non_str,
+    ...     specs_good_args
+    ... ) = set_up_from_specs()
+    >>> lpp_from_specs_bad_type_non_list = (
+    ...     lpoint_partition.LPointPartition.from_specs(
+    ...         specs_bad_type_non_list))
+    LPointPartition.from_specs:
+        Must be a list of labeled point specs
+    >>> lpp_from_specs_bad_type_non_num = (
+    ...     lpoint_partition.LPointPartition.from_specs(
+    ...         specs_bad_type_non_num))
+    LPointPartition.from_specs:
+        Must be a list of labeled point specs
+    >>> lpp_from_specs_bad_type_non_str = (
+    ...     lpoint_partition.LPointPartition.from_specs(
+    ...         specs_bad_type_non_str))
+    LPointPartition.from_specs:
+        Must be a list of labeled point specs
+    >>> lpp_from_specs_good_args = (
+    ...     lpoint_partition.LPointPartition.from_specs(
+    ...         specs_good_args))
+    >>> sorted(lpp_from_specs_good_args.dictionary.keys()) == ['', 'a', 'b']
+    True
+    >>> lpp_from_specs_good_args.dictionary[''] == set([p0])
+    True
+    >>> lpp_from_specs_good_args.dictionary['a'] == set([p1, p2])
+    True
+    >>> lpp_from_specs_good_args.dictionary['b'] == set([p2])
+    True
 
 ### get
-#   specs()
-
-    >>> def make_lpps_for_specs():
+#   get_specs                                   #   suspended
+    ??? def set_up_get_specs():
     ...     lpp_0 = lpoint_partition.LPointPartition.new_empty()
-    ...     specs = [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'b')]
+    ...     specs = [(1, 1, 1, 'a'), (2, 2, 2, 'a'), (3, 3, 3, 'b')]
     ...     lpp_1 = lpoint_partition.LPointPartition.from_specs(specs)
     ...     return [lpp_0, lpp_1]
-    >>> lpp_0, lpp_1 = make_lpps_for_specs()
-    >>> print lpp_0.specs()
+    ??? lpp_0, lpp_1 = set_up_get_specs()
+    ??? print lpp_0.get_specs()
     []
-    >>> print lpp_1.specs()
-    [(1, 1, 'a'), (2, 2, 'a'), (3, 3, 'b')]
+    ??? print lpp_1.get_specs()
+    [(1, 1, 1, 'a'), (2, 2, 2, 'a'), (3, 3, 3, 'b')]
 
 ### compare
-#   __eq__(), __ne__()
+#   __hash__
+    ??? hash(good_lpp)
 
-    >>> test_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
-    >>> equal_specs = [(3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')]
-    >>> unequal_specs = [(3, 3, 'a'), (2, 2, 'b'), (1, 1, 'b'), (0, 0, 'a')]
-    >>> lpp_test = lpoint_partition.LPointPartition.from_specs(test_specs)
-    >>> lpp_equal = lpoint_partition.LPointPartition.from_specs(equal_specs)
-    >>> lpp_unequal = lpoint_partition.LPointPartition.from_specs(unequal_specs)
-    >>> lpp_empty = lpoint_partition.LPointPartition.new_empty()
+#   __eq__, __ne__
 
+    >>> def set_up_eq():
+    ...     test_specs = [
+    ...         (3, 3, 3, 'b'), (2, 2, 2, 'b'), (1, 1, 1, 'a'), (0, 0, 0, 'a')]
+    ...     equal_specs = [
+    ...         (3, 3, 3, 'b'), (2, 2, 2, 'b'), (1, 1, 1, 'a'), (0, 0, 0, 'a')]
+    ...     unequal_specs = [
+    ...         (3, 3, 3, 'a'), (2, 2, 2, 'b'), (1, 1, 1, 'b'), (0, 0, 0, 'a')]
+    ...     lpp_test = lpoint_partition.LPointPartition.from_specs(
+    ...         test_specs)
+    ...     lpp_equal = lpoint_partition.LPointPartition.from_specs(
+    ...         equal_specs)
+    ...     lpp_unequal = lpoint_partition.LPointPartition.from_specs(
+    ...         unequal_specs)
+    ...     lpp_empty = lpoint_partition.LPointPartition.new_empty()
+    ...     return (lpp_test, lpp_equal, lpp_unequal, lpp_empty)
+    >>> lpp_test, lpp_equal, lpp_unequal, lpp_empty = set_up_eq()
     >>> lpp_test == lpp_equal
     True
     >>> lpp_test == lpp_unequal
     False
     >>> lpp_test == lpp_empty
     False
-
     >>> lpp_test != lpp_equal
     False
     >>> lpp_test != lpp_unequal
@@ -144,12 +337,21 @@
     True
     
 #   is_a_sub_lpoint_partition_of(other_partition)
-
-    >>> lpp_empty = lpoint_partition.LPointPartition([])
-    >>> lpp_empty_b = lpoint_partition.LPointPartition([])
-    >>> lpp_bigger = lpoint_partition.LPointPartition.from_specs([(4, 4, 'c'), (3, 3, 'b'), (2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
-    >>> lpp_smaller = lpoint_partition.LPointPartition.from_specs([(2, 2, 'b'), (1, 1, 'a'), (0, 0, 'a')])
-
+    >>> def set_up_is_a_sub_lpoint_partition_of():
+    ...     lp_4c = labeled_point.LabeledPoint.from_parts(4, 4, 4, 'c')
+    ...     lp_3b = labeled_point.LabeledPoint.from_parts(3, 3, 3, 'b')
+    ...     lp_2b = labeled_point.LabeledPoint.from_parts(2, 2, 2, 'b')
+    ...     lp_1a = labeled_point.LabeledPoint.from_parts(1, 1, 1, 'a')
+    ...     lp_0a = labeled_point.LabeledPoint.from_parts(0, 0, 0, 'a')
+    ...     lpp_empty_a = lpoint_partition.LPointPartition([])
+    ...     lpp_empty_b = lpoint_partition.LPointPartition([])
+    ...     lpp_bigger = lpoint_partition.LPointPartition(
+    ...         [lp_4c, lp_3b, lp_2b, lp_1a, lp_0a])
+    ...     lpp_smaller = lpoint_partition.LPointPartition(
+    ...         [lp_2b, lp_1a, lp_0a])
+    ...     return (lpp_empty, lpp_empty_b, lpp_bigger, lpp_smaller)
+    >>> lpp_empty, lpp_empty_b, lpp_bigger, lpp_smaller = (
+    ...     set_up_is_a_sub_lpoint_partition_of())
     >>> lpp_empty.is_a_sub_lpoint_partition_of(lpp_empty_b)
     True
     >>> lpp_empty.is_a_sub_lpoint_partition_of(lpp_test)
@@ -161,243 +363,329 @@
     >>> lpp_test.is_a_sub_lpoint_partition_of(lpp_empty)
     False
 
-#   _colabelings_are_sub_colabelings_in(other_lp_partition)
-
-    >>> def make_lpoint_partitions():
-    ...     lpoint_00a = labeled_point.LabeledPoint(0, 0, 'a')
-    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
-    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
-    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
-    ...     lpoint_33c = labeled_point.LabeledPoint(3, 3, 'c')
-    ...     lpoint_44c = labeled_point.LabeledPoint(4, 4, 'c')
-    ...     lpoints_bigger = [lpoint_44c, lpoint_33b, lpoint_22b, lpoint_11a, lpoint_00a]
-    ...     lpoints_smaller = [lpoint_22b, lpoint_11a, lpoint_00a]
-    ...     lpoints_different = [lpoint_33c, lpoint_22b, lpoint_11a, lpoint_00a]
+#   _point_sets_are_subsets_in
+    >>> def set_up_point_sets_are_subsets_in():
+    ...     lp_0a = labeled_point.LabeledPoint.from_parts(0, 0, 0, 'a')
+    ...     lp_1a = labeled_point.LabeledPoint.from_parts(1, 1, 1, 'a')
+    ...     lp_2b = labeled_point.LabeledPoint.from_parts(2, 2, 2, 'b')
+    ...     lp_3b = labeled_point.LabeledPoint.from_parts(3, 3, 3, 'b')
+    ...     lp_3c = labeled_point.LabeledPoint.from_parts(3, 3, 3, 'c')
+    ...     lp_4c = labeled_point.LabeledPoint.from_parts(4, 4, 4, 'c')
+    ...     lpoints_bigger = [lp_4c, lp_3b, lp_2b, lp_1a, lp_0a]
+    ...     lpoints_smaller = [lp_2b, lp_1a, lp_0a]
+    ...     lpoints_different = [lp_3c, lp_2b, lp_1a, lp_0a]
     ...     lpp_bigger = lpoint_partition.LPointPartition(lpoints_bigger)
     ...     lpp_smaller = lpoint_partition.LPointPartition(lpoints_smaller)
-    ...     lpp_different = lpoint_partition.LPointPartition(lpoints_different)
+    ...     lpp_different = lpoint_partition.LPointPartition(
+    ...         lpoints_different)
     ...     return (lpp_bigger, lpp_smaller, lpp_different)
-    >>> lpp_bigger, lpp_smaller, lpp_different = make_lpoint_partitions()
-
-    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_bigger)
+    >>> lpp_bigger, lpp_smaller, lpp_different = (
+    ...     set_up_point_sets_are_subsets_in())
+    >>> lpp_test._point_sets_are_subsets_in(lpp_bigger)
     True
-    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_smaller)
+    >>> lpp_test._point_sets_are_subsets_in(lpp_smaller)
     False
-    >>> lpp_test._colabelings_are_sub_colabelings_in(lpp_different)
+    >>> lpp_test._point_sets_are_subsets_in(lpp_different)
     False
 
 ### operate
-#   __add__(other)
-    
-    >>> def make_lpps_for_add_test():
-    ...     lpoint_11a = labeled_point.LabeledPoint(1, 1, 'a')
-    ...     lpoint_22b = labeled_point.LabeledPoint(2, 2, 'b')
-    ...     lpoint_33b = labeled_point.LabeledPoint(3, 3, 'b')
-    ...     lpoint_44c = labeled_point.LabeledPoint(4, 4, 'c')
+#   __add__
+    >>> def set_up_add():
+    ...     lp_1a = labeled_point.LabeledPoint.from_parts(1, 1, 1, 'a')
+    ...     lp_2b = labeled_point.LabeledPoint.from_parts(2, 2, 2, 'b')
+    ...     lp_3b = labeled_point.LabeledPoint.from_parts(3, 3, 3, 'b')
+    ...     lp_4c = labeled_point.LabeledPoint.from_parts(4, 4, 4, 'c')
     ...     lpp_0a = lpoint_partition.LPointPartition([])
     ...     lpp_0b = lpoint_partition.LPointPartition([])
-    ...     lpp_1 = lpoint_partition.LPointPartition([lpoint_22b, lpoint_11a])
-    ...     lpp_2 = lpoint_partition.LPointPartition([lpoint_44c, lpoint_33b, lpoint_11a])
+    ...     lpp_1 = lpoint_partition.LPointPartition([lp_2b, lp_1a])
+    ...     lpp_2 = lpoint_partition.LPointPartition([lp_4c, lp_3b, lp_1a])
     ...     return (lpp_0a, lpp_0b, lpp_1, lpp_2)
-    >>> lpp_0a, lpp_0b, lpp_1, lpp_2 = make_lpps_for_add_test()
-
+    >>> lpp_0a, lpp_0b, lpp_1, lpp_2 = set_up_add()
     >>> new_lpp_00 = lpp_0a + lpp_0b
     >>> print new_lpp_00.listing()
     <no labeled points>
-    
     >>> new_lpp_01 = lpp_0a + lpp_1
     >>> print new_lpp_01.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-    
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
     >>> new_lpp_20 = lpp_2 + lpp_0a
     >>> print new_lpp_20.listing()
-    a:
-        (1, 1)
-    b:
-        (3, 3)
-    c:
-        (4, 4)
-    
+    'a'
+        (1, 1, 1)
+    'b'
+        (3, 3, 3)
+    'c'
+        (4, 4, 4)
     >>> new_lpp_12 = lpp_1 + lpp_2
     >>> print new_lpp_12.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-        (3, 3)
-    c:
-        (4, 4)
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
+        (3, 3, 3)
+    'c'
+        (4, 4, 4)
 
-#   __sub__(other)
+#   __sub__
     >>> def make_lpps_for_sub_test():
     ...     lpp_01 = lpoint_partition.LPointPartition.new_empty()
     ...     lpp_02 = lpoint_partition.LPointPartition.new_empty()
-    ...     specs_1 = [(1, 1, 'a'), (3, 3, 'a'), (2, 2, 'b'), (5, 5, 'd')]
-    ...     specs_2 = [(1, 1, 'a'), (2, 2, 'b'), (4, 4, 'b'), (6, 6, 'e')]
+    ...     specs_1 = [
+    ...         (1, 1, 1, 'a'), (3, 3, 3, 'a'), (2, 2, 2, 'b'), (5, 5, 5, 'd')]
+    ...     specs_2 = [
+    ...         (1, 1, 1, 'a'), (2, 2, 2, 'b'), (4, 4, 4, 'b'), (6, 6, 6, 'e')]
     ...     lpp_11 = lpoint_partition.LPointPartition.from_specs(specs_1)
     ...     lpp_12 = lpoint_partition.LPointPartition.from_specs(specs_2)
-    ...     return [lpp_01, lpp_02, lpp_11, lpp_12]
-
+    ...     return (lpp_01, lpp_02, lpp_11, lpp_12)
     >>> lpp_01, lpp_02, lpp_11, lpp_12 = make_lpps_for_sub_test()
     >>> print lpp_11.listing()
-    a:
-        (1, 1)
-        (3, 3)
-    b:
-        (2, 2)
-    d:
-        (5, 5)
+    'a'
+        (1, 1, 1)
+        (3, 3, 3)
+    'b'
+        (2, 2, 2)
+    'd'
+        (5, 5, 5)
     >>> print lpp_12.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-        (4, 4)
-    e:
-        (6, 6)
-
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
+        (4, 4, 4)
+    'e'
+        (6, 6, 6)
     >>> diff_0102 = lpp_01 - lpp_02
     >>> print diff_0102.listing()
     <no labeled points>
-
     >>> diff_0201 = lpp_02 - lpp_01
     >>> print diff_0201.listing()
     <no labeled points>
-
     >>> diff_0111 = lpp_01 - lpp_11
     >>> print diff_0111.listing()
     <no labeled points>
     >>> print lpp_11.listing()
-    a:
-        (1, 1)
-        (3, 3)
-    b:
-        (2, 2)
-    d:
-        (5, 5)
+    'a'
+        (1, 1, 1)
+        (3, 3, 3)
+    'b'
+        (2, 2, 2)
+    'd'
+        (5, 5, 5)
     >>> print lpp_12.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-        (4, 4)
-    e:
-        (6, 6)
-
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
+        (4, 4, 4)
+    'e'
+        (6, 6, 6)
     >>> diff_0112 = lpp_01 - lpp_12
     >>> print diff_0112.listing()
     <no labeled points>
     >>> print lpp_11.listing()
-    a:
-        (1, 1)
-        (3, 3)
-    b:
-        (2, 2)
-    d:
-        (5, 5)
+    'a'
+        (1, 1, 1)
+        (3, 3, 3)
+    'b'
+        (2, 2, 2)
+    'd'
+        (5, 5, 5)
     >>> print lpp_12.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-        (4, 4)
-    e:
-        (6, 6)
-
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
+        (4, 4, 4)
+    'e'
+        (6, 6, 6)
     >>> diff_1101 = lpp_11 - lpp_01
     >>> print diff_1101.listing()
-    a:
-        (1, 1)
-        (3, 3)
-    b:
-        (2, 2)
-    d:
-        (5, 5)
-
+    'a'
+        (1, 1, 1)
+        (3, 3, 3)
+    'b'
+        (2, 2, 2)
+    'd'
+        (5, 5, 5)
     >>> diff_1111 = lpp_11 - lpp_11
     >>> print diff_1111.listing()
     <no labeled points>
     >>> print lpp_11.listing()
-    a:
-        (1, 1)
-        (3, 3)
-    b:
-        (2, 2)
-    d:
-        (5, 5)
+    'a'
+        (1, 1, 1)
+        (3, 3, 3)
+    'b'
+        (2, 2, 2)
+    'd'
+        (5, 5, 5)
     >>> print lpp_12.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-        (4, 4)
-    e:
-        (6, 6)
-
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
+        (4, 4, 4)
+    'e'
+        (6, 6, 6)
     >>> diff_1112 = lpp_11 - lpp_12
-    >>> diff_1112.__class__
+    >>> type(diff_1112)
     <class 'lpoint_partition.LPointPartition'>
     >>> print diff_1112.listing()
-    a:
-        (3, 3)
-    d:
-        (5, 5)
+    'a'
+        (3, 3, 3)
+    'd'
+        (5, 5, 5)
     >>> print lpp_11.listing()
-    a:
-        (1, 1)
-        (3, 3)
-    b:
-        (2, 2)
-    d:
-        (5, 5)
+    'a'
+        (1, 1, 1)
+        (3, 3, 3)
+    'b'
+        (2, 2, 2)
+    'd'
+        (5, 5, 5)
     >>> print lpp_12.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-        (4, 4)
-    e:
-        (6, 6)
-
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
+        (4, 4, 4)
+    'e'
+        (6, 6, 6)
     >>> diff_1201 = lpp_12 - lpp_01
     >>> print diff_1201.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-        (4, 4)
-    e:
-        (6, 6)
-
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
+        (4, 4, 4)
+    'e'
+        (6, 6, 6)
     >>> diff_1211 = lpp_12 - lpp_11
     >>> print diff_1211.listing()
-    b:
-        (4, 4)
-    e:
-        (6, 6)
+    'b'
+        (4, 4, 4)
+    'e'
+        (6, 6, 6)
     >>> print lpp_11.listing()
-    a:
-        (1, 1)
-        (3, 3)
-    b:
-        (2, 2)
-    d:
-        (5, 5)
+    'a'
+        (1, 1, 1)
+        (3, 3, 3)
+    'b'
+        (2, 2, 2)
+    'd'
+        (5, 5, 5)
     >>> print lpp_12.listing()
-    a:
-        (1, 1)
-    b:
-        (2, 2)
-        (4, 4)
-    e:
-        (6, 6)
+    'a'
+        (1, 1, 1)
+    'b'
+        (2, 2, 2)
+        (4, 4, 4)
+    'e'
+        (6, 6, 6)
+
+#   intersection, union
+    >>> def set_up_intersection_union():
+    ...     lp_355x = labeled_point.LabeledPoint.from_parts(
+    ...         30, 50, 50, 'x')
+    ...     lp_755x = labeled_point.LabeledPoint.from_parts(
+    ...         70, 50, 50, 'x')
+    ...     lp_535y = labeled_point.LabeledPoint.from_parts(
+    ...         50, 30, 50, 'y')
+    ...     lp_575y = labeled_point.LabeledPoint.from_parts(
+    ...         50, 70, 50, 'y')
+    ...     lp_553z = labeled_point.LabeledPoint.from_parts(
+    ...         50, 50, 30, 'z')
+    ...     lp_557z = labeled_point.LabeledPoint.from_parts(
+    ...         50, 50, 70, 'z')
+    ...     lpp_xyz = lpoint_partition.LPointPartition([
+    ...         lp_355x, lp_755x, 
+    ...         lp_535y, lp_575y, 
+    ...         lp_553z, lp_557z])
+    ...     lpp_xy = lpoint_partition.LPointPartition([
+    ...         lp_355x, lp_755x, 
+    ...         lp_535y, lp_575y])
+    ...     lpp_z = lpoint_partition.LPointPartition([
+    ...         lp_553z, lp_557z])
+    ...     empty_lpp = lpoint_partition.LPointPartition.new_empty()
+    ...     return (lpp_xyz, lpp_xy, lpp_z, empty_lpp)
+    >>> lpp_xyz, lpp_xy, lpp_z, empty_lpp = set_up_intersection_union()
+
+
+#   intersection
+    >>> lpp_xyz.intersection(lpp_xyz) == lpp_xyz
+    True
+    >>> lpp_xyz.intersection(lpp_xy) == lpp_xy
+    True
+    >>> lpp_xyz.intersection(lpp_z) == lpp_z
+    True
+    >>> lpp_xyz.intersection(empty_lpp) == empty_lpp
+    True
+    >>> lpp_xy.intersection(lpp_xyz) == lpp_xy
+    True
+    >>> lpp_xy.intersection(lpp_xy) == lpp_xy
+    True
+    >>> lpp_xy.intersection(lpp_z) == empty_lpp
+    True
+    >>> lpp_xy.intersection(empty_lpp) == empty_lpp
+    True
+    >>> lpp_z.intersection(lpp_xyz) == lpp_z
+    True
+    >>> lpp_z.intersection(lpp_xy) == empty_lpp
+    True
+    >>> lpp_z.intersection(lpp_z) == lpp_z
+    True
+    >>> lpp_z.intersection(empty_lpp) == empty_lpp
+    True
+    >>> empty_lpp.intersection(lpp_xyz) == empty_lpp
+    True
+    >>> empty_lpp.intersection(lpp_xy) == empty_lpp
+    True
+    >>> empty_lpp.intersection(lpp_z) == empty_lpp
+    True
+    >>> empty_lpp.intersection(empty_lpp) == empty_lpp
+    True
+
+#   union
+    >>> lpp_xyz.union(lpp_xyz) == lpp_xyz
+    True
+    >>> lpp_xyz.union(lpp_xy) == lpp_xyz
+    True
+    >>> lpp_xyz.union(lpp_z) == lpp_xyz
+    True
+    >>> lpp_xyz.union(empty_lpp) == lpp_xyz
+    True
+    >>> lpp_xy.union(lpp_xyz) == lpp_xyz
+    True
+    >>> lpp_xy.union(lpp_xy) == lpp_xy
+    True
+    >>> lpp_xy.union(lpp_z) == lpp_xyz
+    True
+    >>> lpp_xy.union(empty_lpp) == lpp_xy
+    True
+    >>> lpp_z.union(lpp_xyz) == lpp_xyz
+    True
+    >>> lpp_z.union(lpp_xy) == lpp_xyz
+    True
+    >>> lpp_z.union(lpp_z) == lpp_z
+    True
+    >>> lpp_z.union(empty_lpp) == lpp_z
+    True
+    >>> empty_lpp.union(lpp_xyz) == lpp_xyz
+    True
+    >>> empty_lpp.union(lpp_xy) == lpp_xy
+    True
+    >>> empty_lpp.union(lpp_z) == lpp_z
+    True
+    >>> empty_lpp.union(empty_lpp) == empty_lpp
+    True
+
 
 ### other
-#   _print_error_message()
-    >>> test_method_name = 'test_method()'
+#   _print_error_message
+    >>> test_method_name = 'test_method'
     >>> test_message = 'This is a test'
-    >>> lpoint_partition.LPointPartition._print_error_message(test_method_name, test_message)
-    LPointPartition.test_method(): This is a test
+    >>> lpoint_partition.LPointPartition._print_error_message(
+    ...     test_method_name, test_message)
+    LPointPartition.test_method:
+        This is a test

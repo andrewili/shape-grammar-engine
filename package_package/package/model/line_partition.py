@@ -1,5 +1,3 @@
-#   line_partition.py
-
 import colineation
 import copy
 import line
@@ -8,14 +6,14 @@ class LinePartition(object):                ##  rename MaximalColineations?
     
     ### construct
     def __init__(self, lines):
-        """Receives a list of colinear lines:
-            [Line, ...], n >= 0
-        Consists of a dictionary of carrier : maximal colineation entries
+        """Receives:
+            lines           [Line, ...]. A list of lines
+        Has a dictionary of carrier : colineation entries
         """
-        method_name = '__init__()'
+        method_name = '__init__'
         try:
             if not (
-                lines.__class__ == list and 
+                type(lines) == list and 
                 (
                     lines == [] or
                     self._are_lines(lines))
@@ -23,101 +21,187 @@ class LinePartition(object):                ##  rename MaximalColineations?
                 raise TypeError
         except TypeError:
             message = 'The argument must be a list of lines'
-            self.__class__._print_error_message(method_name, message)
+            self._print_error_message(method_name, message)
         else:
-            self.dictionary = self.make_dictionary(lines)
+            self.dictionary = self._make_dictionary(lines)
 
-    def _are_lines(self, lines):
+    @classmethod
+    def _are_lines(cls, lines):
         value = True
         for line_i in lines:
-            if line_i.__class__ != line.Line:
+            if type(line_i) != line.Line:
                 value = False
                 break
         return value
 
-    def make_dictionary(self, lines):
-        """Receives a list of lines:
-            [Line, ...], n >= 0
-        Returns a dictionary partitioned by carrier:
-            {(num, num): Colineation, ...}
+    @classmethod
+    def _make_dictionary(cls, lines):           ##  inst meth? cf lpt-part
+        """Receives:
+            lines           [Line, ...]. A non-empty list of lines
+        Returns:
+            dict_of_colineations
+                            {carrier : colineation, ...}, a dictionary 
+                            partitioned by carrier, where:
+                carrier     (unit_vector, intercept)
+                unit_vector Vector
+                intercept   Point
+                colineation Colineation
         """
-        dictionary = {}
-        for line_i in lines:
-            if line_i.carrier in dictionary:
-                lines_by_carrier = dictionary[line_i.carrier]
-                lines_by_carrier.append(line_i)
+        dict_of_colines = cls._make_dict_of_colines(lines)
+        dict_of_colineations = cls._make_dict_of_colineations(dict_of_colines)
+        return dict_of_colineations
+
+    @classmethod
+    def _make_dict_of_colines(cls, lines):
+        """Receives:
+            lines           [Line, ...]. A non-empty list of lines
+        Returns:
+            dict_of_colines {carrier : colines, ...}, where:
+                carrier     (unit_vector, intercept)
+                unit_vector Vector
+                intercept   Point
+                colines     [Line, ...]. A non-empty list of colinear lines
+        """
+        d = {}
+        for l in lines:
+            if l.carrier in d:
+                colines = d[l.carrier]
+                colines.append(l)
             else:
-                lines_by_carrier = [line_i]
-                dictionary[line_i.carrier] = lines_by_carrier
-        for carrier in dictionary:
-            lines_by_carrier = dictionary[carrier]
-            maximal_lines_by_carrier = colineation.Colineation.maximal(
-                lines_by_carrier)
-            new_colineation = colineation.Colineation(
-                maximal_lines_by_carrier)
-            dictionary[carrier] = new_colineation
-        return dictionary
+                colines = [l]
+                d[l.carrier] = colines
+        return d
+
+    @classmethod
+    def _make_dict_of_colineations(cls, dict_of_colines):
+        """Receives:
+            dict_of_colines {carrier : colines, ...}. A non-empty dictionary 
+                            of colines, where:
+                carrier     (unit_vector, intercept)
+                unit_vector Vector
+                intercept   Point
+                colines     [Line, ...]. A non-empty list of colinear lines
+        Converts the colines lists to colineations. Returns:
+            new_dict        {carrier : colineation, ...}. A non-empty 
+                            dictionary of colineations, where:
+                carrier     as above
+                colineation Colineation. With a non-empty ordered list of 
+                            colinear lines
+        """
+        new_dict = {}
+        for carrier in dict_of_colines:
+            colines = dict_of_colines[carrier]
+            new_colin = colineation.Colineation(colines)
+            new_dict[carrier] = new_colin
+        return new_dict
 
     @classmethod
     def from_dictionary(cls, dictionary):
-        """Receives a dictionary of carrier-colineation entries:
-            {(num, num): Colineation, ...}
+        """Receives:
+            dictionary      dict. Of carrier-colineation entries
+                            {carrier: Colineation, ...}
+                carrier     (unit_vector, intercept)
+                unit_vector Vector
+                intercept   Point
+        Returns:
+            line_part       LinePartition. Has dictionary
         """
-        new_line_partition = LinePartition([])
-        new_line_partition.dictionary = dictionary
-        return new_line_partition
+        line_part = LinePartition([])
+        line_part.dictionary = dictionary
+        return line_part
 
     ### represent
     def __str__(self):
-        """Returns the string of ordered line specs:
-            [(x1, y1, x2, y2), ...]
+        """Returns:
+            string          str. Ordered by carrier and line. In the form 
+                            {carrier: colineation, ...}, where:
+                carrier     (unit_vector, intercept)
+                unit_vector Vector. In the form [<x> <y> <z>]
+                intercept   Point. In the form (<x>, <y>, <z>)
+                colineation Colineation. In the form [line, ...]
+                line        Line. In the form 
+                            ((<x1>, <y1>, <z1>), (<x2>, <y2>, <z2>))
         """
-        lines = []
-        for carrier_i in self.dictionary:
-            colineation_i = self.dictionary[carrier_i]
-            lines_by_carrier = colineation_i.lines
-            lines.extend(lines_by_carrier)
-        line_strings = []
-        for line_i in sorted(lines):
-            line_strings.append(line_i.__str__())
-        line_string = ', '.join(sorted(line_strings))
-        string = '[%s]' % line_string
+        item_strs = []
+        items = self.dictionary.items()
+        for item in sorted(items):
+            carrier, colin = item
+            uv, int_ = carrier
+            carrier_str = '(%s, %s)' % (str(uv), str(int_))
+            colin_str = str(colin)
+            item_str = '%s: %s' % (carrier_str, colin_str)
+            item_strs.append(item_str)
+        items_str = ', '.join(item_strs)
+        string = '{%s}' % items_str
         return string
 
-    def listing(self, decimal_places=0):                #   back to shape
-        """Returns an oredered, formatted, multi-line string in the form:
-            (bearing, intercept):
-                (x1, y1, x2, y2)
-                ...
-            ...
+    def __repr__(self):
+        entry_reprs = []
+        carriers = self.dictionary.keys()
+        for carrier in sorted(carriers):
+            uv, intercept = carrier
+            carrier_repr = '(%s, %s)' % (repr(uv), repr(intercept))
+            colin = self.dictionary[carrier]
+            colin_repr = repr(colin)
+            entry_repr = '%s: %s' % (carrier_repr, colin_repr)
+            entry_reprs.append(entry_repr)
+        naked_dict_repr = ', '.join(entry_reprs)
+        dict_repr = '{%s}' % naked_dict_repr
+        string = '%s(%s)' % (
+            'line_partition.LinePartition.from_dictionary', 
+            dict_repr)
+        return string
+        
+    def listing(self, decimal_places=0):
+        """Returns an ordered, formatted, multi-line string in the form:
+                            (<unit_vector>, <intercept>)
+                                <line>
+                                ...
+                            ...
+                unit_vector Vector
+                intercept   Point
+                line        Line
         """
-        if self.dictionary == {}:
-            string = '<empty line partition>'
-        else:
-            string_lines = []
-            for carrier_i in sorted(self.dictionary):
-                carrier_listing = self.get_carrier_listing(
-                    carrier_i, decimal_places)
-                string_lines.append(carrier_listing)
-                colineation_i = self.dictionary[carrier_i]
-                indent_level = 1                        #   move out of loop
-                colineation_listing = colineation_i.listing(
-                    decimal_places, indent_level)       #   create indentation here?
-                string_lines.append(colineation_listing)
-            string = '\n'.join(string_lines)
+        n = decimal_places
+        item_strs = []
+        items = sorted(self.dictionary.items())
+        for item in items:
+            carrier, colin = item
+            uv, intercept = carrier
+            carrier_str = '(%s, %s)' % (uv.listing(n), intercept.listing(n))
+            colines = colin.lines
+            indented_coline_strs = []
+            indentation = '    '
+            for line_i in colines:
+                indented_coline_str = (
+                    '%s%s' % (indentation, line_i.listing(n)))
+                indented_coline_strs.append(indented_coline_str)
+            colin_str = '\n'.join(indented_coline_strs)
+            item_str = '%s\n%s' % (carrier_str, colin_str)
+            item_strs.append(item_str)
+        string = '\n'.join(item_strs)
         return string
 
     ### get
-    def specs(self):
-        """Returns an ordered list of line specs:
-            [(x1, y1, x2, y2), ...]
-        """
-        specs = []
-        for carrier_i in self.dictionary:
-            colineation_i = self.dictionary[carrier_i]
-            colineation_i_specs = colineation_i.specs()
-            specs.extend(colineation_i_specs)
-        return sorted(specs)
+    # def specs(self):                          ##  suspended
+        # """Returns:
+        #     specs           {carrier_spec: colin_spec, ...}. Ordered by 
+        #                     carrier and by line
+        #         carrier_spec
+        #                     (uv_spec, int_spec)
+        #         uv_spec     [num num num]
+        #         int_spec    (num, num, num)
+        #         colin_spec  [line_spec, ...]
+        #         line_spec   (point_spec, point_spec)
+        #         point_spec  (num, num, num)
+        # """
+        # item_specs = []
+        # carrier = 
+        # for carrier in sorted(carriers):
+        #     item_spec = 
+        #     item_specs.append(item_spec)
+        # specs = '\n'.join(item_specs)
+        # return specs
 
     def get_carrier_listing(self, carrier, decimal_places):
         bearing, intercept = carrier
@@ -138,6 +222,20 @@ class LinePartition(object):                ##  rename MaximalColineations?
         return empty_partition
         
     ### relations
+    def __hash__(self):
+        colins = self.dictionary.values()
+        lines = []
+        for colin in colins:
+            colines = colin.lines
+            lines.extend(colines)
+        line_hashes_list = []
+        for line in sorted(lines):
+            line_hash = hash(line)
+            line_hashes_list.append(line_hash)
+        line_hashes_tuple = tuple(line_hashes_list)
+        value = hash(line_hashes_tuple)
+        return value
+
     def __eq__(self, other):
         return self.dictionary == other.dictionary
 
@@ -148,91 +246,87 @@ class LinePartition(object):                ##  rename MaximalColineations?
         return self.dictionary == {}
         
     def is_a_sub_line_partition_of(self, other):
+        """Receives:
+            other           LinePartition
+        Returns:
+            value           boolean. True if every colineation in self is a 
+                            subcolineation in other. False otherwise
+        """
+        value = True
         self_keyset = set(self.dictionary.keys())
         other_keyset = set(other.dictionary.keys())
         if not self_keyset.issubset(other_keyset):
-            return False
+            value = False
         else:
-            return self.colineations_are_subcolineations_in(other)
+            for carrier in self.dictionary:
+                self_colin = self.dictionary[carrier]
+                other_colin = other.dictionary[carrier]
+                if not self_colin.is_a_subcolineation_of(other_colin):
+                    value = False
+                    break
+        return value
 
-    def colineations_are_subcolineations_in(self, other):
-        """Receives a line partition with the same carriers:
-            LinePartition
-        Returns whether each colineation is a subcolineation in the other 
-        line partition.
-        """
-        for carrier in self.dictionary:
-            if carrier not in other.dictionary:
-                return False
-            else:
-                self_colineation = self.dictionary[carrier]
-                other_colineation = other.dictionary[carrier]
-                if not self_colineation.is_a_subcolineation_of(
-                    other_colineation
-                ):
-                    return False
-        return True
-
-    ### add
+    ### operations
     def __add__(self, other):
-        """Receives a line partition of maximal lines:
-            LinePartition, n >= 0
-        Returns a line partition of maximal lines:
-            LinePartition, n >= 0
+        """Receives:
+            other           LinePartition
+        Returns:
+            sum_part        LinePartition. A line partition of the 
+                            colineation sums of self and other
         """
-        new_dictionary = self.dictionary.copy()
+        sum_dict = self.dictionary.copy()
         for carrier in other.dictionary:
-            if carrier in new_dictionary:
-                self_colineation = new_dictionary[carrier]
-                other_colineation = other.dictionary[carrier]
-                new_colineation = self_colineation + other_colineation
-                new_dictionary[carrier] = new_colineation
+            if carrier in sum_dict:
+                self_colin = sum_dict[carrier]
+                other_colin = other.dictionary[carrier]
+                sum_colin = self_colin + other_colin
+                sum_dict[carrier] = sum_colin
             else:
-                new_dictionary[carrier] = other.dictionary[carrier]
-        new_partition = LinePartition.from_dictionary(new_dictionary)
-        return new_partition
+                sum_dict[carrier] = other.dictionary[carrier]
+        sum_part = LinePartition.from_dictionary(sum_dict)
+        return sum_part
 
-    ### subtract
     def __sub__(self, other):
-        """Receives a line partition:                                           #!  empty colineations?
-            LinePartition, n(entries) >= 0
-        Returns the line partition, possibly empty, such that for each carrier 
-        each colineation is the difference colineation_1 - colineation_2. If a 
-        difference is the empty colineation, the entry is excluded from the 
-        partition.
-            LinePartition, n(entries) >= 0
+        """Receives:
+            other           LinePartition
+        Returns:
+            diff_part       LinePartition. The line partition such that for 
+                            each carrier the corresponding colineation is the 
+                            difference self.colineation - other.colineation. 
+                            If a difference is the empty colineation, the 
+                            entry is removed from the partition.
         """
         trace_on = False
         if trace_on:
             method_name = 'LinePartition.__sub__'
             print 'self:\n%s' % self.listing()
             print 'other:\n%s' % other.listing()
-        new_line_part = LinePartition([])
-        line_dict_1 = self.dictionary
+        diff_part = LinePartition([])
+        self_dict = self.dictionary
         if trace_on:
             print '||| %s' % method_name
-            print 'new_line_part: %s' % new_line_part
-            print 'line_dict_1'
-            for carrier in line_dict_1:
+            print 'diff_part: %s' % diff_part
+            print 'self_dict'
+            for carrier in self_dict:
                 print carrier
-                print '%s' % line_dict_1[carrier].listing(1)
-        for carrier in line_dict_1:
-            colineation_1 = line_dict_1[carrier]
-            line_dict_2 = other.dictionary
-            if carrier in line_dict_2:
-                colineation_2 = copy.copy(line_dict_2[carrier])
-                new_colineation = colineation_1 - colineation_2
+                print '%s' % self_dict[carrier].listing(1)
+        for carrier in self_dict:
+            self_colin = self_dict[carrier]
+            other_dict = other.dictionary
+            if carrier in other_dict:
+                other_colin = copy.copy(other_dict[carrier])
+                diff_colin = self_colin - other_colin
             else:
-                new_colineation = colineation_1
-            new_line_part.dictionary[carrier] = new_colineation
+                diff_colin = self_colin
+            diff_part.dictionary[carrier] = diff_colin
         if trace_on:
             print '||| %s' % method_name
-            print 'new_line_part: \n%s' % new_line_part.listing()
-        new_line_part.reduce()
-        return new_line_part
+            print 'diff_part: \n%s' % diff_part.listing()
+        diff_part._reduce()
+        return diff_part
 
-    def reduce(self):
-        """Removes entries with empty colineations.
+    def _reduce(self):
+        """Removes entries with empty colineations
         """
         trace_on = False
         carriers_to_delete = []
@@ -242,11 +336,32 @@ class LinePartition(object):                ##  rename MaximalColineations?
         for carrier in carriers_to_delete:
             del self.dictionary[carrier]
         if trace_on == True:
-            print '||| LinePartition.reduce():\n%s' % self.listing()
+            print '||| LinePartition._reduce():\n%s' % self.listing()
+
+    def intersection(self, other):
+        """Receives:
+            other           LinePartition
+        Returns:
+            line_part_intersect
+                            LinePartition. Has a dictionary of lines each of 
+                            which is a part of both a line in self and a line 
+                            in other
+        """
+        pass
+
+    def union(self, other):
+        """Receives:
+            other           LinePartition
+        Returns:
+            line_part_union LinePartition. Has a dictionary of lines each of 
+                            which is a part of either a line in self or a 
+                            line in other
+        """
+        pass
 
     @classmethod
     def _print_error_message(cls, method_name, message):
-        print '%s.%s: %s' % (cls.__name__, method_name, message)
+        print '%s.%s:\n    %s' % (cls.__name__, method_name, message)
 
     ###
 if __name__ == '__main__':
